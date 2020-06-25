@@ -1,5 +1,5 @@
 - file: home
 - file: about
-- file: blog/blog
+- file: blog/home
   sections:
-  - file: blog/2020_black_disability_employment
+  - file: blog/20200625/black_disability_employment
