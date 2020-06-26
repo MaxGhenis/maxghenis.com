@@ -113,32 +113,33 @@ add_emp_rate(race_disability_emp)
 race_disability_emp['label'] = (race_disability_emp.black + ', ' +
                                 race_disability_emp.disability)
 
-fig = px.line(race_emp, x='date', y='emp_rate', color='black')
-fig.update_layout(
-    title='Prime-age employment rate by race',
-    xaxis_title='',
-    yaxis_title='Employment rate of civilians aged 25 to 54',
-    yaxis_ticksuffix='%',
-    legend_title_text='',
-    font=dict(family='Roboto')
-)
+def line_graph(df, x, y, color, title, yaxis_title):
+    fig = px.line(df, x=x, y=y, color=color)
+    fig.update_layout(
+        title=title,
+        xaxis_title='',
+        yaxis_title=yaxis_title,
+        yaxis_ticksuffix='%',
+        legend_title_text='',
+        font=dict(family='Roboto'),
+        hovermode='x'
+    )
+    # TODO: Use hoverformat to reduce decimal points.
+    fig.update_traces(mode='markers+lines', hovertemplate=None)
 
-fig.show()
+    fig.show()
+
+line_graph(df=race_emp, x='date', y='emp_rate', color='black',
+           title='Prime-age employment rate by race',
+           yaxis_title='Employment rate of civilians aged 25 to 54')
 
 Black people are also about 30 percent more likely to have a disability than non-Black people:
 while small samples make the signal noisy on a month-to-month basis, the rates are about 7.5 percent and 5.7 percent, respectively.
 
-fig = px.line(race_disability, x='date', y='disability_rate', color='black')
-fig.update_layout(
-    title='Disability rate by race, civilians aged 25 to 54',
-    xaxis_title='',
-    yaxis_title='Share of civilians aged 25 to 54 who report any difficulty',
-    yaxis_ticksuffix='%',
-    legend_title_text='',
-    font=dict(family='Roboto')
-)
-
-fig.show()
+line_graph(race_disability, x='date', y='disability_rate', color='black',
+           title='Disability rate by race, civilians aged 25 to 54',
+           yaxis_title=
+           'Share of civilians aged 25 to 54 who report any difficulty')
 
 The disability employment gap is very large, but it has shrunk over time.
 From January 2017 to January 2020, it fell from 50 percentage points
@@ -147,17 +148,9 @@ to 46 points (37 percent and 83 percent).
 Coronavirus has actually shrunk the gap further: since January, employment of people with disabilities
 has fallen 5 points, compared to 9 points among people without disabilities.
 
-fig = px.line(disability_emp, x='date', y='emp_rate', color='disability')
-fig.update_layout(
-    title='Prime-age employment rate by disability status',
-    xaxis_title='',
-    yaxis_title='Employment rate of civilians aged 25 to 54',
-    yaxis_ticksuffix='%',
-    legend_title_text='',
-    font=dict(family='Roboto')
-)
-
-fig.show()
+line_graph(disability_emp, x='date', y='emp_rate', color='disability',
+           title='Prime-age employment rate by disability status',
+           yaxis_title='Employment rate of civilians aged 25 to 54')
 
 Breaking out the trends by both race and disability status reveals that
 the racial employment gap among people without disabilities has been steady around 3 percentage points since 2017, but
@@ -165,17 +158,9 @@ has roughly doubled since coronavirus.
 The racial employment gap among people with disabilities has been noisy at around 10 points,
 and does not appear to have changed significantly as a result of coronavirus.
 
-fig = px.line(race_disability_emp, x='date', y='emp_rate', color='label')
-fig.update_layout(
-    title='Prime-age employment rate by race and disability status',
-    xaxis_title='',
-    yaxis_title='Employment rate of civilians aged 25 to 54',
-    yaxis_ticksuffix='%',
-    legend_title_text='',
-    font=dict(family='Roboto')
-)
-
-fig.show()
+line_graph(race_disability_emp, x='date', y='emp_rate', color='label',
+           title='Prime-age employment rate by race and disability status',
+           yaxis_title='Employment rate of civilians aged 25 to 54')
 
 Honing in on the latest month of data (May 2020) emphasizes the 50-percent-larger racial employment gap
 among people with disabilities.
@@ -196,6 +181,7 @@ fig.update_layout(
     font=dict(family='Roboto'),
     xaxis={'categoryorder':'total descending'}
 )
+fig.update_traces(hovertemplate=None)
 fig.show()
 
 How to tease out the effects of being Black vs. having a disability, when they interact and each 
