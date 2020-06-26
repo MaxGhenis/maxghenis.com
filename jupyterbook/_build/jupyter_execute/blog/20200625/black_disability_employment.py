@@ -62,7 +62,7 @@ cps['date'] = pd.to_datetime(cps[['year', 'month', 'day']])
 # Create descriptive bools from codes.
 cps['female'] = cps.sex == 2
 cps['emp'] = cps.empstat.isin([10, 12])
-cps['black'] = cps.race == 200
+cps['black'] = np.where(cps.race == 200, 'Black', 'Not Black')
 # Recode disability into True/False/None.
 for i in ['diffhear', 'diffeye', 'diffrem', 'diffphys', 'diffmob', 'diffcare',
           'diffany']:
@@ -73,15 +73,18 @@ COLS = ['emp', 'date', 'w', 'black', 'diffany']
 cps = cps[(cps.empstat != 1)  # Not in armed forces.
           & cps.age.between(25, 54)][COLS]
 assert cps.diffany.isna().sum() == 0
-cps.diffany = cps.diffany.astype(bool)
+cps['disability'] = np.where(cps.diffany == 1, 'Has disability',
+                             'No disability')
 
 ### ANALYSIS ###
 
 # Create grouped dataframe.
-grouped = cps.groupby(['date', 'black', 'diffany', 'emp'])[['w']].sum()
+grouped = cps.groupby(['date', 'black', 'disability', 'emp'])[['w']].sum()
 grouped.reset_index(inplace=True)
 # Add conditional columns for creating rates.
-mdf.add_weighted_metrics(grouped, ['diffany', 'emp'], 'w')
+mdf.add_weighted_metrics(grouped, ['emp'], 'w')
+grouped['disability_m'] = np.where(grouped.disability == 'Has disability',
+                                   grouped.w_m, 0)
 
 def add_emp_rate(df):
     df['emp_rate'] = 100 * df.emp_m / df.w_m
@@ -89,33 +92,28 @@ def add_emp_rate(df):
     df.reset_index(inplace=True)
     
 def add_disability_rate(df):
-    df['disability_rate'] = 100 * df.diffany_m / df.w_m
-    df.drop(['diffany_m', 'w_m'], axis=1, inplace=True)
+    df['disability_rate'] = 100 * df.disability_m / df.w_m
+    df.drop(['disability_m', 'w_m'], axis=1, inplace=True)
     df.reset_index(inplace=True)
     
 race_emp = grouped.groupby(['date', 'black'])[['emp_m', 'w_m']].sum()
 add_emp_rate(race_emp)
-race_emp['race'] = np.where(race_emp.black, 'Black', 'Not Black')
 
-diffany_emp = grouped.groupby(['date', 'diffany'])[['emp_m', 'w_m']].sum()
-add_emp_rate(diffany_emp)
-diffany_emp['disability'] = np.where(diffany_emp.diffany, 'Has disability',
-                                     'No disability')
-
-race_diffany = grouped.groupby(['date', 'black'])[['diffany_m', 'w_m']].sum()
-add_disability_rate(race_diffany)
-race_diffany['race'] = np.where(race_diffany.black, 'Black', 'Not Black')
-
-race_diffany_emp = grouped.groupby(['date', 'black', 'diffany'])[
+disability_emp = grouped.groupby(['date', 'disability'])[
     ['emp_m', 'w_m']].sum()
-add_emp_rate(race_diffany_emp)
-race_diffany_emp['race'] = np.where(race_diffany_emp.black, 'Black', 'Not Black')
-race_diffany_emp['disability'] = np.where(race_diffany_emp.diffany,
-                                          'Has disability', 'No disability')
-race_diffany_emp['label'] = (race_diffany_emp.race + ', ' +
-                             race_diffany_emp.disability)
+add_emp_rate(disability_emp)
 
-fig = px.line(race_emp, x='date', y='emp_rate', color='race')
+race_disability = grouped.groupby(['date', 'black'])[
+    ['disability_m', 'w_m']].sum()
+add_disability_rate(race_disability)
+
+race_disability_emp = grouped.groupby(['date', 'black', 'disability'])[
+    ['emp_m', 'w_m']].sum()
+add_emp_rate(race_disability_emp)
+race_disability_emp['label'] = (race_disability_emp.black + ', ' +
+                                race_disability_emp.disability)
+
+fig = px.line(race_emp, x='date', y='emp_rate', color='black')
 fig.update_layout(
     title='Prime-age employment rate by race',
     xaxis_title='',
@@ -130,7 +128,7 @@ fig.show()
 Black people are also about 30 percent more likely to have a disability than non-Black people:
 while small samples make the signal noisy on a month-to-month basis, the rates are about 7.5 percent and 5.7 percent, respectively.
 
-fig = px.line(race_diffany, x='date', y='disability_rate', color='race')
+fig = px.line(race_disability, x='date', y='disability_rate', color='black')
 fig.update_layout(
     title='Disability rate by race, civilians aged 25 to 54',
     xaxis_title='',
@@ -149,7 +147,7 @@ to 46 points (37 percent and 83 percent).
 Coronavirus has actually shrunk the gap further: since January, employment of people with disabilities
 has fallen 5 points, compared to 9 points among people without disabilities.
 
-fig = px.line(diffany_emp, x='date', y='emp_rate', color='disability')
+fig = px.line(disability_emp, x='date', y='emp_rate', color='disability')
 fig.update_layout(
     title='Prime-age employment rate by disability status',
     xaxis_title='',
@@ -167,7 +165,7 @@ has roughly doubled since coronavirus.
 The racial employment gap among people with disabilities has been noisy at around 10 points,
 and does not appear to have changed significantly as a result of coronavirus.
 
-fig = px.line(race_diffany_emp, x='date', y='emp_rate', color='label')
+fig = px.line(race_disability_emp, x='date', y='emp_rate', color='label')
 fig.update_layout(
     title='Prime-age employment rate by race and disability status',
     xaxis_title='',
@@ -184,10 +182,10 @@ among people with disabilities.
 Put another way: among people without disabilities, Black people are 8 percent less likely to be
 employed than non-Black people, while they're 32 percent less likely to be employed among people *with* disabilities.
 
-race_diffany_emp_latest = race_diffany_emp[race_diffany_emp.date == 
-                                           race_diffany_emp.date.max()]
+race_disability_emp_latest = race_disability_emp[
+    race_disability_emp.date == race_disability_emp.date.max()]
 
-fig = px.bar(race_diffany_emp_latest, x='label', y='emp_rate')
+fig = px.bar(race_disability_emp_latest, x='label', y='emp_rate')
 fig.update_layout(
     title='Prime-age employment rate by race and disability status,' +
     ' April 2020',
@@ -208,14 +206,20 @@ A linear probability regression shows that, in May 2020, being Black had an aver
 while having a disability had an average effect of -41.0 percentage points (about 6.5x the Black effect).
 
 cps_latest = cps[cps.date == cps.date.max()].drop('date', axis=1)
+
+cps_latest['is_black'] = cps_latest.black == 'Black'
+cps_latest['has_disability'] = cps_latest.disability == 'Has disability'
+cps_latest.drop(['black', 'disability'], axis=1, inplace=True)
+
 cps_latest = sm.add_constant(cps_latest) * 1
 
-m = sm.WLS(cps_latest.emp, cps_latest[['black', 'diffany', 'const']],
+m = sm.WLS(cps_latest.emp, cps_latest[['is_black', 'has_disability', 'const']],
            cps_latest.w).fit(cov_type='HC1')
 
 star = sg.Stargazer([m])
-star.covariate_order(['black', 'diffany'])
-star.rename_covariates({'black': 'Black', 'diffany': 'Has disability'})
+star.covariate_order(['is_black', 'has_disability'])
+star.rename_covariates({'is_black': 'Black',
+                        'has_disability': 'Has disability'})
 star
 
 While people with disabilities represent a small part of the overall racial employment gap,
