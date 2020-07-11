@@ -1,3 +1,3 @@
-jupyter-book build jupyterbook/
-cp CNAME jupyterbook/_build/html/
-ghp-import -b master -n -p -f jupyterbook/_build/html
+jupyter-book build jb/
+cp CNAME jb/_build/html/
+ghp-import -b master -n -p -f jb/_build/html
