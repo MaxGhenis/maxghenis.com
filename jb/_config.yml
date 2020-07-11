@@ -5,7 +5,7 @@ logo: maxghenis_headshot.jpg
 
 repository:
   url: https://github.com/MaxGhenis/maxghenis.github.io
-  book_path: jb
+  path_to_book: jb
   branch: src
 
 launch_buttons:
