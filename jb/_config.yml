@@ -2,3 +2,17 @@
 title: Max Ghenis
 author: Max Ghenis
 logo: maxghenis_headshot.jpg
+
+repository:
+  url: https://github.com/MaxGhenis/maxghenis.github.io
+  book_path: jb
+  branch: src
+
+launch_buttons:
+  colab_url: "https://colab.research.google.com"
+
+html:
+  use_repository_button: true
+  use_issues_button: true
+  use_edit_page_button: true
+  baseurl: http://maxghenis.com/blog
