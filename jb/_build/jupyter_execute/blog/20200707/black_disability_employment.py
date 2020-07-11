@@ -329,8 +329,7 @@ num_diffs = cps[cps.disability_int == 1].groupby('black')[
 num_diffs['num_diffs'] = num_diffs.num_diffs_m / num_diffs.w_m
 num_diffs.num_diffs.round(2)
 
-The three most common disabilities reported in the CPS are physical, cognitive, and mobility.
-Black people are especially likely to report [physical](https://cps.ipums.org/cps-action/variables/DIFFPHYS#description_section) ("serious difficulty walking or climbing stairs") and [mobility](https://cps.ipums.org/cps-action/variables/DIFFMOB#description_section) (persistent inability "to perform basic activities outside the home alone") difficulties.
+Black people are especially likely to report [physical](https://cps.ipums.org/cps-action/variables/DIFFPHYS#description_section) ("serious difficulty walking or climbing stairs") and [mobility](https://cps.ipums.org/cps-action/variables/DIFFMOB#description_section) (persistent inability "to perform basic activities outside the home alone") difficulties, which are two of the three most commonly reported difficulties.
 
 def share_w_disability(disability, black):
     num = cps[(cps.black == black) & (cps[disability] == 1)].w.sum()

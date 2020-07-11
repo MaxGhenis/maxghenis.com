@@ -30,6 +30,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script src="_static/searchtools.js"></script>
+    <link rel="canonical" href="http://maxghenis.com/blog/search.html" />
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="#" />
@@ -39,6 +40,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
 
+
+<!-- Opengraph tags -->
+<meta property="og:url"         content="http://maxghenis.com/blog/search.html" />
+<meta property="og:type"        content="article" />
+<meta property="og:title"       content="Search" />
+<meta property="og:description" content="" />
+<meta property="og:image"       content="http://maxghenis.com/blog/_static/maxghenis_headshot.jpg" />
+
+<meta name="twitter:card" content="summary">
 
 
 
@@ -71,9 +81,6 @@
   
   <ul class="nav sidenav_l1">
   <li class="">
-    <a href="home.html">Home</a>
-  </li>
-  <li class="">
     <a href="about.html">About</a>
   </li>
   <li class="">
@@ -83,10 +90,6 @@
 </nav>
 
  <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
 
 </div>
 
@@ -119,6 +122,22 @@
         </div>
 
         <!-- Source interaction buttons -->
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+                aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+            <div class="dropdown-buttons sourcebuttons">
+                <a class="repository-button"
+                    href="https://github.com/MaxGhenis/maxghenis.github.io"><button type="button" class="btn btn-secondary topbarbtn"
+                        data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                            class="fab fa-github"></i>repository</button></a>
+                <a class="issues-button"
+                    href="https://github.com/MaxGhenis/maxghenis.github.io/issues/new?title=Issue%20on%20page%20%2Fsearch.html&body=Your%20issue%20content%20here."><button
+                        type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                        title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+                
+            </div>
+        </div>
         
 
         <!-- Full screen (wrap in <a> to have style consistency -->
