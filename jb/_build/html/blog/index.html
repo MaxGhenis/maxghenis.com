@@ -75,20 +75,26 @@
 </form>
 
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  
-  <ul class="nav sidenav_l1">
-  <li class="">
-    <a href="../about.html">About</a>
-  </li>
-  <li class="active">
-    <a href="">Blog</a>
-  <ul class="nav sidenav_l2">
-    <li class="">
-      <a href="20200707/black_disability_employment.html">How disabilities affect Black employment</a>
-    </li>
+  <ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../about.html">
+   About
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Blog
+  </a>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="20200707/black_disability_employment.html">
+     How disabilities affect Black employment
+    </a>
+   </li>
   </ul>
-  </li>
+ </li>
 </ul>
+
 </nav>
 
  <!-- To handle the deprecated key -->
@@ -117,44 +123,43 @@
         </button>
         
         <div class="dropdown-buttons-trigger">
-            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-                    class="fas fa-download"></i></button>
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
 
-            
-            <div class="dropdown-buttons">
-                <!-- ipynb file if we had a myst markdown file -->
-                
-                <!-- Download raw file -->
-                <a class="dropdown-buttons" href="../_sources/blog/index.md"><button type="button"
-                        class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                        data-placement="left">.md</button></a>
-                <!-- Download PDF via print -->
-                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                    onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-            </div>
-            
-        </div>
-
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/blog/index.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
         <!-- Source interaction buttons -->
-        
-        <div class="dropdown-buttons-trigger">
-            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-                aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-            <div class="dropdown-buttons sourcebuttons">
-                <a class="repository-button"
-                    href="https://github.com/MaxGhenis/maxghenis.github.io"><button type="button" class="btn btn-secondary topbarbtn"
-                        data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                            class="fab fa-github"></i>repository</button></a>
-                <a class="issues-button"
-                    href="https://github.com/MaxGhenis/maxghenis.github.io/issues/new?title=Issue%20on%20page%20%2Fblog/index.html&body=Your%20issue%20content%20here."><button
-                        type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                        title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-                <a class="edit-button" href="https://github.com/MaxGhenis/maxghenis.github.io/edit/src/jb/blog/index.md"><button
-                        type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                        title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
-            </div>
-        </div>
-        
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/MaxGhenis/maxghenis.github.io"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/MaxGhenis/maxghenis.github.io/issues/new?title=Issue%20on%20page%20%2Fblog/index.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/MaxGhenis/maxghenis.github.io/edit/master/jb/blog/index.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
 
         <!-- Full screen (wrap in <a> to have style consistency -->
         <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
@@ -162,24 +167,17 @@
                     class="fas fa-expand"></i></button></a>
 
         <!-- Launch buttons -->
-        
+
     </div>
+
+    <!-- Table of contents -->
     <div class="d-none d-md-block col-md-2 bd-toc show">
-
-<nav id="bd-toc-nav">
-    <ul class="nav section-nav flex-column">
-    
-    </ul>
-</nav>
-
-
-
-<div class="tocsection editthispage">
-    <a href="https://github.com/MaxGhenis/maxghenis.github.io/edit/src/jb/blog/index.md">
-        <i class="fas fa-pencil-alt"></i> Edit this page
-    </a>
-</div>
-
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> On this page
+        </div>
+        <nav id="bd-toc-nav">
+            
+        </nav>
     </div>
 </div>
     <div id="main-content" class="row">

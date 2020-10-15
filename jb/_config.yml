@@ -6,13 +6,15 @@ logo: maxghenis_headshot.jpg
 repository:
   url: https://github.com/MaxGhenis/maxghenis.github.io
   path_to_book: jb
-  branch: src
+#  branch: src
 
 launch_buttons:
   colab_url: "https://colab.research.google.com"
+  binderhub_url: "https://mybinder.org"
 
 html:
   use_repository_button: true
   use_issues_button: true
   use_edit_page_button: true
   baseurl: http://maxghenis.com/blog
+  google_analytics_id: "249521942"
