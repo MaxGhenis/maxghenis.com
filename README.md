@@ -1,5 +1,4 @@
-maxghenis.github.io
-===================
+# maxghenis.com
 
 Powers https://maxghenis.com, using https://jupyterbook.org
 
