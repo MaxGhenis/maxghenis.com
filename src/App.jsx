@@ -172,7 +172,7 @@ const App = () => {
               description="A React app that combines GitHub repos, PRs, and issues into single files for AI context"
             />
             <ProjectTile
-              title="PR-Improver"
+              title="PR Improver"
               href="https://pr-improver.streamlit.app"
               description="An LLM-powered tool suggesting improvements to PRs based on repo guidelines"
             />
@@ -182,7 +182,7 @@ const App = () => {
               description="A dashboard for exploring BLS occupational & wage data"
             />
             <ProjectTile
-              title="HiveSight.ai"
+              title="HiveSight"
               href="https://hivesight.ai"
               description="A tool for surveying LLMs that assume diverse personas (in development)"
             />
