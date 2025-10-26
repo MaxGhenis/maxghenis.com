@@ -82,7 +82,7 @@ const ProjectTile = ({ title, href, description }) => (
 
 const HomePage = () => {
   const socialLinks = [
-    { href: "mailto:mghenis@gmail.com", icon: Mail, label: "Email" },
+    { href: "mailto:max@policyengine.org", icon: Mail, label: "Email" },
     {
       href: "https://x.com/maxghenis",
       icon: XIcon,
@@ -167,7 +167,7 @@ const HomePage = () => {
               logo="https://lh3.googleusercontent.com/d_S5gxu_S1P6NR1gXeMthZeBzkrQMHdI5uvXrpn3nfJuXpCjlqhLQKH_hbOxTHxFhp5WugVOEcl4WDrv9rmKBDOMExhKU5KmmLFQVg"
               title="Google"
               href="https://google.com"
-              description="Worked as a data scientist, leading projects to make internal operations and products more inclusive across the world."
+              description="Data scientist at YouTube (2015-2018) and People Analytics (2010-2015). Co-founded People Analytics Data Science team. Led analytics for YouTube Go, built ML models for 100M+ content creators, and delivered 200+ hours of technical training."
             />
           </div>
         </Section>
