@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Max Ghenis - CV</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+        :root {
+            /* PolicyEngine color palette from policyengine-app-v2 */
+            --primary-color: #319795;  /* Teal 500 */
+            --primary-dark: #285E61;   /* Teal 700 */
+            --primary-light: #B2F5EA;  /* Teal 100 */
+            --secondary-color: #026AA2; /* Blue 700 - darker for readability */
+            --text-color: #000000;
+            --text-secondary: #5A5A5A;
+            --text-tertiary: #9CA3AF;
+            --light-gray: #F5F9FF;     /* Background secondary */
+            --border-color: #E2E8F0;   /* Border light */
+            --border-medium: #CBD5E1;  /* Border medium */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #fff;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Print-specific styles */
+        @media print {
+            body {
+                max-width: 100%;
+                padding: 0;
+                font-size: 11pt;
+            }
+
+            a {
+                color: var(--text-color);
+                text-decoration: none;
+            }
+
+            .no-print {
+                display: none;
+            }
+        }
+
+        /* Header */
+        h1 {
+            font-size: 2.5em;
+            color: var(--primary-color);
+            margin-bottom: 0.3em;
+            border-bottom: 3px solid var(--secondary-color);
+            padding-bottom: 0.3em;
+        }
+
+        .contact-header {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px 20px;
+            margin-bottom: 30px;
+            color: var(--text-secondary);
+            font-size: 0.9em;
+        }
+
+        .contact-header p {
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-header i {
+            color: var(--primary-color);
+            width: 16px;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .contact-header {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px 15px;
+            }
+        }
+
+        @media print {
+            .contact-header {
+                grid-template-columns: repeat(4, 1fr);
+                font-size: 9pt;
+                gap: 10px 15px;
+            }
+
+            .contact-header i {
+                display: none;
+            }
+        }
+
+        /* Sections */
+        h2 {
+            font-size: 1.5em;
+            color: var(--primary-color);
+            margin-top: 1.5em;
+            margin-bottom: 0.8em;
+            padding-bottom: 0.3em;
+            border-bottom: 2px solid var(--light-gray);
+        }
+
+        h3 {
+            font-size: 1.2em;
+            color: var(--secondary-color);
+            margin-top: 1em;
+            margin-bottom: 0.5em;
+        }
+
+        /* Experience and Education entries */
+        .entry {
+            margin-bottom: 1.5em;
+        }
+
+        .entry-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.5em;
+            flex-wrap: wrap;
+        }
+
+        .entry-title {
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 1.1em;
+        }
+
+        .entry-date {
+            color: #666;
+            font-style: italic;
+            font-size: 0.9em;
+        }
+
+        .entry-org {
+            color: var(--secondary-color);
+            margin-bottom: 0.5em;
+        }
+
+        /* Lists */
+        ul {
+            margin-left: 20px;
+            margin-bottom: 1em;
+        }
+
+        li {
+            margin-bottom: 0.5em;
+        }
+
+        /* Links */
+        a {
+            color: #026AA2;  /* Blue 700 - darker for better readability */
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Summary section */
+        .summary {
+            background-color: #E6FFFA;  /* Teal 50 - very light teal */
+            padding: 1em;
+            border-left: 4px solid var(--primary-color);  /* Changed to primary teal */
+            margin-bottom: 1.5em;
+            font-size: 1.05em;
+        }
+
+        /* Skills section */
+        .skills-category {
+            margin-bottom: 1em;
+        }
+
+        .skills-category h4 {
+            color: var(--secondary-color);
+            font-size: 1em;
+            margin-bottom: 0.3em;
+        }
+
+        /* Publications */
+        .publication {
+            margin-bottom: 0.8em;
+        }
+
+        .publication strong {
+            color: var(--primary-color);
+        }
+
+        /* Separator */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-color);
+            margin: 2em 0;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .entry-header {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Max Ghenis</h1>
+<div class="contact-header">
+<p><i class="fas fa-envelope"></i> <a href="mailto:max@policyengine.org">max@policyengine.org</a></p>
+<p><i class="fas fa-phone"></i> +1.650.630.3657</p>
+<p><i class="fas fa-map-marker-alt"></i> Washington, DC</p>
+<p><i class="fas fa-globe"></i> <a href="https://maxghenis.com">maxghenis.com</a></p>
+<p><i class="fab fa-github"></i> <a href="https://github.com/maxghenis">@maxghenis</a></p>
+<p><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/maxghenis">@maxghenis</a></p>
+<p><i class="fab fa-x-twitter"></i> <a href="https://x.com/maxghenis">@maxghenis</a></p>
+<p><i class="fa-brands fa-bluesky"></i> <a href="https://bsky.app/profile/maxghenis.bsky.social">@maxghenis</a></p>
+</div>
+
+<hr />
+<h2>Summary</h2>
+<div class="summary">
+<p>Policy entrepreneur, technologist, and economist building computational tools that democratize policy analysis. Founder of PolicyEngine, a nonprofit software platform that computes personalized and population-level impacts of tax and benefit reforms. Expert in microsimulation modeling, machine learning for survey data enhancement, and economic impact assessment.</p>
+</div>
+<hr />
+<h2>Professional Experience</h2>
+<h3>Co-founder and CEO, <a href="http://policyengine.org">PolicyEngine</a></h3>
+<p><em>October 2021 - Present</em></p>
+<ul>
+<li>Founded and lead PolicyEngine, a nonprofit software platform enabling policymakers, researchers, and citizens to analyze the personalized and population-level impacts of tax and benefit policy reforms</li>
+<li>Built comprehensive social insurance program models including eligibility rules and benefit calculations for Medicaid, CHIP, ACA premium tax credits, SSI, Social Security benefit taxation, and other federal and state programs</li>
+<li>Serve diverse users including government agencies (Joint Economic Committee, DC Council, NY Senate), research organizations (NBER), universities (Georgetown, UMich), think tanks (Niskanen Center, Arnold Ventures), and advocacy organizations nationwide</li>
+<li>Spun off PolicyEngine from the UBI Center in October 2021, launching PolicyEngine UK to calculate UK-wide and personalized impacts of customizable tax and benefit reforms</li>
+<li>Launched PolicyEngine US in 2022, expanding microsimulation capabilities to all 50 states and federal programs</li>
+<li>Secured and delivered over a dozen grants, research contracts, and API service agreements with partners including government agencies (Federal Reserve Bank of Atlanta), research organizations (NBER), think tanks, and advocacy organizations</li>
+<li>Built computational models simulating how hundreds of thousands of households respond to policy changes across tax and benefit programs</li>
+<li>Enhanced microsimulation accuracy using machine learning for variable imputation and survey weight calibration</li>
+</ul>
+<h3>Founder and President, <a href="http://ubicenter.org">UBI Center</a></h3>
+<p><em>April 2019 - March 2023</em></p>
+<ul>
+<li>Created an open source think tank conducting quantitative research into universal basic income and cash transfer policies</li>
+<li>Managed team of up to a dozen researchers, collectively producing over 60 reports and interactive analytical products</li>
+<li>Developed open-source tools for distributional policy analysis, including microdf Python library for weighted survey data analysis</li>
+<li>Published research influencing policy debates on child allowances, carbon dividends, and tax reform</li>
+</ul>
+<h3>Independent Economics Researcher</h3>
+<p><em>July 2018 - March 2019</em></p>
+<ul>
+<li>Produced a synthetic releasable version of the IRS Public Use File for open-source tax analysis as part of the Open Source Policy Center&rsquo;s Tax-Calculator project (Python)</li>
+<li>Contributed to Tax-Calculator&rsquo;s imputation of variables from Current Population Survey to IRS data sets</li>
+<li>Conducted distributional analysis of federal cash transfer policies including EITC, CTC, and UBI (Python+Jupyter)</li>
+</ul>
+<h3>Product Analyst / Data Scientist, <a href="https://www.youtube.com/">YouTube</a></h3>
+<p><em>July 2015 - July 2018</em></p>
+<ul>
+<li>Led analytics for emerging markets and YouTube Go—an app for low-bandwidth users—including modeling user retention, designing and analyzing experiments and quasiexperiments, and advising on data infrastructure</li>
+<li>Associated geographic consumption of video segments with economic indicators</li>
+<li>Built tool for automatically estimating causal impact of mobile data discount campaigns on YouTube consumption using Bayesian time series</li>
+<li>Developed and productionized classification of 100M+ content creators using PCA and LASSO</li>
+<li>Built forecast model for daily reach for thousands of slices using hierarchical time series</li>
+<li>Conducted first deep-dive analysis of female YouTube usage</li>
+<li>Led quantitative analysis for algorithm estimating reach across videos, channels, and countries</li>
+</ul>
+<h3>People Analytics Manager, <a href="https://www.google.com/">Google</a></h3>
+<p><em>July 2010 - July 2015</em></p>
+<ul>
+<li>Promoted twice (People Analyst → Senior People Analyst → People Analytics Manager), co-founding People Analytics Data Science team and establishing data-driven approaches to workforce planning and organizational effectiveness</li>
+<li>Led social network analysis of company-wide survey, including force-directed graph layouts, predictors of employee PageRank centrality and edge formation, and organizational integration</li>
+<li>Conceptualized and executed restructure of People Analytics survey data, leveraging internal SQL and writing functions in custom R package for consistent, efficient, longitudinal analysis</li>
+<li>Analyzed promotion and transfer activity via survival analysis and random forests</li>
+<li>Created automatic headcount forecast using R Monte Carlo simulation, chaining ARIMA, Cox survival models, and random forests</li>
+<li>Built R package for topic modeling and sentiment analysis, applied to 15+ domains and 350k+ documents</li>
+<li>Identified interviewers and hiring stages most predictive of hiring and performance outcomes</li>
+<li>Created original educational content for Sheets, R, and SQL; delivered 200+ hours of teaching to hundreds of employees; held YouTube lectures for G Suite and Google&rsquo;s data analysis MOOC</li>
+</ul>
+<h3>Analyst / Senior Analyst, <a href="https://beghouconsulting.com/">Beghou Consulting</a></h3>
+<p><em>June 2008 - July 2010</em></p>
+<ul>
+<li>Consulted for pharmaceutical clients on sales force optimization and analytics</li>
+</ul>
+<hr />
+<h2>Education</h2>
+<p><strong>M.S., Data, Economics, and Development Policy</strong> | <em>2020</em>
+Massachusetts Institute of Technology</p>
+<p><strong>B.A., Operations Research and Management Science</strong> | <em>2008</em>
+University of California, Berkeley
+<em>Minors: Industrial Engineering &amp; Operations Research, Music</em></p>
+<hr />
+<h2>Key Skills &amp; Technologies</h2>
+<p><strong>Programming &amp; Data Science:</strong></p>
+<ul>
+<li>Expert: Python (pandas, NumPy, scikit-learn), R (ggplot2, tidyverse), SQL, Jupyter</li>
+<li>Proficient: JavaScript/TypeScript, React, Stata, Google Apps Script, Linux/shell</li>
+<li>Intermediate: SAS, VBA</li>
+</ul>
+<p><strong>AI &amp; Modern Development:</strong></p>
+<ul>
+<li>LLM programming and prompt engineering</li>
+<li>AI coding agents (Claude Code, GitHub Copilot)</li>
+<li>Automated code generation and testing</li>
+</ul>
+<p><strong>Specialized Expertise:</strong></p>
+<ul>
+<li>Microsimulation modeling and agent-based simulation</li>
+<li>Machine learning for survey data imputation and calibration</li>
+<li>Tax and benefit policy analysis</li>
+<li>Distributional economic impact assessment</li>
+<li>Causal inference and experimental design</li>
+<li>Data visualization and interactive tools</li>
+<li>Open-source software development</li>
+</ul>
+<p><strong>Domain Knowledge:</strong></p>
+<ul>
+<li>Tax policy (income, payroll, wealth, carbon taxation)</li>
+<li>Benefit programs (SNAP, TANF, SSI, housing assistance)</li>
+<li>Universal basic income and cash transfer policies</li>
+<li>Survey methodology and synthetic data generation</li>
+<li>Poverty and inequality measurement</li>
+</ul>
+<hr />
+<h2>Selected Publications &amp; Research</h2>
+<h3>Working Papers</h3>
+<ul>
+<li><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5410643">What can LLMs tell us about the ETI?</a> With Jason DeBacker. SSRN Working Paper, August 2025.</li>
+</ul>
+<h3>Book Chapters</h3>
+<ul>
+<li><a href="https://www.amazon.com/Death-Anti-Death-18-Fifty-University/dp/1934297348">Mortality, existential risk, and universal basic income</a>. In <em>Death And Anti-Death, Volume 18: Fifty Years After Earth Day</em>, edited by Charles Tandy. RIA University Press, 2021.</li>
+</ul>
+<h3>PolicyEngine Research</h3>
+<ul>
+<li><a href="https://policyengine.org/us/research/california-billionaire-tax-marginal-rates">Marginal tax rates in California&rsquo;s proposed billionaire tax</a>. October 2025.</li>
+<li><a href="https://policyengine.org/uk/research/uk-poverty-analysis">Comparing PolicyEngine and official UK poverty rates</a>. With Vahid Ahmadi. October 2025.</li>
+<li><a href="https://policyengine.org/uk/research/uk-two-child-limit">How removing the two-child benefit limit would affect the UK</a>. With Vahid Ahmadi. October 2025.</li>
+<li><a href="https://policyengine.org/us/research/dc-office-ai-coding">How we used Claude Code to choose our DC office</a>. With Daphne Hansell. October 2025.</li>
+<li><a href="https://policyengine.org/us/research/introducing-aca-calc">Introducing ACA-Calc: Calculate your household&rsquo;s premium tax credits</a>. With Daphne Hansell. September 2025.</li>
+<li><a href="https://policyengine.org/uk/research/uk-carbon-tax-dividend">How carbon tax and dividend policies affect UK households</a>. With Vahid Ahmadi. September 2025.</li>
+<li><a href="https://policyengine.org/us/research/enhanced-premium-tax-credits-extension">Enhanced Premium Tax Credits: Analyzing Household Impacts of an Extension Beyond 2025</a>. With Daphne Hansell. September 2025.</li>
+<li><a href="https://policyengine.org/us/research/policyengine-nber-mou-taxsim">PolicyEngine and NBER sign memorandum of understanding for TAXSIM emulator development</a>. With Pavel Makarchuk. September 2025.</li>
+<li><a href="https://policyengine.org/us/research/nsf-pose-phase-1-grant">National Science Foundation awards PolicyEngine $300,000 grant</a>. August 2025.</li>
+<li><a href="https://policyengine.org/us/research/american-worker-rebate-act">Analysis of the American Worker Rebate Act of 2025</a>. With David Trimmer. August 2025.</li>
+<li><a href="https://policyengine.org/us/research/enhanced-cps-launch">Enhanced CPS full launch: Comprehensive microdata for policy analysis</a>. With Nikhil Woodruff, Ben Ogorek, and Maria Juaristi. August 2025.</li>
+<li><a href="https://policyengine.org/us/research/final-2025-reconciliation-tax">Analysis of individual income tax provisions in the final reconciliation bill</a>. With David Trimmer and Pavel Makarchuk. July 2025.</li>
+<li><a href="https://policyengine.org/us/research/introducing-obbba-household-explorer">Introducing the OBBBA Household Explorer</a>. With Pavel Makarchuk and Elena Cura. July 2025.</li>
+<li><a href="https://policyengine.org/us/research/american-family-act-2025">The 2025 American Family Act</a>. With David Trimmer. June 2025.</li>
+<li><a href="https://policyengine.org/uk/research/uk-childcare-report">Childcare programmes in PolicyEngine UK</a>. With Vahid Ahmadi. June 2025.</li>
+<li><a href="https://policyengine.org/us/research/managers-amendment-to-hr1">Manager&rsquo;s Amendment to H.R.1 - The One Big Beautiful Bill Act</a>. With Pavel Makarchuk and David Trimmer. May 2025.</li>
+<li><a href="https://policyengine.org/us/research/montana-tax-cuts-2026">Montana Reduces Top Income Tax Rate and Expands EITC</a>. With David Trimmer. May 2025.</li>
+<li><a href="https://policyengine.org/us/research/salt-caucus-62k-cap">The SALT Caucus&rsquo;s Proposed Cap</a>. With David Trimmer. May 2025.</li>
+<li><a href="https://policyengine.org/us/research/ways-and-means-salt-cap">Ways and Means Committee&rsquo;s SALT Cap</a>. With Pavel Makarchuk and David Trimmer. May 2025.</li>
+<li><a href="https://policyengine.org/uk/research/impact-of-tax-changes-2025-2026">Tax changes in effect in April 2025</a>. With Nikhil Woodruff. April 2025.</li>
+<li><a href="https://policyengine.org/us/research/introducing-salternative">What&rsquo;s the SALTernative?</a>. With Pavel Makarchuk. April 2025.</li>
+<li><a href="https://policyengine.org/us/research/myfriendben-nc">MyFriendBen Launches in North Carolina, Using PolicyEngine API</a>. April 2025.</li>
+<li><a href="https://policyengine.org/uk/research/hmt-policyengine-pilot">HM Treasury pilots PolicyEngine UK for tax-benefit microsimulation</a>. With Nikhil Woodruff. March 2025.</li>
+<li><a href="https://policyengine.org/uk/research/income-tax-freeze">Extending the Income Tax threshold freeze to 2030</a>. With Nikhil Woodruff. March 2025.</li>
+<li><a href="https://policyengine.org/us/research/wyden-smith-ctc">Preliminary analysis of the Wyden-Smith Child Tax Credit expansion</a>. With Pavel Makarchuk. January 2024.</li>
+<li><a href="https://policyengine.org/us/research/enhanced-cps-beta">Beta-launch: PolicyEngine&rsquo;s enhanced microdata for policy analysis</a>. With Nikhil Woodruff. March 2024.</li>
+<li><a href="https://policyengine.org/us/research/trafwa-ctc">Child Tax Credit Provisions of the Tax Relief for American Workers and Families Act</a>. March 2024.</li>
+<li><a href="https://policyengine.org/us/research/biden-budget-2025">Individual income tax provisions of President Biden&rsquo;s 2025 Budget</a>. With Pavel Makarchuk. March 2024.</li>
+<li><a href="https://policyengine.org/us/research/state-tax-model-beta">PolicyEngine launches state income tax modeling nationwide</a>. With Pavel Makarchuk. April 2024.</li>
+<li><a href="https://policyengine.org/us/research/winship-individualized-eitc">Scott Winship&rsquo;s individualized Earned Income Tax Credit proposal</a>. 2023.</li>
+<li><a href="https://policyengine.org/us/research/malliotakis-steel-working-families-tax-cut-act">Analysis of the Working Families Tax Cut Act</a>. With Nikhil Woodruff. 2023.</li>
+<li><a href="https://policyengine.org/us/research/analysis-of-guaranteed-income-for-the-21st-century">Analysis of Guaranteed Income for the 21st Century</a>. 2023.</li>
+<li><a href="https://policyengine.org/us/research/massachusetts-governor-maura-healeys-fy-2024-budget-recommendation">Massachusetts Governor Maura Healey&rsquo;s FY 2024 Budget Recommendation</a>. 2023.</li>
+<li><a href="https://policyengine.org/us/research/the-child-tax-credit-in-2023">The Child Tax Credit in 2023</a>. 2023.</li>
+<li><a href="https://policyengine.org/us/research/how-would-reforms-affect-cliffs">How would reforms affect cliffs?</a>. With Nikhil Woodruff. 2023.</li>
+<li><a href="https://policyengine.org/us/research/electric-vehicle-tax-credits-under-current-law-and-the-inflation-reduction-act">Electric vehicle tax credits under current law and the Inflation Reduction Act</a>. 2022.</li>
+</ul>
+<h3>Substack</h3>
+<ul>
+<li><a href="https://maxghenis.substack.com/p/vat-thresholds-revenues-and-the-role">VAT thresholds, revenues, and the role of counterfactuals</a>. August 2025.</li>
+<li><a href="https://maxghenis.substack.com/p/ai-models-favor-cuomo-over-mamdani">AI models favor Cuomo over Mamdani on NYC housing production</a>. June 2025.</li>
+<li><a href="https://maxghenis.substack.com/p/what-will-the-house-ways-and-means">What Will the House Ways &amp; Means Committee Propose on Tuesday?</a>. May 2025.</li>
+<li><a href="https://maxghenis.substack.com/p/my-2024-in-code-personal-projects">My 2024 in Code: Personal Projects &amp; AI Tools</a>. January 2025.</li>
+<li><a href="https://maxghenis.substack.com/p/elon-musks-ai-predicts-americans">Elon Musk&rsquo;s AI Predicts Americans Will Be $800 Richer Under Harris</a>. November 2024.</li>
+</ul>
+<h3>UBI Center Research (2019-2022)</h3>
+<ul>
+<li><strong>The Inflation Reduction Act discourages electric vehicle buyers from working.</strong> 2022.
+  <em>Winner of Robert Corrin Prize for Outstanding Research from the Savings and Retirement Foundation</em></li>
+<li><strong>How does targeted cash assistance affect incentives to work?</strong> 2022.</li>
+<li><strong>The progressivity of a UK carbon dividend.</strong> With Nikhil Woodruff. 2022.</li>
+<li><strong>Carbon dividends as anti-poverty policy.</strong> 2021.</li>
+<li><strong>Analysis of Senator Romney&rsquo;s Family Security Act.</strong> 2021.</li>
+<li><strong>Revenue and Distributional Impacts of the American Rescue Plan Act.</strong> With Jason DeBacker, Richard W. Evans, and Cody Kallen. 2021.</li>
+<li><strong>Distributional analysis of Andrew Yang&rsquo;s Freedom Dividend.</strong> 2019.</li>
+</ul>
+<hr />
+<h2>Conference Presentations &amp; Speaking Engagements</h2>
+<p><strong>National Tax Association (NTA) 117th Annual Conference on Taxation</strong> | November 2024, Detroit, MI
+- &ldquo;What Can LLMs Tell Us about the ETI?&rdquo; With Jason DeBacker
+- &ldquo;PolicyEngine&rsquo;s Enhanced Current Population Survey for Tax-Benefit Microsimulation.&rdquo; With Nikhil Woodruff</p>
+<p><strong>Association for Public Policy Analysis and Management (APPAM) Fall Research Conference</strong> | November 2024</p>
+<p><strong>National Tax Association Spring Symposium</strong> | 2024</p>
+<p><strong>BenCon</strong> | 2024</p>
+<p><strong>Open Sustainability Summit</strong> | 2024</p>
+<p><strong>Society of Government Economists Annual Conference</strong> | 2025</p>
+<p><strong>Rules as Code Europe</strong> | March 2025, Paris, France</p>
+<p><strong>University Guest Lectures</strong> | 2024
+- UC Berkeley
+- Northwestern University
+- George Mason University
+- University of Toronto</p>
+<p><strong>Rules as Code Demo Day, Beeck Center</strong> | June 2022, Washington, DC
+- Presented PolicyEngine platform with Nikhil Woodruff</p>
+<p><strong>Basic Income Guarantee (BIG) Conference</strong> | June 2022, Portland, OR</p>
+<hr />
+<h2>Volunteer Leadership &amp; Community Engagement</h2>
+<h3>Leadership Council Member, <a href="http://pslmodels.org">Policy Simulation Library</a></h3>
+<p><em>September 2020 - Present</em></p>
+<ul>
+<li>Lead organization supporting open source products for public policy analysis</li>
+</ul>
+<h3>Synthetic Data Advisory Board Member, <a href="http://taxpolicycenter.org">Tax Policy Center</a></h3>
+<p><em>August 2019 - Present</em></p>
+<ul>
+<li>Advise on development of synthetic version of IRS Public Use File for accurate, privacy-safe policy analysis</li>
+</ul>
+<h3>Co-founder and Chair, <a href="http://vcyimby.org">Ventura County YIMBY</a></h3>
+<p><em>August 2019 - September 2022</em></p>
+<ul>
+<li>Created the sole pro-housing advocacy group in 800,000-person Ventura County, growing to over 1,000 members</li>
+</ul>
+<h3>California State Coordinator, <a href="http://citizensclimatelobby.org">Citizens&rsquo; Climate Lobby</a></h3>
+<p><em>January 2022 - September 2022</em></p>
+<ul>
+<li>Supported eight chapters in Southern California advocating carbon fee and dividend policy</li>
+</ul>
+<h3>Board Member, <a href="http://usbig.org">USBIG</a></h3>
+<p><em>November 2021 - April 2022</em></p>
+<ul>
+<li>Promoted discussion of basic income guarantee in the United States</li>
+</ul>
+<h3>Organizer, <a href="http://savethegastax.org">Save the Gas Tax</a></h3>
+<p><em>January 2022 - June 2022</em></p>
+<ul>
+<li>Formed coalition of 15 organizations advocating to cancel proposed gas tax holiday in California</li>
+</ul>
+</body>
+</html>
