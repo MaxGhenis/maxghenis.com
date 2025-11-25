@@ -1,0 +1,386 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SOCIAL_LINKS } from '../consts';
+
+// Bluesky API fetch (at build time)
+let blueskyPosts: any[] = [];
+try {
+	const response = await fetch(
+		`https://public.api.bsky.app/xrpc/app.bsky.feed.getAuthorFeed?actor=maxghenis.bsky.social&limit=20`
+	);
+	if (response.ok) {
+		const data = await response.json();
+		blueskyPosts = data.feed || [];
+	}
+} catch (e) {
+	console.error('Failed to fetch Bluesky posts:', e);
+}
+
+// For X and LinkedIn, we use a static data file that you can update via export
+// You can run a script to export your X archive and convert it to JSON
+import xPosts from '../data/x-posts.json';
+import linkedinPosts from '../data/linkedin-posts.json';
+
+// Combine all posts into a unified feed
+type FeedItem = {
+	id: string;
+	platform: 'bluesky' | 'x' | 'linkedin';
+	content: string;
+	date: Date;
+	url: string;
+	likes?: number;
+	reposts?: number;
+	images?: string[];
+};
+
+const allPosts: FeedItem[] = [];
+
+// Add Bluesky posts
+for (const item of blueskyPosts) {
+	const post = item.post;
+	if (post?.record?.text) {
+		allPosts.push({
+			id: post.uri,
+			platform: 'bluesky',
+			content: post.record.text,
+			date: new Date(post.indexedAt),
+			url: `https://bsky.app/profile/maxghenis.bsky.social/post/${post.uri.split('/').pop()}`,
+			likes: post.likeCount,
+			reposts: post.repostCount,
+			images: post.embed?.images?.map((img: any) => img.thumb) || [],
+		});
+	}
+}
+
+// Add X posts (from static JSON)
+for (const post of xPosts) {
+	allPosts.push({
+		id: post.id,
+		platform: 'x',
+		content: post.content,
+		date: new Date(post.date),
+		url: post.url,
+		likes: post.likes,
+		reposts: post.retweets,
+		images: post.images || [],
+	});
+}
+
+// Add LinkedIn posts (from static JSON)
+for (const post of linkedinPosts) {
+	allPosts.push({
+		id: post.id,
+		platform: 'linkedin',
+		content: post.content,
+		date: new Date(post.date),
+		url: post.url,
+		likes: post.likes,
+	});
+}
+
+// Sort by date, newest first
+allPosts.sort((a, b) => b.date.getTime() - a.date.getTime());
+
+function formatDate(date: Date): string {
+	return date.toLocaleDateString('en-US', {
+		year: 'numeric',
+		month: 'short',
+		day: 'numeric',
+	});
+}
+
+function getPlatformIcon(platform: string): string {
+	switch (platform) {
+		case 'bluesky':
+			return '🦋';
+		case 'x':
+			return '𝕏';
+		case 'linkedin':
+			return '💼';
+		default:
+			return '📝';
+	}
+}
+
+function getPlatformColor(platform: string): string {
+	switch (platform) {
+		case 'bluesky':
+			return '#0085ff';
+		case 'x':
+			return '#000000';
+		case 'linkedin':
+			return '#0077b5';
+		default:
+			return '#666666';
+	}
+}
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Social Feed | ${SITE_TITLE}`} description="All my social media posts in one place" />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>Social Feed</h1>
+			<p class="intro">
+				All my posts from across the web, aggregated in one open source location.
+				Bluesky posts update at build time. X and LinkedIn posts are imported from exports.
+			</p>
+
+			<div class="filters">
+				<button class="filter active" data-platform="all">All</button>
+				<button class="filter" data-platform="bluesky">🦋 Bluesky</button>
+				<button class="filter" data-platform="x">𝕏 X</button>
+				<button class="filter" data-platform="linkedin">💼 LinkedIn</button>
+			</div>
+
+			<div class="feed">
+				{allPosts.length === 0 ? (
+					<p class="empty">No posts yet. Add some content to get started!</p>
+				) : (
+					allPosts.map((post) => (
+						<article class="post" data-platform={post.platform}>
+							<div class="post-header">
+								<span class="platform-icon" style={`color: ${getPlatformColor(post.platform)}`}>
+									{getPlatformIcon(post.platform)}
+								</span>
+								<span class="platform-name">{post.platform}</span>
+								<span class="date">{formatDate(post.date)}</span>
+							</div>
+							<div class="post-content">
+								<p set:html={post.content.replace(/\n/g, '<br>')} />
+								{post.images && post.images.length > 0 && (
+									<div class="post-images">
+										{post.images.map((img) => (
+											<img src={img} alt="" loading="lazy" />
+										))}
+									</div>
+								)}
+							</div>
+							<div class="post-footer">
+								{post.likes !== undefined && (
+									<span class="stat">❤️ {post.likes}</span>
+								)}
+								{post.reposts !== undefined && (
+									<span class="stat">🔄 {post.reposts}</span>
+								)}
+								<a href={post.url} target="_blank" rel="noopener" class="view-original">
+									View original →
+								</a>
+							</div>
+						</article>
+					))
+				)}
+			</div>
+
+			<section class="export-info">
+				<h2>How to update</h2>
+				<p>
+					This feed combines posts from multiple platforms. Here's how to keep it updated:
+				</p>
+				<ul>
+					<li><strong>Bluesky:</strong> Updates automatically at build time via public API</li>
+					<li>
+						<strong>X/Twitter:</strong> Request your data archive from X settings,
+						then run <code>npm run import-x</code> to convert it
+					</li>
+					<li>
+						<strong>LinkedIn:</strong> Export your data from LinkedIn settings,
+						then run <code>npm run import-linkedin</code> to convert it
+					</li>
+				</ul>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<script>
+	// Client-side filtering
+	document.addEventListener('DOMContentLoaded', () => {
+		const filters = document.querySelectorAll('.filter');
+		const posts = document.querySelectorAll('.post');
+
+		filters.forEach((filter) => {
+			filter.addEventListener('click', () => {
+				const platform = (filter as HTMLElement).dataset.platform;
+
+				// Update active state
+				filters.forEach((f) => f.classList.remove('active'));
+				filter.classList.add('active');
+
+				// Filter posts
+				posts.forEach((post) => {
+					const postPlatform = (post as HTMLElement).dataset.platform;
+					if (platform === 'all' || postPlatform === platform) {
+						(post as HTMLElement).style.display = 'block';
+					} else {
+						(post as HTMLElement).style.display = 'none';
+					}
+				});
+			});
+		});
+	});
+</script>
+
+<style>
+	main {
+		max-width: 700px;
+	}
+
+	h1 {
+		margin-bottom: 0.5em;
+	}
+
+	.intro {
+		color: rgb(var(--gray));
+		margin-bottom: 2em;
+	}
+
+	.filters {
+		display: flex;
+		gap: 0.5em;
+		margin-bottom: 2em;
+		flex-wrap: wrap;
+	}
+
+	.filter {
+		padding: 0.5em 1em;
+		border: 1px solid rgb(var(--gray-light));
+		border-radius: 20px;
+		background: white;
+		cursor: pointer;
+		font-size: 0.9em;
+	}
+
+	.filter:hover {
+		background: rgb(var(--gray-light));
+	}
+
+	.filter.active {
+		background: var(--accent);
+		color: white;
+		border-color: var(--accent);
+	}
+
+	.feed {
+		display: flex;
+		flex-direction: column;
+		gap: 1em;
+	}
+
+	.empty {
+		text-align: center;
+		color: rgb(var(--gray));
+		padding: 3em;
+	}
+
+	.post {
+		padding: 1.5em;
+		background: rgb(var(--gray-light), 0.3);
+		border-radius: 12px;
+		border-left: 4px solid rgb(var(--gray-light));
+	}
+
+	.post[data-platform="bluesky"] {
+		border-left-color: #0085ff;
+	}
+
+	.post[data-platform="x"] {
+		border-left-color: #000000;
+	}
+
+	.post[data-platform="linkedin"] {
+		border-left-color: #0077b5;
+	}
+
+	.post-header {
+		display: flex;
+		align-items: center;
+		gap: 0.5em;
+		margin-bottom: 0.75em;
+		font-size: 0.9em;
+	}
+
+	.platform-icon {
+		font-size: 1.2em;
+	}
+
+	.platform-name {
+		text-transform: capitalize;
+		font-weight: 600;
+	}
+
+	.date {
+		color: rgb(var(--gray));
+		margin-left: auto;
+	}
+
+	.post-content p {
+		margin: 0;
+		white-space: pre-wrap;
+	}
+
+	.post-images {
+		display: flex;
+		gap: 0.5em;
+		margin-top: 1em;
+		flex-wrap: wrap;
+	}
+
+	.post-images img {
+		max-width: 200px;
+		max-height: 200px;
+		object-fit: cover;
+		border-radius: 8px;
+	}
+
+	.post-footer {
+		display: flex;
+		align-items: center;
+		gap: 1em;
+		margin-top: 1em;
+		font-size: 0.9em;
+	}
+
+	.stat {
+		color: rgb(var(--gray));
+	}
+
+	.view-original {
+		margin-left: auto;
+	}
+
+	.export-info {
+		margin-top: 3em;
+		padding: 1.5em;
+		background: rgb(var(--gray-light), 0.3);
+		border-radius: 12px;
+	}
+
+	.export-info h2 {
+		font-size: 1.25em;
+		margin-bottom: 0.5em;
+	}
+
+	.export-info ul {
+		margin: 1em 0 0 0;
+		padding-left: 1.5em;
+	}
+
+	.export-info li {
+		margin-bottom: 0.5em;
+	}
+
+	.export-info code {
+		background: rgb(var(--gray-light));
+		padding: 2px 6px;
+		border-radius: 4px;
+		font-size: 0.9em;
+	}
+</style>

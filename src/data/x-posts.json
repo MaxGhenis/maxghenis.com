@@ -1,0 +1,11 @@
+[
+  {
+    "id": "example-1",
+    "content": "This is an example X post. Export your X archive and run the import script to populate this file with your real posts.",
+    "date": "2024-01-15T12:00:00Z",
+    "url": "https://x.com/maxghenis/status/example",
+    "likes": 42,
+    "retweets": 5,
+    "images": []
+  }
+]

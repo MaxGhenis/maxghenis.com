@@ -1,0 +1,85 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`CV | ${SITE_TITLE}`} description="Max Ghenis - Curriculum Vitae" />
+		<style>
+			@media print {
+				header, footer, .print-hide {
+					display: none !important;
+				}
+				main {
+					padding: 0 !important;
+				}
+				iframe {
+					height: auto !important;
+					min-height: 0 !important;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<div class="print-hide download-section">
+				<a href="/cv/cv.pdf" download class="download-btn">
+					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+						<polyline points="7 10 12 15 17 10"></polyline>
+						<line x1="12" y1="15" x2="12" y2="3"></line>
+					</svg>
+					Download PDF
+				</a>
+			</div>
+			<iframe
+				src="/cv/index.html"
+				class="cv-frame"
+				title="CV Content"
+			></iframe>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	main {
+		width: 100%;
+		max-width: 100%;
+		padding: 1em;
+	}
+
+	.download-section {
+		max-width: 900px;
+		margin: 0 auto 1em auto;
+	}
+
+	.download-btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5em;
+		padding: 0.75em 1.5em;
+		background: var(--accent);
+		color: white;
+		border-radius: 8px;
+		text-decoration: none;
+		font-weight: 600;
+	}
+
+	.download-btn:hover {
+		background: var(--accent-dark);
+		text-decoration: none;
+	}
+
+	.cv-frame {
+		width: 100%;
+		min-height: 3000px;
+		border: none;
+		display: block;
+	}
+</style>
