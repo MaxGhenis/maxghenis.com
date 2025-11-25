@@ -1,0 +1,72 @@
+---
+title: 'How to Use MDX for Interactive Posts'
+description: 'This blog supports MDX, allowing you to embed React components, Plotly charts, and interactive elements directly in posts.'
+pubDate: 'Nov 25 2025'
+---
+
+This blog is built with [Astro](https://astro.build) and supports MDX, which lets you embed interactive components directly in your markdown posts.
+
+## What You Can Do
+
+With MDX, posts can include:
+
+- **React components** with full interactivity
+- **Plotly charts** for data visualization
+- **Custom calculators** or interactive widgets
+- **Embedded iframes** for external apps
+
+## Example: Interactive Button
+
+Here's a simple interactive component embedded in this post:
+
+import HeaderLink from '../../components/HeaderLink.astro';
+
+<HeaderLink href="#" onclick="alert('MDX works!')">
+	Click me - I'm interactive!
+</HeaderLink>
+
+## Adding Plotly Charts
+
+For data-heavy posts, you can create a React component with Plotly and embed it:
+
+```jsx
+// src/components/MyChart.tsx
+import Plot from 'react-plotly.js';
+
+export default function MyChart() {
+  return (
+    <Plot
+      data={[{ x: [1, 2, 3], y: [2, 6, 3], type: 'scatter' }]}
+      layout={{ title: 'My Chart' }}
+    />
+  );
+}
+```
+
+Then in your MDX post:
+
+```mdx
+import MyChart from '../../components/MyChart';
+
+<MyChart client:load />
+```
+
+The `client:load` directive tells Astro to hydrate the component on the client side.
+
+## Embedding External Apps
+
+You can also embed Streamlit apps, Observable notebooks, or any iframe-compatible content:
+
+```html
+<iframe
+  src="https://your-streamlit-app.streamlit.app/?embed=true"
+  width="100%"
+  height="500px"
+/>
+```
+
+## Learn More
+
+- [MDX Documentation](https://mdxjs.com/docs/what-is-mdx)
+- [Astro MDX Integration](https://docs.astro.build/en/guides/integrations-guide/mdx/)
+- [React Plotly.js](https://plotly.com/javascript/react/)

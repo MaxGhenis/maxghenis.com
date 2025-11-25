@@ -1,0 +1,452 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import { SITE_TITLE, SITE_DESCRIPTION, SOCIAL_LINKS } from '../consts';
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+).slice(0, 3);
+
+const projects = [
+	{
+		title: 'GrantKit',
+		href: 'https://grantkit.io',
+		description: 'AI-powered grant writing and management platform',
+	},
+	{
+		title: 'CodeStitch',
+		href: 'https://codestitch.dev',
+		description: 'Combine GitHub repos, PRs, and issues into single files for AI context',
+	},
+	{
+		title: 'PR Improver',
+		href: 'https://pr-improver.streamlit.app',
+		description: 'LLM-powered tool suggesting improvements to PRs based on repo guidelines',
+	},
+	{
+		title: 'OEWS Explorer',
+		href: 'https://oews-explorer.streamlit.app',
+		description: 'Dashboard for exploring BLS occupational & wage data',
+	},
+];
+
+const research = [
+	{
+		title: 'What can LLMs tell us about the ETI?',
+		href: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5410643',
+		description: 'With Jason DeBacker. How LLMs perceive behavioral responses to tax policy.',
+		date: 'August 2025',
+	},
+	{
+		title: 'Beer Price Controls at Yankee Stadium',
+		href: 'https://maxghenis.github.io/yankee-stadium-beer-price-controls/',
+		description: 'Economic analysis of stadium pricing, externalities, and welfare.',
+		date: '2025',
+	},
+	{
+		title: 'AI Model Policy Impact Forecasts',
+		href: 'https://github.com/MaxGhenis/llm-presidential-outcome-forecasts/blob/main/paper/main.pdf',
+		description: 'Examining LLMs for forecasting policy outcomes under different administrations.',
+		date: '2024',
+	},
+	{
+		title: 'Enhancing Survey Microdata with Administrative Records',
+		href: 'https://github.com/PolicyEngine/policyengine-us-data/blob/main/paper/main.pdf',
+		description: 'Novel approach to microsimulation dataset construction. Presented at NTA 2024.',
+		date: 'November 2024',
+	},
+];
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<!-- Hero Section -->
+			<section class="hero">
+				<img src="/images/headshot.png" alt="Max Ghenis" class="avatar" />
+				<div class="hero-content">
+					<h1>{SITE_TITLE}</h1>
+					<p class="tagline">{SITE_DESCRIPTION}</p>
+					<div class="social-row">
+						<a href={`mailto:${SOCIAL_LINKS.email}`} class="btn primary">Contact</a>
+						<a href="/cv" class="btn secondary">View CV</a>
+					</div>
+				</div>
+			</section>
+
+			<!-- Current Work -->
+			<section>
+				<h2>Current work</h2>
+				<a href="https://policyengine.org" class="org-card">
+					<img
+						src="/assets/logos/policyengine-teal.svg"
+						alt="PolicyEngine"
+						class="org-logo"
+					/>
+					<div>
+						<p class="org-role">Co-founder & CEO</p>
+						<p>Open source software to simulate tax and benefit policies in the US and UK. Our tools help policymakers, researchers, and the public understand how reforms affect households and society.</p>
+					</div>
+				</a>
+			</section>
+
+			<!-- Recent Posts -->
+			<section>
+				<h2>Recent writing</h2>
+				<ul class="post-list">
+					{posts.map((post) => (
+						<li>
+							<a href={`/blog/${post.id}/`}>
+								<h3>{post.data.title}</h3>
+								<p class="date"><FormattedDate date={post.data.pubDate} /></p>
+								<p>{post.data.description}</p>
+							</a>
+						</li>
+					))}
+				</ul>
+				<a href="/blog" class="see-all">See all posts →</a>
+			</section>
+
+			<!-- Side Projects -->
+			<section>
+				<h2>Side projects</h2>
+				<div class="project-grid">
+					{projects.map((project) => (
+						<a href={project.href} class="project-card">
+							<h3>{project.title}</h3>
+							<p>{project.description}</p>
+						</a>
+					))}
+				</div>
+			</section>
+
+			<!-- Research -->
+			<section>
+				<h2>Academic research</h2>
+				<ul class="research-list">
+					{research.map((paper) => (
+						<li>
+							<a href={paper.href}>
+								<h3>{paper.title}</h3>
+								<p class="date">{paper.date}</p>
+								<p>{paper.description}</p>
+							</a>
+						</li>
+					))}
+				</ul>
+			</section>
+
+			<!-- Newsletter Signup -->
+			<section class="newsletter">
+				<h2>Stay updated</h2>
+				<p>Get new posts delivered to your inbox.</p>
+				<form
+					action="https://buttondown.com/api/emails/embed-subscribe/maxghenis"
+					method="post"
+					target="popupwindow"
+					class="newsletter-form"
+				>
+					<input type="email" name="email" placeholder="your@email.com" required />
+					<button type="submit">Subscribe</button>
+				</form>
+				<p class="newsletter-note">
+					Or subscribe via <a href="/rss.xml">RSS</a>
+				</p>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	main {
+		width: 100%;
+		max-width: 900px;
+		padding: 2em 1em;
+	}
+
+	section {
+		margin-bottom: 3em;
+	}
+
+	h2 {
+		margin-bottom: 1em;
+		padding-bottom: 0.5em;
+		border-bottom: 2px solid rgb(var(--gray-light));
+	}
+
+	/* Hero */
+	.hero {
+		display: flex;
+		align-items: center;
+		gap: 2em;
+		margin-bottom: 3em;
+	}
+
+	.avatar {
+		width: 150px;
+		height: 150px;
+		border-radius: 50%;
+		object-fit: cover;
+	}
+
+	.hero-content h1 {
+		margin-bottom: 0.25em;
+	}
+
+	.tagline {
+		color: rgb(var(--gray));
+		margin-bottom: 1em;
+	}
+
+	.social-row {
+		display: flex;
+		gap: 1em;
+	}
+
+	.btn {
+		padding: 0.5em 1.5em;
+		border-radius: 6px;
+		text-decoration: none;
+		font-weight: 600;
+	}
+
+	.btn.primary {
+		background: var(--accent);
+		color: white;
+	}
+
+	.btn.primary:hover {
+		background: var(--accent-dark);
+		text-decoration: none;
+	}
+
+	.btn.secondary {
+		background: rgb(var(--gray-light));
+		color: rgb(var(--gray-dark));
+	}
+
+	.btn.secondary:hover {
+		background: rgb(var(--gray));
+		color: white;
+		text-decoration: none;
+	}
+
+	/* Organization Card */
+	.org-card {
+		display: flex;
+		gap: 1.5em;
+		padding: 1.5em;
+		background: rgb(var(--gray-light), 0.3);
+		border-radius: 12px;
+		text-decoration: none;
+		align-items: center;
+	}
+
+	.org-card:hover {
+		background: rgb(var(--gray-light), 0.5);
+		text-decoration: none;
+	}
+
+	.org-logo {
+		height: 48px;
+		width: auto;
+		flex-shrink: 0;
+		border-radius: 0;
+	}
+
+	.org-role {
+		font-weight: 600;
+		color: rgb(var(--gray-dark));
+		margin-bottom: 0.25em;
+	}
+
+	.org-card p {
+		margin: 0;
+		color: rgb(var(--gray));
+	}
+
+	/* Post List */
+	.post-list {
+		list-style: none;
+		padding: 0;
+	}
+
+	.post-list li {
+		margin-bottom: 1em;
+	}
+
+	.post-list a {
+		display: block;
+		padding: 1em;
+		border-radius: 8px;
+		background: rgb(var(--gray-light), 0.3);
+		text-decoration: none;
+	}
+
+	.post-list a:hover {
+		background: rgb(var(--gray-light), 0.6);
+	}
+
+	.post-list h3 {
+		margin-bottom: 0.25em;
+		color: rgb(var(--black));
+	}
+
+	.post-list .date {
+		color: rgb(var(--gray));
+		font-size: 0.9em;
+		margin-bottom: 0.5em;
+	}
+
+	.post-list p:last-child {
+		margin: 0;
+		color: rgb(var(--gray-dark));
+	}
+
+	.see-all {
+		display: inline-block;
+		margin-top: 1em;
+	}
+
+	/* Project Grid */
+	.project-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: 1em;
+	}
+
+	.project-card {
+		padding: 1.5em;
+		background: rgb(var(--gray-light), 0.3);
+		border-radius: 8px;
+		text-decoration: none;
+	}
+
+	.project-card:hover {
+		background: rgb(var(--gray-light), 0.6);
+	}
+
+	.project-card h3 {
+		margin-bottom: 0.5em;
+		color: rgb(var(--black));
+	}
+
+	.project-card p {
+		margin: 0;
+		color: rgb(var(--gray));
+		font-size: 0.95em;
+	}
+
+	/* Research List */
+	.research-list {
+		list-style: none;
+		padding: 0;
+	}
+
+	.research-list li {
+		margin-bottom: 1em;
+	}
+
+	.research-list a {
+		display: block;
+		padding: 1em;
+		border-radius: 8px;
+		background: rgb(var(--gray-light), 0.3);
+		text-decoration: none;
+	}
+
+	.research-list a:hover {
+		background: rgb(var(--gray-light), 0.6);
+	}
+
+	.research-list h3 {
+		margin-bottom: 0.25em;
+		color: rgb(var(--black));
+	}
+
+	.research-list .date {
+		color: rgb(var(--gray));
+		font-size: 0.9em;
+		margin-bottom: 0.5em;
+	}
+
+	.research-list p:last-child {
+		margin: 0;
+		color: rgb(var(--gray-dark));
+	}
+
+	/* Newsletter */
+	.newsletter {
+		text-align: center;
+		padding: 2em;
+		background: rgb(var(--gray-light), 0.3);
+		border-radius: 12px;
+	}
+
+	.newsletter h2 {
+		border: none;
+		padding: 0;
+	}
+
+	.newsletter-form {
+		display: flex;
+		gap: 0.5em;
+		max-width: 400px;
+		margin: 1em auto;
+	}
+
+	.newsletter-form input {
+		flex: 1;
+		padding: 0.75em;
+		border: 1px solid rgb(var(--gray-light));
+		border-radius: 6px;
+	}
+
+	.newsletter-form button {
+		padding: 0.75em 1.5em;
+		background: var(--accent);
+		color: white;
+		border: none;
+		border-radius: 6px;
+		cursor: pointer;
+		font-weight: 600;
+	}
+
+	.newsletter-form button:hover {
+		background: var(--accent-dark);
+	}
+
+	.newsletter-note {
+		font-size: 0.9em;
+		color: rgb(var(--gray));
+	}
+
+	@media (max-width: 600px) {
+		.hero {
+			flex-direction: column;
+			text-align: center;
+		}
+
+		.social-row {
+			justify-content: center;
+		}
+
+		.org-card {
+			flex-direction: column;
+			text-align: center;
+		}
+
+		.newsletter-form {
+			flex-direction: column;
+		}
+	}
+</style>
