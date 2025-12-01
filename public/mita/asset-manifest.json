@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/mita/static/css/main.b545a486.css",
+    "main.js": "/mita/static/js/main.40ac0cea.js",
+    "static/js/453.1de05db1.chunk.js": "/mita/static/js/453.1de05db1.chunk.js",
+    "index.html": "/mita/index.html",
+    "main.b545a486.css.map": "/mita/static/css/main.b545a486.css.map",
+    "main.40ac0cea.js.map": "/mita/static/js/main.40ac0cea.js.map",
+    "453.1de05db1.chunk.js.map": "/mita/static/js/453.1de05db1.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b545a486.css",
+    "static/js/main.40ac0cea.js"
+  ]
+}
