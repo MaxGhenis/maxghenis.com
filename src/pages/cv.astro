@@ -27,21 +27,28 @@ import { SITE_TITLE } from '../consts';
 	<body>
 		<Header />
 		<main>
-			<div class="print-hide download-section">
-				<a href="/cv/cv.pdf" download class="download-btn">
-					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-						<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-						<polyline points="7 10 12 15 17 10"></polyline>
-						<line x1="12" y1="15" x2="12" y2="3"></line>
-					</svg>
-					Download PDF
-				</a>
+			<header class="page-header">
+				<h1>Curriculum Vitae</h1>
+				<p class="page-description">Policy entrepreneur, technologist, and economist building computational tools for policy analysis.</p>
+				<div class="header-actions print-hide">
+					<a href="/cv/cv.pdf" download class="download-btn">
+						<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+							<polyline points="7 10 12 15 17 10"></polyline>
+							<line x1="12" y1="15" x2="12" y2="3"></line>
+						</svg>
+						Download PDF
+					</a>
+				</div>
+			</header>
+
+			<div class="cv-container">
+				<iframe
+					src="/cv/index.html"
+					class="cv-frame"
+					title="CV Content"
+				></iframe>
 			</div>
-			<iframe
-				src="/cv/index.html"
-				class="cv-frame"
-				title="CV Content"
-			></iframe>
 		</main>
 		<Footer />
 	</body>
@@ -49,31 +56,58 @@ import { SITE_TITLE } from '../consts';
 
 <style>
 	main {
-		width: 100%;
-		max-width: 100%;
-		padding: 1em;
+		max-width: 1000px;
 	}
 
-	.download-section {
-		max-width: 900px;
-		margin: 0 auto 1em auto;
+	.page-header {
+		margin-bottom: 2rem;
+		padding-bottom: 2rem;
+		border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+	}
+
+	.page-header h1 {
+		font-size: 3rem;
+		margin-bottom: 0.5rem;
+	}
+
+	.page-description {
+		font-size: 1.125rem;
+		color: var(--text-secondary);
+		max-width: 600px;
+		margin-bottom: 1.5rem;
+	}
+
+	.header-actions {
+		display: flex;
+		gap: 1rem;
 	}
 
 	.download-btn {
 		display: inline-flex;
 		align-items: center;
-		gap: 0.5em;
-		padding: 0.75em 1.5em;
-		background: var(--accent);
+		gap: 0.5rem;
+		padding: 0.75rem 1.25rem;
+		background: var(--ink);
 		color: white;
-		border-radius: 8px;
+		border-radius: var(--radius-lg);
 		text-decoration: none;
 		font-weight: 600;
+		font-size: 0.9375rem;
+		transition: all var(--duration-fast) var(--ease-out);
 	}
 
 	.download-btn:hover {
-		background: var(--accent-dark);
-		text-decoration: none;
+		background: var(--ink-soft);
+		transform: translateY(-2px);
+		box-shadow: var(--shadow-md);
+	}
+
+	.cv-container {
+		background: white;
+		border: 1px solid rgba(15, 23, 42, 0.08);
+		border-radius: var(--radius-xl);
+		overflow: hidden;
+		box-shadow: var(--shadow-sm);
 	}
 
 	.cv-frame {
@@ -81,5 +115,11 @@ import { SITE_TITLE } from '../consts';
 		min-height: 3000px;
 		border: none;
 		display: block;
+	}
+
+	@media (max-width: 768px) {
+		.page-header h1 {
+			font-size: 2.5rem;
+		}
 	}
 </style>

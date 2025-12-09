@@ -15,21 +15,25 @@ const projects = [
 		title: 'GrantKit',
 		href: 'https://grantkit.io',
 		description: 'AI-powered grant writing and management platform',
+		tag: 'AI',
 	},
 	{
 		title: 'CodeStitch',
 		href: 'https://codestitch.dev',
 		description: 'Combine GitHub repos, PRs, and issues into single files for AI context',
+		tag: 'Developer Tools',
 	},
 	{
 		title: 'PR Improver',
 		href: 'https://pr-improver.streamlit.app',
 		description: 'LLM-powered tool suggesting improvements to PRs based on repo guidelines',
+		tag: 'Open Source',
 	},
 	{
 		title: 'OEWS Explorer',
 		href: 'https://oews-explorer.streamlit.app',
 		description: 'Dashboard for exploring BLS occupational & wage data',
+		tag: 'Data Viz',
 	},
 ];
 
@@ -70,96 +74,157 @@ const research = [
 		<Header />
 		<main>
 			<!-- Hero Section -->
-			<section class="hero">
-				<img src="/images/headshot.png" alt="Max Ghenis" class="avatar" />
+			<section class="hero animate-fade-in-up">
 				<div class="hero-content">
-					<h1>{SITE_TITLE}</h1>
-					<p class="tagline">{SITE_DESCRIPTION}</p>
-					<div class="social-row">
-						<a href={`mailto:${SOCIAL_LINKS.email}`} class="btn primary">Contact</a>
-						<a href="/cv" class="btn secondary">View CV</a>
+					<div class="hero-badge">Policy + Technology + Economics</div>
+					<h1>Max Ghenis</h1>
+					<p class="hero-tagline">Building open-source tools that help people understand how policy affects their lives and their communities.</p>
+					<div class="hero-actions">
+						<a href={`mailto:${SOCIAL_LINKS.email}`} class="btn-primary">
+							<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+								<path fill="currentColor" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+							</svg>
+							Get in touch
+						</a>
+						<a href="/cv" class="btn-secondary">View CV</a>
 					</div>
+				</div>
+				<div class="hero-image">
+					<div class="avatar-frame">
+						<img src="/images/headshot.png" alt="Max Ghenis" class="avatar" />
+					</div>
+					<div class="avatar-decoration"></div>
 				</div>
 			</section>
 
 			<!-- Current Work -->
-			<section>
-				<h2>Current work</h2>
-				<a href="https://policyengine.org" class="org-card">
-					<img
-						src="/assets/logos/policyengine-teal.svg"
-						alt="PolicyEngine"
-						class="org-logo"
-					/>
-					<div>
-						<p class="org-role">Co-founder & CEO</p>
+			<section class="section animate-fade-in-up delay-100">
+				<div class="section-header">
+					<span class="section-number">01</span>
+					<h2>Current Work</h2>
+				</div>
+				<a href="https://policyengine.org" class="featured-card" target="_blank" rel="noopener">
+					<div class="featured-logo">
+						<img src="/assets/logos/policyengine-teal.svg" alt="PolicyEngine" />
+					</div>
+					<div class="featured-content">
+						<div class="featured-role">Co-founder & CEO</div>
+						<h3>PolicyEngine</h3>
 						<p>Open source software to simulate tax and benefit policies in the US and UK. Our tools help policymakers, researchers, and the public understand how reforms affect households and society.</p>
+						<span class="featured-link">
+							Visit policyengine.org
+							<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+								<path fill="currentColor" d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+							</svg>
+						</span>
 					</div>
 				</a>
 			</section>
 
-			<!-- Recent Posts -->
-			<section>
-				<h2>Recent writing</h2>
-				<ul class="post-list">
-					{posts.map((post) => (
-						<li>
-							<a href={`/blog/${post.id}/`}>
-								<h3>{post.data.title}</h3>
-								<p class="date"><FormattedDate date={post.data.pubDate} /></p>
-								<p>{post.data.description}</p>
-							</a>
-						</li>
+			<!-- Recent Writing -->
+			<section class="section animate-fade-in-up delay-200">
+				<div class="section-header">
+					<span class="section-number">02</span>
+					<h2>Recent Writing</h2>
+				</div>
+				<div class="posts-grid">
+					{posts.map((post, index) => (
+						<a href={`/blog/${post.id}/`} class="post-card">
+							<div class="post-meta">
+								<FormattedDate date={post.data.pubDate} />
+							</div>
+							<h3>{post.data.title}</h3>
+							<p>{post.data.description}</p>
+							<span class="post-link">Read more</span>
+						</a>
 					))}
-				</ul>
-				<a href="/blog" class="see-all">See all posts →</a>
+				</div>
+				<a href="/blog" class="see-all-link">
+					View all writing
+					<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+						<path fill="currentColor" d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+					</svg>
+				</a>
 			</section>
 
 			<!-- Side Projects -->
-			<section>
-				<h2>Side projects</h2>
-				<div class="project-grid">
+			<section class="section animate-fade-in-up delay-300">
+				<div class="section-header">
+					<span class="section-number">03</span>
+					<h2>Side Projects</h2>
+				</div>
+				<div class="projects-grid">
 					{projects.map((project) => (
-						<a href={project.href} class="project-card">
+						<a href={project.href} class="project-card" target="_blank" rel="noopener">
+							<span class="project-tag">{project.tag}</span>
 							<h3>{project.title}</h3>
 							<p>{project.description}</p>
+							<span class="project-link">
+								<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+									<path fill="currentColor" d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/>
+								</svg>
+							</span>
 						</a>
 					))}
 				</div>
 			</section>
 
 			<!-- Research -->
-			<section>
-				<h2>Academic research</h2>
-				<ul class="research-list">
+			<section class="section animate-fade-in-up delay-400">
+				<div class="section-header">
+					<span class="section-number">04</span>
+					<h2>Academic Research</h2>
+				</div>
+				<div class="research-list">
 					{research.map((paper) => (
-						<li>
-							<a href={paper.href}>
+						<a href={paper.href} class="research-item" target="_blank" rel="noopener">
+							<div class="research-content">
 								<h3>{paper.title}</h3>
-								<p class="date">{paper.date}</p>
 								<p>{paper.description}</p>
-							</a>
-						</li>
+							</div>
+							<div class="research-meta">
+								<span class="research-date">{paper.date}</span>
+								<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+									<path fill="currentColor" d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/>
+								</svg>
+							</div>
+						</a>
 					))}
-				</ul>
+				</div>
+				<a href="/research" class="see-all-link">
+					View all research
+					<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+						<path fill="currentColor" d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+					</svg>
+				</a>
 			</section>
 
-			<!-- Newsletter Signup -->
-			<section class="newsletter">
-				<h2>Stay updated</h2>
-				<p>Get new posts delivered to your inbox.</p>
-				<form
-					action="https://buttondown.com/api/emails/embed-subscribe/maxghenis"
-					method="post"
-					target="popupwindow"
-					class="newsletter-form"
-				>
-					<input type="email" name="email" placeholder="your@email.com" required />
-					<button type="submit">Subscribe</button>
-				</form>
-				<p class="newsletter-note">
-					Or subscribe via <a href="/rss.xml">RSS</a>
-				</p>
+			<!-- Newsletter -->
+			<section class="newsletter animate-fade-in-up delay-500">
+				<div class="newsletter-content">
+					<h2>Stay in the loop</h2>
+					<p>Get occasional updates on policy analysis, new projects, and research.</p>
+					<form
+						action="https://buttondown.com/api/emails/embed-subscribe/maxghenis"
+						method="post"
+						target="popupwindow"
+						class="newsletter-form"
+					>
+						<input type="email" name="email" placeholder="you@example.com" required />
+						<button type="submit">Subscribe</button>
+					</form>
+					<p class="newsletter-alt">
+						Or follow via <a href="/rss.xml">RSS</a>
+					</p>
+				</div>
+				<div class="newsletter-decoration">
+					<svg viewBox="0 0 200 200" width="200" height="200" aria-hidden="true">
+						<circle cx="100" cy="100" r="80" fill="none" stroke="currentColor" stroke-width="1" opacity="0.1"/>
+						<circle cx="100" cy="100" r="60" fill="none" stroke="currentColor" stroke-width="1" opacity="0.15"/>
+						<circle cx="100" cy="100" r="40" fill="none" stroke="currentColor" stroke-width="1" opacity="0.2"/>
+						<circle cx="100" cy="100" r="20" fill="currentColor" opacity="0.1"/>
+					</svg>
+				</div>
 			</section>
 		</main>
 		<Footer />
@@ -167,286 +232,588 @@ const research = [
 </html>
 
 <style>
-	main {
-		width: 100%;
-		max-width: 900px;
-		padding: 2em 1em;
-	}
-
-	section {
-		margin-bottom: 3em;
-	}
-
-	h2 {
-		margin-bottom: 1em;
-		padding-bottom: 0.5em;
-		border-bottom: 2px solid rgb(var(--gray-light));
-	}
-
-	/* Hero */
+	/* Hero Section */
 	.hero {
-		display: flex;
+		display: grid;
+		grid-template-columns: 1fr auto;
+		gap: 4rem;
 		align-items: center;
-		gap: 2em;
-		margin-bottom: 3em;
+		padding: 4rem 0 6rem;
+		border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+		margin-bottom: 4rem;
+	}
+
+	.hero-badge {
+		display: inline-block;
+		padding: 0.5rem 1rem;
+		background: var(--amber-glow);
+		color: var(--amber-dark);
+		font-size: 0.875rem;
+		font-weight: 600;
+		border-radius: var(--radius-full);
+		margin-bottom: 1.5rem;
+		letter-spacing: 0.02em;
+	}
+
+	.hero h1 {
+		font-size: 4rem;
+		margin-bottom: 1rem;
+		background: var(--navy-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.hero-tagline {
+		font-size: 1.25rem;
+		line-height: 1.6;
+		color: var(--text-secondary);
+		max-width: 520px;
+		margin-bottom: 2rem;
+	}
+
+	.hero-actions {
+		display: flex;
+		gap: 1rem;
+		flex-wrap: wrap;
+	}
+
+	.btn-primary {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.875rem 1.5rem;
+		background: var(--ink);
+		color: white;
+		font-weight: 600;
+		border-radius: var(--radius-lg);
+		text-decoration: none;
+		transition: all var(--duration-fast) var(--ease-out);
+	}
+
+	.btn-primary:hover {
+		background: var(--ink-soft);
+		transform: translateY(-2px);
+		box-shadow: var(--shadow-md);
+	}
+
+	.btn-secondary {
+		display: inline-flex;
+		align-items: center;
+		padding: 0.875rem 1.5rem;
+		background: transparent;
+		color: var(--ink);
+		font-weight: 600;
+		border: 2px solid rgba(15, 23, 42, 0.15);
+		border-radius: var(--radius-lg);
+		text-decoration: none;
+		transition: all var(--duration-fast) var(--ease-out);
+	}
+
+	.btn-secondary:hover {
+		border-color: var(--ink);
+		background: rgba(15, 23, 42, 0.02);
+	}
+
+	.hero-image {
+		position: relative;
+	}
+
+	.avatar-frame {
+		position: relative;
+		z-index: 2;
+		padding: 6px;
+		background: white;
+		border-radius: var(--radius-xl);
+		box-shadow: var(--shadow-xl);
 	}
 
 	.avatar {
-		width: 150px;
-		height: 150px;
-		border-radius: 50%;
+		width: 280px;
+		height: 280px;
+		border-radius: calc(var(--radius-xl) - 4px);
 		object-fit: cover;
 	}
 
-	.hero-content h1 {
-		margin-bottom: 0.25em;
+	.avatar-decoration {
+		position: absolute;
+		top: -20px;
+		right: -20px;
+		width: 100px;
+		height: 100px;
+		background: var(--amber-glow);
+		border-radius: var(--radius-lg);
+		z-index: 1;
 	}
 
-	.tagline {
-		color: rgb(var(--gray));
-		margin-bottom: 1em;
+	.avatar-decoration::before {
+		content: '';
+		position: absolute;
+		bottom: -40px;
+		left: -60px;
+		width: 60px;
+		height: 60px;
+		border: 3px solid var(--amber);
+		border-radius: var(--radius-md);
+		opacity: 0.5;
 	}
 
-	.social-row {
+	/* Section Styling */
+	.section {
+		margin-bottom: 5rem;
+	}
+
+	.section-header {
 		display: flex;
-		gap: 1em;
+		align-items: baseline;
+		gap: 1rem;
+		margin-bottom: 2rem;
 	}
 
-	.btn {
-		padding: 0.5em 1.5em;
-		border-radius: 6px;
-		text-decoration: none;
+	.section-number {
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.875rem;
+		color: var(--amber-dark);
 		font-weight: 600;
 	}
 
-	.btn.primary {
-		background: var(--accent);
-		color: white;
-	}
-
-	.btn.primary:hover {
-		background: var(--accent-dark);
-		text-decoration: none;
-	}
-
-	.btn.secondary {
-		background: rgb(var(--gray-light));
-		color: rgb(var(--gray-dark));
-	}
-
-	.btn.secondary:hover {
-		background: rgb(var(--gray));
-		color: white;
-		text-decoration: none;
-	}
-
-	/* Organization Card */
-	.org-card {
-		display: flex;
-		gap: 1.5em;
-		padding: 1.5em;
-		background: rgb(var(--gray-light), 0.3);
-		border-radius: 12px;
-		text-decoration: none;
-		align-items: center;
-	}
-
-	.org-card:hover {
-		background: rgb(var(--gray-light), 0.5);
-		text-decoration: none;
-	}
-
-	.org-logo {
-		height: 48px;
-		width: auto;
-		flex-shrink: 0;
-		border-radius: 0;
-	}
-
-	.org-role {
-		font-weight: 600;
-		color: rgb(var(--gray-dark));
-		margin-bottom: 0.25em;
-	}
-
-	.org-card p {
+	.section-header h2 {
+		font-size: 1.75rem;
 		margin: 0;
-		color: rgb(var(--gray));
 	}
 
-	/* Post List */
-	.post-list {
-		list-style: none;
-		padding: 0;
-	}
-
-	.post-list li {
-		margin-bottom: 1em;
-	}
-
-	.post-list a {
-		display: block;
-		padding: 1em;
-		border-radius: 8px;
-		background: rgb(var(--gray-light), 0.3);
-		text-decoration: none;
-	}
-
-	.post-list a:hover {
-		background: rgb(var(--gray-light), 0.6);
-	}
-
-	.post-list h3 {
-		margin-bottom: 0.25em;
-		color: rgb(var(--black));
-	}
-
-	.post-list .date {
-		color: rgb(var(--gray));
-		font-size: 0.9em;
-		margin-bottom: 0.5em;
-	}
-
-	.post-list p:last-child {
-		margin: 0;
-		color: rgb(var(--gray-dark));
-	}
-
-	.see-all {
-		display: inline-block;
-		margin-top: 1em;
-	}
-
-	/* Project Grid */
-	.project-grid {
+	/* Featured Card (PolicyEngine) */
+	.featured-card {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-		gap: 1em;
+		grid-template-columns: auto 1fr;
+		gap: 2rem;
+		padding: 2rem;
+		background: white;
+		border: 1px solid rgba(15, 23, 42, 0.08);
+		border-radius: var(--radius-xl);
+		text-decoration: none;
+		transition: all var(--duration-normal) var(--ease-out);
+		box-shadow: var(--shadow-sm);
+	}
+
+	.featured-card:hover {
+		border-color: var(--amber);
+		box-shadow: var(--shadow-lg), 0 0 0 4px var(--amber-glow);
+		transform: translateY(-4px);
+	}
+
+	.featured-logo {
+		width: 80px;
+		height: 80px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: var(--cream-dark);
+		border-radius: var(--radius-lg);
+		padding: 1rem;
+	}
+
+	.featured-logo img {
+		width: 100%;
+		height: auto;
+	}
+
+	.featured-role {
+		font-size: 0.875rem;
+		font-weight: 600;
+		color: var(--amber-dark);
+		margin-bottom: 0.25rem;
+	}
+
+	.featured-content h3 {
+		font-size: 1.5rem;
+		margin-bottom: 0.5rem;
+		color: var(--ink);
+	}
+
+	.featured-content p {
+		color: var(--text-secondary);
+		margin-bottom: 1rem;
+	}
+
+	.featured-link {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.25rem;
+		font-size: 0.875rem;
+		font-weight: 600;
+		color: var(--amber-dark);
+	}
+
+	/* Posts Grid */
+	.posts-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 1.5rem;
+		margin-bottom: 2rem;
+	}
+
+	.post-card {
+		display: flex;
+		flex-direction: column;
+		padding: 1.5rem;
+		background: white;
+		border: 1px solid rgba(15, 23, 42, 0.08);
+		border-radius: var(--radius-lg);
+		text-decoration: none;
+		transition: all var(--duration-fast) var(--ease-out);
+	}
+
+	.post-card:hover {
+		border-color: rgba(15, 23, 42, 0.15);
+		box-shadow: var(--shadow-md);
+		transform: translateY(-2px);
+	}
+
+	.post-meta {
+		font-size: 0.8125rem;
+		color: var(--text-muted);
+		margin-bottom: 0.75rem;
+	}
+
+	.post-card h3 {
+		font-size: 1.125rem;
+		font-family: 'Source Sans 3', sans-serif;
+		font-weight: 600;
+		margin-bottom: 0.5rem;
+		color: var(--ink);
+		line-height: 1.4;
+	}
+
+	.post-card p {
+		font-size: 0.9375rem;
+		color: var(--text-secondary);
+		flex-grow: 1;
+		margin-bottom: 1rem;
+	}
+
+	.post-link {
+		font-size: 0.875rem;
+		font-weight: 600;
+		color: var(--amber-dark);
+	}
+
+	.see-all-link {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-weight: 600;
+		color: var(--ink);
+		text-decoration: none;
+		transition: all var(--duration-fast) var(--ease-out);
+	}
+
+	.see-all-link:hover {
+		color: var(--amber-dark);
+		gap: 0.75rem;
+	}
+
+	/* Projects Grid */
+	.projects-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1.5rem;
 	}
 
 	.project-card {
-		padding: 1.5em;
-		background: rgb(var(--gray-light), 0.3);
-		border-radius: 8px;
+		position: relative;
+		padding: 1.5rem;
+		background: white;
+		border: 1px solid rgba(15, 23, 42, 0.08);
+		border-radius: var(--radius-lg);
 		text-decoration: none;
+		transition: all var(--duration-fast) var(--ease-out);
 	}
 
 	.project-card:hover {
-		background: rgb(var(--gray-light), 0.6);
+		border-color: rgba(15, 23, 42, 0.15);
+		box-shadow: var(--shadow-md);
+	}
+
+	.project-tag {
+		display: inline-block;
+		padding: 0.25rem 0.625rem;
+		background: var(--cream-dark);
+		color: var(--text-muted);
+		font-size: 0.75rem;
+		font-weight: 600;
+		border-radius: var(--radius-sm);
+		margin-bottom: 0.75rem;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
 	}
 
 	.project-card h3 {
-		margin-bottom: 0.5em;
-		color: rgb(var(--black));
+		font-size: 1.125rem;
+		font-family: 'Source Sans 3', sans-serif;
+		font-weight: 600;
+		margin-bottom: 0.5rem;
+		color: var(--ink);
 	}
 
 	.project-card p {
+		font-size: 0.9375rem;
+		color: var(--text-secondary);
 		margin: 0;
-		color: rgb(var(--gray));
-		font-size: 0.95em;
+	}
+
+	.project-link {
+		position: absolute;
+		top: 1.5rem;
+		right: 1.5rem;
+		color: var(--text-muted);
+		transition: color var(--duration-fast) var(--ease-out);
+	}
+
+	.project-card:hover .project-link {
+		color: var(--amber-dark);
 	}
 
 	/* Research List */
 	.research-list {
-		list-style: none;
-		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		margin-bottom: 2rem;
 	}
 
-	.research-list li {
-		margin-bottom: 1em;
-	}
-
-	.research-list a {
-		display: block;
-		padding: 1em;
-		border-radius: 8px;
-		background: rgb(var(--gray-light), 0.3);
+	.research-item {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 1.25rem 1.5rem;
+		background: white;
+		border: 1px solid rgba(15, 23, 42, 0.08);
+		border-radius: var(--radius-lg);
 		text-decoration: none;
+		transition: all var(--duration-fast) var(--ease-out);
 	}
 
-	.research-list a:hover {
-		background: rgb(var(--gray-light), 0.6);
+	.research-item:hover {
+		border-color: rgba(15, 23, 42, 0.15);
+		box-shadow: var(--shadow-md);
 	}
 
-	.research-list h3 {
-		margin-bottom: 0.25em;
-		color: rgb(var(--black));
+	.research-content h3 {
+		font-size: 1rem;
+		font-family: 'Source Sans 3', sans-serif;
+		font-weight: 600;
+		margin-bottom: 0.25rem;
+		color: var(--ink);
 	}
 
-	.research-list .date {
-		color: rgb(var(--gray));
-		font-size: 0.9em;
-		margin-bottom: 0.5em;
-	}
-
-	.research-list p:last-child {
+	.research-content p {
+		font-size: 0.9375rem;
+		color: var(--text-secondary);
 		margin: 0;
-		color: rgb(var(--gray-dark));
+	}
+
+	.research-meta {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		flex-shrink: 0;
+		margin-left: 2rem;
+	}
+
+	.research-date {
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.8125rem;
+		color: var(--text-muted);
+	}
+
+	.research-meta svg {
+		color: var(--text-muted);
+		transition: color var(--duration-fast) var(--ease-out);
+	}
+
+	.research-item:hover .research-meta svg {
+		color: var(--amber-dark);
 	}
 
 	/* Newsletter */
 	.newsletter {
-		text-align: center;
-		padding: 2em;
-		background: rgb(var(--gray-light), 0.3);
-		border-radius: 12px;
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 3rem;
+		background: var(--ink);
+		border-radius: var(--radius-xl);
+		overflow: hidden;
+	}
+
+	.newsletter-content {
+		position: relative;
+		z-index: 2;
+		max-width: 480px;
 	}
 
 	.newsletter h2 {
-		border: none;
-		padding: 0;
+		color: white;
+		font-size: 1.75rem;
+		margin-bottom: 0.5rem;
+	}
+
+	.newsletter > .newsletter-content > p {
+		color: rgba(255, 255, 255, 0.7);
+		margin-bottom: 1.5rem;
 	}
 
 	.newsletter-form {
 		display: flex;
-		gap: 0.5em;
-		max-width: 400px;
-		margin: 1em auto;
+		gap: 0.75rem;
 	}
 
 	.newsletter-form input {
 		flex: 1;
-		padding: 0.75em;
-		border: 1px solid rgb(var(--gray-light));
-		border-radius: 6px;
+		padding: 0.875rem 1rem;
+		background: rgba(255, 255, 255, 0.1);
+		border: 1px solid rgba(255, 255, 255, 0.2);
+		border-radius: var(--radius-md);
+		color: white;
+		font-size: 1rem;
+	}
+
+	.newsletter-form input::placeholder {
+		color: rgba(255, 255, 255, 0.5);
+	}
+
+	.newsletter-form input:focus {
+		outline: none;
+		border-color: var(--amber);
+		background: rgba(255, 255, 255, 0.15);
 	}
 
 	.newsletter-form button {
-		padding: 0.75em 1.5em;
-		background: var(--accent);
-		color: white;
-		border: none;
-		border-radius: 6px;
-		cursor: pointer;
+		padding: 0.875rem 1.5rem;
+		background: var(--amber);
+		color: var(--ink);
 		font-weight: 600;
+		border: none;
+		border-radius: var(--radius-md);
+		cursor: pointer;
+		transition: all var(--duration-fast) var(--ease-out);
 	}
 
 	.newsletter-form button:hover {
-		background: var(--accent-dark);
+		background: var(--amber-dark);
+		transform: translateY(-1px);
 	}
 
-	.newsletter-note {
-		font-size: 0.9em;
-		color: rgb(var(--gray));
+	.newsletter-alt {
+		margin-top: 1rem;
+		font-size: 0.875rem;
+		color: rgba(255, 255, 255, 0.5);
 	}
 
-	@media (max-width: 600px) {
+	.newsletter-alt a {
+		color: var(--amber);
+	}
+
+	.newsletter-decoration {
+		position: absolute;
+		right: 3rem;
+		color: white;
+	}
+
+	/* Responsive */
+	@media (max-width: 900px) {
 		.hero {
-			flex-direction: column;
+			grid-template-columns: 1fr;
 			text-align: center;
+			gap: 3rem;
 		}
 
-		.social-row {
+		.hero-content {
+			order: 2;
+		}
+
+		.hero-image {
+			order: 1;
+			justify-self: center;
+		}
+
+		.hero-tagline {
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		.hero-actions {
 			justify-content: center;
 		}
 
-		.org-card {
+		.hero h1 {
+			font-size: 3rem;
+		}
+
+		.avatar {
+			width: 200px;
+			height: 200px;
+		}
+
+		.posts-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.projects-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.featured-card {
+			grid-template-columns: 1fr;
+			text-align: center;
+		}
+
+		.featured-logo {
+			margin: 0 auto;
+		}
+
+		.research-item {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 1rem;
+		}
+
+		.research-meta {
+			margin-left: 0;
+		}
+
+		.newsletter {
 			flex-direction: column;
 			text-align: center;
+			padding: 2rem;
+		}
+
+		.newsletter-decoration {
+			display: none;
 		}
 
 		.newsletter-form {
 			flex-direction: column;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.hero h1 {
+			font-size: 2.5rem;
+		}
+
+		.avatar {
+			width: 160px;
+			height: 160px;
+		}
+
+		.avatar-decoration {
+			width: 60px;
+			height: 60px;
+			top: -10px;
+			right: -10px;
 		}
 	}
 </style>

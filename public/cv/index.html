@@ -4,23 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Max Ghenis - CV</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <style>
+        @font-face {
+            font-family: 'Playfair Display';
+            font-style: normal;
+            font-weight: 400 900;
+            font-display: swap;
+            src: url('https://fonts.gstatic.com/s/playfairdisplay/v37/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKd3vXDXbtM.woff2') format('woff2');
+        }
+
+        @font-face {
+            font-family: 'Source Sans 3';
+            font-style: normal;
+            font-weight: 300 700;
+            font-display: swap;
+            src: url('https://fonts.gstatic.com/s/sourcesans3/v15/nwpBtKy2OAdR1K-IwhWudF-R9QMylBJAV3Bo8Ky462EN_io6npfB.woff2') format('woff2');
+        }
+
         :root {
-            /* PolicyEngine color palette from policyengine-app-v2 */
-            --primary-color: #319795;  /* Teal 500 */
-            --primary-dark: #285E61;   /* Teal 700 */
-            --primary-light: #B2F5EA;  /* Teal 100 */
-            --secondary-color: #026AA2; /* Blue 700 - darker for readability */
-            --text-color: #000000;
-            --text-secondary: #5A5A5A;
-            --text-tertiary: #9CA3AF;
-            --light-gray: #F5F9FF;     /* Background secondary */
-            --border-color: #E2E8F0;   /* Border light */
-            --border-medium: #CBD5E1;  /* Border medium */
+            --ink: #0f172a;
+            --ink-soft: #334155;
+            --ink-muted: #64748b;
+            --cream: #fefdf8;
+            --cream-dark: #faf9f4;
+            --amber: #f59e0b;
+            --amber-dark: #d97706;
+            --amber-glow: rgba(245, 158, 11, 0.15);
         }
 
         * {
@@ -30,68 +40,73 @@
         }
 
         body {
-            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
+            font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            color: var(--ink-soft);
             background-color: #fff;
             max-width: 900px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 40px 40px;
+            font-size: 16px;
         }
 
-        /* Print-specific styles */
         @media print {
             body {
                 max-width: 100%;
-                padding: 0;
+                padding: 20px;
                 font-size: 11pt;
             }
-
-            a {
-                color: var(--text-color);
-                text-decoration: none;
-            }
-
-            .no-print {
-                display: none;
-            }
+            a { color: var(--ink); text-decoration: none; }
+            .no-print { display: none; }
         }
 
         /* Header */
         h1 {
-            font-size: 2.5em;
-            color: var(--primary-color);
-            margin-bottom: 0.3em;
-            border-bottom: 3px solid var(--secondary-color);
-            padding-bottom: 0.3em;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2.75em;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 0.5em;
+            letter-spacing: -0.03em;
         }
 
         .contact-header {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 12px 20px;
-            margin-bottom: 30px;
-            color: var(--text-secondary);
-            font-size: 0.9em;
+            gap: 0.75rem 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid rgba(15, 23, 42, 0.08);
         }
 
         .contact-header p {
             margin: 0;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--ink-muted);
         }
 
         .contact-header i {
-            color: var(--primary-color);
+            color: var(--amber-dark);
             width: 16px;
             text-align: center;
+        }
+
+        .contact-header a {
+            color: var(--ink-soft);
+            text-decoration: none;
+        }
+
+        .contact-header a:hover {
+            color: var(--amber-dark);
         }
 
         @media (max-width: 768px) {
             .contact-header {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 10px 15px;
+                gap: 0.75rem 1rem;
             }
         }
 
@@ -99,28 +114,41 @@
             .contact-header {
                 grid-template-columns: repeat(4, 1fr);
                 font-size: 9pt;
-                gap: 10px 15px;
             }
         }
 
         /* Sections */
         h2 {
+            font-family: 'Playfair Display', Georgia, serif;
             font-size: 1.5em;
-            color: var(--primary-color);
-            margin-top: 1.5em;
-            margin-bottom: 0.8em;
-            padding-bottom: 0.3em;
-            border-bottom: 2px solid var(--light-gray);
+            font-weight: 600;
+            color: var(--ink);
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid rgba(15, 23, 42, 0.08);
+            letter-spacing: -0.02em;
         }
 
         h3 {
-            font-size: 1.2em;
-            color: var(--secondary-color);
-            margin-top: 1em;
-            margin-bottom: 0.5em;
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 1.125em;
+            font-weight: 600;
+            color: var(--ink);
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
         }
 
-        /* Experience and Education entries */
+        h3 a {
+            color: var(--amber-dark);
+            text-decoration: none;
+        }
+
+        h3 a:hover {
+            text-decoration: underline;
+        }
+
+        /* Experience entries */
         .entry {
             margin-bottom: 1.5em;
         }
@@ -135,48 +163,60 @@
 
         .entry-title {
             font-weight: 600;
-            color: var(--primary-color);
+            color: var(--ink);
             font-size: 1.1em;
         }
 
         .entry-date {
-            color: #666;
+            color: var(--ink-muted);
             font-style: italic;
             font-size: 0.9em;
         }
 
-        .entry-org {
-            color: var(--secondary-color);
-            margin-bottom: 0.5em;
+        p em {
+            color: var(--ink-muted);
+            font-style: italic;
         }
 
         /* Lists */
         ul {
-            margin-left: 20px;
-            margin-bottom: 1em;
+            margin-left: 1.25rem;
+            margin-bottom: 1rem;
         }
 
         li {
-            margin-bottom: 0.5em;
+            margin-bottom: 0.5rem;
+            padding-left: 0.25rem;
+        }
+
+        li::marker {
+            color: var(--amber-dark);
         }
 
         /* Links */
         a {
-            color: #026AA2;  /* Blue 700 - darker for better readability */
+            color: var(--amber-dark);
             text-decoration: none;
+            transition: color 0.15s ease;
         }
 
         a:hover {
-            text-decoration: underline;
+            color: var(--amber);
         }
 
         /* Summary section */
         .summary {
-            background-color: #E6FFFA;  /* Teal 50 - very light teal */
-            padding: 1em;
-            border-left: 4px solid var(--primary-color);  /* Changed to primary teal */
-            margin-bottom: 1.5em;
-            font-size: 1.05em;
+            background: var(--amber-glow);
+            padding: 1.25rem 1.5rem;
+            border-left: 4px solid var(--amber);
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            color: var(--ink-soft);
+        }
+
+        .summary p {
+            margin: 0;
         }
 
         /* Skills section */
@@ -185,7 +225,7 @@
         }
 
         .skills-category h4 {
-            color: var(--secondary-color);
+            color: var(--ink);
             font-size: 1em;
             margin-bottom: 0.3em;
         }
@@ -196,25 +236,31 @@
         }
 
         .publication strong {
-            color: var(--primary-color);
+            color: var(--ink);
         }
 
         /* Separator */
         hr {
             border: none;
-            border-top: 1px solid var(--border-color);
-            margin: 2em 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(15, 23, 42, 0.08), transparent);
+            margin: 2.5rem 0;
+        }
+
+        /* Strong text */
+        strong {
+            color: var(--ink);
+            font-weight: 600;
         }
 
         /* Responsive design */
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2em;
+            body {
+                padding: 20px;
             }
 
-            .contact-info {
-                flex-direction: column;
-                gap: 5px;
+            h1 {
+                font-size: 2em;
             }
 
             .entry-header {
@@ -226,7 +272,7 @@
 <body>
     <h1>Max Ghenis</h1>
 <div class="contact-header">
-<p><i class="fas fa-envelope"></i> <a href="mailto:max@policyengine.org">max@policyengine.org</a></p>
+<p><i class="fas fa-envelope"></i> <a href="mailto:max@maxghenis.com">max@maxghenis.com</a></p>
 <p><i class="fas fa-phone"></i> +1.650.630.3657</p>
 <p><i class="fas fa-map-marker-alt"></i> Washington, DC</p>
 <p><i class="fas fa-globe"></i> <a href="https://maxghenis.com">maxghenis.com</a></p>
@@ -236,12 +282,11 @@
 <p><i class="fa-brands fa-bluesky"></i> <a href="https://bsky.app/profile/maxghenis.bsky.social">@maxghenis</a></p>
 </div>
 
-<hr />
 <h2>Summary</h2>
 <div class="summary">
 <p>Policy entrepreneur, technologist, and economist building computational tools that democratize policy analysis. Founder of PolicyEngine, a nonprofit software platform that computes personalized and population-level impacts of tax and benefit reforms. Expert in microsimulation modeling, machine learning for survey data enhancement, and economic impact assessment.</p>
 </div>
-<hr />
+
 <h2>Professional Experience</h2>
 <h3>Co-founder and CEO, <a href="http://policyengine.org">PolicyEngine</a></h3>
 <p><em>October 2021 - Present</em></p>
@@ -298,14 +343,14 @@
 <li>Consulted for pharmaceutical companies on sales force optimization, territory alignment, and resource allocation</li>
 <li>Developed predictive models for sales forecasting and market analysis</li>
 </ul>
-<hr />
+
 <h2>Education</h2>
 <p><strong>M.S., Data, Economics, and Development Policy</strong> | <em>2020</em>
 Massachusetts Institute of Technology</p>
 <p><strong>B.A., Operations Research and Management Science</strong> | <em>2008</em>
 University of California, Berkeley
 <em>Minors: Industrial Engineering &amp; Operations Research, Music</em></p>
-<hr />
+
 <h2>Key Skills &amp; Technologies</h2>
 <p><strong>Programming &amp; Data Science:</strong></p>
 <ul>
@@ -337,7 +382,7 @@ University of California, Berkeley
 <li>Survey methodology, synthetic data generation, and statistical matching</li>
 <li>Poverty and inequality measurement (SPM, deep poverty, distributional analysis)</li>
 </ul>
-<hr />
+
 <h2>Selected Publications &amp; Research</h2>
 <h3>Working Papers</h3>
 <ul>
@@ -351,39 +396,45 @@ University of California, Berkeley
 </ul>
 <h3>PolicyEngine Research</h3>
 <ul>
+<li><a href="https://policyengine.org/us/research/us-giving-tuesday-2025">GiveCalc US: Calculate your charitable giving tax savings</a>. December 2025.</li>
+<li><a href="https://policyengine.org/uk/research/uk-giving-tuesday-2025">GiveCalc UK: Calculate your Gift Aid tax relief</a>. December 2025.</li>
+<li><a href="https://policyengine.org/uk/research/uk-salary-sacrifice-cap">How a £2,000 salary sacrifice cap would affect workers</a>. With Vahid Ahmadi. November 2025.</li>
+<li><a href="https://policyengine.org/uk/research/obr-november-2025-projections">OBR November 2025 economic projections: what changed</a>. November 2025.</li>
+<li><a href="https://policyengine.org/uk/research/high-value-council-tax-surcharge">High value council tax surcharge: constituency-level impact</a>. November 2025.</li>
 <li><a href="https://policyengine.org/us/research/california-billionaire-tax-marginal-rates">Marginal tax rates in California&rsquo;s proposed billionaire tax</a>. October 2025.</li>
-<li><a href="https://policyengine.org/uk/research/uk-poverty-analysis">Comparing PolicyEngine and official UK poverty rates</a>. With Vahid Ahmadi. October 2025.</li>
-<li><a href="https://policyengine.org/uk/research/uk-two-child-limit">How removing the two-child benefit limit would affect the UK</a>. With Vahid Ahmadi. October 2025.</li>
 <li><a href="https://policyengine.org/us/research/dc-office-ai-coding">How we used Claude Code to choose our DC office</a>. With Daphne Hansell. October 2025.</li>
-<li><a href="https://policyengine.org/us/research/introducing-aca-calc">Introducing ACA-Calc: Calculate your household&rsquo;s premium tax credits</a>. With Daphne Hansell. September 2025.</li>
-<li><a href="https://policyengine.org/uk/research/uk-carbon-tax-dividend">How carbon tax and dividend policies affect UK households</a>. With Vahid Ahmadi. September 2025.</li>
-<li><a href="https://policyengine.org/us/research/enhanced-premium-tax-credits-extension">Enhanced Premium Tax Credits: Analyzing Household Impacts of an Extension Beyond 2025</a>. With Daphne Hansell. September 2025.</li>
+<li><a href="https://policyengine.org/uk/research/sep-2025-london-event">Event: PolicyEngine 2.0 and the Future of Public Policy Analysis</a>. September 2025.</li>
 <li><a href="https://policyengine.org/us/research/policyengine-nber-mou-taxsim">PolicyEngine and NBER sign memorandum of understanding for TAXSIM emulator development</a>. With Pavel Makarchuk. September 2025.</li>
 <li><a href="https://policyengine.org/us/research/nsf-pose-phase-1-grant">National Science Foundation awards PolicyEngine $300,000 grant</a>. August 2025.</li>
-<li><a href="https://policyengine.org/us/research/american-worker-rebate-act">Analysis of the American Worker Rebate Act of 2025</a>. With David Trimmer. August 2025.</li>
 <li><a href="https://policyengine.org/us/research/enhanced-cps-launch">Enhanced CPS full launch: Comprehensive microdata for policy analysis</a>. With Nikhil Woodruff, Ben Ogorek, and Maria Juaristi. August 2025.</li>
-<li><a href="https://policyengine.org/us/research/final-2025-reconciliation-tax">Analysis of individual income tax provisions in the final reconciliation bill</a>. With David Trimmer and Pavel Makarchuk. July 2025.</li>
 <li><a href="https://policyengine.org/us/research/introducing-obbba-household-explorer">Introducing the OBBBA Household Explorer</a>. With Pavel Makarchuk and Elena Cura. July 2025.</li>
-<li><a href="https://policyengine.org/us/research/american-family-act-2025">The 2025 American Family Act</a>. With David Trimmer. June 2025.</li>
-<li><a href="https://policyengine.org/uk/research/uk-childcare-report">Childcare programmes in PolicyEngine UK</a>. With Vahid Ahmadi. June 2025.</li>
+<li><a href="https://policyengine.org/us/research/tax-cuts-for-workers-act">The Tax Cuts for Workers Act</a>. With Pavel Makarchuk. June 2025.</li>
 <li><a href="https://policyengine.org/us/research/managers-amendment-to-hr1">Manager&rsquo;s Amendment to H.R.1 - The One Big Beautiful Bill Act</a>. With Pavel Makarchuk and David Trimmer. May 2025.</li>
-<li><a href="https://policyengine.org/us/research/montana-tax-cuts-2026">Montana Reduces Top Income Tax Rate and Expands EITC</a>. With David Trimmer. May 2025.</li>
-<li><a href="https://policyengine.org/us/research/salt-caucus-62k-cap">The SALT Caucus&rsquo;s Proposed Cap</a>. With David Trimmer. May 2025.</li>
 <li><a href="https://policyengine.org/us/research/ways-and-means-salt-cap">Ways and Means Committee&rsquo;s SALT Cap</a>. With Pavel Makarchuk and David Trimmer. May 2025.</li>
-<li><a href="https://policyengine.org/uk/research/impact-of-tax-changes-2025-2026">Tax changes in effect in April 2025</a>. With Nikhil Woodruff. April 2025.</li>
+<li><a href="https://policyengine.org/us/research/earth-day-2025">Analyzing Energy Policy with PolicyEngine</a>. April 2025.</li>
 <li><a href="https://policyengine.org/us/research/introducing-salternative">What&rsquo;s the SALTernative?</a>. With Pavel Makarchuk. April 2025.</li>
 <li><a href="https://policyengine.org/us/research/myfriendben-nc">MyFriendBen Launches in North Carolina, Using PolicyEngine API</a>. April 2025.</li>
-<li><a href="https://policyengine.org/uk/research/hmt-policyengine-pilot">HM Treasury pilots PolicyEngine UK for tax-benefit microsimulation</a>. With Nikhil Woodruff. March 2025.</li>
-<li><a href="https://policyengine.org/uk/research/income-tax-freeze">Extending the Income Tax threshold freeze to 2030</a>. With Nikhil Woodruff. March 2025.</li>
+<li><a href="https://policyengine.org/uk/research/uk-pip-reforms">Restricting eligibility for the Personal Independence Payment Daily Living part</a>. With Nikhil Woodruff. March 2025.</li>
+<li><a href="https://policyengine.org/us/research/introducing-2024-election-calculator">How Would Each Presidential Candidate&rsquo;s Economic Plans Affect Your Household?</a>. With Pavel Makarchuk. November 2024.</li>
+<li><a href="https://policyengine.org/us/research/lift-act">Kamala Harris&rsquo;s LIFT Act Middle Class Tax Credit</a>. With Pavel Makarchuk. July 2024.</li>
+<li><a href="https://policyengine.org/us/research/vance-ctc">Analysis of JD Vance&rsquo;s Suggested $5,000 Child Tax Credit Expansion</a>. With Pavel Makarchuk. August 2024.</li>
+<li><a href="https://policyengine.org/us/research/harris-ctc">Kamala Harris&rsquo;s Child Tax Credit Proposal</a>. With Pavel Makarchuk. August 2024.</li>
+<li><a href="https://policyengine.org/us/research/rent-relief-act">How the Rent Relief Act of 2019 Varies with Income and Location</a>. August 2024.</li>
+<li><a href="https://policyengine.org/us/research/oregon-rebate">How the Oregon Rebate May Affect Poverty Rates</a>. With Pavel Makarchuk. September 2024.</li>
+<li><a href="https://policyengine.org/us/research/niskanen-center-analysis">PolicyEngine Powers Niskanen Center&rsquo;s Analysis</a>. With Ben Gross. July 2024.</li>
+<li><a href="https://policyengine.org/us/research/givecalc">Introducing GiveCalc</a>. With Pavel Makarchuk. December 2024.</li>
+<li><a href="https://policyengine.org/us/research/neo-philanthropy">NEO Philanthropy Awards $200,000 Grant to PolicyEngine</a>. December 2024.</li>
+<li><a href="https://policyengine.org/uk/research/uk-nuffield-grant">Nuffield Foundation awards £250k to enhance PolicyEngine UK</a>. December 2024.</li>
+<li><a href="https://policyengine.org/us/research/us-behavioral-responses">PolicyEngine US Launches Behavioral Responses</a>. With Nikhil Woodruff, Jason DeBacker, and Vahid Ahmadi. December 2024.</li>
+<li><a href="https://policyengine.org/us/research/us-year-in-review-2024">PolicyEngine US in 2024: A year in review</a>. With Nikhil Woodruff. December 2024.</li>
+<li><a href="https://policyengine.org/uk/research/uk-year-in-review-2024">PolicyEngine UK in 2024: A year in review</a>. With Nikhil Woodruff. December 2024.</li>
 <li><a href="https://policyengine.org/us/research/wyden-smith-ctc">Preliminary analysis of the Wyden-Smith Child Tax Credit expansion</a>. With Pavel Makarchuk. January 2024.</li>
 <li><a href="https://policyengine.org/us/research/enhanced-cps-beta">Beta-launch: PolicyEngine&rsquo;s enhanced microdata for policy analysis</a>. With Nikhil Woodruff. March 2024.</li>
 <li><a href="https://policyengine.org/us/research/trafwa-ctc">Child Tax Credit Provisions of the Tax Relief for American Workers and Families Act</a>. March 2024.</li>
 <li><a href="https://policyengine.org/us/research/biden-budget-2025">Individual income tax provisions of President Biden&rsquo;s 2025 Budget</a>. With Pavel Makarchuk. March 2024.</li>
-<li><a href="https://policyengine.org/us/research/state-tax-model-beta">PolicyEngine launches state income tax modeling nationwide</a>. With Pavel Makarchuk. April 2024.</li>
 <li><a href="https://policyengine.org/us/research/winship-individualized-eitc">Scott Winship&rsquo;s individualized Earned Income Tax Credit proposal</a>. 2023.</li>
 <li><a href="https://policyengine.org/us/research/malliotakis-steel-working-families-tax-cut-act">Analysis of the Working Families Tax Cut Act</a>. With Nikhil Woodruff. 2023.</li>
 <li><a href="https://policyengine.org/us/research/analysis-of-guaranteed-income-for-the-21st-century">Analysis of Guaranteed Income for the 21st Century</a>. 2023.</li>
-<li><a href="https://policyengine.org/us/research/massachusetts-governor-maura-healeys-fy-2024-budget-recommendation">Massachusetts Governor Maura Healey&rsquo;s FY 2024 Budget Recommendation</a>. 2023.</li>
 <li><a href="https://policyengine.org/us/research/the-child-tax-credit-in-2023">The Child Tax Credit in 2023</a>. 2023.</li>
 <li><a href="https://policyengine.org/us/research/how-would-reforms-affect-cliffs">How would reforms affect cliffs?</a>. With Nikhil Woodruff. 2023.</li>
 <li><a href="https://policyengine.org/us/research/electric-vehicle-tax-credits-under-current-law-and-the-inflation-reduction-act">Electric vehicle tax credits under current law and the Inflation Reduction Act</a>. 2022.</li>
@@ -407,7 +458,7 @@ University of California, Berkeley
 <li><a href="https://www.openrg.com/reports/QN_ARPA_Distribution.pdf">Revenue and Distributional Impacts of the American Rescue Plan Act</a>. With Jason DeBacker, Richard W. Evans, and Cody Kallen. 2021.</li>
 <li><a href="https://medium.com/ubicenter/distributional-analysis-of-andrew-yangs-freedom-dividend-d8dab818bf1b">Distributional analysis of Andrew Yang&rsquo;s Freedom Dividend</a>. 2019.</li>
 </ul>
-<hr />
+
 <h2>Conference Presentations &amp; Speaking Engagements</h2>
 <p><strong>National Tax Association (NTA) 117th Annual Conference on Taxation</strong> | November 2024, Detroit, MI
 - &ldquo;What Can LLMs Tell Us about the ETI?&rdquo; With Jason DeBacker
@@ -426,7 +477,7 @@ University of California, Berkeley
 <p><strong>Rules as Code Demo Day, Beeck Center</strong> | June 2022, Washington, DC
 - Presented PolicyEngine platform with Nikhil Woodruff</p>
 <p><strong>Basic Income Guarantee (BIG) Conference</strong> | June 2022, Portland, OR</p>
-<hr />
+
 <h2>Professional Affiliations &amp; Advisory Roles</h2>
 <h3>Leadership Council Member, <a href="http://pslmodels.org">Policy Simulation Library</a></h3>
 <p><em>September 2020 - Present</em></p>
