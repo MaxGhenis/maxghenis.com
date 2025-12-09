@@ -1,92 +1,293 @@
 ---
 import { SITE_TITLE, SOCIAL_LINKS } from '../consts';
-import HeaderLink from './HeaderLink.astro';
 ---
 
 <header>
 	<nav>
-		<h2><a href="/">{SITE_TITLE}</a></h2>
-		<div class="internal-links">
-			<HeaderLink href="/">Home</HeaderLink>
-			<HeaderLink href="/blog">Blog</HeaderLink>
-			<HeaderLink href="/cv">CV</HeaderLink>
-			<HeaderLink href="/research">Research</HeaderLink>
-			<HeaderLink href="/feed">Feed</HeaderLink>
+		<a href="/" class="logo-link">
+			<span class="logo-text">{SITE_TITLE}</span>
+		</a>
+
+		<div class="nav-links">
+			<a href="/" class="nav-link">Home</a>
+			<a href="/blog" class="nav-link">Writing</a>
+			<a href="/research" class="nav-link">Research</a>
+			<a href="/cv" class="nav-link">CV</a>
 		</div>
+
 		<div class="social-links">
-			<a href={SOCIAL_LINKS.twitter} target="_blank" title="X (Twitter)">
-				<span class="sr-only">Follow Max on X</span>
-				<svg viewBox="0 0 24 24" aria-hidden="true" width="24" height="24">
+			<a href={SOCIAL_LINKS.twitter} target="_blank" rel="noopener" aria-label="X (Twitter)">
+				<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
 					<path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
 				</svg>
 			</a>
-			<a href={SOCIAL_LINKS.linkedin} target="_blank" title="LinkedIn">
-				<span class="sr-only">Connect on LinkedIn</span>
-				<svg viewBox="0 0 24 24" aria-hidden="true" width="24" height="24">
+			<a href={SOCIAL_LINKS.linkedin} target="_blank" rel="noopener" aria-label="LinkedIn">
+				<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
 					<path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
 				</svg>
 			</a>
-			<a href={SOCIAL_LINKS.github} target="_blank" title="GitHub">
-				<span class="sr-only">Go to GitHub</span>
-				<svg viewBox="0 0 16 16" aria-hidden="true" width="24" height="24">
+			<a href={SOCIAL_LINKS.github} target="_blank" rel="noopener" aria-label="GitHub">
+				<svg viewBox="0 0 16 16" width="20" height="20" aria-hidden="true">
 					<path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
 				</svg>
 			</a>
-			<a href={SOCIAL_LINKS.bluesky} target="_blank" title="Bluesky">
-				<span class="sr-only">Follow on Bluesky</span>
-				<svg viewBox="0 0 24 24" aria-hidden="true" width="24" height="24">
+			<a href={SOCIAL_LINKS.bluesky} target="_blank" rel="noopener" aria-label="Bluesky">
+				<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
 					<path fill="currentColor" d="M12 10.8c-1.087-2.114-4.046-6.053-6.798-7.995C2.566.944 1.561 1.266.902 1.565.139 1.908 0 3.08 0 3.768c0 .69.378 5.65.624 6.479.815 2.736 3.713 3.66 6.383 3.364.136-.02.275-.039.415-.056-.138.022-.276.04-.415.056-3.912.58-7.387 2.005-2.83 7.078 5.013 5.19 6.87-1.113 7.823-4.308.953 3.195 2.05 9.271 7.733 4.308 4.267-4.308 1.172-6.498-2.74-7.078a8.741 8.741 0 0 1-.415-.056c.14.017.279.036.415.056 2.67.297 5.568-.628 6.383-3.364.246-.828.624-5.79.624-6.478 0-.69-.139-1.861-.902-2.206-.659-.298-1.664-.62-4.3 1.24C16.046 4.748 13.087 8.687 12 10.8Z"/>
 				</svg>
 			</a>
 		</div>
+
+		<button class="mobile-toggle" aria-label="Toggle navigation" aria-expanded="false">
+			<span class="hamburger"></span>
+		</button>
 	</nav>
+
+	<div class="mobile-menu">
+		<a href="/" class="mobile-link">Home</a>
+		<a href="/blog" class="mobile-link">Writing</a>
+		<a href="/research" class="mobile-link">Research</a>
+		<a href="/cv" class="mobile-link">CV</a>
+		<div class="mobile-social">
+			<a href={SOCIAL_LINKS.twitter} target="_blank" rel="noopener">X</a>
+			<a href={SOCIAL_LINKS.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+			<a href={SOCIAL_LINKS.github} target="_blank" rel="noopener">GitHub</a>
+			<a href={SOCIAL_LINKS.bluesky} target="_blank" rel="noopener">Bluesky</a>
+		</div>
+	</div>
 </header>
+
+<script>
+	const toggle = document.querySelector('.mobile-toggle');
+	const menu = document.querySelector('.mobile-menu');
+	const header = document.querySelector('header');
+
+	toggle?.addEventListener('click', () => {
+		const expanded = toggle.getAttribute('aria-expanded') === 'true';
+		toggle.setAttribute('aria-expanded', String(!expanded));
+		menu?.classList.toggle('open');
+		header?.classList.toggle('menu-open');
+	});
+
+	// Close menu when clicking a link
+	menu?.querySelectorAll('a').forEach(link => {
+		link.addEventListener('click', () => {
+			toggle?.setAttribute('aria-expanded', 'false');
+			menu?.classList.remove('open');
+			header?.classList.remove('menu-open');
+		});
+	});
+</script>
+
 <style>
 	header {
-		margin: 0;
-		padding: 0 1em;
-		background: white;
-		box-shadow: 0 2px 8px rgba(var(--black), 5%);
+		position: sticky;
+		top: 0;
+		z-index: 100;
+		background: rgba(254, 253, 248, 0.85);
+		backdrop-filter: blur(12px);
+		-webkit-backdrop-filter: blur(12px);
+		border-bottom: 1px solid rgba(15, 23, 42, 0.06);
 	}
-	h2 {
-		margin: 0;
-		font-size: 1em;
-	}
-	h2 a,
-	h2 a.active {
-		text-decoration: none;
-	}
+
 	nav {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		max-width: 960px;
+		max-width: 1200px;
 		margin: 0 auto;
+		padding: 1rem 2rem;
 	}
-	nav a {
-		padding: 1em 0.5em;
-		color: var(--black);
-		border-bottom: 4px solid transparent;
+
+	/* Logo */
+	.logo-link {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
 		text-decoration: none;
+		color: var(--ink);
 	}
-	nav a.active {
+
+	.logo-mark {
+		width: 36px;
+		height: 32px;
+		background: var(--ink);
+		border-radius: 6px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-family: 'Playfair Display', Georgia, serif;
+		font-weight: 700;
+		font-size: 0.875rem;
+		color: var(--amber);
+		letter-spacing: 0.02em;
+	}
+
+	.logo-text {
+		font-family: 'Playfair Display', Georgia, serif;
+		font-size: 1.25rem;
+		font-weight: 700;
+		letter-spacing: -0.02em;
+	}
+
+	/* Navigation links */
+	.nav-links {
+		display: flex;
+		gap: 0.5rem;
+	}
+
+	.nav-link {
+		padding: 0.5rem 1rem;
+		font-size: 0.95rem;
+		font-weight: 500;
+		color: var(--ink-soft);
 		text-decoration: none;
-		border-bottom-color: var(--accent);
+		border-radius: var(--radius-md);
+		transition: all var(--duration-fast) var(--ease-out);
 	}
-	.social-links,
+
+	.nav-link:hover {
+		color: var(--ink);
+		background: rgba(15, 23, 42, 0.04);
+	}
+
+	/* Social links */
+	.social-links {
+		display: flex;
+		gap: 0.25rem;
+	}
+
 	.social-links a {
 		display: flex;
-		gap: 0.5em;
+		align-items: center;
+		justify-content: center;
+		width: 36px;
+		height: 36px;
+		color: var(--ink-muted);
+		border-radius: var(--radius-md);
+		transition: all var(--duration-fast) var(--ease-out);
 	}
-	.social-links a {
-		padding: 0.5em;
+
+	.social-links a:hover {
+		color: var(--amber-dark);
+		background: var(--amber-glow);
 	}
-	@media (max-width: 720px) {
+
+	/* Mobile toggle */
+	.mobile-toggle {
+		display: none;
+		width: 40px;
+		height: 40px;
+		padding: 0;
+		border: none;
+		background: none;
+		cursor: pointer;
+		position: relative;
+	}
+
+	.hamburger {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 20px;
+		height: 2px;
+		background: var(--ink);
+		transition: all var(--duration-fast) var(--ease-out);
+	}
+
+	.hamburger::before,
+	.hamburger::after {
+		content: '';
+		position: absolute;
+		left: 0;
+		width: 20px;
+		height: 2px;
+		background: var(--ink);
+		transition: all var(--duration-fast) var(--ease-out);
+	}
+
+	.hamburger::before { top: -6px; }
+	.hamburger::after { top: 6px; }
+
+	.mobile-toggle[aria-expanded="true"] .hamburger {
+		background: transparent;
+	}
+
+	.mobile-toggle[aria-expanded="true"] .hamburger::before {
+		top: 0;
+		transform: rotate(45deg);
+	}
+
+	.mobile-toggle[aria-expanded="true"] .hamburger::after {
+		top: 0;
+		transform: rotate(-45deg);
+	}
+
+	/* Mobile menu */
+	.mobile-menu {
+		display: none;
+		flex-direction: column;
+		padding: 1rem 2rem 2rem;
+		background: var(--cream);
+		border-top: 1px solid rgba(15, 23, 42, 0.06);
+	}
+
+	.mobile-menu.open {
+		display: flex;
+	}
+
+	.mobile-link {
+		padding: 1rem 0;
+		font-size: 1.125rem;
+		font-weight: 500;
+		color: var(--ink);
+		text-decoration: none;
+		border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+	}
+
+	.mobile-link:hover {
+		color: var(--amber-dark);
+	}
+
+	.mobile-social {
+		display: flex;
+		gap: 1.5rem;
+		margin-top: 1.5rem;
+		padding-top: 0.5rem;
+	}
+
+	.mobile-social a {
+		font-size: 0.875rem;
+		font-weight: 500;
+		color: var(--ink-muted);
+	}
+
+	.mobile-social a:hover {
+		color: var(--amber-dark);
+	}
+
+	@media (max-width: 768px) {
+		nav {
+			padding: 0.75rem 1rem;
+		}
+
+		.nav-links,
 		.social-links {
 			display: none;
 		}
-		.internal-links {
-			font-size: 0.9em;
+
+		.mobile-toggle {
+			display: block;
+		}
+
+		.logo-text {
+			font-size: 1.125rem;
+		}
+
+		.logo-mark {
+			width: 28px;
+			height: 28px;
 		}
 	}
 </style>
