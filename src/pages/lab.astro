@@ -1,0 +1,604 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const projects = [
+	// Live & Featured
+	{
+		title: 'HiveSight',
+		href: 'https://hivesight.ai',
+		description: 'AI-powered survey research with LLM agents',
+		status: 'live',
+		theme: { bg: '#0f172a', accent: '#f59e0b', pattern: 'hexagon' },
+		tags: ['AI', 'Research'],
+	},
+	{
+		title: 'EggNest',
+		href: 'https://eggnest.co',
+		description: 'Monte Carlo financial planning with real tax calculations',
+		status: 'live',
+		theme: { bg: '#fef7ed', accent: '#ea580c', pattern: 'eggs' },
+		tags: ['Finance', 'Simulation'],
+	},
+	{
+		title: 'OptiQAL',
+		href: 'https://optiqal.ai',
+		description: 'AI-powered QALY estimation for lifestyle choices',
+		status: 'live',
+		theme: { bg: '#0c1222', accent: '#06b6d4', pattern: 'gradient' },
+		tags: ['Health', 'AI'],
+	},
+	{
+		title: 'DateGen',
+		href: 'https://dategen.vercel.app',
+		description: 'Spin the wheel for perfect date ideas',
+		status: 'live',
+		theme: { bg: '#fdf2f8', accent: '#ec4899', pattern: 'hearts' },
+		tags: ['Fun', 'Randomizer'],
+	},
+	{
+		title: 'Catchphrase',
+		href: 'https://maxghenis.github.io/catchphrase/',
+		description: 'Party word game for mobile',
+		status: 'live',
+		theme: { bg: '#1e40af', accent: '#fbbf24', pattern: 'burst' },
+		tags: ['Game', 'Party'],
+	},
+	// Research & Analysis
+	{
+		title: 'Beer Economics',
+		href: 'https://maxghenis.github.io/yankee-stadium-beer-price-controls/',
+		description: 'Welfare analysis of stadium pricing',
+		status: 'live',
+		theme: { bg: '#422006', accent: '#fcd34d', pattern: 'waves' },
+		tags: ['Economics', 'Research'],
+	},
+	{
+		title: 'Traffic Fine Sim',
+		href: 'https://maxghenis.github.io/traffic-fine-sim/',
+		description: 'Agent simulation of income-based fines',
+		status: 'live',
+		theme: { bg: '#1c1917', accent: '#dc2626', pattern: 'grid' },
+		tags: ['Simulation', 'Policy'],
+	},
+	{
+		title: 'LLM-ETI',
+		href: 'https://maxghenis.github.io/llm-eti/',
+		description: 'LLMs estimating elasticity of taxable income',
+		status: 'live',
+		theme: { bg: '#0f172a', accent: '#8b5cf6', pattern: 'neural' },
+		tags: ['AI', 'Tax Research'],
+	},
+	{
+		title: 'AI Economics Lecture',
+		href: 'https://maxghenis.github.io/ai-economics-lecture/',
+		description: 'Interactive slides on AI for econ research',
+		status: 'live',
+		theme: { bg: '#f8fafc', accent: '#0ea5e9', pattern: 'slides' },
+		tags: ['Education', 'Slides'],
+	},
+	{
+		title: 'NCSL Sessions',
+		href: 'https://maxghenis.github.io/ncsl-sessions/',
+		description: 'State legislative session explorer',
+		status: 'live',
+		theme: { bg: '#1e3a5f', accent: '#60a5fa', pattern: 'map' },
+		tags: ['Data Viz', 'Policy'],
+	},
+	{
+		title: 'Disutility of Uncertainty',
+		href: 'https://maxghenis.github.io/disutility-of-uncertainty/',
+		description: 'Welfare costs of tax uncertainty',
+		status: 'live',
+		theme: { bg: '#18181b', accent: '#a78bfa', pattern: 'uncertainty' },
+		tags: ['Research', 'Tax'],
+	},
+	// Half-baked / In Progress
+	{
+		title: 'Farness',
+		href: 'https://github.com/MaxGhenis/farness',
+		description: 'Decision framework based on forecasting KPIs',
+		status: 'wip',
+		theme: { bg: '#1e293b', accent: '#10b981', pattern: 'tree' },
+		tags: ['Framework', 'Decisions'],
+	},
+	{
+		title: 'BrandVal',
+		href: 'https://github.com/MaxGhenis/brandval',
+		description: 'Brand value estimation tools',
+		status: 'concept',
+		theme: { bg: '#4c1d95', accent: '#f472b6', pattern: 'sparkle' },
+		tags: ['Marketing', 'Valuation'],
+	},
+	{
+		title: 'Mita Visualization',
+		href: '/mita/',
+		description: 'Dell (2010) Peru mining mita replication',
+		status: 'live',
+		theme: { bg: '#1a1a2e', accent: '#e94560', pattern: 'topo' },
+		tags: ['Economics', 'Viz'],
+	},
+	{
+		title: 'Marginal Child',
+		href: 'https://github.com/MaxGhenis/marginal-child',
+		description: 'Benefits per additional child analysis',
+		status: 'wip',
+		theme: { bg: '#fef3c7', accent: '#f97316', pattern: 'family' },
+		tags: ['Policy', 'Benefits'],
+	},
+	{
+		title: 'Policy Bench',
+		href: 'https://github.com/MaxGhenis/policy-bench',
+		description: 'LLM benchmark for public policy',
+		status: 'concept',
+		theme: { bg: '#0c0a09', accent: '#84cc16', pattern: 'bench' },
+		tags: ['AI', 'Benchmark'],
+	},
+];
+
+const statusLabels = {
+	live: { text: 'Live', color: '#10b981' },
+	wip: { text: 'In Progress', color: '#f59e0b' },
+	concept: { text: 'Concept', color: '#8b5cf6' },
+};
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title="The Lab | Max Ghenis" description="A portal into experimental projects, half-baked ideas, and works in progress." />
+	</head>
+	<body>
+		<Header />
+		<main class="lab-main">
+			<header class="lab-header animate-fade-in-up">
+				<div class="lab-badge">Experimental</div>
+				<h1>The Lab</h1>
+				<p class="lab-subtitle">A portal into side projects, experiments, and half-baked ideas. Some are polished, some are prototypes, some are just thoughts with URLs.</p>
+			</header>
+
+			<div class="portal-grid">
+				{projects.map((project, index) => (
+					<a
+						href={project.href}
+						class={`portal-card status-${project.status}`}
+						target={project.href.startsWith('/') ? '_self' : '_blank'}
+						rel={project.href.startsWith('/') ? undefined : 'noopener'}
+						style={`--portal-bg: ${project.theme.bg}; --portal-accent: ${project.theme.accent}; --delay: ${index * 0.05}s;`}
+					>
+						<div class="portal-window" data-pattern={project.theme.pattern}>
+							<div class="portal-shimmer"></div>
+							<div class="portal-content">
+								<span class="portal-title">{project.title}</span>
+							</div>
+						</div>
+						<div class="portal-info">
+							<div class="portal-header">
+								<h3>{project.title}</h3>
+								<span class="status-badge" style={`--status-color: ${statusLabels[project.status].color}`}>
+									{statusLabels[project.status].text}
+								</span>
+							</div>
+							<p>{project.description}</p>
+							<div class="portal-tags">
+								{project.tags.map(tag => (
+									<span class="tag">{tag}</span>
+								))}
+							</div>
+						</div>
+						<div class="portal-glow"></div>
+					</a>
+				))}
+			</div>
+
+			<footer class="lab-footer animate-fade-in-up delay-600">
+				<p>Want to collaborate on something? <a href="mailto:mghenis@gmail.com">Get in touch</a>.</p>
+			</footer>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.lab-main {
+		max-width: 1400px;
+		padding: var(--space-xl) var(--space-lg);
+	}
+
+	.lab-header {
+		text-align: center;
+		margin-bottom: 4rem;
+		padding-bottom: 3rem;
+		border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+	}
+
+	.lab-badge {
+		display: inline-block;
+		padding: 0.5rem 1rem;
+		background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(236, 72, 153, 0.15));
+		color: #7c3aed;
+		font-size: 0.8125rem;
+		font-weight: 600;
+		border-radius: var(--radius-full);
+		margin-bottom: 1.5rem;
+		letter-spacing: 0.05em;
+		text-transform: uppercase;
+		border: 1px solid rgba(139, 92, 246, 0.2);
+	}
+
+	.lab-header h1 {
+		font-size: 3.5rem;
+		margin-bottom: 1rem;
+		background: linear-gradient(135deg, var(--ink) 0%, #4c1d95 50%, #7c3aed 100%);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.lab-subtitle {
+		font-size: 1.25rem;
+		color: var(--text-secondary);
+		max-width: 600px;
+		margin: 0 auto;
+		line-height: 1.6;
+	}
+
+	/* Portal Grid */
+	.portal-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+		gap: 2rem;
+		margin-bottom: 4rem;
+	}
+
+	/* Portal Card */
+	.portal-card {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		background: white;
+		border-radius: var(--radius-xl);
+		overflow: hidden;
+		text-decoration: none;
+		box-shadow: var(--shadow-md);
+		transition: all 0.4s var(--ease-out);
+		animation: fadeInUp 0.6s var(--ease-out) forwards;
+		animation-delay: var(--delay);
+		opacity: 0;
+	}
+
+	.portal-card:hover {
+		transform: translateY(-8px) scale(1.02);
+		box-shadow:
+			var(--shadow-xl),
+			0 0 40px rgba(var(--portal-accent-rgb, 139, 92, 246), 0.15);
+	}
+
+	/* Portal Window - the "preview" area */
+	.portal-window {
+		position: relative;
+		height: 160px;
+		background: var(--portal-bg);
+		overflow: hidden;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	/* Pattern overlays */
+	.portal-window::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		opacity: 0.15;
+		transition: opacity 0.3s ease;
+	}
+
+	.portal-card:hover .portal-window::before {
+		opacity: 0.25;
+	}
+
+	/* Hexagon pattern */
+	.portal-window[data-pattern="hexagon"]::before {
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+	}
+
+	/* Egg pattern */
+	.portal-window[data-pattern="eggs"]::before {
+		background-image: radial-gradient(ellipse 20px 28px at 50% 50%, rgba(255,255,255,0.3) 0%, transparent 60%);
+		background-size: 40px 50px;
+	}
+
+	/* Gradient mesh */
+	.portal-window[data-pattern="gradient"]::before {
+		background:
+			radial-gradient(ellipse at 20% 30%, var(--portal-accent) 0%, transparent 50%),
+			radial-gradient(ellipse at 80% 70%, #ec4899 0%, transparent 50%);
+		opacity: 0.4;
+	}
+
+	/* Hearts pattern */
+	.portal-window[data-pattern="hearts"]::before {
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23ffffff' d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E");
+		background-size: 30px 30px;
+	}
+
+	/* Burst pattern */
+	.portal-window[data-pattern="burst"]::before {
+		background:
+			repeating-conic-gradient(from 0deg, transparent 0deg 10deg, rgba(255,255,255,0.1) 10deg 20deg);
+	}
+
+	/* Waves pattern */
+	.portal-window[data-pattern="waves"]::before {
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23ffffff' fill-opacity='1' d='M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+		background-size: 100% 100%;
+		opacity: 0.2;
+	}
+
+	/* Grid pattern */
+	.portal-window[data-pattern="grid"]::before {
+		background-image:
+			linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+			linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px);
+		background-size: 20px 20px;
+	}
+
+	/* Neural network pattern */
+	.portal-window[data-pattern="neural"]::before {
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Ccircle cx='20' cy='20' r='3' fill='%23ffffff'/%3E%3Ccircle cx='80' cy='20' r='3' fill='%23ffffff'/%3E%3Ccircle cx='50' cy='50' r='3' fill='%23ffffff'/%3E%3Ccircle cx='20' cy='80' r='3' fill='%23ffffff'/%3E%3Ccircle cx='80' cy='80' r='3' fill='%23ffffff'/%3E%3Cline x1='20' y1='20' x2='50' y2='50' stroke='%23ffffff' stroke-width='0.5'/%3E%3Cline x1='80' y1='20' x2='50' y2='50' stroke='%23ffffff' stroke-width='0.5'/%3E%3Cline x1='20' y1='80' x2='50' y2='50' stroke='%23ffffff' stroke-width='0.5'/%3E%3Cline x1='80' y1='80' x2='50' y2='50' stroke='%23ffffff' stroke-width='0.5'/%3E%3C/svg%3E");
+		background-size: 60px 60px;
+	}
+
+	/* Slides pattern */
+	.portal-window[data-pattern="slides"]::before {
+		background:
+			linear-gradient(90deg, transparent 0%, transparent 45%, rgba(0,0,0,0.05) 45%, rgba(0,0,0,0.05) 55%, transparent 55%);
+		background-size: 40px 100%;
+	}
+
+	/* Map pattern */
+	.portal-window[data-pattern="map"]::before {
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cpath d='M0 40 L40 0 L80 40 L40 80 Z' fill='none' stroke='%23ffffff' stroke-width='0.5'/%3E%3C/svg%3E");
+		background-size: 40px 40px;
+	}
+
+	/* Uncertainty pattern */
+	.portal-window[data-pattern="uncertainty"]::before {
+		background:
+			repeating-linear-gradient(
+				45deg,
+				transparent,
+				transparent 10px,
+				rgba(255,255,255,0.05) 10px,
+				rgba(255,255,255,0.05) 20px
+			);
+	}
+
+	/* Tree pattern */
+	.portal-window[data-pattern="tree"]::before {
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cline x1='30' y1='60' x2='30' y2='40' stroke='%23ffffff' stroke-width='1'/%3E%3Cline x1='30' y1='40' x2='15' y2='25' stroke='%23ffffff' stroke-width='1'/%3E%3Cline x1='30' y1='40' x2='45' y2='25' stroke='%23ffffff' stroke-width='1'/%3E%3Ccircle cx='15' cy='25' r='4' fill='%23ffffff'/%3E%3Ccircle cx='45' cy='25' r='4' fill='%23ffffff'/%3E%3Ccircle cx='30' cy='40' r='4' fill='%23ffffff'/%3E%3C/svg%3E");
+		background-size: 60px 60px;
+	}
+
+	/* Sparkle pattern */
+	.portal-window[data-pattern="sparkle"]::before {
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Cpath d='M20 0 L22 18 L40 20 L22 22 L20 40 L18 22 L0 20 L18 18 Z' fill='%23ffffff'/%3E%3C/svg%3E");
+		background-size: 80px 80px;
+	}
+
+	/* Topo pattern */
+	.portal-window[data-pattern="topo"]::before {
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cellipse cx='50' cy='50' rx='45' ry='30' fill='none' stroke='%23ffffff' stroke-width='0.5'/%3E%3Cellipse cx='50' cy='50' rx='35' ry='22' fill='none' stroke='%23ffffff' stroke-width='0.5'/%3E%3Cellipse cx='50' cy='50' rx='25' ry='14' fill='none' stroke='%23ffffff' stroke-width='0.5'/%3E%3Cellipse cx='50' cy='50' rx='15' ry='8' fill='none' stroke='%23ffffff' stroke-width='0.5'/%3E%3C/svg%3E");
+		background-size: 80px 80px;
+	}
+
+	/* Family pattern */
+	.portal-window[data-pattern="family"]::before {
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='20' cy='20' r='8' fill='none' stroke='%23000000' stroke-width='1'/%3E%3Ccircle cx='40' cy='20' r='8' fill='none' stroke='%23000000' stroke-width='1'/%3E%3Ccircle cx='30' cy='45' r='6' fill='none' stroke='%23000000' stroke-width='1'/%3E%3C/svg%3E");
+		background-size: 60px 60px;
+		opacity: 0.1;
+	}
+
+	/* Bench pattern */
+	.portal-window[data-pattern="bench"]::before {
+		background:
+			repeating-linear-gradient(
+				0deg,
+				transparent,
+				transparent 8px,
+				rgba(255,255,255,0.08) 8px,
+				rgba(255,255,255,0.08) 10px
+			);
+	}
+
+	/* Portal shimmer effect */
+	.portal-shimmer {
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(
+			105deg,
+			transparent 40%,
+			rgba(255, 255, 255, 0.1) 45%,
+			rgba(255, 255, 255, 0.2) 50%,
+			rgba(255, 255, 255, 0.1) 55%,
+			transparent 60%
+		);
+		transform: translateX(-100%);
+		transition: transform 0.6s ease;
+	}
+
+	.portal-card:hover .portal-shimmer {
+		transform: translateX(100%);
+	}
+
+	/* Portal content */
+	.portal-content {
+		position: relative;
+		z-index: 2;
+		text-align: center;
+	}
+
+	.portal-title {
+		font-family: 'Playfair Display', Georgia, serif;
+		font-size: 1.75rem;
+		font-weight: 700;
+		color: white;
+		text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+		letter-spacing: -0.02em;
+	}
+
+	/* Portal info section */
+	.portal-info {
+		padding: 1.5rem;
+		flex-grow: 1;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.portal-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin-bottom: 0.5rem;
+	}
+
+	.portal-info h3 {
+		font-family: 'Source Sans 3', sans-serif;
+		font-size: 1.125rem;
+		font-weight: 600;
+		color: var(--ink);
+		margin: 0;
+	}
+
+	.status-badge {
+		font-size: 0.6875rem;
+		font-weight: 600;
+		padding: 0.25rem 0.625rem;
+		border-radius: var(--radius-full);
+		background: color-mix(in srgb, var(--status-color) 15%, transparent);
+		color: var(--status-color);
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+
+	.portal-info p {
+		font-size: 0.9375rem;
+		color: var(--text-secondary);
+		margin: 0 0 1rem 0;
+		flex-grow: 1;
+	}
+
+	.portal-tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+	}
+
+	.tag {
+		font-size: 0.75rem;
+		font-weight: 500;
+		padding: 0.25rem 0.5rem;
+		background: var(--cream-dark);
+		color: var(--text-muted);
+		border-radius: var(--radius-sm);
+	}
+
+	/* Glow effect on hover */
+	.portal-glow {
+		position: absolute;
+		inset: 0;
+		border-radius: var(--radius-xl);
+		opacity: 0;
+		transition: opacity 0.4s ease;
+		pointer-events: none;
+		box-shadow: inset 0 0 0 2px var(--portal-accent);
+	}
+
+	.portal-card:hover .portal-glow {
+		opacity: 1;
+	}
+
+	/* Status variations */
+	.portal-card.status-wip .portal-window {
+		filter: saturate(0.7);
+	}
+
+	.portal-card.status-concept .portal-window {
+		filter: saturate(0.5) brightness(0.9);
+	}
+
+	.portal-card.status-concept::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 160px;
+		background: repeating-linear-gradient(
+			45deg,
+			transparent,
+			transparent 10px,
+			rgba(255, 255, 255, 0.02) 10px,
+			rgba(255, 255, 255, 0.02) 20px
+		);
+		pointer-events: none;
+	}
+
+	/* Lab footer */
+	.lab-footer {
+		text-align: center;
+		padding-top: 3rem;
+		border-top: 1px solid rgba(15, 23, 42, 0.08);
+	}
+
+	.lab-footer p {
+		color: var(--text-muted);
+		font-size: 1rem;
+	}
+
+	.lab-footer a {
+		color: var(--amber-dark);
+		font-weight: 600;
+	}
+
+	/* Responsive */
+	@media (max-width: 768px) {
+		.lab-main {
+			padding: var(--space-lg) var(--space-md);
+		}
+
+		.lab-header h1 {
+			font-size: 2.5rem;
+		}
+
+		.lab-subtitle {
+			font-size: 1.125rem;
+		}
+
+		.portal-grid {
+			grid-template-columns: 1fr;
+			gap: 1.5rem;
+		}
+
+		.portal-window {
+			height: 140px;
+		}
+
+		.portal-title {
+			font-size: 1.5rem;
+		}
+	}
+
+	@keyframes fadeInUp {
+		from {
+			opacity: 0;
+			transform: translateY(30px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+</style>
