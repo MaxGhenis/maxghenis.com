@@ -1,0 +1,814 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Icon from '../components/Icons.astro';
+import { SITE_TITLE } from '../consts';
+
+const colors = [
+  { name: 'ink', value: '#0f172a', desc: 'Primary text, dark backgrounds' },
+  { name: 'ink-soft', value: '#334155', desc: 'Secondary text' },
+  { name: 'ink-muted', value: '#64748b', desc: 'Muted text, captions' },
+  { name: 'cream', value: '#fefdf8', desc: 'Primary background' },
+  { name: 'cream-dark', value: '#faf9f4', desc: 'Secondary background' },
+  { name: 'amber', value: '#f59e0b', desc: 'Accent, highlights' },
+  { name: 'amber-dark', value: '#d97706', desc: 'Accent hover, links' },
+];
+
+const spacing = [
+  { name: 'xs', value: '0.25rem', px: '4px' },
+  { name: 'sm', value: '0.5rem', px: '8px' },
+  { name: 'md', value: '1rem', px: '16px' },
+  { name: 'lg', value: '2rem', px: '32px' },
+  { name: 'xl', value: '4rem', px: '64px' },
+  { name: '2xl', value: '8rem', px: '128px' },
+];
+
+const radii = [
+  { name: 'sm', value: '4px' },
+  { name: 'md', value: '8px' },
+  { name: 'lg', value: '12px' },
+  { name: 'xl', value: '20px' },
+  { name: 'full', value: '9999px' },
+];
+
+const icons = [
+  'chart', 'robot', 'laptop', 'globe', 'python', 'dashboard',
+  'ram', 'code', 'document', 'lightning', 'target', 'search',
+  'link', 'mail', 'arrow-right', 'external', 'download', 'check',
+  'x', 'warning', 'package', 'terminal', 'cpu', 'database', 'layers', 'grid', 'pen'
+] as const;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={`Brand & Design System | ${SITE_TITLE}`} description="Design tokens, typography, colors, and icons for maxghenis.com" />
+  </head>
+  <body>
+    <Header />
+    <main class="brand-page">
+      <header class="brand-hero">
+        <div class="hero-decoration"></div>
+        <span class="brand-label">Design System</span>
+        <h1>Editorial Architect</h1>
+        <p class="brand-tagline">Design tokens, typography, and iconography for maxghenis.com</p>
+      </header>
+
+      <!-- Colors -->
+      <section class="brand-section">
+        <div class="section-header">
+          <span class="section-number">01</span>
+          <h2>Color Palette</h2>
+        </div>
+        <div class="color-grid">
+          {colors.map((color) => (
+            <div class="color-card" data-color={color.name}>
+              <div class="color-swatch" style={`background: ${color.value}`}></div>
+              <div class="color-info">
+                <span class="color-name">{color.name}</span>
+                <span class="color-value">{color.value}</span>
+                <span class="color-desc">{color.desc}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div class="gradient-showcase">
+          <div class="gradient-card navy-gradient">
+            <span class="gradient-label">Navy Gradient</span>
+            <code>linear-gradient(135deg, #0f172a 0%, #1e293b 100%)</code>
+          </div>
+          <div class="gradient-card amber-glow">
+            <span class="gradient-label">Amber Glow</span>
+            <code>rgba(245, 158, 11, 0.15)</code>
+          </div>
+        </div>
+      </section>
+
+      <!-- Typography -->
+      <section class="brand-section">
+        <div class="section-header">
+          <span class="section-number">02</span>
+          <h2>Typography</h2>
+        </div>
+        <div class="type-showcase">
+          <div class="type-row">
+            <span class="type-label">Display</span>
+            <div class="type-sample display-font">
+              <span class="sample-text">Playfair Display</span>
+              <span class="sample-full">The quick brown fox jumps over the lazy dog.</span>
+            </div>
+            <span class="type-stack">Playfair Display, Georgia, serif</span>
+          </div>
+          <div class="type-row">
+            <span class="type-label">Body</span>
+            <div class="type-sample body-font">
+              <span class="sample-text">Source Sans 3</span>
+              <span class="sample-full">The quick brown fox jumps over the lazy dog.</span>
+            </div>
+            <span class="type-stack">Source Sans 3, system-ui, sans-serif</span>
+          </div>
+          <div class="type-row">
+            <span class="type-label">Mono</span>
+            <div class="type-sample mono-font">
+              <span class="sample-text">JetBrains Mono</span>
+              <span class="sample-full">const x = () =&gt; 'code';</span>
+            </div>
+            <span class="type-stack">JetBrains Mono, monospace</span>
+          </div>
+        </div>
+
+        <div class="type-scale">
+          <h3>Type Scale</h3>
+          <div class="scale-list">
+            <div class="scale-row">
+              <span class="scale-label">6xl</span>
+              <span class="scale-sample" style="font-size: 4.5rem; line-height: 1;">Aa</span>
+              <span class="scale-value">4.5rem / 72px</span>
+            </div>
+            <div class="scale-row">
+              <span class="scale-label">5xl</span>
+              <span class="scale-sample" style="font-size: 3.5rem; line-height: 1;">Aa</span>
+              <span class="scale-value">3.5rem / 56px</span>
+            </div>
+            <div class="scale-row">
+              <span class="scale-label">4xl</span>
+              <span class="scale-sample" style="font-size: 2.5rem; line-height: 1;">Aa</span>
+              <span class="scale-value">2.5rem / 40px</span>
+            </div>
+            <div class="scale-row">
+              <span class="scale-label">3xl</span>
+              <span class="scale-sample" style="font-size: 2rem; line-height: 1;">Aa</span>
+              <span class="scale-value">2rem / 32px</span>
+            </div>
+            <div class="scale-row">
+              <span class="scale-label">2xl</span>
+              <span class="scale-sample" style="font-size: 1.5rem; line-height: 1;">Aa</span>
+              <span class="scale-value">1.5rem / 24px</span>
+            </div>
+            <div class="scale-row">
+              <span class="scale-label">xl</span>
+              <span class="scale-sample" style="font-size: 1.25rem; line-height: 1;">Aa</span>
+              <span class="scale-value">1.25rem / 20px</span>
+            </div>
+            <div class="scale-row">
+              <span class="scale-label">base</span>
+              <span class="scale-sample" style="font-size: 1rem; line-height: 1;">Aa</span>
+              <span class="scale-value">1rem / 16px</span>
+            </div>
+            <div class="scale-row">
+              <span class="scale-label">sm</span>
+              <span class="scale-sample" style="font-size: 0.875rem; line-height: 1;">Aa</span>
+              <span class="scale-value">0.875rem / 14px</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Spacing -->
+      <section class="brand-section">
+        <div class="section-header">
+          <span class="section-number">03</span>
+          <h2>Spacing</h2>
+        </div>
+        <div class="spacing-grid">
+          {spacing.map((space) => (
+            <div class="spacing-row">
+              <span class="spacing-label">{space.name}</span>
+              <div class="spacing-bar" style={`width: ${space.value}`}></div>
+              <span class="spacing-value">{space.value} ({space.px})</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Border Radius -->
+      <section class="brand-section">
+        <div class="section-header">
+          <span class="section-number">04</span>
+          <h2>Border Radius</h2>
+        </div>
+        <div class="radius-grid">
+          {radii.map((radius) => (
+            <div class="radius-card">
+              <div class="radius-preview" style={`border-radius: ${radius.value}`}></div>
+              <span class="radius-label">{radius.name}</span>
+              <span class="radius-value">{radius.value}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Icons -->
+      <section class="brand-section">
+        <div class="section-header">
+          <span class="section-number">05</span>
+          <h2>Iconography</h2>
+        </div>
+        <p class="icon-description">
+          Custom icon set with outline and duotone variants. Icons use <code>currentColor</code> for easy theming.
+        </p>
+
+        <div class="icon-controls">
+          <div class="icon-toggle" id="iconStyleToggle">
+            <button class="toggle-btn active" data-style="outline">Outline</button>
+            <button class="toggle-btn" data-style="duotone">Duotone</button>
+          </div>
+        </div>
+
+        <div class="icon-grid" id="iconGrid">
+          {icons.map((icon) => (
+            <div class="icon-card" data-icon={icon}>
+              <div class="icon-preview outline-view">
+                <Icon name={icon} size={32} />
+              </div>
+              <div class="icon-preview duotone-view" style="display: none;">
+                <Icon name={icon} size={32} duotone />
+              </div>
+              <span class="icon-name">{icon}</span>
+            </div>
+          ))}
+        </div>
+
+        <div class="icon-usage">
+          <h3>Usage</h3>
+          <pre><code>&lt;Icon name="chart" size={'{24}'} /&gt;
+&lt;Icon name="robot" size={'{24}'} duotone /&gt;
+&lt;Icon name="laptop" class="text-amber" /&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Shadows -->
+      <section class="brand-section">
+        <div class="section-header">
+          <span class="section-number">06</span>
+          <h2>Shadows</h2>
+        </div>
+        <div class="shadow-grid">
+          <div class="shadow-card" style="box-shadow: var(--shadow-sm);">
+            <span class="shadow-label">sm</span>
+          </div>
+          <div class="shadow-card" style="box-shadow: var(--shadow-md);">
+            <span class="shadow-label">md</span>
+          </div>
+          <div class="shadow-card" style="box-shadow: var(--shadow-lg);">
+            <span class="shadow-label">lg</span>
+          </div>
+          <div class="shadow-card" style="box-shadow: var(--shadow-xl);">
+            <span class="shadow-label">xl</span>
+          </div>
+        </div>
+      </section>
+
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<script>
+  const toggleBtns = document.querySelectorAll('.toggle-btn');
+  const iconCards = document.querySelectorAll('.icon-card');
+
+  toggleBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      toggleBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const style = btn.dataset.style;
+      iconCards.forEach(card => {
+        const outlineView = card.querySelector('.outline-view') as HTMLElement;
+        const duotoneView = card.querySelector('.duotone-view') as HTMLElement;
+        if (outlineView && duotoneView) {
+          if (style === 'duotone') {
+            outlineView.style.display = 'none';
+            duotoneView.style.display = 'flex';
+          } else {
+            outlineView.style.display = 'flex';
+            duotoneView.style.display = 'none';
+          }
+        }
+      });
+    });
+  });
+
+  // Copy icon name on click
+  iconCards.forEach(card => {
+    card.addEventListener('click', () => {
+      const iconName = card.dataset.icon;
+      navigator.clipboard.writeText(`<Icon name="${iconName}" />`);
+      card.classList.add('copied');
+      setTimeout(() => card.classList.remove('copied'), 1000);
+    });
+  });
+</script>
+
+<style>
+  .brand-page {
+    max-width: 1000px;
+  }
+
+  .brand-hero {
+    position: relative;
+    text-align: center;
+    padding: 4rem 0 3rem;
+    margin-bottom: 4rem;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+  }
+
+  .hero-decoration {
+    position: absolute;
+    top: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 120px;
+    border: 2px solid var(--amber);
+    opacity: 0.15;
+    border-radius: var(--radius-xl);
+    transform: translateX(-50%) rotate(45deg);
+  }
+
+  .brand-label {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--amber-dark);
+    background: var(--amber-glow);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-full);
+    margin-bottom: 1.5rem;
+  }
+
+  .brand-hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .brand-tagline {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .brand-section {
+    margin-bottom: 5rem;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .section-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--amber-dark);
+  }
+
+  .section-header h2 {
+    font-size: 1.75rem;
+    margin: 0;
+  }
+
+  /* Colors */
+  .color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .color-card {
+    background: white;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    cursor: pointer;
+    transition: all var(--duration-fast) var(--ease-out);
+  }
+
+  .color-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .color-swatch {
+    height: 100px;
+  }
+
+  .color-info {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .color-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .color-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  .color-desc {
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    margin-top: 0.25rem;
+  }
+
+  .gradient-showcase {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+
+  .gradient-card {
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .gradient-card.navy-gradient {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: white;
+  }
+
+  .gradient-card.amber-glow {
+    background: rgba(245, 158, 11, 0.15);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+  }
+
+  .gradient-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  .gradient-card code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    opacity: 0.7;
+  }
+
+  /* Typography */
+  .type-showcase {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .type-row {
+    display: grid;
+    grid-template-columns: 100px 1fr auto;
+    align-items: center;
+    gap: 2rem;
+    padding: 1.5rem;
+    background: white;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: var(--radius-lg);
+  }
+
+  .type-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+  }
+
+  .type-sample {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .sample-text {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .sample-full {
+    font-size: 1rem;
+    color: var(--text-secondary);
+  }
+
+  .display-font .sample-text,
+  .display-font .sample-full {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+
+  .body-font .sample-text,
+  .body-font .sample-full {
+    font-family: 'Source Sans 3', sans-serif;
+  }
+
+  .mono-font .sample-text,
+  .mono-font .sample-full {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .type-stack {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  .type-scale h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .scale-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .scale-row {
+    display: grid;
+    grid-template-columns: 60px 80px 1fr;
+    align-items: baseline;
+    gap: 1rem;
+  }
+
+  .scale-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  .scale-sample {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .scale-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  /* Spacing */
+  .spacing-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .spacing-row {
+    display: grid;
+    grid-template-columns: 60px auto 1fr;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .spacing-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+  }
+
+  .spacing-bar {
+    height: 32px;
+    background: var(--amber);
+    border-radius: var(--radius-sm);
+    opacity: 0.6;
+    transition: opacity var(--duration-fast) var(--ease-out);
+  }
+
+  .spacing-row:hover .spacing-bar {
+    opacity: 1;
+  }
+
+  .spacing-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  /* Border Radius */
+  .radius-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.5rem;
+  }
+
+  .radius-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    text-align: center;
+  }
+
+  .radius-preview {
+    width: 80px;
+    height: 80px;
+    background: var(--amber);
+    opacity: 0.4;
+    transition: opacity var(--duration-fast) var(--ease-out);
+  }
+
+  .radius-card:hover .radius-preview {
+    opacity: 0.7;
+  }
+
+  .radius-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.875rem;
+    color: var(--text-primary);
+  }
+
+  .radius-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  /* Icons */
+  .icon-description {
+    margin-bottom: 1.5rem;
+    color: var(--text-secondary);
+  }
+
+  .icon-description code {
+    font-family: 'JetBrains Mono', monospace;
+    padding: 0.125rem 0.375rem;
+    background: rgba(15, 23, 42, 0.06);
+    border-radius: 4px;
+    font-size: 0.875rem;
+  }
+
+  .icon-controls {
+    margin-bottom: 2rem;
+  }
+
+  .icon-toggle {
+    display: inline-flex;
+    background: var(--cream-dark);
+    border-radius: var(--radius-lg);
+    padding: 4px;
+  }
+
+  .toggle-btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    background: transparent;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--duration-fast) var(--ease-out);
+  }
+
+  .toggle-btn:hover {
+    color: var(--text-primary);
+  }
+
+  .toggle-btn.active {
+    background: white;
+    color: var(--amber-dark);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .icon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .icon-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.25rem 1rem;
+    background: white;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: all var(--duration-fast) var(--ease-out);
+    color: var(--text-secondary);
+  }
+
+  .icon-card:hover {
+    border-color: var(--amber);
+    color: var(--amber-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .icon-card.copied {
+    background: var(--amber-glow);
+    border-color: var(--amber);
+  }
+
+  .icon-preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+  }
+
+  .icon-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-align: center;
+  }
+
+  .icon-usage h3 {
+    font-size: 1.125rem;
+    margin-bottom: 1rem;
+  }
+
+  .icon-usage pre {
+    background: var(--ink);
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
+    overflow-x: auto;
+  }
+
+  .icon-usage code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.875rem;
+    color: #e2e8f0;
+  }
+
+  /* Shadows */
+  .shadow-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+
+  .shadow-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 120px;
+    background: white;
+    border-radius: var(--radius-lg);
+  }
+
+  .shadow-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .brand-hero h1 {
+      font-size: 2.5rem;
+    }
+
+    .type-row {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .type-stack {
+      text-align: left;
+    }
+
+    .radius-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .shadow-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .gradient-showcase {
+      grid-template-columns: 1fr;
+    }
+
+    .scale-row {
+      grid-template-columns: 40px 60px 1fr;
+    }
+  }
+</style>
