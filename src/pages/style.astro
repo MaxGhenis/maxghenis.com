@@ -1,0 +1,423 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Icon from '../components/Icons.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={`Writing style | ${SITE_TITLE}`} description="Writing style guide for maxghenis.com - active voice, quantitative precision, and rigorous corroboration" />
+  </head>
+  <body>
+    <Header />
+    <main class="style-page">
+      <header class="style-hero">
+        <span class="style-label">Writing guide</span>
+        <h1>Writing style</h1>
+        <p class="style-tagline">Clear, direct, quantitative prose that respects the reader's time and intelligence.</p>
+      </header>
+
+      <!-- Voice & Tone -->
+      <section class="style-section">
+        <div class="section-header">
+          <span class="section-number">01</span>
+          <h2>Voice and tone</h2>
+        </div>
+
+        <div class="principle-card">
+          <h3>Active voice</h3>
+          <p>Put the actor first. Active voice is direct, clear, and assigns responsibility. Passive voice obscures who did what and adds unnecessary words.</p>
+          <div class="example-pair">
+            <div class="example good">
+              <span class="example-badge">Preferred</span>
+              <p>"PolicyEngine calculates marginal tax rates for 50 million households."</p>
+            </div>
+            <div class="example bad">
+              <span class="example-badge">Avoid</span>
+              <p>"Marginal tax rates are calculated by PolicyEngine for 50 million households."</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="principle-card">
+          <h3>Direct and concise</h3>
+          <p>Say what you mean without hedging. Cut filler words. Every sentence should advance the reader's understanding.</p>
+          <div class="example-pair">
+            <div class="example good">
+              <span class="example-badge">Preferred</span>
+              <p>"The reform raises $50 billion annually."</p>
+            </div>
+            <div class="example bad">
+              <span class="example-badge">Avoid</span>
+              <p>"It is worth noting that the reform would potentially be expected to raise approximately $50 billion on an annual basis."</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Quantitative Precision -->
+      <section class="style-section">
+        <div class="section-header">
+          <span class="section-number">02</span>
+          <h2>Quantitative precision</h2>
+        </div>
+
+        <div class="principle-card">
+          <h3>Numbers over adjectives</h3>
+          <p>Replace vague modifiers with specific quantities. "Large," "significant," and "substantial" tell readers nothing. Numbers tell them everything.</p>
+          <div class="example-pair">
+            <div class="example good">
+              <span class="example-badge">Preferred</span>
+              <p>"The policy reduces child poverty by 34%, lifting 2.1 million children above the poverty line."</p>
+            </div>
+            <div class="example bad">
+              <span class="example-badge">Avoid</span>
+              <p>"The policy significantly reduces child poverty, helping many children."</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="principle-card">
+          <h3>Precise comparisons</h3>
+          <p>When comparing, use percentages, ratios, or absolute differences. Specify the baseline and timeframe.</p>
+          <div class="example-pair">
+            <div class="example good">
+              <span class="example-badge">Preferred</span>
+              <p>"Benefits increase 23% relative to 2024 levels, from $3,600 to $4,428 per child."</p>
+            </div>
+            <div class="example bad">
+              <span class="example-badge">Avoid</span>
+              <p>"Benefits increase substantially compared to before."</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="principle-card">
+          <h3>Uncertainty when warranted</h3>
+          <p>When precision isn't possible, be explicit about uncertainty. Ranges and confidence intervals are more honest than false precision.</p>
+          <div class="example-pair">
+            <div class="example good">
+              <span class="example-badge">Preferred</span>
+              <p>"The revenue estimate ranges from $40B to $60B, depending on behavioral response assumptions."</p>
+            </div>
+            <div class="example bad">
+              <span class="example-badge">Avoid</span>
+              <p>"The revenue estimate is $50B." (when uncertain)</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Corroboration -->
+      <section class="style-section">
+        <div class="section-header">
+          <span class="section-number">03</span>
+          <h2>Corroboration of claims</h2>
+        </div>
+
+        <div class="principle-card featured">
+          <h3>Falsifiable claims require sources</h3>
+          <p>Every factual claim that could be wrong must be corroborated. Link to primary sources, academic papers, or official data. If a claim can't be verified, either find a source or remove the claim.</p>
+          <ul class="checklist">
+            <li>Statistics: Link to the dataset or publication</li>
+            <li>Policy details: Link to legislation or official guidance</li>
+            <li>Research findings: Link to the paper (preferably DOI)</li>
+            <li>Historical facts: Link to reliable sources</li>
+          </ul>
+        </div>
+
+        <div class="principle-card">
+          <h3>Primary over secondary sources</h3>
+          <p>Prefer original sources over summaries. Link to the CBO report, not the news article about the CBO report. Link to the legislation, not the think tank summary.</p>
+        </div>
+
+        <div class="principle-card">
+          <h3>Acknowledge limitations</h3>
+          <p>State what the evidence does and doesn't show. Note methodological limitations. Don't overclaim based on preliminary or contested findings.</p>
+        </div>
+      </section>
+
+      <!-- Structure -->
+      <section class="style-section">
+        <div class="section-header">
+          <span class="section-number">04</span>
+          <h2>Structure and flow</h2>
+        </div>
+
+        <div class="principle-card">
+          <h3>Flowing narrative over bullets</h3>
+          <p>Prefer connected prose that guides readers through an argument. Bullets fragment ideas and lose the logical connective tissue. Use bullets only for genuine lists (features, requirements, steps).</p>
+          <div class="example-pair">
+            <div class="example good">
+              <span class="example-badge">Preferred</span>
+              <p>"The reform works in three stages. First, it expands eligibility to households earning up to 400% of the poverty line, adding 12 million families. Second, it increases benefit amounts by indexing them to median wage growth rather than inflation. Third, it simplifies claiming by integrating with existing tax filing."</p>
+            </div>
+            <div class="example bad">
+              <span class="example-badge">Avoid</span>
+              <p>
+                "Key changes:<br>
+                • Expanded eligibility<br>
+                • Increased benefits<br>
+                • Simplified claiming"
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="principle-card">
+          <h3>Vary sentence length</h3>
+          <p>Mix long explanatory sentences with short punchy ones. Monotonous sentence length—whether all long or all short—tires readers. Short sentences after complex ones provide breathing room.</p>
+        </div>
+
+        <div class="principle-card">
+          <h3>Front-load key information</h3>
+          <p>Lead with the conclusion or main point. Readers should understand the takeaway from the first paragraph, then get supporting detail. Don't bury the lede.</p>
+        </div>
+      </section>
+
+      <!-- Formatting -->
+      <section class="style-section">
+        <div class="section-header">
+          <span class="section-number">05</span>
+          <h2>Formatting conventions</h2>
+        </div>
+
+        <div class="principle-card">
+          <h3>Sentence case for headings</h3>
+          <p>Capitalize only the first word and proper nouns. This follows the modern standard used by Apple, Google, Slack, and GOV.UK.</p>
+          <div class="example-pair">
+            <div class="example good">
+              <span class="example-badge">Correct</span>
+              <p>"What PolicyEngine does"</p>
+            </div>
+            <div class="example bad">
+              <span class="example-badge">Incorrect</span>
+              <p>"What PolicyEngine Does"</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="principle-card">
+          <h3>Numbers in text</h3>
+          <p>Spell out zero through nine; use numerals for 10 and above. Always use numerals with units (5%, $3M, 7 million households). Use numerals in data-heavy contexts for consistency.</p>
+        </div>
+
+        <div class="principle-card">
+          <h3>Links</h3>
+          <p>Use descriptive link text that indicates the destination. Avoid "click here" or bare URLs. Link text should make sense out of context.</p>
+          <div class="example-pair">
+            <div class="example good">
+              <span class="example-badge">Preferred</span>
+              <p>"See the <a href="#">CBO's 2024 budget outlook</a> for projections."</p>
+            </div>
+            <div class="example bad">
+              <span class="example-badge">Avoid</span>
+              <p>"For projections, click <a href="#">here</a>."</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Related -->
+      <section class="style-section related">
+        <p>For visual design specifications, see the <a href="/brand">design system</a>.</p>
+      </section>
+
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  .style-page {
+    max-width: 800px;
+  }
+
+  .style-hero {
+    text-align: center;
+    padding: 4rem 0 3rem;
+    margin-bottom: 4rem;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+  }
+
+  .style-label {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--amber-dark);
+    background: var(--amber-glow);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-full);
+    margin-bottom: 1.5rem;
+  }
+
+  .style-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .style-tagline {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .style-section {
+    margin-bottom: 4rem;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .section-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--amber-dark);
+  }
+
+  .section-header h2 {
+    font-size: 1.75rem;
+    margin: 0;
+  }
+
+  .principle-card {
+    background: white;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .principle-card.featured {
+    border-color: var(--amber);
+    background: linear-gradient(135deg, white 0%, var(--amber-glow) 100%);
+  }
+
+  .principle-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 600;
+  }
+
+  .principle-card > p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+  }
+
+  .principle-card > p:last-child {
+    margin-bottom: 0;
+  }
+
+  .checklist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .checklist li {
+    position: relative;
+    padding-left: 1.75rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+  }
+
+  .checklist li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--amber-dark);
+    font-weight: 600;
+  }
+
+  .example-pair {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .example {
+    padding: 1.25rem 1.5rem;
+    border-radius: var(--radius-md);
+    position: relative;
+  }
+
+  .example.good {
+    background: rgba(16, 185, 129, 0.08);
+    border-left: 3px solid #10b981;
+  }
+
+  .example.bad {
+    background: rgba(239, 68, 68, 0.08);
+    border-left: 3px solid #ef4444;
+  }
+
+  .example-badge {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+  }
+
+  .example.good .example-badge {
+    color: #059669;
+  }
+
+  .example.bad .example-badge {
+    color: #dc2626;
+  }
+
+  .example p {
+    margin: 0;
+    color: var(--text-primary);
+    line-height: 1.6;
+  }
+
+  .example a {
+    color: var(--amber-dark);
+    text-decoration: underline;
+  }
+
+  .related {
+    text-align: center;
+    padding: 2rem;
+    background: var(--cream-dark);
+    border-radius: var(--radius-lg);
+  }
+
+  .related p {
+    margin: 0;
+    color: var(--text-secondary);
+  }
+
+  .related a {
+    color: var(--amber-dark);
+    font-weight: 600;
+  }
+
+  @media (max-width: 768px) {
+    .style-hero h1 {
+      font-size: 2.5rem;
+    }
+
+    .principle-card {
+      padding: 1.5rem;
+    }
+  }
+</style>

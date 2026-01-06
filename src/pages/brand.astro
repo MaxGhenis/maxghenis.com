@@ -165,38 +165,10 @@ const icons = [
         </div>
       </section>
 
-      <!-- Writing Style -->
-      <section class="brand-section">
-        <div class="section-header">
-          <span class="section-number">03</span>
-          <h2>Writing style</h2>
-        </div>
-        <div class="style-guide">
-          <div class="style-rule">
-            <h3>Sentence case for headings</h3>
-            <p>All headings use sentence case: capitalize only the first word and proper nouns. This follows the modern standard used by Apple, Google, Slack, and GOV.UK.</p>
-            <div class="style-examples">
-              <div class="style-example good">
-                <span class="example-label">Correct</span>
-                <span class="example-text">"What PolicyEngine does"</span>
-              </div>
-              <div class="style-example bad">
-                <span class="example-label">Incorrect</span>
-                <span class="example-text">"What PolicyEngine Does"</span>
-              </div>
-            </div>
-          </div>
-          <div class="style-rule">
-            <h3>Proper nouns stay capitalized</h3>
-            <p>Brand names, product names, and acronyms retain their capitalization: PolicyEngine, Claude Code, VS Code, Python.</p>
-          </div>
-        </div>
-      </section>
-
       <!-- Spacing -->
       <section class="brand-section">
         <div class="section-header">
-          <span class="section-number">04</span>
+          <span class="section-number">03</span>
           <h2>Spacing</h2>
         </div>
         <div class="spacing-grid">
@@ -213,7 +185,7 @@ const icons = [
       <!-- Border Radius -->
       <section class="brand-section">
         <div class="section-header">
-          <span class="section-number">05</span>
+          <span class="section-number">04</span>
           <h2>Border radius</h2>
         </div>
         <div class="radius-grid">
@@ -230,7 +202,7 @@ const icons = [
       <!-- Icons -->
       <section class="brand-section">
         <div class="section-header">
-          <span class="section-number">06</span>
+          <span class="section-number">05</span>
           <h2>Iconography</h2>
         </div>
         <p class="icon-description">
@@ -269,7 +241,7 @@ const icons = [
       <!-- Shadows -->
       <section class="brand-section">
         <div class="section-header">
-          <span class="section-number">07</span>
+          <span class="section-number">06</span>
           <h2>Shadows</h2>
         </div>
         <div class="shadow-grid">
@@ -286,6 +258,11 @@ const icons = [
             <span class="shadow-label">xl</span>
           </div>
         </div>
+      </section>
+
+      <!-- Related -->
+      <section class="brand-section related">
+        <p>For writing conventions, see the <a href="/style">writing style guide</a>.</p>
       </section>
 
     </main>
@@ -596,74 +573,22 @@ const icons = [
     color: var(--text-muted);
   }
 
-  /* Writing Style */
-  .style-guide {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
-
-  .style-rule {
-    padding: 1.5rem;
-    background: white;
-    border: 1px solid rgba(15, 23, 42, 0.08);
+  /* Related Link */
+  .related {
+    text-align: center;
+    padding: 2rem;
+    background: var(--cream-dark);
     border-radius: var(--radius-lg);
   }
 
-  .style-rule h3 {
-    font-size: 1.125rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .style-rule p {
+  .related p {
+    margin: 0;
     color: var(--text-secondary);
-    margin-bottom: 1rem;
   }
 
-  .style-examples {
-    display: flex;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-  }
-
-  .style-example {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    padding: 1rem 1.25rem;
-    border-radius: var(--radius-md);
-  }
-
-  .style-example.good {
-    background: rgba(16, 185, 129, 0.1);
-    border: 1px solid rgba(16, 185, 129, 0.3);
-  }
-
-  .style-example.bad {
-    background: rgba(239, 68, 68, 0.1);
-    border: 1px solid rgba(239, 68, 68, 0.3);
-  }
-
-  .example-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.75rem;
+  .related a {
+    color: var(--amber-dark);
     font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  .style-example.good .example-label {
-    color: #059669;
-  }
-
-  .style-example.bad .example-label {
-    color: #dc2626;
-  }
-
-  .example-text {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: 1.125rem;
-    color: var(--text-primary);
   }
 
   /* Spacing */
