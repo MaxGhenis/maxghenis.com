@@ -1,0 +1,454 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Icon from '../components/Icons.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`TerminalGrid | ${SITE_TITLE}`} description="VS Code extension for keyboard-driven terminal grid management with project picker and auto-launch for AI coding tools" />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<header class="page-header">
+				<div class="app-icon">
+					<Icon name="grid" size={40} />
+				</div>
+				<h1>TerminalGrid</h1>
+				<p class="page-description">VS Code extension for keyboard-driven terminal grid management. Run multiple Claude Code, Aider, or Codex sessions in a proper grid layout.</p>
+				<div class="header-actions">
+					<a href="https://marketplace.visualstudio.com/items?itemName=MaxGhenis.terminalgrid" class="install-btn">
+						<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+							<polyline points="7 10 12 15 17 10"></polyline>
+							<line x1="12" y1="15" x2="12" y2="3"></line>
+						</svg>
+						Install from Marketplace
+					</a>
+					<a href="https://github.com/MaxGhenis/terminalgrid" class="github-btn">
+						<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+							<path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+						</svg>
+						View Source
+					</a>
+				</div>
+			</header>
+
+			<section class="problem">
+				<h2>The problem</h2>
+				<p>VS Code's terminal panel only splits horizontally. When you're running 4+ AI coding sessions, you need a proper grid:</p>
+				<pre class="grid-diagram">
+┌─────────────────┬─────────────────┐
+│  policyengine   │  api-server     │
+│  (Claude Code)  │  (Claude Code)  │
+├─────────────────┼─────────────────┤
+│  docs           │  frontend       │
+│  (Claude Code)  │  (Claude Code)  │
+└─────────────────┴─────────────────┘</pre>
+			</section>
+
+			<section class="features">
+				<h2>Features</h2>
+				<div class="feature-grid">
+					<div class="feature-card">
+						<div class="feature-icon">
+							<Icon name="grid" size={32} duotone />
+						</div>
+						<h3>Full grid layouts</h3>
+						<p>Terminals open in the editor area where VS Code supports true 2D grid splitting</p>
+					</div>
+					<div class="feature-card">
+						<div class="feature-icon">
+							<Icon name="search" size={32} duotone />
+						</div>
+						<h3>Project picker</h3>
+						<p>Quick search through your project directories with instant filtering</p>
+					</div>
+					<div class="feature-card">
+						<div class="feature-icon">
+							<Icon name="robot" size={32} duotone />
+						</div>
+						<h3>Auto-launch AI tools</h3>
+						<p>Automatically run Claude Code, Aider, Codex, or any CLI in new terminals</p>
+					</div>
+					<div class="feature-card">
+						<div class="feature-icon">
+							<Icon name="lightning" size={32} duotone />
+						</div>
+						<h3>Crash recovery</h3>
+						<p>Terminal directories and grid layout persist even if VS Code crashes</p>
+					</div>
+					<div class="feature-card">
+						<div class="feature-icon">
+							<Icon name="terminal" size={32} duotone />
+						</div>
+						<h3>Auto-naming</h3>
+						<p>Terminals are named by their working directory folder for easy identification</p>
+					</div>
+					<div class="feature-card">
+						<div class="feature-icon">
+							<Icon name="chart" size={32} duotone />
+						</div>
+						<h3>Status bar</h3>
+						<p>See Claude session status at a glance with color-coded indicators</p>
+					</div>
+				</div>
+			</section>
+
+			<section class="shortcuts">
+				<h2>Keyboard shortcuts</h2>
+				<div class="shortcut-list">
+					<div class="shortcut">
+						<kbd>Cmd+K</kbd> <kbd>Cmd+N</kbd>
+						<span>Open new terminal with project picker</span>
+					</div>
+					<div class="shortcut">
+						<kbd>Cmd+K</kbd> <kbd>Cmd+Down</kbd>
+						<span>Split down and open terminal</span>
+					</div>
+					<div class="shortcut">
+						<kbd>Cmd+K</kbd> <kbd>Cmd+Right</kbd>
+						<span>Split right and open terminal</span>
+					</div>
+					<div class="shortcut">
+						<kbd>Cmd+K</kbd> <kbd>Cmd+R</kbd>
+						<span>Refresh terminals (rename by folder)</span>
+					</div>
+				</div>
+				<p class="shortcut-note">On Windows/Linux, use Ctrl instead of Cmd</p>
+			</section>
+
+			<section class="install">
+				<h2>Installation</h2>
+				<div class="install-steps">
+					<div class="step">
+						<span class="step-number">1</span>
+						<div class="step-content">
+							<h3>Install extension</h3>
+							<p>From the VS Code Marketplace or run:</p>
+							<code class="install-command">code --install-extension MaxGhenis.terminalgrid</code>
+						</div>
+					</div>
+					<div class="step">
+						<span class="step-number">2</span>
+						<div class="step-content">
+							<h3>Configure projects</h3>
+							<p>Add your project directories to settings:</p>
+							<pre class="config-snippet" set:html={`{
+  "terminalgrid.projectDirectories": ["~/projects", "~/code"]
+}`} />
+						</div>
+					</div>
+					<div class="step">
+						<span class="step-number">3</span>
+						<div class="step-content">
+							<h3>Set auto-launch (optional)</h3>
+							<p>Auto-run a command in new terminals:</p>
+							<pre class="config-snippet" set:html={`{
+  "terminalgrid.autoLaunchCommand": "claude"
+}`} />
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="requirements">
+				<h2>Works with</h2>
+				<ul>
+					<li>Claude Code</li>
+					<li>Aider</li>
+					<li>OpenAI Codex CLI</li>
+					<li>Gemini CLI</li>
+					<li>GitHub Copilot CLI</li>
+					<li>Any terminal command</li>
+				</ul>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	main {
+		max-width: 900px;
+	}
+
+	.page-header {
+		text-align: center;
+		margin-bottom: 3rem;
+		padding-bottom: 2rem;
+		border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+	}
+
+	.app-icon {
+		width: 80px;
+		height: 80px;
+		margin: 0 auto 1.5rem;
+		background: linear-gradient(135deg, #1e3a5f 0%, #0d47a1 100%);
+		border: 2px solid #42a5f5;
+		border-radius: 16px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		box-shadow: 0 0 30px rgba(66, 165, 245, 0.2);
+		color: #90caf9;
+	}
+
+	.page-header h1 {
+		font-size: 3rem;
+		margin-bottom: 0.75rem;
+	}
+
+	.page-description {
+		font-size: 1.25rem;
+		color: var(--text-secondary);
+		max-width: 600px;
+		margin: 0 auto 2rem;
+	}
+
+	.header-actions {
+		display: flex;
+		gap: 1rem;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+
+	.install-btn, .github-btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.875rem 1.5rem;
+		border-radius: var(--radius-lg);
+		text-decoration: none;
+		font-weight: 600;
+		font-size: 1rem;
+		transition: all var(--duration-fast) var(--ease-out);
+	}
+
+	.install-btn {
+		background: #42a5f5;
+		color: #0a0a0f;
+	}
+
+	.install-btn:hover {
+		background: #1e88e5;
+		transform: translateY(-2px);
+		box-shadow: 0 8px 30px rgba(66, 165, 245, 0.3);
+	}
+
+	.github-btn {
+		background: var(--ink);
+		color: white;
+	}
+
+	.github-btn:hover {
+		background: var(--ink-soft);
+		transform: translateY(-2px);
+		box-shadow: var(--shadow-md);
+	}
+
+	section {
+		margin-bottom: 3rem;
+	}
+
+	section h2 {
+		font-size: 1.75rem;
+		margin-bottom: 1.5rem;
+	}
+
+	.problem p {
+		color: var(--text-secondary);
+		margin-bottom: 1rem;
+	}
+
+	.grid-diagram {
+		background: #1e1e2e;
+		color: #cdd6f4;
+		padding: 1.5rem;
+		border-radius: var(--radius-lg);
+		font-family: 'SF Mono', 'Fira Code', monospace;
+		font-size: 0.875rem;
+		line-height: 1.4;
+		overflow-x: auto;
+	}
+
+	.feature-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+		gap: 1.25rem;
+	}
+
+	.feature-card {
+		background: white;
+		border: 1px solid rgba(15, 23, 42, 0.08);
+		border-radius: var(--radius-lg);
+		padding: 1.5rem;
+		transition: all var(--duration-fast) var(--ease-out);
+	}
+
+	.feature-card:hover {
+		transform: translateY(-2px);
+		box-shadow: var(--shadow-md);
+	}
+
+	.feature-icon {
+		width: 56px;
+		height: 56px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: rgba(66, 165, 245, 0.1);
+		border-radius: var(--radius-lg);
+		margin-bottom: 1rem;
+		color: #1e88e5;
+		transition: all var(--duration-fast) var(--ease-out);
+	}
+
+	.feature-card:hover .feature-icon {
+		background: #42a5f5;
+		color: white;
+		transform: scale(1.05);
+	}
+
+	.feature-card h3 {
+		font-size: 1.125rem;
+		margin-bottom: 0.5rem;
+	}
+
+	.feature-card p {
+		font-size: 0.9375rem;
+		color: var(--text-secondary);
+		line-height: 1.5;
+	}
+
+	.shortcut-list {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+
+	.shortcut {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		flex-wrap: wrap;
+	}
+
+	.shortcut kbd {
+		background: #1e1e2e;
+		color: #cdd6f4;
+		padding: 0.375rem 0.625rem;
+		border-radius: 6px;
+		font-family: 'SF Mono', 'Fira Code', monospace;
+		font-size: 0.875rem;
+		border: 1px solid #45475a;
+	}
+
+	.shortcut span {
+		color: var(--text-secondary);
+	}
+
+	.shortcut-note {
+		margin-top: 1rem;
+		font-size: 0.875rem;
+		color: var(--text-muted);
+	}
+
+	.install-steps {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+	}
+
+	.step {
+		display: flex;
+		align-items: flex-start;
+		gap: 1.25rem;
+	}
+
+	.step-number {
+		width: 36px;
+		height: 36px;
+		background: #42a5f5;
+		color: #0a0a0f;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-weight: 700;
+		flex-shrink: 0;
+	}
+
+	.step-content h3 {
+		font-size: 1.125rem;
+		margin-bottom: 0.25rem;
+	}
+
+	.step-content p {
+		color: var(--text-secondary);
+		margin-bottom: 0.5rem;
+	}
+
+	.install-command {
+		display: block;
+		background: #1e1e2e;
+		color: #cdd6f4;
+		padding: 0.75rem 1rem;
+		border-radius: 8px;
+		font-family: 'SF Mono', 'Fira Code', monospace;
+		font-size: 0.875rem;
+	}
+
+	.config-snippet {
+		background: #1e1e2e;
+		color: #cdd6f4;
+		padding: 0.75rem 1rem;
+		border-radius: 8px;
+		font-family: 'SF Mono', 'Fira Code', monospace;
+		font-size: 0.875rem;
+		margin: 0;
+		overflow-x: auto;
+	}
+
+	.requirements ul {
+		list-style: none;
+		padding: 0;
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+		gap: 0.5rem;
+	}
+
+	.requirements li {
+		padding: 0.5rem 0;
+		padding-left: 1.5rem;
+		position: relative;
+		color: var(--text-secondary);
+	}
+
+	.requirements li::before {
+		content: "✓";
+		position: absolute;
+		left: 0;
+		color: #42a5f5;
+		font-weight: bold;
+	}
+
+	@media (max-width: 768px) {
+		.page-header h1 {
+			font-size: 2.5rem;
+		}
+
+		.page-description {
+			font-size: 1.125rem;
+		}
+
+		.shortcut {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+	}
+</style>
