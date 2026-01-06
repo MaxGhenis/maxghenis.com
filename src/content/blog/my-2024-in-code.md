@@ -4,7 +4,7 @@ description: 'A look back at personal coding projects built with AI assistance w
 pubDate: 'Jan 02 2025'
 ---
 
-While leading PolicyEngine full-time, I still found time to ship personal projects in 2024. GitHub says I made 3,721 contributions this year. Here's a look at some highlights built with help from AI coding tools like Claude.
+While leading PolicyEngine full-time, I still found time to ship personal projects in 2024. GitHub says I made [3,721 contributions](https://github.com/MaxGhenis) this year. Here's a look at some highlights built with help from AI coding tools like Claude.
 
 ## CodeStitch
 
@@ -30,7 +30,7 @@ I rebuilt [maxghenis.com](https://maxghenis.com) with React, Vite, and Tailwind.
 
 ## Looking Forward
 
-AI tools have transformed how I build software. Tasks that would have taken days now take hours. The limiting factor isn't implementation time anymore—it's having good ideas and clear requirements.
+AI tools have transformed how I build software. CodeStitch took about four hours from idea to deployment; without Claude, I estimate it would have taken two to three days. The limiting factor isn't implementation time anymore—it's having good ideas and clear requirements.
 
 I'm excited to see how this evolves in 2025, both for personal projects and for PolicyEngine's mission of making policy analysis accessible to everyone.
 

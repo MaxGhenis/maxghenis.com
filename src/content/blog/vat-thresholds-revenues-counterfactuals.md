@@ -4,11 +4,11 @@ description: 'The Telegraph misread OBR projections on VAT threshold increases. 
 pubDate: 'Aug 30 2025'
 ---
 
-The Telegraph reported that UK Chancellor Rachel Reeves is considering raising the VAT registration threshold. The article claimed the Office for Budget Responsibility (OBR) determined that raising the threshold from £85,000 would increase government revenues by decade's end. However, this interpretation misrepresents the actual findings.
+[The Telegraph reported](https://www.telegraph.co.uk/politics/2025/08/28/rachel-reeves-vat-threshold-tax-boost/) that UK Chancellor Rachel Reeves is considering raising the VAT registration threshold. The article claimed the Office for Budget Responsibility (OBR) determined that raising the threshold from £85,000 would increase government revenues by decade's end. However, this interpretation misrepresents the actual findings.
 
 ## What the government projected
 
-The government's March 2024 policy paper examined raising the VAT threshold from £85,000 to £90,000. According to projections, this change would:
+The [government's March 2024 policy paper](https://www.gov.uk/government/publications/spring-budget-2024-overview-of-tax-legislation-and-rates-ootlar/vat-registration-and-deregistration-thresholds) examined raising the VAT threshold from £85,000 to £90,000. According to projections, this change would:
 
 - Reduce revenues in years 1-4 (ranging from £150-185 million in losses)
 - Increase revenues by £65 million in 2028-29
