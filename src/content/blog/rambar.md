@@ -28,7 +28,7 @@ Unlike generic system monitors, RAMBar understands developer workflows:
 - **Chrome tabs** — Lists individual tabs by memory, so you can find that one tab eating 2GB
 - **Python processes** — Useful when you're running Jupyter notebooks or ML training alongside everything else
 
-## How It Compares to Other Tools
+## How it compares to other tools
 
 Several macOS menu bar monitors exist, but none understand developer workflows:
 
