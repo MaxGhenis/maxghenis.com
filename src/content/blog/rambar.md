@@ -2,6 +2,7 @@
 title: 'RAMBar: A macOS Menu Bar RAM Monitor for Developers'
 description: 'A native macOS menu bar app for tracking memory usage across Claude Code sessions, VS Code workspaces, Chrome tabs, and Python processes.'
 pubDate: 'Jan 06 2026'
+heroImage: '/og/rambar.png'
 ---
 
 Running Claude Code alongside VS Code and Chrome burns through RAM fast. My 36GB M3 Pro regularly hits 90%+ memory usage during heavy coding sessions. macOS's Activity Monitor shows individual processes, but not the context I actually care about: which Claude session is using how much, or which VS Code workspace is the memory hog.
