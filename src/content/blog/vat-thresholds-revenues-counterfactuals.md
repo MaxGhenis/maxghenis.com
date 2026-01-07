@@ -1,12 +1,12 @@
 ---
-title: 'VAT thresholds, revenues, and the role of counterfactuals'
+title: 'VAT Thresholds, Revenues, and the Role of Counterfactuals'
 description: 'The Telegraph misread OBR projections on VAT threshold increases. The projected revenue gain comes from inflation indexing, not economic growth.'
 pubDate: 'Aug 30 2025'
 ---
 
 [The Telegraph reported](https://www.telegraph.co.uk/politics/2025/08/28/rachel-reeves-vat-threshold-tax-boost/) that UK Chancellor Rachel Reeves is considering raising the VAT registration threshold. The article claimed the Office for Budget Responsibility (OBR) determined that raising the threshold from £85,000 would increase government revenues by decade's end. However, this interpretation misrepresents the actual findings.
 
-## What the government projected
+## What the Government Projected
 
 The [government's March 2024 policy paper](https://www.gov.uk/government/publications/spring-budget-2024-overview-of-tax-legislation-and-rates-ootlar/vat-registration-and-deregistration-thresholds) examined raising the VAT threshold from £85,000 to £90,000. According to projections, this change would:
 
@@ -15,7 +15,7 @@ The [government's March 2024 policy paper](https://www.gov.uk/government/publica
 
 The government explicitly stated: "This measure is not expected to have any significant macroeconomic impacts."
 
-## The role of the counterfactual
+## The Role of the Counterfactual
 
 The revenue increase in 2028-29 doesn't reflect economic growth benefits. Instead, it results from how the baseline scenario works. The baseline:
 
@@ -24,7 +24,7 @@ The revenue increase in 2028-29 doesn't reflect economic growth benefits. Instea
 
 By 2028-29, the inflation-indexed baseline reaches approximately £92,000, while the policy threshold remains at £90,000. This £2,000 difference generates the projected £65 million revenue gain—not from behavioral responses or growth effects.
 
-## Running the numbers
+## Running the Numbers
 
 | Fiscal Year | RPI Rate | Baseline Threshold | Policy Threshold | Revenue Impact |
 |-------------|----------|-------------------|------------------|----------------|
@@ -34,7 +34,7 @@ By 2028-29, the inflation-indexed baseline reaches approximately £92,000, while
 | 2027-28     | 2.0%     | £89,860           | £90,000          | -£10m          |
 | 2028-29     | 2.5%     | £92,107           | £90,000          | +£65m          |
 
-## Key takeaway
+## Key Takeaway
 
 The revenue turnaround reflects mechanical inflation indexing rather than evidence that the policy sits on the favorable side of the Laffer curve. Any growth effects from reducing administrative burdens remain unquantified in government projections.
 
