@@ -1,7 +1,7 @@
 ---
 title: 'RAMBar: A macOS Menu Bar RAM Monitor for Developers'
 description: 'A native macOS menu bar app for tracking memory usage across Claude Code sessions, VS Code workspaces, Chrome tabs, and Python processes.'
-pubDate: 'Jan 06 2026'
+pubDate: 'Jan 07 2026'
 heroImage: './rambar.png'
 ---
 

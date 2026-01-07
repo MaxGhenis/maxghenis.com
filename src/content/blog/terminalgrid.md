@@ -1,7 +1,7 @@
 ---
 title: 'TerminalGrid: Turn VS Code into a Claude Code Superterminal'
 description: 'A VS Code extension for keyboard-driven terminal grid management with project picker and auto-launch for AI coding tools.'
-pubDate: 'Dec 25 2024'
+pubDate: 'Jan 07 2026'
 heroImage: './terminalgrid.png'
 ---
 
