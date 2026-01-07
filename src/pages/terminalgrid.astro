@@ -38,6 +38,18 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</header>
 
+			<section class="demo">
+				<div class="video-container">
+					<iframe
+						src="https://www.youtube.com/embed/I3neOEJzi6M"
+						title="TerminalGrid Demo"
+						frameborder="0"
+						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+						allowfullscreen>
+					</iframe>
+				</div>
+			</section>
+
 			<section class="problem">
 				<h2>The problem</h2>
 				<p>VS Code's terminal panel only splits horizontally. When you're running 4+ AI coding sessions, you need a proper grid:</p>
@@ -253,6 +265,28 @@ import { SITE_TITLE } from '../consts';
 
 	section {
 		margin-bottom: 3rem;
+	}
+
+	.demo {
+		margin-bottom: 3rem;
+	}
+
+	.video-container {
+		position: relative;
+		padding-bottom: 56.25%;
+		height: 0;
+		overflow: hidden;
+		border-radius: var(--radius-xl);
+		box-shadow: var(--shadow-lg);
+	}
+
+	.video-container iframe {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		border-radius: var(--radius-xl);
 	}
 
 	section h2 {
