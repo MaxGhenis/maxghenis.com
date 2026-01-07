@@ -9,6 +9,12 @@ I run multiple Claude Code sessions simultaneously—one for each project I'm wo
 
 So I built [TerminalGrid](https://maxghenis.com/terminalgrid), a VS Code extension that solves both problems.
 
+## VS Code as a Shell for Coding Agents
+
+Boris Cherny, who created Claude Code, [recently shared](https://x.com/bcherny/status/2004897269674639461) that 100% of his contributions to Claude Code in the past month were written by Claude Code itself. I've been operating this way for two to three months now—not writing any code myself. Of course, Boris is a much better programmer than I am, so I had less to discard.
+
+This shift has changed how I use VS Code. I've stopped looking at the code directly; VS Code is now just a shell for coding agents. I don't use the file explorer or most other features. It's still better than a raw terminal since it lets you paste screenshots, but otherwise I just keep it as a grid of Claude Code sessions.
+
 ## The Problem
 
 VS Code's [integrated terminal](https://code.visualstudio.com/docs/terminal/basics) only supports side-by-side splitting—no vertical stacking. This has been requested since 2018 ([#56112](https://github.com/microsoft/vscode/issues/56112), [#160501](https://github.com/microsoft/vscode/issues/160501)) and people are still asking for it in 2025 ([#254638](https://github.com/microsoft/vscode/issues/254638), [#252458](https://github.com/microsoft/vscode/issues/252458)). Microsoft hasn't implemented it.
