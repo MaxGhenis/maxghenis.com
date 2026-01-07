@@ -7,7 +7,7 @@ heroImage: './terminalgrid.png'
 
 I run multiple Claude Code sessions simultaneously—one for each project I'm working on. VS Code's terminal panel only splits horizontally, which is limiting. And the native terminal has [issues with image pasting](https://github.com/anthropics/claude-code/issues/1361) that matter when you're sharing screenshots with Claude.
 
-So I built [TerminalGrid](https://maxghenis.com/terminalgrid), a VS Code extension that solves both problems.
+So I built [TerminalGrid](https://maxghenis.com/terminalgrid)—my first VS Code extension, built 100% with Claude Code.
 
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 2rem 0;">
   <iframe

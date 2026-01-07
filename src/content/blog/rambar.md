@@ -5,9 +5,22 @@ pubDate: 'Jan 07 2026'
 heroImage: './rambar.png'
 ---
 
-Running Claude Code alongside VS Code and Chrome burns through RAM fast. My 36GB M3 Pro regularly hits 90%+ memory usage during heavy coding sessions. macOS's Activity Monitor shows individual processes, but not the context I actually care about: which Claude session is using how much, or which VS Code workspace is the memory hog.
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 2rem 0;">
+  <iframe
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 12px;"
+    src="https://www.youtube.com/embed/6lnQpfxJs0Y"
+    title="RAMBar Demo"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen>
+  </iframe>
+</div>
 
-So I built [RAMBar](https://maxghenis.com/rambar), a native macOS menu bar app that shows RAM usage the way developers think about it.
+Claude Opus 4.5 kept crashing my VS Code.
+
+Nothing wrong with the model—it was just so good that I started running 5, 6, even a dozen Claude Code sessions at once. My 16GB MacBook Air couldn't keep up. I upgraded to a 48GB MacBook Pro, which mostly solved the crashes, but I still had no visibility into what was eating memory. Activity Monitor shows processes, but not answers like "which Claude session is the hog?" or "can I spawn another subagent?"
+
+So I built [RAMBar](https://maxghenis.com/rambar)—my first macOS app, built entirely with Claude Code. It shows RAM usage the way developers think about it.
 
 ## What It Does
 
@@ -46,13 +59,14 @@ RAMBar solves a different problem. When I see high memory usage, I don't want to
 
 If you need comprehensive system monitoring, use Stats or iStat Menus. If you're an AI-assisted developer who wants to know why your Mac is struggling during a coding session, RAMBar fills that gap.
 
-## The Dashboard
+## Get it
 
-Click "Full" to open an expanded dashboard with a retro-futuristic control room aesthetic. It shows diagnostics and warnings when memory is high or too many Claude sessions are running.
+```bash
+brew tap maxghenis/tap
+brew install --cask rambar
+```
 
-## Get It
-
-Download from [maxghenis.com/rambar](https://maxghenis.com/rambar) or build from source on [GitHub](https://github.com/MaxGhenis/rambar).
+Or download from [maxghenis.com/rambar](https://maxghenis.com/rambar). Source on [GitHub](https://github.com/MaxGhenis/rambar).
 
 Requires macOS 14.0+. First launch: right-click and select Open to bypass Gatekeeper (the app is currently unsigned).
 
