@@ -9,9 +9,6 @@ import Header from '../components/Header.astro';
 type Props = CollectionEntry<'blog'>['data'];
 
 const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
-
-// Check if heroImage is a string path or an imported image
-const isStringImage = typeof heroImage === 'string';
 ---
 
 <html lang="en">
@@ -24,11 +21,7 @@ const isStringImage = typeof heroImage === 'string';
 			<article>
 				{heroImage && (
 					<div class="hero-image">
-						{isStringImage ? (
-							<img src={heroImage} alt={title} width="1200" height="630" />
-						) : (
-							<Image width={1200} height={630} src={heroImage} alt={title} />
-						)}
+						<Image width={1200} height={630} src={heroImage} alt={title} />
 					</div>
 				)}
 
