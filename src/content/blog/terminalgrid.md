@@ -5,7 +5,7 @@ pubDate: 'Jan 07 2026'
 heroImage: './terminalgrid.png'
 ---
 
-I run multiple Claude Code sessions simultaneously—one for each project I'm working on. VS Code's terminal panel only splits horizontally, which is limiting. And the native terminal has [issues with image pasting](https://github.com/anthropics/claude-code/issues/1361) that matter when you're sharing screenshots with Claude.
+I run multiple Claude Code sessions simultaneously—one for each project I'm working on. VS Code's terminal panel only splits in one direction—no 2D grids. And the native terminal has [issues with image pasting](https://github.com/anthropics/claude-code/issues/1361) that matter when you're sharing screenshots with Claude.
 
 So I built [TerminalGrid](https://maxghenis.com/terminalgrid)—my first VS Code extension, built 100% with Claude Code.
 
@@ -28,9 +28,9 @@ This shift has changed how I use VS Code. I've stopped looking at the code direc
 
 ## The problem
 
-VS Code's [integrated terminal](https://code.visualstudio.com/docs/terminal/basics) only supports side-by-side splitting—no vertical stacking. This has been requested since 2018 ([#56112](https://github.com/microsoft/vscode/issues/56112), [#160501](https://github.com/microsoft/vscode/issues/160501)) and people are still asking for it in 2025 ([#254638](https://github.com/microsoft/vscode/issues/254638), [#252458](https://github.com/microsoft/vscode/issues/252458)). Microsoft hasn't implemented it.
+VS Code's [integrated terminal](https://code.visualstudio.com/docs/terminal/basics) only splits in one direction at a time—side-by-side when the panel is at the bottom, or stacked when it's on the side. No 2D grids. This has been requested since 2018 ([#56112](https://github.com/microsoft/vscode/issues/56112), [#160501](https://github.com/microsoft/vscode/issues/160501)) and people are still asking in 2025 ([#254638](https://github.com/microsoft/vscode/issues/254638), [#252458](https://github.com/microsoft/vscode/issues/252458)).
 
-Other extensions like [Split Terminal](https://marketplace.visualstudio.com/items?itemName=BrianNicholls.split-terminal) and [Workspace Layout](https://marketplace.visualstudio.com/items?itemName=lostintangent.workspace-layout) don't solve this either—they work within the terminal panel's limitations.
+Other extensions like [Split Terminal](https://marketplace.visualstudio.com/items?itemName=BrianNicholls.split-terminal) and [Workspace Layout](https://marketplace.visualstudio.com/items?itemName=lostintangent.workspace-layout) don't solve this—they work within the terminal panel's limitations.
 
 When you're running 4+ AI coding sessions, you need a proper grid:
 
