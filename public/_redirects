@@ -1,0 +1,18 @@
+# Redirects from vote.maxghenis.com
+# These should be configured in DNS/hosting to redirect from the subdomain
+
+# 2022 voter guides
+/2022/11/california /blog/voter-guides/2022-11-california 301
+/2022/11/oxnard /blog/voter-guides/2022-11-oxnard 301
+/2022/06/california /blog/voter-guides/2022-06-california 301
+/2022/06/ventura-county /blog/voter-guides/2022-06-ventura-county 301
+
+# 2021 voter guides
+/2021/11/oxnard /blog/voter-guides/2021-11-oxnard 301
+/2021/09/california /blog/voter-guides/2021-09-california-recall 301
+/2021/01/adem /blog/voter-guides/2021-01-adem 301
+
+# 2020 voter guides
+/2020/11/california /blog/voter-guides/2020-11-california 301
+/2020/11/ventura-county /blog/voter-guides/2020-11-ventura-county 301
+/2020/11/san-francisco /blog/voter-guides/2020-11-san-francisco 301
