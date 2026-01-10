@@ -1,5 +1,5 @@
 ---
-title: 'The Definitive QALY Analysis of Nuts'
+title: 'The definitive QALY analysis of nuts'
 description: 'A rigorous, evidence-based Monte Carlo simulation estimating the lifetime health impact of different nut types. The most comprehensive quantitative nut health analysis available.'
 pubDate: 'Dec 19 2025'
 ---
