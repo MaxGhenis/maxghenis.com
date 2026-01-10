@@ -2,6 +2,7 @@
 title: 'VAT thresholds, revenues, and the role of counterfactuals'
 description: 'Debunking claims that raising the UK VAT threshold would increase tax revenues through growth effects.'
 pubDate: 'Aug 30 2025'
+heroImage: './images/vat-thresholds.png'
 ---
 
 The Telegraph [reported today](https://www.telegraph.co.uk/business/2025/08/30/reeves-talks-to-raise-vat-threshold-battle-to-grow-economy/) that UK Chancellor Rachel Reeves is considering raising the VAT registration threshold—the turnover above which businesses must register for VAT. The Telegraph's source reported that the Office for Budget Responsibility (OBR) determined that raising the threshold would eventually increase tax revenues.
