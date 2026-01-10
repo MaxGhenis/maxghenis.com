@@ -6,7 +6,7 @@ pubDate: 'Jan 02 2025'
 
 As 2024 drew to a close, I reflected on my coding journey. Leading PolicyEngine meant less time programming, but I still maintained 3,721 GitHub contributions last year (down from ~4,500 in prior years), spanning collaborations, third-party contributions, and personal projects.
 
-While most of those contributions went to PolicyEngine's core software, where I continue to review code and build with our growing team (see our 2024 year-in-review posts for the [US](https://policyengine.org/us/research/us-2024-year-in-review) and [UK](https://policyengine.org/uk/research/uk-2024-year-in-review)), 2024 was also my most enjoyable and productive year of coding, thanks largely to AI tools like Claude. Here are some of the projects I built alongside our main work:
+While most of those contributions went to PolicyEngine's core software, where I continue to review code and build with our growing team (see our 2024 year-in-review posts for the [US](https://policyengine.org/us/research/us-year-in-review-2024) and [UK](https://policyengine.org/uk/research/uk-year-in-review-2024)), 2024 was also my most enjoyable and productive year of coding, thanks largely to AI tools like Claude. Here are some of the projects I built alongside our main work:
 
 ## CodeStitch
 
