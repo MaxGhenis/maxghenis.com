@@ -40,7 +40,7 @@ Economic growth alone cannot guarantee minimum living standards for non-workers 
 - Cash assistance over in-kind benefits
 - Universal basic income (UBI) as the logical endpoint
 
-I founded the **UBI Center**, conducting quantitative policy analysis, and co-founded **PolicyEngine**, a nonprofit technology platform enabling citizens to understand tax and benefit policy impacts. Means-testing creates administrative bloat and extreme marginal tax rates for low-income households.
+I founded the [UBI Center](https://ubicenter.org), conducting quantitative policy analysis, and co-founded [PolicyEngine](https://policyengine.org), a nonprofit technology platform enabling citizens to understand tax and benefit policy impacts. Means-testing creates administrative bloat and extreme marginal tax rates for low-income households.
 
 ## Conclusion
 

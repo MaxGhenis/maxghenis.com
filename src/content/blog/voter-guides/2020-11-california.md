@@ -3,37 +3,63 @@ title: 'California voter guide: November 2020'
 description: 'My recommendations for the November 2020 California general election, including presidential race and ballot propositions.'
 pubDate: 'Nov 01 2020'
 category: 'voter-guide'
+recommendations:
+  - id: 'President'
+    title: 'President'
+    position: 'candidate'
+    candidate: 'Joe Biden'
+    summary: 'BIDEN FOR PRESIDENT!!!'
+  - id: 'Prop 14'
+    title: 'Stem Cell Research Bonds'
+    position: 'yes'
+    summary: '$5.5B in bonds for stem cell research. Open Philanthropy endorses CIRM as cost-effective global public good.'
+  - id: 'Prop 15'
+    title: 'Split-Roll Property Tax'
+    position: 'yes'
+    summary: 'Tax large commercial properties at market value. Generates $6.5-11.5B/year for local governments and schools.'
+  - id: 'Prop 16'
+    title: 'Affirmative Action'
+    position: 'no'
+    summary: 'Race-conscious policies unpopular and may drive resentment. Prefer race-blind redistribution like UBI.'
+  - id: 'Prop 17'
+    title: 'Parolee Voting Rights'
+    position: 'yes'
+    summary: 'Restore voting rights to 50,000 parolees. Criminal disenfranchisement has racist history and may increase recidivism.'
+  - id: 'Prop 18'
+    title: '17-Year-Old Primary Voting'
+    position: 'yes'
+    summary: 'Let 17-year-olds vote in primaries if 18 by general election. Promotes democracy and youth participation.'
+  - id: 'Prop 19'
+    title: 'Property Tax Transfers'
+    position: 'yes'
+    summary: 'Trade portability for inheritance restrictions. Generates hundreds of millions in net revenue, weakens Prop 13.'
+  - id: 'Prop 20'
+    title: 'Criminal Sentencing'
+    position: 'no'
+    summary: 'Increases penalties and makes early release harder. Wrong direction on criminal justice reform.'
+  - id: 'Prop 21'
+    title: 'Rent Control Expansion'
+    position: 'no'
+    summary: 'Costa-Hawkins repeal would let cities enact damaging rent control. AB 1482 already provides statewide protections.'
+  - id: 'Prop 22'
+    title: 'Gig Worker Classification'
+    position: 'yes'
+    summary: 'Keep rideshare/delivery drivers as contractors. Preserves flexibility; 70%+ of drivers prefer contractor status.'
+  - id: 'Prop 23'
+    title: 'Dialysis Clinic Requirements'
+    position: 'no'
+    summary: 'Another union leverage attempt via ballot. Would raise costs and may close clinics.'
+  - id: 'Prop 24'
+    title: 'Consumer Privacy Expansion'
+    position: 'no'
+    summary: 'GDPR-style regulations reduce competition and burden small businesses. Should be federal, not state.'
+  - id: 'Prop 25'
+    title: 'Cash Bail Replacement'
+    position: 'yes'
+    summary: 'Replace cash bail with risk assessments. Evidence shows reform works without sacrificing court appearances.'
 ---
 
-## Summary
-
-**BIDEN FOR PRESIDENT!!!**
-
 Summary text from [Ballotpedia](https://ballotpedia.org/California_2020_ballot_propositions).
-
-**YES on Prop 14**, which issues $5.5 billion in bonds for a state stem cell research institute.
-
-**YES on Prop 15**, which requires commercial and industrial properties to be taxed based on market value and dedicates revenue.
-
-**NO on Prop 16**, which repeals Proposition 209 (1996), which says that the state cannot discriminate or grant preferential treatment based on race, sex, color, ethnicity, or national origin in public employment, education, or contracting.
-
-**YES on Prop 17**, which restores the right to vote to people convicted of felonies who are on parole.
-
-**YES on Prop 18**, which allows 17-year-olds who will be 18 at the time of the next general election to vote in primaries and special elections.
-
-**YES on Prop 19**, which changes tax assessment transfers and inheritance rules.
-
-**NO on Prop 20**, which makes changes to policies related to criminal sentencing charges, prison release, and DNA collection.
-
-**NO on Prop 21**, which expands local governments' power to use rent control.
-
-**YES on Prop 22**, which considers app-based drivers to be independent contractors and enacts several labor policies related to app-based companies.
-
-**NO on Prop 23**, which requires physician on-site at dialysis clinics and consent from the state for a clinic to close.
-
-**NO on Prop 24**, which expands the provisions of the California Consumer Privacy Act (CCPA) and creates the California Privacy Protection Agency to implement and enforce the CCPA.
-
-**YES on Prop 25**, which replaces cash bail with risk assessments for suspects awaiting trial.
 
 ## Yes on Prop 14
 

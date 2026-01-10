@@ -3,6 +3,15 @@ title: 'California voter guide: November 2018'
 description: 'My recommendations on California Propositions 6 and 10 in the November 2018 election.'
 pubDate: 'Oct 19 2018'
 category: 'voter-guide'
+recommendations:
+  - id: 'Prop 6'
+    title: 'Repeal Gas Tax'
+    position: 'no'
+    summary: 'Keep RRAA gas tax funding $5B/year for transportation. Gas taxes reduce emissions, crashes, and car dependence.'
+  - id: 'Prop 10'
+    title: 'Rent Control Expansion'
+    position: 'no'
+    summary: 'Reject Costa-Hawkins repeal. Rent control taxes newcomers to subsidize incumbents and reduces housing supply.'
 ---
 
 ## No on Proposition 6

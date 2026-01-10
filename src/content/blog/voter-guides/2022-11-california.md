@@ -3,29 +3,88 @@ title: 'California voter guide: November 2022'
 description: 'My recommendations for the 2022 California general election, covering statewide races and ballot propositions.'
 pubDate: 'Nov 01 2022'
 category: 'voter-guide'
+recommendations:
+  - id: 'Governor'
+    title: 'Governor'
+    position: 'candidate'
+    candidate: 'Gavin Newsom'
+    summary: 'Despite disappointments, signed critical housing bills AB 2011 and AB 2097. Far more liberal than Republican challenger.'
+  - id: 'Lt. Governor'
+    title: 'Lieutenant Governor'
+    position: 'candidate'
+    candidate: 'Eleni Kounalakis'
+    summary: 'No change since June primary.'
+  - id: 'Secretary of State'
+    title: 'Secretary of State'
+    position: 'candidate'
+    candidate: 'Shirley Weber'
+    summary: 'No change since June primary.'
+  - id: 'Controller'
+    title: 'Controller'
+    position: 'candidate'
+    candidate: 'Lanhee Chen'
+    summary: 'No change since June primary.'
+  - id: 'Treasurer'
+    title: 'Treasurer'
+    position: 'candidate'
+    candidate: 'Fiona Ma'
+    summary: 'No change since June primary.'
+  - id: 'Attorney General'
+    title: 'Attorney General'
+    position: 'candidate'
+    candidate: 'Rob Bonta'
+    summary: 'Continues to enforce state housing law against noncompliant local governments.'
+  - id: 'Insurance Commissioner'
+    title: 'Insurance Commissioner'
+    position: 'candidate'
+    candidate: 'Ricardo Lara'
+    summary: 'Republican challenger has no experience in politics or insurance.'
+  - id: 'Superintendent'
+    title: 'State Superintendent'
+    position: 'candidate'
+    candidate: 'Tony Thurmond'
+    summary: 'No change since June primary.'
+  - id: 'Board of Equalization'
+    title: 'Board of Equalization, District 2'
+    position: 'candidate'
+    candidate: 'Sally Lieber'
+    summary: 'Recommended for Board of Equalization District 2.'
+  - id: 'U.S. Senate'
+    title: 'U.S. Senate'
+    position: 'candidate'
+    candidate: 'Alex Padilla'
+    summary: 'Recommended for U.S. Senate.'
+  - id: 'Prop 1'
+    title: 'Reproductive Rights'
+    position: 'yes'
+    summary: 'Affirms abortion rights in CA Constitution. Greater abortion access is better on the margin.'
+  - id: 'Prop 26'
+    title: 'Tribal Sports Betting'
+    position: 'yes'
+    summary: 'Legalizes sports betting on tribal lands. Tribes deserve this economic opportunity.'
+  - id: 'Prop 27'
+    title: 'Online Sports Betting'
+    position: 'yes'
+    summary: 'Allows broader online sports betting with more fees/revenue for housing and mental health.'
+  - id: 'Prop 28'
+    title: 'Arts Education Funding'
+    position: 'no'
+    summary: 'Diverts $1B/year from other priorities. Constrains Legislature from meeting current needs.'
+  - id: 'Prop 29'
+    title: 'Dialysis Clinic Requirements'
+    position: 'no'
+    summary: 'Yet another union leverage attempt. Vote no on this regulatory capture.'
+  - id: 'Prop 30'
+    title: 'EV Subsidies Tax'
+    position: 'no'
+    summary: 'Would reduce revenues by $1B/year. Vehicle subsidies are wasteful and sprawl-inducing.'
+  - id: 'Prop 31'
+    title: 'Flavored Tobacco Ban'
+    position: 'no'
+    summary: 'Prohibition is a mistake. Tax it instead of banning it.'
 ---
 
 The 2022 general election is on Tuesday, November 8.
-
-## Summary
-
-* GAVIN NEWSOM for Governor
-* ELENI KOUNALAKIS for Lieutenant Governor
-* SHIRLEY WEBER for Secretary of State
-* LANHEE CHEN for Controller
-* FIONA MA for Treasurer
-* ROB BONTA for Attorney General
-* RICARDO LARA for Insurance Commissioner
-* TONY THURMOND for State Superintendent of Public Instruction
-* SALLY LIEBER for Board of Equalization, District 2
-* ALEX PADILLA for U.S. Senate
-* YES on Prop 1
-* YES on Prop 26
-* YES on Prop 27
-* NO on Prop 28
-* NO on Prop 29
-* NO on Prop 30
-* NO on Prop 31
 
 I referred to ballot measure texts, [Legislative Analyst Office analyses](https://lao.ca.gov/BallotAnalysis/Propositions?Length=14), and guides from [SPUR](https://www.spur.org/voter-guide/2022-11) and [GrowSF](https://growsf.org/voter-guide).
 
