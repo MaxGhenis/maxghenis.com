@@ -2,6 +2,7 @@
 title: 'AI models favor Cuomo over Mamdani on NYC housing production'
 description: 'An experiment using six AI models to forecast NYC housing production under two mayoral candidates.'
 pubDate: 'Jun 23 2025'
+heroImage: './images/ai-models-nyc-housing.png'
 ---
 
 I spent the weekend in New York City, where canvassers requested my vote for Tuesday's primary election at least a dozen times. While New Yorkers will vote on several offices, most of the energy went to the ranked-choice mayoral, where prediction markets call it a two-candidate race: former governor [Andrew Cuomo](https://www.andrewcuomo.com/) leads Assemblymember [Zohran Mamdani](https://www.zohranfornyc.com/) with roughly 2:1 odds of victory ([73% chance of winning on Manifold](https://manifold.markets/HillaryClinton/who-will-be-the-democratic-nyc-mayo), [70% on Polymarket](https://polymarket.com/event/who-will-win-dem-nomination-for-nyc-mayor), and [69% on Kalshi](https://kalshi.com/markets/kxmayornycnomd/new-york-city-mayoral-nominations)).

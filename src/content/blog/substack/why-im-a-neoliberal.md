@@ -2,6 +2,7 @@
 title: "Why I'm a neoliberal"
 description: 'My political philosophy and why I identify with neoliberalism - emphasizing evidence-based policy, market mechanisms, and a strong social safety net.'
 pubDate: 'Mar 18 2022'
+heroImage: './images/why-im-a-neoliberal.png'
 ---
 
 I'm competing in the Neoliberal Twitter account's annual bracket competition, which gives me an opportunity to explain my commitment to neoliberal ideology. I position neoliberalism as a pragmatic, evidence-based approach to solving pressing policy challenges through market mechanisms and strategic government intervention.

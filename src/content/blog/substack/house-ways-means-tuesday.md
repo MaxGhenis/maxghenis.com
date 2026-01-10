@@ -2,6 +2,7 @@
 title: 'What will the House Ways & Means Committee propose on Tuesday?'
 description: 'Analysis of the proposed individual income tax reforms and what the markup process will look like.'
 pubDate: 'May 12 2025'
+heroImage: './images/house-ways-means.png'
 ---
 
 Late Friday, May 9, House Ways & Means [released](https://waysandmeans.house.gov/event/full-committee-markup-of-legislative-proposals-to-comply-with-the-reconciliation-directive-included-in-section-2001-of-the-concurrent-resolution-on-the-budget-for-fiscal-year-2025-h-con-res-14) a 28-page committee print that would make these individual income tax reforms. The [Joint Committee on Taxation](https://www.jct.gov/publications/2025/jcx-19-25) puts the conventional revenue effect at **-$4.9 trillion through 2035** compared against current law, in which TCJA expires after 2025.

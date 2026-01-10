@@ -2,6 +2,7 @@
 title: 'My 2024 in code: personal projects and AI tools'
 description: 'How AI helped me build useful software while leading PolicyEngine.'
 pubDate: 'Jan 02 2025'
+heroImage: './images/my-2024-in-code.png'
 ---
 
 As 2024 drew to a close, I reflected on my coding journey. Leading PolicyEngine meant less time programming, but I still maintained 3,721 GitHub contributions last year (down from ~4,500 in prior years), spanning collaborations, third-party contributions, and personal projects.

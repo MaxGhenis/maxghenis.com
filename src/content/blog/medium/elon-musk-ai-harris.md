@@ -2,6 +2,7 @@
 title: "Elon Musk's AI predicts Americans will be $800 richer under Harris"
 description: 'A large-scale experiment asking leading AI models to forecast key economic metrics under different presidential administrations.'
 pubDate: 'Nov 04 2024'
+heroImage: './images/elon-musk-ai-harris.jpg'
 ---
 
 I conducted a large-scale experiment asking leading AI models to forecast key economic metrics for 2025 under different administrative scenarios. The research validates that these models can make meaningful economic predictions when properly prompted.
