@@ -1,0 +1,299 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import Header from '../components/Header.astro';
+
+interface Props {
+	title: string;
+	description: string;
+	electionDate: Date;
+	location: string;
+	electionSlug: string;
+}
+
+const { title, description, electionDate, location, electionSlug } = Astro.props;
+
+// Get all recommendations for this election
+const allRecs = await getCollection('recommendations');
+const recommendations = allRecs
+	.filter((rec) => rec.data.election === electionSlug)
+	.sort((a, b) => {
+		// Sort: races first (candidates), then props by number
+		const aIsProp = a.data.measureId.toLowerCase().startsWith('prop');
+		const bIsProp = b.data.measureId.toLowerCase().startsWith('prop');
+		if (aIsProp && !bIsProp) return 1;
+		if (!aIsProp && bIsProp) return -1;
+		if (aIsProp && bIsProp) {
+			const aNum = parseInt(a.data.measureId.replace(/\D/g, ''));
+			const bNum = parseInt(b.data.measureId.replace(/\D/g, ''));
+			return aNum - bNum;
+		}
+		return a.data.measureId.localeCompare(b.data.measureId);
+	});
+
+const races = recommendations.filter((r) => r.data.position === 'candidate');
+const props = recommendations.filter((r) => r.data.position !== 'candidate');
+---
+
+<html lang="en">
+	<head>
+		<BaseHead title={title} description={description} />
+	</head>
+	<body>
+		<Header />
+		<main class="voter-guide">
+			<article>
+				<header class="guide-header">
+					<span class="guide-label">Voter Guide</span>
+					<h1>{title}</h1>
+					<p class="description">{description}</p>
+					<div class="meta">
+						<FormattedDate date={electionDate} />
+					</div>
+				</header>
+
+				{recommendations.length > 0 && (
+					<section class="ballot-summary">
+						<h2 class="ballot-title">My recommendations</h2>
+						<div class="ballot-grid">
+							{races.length > 0 && (
+								<div class="ballot-section">
+									<h3 class="section-label">Races</h3>
+									<div class="tiles">
+										{races.map((rec) => (
+											<a href={`/voter-guides/${electionSlug}/${rec.id.split('/').pop()}/`} class="ballot-tile candidate">
+												<span class="tile-id">{rec.data.measureId}</span>
+												<span class="tile-position">{rec.data.candidate}</span>
+											</a>
+										))}
+									</div>
+								</div>
+							)}
+							{props.length > 0 && (
+								<div class="ballot-section">
+									<h3 class="section-label">Propositions</h3>
+									<div class="tiles">
+										{props.map((rec) => (
+											<a href={`/voter-guides/${electionSlug}/${rec.id.split('/').pop()}/`} class={`ballot-tile ${rec.data.position}`}>
+												<span class="tile-id">{rec.data.measureId}</span>
+												<span class="tile-position">{rec.data.position.toUpperCase()}</span>
+											</a>
+										))}
+									</div>
+								</div>
+							)}
+						</div>
+					</section>
+				)}
+
+				<div class="prose voter-guide-prose">
+					<slot />
+				</div>
+
+				<footer class="article-footer">
+					<a href="/voter-guides" class="back-link">
+						<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+							<path fill="currentColor" d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+						</svg>
+						All voter guides
+					</a>
+				</footer>
+			</article>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.voter-guide {
+		--vote-yes: #4d7c0f;
+		--vote-yes-bg: #ecfccb;
+		--vote-yes-border: #bef264;
+		--vote-no: #b91c1c;
+		--vote-no-bg: #fee2e2;
+		--vote-no-border: #fca5a5;
+		--vote-candidate: var(--ink);
+		--vote-candidate-bg: var(--cream-dark);
+		--vote-candidate-border: rgba(15, 23, 42, 0.15);
+	}
+
+	main.voter-guide {
+		max-width: 100%;
+		padding: 0;
+	}
+
+	article {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: var(--space-xl) var(--space-lg);
+	}
+
+	.guide-header {
+		text-align: center;
+		margin-bottom: 3rem;
+		padding-bottom: 2rem;
+		border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+	}
+
+	.guide-label {
+		display: inline-block;
+		font-size: 0.75rem;
+		font-weight: 600;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		padding: 0.375rem 0.875rem;
+		background: var(--amber-glow);
+		color: var(--amber-dark);
+		border-radius: var(--radius-full);
+		margin-bottom: 1.5rem;
+	}
+
+	.guide-header h1 {
+		font-size: 2.75rem;
+		line-height: 1.2;
+		margin-bottom: 1rem;
+		letter-spacing: -0.03em;
+	}
+
+	.description {
+		font-size: 1.25rem;
+		color: var(--text-secondary);
+		max-width: 600px;
+		margin: 0 auto 1rem;
+		line-height: 1.6;
+	}
+
+	.meta {
+		font-size: 0.9375rem;
+		color: var(--text-muted);
+	}
+
+	.ballot-summary {
+		background: var(--cream-dark);
+		border: 1px solid rgba(15, 23, 42, 0.08);
+		border-radius: var(--radius-lg);
+		padding: 1.5rem;
+		margin-bottom: 2.5rem;
+	}
+
+	.ballot-title {
+		font-size: 1.25rem;
+		margin-bottom: 1.25rem;
+		padding-bottom: 0.75rem;
+		border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+	}
+
+	.ballot-section {
+		margin-bottom: 1.25rem;
+	}
+
+	.ballot-section:last-child {
+		margin-bottom: 0;
+	}
+
+	.section-label {
+		font-family: 'Source Sans 3', sans-serif;
+		font-size: 0.75rem;
+		font-weight: 600;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--text-muted);
+		margin-bottom: 0.625rem;
+	}
+
+	.tiles {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+	}
+
+	.ballot-tile {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding: 0.5rem 0.875rem;
+		border-radius: var(--radius-md);
+		text-decoration: none;
+		transition: all var(--duration-fast) var(--ease-out);
+		min-width: 72px;
+		border: 1px solid;
+	}
+
+	.ballot-tile.yes {
+		background: var(--vote-yes-bg);
+		border-color: var(--vote-yes-border);
+		color: var(--vote-yes);
+	}
+
+	.ballot-tile.no {
+		background: var(--vote-no-bg);
+		border-color: var(--vote-no-border);
+		color: var(--vote-no);
+	}
+
+	.ballot-tile.candidate {
+		background: var(--vote-candidate-bg);
+		border-color: var(--vote-candidate-border);
+		color: var(--vote-candidate);
+	}
+
+	.ballot-tile:hover {
+		transform: translateY(-2px);
+		box-shadow: var(--shadow-sm);
+	}
+
+	.tile-id {
+		font-size: 0.6875rem;
+		font-weight: 600;
+		letter-spacing: 0.05em;
+		opacity: 0.7;
+		text-transform: uppercase;
+	}
+
+	.tile-position {
+		font-size: 0.9375rem;
+		font-weight: 700;
+		letter-spacing: 0.02em;
+	}
+
+	.voter-guide-prose {
+		max-width: 100%;
+	}
+
+	.article-footer {
+		margin-top: 4rem;
+		padding-top: 2rem;
+		border-top: 1px solid rgba(15, 23, 42, 0.08);
+	}
+
+	.back-link {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-weight: 600;
+		color: var(--text-secondary);
+		text-decoration: none;
+		transition: all var(--duration-fast) var(--ease-out);
+	}
+
+	.back-link:hover {
+		color: var(--amber-dark);
+		gap: 0.75rem;
+	}
+
+	@media (max-width: 768px) {
+		article {
+			padding: var(--space-lg) var(--space-md);
+		}
+
+		.guide-header h1 {
+			font-size: 2rem;
+		}
+
+		.description {
+			font-size: 1.125rem;
+		}
+	}
+</style>

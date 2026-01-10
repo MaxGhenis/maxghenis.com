@@ -1,0 +1,22 @@
+---
+import { type CollectionEntry, getCollection, render } from 'astro:content';
+import ElectionLayout from '../../../layouts/ElectionLayout.astro';
+
+export async function getStaticPaths() {
+	const elections = await getCollection('elections');
+	return elections.map((election) => ({
+		params: { election: election.id.replace('/index', '') },
+		props: election,
+	}));
+}
+
+type Props = CollectionEntry<'elections'>;
+
+const election = Astro.props;
+const { Content } = await render(election);
+const electionSlug = election.id.replace('/index', '');
+---
+
+<ElectionLayout {...election.data} electionSlug={electionSlug}>
+	<Content />
+</ElectionLayout>

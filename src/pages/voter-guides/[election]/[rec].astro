@@ -1,0 +1,26 @@
+---
+import { type CollectionEntry, getCollection, render } from 'astro:content';
+import RecommendationLayout from '../../../layouts/RecommendationLayout.astro';
+
+export async function getStaticPaths() {
+	const recommendations = await getCollection('recommendations');
+	return recommendations.map((rec) => {
+		const parts = rec.id.split('/');
+		const election = parts.slice(0, -1).join('/');
+		const recSlug = parts[parts.length - 1];
+		return {
+			params: { election, rec: recSlug },
+			props: rec,
+		};
+	});
+}
+
+type Props = CollectionEntry<'recommendations'>;
+
+const rec = Astro.props;
+const { Content } = await render(rec);
+---
+
+<RecommendationLayout {...rec.data}>
+	<Content />
+</RecommendationLayout>

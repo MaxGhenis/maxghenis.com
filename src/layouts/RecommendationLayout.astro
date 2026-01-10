@@ -1,0 +1,277 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+
+interface Props {
+	title: string;
+	measureId: string;
+	position: 'yes' | 'no' | 'candidate';
+	candidate?: string;
+	summary: string;
+	election: string;
+}
+
+const { title, measureId, position, candidate, summary, election } = Astro.props;
+
+// Get election info
+const elections = await getCollection('elections');
+const electionData = elections.find((e) => e.id.replace('/index', '') === election);
+
+// Get all recommendations for navigation
+const allRecs = await getCollection('recommendations');
+const siblings = allRecs
+	.filter((rec) => rec.data.election === election)
+	.sort((a, b) => {
+		const aIsProp = a.data.measureId.toLowerCase().startsWith('prop');
+		const bIsProp = b.data.measureId.toLowerCase().startsWith('prop');
+		if (aIsProp && !bIsProp) return 1;
+		if (!aIsProp && bIsProp) return -1;
+		if (aIsProp && bIsProp) {
+			const aNum = parseInt(a.data.measureId.replace(/\D/g, ''));
+			const bNum = parseInt(b.data.measureId.replace(/\D/g, ''));
+			return aNum - bNum;
+		}
+		return a.data.measureId.localeCompare(b.data.measureId);
+	});
+
+const currentIndex = siblings.findIndex((s) => s.data.measureId === measureId);
+const prevRec = currentIndex > 0 ? siblings[currentIndex - 1] : null;
+const nextRec = currentIndex < siblings.length - 1 ? siblings[currentIndex + 1] : null;
+
+const positionLabel = position === 'candidate' ? candidate : position.toUpperCase();
+const pageTitle = `${positionLabel} on ${measureId}: ${title}`;
+---
+
+<html lang="en">
+	<head>
+		<BaseHead title={pageTitle} description={summary} />
+	</head>
+	<body>
+		<Header />
+		<main class="recommendation">
+			<article>
+				<header class="rec-header">
+					<a href={`/voter-guides/${election}/`} class="breadcrumb">
+						← {electionData?.data.title || election}
+					</a>
+					<div class="rec-badge-row">
+						<span class={`rec-badge ${position}`}>
+							{positionLabel}
+						</span>
+					</div>
+					<span class="measure-id">{measureId}</span>
+					<h1>{title}</h1>
+					<p class="summary">{summary}</p>
+				</header>
+
+				<div class="prose">
+					<slot />
+				</div>
+
+				<nav class="rec-nav">
+					{prevRec && (
+						<a href={`/voter-guides/${election}/${prevRec.id.split('/').pop()}/`} class="nav-link prev">
+							<span class="nav-label">Previous</span>
+							<span class="nav-title">{prevRec.data.measureId}</span>
+						</a>
+					)}
+					{nextRec && (
+						<a href={`/voter-guides/${election}/${nextRec.id.split('/').pop()}/`} class="nav-link next">
+							<span class="nav-label">Next</span>
+							<span class="nav-title">{nextRec.data.measureId}</span>
+						</a>
+					)}
+				</nav>
+
+				<footer class="article-footer">
+					<a href={`/voter-guides/${election}/`} class="back-link">
+						<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+							<path fill="currentColor" d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+						</svg>
+						Back to {electionData?.data.location || 'election'} guide
+					</a>
+				</footer>
+			</article>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.recommendation {
+		--vote-yes: #4d7c0f;
+		--vote-yes-bg: #ecfccb;
+		--vote-no: #b91c1c;
+		--vote-no-bg: #fee2e2;
+		--vote-candidate: var(--ink);
+		--vote-candidate-bg: var(--cream-dark);
+	}
+
+	main.recommendation {
+		max-width: 100%;
+		padding: 0;
+	}
+
+	article {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: var(--space-xl) var(--space-lg);
+	}
+
+	.rec-header {
+		margin-bottom: 3rem;
+		padding-bottom: 2rem;
+		border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+	}
+
+	.breadcrumb {
+		display: inline-block;
+		font-size: 0.875rem;
+		color: var(--text-muted);
+		text-decoration: none;
+		margin-bottom: 1.5rem;
+		transition: color var(--duration-fast);
+	}
+
+	.breadcrumb:hover {
+		color: var(--amber-dark);
+	}
+
+	.rec-badge-row {
+		margin-bottom: 0.75rem;
+	}
+
+	.rec-badge {
+		display: inline-block;
+		font-size: 0.875rem;
+		font-weight: 700;
+		letter-spacing: 0.05em;
+		padding: 0.375rem 0.75rem;
+		border-radius: var(--radius-sm);
+	}
+
+	.rec-badge.yes {
+		background: var(--vote-yes);
+		color: white;
+	}
+
+	.rec-badge.no {
+		background: var(--vote-no);
+		color: white;
+	}
+
+	.rec-badge.candidate {
+		background: var(--ink);
+		color: white;
+	}
+
+	.measure-id {
+		display: block;
+		font-size: 0.75rem;
+		font-weight: 600;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--text-muted);
+		margin-bottom: 0.5rem;
+	}
+
+	.rec-header h1 {
+		font-size: 2.5rem;
+		line-height: 1.2;
+		margin-bottom: 1rem;
+		letter-spacing: -0.02em;
+	}
+
+	.summary {
+		font-size: 1.25rem;
+		color: var(--text-secondary);
+		line-height: 1.6;
+	}
+
+	.rec-nav {
+		display: flex;
+		gap: 1rem;
+		margin-top: 3rem;
+		padding-top: 2rem;
+		border-top: 1px solid rgba(15, 23, 42, 0.08);
+	}
+
+	.nav-link {
+		flex: 1;
+		padding: 1rem;
+		background: var(--cream-dark);
+		border-radius: var(--radius-md);
+		text-decoration: none;
+		transition: all var(--duration-fast) var(--ease-out);
+	}
+
+	.nav-link:hover {
+		background: var(--cream);
+		transform: translateY(-2px);
+		box-shadow: var(--shadow-sm);
+	}
+
+	.nav-link.next {
+		text-align: right;
+	}
+
+	.nav-label {
+		display: block;
+		font-size: 0.75rem;
+		font-weight: 600;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--text-muted);
+		margin-bottom: 0.25rem;
+	}
+
+	.nav-title {
+		font-weight: 600;
+		color: var(--ink);
+	}
+
+	.article-footer {
+		margin-top: 3rem;
+		padding-top: 2rem;
+		border-top: 1px solid rgba(15, 23, 42, 0.08);
+	}
+
+	.back-link {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-weight: 600;
+		color: var(--text-secondary);
+		text-decoration: none;
+		transition: all var(--duration-fast) var(--ease-out);
+	}
+
+	.back-link:hover {
+		color: var(--amber-dark);
+		gap: 0.75rem;
+	}
+
+	@media (max-width: 768px) {
+		article {
+			padding: var(--space-lg) var(--space-md);
+		}
+
+		.rec-header h1 {
+			font-size: 1.75rem;
+		}
+
+		.summary {
+			font-size: 1.125rem;
+		}
+
+		.rec-nav {
+			flex-direction: column;
+		}
+
+		.nav-link.next {
+			text-align: left;
+		}
+	}
+</style>
