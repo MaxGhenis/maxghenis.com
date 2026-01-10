@@ -43,15 +43,20 @@ function extractSections(body: string, recommendations: Recommendation[]): Map<s
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i];
 
-      // Match "### YES on Prop 1" or "### NO on Prop 26" or "### GAVIN NEWSOM for Governor"
-      const isYesNo = line.match(new RegExp(`^### (?:YES|NO) on ${rec.id.replace(/\s+/g, '\\s+')}$`, 'i'));
-      const isCandidate = rec.candidate && line.match(new RegExp(`^### ${rec.candidate.replace(/\s+/g, '\\s+')} for`, 'i'));
+      // Match "## Yes on Prop 14" or "### YES on Prop 1" or "### NO on Prop 26" or "### GAVIN NEWSOM for Governor"
+      const propId = rec.id.replace(/\s+/g, '\\s+');
+      const isYesNo = line.match(new RegExp(`^##[#]? (?:YES|NO) on ${propId}$`, 'i'));
+      const isCandidate = rec.candidate && line.match(new RegExp(`^##[#]? ${rec.candidate.replace(/\s+/g, '\\s+')} for`, 'i'));
+      // Also try matching just the prop number for simpler headers
+      const isSimple = line.match(new RegExp(`^##[#]? ${propId}$`, 'i'));
 
-      if (isYesNo || isCandidate) {
+      if (isYesNo || isCandidate || isSimple) {
         startIdx = i + 1; // Start after the header
-        // Find the end (next h2 or h3)
+        // Find the end (next h2 or h3 at same or higher level)
+        const headerLevel = line.match(/^(#+)/)?.[1].length || 2;
         for (let j = i + 1; j < lines.length; j++) {
-          if (lines[j].match(/^##[#]? /)) {
+          const nextHeaderMatch = lines[j].match(/^(#+) /);
+          if (nextHeaderMatch && nextHeaderMatch[1].length <= headerLevel) {
             endIdx = j;
             break;
           }
