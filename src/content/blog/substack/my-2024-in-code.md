@@ -1,5 +1,5 @@
 ---
-title: 'My 2024 in code: personal projects and AI tools'
+title: 'My 2024 in code: Personal projects and AI tools'
 description: 'How AI helped me build useful software while leading PolicyEngine.'
 pubDate: 'Jan 02 2025'
 heroImage: './images/my-2024-in-code.png'
