@@ -42,3 +42,22 @@ pubDate: 'Jan 07 2026'
 heroImage: './image.png'  # Optional, relative path to image in same folder
 ---
 ```
+
+## Crossposting workflow
+
+For posts with interactive components (timelines, widgets, etc.), create parallel files:
+
+- `post-name.mdx` - Main blog post with interactive Astro components
+- `post-name-crosspost.md` - Text/image version for LinkedIn, Medium, Substack
+- `post-name-social.md` - Short posts for X, Bluesky, etc.
+
+The crosspost version replaces interactive components with:
+- Text-based timelines (bold dates, descriptions)
+- Static images/screenshots of interactive elements
+- Links back to the canonical post for the full experience
+
+Example timeline format for crosspost:
+```
+**Feb 24, 2025** — Anthropic launches Claude Code
+The agentic CLI era begins. A simple terminal tool—chat with Claude, edit files, run bash commands.
+```
