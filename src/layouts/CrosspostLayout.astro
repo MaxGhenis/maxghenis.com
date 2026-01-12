@@ -86,9 +86,22 @@ const { title, description, pubDate, originalUrl, heroImage } = Astro.props;
 		if (!content) return;
 
 		try {
-			// Get plain text content
+			// Get HTML content and plain text fallback
+			const html = content.innerHTML;
 			const text = content.innerText;
-			await navigator.clipboard.writeText(text);
+
+			// Try to copy as rich HTML (preserves links)
+			try {
+				await navigator.clipboard.write([
+					new ClipboardItem({
+						'text/html': new Blob([html], { type: 'text/html' }),
+						'text/plain': new Blob([text], { type: 'text/plain' }),
+					}),
+				]);
+			} catch {
+				// Fallback to plain text if rich copy fails
+				await navigator.clipboard.writeText(text);
+			}
 
 			// Show toast
 			toast?.classList.add('show');
