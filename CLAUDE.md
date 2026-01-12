@@ -71,14 +71,28 @@ The agentic CLI era begins. A simple terminal tool—chat with Claude, edit file
 4. Paste into a new Google Doc (images upload to Google's servers)
 5. Copy the entire Google Doc content (Cmd+A, Cmd+C)
 
-**Step 2: Paste into each platform**
+**Step 2: Paste into each platform and add subtitle**
 
-| Platform | Notes |
-|----------|-------|
-| **Medium** | Add subtitle manually. Fix numbered lists (Medium mangles them). Delete empty paragraphs after headings. Upload cover image separately. |
-| **Substack** | Add subtitle. Upload cover image via Settings. |
-| **LinkedIn** | Works well. Upload cover via article settings. |
-| **X Articles** | Works well. Add cover image if desired. |
+The subtitle from the crosspost page header should be added to each platform:
+> "How AI coding tools evolved from autocomplete to autonomous agents, and why I expect to abandon my IDE entirely this month."
+
+| Platform | Subtitle | Notes |
+|----------|----------|-------|
+| **Medium** | Type subtitle after title, select it, click **small T** (see below) | Fix numbered lists (Medium mangles them). Delete empty paragraphs after headings. Upload cover image separately. |
+
+| **Substack** | Click "Add a subtitle..." below the title | Upload cover image via Settings. |
+| **LinkedIn** | Not supported (subtitle is article-only) | Works well. Upload cover via article settings. |
+| **X Articles** | Not supported | Works well. Add cover image if desired. |
+
+**Medium subtitle formatting (CRITICAL):**
+1. Type title, press Enter
+2. Type subtitle text
+3. Triple-click to select subtitle line
+4. In the formatting toolbar, there are TWO T icons side by side:
+   - **Large T** = Section heading (makes text bigger, bold)
+   - **Small T** = Subtitle (makes text gray, smaller) ← USE THIS ONE
+5. Click the **small T** (the second/right T icon) to format as subtitle
+6. The subtitle will turn gray - this is correct
 
 **What transfers automatically:**
 - Text content with formatting (bold, headings, lists)
@@ -87,7 +101,7 @@ The agentic CLI era begins. A simple terminal tool—chat with Claude, edit file
 
 **What needs manual work:**
 - Cover/hero images (upload via each platform's UI)
-- Subtitles (not in crosspost content)
+- Subtitles (copy from crosspost page header, add to Medium/Substack)
 - Numbered lists on Medium (known bug - recreate manually)
 - Empty paragraphs after headings (delete manually)
 
