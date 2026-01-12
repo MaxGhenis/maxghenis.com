@@ -86,8 +86,28 @@ const { title, description, pubDate, originalUrl, heroImage } = Astro.props;
 		if (!content) return;
 
 		try {
+			// Clone content and convert relative URLs to absolute
+			const clone = content.cloneNode(true) as HTMLElement;
+			const baseUrl = window.location.origin;
+
+			// Fix image URLs
+			clone.querySelectorAll('img').forEach(img => {
+				const src = img.getAttribute('src');
+				if (src && src.startsWith('/')) {
+					img.setAttribute('src', baseUrl + src);
+				}
+			});
+
+			// Fix link URLs (in case any are relative)
+			clone.querySelectorAll('a').forEach(a => {
+				const href = a.getAttribute('href');
+				if (href && href.startsWith('/')) {
+					a.setAttribute('href', baseUrl + href);
+				}
+			});
+
 			// Get HTML content and plain text fallback
-			const html = content.innerHTML;
+			const html = clone.innerHTML;
 			const text = content.innerText;
 
 			// Try to copy as rich HTML (preserves links)

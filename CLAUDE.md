@@ -61,3 +61,34 @@ Example timeline format for crosspost:
 **Feb 24, 2025** — Anthropic launches Claude Code
 The agentic CLI era begins. A simple terminal tool—chat with Claude, edit files, run bash commands.
 ```
+
+### Publishing to platforms
+
+**Step 1: Copy via Google Docs** (required for images to transfer)
+1. Deploy site to maxghenis.com first
+2. Go to `maxghenis.com/blog/[post-slug]/crosspost/` (production, not localhost)
+3. Click "Copy to clipboard"
+4. Paste into a new Google Doc (images upload to Google's servers)
+5. Copy the entire Google Doc content (Cmd+A, Cmd+C)
+
+**Step 2: Paste into each platform**
+
+| Platform | Notes |
+|----------|-------|
+| **Medium** | Add subtitle manually. Fix numbered lists (Medium mangles them). Delete empty paragraphs after headings. Upload cover image separately. |
+| **Substack** | Add subtitle. Upload cover image via Settings. |
+| **LinkedIn** | Works well. Upload cover via article settings. |
+| **X Articles** | Works well. Add cover image if desired. |
+
+**What transfers automatically:**
+- Text content with formatting (bold, headings, lists)
+- Hyperlinks
+- Images (via Google Docs intermediary from production URLs)
+
+**What needs manual work:**
+- Cover/hero images (upload via each platform's UI)
+- Subtitles (not in crosspost content)
+- Numbered lists on Medium (known bug - recreate manually)
+- Empty paragraphs after headings (delete manually)
+
+**Important:** Must copy from production site, not localhost. Google Docs can't fetch localhost images.
