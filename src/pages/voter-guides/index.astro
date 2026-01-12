@@ -48,14 +48,31 @@ function getJurisdiction(election: typeof elections[0]): string {
 	return 'California';
 }
 
-// Build the hierarchical data structure
+// Build processed election type
 type ProcessedElection = {
 	slug: string;
 	label: string;
+	jurisdiction: string;
 	type: { label: string; className: string };
 	date: Date;
+	dateKey: string; // e.g. "2020-11" for grouping
 };
 
+// Process all elections
+const processedElections: ProcessedElection[] = elections.map(election => {
+	const date = new Date(election.data.electionDate);
+	const jurisdiction = getJurisdiction(election);
+	return {
+		slug: election.id.replace('/index', ''),
+		label: getElectionLabel(election.data.title),
+		jurisdiction,
+		type: getElectionType(election.data.title, date),
+		date,
+		dateKey: `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`
+	};
+});
+
+// === VIEW 1: By Jurisdiction ===
 type YearData = {
 	year: number;
 	elections: ProcessedElection[];
@@ -70,30 +87,19 @@ type JurisdictionData = {
 const jurisdictionData: JurisdictionData[] = [];
 
 for (const jurisdiction of jurisdictionOrder) {
-	const jurisdictionElections = elections.filter(e => getJurisdiction(e) === jurisdiction);
+	const jurisdictionElections = processedElections.filter(e => e.jurisdiction === jurisdiction);
 
 	if (jurisdictionElections.length === 0) continue;
 
 	// Sort by date descending
-	jurisdictionElections.sort((a, b) =>
-		new Date(b.data.electionDate).getTime() - new Date(a.data.electionDate).getTime()
-	);
+	jurisdictionElections.sort((a, b) => b.date.getTime() - a.date.getTime());
 
 	// Group by year
 	const yearMap = new Map<number, ProcessedElection[]>();
-
 	for (const election of jurisdictionElections) {
-		const date = new Date(election.data.electionDate);
-		const year = date.getFullYear();
-		const processed: ProcessedElection = {
-			slug: election.id.replace('/index', ''),
-			label: getElectionLabel(election.data.title),
-			type: getElectionType(election.data.title, date),
-			date
-		};
-
+		const year = election.date.getFullYear();
 		if (!yearMap.has(year)) yearMap.set(year, []);
-		yearMap.get(year)!.push(processed);
+		yearMap.get(year)!.push(election);
 	}
 
 	const years = Array.from(yearMap.entries())
@@ -106,6 +112,46 @@ for (const jurisdiction of jurisdictionOrder) {
 		years
 	});
 }
+
+// === VIEW 2: By Election Date ===
+type ElectionDateData = {
+	dateKey: string;
+	displayDate: string;
+	type: { label: string; className: string };
+	elections: ProcessedElection[];
+};
+
+const electionDateMap = new Map<string, ProcessedElection[]>();
+for (const election of processedElections) {
+	if (!electionDateMap.has(election.dateKey)) {
+		electionDateMap.set(election.dateKey, []);
+	}
+	electionDateMap.get(election.dateKey)!.push(election);
+}
+
+// Sort elections within each date group by jurisdiction order
+for (const [_, list] of electionDateMap) {
+	list.sort((a, b) => {
+		const aIdx = jurisdictionOrder.indexOf(a.jurisdiction);
+		const bIdx = jurisdictionOrder.indexOf(b.jurisdiction);
+		return aIdx - bIdx;
+	});
+}
+
+const electionDateData: ElectionDateData[] = Array.from(electionDateMap.entries())
+	.sort(([a], [b]) => b.localeCompare(a)) // Most recent first
+	.map(([dateKey, elections]) => {
+		const firstElection = elections[0];
+		const date = firstElection.date;
+		const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+			'July', 'August', 'September', 'October', 'November', 'December'];
+		return {
+			dateKey,
+			displayDate: `${monthNames[date.getMonth()]} ${date.getFullYear()}`,
+			type: firstElection.type,
+			elections
+		};
+	});
 ---
 
 <html lang="en">
@@ -123,14 +169,47 @@ for (const jurisdiction of jurisdictionOrder) {
 					<h1>Voter guides</h1>
 					<p class="subtitle">California election recommendations since 2016</p>
 				</div>
-				<div class="header-meta">
-					<span class="stat">{elections.length} elections</span>
-					<span class="divider"></span>
-					<span class="stat">{jurisdictionData.length} jurisdictions</span>
+				<div class="header-controls">
+					<div class="view-toggle" role="tablist">
+						<button class="toggle-btn active" data-view="date" role="tab" aria-selected="true">
+							By election
+						</button>
+						<button class="toggle-btn" data-view="jurisdiction" role="tab" aria-selected="false">
+							By jurisdiction
+						</button>
+					</div>
 				</div>
 			</header>
 
-			<div class="archive">
+			<!-- View: By Election Date -->
+			<div class="archive view-date active" id="view-date">
+				{electionDateData.map((dateGroup) => (
+					<section class="election-date-group">
+						<header class="date-header">
+							<div class="date-info">
+								<h2>{dateGroup.displayDate}</h2>
+								<span class={`election-type ${dateGroup.type.className}`}>{dateGroup.type.label}</span>
+							</div>
+							<span class="count">{dateGroup.elections.length} {dateGroup.elections.length === 1 ? 'guide' : 'guides'}</span>
+						</header>
+
+						<div class="elections-list">
+							{dateGroup.elections.map((election) => (
+								<a href={`/voter-guides/${election.slug}/`} class="election-item">
+									<span class="jurisdiction-badge">{election.jurisdiction}</span>
+									<span class="election-label">{election.jurisdiction === 'California' ? 'Statewide' : election.jurisdiction}</span>
+									<svg class="arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+										<path d="M5 12h14M12 5l7 7-7 7"/>
+									</svg>
+								</a>
+							))}
+						</div>
+					</section>
+				))}
+			</div>
+
+			<!-- View: By Jurisdiction -->
+			<div class="archive view-jurisdiction" id="view-jurisdiction">
 				{jurisdictionData.map((jurisdiction) => (
 					<section class="jurisdiction">
 						<header class="jurisdiction-header">
@@ -163,6 +242,45 @@ for (const jurisdiction of jurisdictionOrder) {
 			</div>
 		</main>
 		<Footer />
+
+		<script>
+			const toggleBtns = document.querySelectorAll('.toggle-btn');
+			const viewDate = document.getElementById('view-date');
+			const viewJurisdiction = document.getElementById('view-jurisdiction');
+
+			toggleBtns.forEach(btn => {
+				btn.addEventListener('click', () => {
+					const view = btn.getAttribute('data-view');
+
+					// Update buttons
+					toggleBtns.forEach(b => {
+						b.classList.remove('active');
+						b.setAttribute('aria-selected', 'false');
+					});
+					btn.classList.add('active');
+					btn.setAttribute('aria-selected', 'true');
+
+					// Update views
+					if (view === 'date') {
+						viewDate?.classList.add('active');
+						viewJurisdiction?.classList.remove('active');
+					} else {
+						viewDate?.classList.remove('active');
+						viewJurisdiction?.classList.add('active');
+					}
+
+					// Save preference
+					localStorage.setItem('voter-guides-view', view || 'date');
+				});
+			});
+
+			// Restore saved preference
+			const savedView = localStorage.getItem('voter-guides-view');
+			if (savedView) {
+				const btn = document.querySelector(`.toggle-btn[data-view="${savedView}"]`);
+				if (btn) (btn as HTMLButtonElement).click();
+			}
+		</script>
 	</body>
 </html>
 
@@ -186,8 +304,8 @@ for (const jurisdiction of jurisdictionOrder) {
 
 	/* Page Header */
 	.page-header {
-		margin-bottom: 3.5rem;
-		padding-bottom: 2rem;
+		margin-bottom: 2.5rem;
+		padding-bottom: 1.5rem;
 		border-bottom: 2px solid var(--navy);
 	}
 
@@ -206,37 +324,140 @@ for (const jurisdiction of jurisdictionOrder) {
 		margin: 0;
 	}
 
-	.header-meta {
+	.header-controls {
+		margin-top: 1.5rem;
+	}
+
+	/* View Toggle */
+	.view-toggle {
+		display: inline-flex;
+		background: var(--cream);
+		border-radius: 6px;
+		padding: 4px;
+		gap: 4px;
+	}
+
+	.toggle-btn {
+		padding: 0.5rem 1rem;
+		font-size: 0.875rem;
+		font-weight: 500;
+		color: var(--slate);
+		background: transparent;
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+		transition: all 0.15s ease;
+	}
+
+	.toggle-btn:hover {
+		color: var(--navy);
+	}
+
+	.toggle-btn.active {
+		background: white;
+		color: var(--navy);
+		box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+	}
+
+	/* Archive Views */
+	.archive {
+		display: none;
+		flex-direction: column;
+		gap: 2rem;
+	}
+
+	.archive.active {
+		display: flex;
+	}
+
+	/* === By Election Date View === */
+	.election-date-group {
+		background: white;
+		border: 1px solid rgba(26, 39, 68, 0.1);
+		border-radius: 8px;
+		overflow: hidden;
+	}
+
+	.date-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 1.25rem 1.5rem;
+		background: linear-gradient(to right, var(--navy), var(--navy-soft));
+	}
+
+	.date-info {
 		display: flex;
 		align-items: center;
 		gap: 1rem;
-		margin-top: 1.5rem;
-		padding-top: 1rem;
 	}
 
-	.stat {
-		font-size: 0.8125rem;
+	.date-header h2 {
+		font-family: 'Crimson Pro', Georgia, serif;
+		font-size: 1.5rem;
 		font-weight: 500;
-		color: var(--navy-soft);
+		color: white;
+		margin: 0;
+	}
+
+	.date-header .count {
+		font-size: 0.75rem;
+		font-weight: 500;
+		color: var(--amber-soft);
 		text-transform: uppercase;
-		letter-spacing: 0.08em;
+		letter-spacing: 0.1em;
 	}
 
-	.divider {
-		width: 4px;
-		height: 4px;
-		background: var(--amber-accent);
-		border-radius: 50%;
-	}
-
-	/* Archive Layout */
-	.archive {
+	.elections-list {
 		display: flex;
 		flex-direction: column;
-		gap: 3rem;
 	}
 
-	/* Jurisdiction Sections */
+	.view-date .election-item {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		padding: 1rem 1.5rem;
+		text-decoration: none;
+		transition: background-color 0.15s ease;
+		border-bottom: 1px solid rgba(26, 39, 68, 0.06);
+	}
+
+	.view-date .election-item:last-child {
+		border-bottom: none;
+	}
+
+	.view-date .election-item:hover {
+		background: var(--cream);
+	}
+
+	.view-date .election-item:hover .arrow {
+		transform: translateX(3px);
+		opacity: 1;
+	}
+
+	.jurisdiction-badge {
+		flex-shrink: 0;
+		min-width: 100px;
+		padding: 0.25rem 0.625rem;
+		font-size: 0.6875rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		border-radius: 3px;
+		background: var(--cream-dark);
+		color: var(--navy-soft);
+		text-align: center;
+	}
+
+	.view-date .election-label {
+		flex: 1;
+		font-size: 0.9375rem;
+		font-weight: 500;
+		color: var(--navy);
+	}
+
+	/* === By Jurisdiction View === */
 	.jurisdiction {
 		background: white;
 		border: 1px solid rgba(26, 39, 68, 0.1);
@@ -304,8 +525,7 @@ for (const jurisdiction of jurisdictionOrder) {
 		flex-direction: column;
 	}
 
-	/* Election Items */
-	.election-item {
+	.view-jurisdiction .election-item {
 		display: flex;
 		align-items: center;
 		gap: 1rem;
@@ -315,19 +535,20 @@ for (const jurisdiction of jurisdictionOrder) {
 		border-bottom: 1px solid rgba(26, 39, 68, 0.04);
 	}
 
-	.election-item:last-child {
+	.view-jurisdiction .election-item:last-child {
 		border-bottom: none;
 	}
 
-	.election-item:hover {
+	.view-jurisdiction .election-item:hover {
 		background: var(--cream);
 	}
 
-	.election-item:hover .arrow {
+	.view-jurisdiction .election-item:hover .arrow {
 		transform: translateX(3px);
 		opacity: 1;
 	}
 
+	/* Shared Styles */
 	.election-type {
 		flex-shrink: 0;
 		padding: 0.25rem 0.625rem;
@@ -358,7 +579,7 @@ for (const jurisdiction of jurisdictionOrder) {
 		color: #1e40af;
 	}
 
-	.election-label {
+	.view-jurisdiction .election-label {
 		flex: 1;
 		font-size: 0.9375rem;
 		font-weight: 500;
@@ -390,7 +611,7 @@ for (const jurisdiction of jurisdictionOrder) {
 			font-size: 1rem;
 		}
 
-		.election-item {
+		.view-jurisdiction .election-item {
 			padding: 0.75rem 1rem;
 		}
 
@@ -399,8 +620,24 @@ for (const jurisdiction of jurisdictionOrder) {
 			padding: 0.2rem 0.5rem;
 		}
 
-		.election-label {
+		.view-jurisdiction .election-label,
+		.view-date .election-label {
 			font-size: 0.875rem;
+		}
+
+		.jurisdiction-badge {
+			min-width: 80px;
+			font-size: 0.625rem;
+		}
+
+		.date-info {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 0.5rem;
+		}
+
+		.date-header h2 {
+			font-size: 1.25rem;
 		}
 	}
 </style>
