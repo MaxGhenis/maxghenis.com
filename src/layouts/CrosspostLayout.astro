@@ -1,0 +1,320 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+
+interface Props {
+	title: string;
+	description: string;
+	pubDate: Date;
+	originalUrl: string;
+	crosspostContent?: string;
+}
+
+const { title, description, pubDate, originalUrl, crosspostContent } = Astro.props;
+---
+
+<html lang="en">
+	<head>
+		<BaseHead title={`${title} (Crosspost)`} description={description} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<article>
+				<header class="crosspost-header">
+					<div class="crosspost-badge">Crosspost version</div>
+					<h1>{title}</h1>
+					<p class="description">{description}</p>
+					<div class="actions">
+						<button id="copy-btn" class="copy-btn">
+							<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+								<path fill="currentColor" d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+							</svg>
+							Copy to clipboard
+						</button>
+						<a href={originalUrl} class="original-link">
+							<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+								<path fill="currentColor" d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/>
+							</svg>
+							View original with interactive content
+						</a>
+					</div>
+				</header>
+
+				<div id="copyable-content" class="copyable-content">
+					{crosspostContent ? (
+						<Fragment set:html={crosspostContent} />
+					) : (
+						<slot />
+					)}
+				</div>
+
+				<footer class="crosspost-footer">
+					<a href="/blog" class="back-link">
+						<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+							<path fill="currentColor" d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+						</svg>
+						Back to all posts
+					</a>
+				</footer>
+			</article>
+		</main>
+		<Footer />
+
+		<!-- Toast notification -->
+		<div id="toast" class="toast">Copied to clipboard!</div>
+	</body>
+</html>
+
+<script>
+	const copyBtn = document.getElementById('copy-btn');
+	const content = document.getElementById('copyable-content');
+	const toast = document.getElementById('toast');
+
+	copyBtn?.addEventListener('click', async () => {
+		if (!content) return;
+
+		try {
+			// Get plain text content
+			const text = content.innerText;
+			await navigator.clipboard.writeText(text);
+
+			// Show toast
+			toast?.classList.add('show');
+			setTimeout(() => {
+				toast?.classList.remove('show');
+			}, 2000);
+
+			// Update button
+			copyBtn.innerHTML = `
+				<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+					<path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+				</svg>
+				Copied!
+			`;
+			setTimeout(() => {
+				copyBtn.innerHTML = `
+					<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+						<path fill="currentColor" d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+					</svg>
+					Copy to clipboard
+				`;
+			}, 2000);
+		} catch (err) {
+			console.error('Failed to copy:', err);
+		}
+	});
+</script>
+
+<style>
+	main {
+		max-width: 100%;
+		padding: 0;
+	}
+
+	article {
+		max-width: 720px;
+		margin: 0 auto;
+		padding: var(--space-xl) var(--space-lg);
+	}
+
+	/* Header */
+	.crosspost-header {
+		text-align: center;
+		margin-bottom: 2rem;
+		padding-bottom: 2rem;
+		border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+	}
+
+	.crosspost-badge {
+		display: inline-block;
+		font-size: 0.75rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		color: var(--amber-dark);
+		background: var(--amber-light);
+		padding: 0.25rem 0.75rem;
+		border-radius: var(--radius-full);
+		margin-bottom: 1rem;
+	}
+
+	.crosspost-header h1 {
+		font-size: 2rem;
+		line-height: 1.3;
+		margin-bottom: 0.75rem;
+		letter-spacing: -0.02em;
+	}
+
+	.description {
+		font-size: 1.125rem;
+		color: var(--text-secondary);
+		margin-bottom: 1.5rem;
+		line-height: 1.5;
+	}
+
+	.actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+		justify-content: center;
+	}
+
+	.copy-btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.75rem 1.25rem;
+		font-size: 0.9375rem;
+		font-weight: 600;
+		color: white;
+		background: var(--amber-dark);
+		border: none;
+		border-radius: var(--radius-lg);
+		cursor: pointer;
+		transition: all var(--duration-fast) var(--ease-out);
+	}
+
+	.copy-btn:hover {
+		background: var(--amber-medium);
+		transform: translateY(-1px);
+	}
+
+	.original-link {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.75rem 1.25rem;
+		font-size: 0.9375rem;
+		font-weight: 600;
+		color: var(--text-secondary);
+		background: var(--bg-secondary);
+		border-radius: var(--radius-lg);
+		text-decoration: none;
+		transition: all var(--duration-fast) var(--ease-out);
+	}
+
+	.original-link:hover {
+		color: var(--amber-dark);
+		background: var(--bg-tertiary);
+	}
+
+	/* Copyable content area */
+	.copyable-content {
+		background: var(--bg-secondary);
+		border: 1px solid rgba(15, 23, 42, 0.08);
+		border-radius: var(--radius-lg);
+		padding: 2rem;
+		font-family: var(--font-sans);
+		line-height: 1.7;
+	}
+
+	.copyable-content :global(h1),
+	.copyable-content :global(h2),
+	.copyable-content :global(h3) {
+		margin-top: 1.5rem;
+		margin-bottom: 0.75rem;
+		line-height: 1.3;
+	}
+
+	.copyable-content :global(h2) {
+		font-size: 1.5rem;
+	}
+
+	.copyable-content :global(h3) {
+		font-size: 1.25rem;
+	}
+
+	.copyable-content :global(p) {
+		margin-bottom: 1rem;
+	}
+
+	.copyable-content :global(a) {
+		color: var(--amber-dark);
+		text-decoration: underline;
+	}
+
+	.copyable-content :global(strong) {
+		font-weight: 600;
+	}
+
+	.copyable-content :global(ul),
+	.copyable-content :global(ol) {
+		margin-bottom: 1rem;
+		padding-left: 1.5rem;
+	}
+
+	.copyable-content :global(li) {
+		margin-bottom: 0.5rem;
+	}
+
+	/* Footer */
+	.crosspost-footer {
+		margin-top: 2rem;
+		padding-top: 2rem;
+		border-top: 1px solid rgba(15, 23, 42, 0.08);
+	}
+
+	.back-link {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-weight: 600;
+		color: var(--text-secondary);
+		text-decoration: none;
+		transition: all var(--duration-fast) var(--ease-out);
+	}
+
+	.back-link:hover {
+		color: var(--amber-dark);
+		gap: 0.75rem;
+	}
+
+	/* Toast */
+	.toast {
+		position: fixed;
+		bottom: 2rem;
+		left: 50%;
+		transform: translateX(-50%) translateY(100%);
+		background: var(--slate-dark);
+		color: white;
+		padding: 0.75rem 1.5rem;
+		border-radius: var(--radius-lg);
+		font-weight: 500;
+		opacity: 0;
+		transition: all 0.3s ease;
+		z-index: 1000;
+	}
+
+	.toast.show {
+		transform: translateX(-50%) translateY(0);
+		opacity: 1;
+	}
+
+	/* Responsive */
+	@media (max-width: 768px) {
+		article {
+			padding: var(--space-lg) var(--space-md);
+		}
+
+		.crosspost-header h1 {
+			font-size: 1.5rem;
+		}
+
+		.copyable-content {
+			padding: 1.25rem;
+		}
+
+		.actions {
+			flex-direction: column;
+			align-items: stretch;
+		}
+
+		.copy-btn,
+		.original-link {
+			justify-content: center;
+		}
+	}
+</style>

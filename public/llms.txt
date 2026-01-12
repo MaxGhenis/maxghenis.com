@@ -1,0 +1,40 @@
+# Max Ghenis
+
+> Personal website of Max Ghenis - policy researcher, software engineer, and AI enthusiast. Founder of PolicyEngine. Writing about AI coding tools, tax policy, and civic engagement.
+
+## About
+
+I build tools that make policy analysis accessible. Currently focused on AI-assisted development and microsimulation. Based in the San Francisco Bay Area.
+
+## Key pages
+
+- [Blog](/blog): Posts on AI development, policy analysis, civic engagement
+- [TerminalGrid](/terminalgrid): VS Code extension for managing multiple Claude Code sessions
+- [RAMBar](/rambar): macOS menu bar app for developer memory monitoring
+- [CV](/cv): Professional experience and background
+
+## Recent writing
+
+- [From IDE to AI orchestration](/blog/ide-to-ai-orchestration): How AI coding tools evolved from autocomplete to autonomous agents
+- [RAMBar: A macOS menu bar RAM monitor](/blog/rambar): Building developer tools with Claude Code
+- [The definitive QALY analysis of nuts](/blog/which-nut-is-healthiest-bayesian-qaly-analysis): Bayesian Monte Carlo simulation comparing nut health benefits
+
+## Projects
+
+- **PolicyEngine** (policyengine.org): Open-source tax-benefit microsimulation platform
+- **TerminalGrid**: VS Code extension for terminal grid layouts, optimized for multiple Claude Code sessions
+- **RAMBar**: macOS menu bar memory monitor with developer-focused breakdowns
+
+## Contact
+
+- GitHub: [MaxGhenis](https://github.com/MaxGhenis)
+- X/Twitter: [@MaxGhenis](https://x.com/MaxGhenis)
+- LinkedIn: [maxghenis](https://linkedin.com/in/maxghenis)
+- Email: max@policyengine.org
+
+## Technical details
+
+- Static site built with Astro
+- Content in Markdown/MDX
+- Hosted on Netlify
+- Full content available at [/llms-full.txt](/llms-full.txt)

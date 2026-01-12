@@ -1,3 +1,10 @@
+---
+title: 'Social posts for From IDE to AI orchestration'
+description: 'Social media posts for the IDE to AI orchestration blog post'
+pubDate: 'Jan 11 2026'
+draft: true
+---
+
 # Social posts for "From IDE to AI orchestration"
 
 ## X/Twitter (single post)

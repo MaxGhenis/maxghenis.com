@@ -1,3 +1,10 @@
+---
+title: 'From IDE to AI orchestration crosspost'
+description: 'Crosspost version of the IDE to AI orchestration post'
+pubDate: 'Jan 11 2026'
+draft: true
+---
+
 # From IDE to AI orchestration: The end of code-first development
 
 > Crosspost version for LinkedIn, Medium, and Substack. Replace interactive components with text/images.
