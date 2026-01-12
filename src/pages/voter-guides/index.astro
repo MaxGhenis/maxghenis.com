@@ -2,139 +2,405 @@
 import { getCollection } from 'astro:content';
 import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
-import FormattedDate from '../../components/FormattedDate.astro';
 import Header from '../../components/Header.astro';
 
 const elections = await getCollection('elections');
-const sortedElections = elections.sort(
-	(a, b) => new Date(b.data.electionDate).getTime() - new Date(a.data.electionDate).getTime()
-);
+
+// Define jurisdiction hierarchy (order matters)
+const jurisdictionOrder = ['California', 'San Francisco', 'Ventura County', 'Oxnard'];
+
+// Helper to extract just month/year from title for cleaner display
+function getElectionLabel(title: string): string {
+	const cleaned = title
+		.replace(/.*voter guide:\s*/i, '')
+		.replace(/.*recall election:\s*/i, 'Recall: ')
+		.replace(/.*ADEM.*guide:\s*/i, 'ADEM: ')
+		.trim();
+	return cleaned;
+}
+
+// Helper to get election type badge
+function getElectionType(title: string, date: Date): { label: string; className: string } {
+	const titleLower = title.toLowerCase();
+	const month = date.getMonth();
+
+	if (titleLower.includes('recall')) {
+		return { label: 'Special', className: 'type-special' };
+	}
+	if (titleLower.includes('adem')) {
+		return { label: 'Party', className: 'type-party' };
+	}
+	if (month === 5 || month === 2) {
+		return { label: 'Primary', className: 'type-primary' };
+	}
+	return { label: 'General', className: 'type-general' };
+}
+
+// Determine jurisdiction for an election
+function getJurisdiction(election: typeof elections[0]): string {
+	const location = election.data.location;
+	if (location !== 'California') return location;
+
+	const title = election.data.title.toLowerCase();
+	if (title.includes('san francisco')) return 'San Francisco';
+	if (title.includes('ventura county')) return 'Ventura County';
+	if (title.includes('oxnard')) return 'Oxnard';
+	return 'California';
+}
+
+// Build the hierarchical data structure
+type ProcessedElection = {
+	slug: string;
+	label: string;
+	type: { label: string; className: string };
+	date: Date;
+};
+
+type YearData = {
+	year: number;
+	elections: ProcessedElection[];
+};
+
+type JurisdictionData = {
+	name: string;
+	count: number;
+	years: YearData[];
+};
+
+const jurisdictionData: JurisdictionData[] = [];
+
+for (const jurisdiction of jurisdictionOrder) {
+	const jurisdictionElections = elections.filter(e => getJurisdiction(e) === jurisdiction);
+
+	if (jurisdictionElections.length === 0) continue;
+
+	// Sort by date descending
+	jurisdictionElections.sort((a, b) =>
+		new Date(b.data.electionDate).getTime() - new Date(a.data.electionDate).getTime()
+	);
+
+	// Group by year
+	const yearMap = new Map<number, ProcessedElection[]>();
+
+	for (const election of jurisdictionElections) {
+		const date = new Date(election.data.electionDate);
+		const year = date.getFullYear();
+		const processed: ProcessedElection = {
+			slug: election.id.replace('/index', ''),
+			label: getElectionLabel(election.data.title),
+			type: getElectionType(election.data.title, date),
+			date
+		};
+
+		if (!yearMap.has(year)) yearMap.set(year, []);
+		yearMap.get(year)!.push(processed);
+	}
+
+	const years = Array.from(yearMap.entries())
+		.sort(([a], [b]) => b - a)
+		.map(([year, elections]) => ({ year, elections }));
+
+	jurisdictionData.push({
+		name: jurisdiction,
+		count: jurisdictionElections.length,
+		years
+	});
+}
 ---
 
 <html lang="en">
 	<head>
-		<BaseHead title="Voter Guides" description="My recommendations for elections past and present." />
+		<BaseHead title="Voter Guides" description="My recommendations for California elections since 2016." />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;500;600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 	</head>
 	<body>
 		<Header />
 		<main>
 			<header class="page-header">
-				<h1>Voter guides</h1>
-				<p>My recommendations for elections past and present.</p>
+				<div class="header-content">
+					<h1>Voter guides</h1>
+					<p class="subtitle">California election recommendations since 2016</p>
+				</div>
+				<div class="header-meta">
+					<span class="stat">{elections.length} elections</span>
+					<span class="divider"></span>
+					<span class="stat">{jurisdictionData.length} jurisdictions</span>
+				</div>
 			</header>
 
-			<ul class="election-list">
-				{sortedElections.map((election) => {
-					const slug = election.id.replace('/index', '');
-					return (
-						<li>
-							<a href={`/voter-guides/${slug}/`} class="election-card">
-								<div class="election-info">
-									<span class="location">{election.data.location}</span>
-									<h2>{election.data.title}</h2>
-									<p>{election.data.description}</p>
+			<div class="archive">
+				{jurisdictionData.map((jurisdiction) => (
+					<section class="jurisdiction">
+						<header class="jurisdiction-header">
+							<h2>{jurisdiction.name}</h2>
+							<span class="count">{jurisdiction.count} {jurisdiction.count === 1 ? 'election' : 'elections'}</span>
+						</header>
+
+						<div class="timeline">
+							{jurisdiction.years.map(({ year, elections }) => (
+								<div class="year-group">
+									<div class="year-marker">
+										<span class="year">{year}</span>
+									</div>
+									<div class="elections">
+										{elections.map((election) => (
+											<a href={`/voter-guides/${election.slug}/`} class="election-item">
+												<span class={`election-type ${election.type.className}`}>{election.type.label}</span>
+												<span class="election-label">{election.label}</span>
+												<svg class="arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+													<path d="M5 12h14M12 5l7 7-7 7"/>
+												</svg>
+											</a>
+										))}
+									</div>
 								</div>
-								<div class="election-date">
-									<FormattedDate date={election.data.electionDate} />
-								</div>
-							</a>
-						</li>
-					);
-				})}
-			</ul>
+							))}
+						</div>
+					</section>
+				))}
+			</div>
 		</main>
 		<Footer />
 	</body>
 </html>
 
 <style>
+	:root {
+		--navy: #1a2744;
+		--navy-soft: #2d3f5c;
+		--slate: #64748b;
+		--cream: #faf8f5;
+		--cream-dark: #f0ebe3;
+		--amber-accent: #c9973f;
+		--amber-soft: #e8d5b0;
+	}
+
 	main {
-		max-width: 800px;
+		max-width: 900px;
 		margin: 0 auto;
 		padding: var(--space-xl) var(--space-lg);
+		font-family: 'DM Sans', sans-serif;
 	}
 
+	/* Page Header */
 	.page-header {
-		margin-bottom: 3rem;
-		text-align: center;
+		margin-bottom: 3.5rem;
+		padding-bottom: 2rem;
+		border-bottom: 2px solid var(--navy);
 	}
 
-	.page-header h1 {
-		font-size: 2.75rem;
-		margin-bottom: 0.5rem;
-	}
-
-	.page-header p {
-		color: var(--text-secondary);
-		font-size: 1.25rem;
-	}
-
-	.election-list {
-		list-style: none;
-		padding: 0;
-		display: flex;
-		flex-direction: column;
-		gap: 1rem;
-	}
-
-	.election-card {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		padding: 1.5rem;
-		background: white;
-		border: 1px solid rgba(15, 23, 42, 0.08);
-		border-radius: var(--radius-lg);
-		text-decoration: none;
-		transition: all var(--duration-fast) var(--ease-out);
-	}
-
-	.election-card:hover {
-		border-color: var(--amber);
-		box-shadow: var(--shadow-md);
-		transform: translateY(-2px);
-	}
-
-	.election-info {
-		flex: 1;
-	}
-
-	.location {
-		font-size: 0.75rem;
+	.header-content h1 {
+		font-family: 'Crimson Pro', Georgia, serif;
+		font-size: 3rem;
 		font-weight: 600;
-		letter-spacing: 0.1em;
-		text-transform: uppercase;
-		color: var(--amber-dark);
+		color: var(--navy);
+		margin: 0 0 0.25rem;
+		letter-spacing: -0.02em;
 	}
 
-	.election-info h2 {
-		font-size: 1.25rem;
-		margin: 0.25rem 0 0.5rem;
-		color: var(--ink);
-	}
-
-	.election-info p {
-		font-size: 0.9375rem;
-		color: var(--text-secondary);
+	.subtitle {
+		font-size: 1.125rem;
+		color: var(--slate);
 		margin: 0;
 	}
 
-	.election-date {
-		font-size: 0.875rem;
-		color: var(--text-muted);
-		white-space: nowrap;
-		margin-left: 1rem;
+	.header-meta {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		margin-top: 1.5rem;
+		padding-top: 1rem;
 	}
 
+	.stat {
+		font-size: 0.8125rem;
+		font-weight: 500;
+		color: var(--navy-soft);
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+	}
+
+	.divider {
+		width: 4px;
+		height: 4px;
+		background: var(--amber-accent);
+		border-radius: 50%;
+	}
+
+	/* Archive Layout */
+	.archive {
+		display: flex;
+		flex-direction: column;
+		gap: 3rem;
+	}
+
+	/* Jurisdiction Sections */
+	.jurisdiction {
+		background: white;
+		border: 1px solid rgba(26, 39, 68, 0.1);
+		border-radius: 8px;
+		overflow: hidden;
+	}
+
+	.jurisdiction-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 1.25rem 1.5rem;
+		background: linear-gradient(to right, var(--navy), var(--navy-soft));
+	}
+
+	.jurisdiction-header h2 {
+		font-family: 'Crimson Pro', Georgia, serif;
+		font-size: 1.5rem;
+		font-weight: 500;
+		color: white;
+		margin: 0;
+	}
+
+	.jurisdiction-header .count {
+		font-size: 0.75rem;
+		font-weight: 500;
+		color: var(--amber-soft);
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+	}
+
+	/* Timeline */
+	.timeline {
+		padding: 0.5rem 0;
+	}
+
+	.year-group {
+		display: grid;
+		grid-template-columns: 80px 1fr;
+		border-bottom: 1px solid rgba(26, 39, 68, 0.06);
+	}
+
+	.year-group:last-child {
+		border-bottom: none;
+	}
+
+	.year-marker {
+		display: flex;
+		align-items: flex-start;
+		justify-content: center;
+		padding: 1rem 0;
+		background: var(--cream);
+		border-right: 1px solid rgba(26, 39, 68, 0.08);
+	}
+
+	.year {
+		font-family: 'Crimson Pro', Georgia, serif;
+		font-size: 1.125rem;
+		font-weight: 600;
+		color: var(--navy);
+	}
+
+	.elections {
+		display: flex;
+		flex-direction: column;
+	}
+
+	/* Election Items */
+	.election-item {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		padding: 0.875rem 1.25rem;
+		text-decoration: none;
+		transition: background-color 0.15s ease;
+		border-bottom: 1px solid rgba(26, 39, 68, 0.04);
+	}
+
+	.election-item:last-child {
+		border-bottom: none;
+	}
+
+	.election-item:hover {
+		background: var(--cream);
+	}
+
+	.election-item:hover .arrow {
+		transform: translateX(3px);
+		opacity: 1;
+	}
+
+	.election-type {
+		flex-shrink: 0;
+		padding: 0.25rem 0.625rem;
+		font-size: 0.6875rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		border-radius: 3px;
+	}
+
+	.type-general {
+		background: var(--navy);
+		color: white;
+	}
+
+	.type-primary {
+		background: var(--amber-soft);
+		color: var(--navy);
+	}
+
+	.type-special {
+		background: #fce7f3;
+		color: #9d174d;
+	}
+
+	.type-party {
+		background: #dbeafe;
+		color: #1e40af;
+	}
+
+	.election-label {
+		flex: 1;
+		font-size: 0.9375rem;
+		font-weight: 500;
+		color: var(--navy);
+	}
+
+	.arrow {
+		flex-shrink: 0;
+		color: var(--slate);
+		opacity: 0;
+		transition: all 0.15s ease;
+	}
+
+	/* Responsive */
 	@media (max-width: 640px) {
-		.election-card {
-			flex-direction: column;
-			align-items: flex-start;
+		.page-header h1 {
+			font-size: 2.25rem;
 		}
 
-		.election-date {
-			margin-left: 0;
-			margin-top: 1rem;
+		.year-group {
+			grid-template-columns: 60px 1fr;
+		}
+
+		.year-marker {
+			padding: 0.75rem 0;
+		}
+
+		.year {
+			font-size: 1rem;
+		}
+
+		.election-item {
+			padding: 0.75rem 1rem;
+		}
+
+		.election-type {
+			font-size: 0.625rem;
+			padding: 0.2rem 0.5rem;
+		}
+
+		.election-label {
+			font-size: 0.875rem;
 		}
 	}
 </style>

@@ -1,8 +1,8 @@
 ---
 title: 'San Francisco voter guide: November 2020'
 description: 'My recommendations for San Francisco races in the November 2020 election, including supervisor races and local ballot propositions.'
-electionDate: 'Nov 01 2020'
-location: 'California'
+electionDate: 'Nov 03 2020'
+location: 'San Francisco'
 ---
 
 I lived in San Francisco from 2016 to 2019, and still follow its politics.

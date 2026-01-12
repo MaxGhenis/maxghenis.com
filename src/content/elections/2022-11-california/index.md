@@ -1,7 +1,7 @@
 ---
 title: 'California voter guide: November 2022'
 description: 'My recommendations for the 2022 California general election, covering statewide races and ballot propositions.'
-electionDate: 'Nov 01 2022'
+electionDate: 'Nov 08 2022'
 location: 'California'
 ---
 
