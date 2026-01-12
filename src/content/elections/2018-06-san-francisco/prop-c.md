@@ -1,0 +1,17 @@
+---
+title: 'Commercial rent tax for childcare and early education'
+measureId: 'Prop C'
+position: 'no'
+summary: 'Irresponsibly aggressive tax increase that could be better addressed through cash transfers like a child benefit.'
+election: '2018-06-san-francisco'
+---
+
+Propositions C and D are competing to increase the tax on commercial rents, currently set at around 0.3 percent for most businesses with gross receipts of at least $1 million. Prop C would levy an additional tax of 1 percent on warehouses and 3.5 percent on other commercial space; the estimated $146 million would fund childcare and early education (85 percent) and general city purposes (15 percent). Prop D would levy an additional tax of 1.7 percent tax; the estimated $70 million would fund general city services ($1.5 to 3 million per year), subsidized housing (55 percent of the remainder), and homelessness (45 percent of the remainder).
+
+It is unfortunate that the city has pit childcare against housing: both are critically important, and the tax base for both is worth tapping. But I favor D for two reasons: it's more measured in its tax increase; and housing and homelessness are more dire needs which can't easily be addressed by other policies.
+
+Increasing any tax by an order of magnitude is risky. Prop D increasing it by nearly sixfold is audacious; Prop C's twelvefold increase is simply irresponsible. If a lower increase works out, we can always increase it over time. But building out a childcare infrastructure based on commercial rents — which are volatile — makes it very hard to turn back if it causes negative consequences. These could include businesses leaving San Francisco or buying out their landlords to avoid the tax. A previous instance of Supervisors Kim and Peskin introducing a Proposition C serves as a lesson: 2016 Prop C raised the inclusionary housing rate to 25 percent, at which point housing production fell sharply. In 2017, the Board had to unbreak this by reducing the rate to 18 percent, as recommended by an economic feasibility study.
+
+While the research on childcare's long-term benefits is shaky, the reality is that many parents need it to participate in the labor force. New studies show that much of the gender wage gap is explained by childbearing, suggesting that improving access to childcare can improve gender equity.
+
+But government does not need to fund childcare programs directly to ensure access; even Denmark does not provide free childcare. Instead we can follow Canada and many European nations in enacting a child cash benefit, which would also assist parents who care for children themselves, or have a family member (e.g. grandparent or older sibling) do so. I've written on how transforming the US Child Tax Credit into a universal child benefit would significantly reduce child poverty, and San Francisco would make an ideal launchpad. With the $124 million that Prop C would direct to childcare, San Francisco could send families $3,100 checks for each of the 40,000 children under five years old. Even the cheapest childcare is more expensive than that, but the funds could be focused on low-income families and combined with existing childcare subsidies (on which the City spends $100 million, and which often have years-long waitlists). Studies show that child benefits have significant long-term impacts, and cash would allow low-income families to participate in the normal childcare market as higher earners do.
