@@ -1,0 +1,93 @@
+---
+title: "Why i’ve taken the giving what we can pledge"
+description: "### Why I’ve taken the Giving What We Can pledge"
+pubDate: '2019-12-31'
+---
+
+
+### Why I’ve taken the Giving What We Can pledge
+
+
+#### The global poor will benefit much more from ten percent of my income than I will
+
+**TL;DR:*** I’m pledging to give at least ten percent of my income to highly effective charities from 2019 on. For this year, I’m giving mostly to *[GiveDirectly](http://givedirectly.org)* (which provides direct cash transfers to extremely poor households) and *[GiveWell](http://givewell.org)* (which directs donations quarterly *[at its discretion](https://www.givewell.org/about/FAQ/discretionary-grantmaking)*, generally to life-saving treatments like malaria bed nets). To join me and the *[over 4,400 members](https://www.givingwhatwecan.org/about-us/members/)* of *[Giving What We Can](https://www.givingwhatwecan.org/)*, visit *[givingwhatwecan.org/pledge](http://givingwhatwecan.org/pledge)*.*
+
+When I was about 12, I sat around the dining room table with my family, paging through the catalog of the charity *Heifer International*.* *We were looking for the best animal to buy for a poor farmer in sub-Saharan Africa. We felt warm and fuzzy as we settled on a goat, knowing we were helping someone with far less than we’d ever had. While we’d given to homeless people and local services before, the Heifer catalog is my first salient memory of giving.
+
+Once I started working after college, I was glad for the chance to give my own money to charities. Heifer now seemed prescriptive and arbitrary to me (why would I know the best livestock to get a farmer?),¹ so I focused on medical research and interest-free Kiva loans to poor people looking for business investment in developing countries.² My intuitions were that medical advancements served the public good, and that people in poorer countries who sought funding for a specific venture would benefit most from a dollar of giving. But I wondered whether these choices were the best use of my giving budget.
+
+I started to satisfy this curiosity in 2012, when I learned of [GiveDirectly](http://givedirectly.org), a small nonprofit that gave direct, unconditional cash transfers to extremely poor families in Kenya. Their approach was novel but not untested: other studies had shown that giving people cash improved outcomes ranging from nutrition to business investment, and GiveDirectly (founded by economists) was evaluating its own disbursements with randomized controlled trials. GiveDirectly’s focus on efficiency (90 cents of every dollar in donations ended up in the hands of a poor person), transparent measurement, and effective deployment of additional funds, earned it a [“Top Charity”](https://web.archive.org/web/20121201034608/http://www.givewell.org/international/top-charities/give-directly) rating from the evidence-based evaluator [GiveWell](http://givewell.org). GiveWell evaluates charities on the cost-effectiveness of their measured impact, and awarded only three Top Charity ratings in 2012.
+
+
+![GiveWell’s logo as of 2012 (they’ve since scrapped the slogan)](https://cdn-images-1.medium.com/max/800/0*uBygJagB-WFaixZG)
+
+Discovering GiveDirectly — and GiveWell’s review of GiveDirectly — became a seminal event in my life. My interest in cash transfers led to researching [universal basic income](http://ubicenter.org) (UBI, which GiveDirectly is [testing](https://www.givedirectly.org/ubi-study/) in Kenya), while the validation of GiveWell’s evaluation contributed to my decision to pursue a [master’s degree](http://economics.mit.edu/masters) in development economics, which I’ll start next month (the program was created by one of the researchers evaluating GiveDirectly’s UBI experiment, who just [won](https://www.nobelprize.org/uploads/2019/10/press-economicsciences2019.pdf) the Nobel Prize).
+
+These organizations have continued to grow and improve. GiveDirectly still gives lump-sum transfers to Kenyans living on a dollar a day, and now operates in [seven](https://www.givedirectly.org/faq/) more countries while distributing in new ways: as [UBI](https://www.givedirectly.org/ubi-study/), to [disaster victims](https://www.givedirectly.org/relief/) and [refugees](https://www.givedirectly.org/refugees/), and as a [benchmark](https://www.vox.com/world/2018/9/13/17846190/cash-saves-lives-rwanda-usaid-foreign-aid-nutrition) for other aid organizations to test their interventions. They’ve completed a number of randomized controlled trial [evaluations](https://www.givedirectly.org/research-at-give-directly/), revealing that recipients have higher earnings, assets, and nutrition spend, without increases to alcohol and tobacco spend. Their [latest study](https://www.vox.com/future-perfect/2019/11/25/20973151/givedirectly-basic-income-kenya-study-stimulus) even finds benefits among non-recipients: households receiving the transfers saw consumption rise, but so did households in the same village who didn’t get the money — and their consumption rose a similar amount.
+
+GiveWell has updated their list of [top charities](https://www.givewell.org/charities/top-charities/) annually, including GiveDirectly each year, along with charities that treat and prevent fatal or debilitating diseases. These other charities are extremely cost-effective at averting deaths — for example, they estimate that the Against Malaria Foundation does so for [$2,300](https://twitter.com/MaxGhenis/status/1210456968701177856) — and boosting consumption among those on the verge of starvation.
+
+I didn’t know all this over the past seven years — some wasn’t yet knowable — but I became increasingly convinced that giving effectively was one of the most important things I could do. So over time, I increased my giving³ and shifted it toward GiveDirectly and other top GiveWell charities.
+
+
+![](https://cdn-images-1.medium.com/max/800/0*6Yp18gLKA3uu274Q)
+
+
+### Effective Altruism
+
+Over this period, I also learned more about the *effective altruism *(EA) movement. EA began with global development in mind, making GiveWell a sort of standard-bearer. It’s since expanded into charities promoting animal welfare and reducing the risk of massive disasters — e.g. by improving the safety of artificial intelligence systems and nuclear arsenals, and preparing for pandemics — and supporting individuals seeking to dedicate their careers to these issues rather than only donating to them.
+
+EA forces donors to confront some difficult moral questions, like how to weigh saving someone from blindness against saving a child from dying of malaria. Or harder yet, how to weigh these short-term gains against making human extinction a tiny bit less likely.
+
+But one moral question was less ambiguous: whether someone living a relatively comfortable life in a rich country should give generously to effective causes. The philosopher Peter Singer illustrates this with a [thought experiment](https://www.utilitarian.net/singer/by/199704--.htm). In it, you are walking by a pond and notice a child drowning. Should you save them, even if doing so would ruin your clothes and shoes? “Of course,” most would say. Do you not, then, have the same obligation to save children across the world from us, when it comes at a similarly low cost?
+
+[Giving What We Can](https://www.givingwhatwecan.org/) is an EA organization created to commit people to this line of reasoning. Those who take its pledge are committing to give at least ten percent of their income to highly effective charities each year (with [exceptions or adaptations](https://www.givingwhatwecan.org/about-us/frequently-asked-questions/#45-what-about-students--the-unemployed--the-retired) for students, retirees, people with health conditions, etc.). Here’s the text of the Pledge:
+
+
+> I recognise that I can use part of my income to do a significant amount of good. Since I can live well enough on a smaller income, I pledge that for the rest of my life or until the day I retire, I shall give at least ten percent of what I earn to whichever organisations can most effectively use it to improve the lives of others, now and in the years to come. I make this pledge freely, openly, and sincerely.
+
+Someone earning the US median personal income of [$33,706](https://fred.stlouisfed.org/series/MEPAINUSA672N) — placing them in the [richest 3.7 percent](https://howrichami.givingwhatwecan.org/?income=33706&countryCode=USA&household%5Badults%5D=1&household%5Bchildren%5D=0) of the global population — would then be saving about 1.5 lives per year by giving their pledged amount to the Against Malaria Foundation.
+
+I’ve known of the Giving What We Can pledge for a few years, but finally pulled the trigger for a couple reasons. One, I’ve simply learned more about the horrific scale of global poverty, and the tractability of ending it. While a number of resources have made an impact on me — such as the website [Our World In Data](http://ourworldindata.org), Vox’s [Future Perfect](https://www.vox.com/future-perfect) project, and various posts on the [EA forum](https://forum.effectivealtruism.org/) — the most recent educational source has been Peter Singer’s book, [The Life You Can Save](https://www.thelifeyoucansave.org/)*.*⁴* *Originally published in 2009, Singer [re-released it for free](https://www.thelifeyoucansave.org/the-book/) this month in e-book and audiobook formats. I finally read it, checking off a book long on my list, and was more convinced than ever of the moral and empirical case for giving generously.
+
+There’s also the question of [when to give](https://www.givingwhatwecan.org/about-us/frequently-asked-questions/#24-why-give-now-rather-than-later-in-life-or-in-my-will). I initially wanted to save more before committing to give a larger share of my income, but newer research found that my money would do much more good early on than later. For example, GiveDirectly transfers yield rates of return of [30 percent or more](https://www.givedirectly.org/research-on-cash-transfers/) among recipients, because their businesses are so capital-constrained, far outweighing the 8 percent or so my money earns in stock index funds. And since these countries are developing economically, health interventions that save lives today will probably not be available for such low cost in the future. At a certain point, all the easy-to-reach households will have malaria bed nets, and it’ll be harder to find similarly cheap ways to save lives; it might be a while before it costs millions to save a life as it does in the US, but they’ll progress quickly, and the sooner effective charities can invest in the low-hanging fruit, the more deaths my money can avert.
+
+Finally, *The Life You Can Save* reviews the evidence on what causes people to give. It turns out that social norms are a major factor. The ten-percent tithe is common across religions and employer gift matches affect giving levels, and randomized experiments also show that people are primed by what others are giving when deciding how much to give. That’s why it wasn’t enough for me to give privately; I hope that adding my name to a [public list of pledgers](https://www.givingwhatwecan.org/about-us/members/) (and writing this) encourages others to consider giving a bit more, or to charities that are more proven, or to go all-out and take the pledge.
+
+
+### How I’m giving this year
+
+At this point it may not be surprising that I’m giving to GiveWell and GiveDirectly: I’m giving each of them five percent of my 2019 income.
+
+
+![Source: GiveWell](https://cdn-images-1.medium.com/max/800/0*gfFnubfm7wPVNeZI)
+
+[GiveWell](http://givewell.org) allocates their donations quarterly to one or two of their [top charities](https://www.givewell.org/charities/top-charities). I expect that they’ll give to an organization that will save or improve a great number of lives (probably by treating or preventing malaria or worms). I’ve given through GiveWell rather than directly to one of their top charities (e.g. Against Malaria Foundation) because (a) I trust them to make the best choice at the end of the quarter based on need and new information, and (b) doing so signals to GiveWell’s operational funders that their evaluation work is valued.
+
+[GiveDirectly](http://givedirectly.org) will transfer about 85 percent of my donation directly to extremely poor households in sub-Saharan Africa, after transaction and distribution costs. While this might not save as many lives as Against Malaria Foundation, the recipients will see lasting economic and nutritional improvements from the transfer, and they will be fully empowered to make the best use of the money. Supporting GiveDirectly will grow their transformation of the aid sector — and even public policy sector — by emphasizing unconditional cash transfers.
+
+In addition, I’m giving under 1 percent of my income to these two organizations. While neither is an explicitly EA charities of the GiveWell variety, I believe that they are worthy causes by virtue of their [importance, tractability, and neglectedness](https://concepts.effectivealtruism.org/concepts/importance-neglectedness-tractability/).
+
+- Yes In My Back Yard (YIMBY), which makes housing more affordable and accessible through education and advocacy, as well as legal action against cities that violate state and federal housing law. Many studies show that housing shortages in urban areas are causing poverty, climate change, air pollution, homelessness, immobility, and slow economic growth (here’s a review I recently wrote). YIMBY is a 501(c)3 that works with other pro-housing groups I’ve volunteered with, including SF YIMBY and California YIMBY (and Ventura County YIMBY, the CA YIMBY chapter I co-founded) to promote more construction of dense infill homes. From an EA lens, I’m encouraged that Open Philanthropy Project, GiveWell’s sister organization, supports YIMBY groups, and has also identified immigration policy as a focus area, which abundant housing supply can promote.
+- Citizens’ Climate Education, which educates the public about carbon fee-and-dividend policies. They’re the 501(c)3 arm of Citizens’ Climate Lobby, which I joined in early 2019. EAs tend not to emphasize climate change because, while it is clearly important, it’s far from neglected. However, I believe carbon pricing is worthwhile because it has greater potential to cut emissions than any other policy, and it lacks the grassroots support of other environmental organizations like the Sunrise Movement or the Sierra Club. Citizens’ Climate Lobby has organized carbon pricing advocates since 2007, and it now has a bill in Congress with 75 cosponsors.
+
+
+### Until next time
+
+I plan to do another recap like this next year, and hope it will include a new charity or two. For example, I didn’t donate to non-GiveWell EA charities like “longtermism” (AI, nuclear, and pandemic safety); meta EA (supporting organizations like Giving What We Can); or animal welfare. I don’t yet have confidence that these areas are worth diversifying away from GiveWell and GiveDirectly, but I expect that that could change with more research. Now that my stakes are higher, I’m looking forward to researching how to make my giving count even more.
+
+**You can learn more about **[Effective Altruism](https://www.effectivealtruism.org/)**, **[The Life You Can Save](https://www.thelifeyoucansave.org/)**, or **[Giving What We Can](https://www.givingwhatwecan.org/)**, or **[take the pledge](http://givingwhatwecan.org/pledge)**.**
+
+¹ GiveWell [reviewed](https://www.givewell.org/International/charities/Heifer-Project-International) Heifer International in 2009 and determined that it did not meet its criteria for (a) publishing high-quality monitoring and evaluation reports, and (b) focusing on programs with strong evidence bases. They have found [little evidence](https://www.givewell.org/international/economic-empowerment/livestock-gift-programs) supporting livestock gift programs.
+
+² GiveWell [reviewed](https://www.givewell.org/international-giving-marketplaces) Kiva, GlobalGiving, and other “giving marketplaces” in 2010, and expressed concern about fungibility, given projects are likely to be funded regardless of the donation. GiveWell’s “[current view](https://www.givewell.org/international/economic-empowerment/microfinance) is that microfinance is not among the best options for donors looking to accomplish as much good as possible.” Interest-free loans are equivalent to a donation equal to the market rate of return on the principal, plus expected default losses (i.e. the opportunity cost of the loan).
+
+³ I front-loaded some 2018 giving to 2017 for tax reasons. Bunching donations is generally advantageous in the US because of the standard deduction, and the Pledge [allows for this](https://www.givingwhatwecan.org/about-us/frequently-asked-questions/#46-how-often-should-members-donate).
+
+⁴ Singer’s organization, *The Life You Can Save,* has [its own giving pledge](https://www.thelifeyoucansave.org/take-the-pledge/), which I’ve also taken. That pledge focuses on global development charities, i.e. from GiveWell. It has a graduated scale, and asks for less than ten percent of income for households earning less than $500,000 per year. My current income is less than $500,000, so I’m bound by the Giving What We Can pledge, but I’ll shift as needed, and also ensure that my donations to the global poor meet the Singer pledge should I choose to diversify to other EA causes in the future.
+
+By [Max Ghenis](https://medium.com/@maxghenis) on [December 31, 2019](https://medium.com/p/d5576f23df10).
+
+[Canonical link](https://medium.com/@maxghenis/why-ive-taken-the-giving-what-we-can-pledge-d5576f23df10)
+
+Exported from [Medium](https://medium.com) on January 10, 2026.

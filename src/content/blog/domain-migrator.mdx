@@ -1,0 +1,103 @@
+---
+title: 'Domain Migrator: Automating bulk domain transfers to Cloudflare'
+description: 'A Chrome extension that automates the tedious process of transferring multiple domains from GoDaddy or Squarespace to Cloudflare.'
+pubDate: 'Jan 11 2026'
+---
+
+## Why Cloudflare?
+
+I'm consolidating all my domains to Cloudflare for several reasons:
+
+- **At-cost pricing** - Cloudflare charges wholesale prices with no markup. Domain renewals are typically $2-5 cheaper per year than GoDaddy or Squarespace.
+- **Free DNS** - Fast, reliable DNS with DDoS protection included
+- **Free SSL** - Automatic HTTPS for all domains
+- **Email routing** - Free email forwarding without needing a separate service
+- **No upsells** - Clean interface without constant attempts to sell you add-ons
+- **API access** - Programmatic control over DNS and other settings
+
+Currently Domain Migrator only supports Cloudflare as the destination, but I could add other registrars (GoDaddy, Squarespace, Namecheap, Porkbun, etc.) in the future if there's demand.
+
+## The tedium of domain transfers
+
+Transferring domains between registrars is one of the most tedious tasks in web administration. Each domain requires:
+
+1. Unlocking the domain at the source registrar
+2. Getting an authorization (EPP) code
+3. Adding the domain to the new registrar
+4. Selecting a plan
+5. Copying the new nameservers
+6. Updating nameservers at the source registrar
+7. Waiting for propagation
+
+Multiply this by 8 domains and you're looking at hours of clicking through slow web interfaces.
+
+I built **Domain Migrator** to automate this entire workflow.
+
+## The problem with existing tools
+
+I researched existing options before building this:
+
+**Registrar bulk transfer tools** - [GoDaddy](https://www.godaddy.com/domains/bulk-domain-transfer), [Dynadot](https://www.dynadot.com/domain/bulk-transfer), and others offer bulk transfer *into* their platform. But they still require you to manually:
+- Unlock each domain at your current registrar
+- Copy auth codes one by one
+- Paste them into the bulk transfer form
+
+**Cloudflare API scripts** - [Centmin Mod's blog](https://blog.centminmod.com/2021/03/04/2333/how-to-bulk-domain-transfer-to-cloudflare-registrar-and-save-on-domain-renewal-costs/) shows bash scripts for bulk transfers using Cloudflare's API. But these still require manually gathering auth codes first. And the [Cloudflare API doesn't support API tokens](https://blog.centminmod.com/2021/02/28/2310/how-to-bulk-domain-transfer-out-from-cloudflare-registrar-via-cloudflare-api/) for registrar operations—you need your global API key.
+
+**No end-to-end solution** - I couldn't find any tool that automates the *entire* workflow from source registrar to destination. The bottleneck is always "get your auth codes manually first."
+
+## How Domain Migrator works
+
+Domain Migrator is a Chrome extension that:
+
+1. **Scans your registrar** - Navigate to GoDaddy or Squarespace, click import, and it finds all your domains
+2. **Gets auth codes automatically** - Navigates to each domain's transfer page and extracts the authorization code
+3. **Adds to Cloudflare** - Opens Cloudflare, adds the domain, selects the free plan
+4. **Copies nameservers** - Extracts the assigned Cloudflare nameservers
+5. **Updates the source** - Goes back to GoDaddy/Squarespace and updates the nameservers
+
+All while showing progress in a status bar:
+
+```
+✓ Get auth code → ✓ Add to Cloudflare → ✓ Select plan → ● Get nameservers → ○ Update nameservers → ○ Done
+```
+
+## Technical challenges
+
+Building this taught me a lot about browser automation in 2026:
+
+**SPA navigation** - Both GoDaddy and Cloudflare are single-page apps. The URL changes but the page doesn't fully reload. I had to use MutationObserver to detect navigation and reinitialize the content scripts.
+
+**React input handling** - GoDaddy uses React, which has its own synthetic event system. Simply setting `input.value` doesn't trigger React's state updates. I had to use the native HTMLInputElement value setter and dispatch multiple event types.
+
+**2FA interruptions** - GoDaddy sometimes prompts for 2FA mid-flow. The extension detects this, pauses, and waits for the user to complete verification before resuming.
+
+**Error recovery** - Domains can have "pending events" that block nameserver changes. The extension detects these states and handles them gracefully.
+
+## Completion verification
+
+Each domain tracks three pieces of data:
+- `authCode` - The EPP authorization code
+- `cloudflareAdded` - Whether it's been added to Cloudflare
+- `nameservers.cloudflare` - The assigned Cloudflare nameservers
+
+A domain is only marked complete when all three exist AND the nameserver update succeeds at the source registrar.
+
+## Try it
+
+The extension is open source: [github.com/maxghenis/domain-migrator](https://github.com/maxghenis/domain-migrator)
+
+To install:
+1. Clone the repo
+2. Go to `chrome://extensions`
+3. Enable Developer Mode
+4. Click "Load unpacked" and select the repo folder
+
+Then navigate to your GoDaddy or Squarespace domain portfolio and click the extension icon to start.
+
+## What's next
+
+- **More registrars** - Namecheap, Google Domains, etc.
+- **Cloudflare API integration** - Use the API where possible instead of browser automation
+- **Better error handling** - More graceful recovery from edge cases
+- **Firefox support** - Port to Firefox extension APIs
