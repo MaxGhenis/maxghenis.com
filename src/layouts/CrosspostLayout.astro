@@ -45,7 +45,7 @@ const { title, description, pubDate, originalUrl, heroImage } = Astro.props;
 							<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
 								<path fill="currentColor" d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
 							</svg>
-							Copy to clipboard
+							Copy text &amp; links
 						</button>
 						<a href={originalUrl} class="original-link">
 							<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
@@ -54,6 +54,7 @@ const { title, description, pubDate, originalUrl, heroImage } = Astro.props;
 							View original with interactive content
 						</a>
 					</div>
+					<p class="image-note">Note: Images need to be added manually after pasting. Right-click images below to save them.</p>
 				</header>
 
 				<div id="copyable-content" class="copyable-content">
@@ -82,32 +83,8 @@ const { title, description, pubDate, originalUrl, heroImage } = Astro.props;
 	const content = document.getElementById('copyable-content');
 	const toast = document.getElementById('toast');
 
-	// Convert image URL to base64 data URI
-	async function imageToDataUri(imgUrl: string): Promise<string> {
-		try {
-			const response = await fetch(imgUrl);
-			const blob = await response.blob();
-			return new Promise((resolve, reject) => {
-				const reader = new FileReader();
-				reader.onloadend = () => resolve(reader.result as string);
-				reader.onerror = reject;
-				reader.readAsDataURL(blob);
-			});
-		} catch {
-			return imgUrl; // Return original URL if conversion fails
-		}
-	}
-
 	copyBtn?.addEventListener('click', async () => {
 		if (!content) return;
-
-		// Show loading state
-		copyBtn.innerHTML = `
-			<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" class="spinning">
-				<path fill="currentColor" d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/>
-			</svg>
-			Converting...
-		`;
 
 		try {
 			// Clone content
@@ -122,26 +99,21 @@ const { title, description, pubDate, originalUrl, heroImage } = Astro.props;
 				}
 			});
 
-			// Convert images to base64 data URIs for Google Docs compatibility
-			const images = clone.querySelectorAll('img');
-			await Promise.all(Array.from(images).map(async (img) => {
-				let src = img.getAttribute('src');
-				if (src) {
-					// Make relative URLs absolute
-					if (src.startsWith('/')) {
-						src = baseUrl + src;
-					}
-					// Convert to data URI
-					const dataUri = await imageToDataUri(src);
-					img.setAttribute('src', dataUri);
-				}
-			}));
+			// Remove images from the copy (platforms don't support pasted HTML images)
+			// Users should add images manually using each platform's upload
+			clone.querySelectorAll('img').forEach(img => {
+				const alt = img.getAttribute('alt') || 'Image';
+				const placeholder = document.createElement('p');
+				placeholder.innerHTML = `<em>[Image: ${alt}]</em>`;
+				placeholder.style.color = '#666';
+				img.replaceWith(placeholder);
+			});
 
 			// Get HTML content and plain text fallback
 			const html = clone.innerHTML;
 			const text = content.innerText;
 
-			// Try to copy as rich HTML (preserves links and embedded images)
+			// Try to copy as rich HTML (preserves links and formatting)
 			try {
 				await navigator.clipboard.write([
 					new ClipboardItem({
@@ -172,7 +144,7 @@ const { title, description, pubDate, originalUrl, heroImage } = Astro.props;
 					<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
 						<path fill="currentColor" d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
 					</svg>
-					Copy to clipboard
+					Copy text &amp; links
 				`;
 			}, 2000);
 		} catch (err) {
@@ -182,7 +154,7 @@ const { title, description, pubDate, originalUrl, heroImage } = Astro.props;
 				<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
 					<path fill="currentColor" d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
 				</svg>
-				Copy to clipboard
+				Copy text &amp; links
 			`;
 		}
 	});
@@ -267,6 +239,13 @@ const { title, description, pubDate, originalUrl, heroImage } = Astro.props;
 		flex-wrap: wrap;
 		gap: 1rem;
 		justify-content: center;
+	}
+
+	.image-note {
+		font-size: 0.875rem;
+		color: var(--text-secondary);
+		margin-top: 1rem;
+		font-style: italic;
 	}
 
 	.copy-btn {

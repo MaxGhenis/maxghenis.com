@@ -85,7 +85,7 @@ describe('CrosspostAware component', () => {
 		});
 
 		it('should have copy to clipboard button', () => {
-			expect(html).toContain('Copy to clipboard');
+			expect(html).toContain('Copy text');
 			expect(html).toContain('id="copy-btn"');
 		});
 	});
