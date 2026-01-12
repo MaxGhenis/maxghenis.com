@@ -1,9 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import CrosspostLayout from '../../../layouts/CrosspostLayout.astro';
-import { marked } from 'marked';
-import fs from 'node:fs';
-import path from 'node:path';
+import { getImage } from 'astro:assets';
 
 export async function getStaticPaths() {
 	const posts = await getCollection('blog');
@@ -17,28 +15,11 @@ const post = Astro.props;
 const { Content } = await render(post);
 const originalUrl = `/blog/${post.id}/`;
 
-// Try to find a crosspost version of the content
-// Look for post-crosspost.md sibling file
-let crosspostContent: string | undefined;
-
-// Construct possible crosspost file paths
-const postId = post.id;
-const baseName = postId.replace(/\.mdx?$/, '');
-const possiblePaths = [
-	`src/content/blog/${baseName}-crosspost.md`,
-	`src/content/blog/${baseName}-crosspost.mdx`,
-];
-
-for (const filePath of possiblePaths) {
-	const fullPath = path.join(process.cwd(), filePath);
-	if (fs.existsSync(fullPath)) {
-		const fileContent = fs.readFileSync(fullPath, 'utf-8');
-		// Remove frontmatter
-		const contentWithoutFrontmatter = fileContent.replace(/^---[\s\S]*?---\n*/, '');
-		// Parse markdown to HTML
-		crosspostContent = await marked.parse(contentWithoutFrontmatter);
-		break;
-	}
+// Get the hero image if it exists
+let heroImageUrl: string | undefined;
+if (post.data.heroImage) {
+	const optimized = await getImage({ src: post.data.heroImage, format: 'png' });
+	heroImageUrl = optimized.src;
 }
 ---
 
@@ -47,7 +28,7 @@ for (const filePath of possiblePaths) {
 	description={post.data.description}
 	pubDate={post.data.pubDate}
 	originalUrl={originalUrl}
-	crosspostContent={crosspostContent}
+	heroImage={heroImageUrl}
 >
-	{!crosspostContent && <Content />}
+	<Content />
 </CrosspostLayout>

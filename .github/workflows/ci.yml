@@ -28,3 +28,28 @@ jobs:
 
       - name: Check TypeScript
         run: npx astro check
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Start dev server
+        run: npm run dev &
+
+      - name: Wait for server
+        run: npx wait-on http://localhost:4321 --timeout 60000
+
+      - name: Run tests
+        run: npm test

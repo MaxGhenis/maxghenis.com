@@ -6,6 +6,7 @@ heroImage: './ide-to-ai-orchestration.png'
 ---
 
 import AICodingTimeline from '../../components/AICodingTimeline.astro';
+import CrosspostAware from '../../components/CrosspostAware.astro';
 
 Claude Code creator Boris Cherny [recently shared](https://x.com/bcherny/status/2004897269674639461) that since the beginning of December, "100% of my contributions to Claude Code were written by Claude Code." He elaborated: "In the last thirty days, I landed 259 PRs—497 commits, 40k lines added, 38k lines removed. Every single line was written by Claude Code + Opus 4.5."
 
@@ -13,7 +14,27 @@ I've been building entirely in Claude Code since October—longer than Boris bec
 
 The next step in this evolution is to skip the IDE altogether. And 2025's tool launches suggest that's exactly where the industry is heading.
 
-<AICodingTimeline />
+<CrosspostAware>
+  <AICodingTimeline slot="interactive" />
+  <Fragment slot="static">
+## The timeline
+
+**Feb 24, 2025** — [Anthropic launches Claude Code](https://www.anthropic.com/news/claude-3-7-sonnet)
+A simple terminal tool—chat with Claude, edit files, run bash commands.
+
+**May 16, 2025** — [OpenAI launches Codex](https://openai.com/index/introducing-codex/)
+A cloud-based software engineering agent that runs tasks in isolated containers.
+
+**Nov 18, 2025** — [Google launches Antigravity](https://developers.googleblog.com/build-with-google-antigravity-our-new-agentic-development-platform/)
+An agent-first development platform where you don't touch code—you manage agents.
+
+**Nov 24, 2025** — [Anthropic launches Opus 4.5 + Claude Code in Desktop](https://www.anthropic.com/news/claude-opus-4-5)
+Multiple parallel sessions with isolated git worktrees.
+
+**Jan 6, 2026** — [Anthropic adds local Claude Code to Desktop](https://x.com/_catwu/status/2008628736409956395)
+Claude Code can run any shell command, access your filesystem, and control your browser.
+  </Fragment>
+</CrosspostAware>
 
 The Claude Desktop approach differs from Codex and similar cloud tools in one crucial way: full local access. Claude Code can run any shell command, access your filesystem, and control your browser. Cloud-based agents like Codex run in sandboxed containers with restricted permissions. Claude's bet is that developers want an agent with the same access they have—not a constrained PR-generator.
 

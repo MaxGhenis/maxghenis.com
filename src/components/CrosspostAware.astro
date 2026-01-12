@@ -1,0 +1,31 @@
+---
+/**
+ * CrosspostAware - Wrapper component for content that differs between interactive and crosspost views
+ *
+ * Usage in MDX:
+ * <CrosspostAware>
+ *   <AICodingTimeline slot="interactive" />
+ *   <Fragment slot="static">
+ *     **Feb 24, 2025** — [Anthropic launches Claude Code](https://...)
+ *     ...static timeline content...
+ *   </Fragment>
+ * </CrosspostAware>
+ */
+
+// Detect crosspost mode from URL
+const isCrosspost = Astro.url.pathname.includes('/crosspost');
+---
+
+{isCrosspost ? (
+  <div class="crosspost-static-content">
+    <slot name="static" />
+  </div>
+) : (
+  <slot name="interactive" />
+)}
+
+<style>
+  .crosspost-static-content {
+    /* Inherit parent styles */
+  }
+</style>
