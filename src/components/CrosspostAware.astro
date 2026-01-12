@@ -17,9 +17,7 @@ const isCrosspost = Astro.url.pathname.includes('/crosspost');
 ---
 
 {isCrosspost ? (
-  <div class="crosspost-static-content">
-    <slot name="static" />
-  </div>
+  <slot name="static" />
 ) : (
   <slot name="interactive" />
 )}

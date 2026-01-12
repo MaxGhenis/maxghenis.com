@@ -109,6 +109,30 @@ const { title, description, pubDate, originalUrl, heroImage } = Astro.props;
 				img.replaceWith(placeholder);
 			});
 
+			// Fix list structure: unwrap <p> inside <li> (Medium misinterprets nested structure)
+			clone.querySelectorAll('li > p').forEach(p => {
+				const li = p.parentElement;
+				if (li && p.parentElement === li) {
+					// Move p's children directly into li, remove the p wrapper
+					while (p.firstChild) {
+						li.insertBefore(p.firstChild, p);
+					}
+					p.remove();
+				}
+			});
+
+			// Remove any wrapper divs that might cause formatting issues
+			clone.querySelectorAll('div').forEach(div => {
+				// Replace div with its children
+				const parent = div.parentElement;
+				if (parent) {
+					while (div.firstChild) {
+						parent.insertBefore(div.firstChild, div);
+					}
+					div.remove();
+				}
+			});
+
 			// Get HTML content and plain text fallback
 			const html = clone.innerHTML;
 			const text = content.innerText;
