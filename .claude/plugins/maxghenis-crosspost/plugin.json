@@ -1,0 +1,14 @@
+{
+  "name": "maxghenis-crosspost",
+  "version": "1.0.0",
+  "description": "End-to-end crosspost publishing for maxghenis.com - platform-specific agents for Medium, Substack, LinkedIn, and X",
+  "agents": [
+    "agents/medium-publisher.md",
+    "agents/substack-publisher.md",
+    "agents/linkedin-publisher.md",
+    "agents/x-publisher.md"
+  ],
+  "skills": [
+    "skills/crosspost-common.md"
+  ]
+}
