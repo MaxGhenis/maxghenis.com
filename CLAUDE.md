@@ -99,10 +99,10 @@ The subtitle from the crosspost page header should be added to each platform:
 - Hyperlinks
 - Images (via Google Docs intermediary from production URLs)
 
-**What needs manual work:**
+**What needs manual work (Claude must do these after pasting):**
 - Cover/hero images (upload via each platform's UI)
 - Subtitles (copy from crosspost page header, add to Medium/Substack)
-- Numbered lists on Medium (known bug - recreate manually)
 - Empty paragraphs after headings (delete manually)
+- **Numbered lists on Medium**: Medium mangles numbered lists, leaving some items empty. After pasting, scroll through the article and manually retype the content for any empty numbered list items (1., 2., etc. with no text after them)
 
 **Important:** Must copy from production site, not localhost. Google Docs can't fetch localhost images.
