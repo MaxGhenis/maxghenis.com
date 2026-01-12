@@ -82,6 +82,8 @@ const { title, description, pubDate, originalUrl, heroImage } = Astro.props;
 	const copyBtn = document.getElementById('copy-btn');
 	const content = document.getElementById('copyable-content');
 	const toast = document.getElementById('toast');
+	const titleEl = document.querySelector('.crosspost-header h1');
+	const subtitleEl = document.querySelector('.crosspost-header .description');
 
 	copyBtn?.addEventListener('click', async () => {
 		if (!content) return;
@@ -133,9 +135,13 @@ const { title, description, pubDate, originalUrl, heroImage } = Astro.props;
 				}
 			});
 
-			// Get HTML content and plain text fallback
-			const html = clone.innerHTML;
-			const text = content.innerText;
+			// Build HTML with title and subtitle prepended
+			const title = titleEl?.textContent || '';
+			const subtitle = subtitleEl?.textContent || '';
+			const titleHtml = title ? `<h1>${title}</h1>\n` : '';
+			const subtitleHtml = subtitle ? `<p>${subtitle}</p>\n` : '';
+			const html = titleHtml + subtitleHtml + clone.innerHTML;
+			const text = (title ? title + '\n\n' : '') + (subtitle ? subtitle + '\n\n' : '') + content.innerText;
 
 			// Try to copy as rich HTML (preserves links and formatting)
 			try {
