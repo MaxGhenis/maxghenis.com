@@ -2,10 +2,8 @@
 title: "If we can afford our current welfare system, we can afford basic income"
 description: "Replacing the antipoverty bureaucracy"
 pubDate: '2016-01-24'
+heroImage: './welfare-system-basic-income-hero.jpeg'
 ---
-
-![](https://cdn-images-1.medium.com/max/2560/1*_463AHxG0pTQ4QJe2RgUbA.jpeg)
-
 
 [Basic income](https://en.wikipedia.org/wiki/Basic_income) (BI) is getting a lot of press these days. From [Switzerland’s upcoming referendum](https://en.wikipedia.org/wiki/Swiss_referendums,_2016#Basic_income_referendum) to give each citizen 2,500 francs per month, to [GiveDirectly](http://givedirectly.org)’s research upending the philanthropy world, to [Finland’s plan](https://agenda.weforum.org/2015/12/finland-basic-income/) for a 2017 BI pilot, more are warming to the idea that just giving people money may be the solution to poverty.
 

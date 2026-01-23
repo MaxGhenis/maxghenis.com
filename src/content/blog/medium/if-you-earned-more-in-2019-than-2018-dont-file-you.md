@@ -4,8 +4,6 @@ description: "The right tax filing schedule could get you thousands in (poorly d
 pubDate: '2020-03-27'
 ---
 
-#### The right tax filing schedule could get you thousands in (poorly designed) Recovery Rebates. And Congress: Let’s just do UBI next time.
-
 Late Wednesday night, the Senate unanimously passed the [CARES Act](https://drive.google.com/file/d/1eT-ANEEd-AgAzyQh8GVUGoRqtKRLHxDm/view), a $2.2 trillion relief package to address the Covid-19 pandemic. The House is [expected to pass it](https://www.washingtonpost.com/politics/house-leaders-seek-to-expedite-emergency-aid-package-amid-uncertainty-about-gop-lawmaker-delaying-measure/2020/03/26/392c9dba-6f7d-11ea-a3ec-70d7479d83f0_story.html) on Friday.
 
 Of all the components of the nearly-900-page bill, the Recovery Rebates will have the broadest and most tangible reach. [Over 93 percent](https://taxfoundation.org/cares-act-senate-coronavirus-bill-economic-relief-plan/) of tax filers will receive these one-time checks of up to $1,200 per adult and $500 per child.

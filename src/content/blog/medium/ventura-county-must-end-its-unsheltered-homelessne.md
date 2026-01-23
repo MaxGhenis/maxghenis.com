@@ -2,6 +2,7 @@
 title: "Ventura County must end its unsheltered homelessness"
 description: "We need to make shelters more abundant and housing more affordable"
 pubDate: '2019-11-25'
+heroImage: './ventura-county-homeless-count-2019.png'
 ---
 
 #### We need to make shelters more abundant and housing more affordable

@@ -4,8 +4,6 @@ description: "Using their cited assumptions around avoidance and economic growth
 pubDate: '2019-11-09'
 ---
 
-#### Using their cited assumptions around avoidance and economic growth cuts revenue by a quarter
-
 In January, Elizabeth Warren [proposed](https://www.washingtonpost.com/business/2019/01/24/elizabeth-warren-propose-new-wealth-tax-very-rich-americans-economist-says) a two percent (“two cent”) [wealth tax](https://elizabethwarren.com/plans/ultra-millionaire-tax) on families worth $50 million or more, graduated to three percent for those worth $1 billion or more. Last Friday, she [announced](https://elizabethwarren.com/plans/paying-for-m4a) an additional three percent tax on billionaires as part of her Medicare for All plan.
 
 Warren’s plans rely on revenue from this wealth tax. It’s how she would fund student debt cancellation, tuition-free public college, teacher pay hikes, subsidized child care, and now, part of single-payer healthcare.

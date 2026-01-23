@@ -1,7 +1,7 @@
 # Max Ghenis - Full Content
 
 > This file contains the full text of all blog posts from maxghenis.com, formatted for LLM consumption.
-> Generated: 2026-01-23T21:55:59.211Z
+> Generated: 2026-01-23T22:29:22.829Z
 > See also: /llms.txt for a curated overview
 
 ---
@@ -15,21 +15,20 @@
 5. [How to Use MDX for Interactive Posts](/blog/using-mdx/)
 6. [VAT thresholds, revenues, and the role of counterfactuals](/blog/substack/vat-thresholds/)
 7. [AI models favor Cuomo over Mamdani on NYC housing production](/blog/substack/ai-models-nyc-housing/)
-8. [What will the House Ways & Means Committee propose on Tuesday?](/blog/substack/house-ways-means-tuesday/)
-9. [My 2024 in code: Personal projects and AI tools](/blog/substack/my-2024-in-code/)
-10. [Why I'm a neoliberal](/blog/substack/why-im-a-neoliberal/)
-11. [In appointing their newest member, the ventura city council only pretended to care about housing](/blog/medium/in-appointing-their-newest-member-the-ventura-city/)
-12. [If you earned more in 2019 than 2018, don’t file your 2019 taxes yet! otherwise, file asap!](/blog/medium/if-you-earned-more-in-2019-than-2018-dont-file-you/)
-13. [Why i’ve taken the giving what we can pledge](/blog/medium/why-ive-taken-the-giving-what-we-can-pledge/)
-14. [Ventura county must end its unsheltered homelessness](/blog/medium/ventura-county-must-end-its-unsheltered-homelessne/)
-15. [Warren’s wealth tax would raise less than she claims — even using her economists’ own assumptions](/blog/medium/warrens-wealth-tax-would-raise-less-than-she-claim/)
-16. [Andrew yang’s troubling Tucker Carlson interview](/blog/medium/andrew-yangs-troubling-tucker-carlson-interview/)
-17. [Quantile regression, from linear models to trees to deep learning](/blog/medium/quantile-regression-from-linear-models-to-trees-to/)
-18. [We should replace the child tax credit with a universal child benefit](/blog/medium/we-should-replace-the-child-tax-credit-with-a-univ/)
-19. [The case for a wonky basic income plan](/blog/medium/the-case-for-a-wonky-basic-income-plan/)
-20. [Reddit featured a misleading headline on education secretary nominee Betsy DeVos](/blog/medium/reddit-featured-a-misleading-headline-on-education/)
-21. [Uber’s tipping settlement will reduce earnings of african-american drivers](/blog/medium/ubers-tipping-settlement-will-reduce-earnings-of-a/)
-22. [If we can afford our current welfare system, we can afford basic income](/blog/medium/if-we-can-afford-our-current-welfare-system-we-can/)
+8. [My 2024 in code: Personal projects and AI tools](/blog/substack/my-2024-in-code/)
+9. [Why I'm a neoliberal](/blog/substack/why-im-a-neoliberal/)
+10. [In appointing their newest member, the Ventura City Council only pretended to care about housing](/blog/medium/in-appointing-their-newest-member-the-ventura-city/)
+11. [If you earned more in 2019 than 2018, don’t file your 2019 taxes yet! Otherwise, file ASAP!](/blog/medium/if-you-earned-more-in-2019-than-2018-dont-file-you/)
+12. [Why I’ve taken the Giving What We Can pledge](/blog/medium/why-ive-taken-the-giving-what-we-can-pledge/)
+13. [Ventura County must end its unsheltered homelessness](/blog/medium/ventura-county-must-end-its-unsheltered-homelessne/)
+14. [Warren’s wealth tax would raise less than she claims — even using her economists’ own assumptions](/blog/medium/warrens-wealth-tax-would-raise-less-than-she-claim/)
+15. [Andrew Yang’s troubling Tucker Carlson interview](/blog/medium/andrew-yangs-troubling-tucker-carlson-interview/)
+16. [Quantile regression, from linear models to trees to deep learning](/blog/medium/quantile-regression-from-linear-models-to-trees-to/)
+17. [We should replace the Child Tax Credit with a universal child benefit](/blog/medium/we-should-replace-the-child-tax-credit-with-a-univ/)
+18. [The case for a wonky basic income plan](/blog/medium/the-case-for-a-wonky-basic-income-plan/)
+19. [Reddit featured a misleading headline on education secretary nominee Betsy DeVos](/blog/medium/reddit-featured-a-misleading-headline-on-education/)
+20. [Uber’s tipping settlement will reduce earnings of African-American drivers](/blog/medium/ubers-tipping-settlement-will-reduce-earnings-of-a/)
+21. [If we can afford our current welfare system, we can afford basic income](/blog/medium/if-we-can-afford-our-current-welfare-system-we-can/)
 
 ---
 
@@ -38,6 +37,19 @@
 **URL:** https://maxghenis.com/blog/opencollective-py/
 **Published:** Jan 23 2026
 **Description:** A Python client, CLI, and MCP server for the OpenCollective API.
+
+<div style="display: flex; justify-content: center; margin: 1.5rem 0 2rem;">
+  <div style="width: 100px; height: 100px; background: linear-gradient(135deg, #0c2d66 0%, #1a4a8a 100%); border-radius: 20px; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 30px rgba(12, 45, 102, 0.3);">
+    <svg width="56" height="56" viewBox="0 0 288 288" fill="white"><path opacity="0.7" d="M188 21.351l-31.03 31.084c-11.025-6.104-23.702-9.579-37.19-9.579-42.526 0-77.002 34.54-77.002 77.144 0 42.604 34.476 77.144 77.003 77.144 13.487 0 26.164-3.475 37.19-9.58L188 218.65C168.64 232.11 145.131 240 119.78 240 53.629 240 0 186.274 0 120S53.628 0 119.78 0c25.351 0 48.86 7.89 68.22 21.351z"/><path d="M218.826 51C232.176 70.298 240 93.731 240 119s-7.824 48.704-21.174 68L188 156.073c6.054-10.99 9.5-23.63 9.5-37.073 0-13.444-3.446-26.08-9.5-37.07L218.826 51z"/></svg>
+  </div>
+</div>
+
+<div style="display: flex; justify-content: center;">
+<a href="/opencollective-py" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.25rem; background: #0c2d66; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; margin-bottom: 1.5rem;">
+  <svg width="20" height="20" viewBox="0 0 288 288" fill="currentColor"><path opacity="0.7" d="M188 21.351l-31.03 31.084c-11.025-6.104-23.702-9.579-37.19-9.579-42.526 0-77.002 34.54-77.002 77.144 0 42.604 34.476 77.144 77.003 77.144 13.487 0 26.164-3.475 37.19-9.58L188 218.65C168.64 232.11 145.131 240 119.78 240 53.629 240 0 186.274 0 120S53.628 0 119.78 0c25.351 0 48.86 7.89 68.22 21.351z"/><path d="M218.826 51C232.176 70.298 240 93.731 240 119s-7.824 48.704-21.174 68L188 156.073c6.054-10.99 9.5-23.63 9.5-37.073 0-13.444-3.446-26.08-9.5-37.07L218.826 51z"/></svg>
+  Visit project page →
+</a>
+</div>
 
 I manage [PolicyEngine's OpenCollective](https://opencollective.com/policyengine). We use OpenCollective because it gives anyone full visibility into our finances—every expense, donation, and transaction is public. It also handles crowdfunding, recurring donations, and community updates, and the [platform itself is open source](https://github.com/opencollective/opencollective).
 
@@ -131,7 +143,7 @@ Then authenticate:
 oc auth
 ```
 
-[PyPI](https://pypi.org/project/opencollective/) ・ [GitHub](https://github.com/MaxGhenis/opencollective-py)
+[Project page](/opencollective-py) ・ [PyPI](https://pypi.org/project/opencollective/) ・ [GitHub](https://github.com/MaxGhenis/opencollective-py)
 
 *This is an unofficial community project, not affiliated with OpenCollective.*
 
@@ -224,6 +236,11 @@ When Claude Desktop works reliably, I'll abandon my TerminalGridded IDE without 
 **Published:** Jan 07 2026
 **Description:** A VS Code extension for keyboard-driven terminal grid management with project picker and auto-launch for AI coding tools.
 
+<a href="/terminalgrid" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.25rem; background: #0078d4; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; margin-bottom: 1.5rem;">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="12" y1="3" x2="12" y2="21"/></svg>
+  Visit project page →
+</a>
+
 I run multiple Claude Code sessions simultaneously—one for each project I'm working on. VS Code's terminal panel only splits in one direction—no 2D grids. And the native terminal has [issues with image pasting](https://github.com/anthropics/claude-code/issues/1361) that matter when you're sharing screenshots with Claude.
 
 So I built [TerminalGrid](https://maxghenis.com/terminalgrid)—my first VS Code extension, built 100% with Claude Code.
@@ -298,7 +315,7 @@ Install from the [VS Code Marketplace](https://marketplace.visualstudio.com/item
 code --install-extension MaxGhenis.terminalgrid
 ```
 
-Source on [GitHub](https://github.com/MaxGhenis/terminalgrid).
+[Project page](/terminalgrid) ・ [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=MaxGhenis.terminalgrid) ・ [GitHub](https://github.com/MaxGhenis/terminalgrid)
 
 ---
 
@@ -311,6 +328,11 @@ Source on [GitHub](https://github.com/MaxGhenis/terminalgrid).
 **URL:** https://maxghenis.com/blog/rambar/
 **Published:** Jan 07 2026
 **Description:** A native macOS menu bar app for tracking memory usage across Claude Code sessions, VS Code workspaces, Chrome tabs, and Python processes.
+
+<a href="/rambar" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.25rem; background: #0a0a0f; color: #00ffd5; text-decoration: none; border-radius: 8px; font-weight: 600; margin-bottom: 1.5rem; border: 1px solid #00ffd5;">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"></rect><rect x="2" y="14" width="20" height="8" rx="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+  Visit project page →
+</a>
 
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 2rem 0;">
   <iframe
@@ -373,7 +395,7 @@ brew tap maxghenis/tap
 brew install --cask rambar
 ```
 
-Or download from [maxghenis.com/rambar](https://maxghenis.com/rambar). Source on [GitHub](https://github.com/MaxGhenis/rambar).
+[Project page](/rambar) ・ [GitHub](https://github.com/MaxGhenis/rambar)
 
 Requires macOS 14.0+. First launch: right-click and select Open to bypass Gatekeeper (the app is currently unsigned).
 
@@ -567,59 +589,6 @@ You can read the [full 48 pages of AI predictions here](https://docs.google.com/
 
 ---
 
-## What will the House Ways & Means Committee propose on Tuesday?
-
-**URL:** https://maxghenis.com/blog/substack/house-ways-means-tuesday/
-**Published:** May 12 2025
-**Description:** Analysis of the proposed individual income tax reforms and what the markup process will look like.
-
-Late Friday, May 9, House Ways & Means [released](https://waysandmeans.house.gov/event/full-committee-markup-of-legislative-proposals-to-comply-with-the-reconciliation-directive-included-in-section-2001-of-the-concurrent-resolution-on-the-budget-for-fiscal-year-2025-h-con-res-14) a 28-page committee print that would make these individual income tax reforms. The [Joint Committee on Taxation](https://www.jct.gov/publications/2025/jcx-19-25) puts the conventional revenue effect at **-$4.9 trillion through 2035** compared against current law, in which TCJA expires after 2025.
-
-## Proposed tax reforms
-
-The committee print includes several key modifications:
-
-- **TCJA Extension**: Make permanent the 2017 Tax Cuts and Jobs Act's lower rate schedule, alternative minimum tax structure, and estate tax thresholds
-- **Standard Deduction**: Enlarge the standard deduction from 2025-2028 while keeping personal and dependent exemptions repealed
-- **Child Tax Credit**: Increase to $2,500 for 2025-2028, then return to indexed $2,000 levels, requiring Social Security Numbers for parents and children
-- **Pass-Through Deduction**: Raise the §199A deduction rate to 22 percent
-
-## Missing campaign proposals
-
-Absent from the print were policies President Donald Trump discussed on the campaign trail: the [state and local tax deduction](https://www.nbcnews.com/politics/2024-election/trump-calls-undoing-part-tax-law-vowing-get-salt-back-rcna171513), [taxation of Social Security benefits](https://www.cnn.com/2024/08/01/politics/social-security-benefits-tax-trump/index.html), [tips](https://www.donaldjtrump.com/platform), and [overtime pay](https://www.donaldjtrump.com/news/79baa3f9-c3c0-448a-8feb-15ba75edde43), and a potential [deduction for auto-loan interest](https://www.rev.com/transcripts/trump-speaks-at-event-in-detroit-michigan).
-
-That said, they might still show up on Tuesday. Here's how the markup will work:
-
-1. Staff post an *amendment in the nature of a substitute* (AINS) Monday night or Tuesday morning.
-2. At 2 p.m. ET (May 13) the Committee meets, adopts the AINS as base text and considers member amendments.
-3. The bill reported at adjournment—whatever changes are adopted—is what moves to the House floor and will form the basis for Senate negotiations.
-
-## Five fresh Manifold markets to prepare for Tuesday
-
-Analysts across the country are currently preparing for the full markup on Tuesday. At [PolicyEngine](http://policyengine.org), we're guessing what we can test and bolster in our simulation system to contribute evidence on Tuesday's final proposals.
-
-The SALT cap may be the most watched decision point. It's also the most complex market: Tuesday will tell us the new SALT cap, with NY Republicans having [reportedly rejected](https://www.politico.com/live-updates/2025/05/08/congress/ny-republicans-say-they-rejected-30k-salt-offer-calling-it-insulting-00336993) $30,000 doubled for married filers. Some have betted against a Social Security tax exemption showing up. And betted against a tip exclusion as well. But of the full exclusions, Manifold users find overtime the least likely. Users also think an auto-loan interest deduction unlikely.
-
-## Where the wider betting market stands
-
-These are the only markets I'm aware of targeting Tuesday's markup, but others are looking further down the road:
-
-- **Kalshi** puts a [71% chance](https://kalshi.com/markets/kxrecbill/reconciliation-bill-parts) *no tax on tips* becoming law before 2026 and an 83% chance the SALT cap rises above $10k, with [another market](https://kalshi.com/markets/kxsalt/salt-tax-cap-raised) giving a 45% chance it's raised above $30k.
-- **Polymarket** sees a [34% chance](https://polymarket.com/event/trump-ends-taxes-on-tips-before-august) tips are untaxed by August, and a [73% chance](https://polymarket.com/event/reconciliation-bill-passed-by?tid=1746980401267) a reconciliation bill clears both chambers by the end of August.
-- **Manifold** there's a [47% probability](https://manifold.markets/MaxGhenis/when-will-tcja-tax-cuts-and-jobs-ac) that Congress renegotiates and extends TCJA in the second half of 2025.
-
-## Coming next from PolicyEngine
-
-As soon as the committee reports its bill Tuesday, we will:
-
-1. Update our microsimulation to reflect any changes.
-2. Publish new revenue and distribution tables.
-3. Refresh our household calculator so you can see the impact on your own taxes.
-
-Until then, place your bets and watch Tuesday's markup—prediction markets will be moving in real time.
-
----
-
 ## My 2024 in code: Personal projects and AI tools
 
 **URL:** https://maxghenis.com/blog/substack/my-2024-in-code/
@@ -706,14 +675,11 @@ I'm an "extreme liberal" seeking the most effective policy solutions: address po
 
 ---
 
-## In appointing their newest member, the ventura city council only pretended to care about housing
+## In appointing their newest member, the Ventura City Council only pretended to care about housing
 
 **URL:** https://maxghenis.com/blog/medium/in-appointing-their-newest-member-the-ventura-city/
 **Published:** 2021-02-24
-**Description:** ### In appointing their newest member, the Ventura City Council only pretended to care about housing
-
-### In appointing their newest member, the Ventura City Council only pretended to care about housing
-
+**Description:** After asking each applicant about the housing crisis, most councilmembers voted for those least committed to solving it
 
 #### After asking each applicant about the housing crisis, most councilmembers voted for those least committed to solving it
 
@@ -804,22 +770,13 @@ Any elected official knows what statements like those from Lagerquist indicate a
 
 Sanchez-Palacios suggested she may run for election in November 2022. Her NIMBY alliances and disinterest in addressing the housing shortage are concerning, but until then, we’ll be pushing her to pursue the strong housing policy Ventura needs.
 
-By [Max Ghenis](https://medium.com/@maxghenis) on [February 24, 2021](https://medium.com/p/443410fca172).
-
-[Canonical link](https://medium.com/@maxghenis/in-appointing-their-newest-member-the-ventura-city-council-only-pretended-to-care-about-housing-443410fca172)
-
-Exported from [Medium](https://medium.com) on January 10, 2026.
-
 ---
 
-## If you earned more in 2019 than 2018, don’t file your 2019 taxes yet! otherwise, file asap!
+## If you earned more in 2019 than 2018, don’t file your 2019 taxes yet! Otherwise, file ASAP!
 
 **URL:** https://maxghenis.com/blog/medium/if-you-earned-more-in-2019-than-2018-dont-file-you/
 **Published:** 2020-03-27
-**Description:** ### If you earned more in 2019 than 2018, don’t file your 2019 taxes yet! Otherwise, file ASAP!
-
-### If you earned more in 2019 than 2018, don’t file your 2019 taxes yet! Otherwise, file ASAP!
-
+**Description:** The right tax filing schedule could get you thousands in (poorly designed) Recovery Rebates. And Congress: Let’s just do UBI next time.
 
 #### The right tax filing schedule could get you thousands in (poorly designed) Recovery Rebates. And Congress: Let’s just do UBI next time.
 
@@ -867,22 +824,13 @@ It might not be so long before this choice rears its head again. House Speaker N
 
 ![](https://cdn-images-1.medium.com/max/800/1*L3mYOcTbzIxlWf0N-1gIqQ.png)
 
-By [Max Ghenis](https://medium.com/@maxghenis) on [March 27, 2020](https://medium.com/p/e564a9c3d7b7).
-
-[Canonical link](https://medium.com/@maxghenis/if-you-earned-more-in-2019-than-2018-dont-file-your-2019-taxes-yet-otherwise-file-asap-e564a9c3d7b7)
-
-Exported from [Medium](https://medium.com) on January 10, 2026.
-
 ---
 
-## Why i’ve taken the giving what we can pledge
+## Why I’ve taken the Giving What We Can pledge
 
 **URL:** https://maxghenis.com/blog/medium/why-ive-taken-the-giving-what-we-can-pledge/
 **Published:** 2019-12-31
-**Description:** ### Why I’ve taken the Giving What We Can pledge
-
-### Why I’ve taken the Giving What We Can pledge
-
+**Description:** The global poor will benefit much more from ten percent of my income than I will
 
 #### The global poor will benefit much more from ten percent of my income than I will
 
@@ -962,22 +910,13 @@ I plan to do another recap like this next year, and hope it will include a new c
 
 ⁴ Singer’s organization, *The Life You Can Save,* has [its own giving pledge](https://www.thelifeyoucansave.org/take-the-pledge/), which I’ve also taken. That pledge focuses on global development charities, i.e. from GiveWell. It has a graduated scale, and asks for less than ten percent of income for households earning less than $500,000 per year. My current income is less than $500,000, so I’m bound by the Giving What We Can pledge, but I’ll shift as needed, and also ensure that my donations to the global poor meet the Singer pledge should I choose to diversify to other EA causes in the future.
 
-By [Max Ghenis](https://medium.com/@maxghenis) on [December 31, 2019](https://medium.com/p/d5576f23df10).
-
-[Canonical link](https://medium.com/@maxghenis/why-ive-taken-the-giving-what-we-can-pledge-d5576f23df10)
-
-Exported from [Medium](https://medium.com) on January 10, 2026.
-
 ---
 
-## Ventura county must end its unsheltered homelessness
+## Ventura County must end its unsheltered homelessness
 
 **URL:** https://maxghenis.com/blog/medium/ventura-county-must-end-its-unsheltered-homelessne/
 **Published:** 2019-11-25
-**Description:** ### Ventura County must end its unsheltered homelessness
-
-### Ventura County must end its unsheltered homelessness
-
+**Description:** We need to make shelters more abundant and housing more affordable
 
 #### We need to make shelters more abundant and housing more affordable
 
@@ -1043,22 +982,13 @@ We need a more humane approach to homelessness. Instead of rounding up tent dwel
 
 *If you believe in this approach to homelessness, consider joining *[Ventura County YIMBY](http://vcyimby.org)* and other pro-homeless organizations in the area.*
 
-By [Max Ghenis](https://medium.com/@maxghenis) on [November 25, 2019](https://medium.com/p/967e537d4c1f).
-
-[Canonical link](https://medium.com/@maxghenis/ventura-county-must-end-its-unsheltered-homelessness-967e537d4c1f)
-
-Exported from [Medium](https://medium.com) on January 10, 2026.
-
 ---
 
-## Warren’s wealth tax would raise less than she claims — even using her economists’ own assumptions
+## Warren’s wealth tax would raise less than she claims — even using her economists’ own assumptions
 
 **URL:** https://maxghenis.com/blog/medium/warrens-wealth-tax-would-raise-less-than-she-claim/
 **Published:** 2019-11-09
-**Description:** ### Warren’s wealth tax would raise less than she claims — even using her economists’ own assumptions
-
-### Warren’s wealth tax would raise less than she claims — even using her economists’ own assumptions
-
+**Description:** Using their cited assumptions around avoidance and economic growth cuts revenue by a quarter
 
 #### Using their cited assumptions around avoidance and economic growth cuts revenue by a quarter
 
@@ -1144,22 +1074,13 @@ Proper avoidance modeling has a larger effect on the Sanders plan than on the Wa
 
 ![](https://cdn-images-1.medium.com/max/800/1*9H1LQFYIzXFwpZYLgLwPWA.png)
 
-By [Max Ghenis](https://medium.com/@maxghenis) on [November 9, 2019](https://medium.com/p/bea43840bc0a).
-
-[Canonical link](https://medium.com/@maxghenis/warrens-wealth-tax-would-raise-less-than-she-claims-even-using-her-economists-own-assumptions-bea43840bc0a)
-
-Exported from [Medium](https://medium.com) on January 10, 2026.
-
 ---
 
-## Andrew yang’s troubling Tucker Carlson interview
+## Andrew Yang’s troubling Tucker Carlson interview
 
 **URL:** https://maxghenis.com/blog/medium/andrew-yangs-troubling-tucker-carlson-interview/
 **Published:** 2019-03-09
-**Description:** ### Andrew Yang’s Troubling Tucker Carlson Interview
-
-### Andrew Yang’s Troubling Tucker Carlson Interview
-
+**Description:** The Democratic presidential candidate fed into Tucker’s MAGA narrative
 
 #### The Democratic presidential candidate fed into Tucker’s MAGA narrative
 
@@ -1241,21 +1162,13 @@ And yet, if he’s being trotted on Fox News to back up their host’s warnings 
 
 By these objectives, Yang’s interview did more to bolster the doom-and-gloom narrative that Carlson feeds his audience — which benefits populist politicians like Donald Trump — than improve the standing of his ideas. Yang can avoid falling into this trap by making sure to pair his description of the country with his ideas for improving it. Better still would be re-examining his premise of the country’s perils: his policies like [UBI](https://www.vox.com/policy-and-politics/2017/7/17/15364546/universal-basic-income-review-stern-murray-automation) don’t need it, and the evidence contradicts it.
 
-By [Max Ghenis](https://medium.com/@maxghenis) on [March 9, 2019](https://medium.com/p/b8c0475b14f9).
-
-[Canonical link](https://medium.com/@maxghenis/andrew-yangs-troubling-tucker-carlson-interview-b8c0475b14f9)
-
-Exported from [Medium](https://medium.com) on January 10, 2026.
-
 ---
 
-## Quantile regression, from linear models to trees to deep learning
+## Quantile regression, from linear models to trees to deep learning
 
 **URL:** https://maxghenis.com/blog/medium/quantile-regression-from-linear-models-to-trees-to/
 **Published:** 2018-10-16
-**Description:** ### Quantile regression, from linear models to trees to deep learning
-
-### Quantile regression, from linear models to trees to deep learning
+**Description:** Suppose a real estate analyst wants to predict home prices from factors like home age and distance from job centers.
 
 Suppose a real estate analyst wants to predict home prices from factors like home age and distance from job centers. The typical goal will be generating the best home price *point estimate* given those factors, where “best” often refers to the estimate that minimizes squared deviations from reality.
 
@@ -1415,21 +1328,13 @@ Real-world problems often extend beyond predicting means. Maybe an app developer
 
 Quantile regression is valuable for each of these use cases, and machine learning tools can often outperform linear models, especially the easy-to-use tree-based methods. Try it out on your own data and let me know how it goes!
 
-By [Max Ghenis](https://medium.com/@maxghenis) on [October 16, 2018](https://medium.com/p/af3738b527c3).
-
-[Canonical link](https://medium.com/@maxghenis/quantile-regression-from-linear-models-to-trees-to-deep-learning-af3738b527c3)
-
-Exported from [Medium](https://medium.com) on January 10, 2026.
-
 ---
 
-## We should replace the child tax credit with a universal child benefit
+## We should replace the Child Tax Credit with a universal child benefit
 
 **URL:** https://maxghenis.com/blog/medium/we-should-replace-the-child-tax-credit-with-a-univ/
 **Published:** 2018-04-22
-**Description:** ### We should replace the Child Tax Credit with a universal child benefit
-
-### We should replace the Child Tax Credit with a universal child benefit
+**Description:** The Child Tax Credit (CTC) is one of the largest assistance programs for children in the US.
 
 The Child Tax Credit (CTC) is one of the largest assistance programs for children in the US. With a newly expanded budgetary impact of $120 billion, it will reach 40 million households this year — 88 percent of all households with children.¹ ² For families that receive it, the CTC is highly effective, having lifted [1.5 million children](https://www.cbpp.org/research/federal-tax/policy-basics-the-child-tax-credit) out of poverty in 2016. This success has brought it bipartisan support, with both [Hillary Clinton](https://www.brookings.edu/blog/social-mobility-memos/2016/10/13/clintons-child-tax-credit-proposal-a-good-start-on-helping-low-and-middle-income-families/) and [Marco Rubio](https://www.washingtonpost.com/news/wonk/wp/2017/12/19/what-marco-rubio-got-for-his-tax-vote/?utm_term=.b7e3c72d928c) having proposed expansions in the past couple years. However, like most tax credits, it provides little if any assistance to the poorest households who need it most.
 
@@ -1525,21 +1430,13 @@ It should culminate in a universal child benefit, completing its path toward inc
 
 *Thanks to the Open Source Policy Center’s Cody Kallen, Matt Jensen, Sean Wang, Martin Holmer, Anderson Frailey, and Amy Xu.*
 
-By [Max Ghenis](https://medium.com/@maxghenis) on [April 22, 2018](https://medium.com/p/33773de07271).
-
-[Canonical link](https://medium.com/@maxghenis/we-should-replace-the-child-tax-credit-with-a-universal-child-benefit-33773de07271)
-
-Exported from [Medium](https://medium.com) on January 10, 2026.
-
 ---
 
-## The case for a wonky basic income plan
+## The case for a wonky basic income plan
 
 **URL:** https://maxghenis.com/blog/medium/the-case-for-a-wonky-basic-income-plan/
 **Published:** 2017-06-14
-**Description:** ### The Case For a Wonky Basic Income Plan
-
-### The Case For a Wonky Basic Income Plan
+**Description:** In March, a former union leader joined forces with a prominent libertarian to [debate](https://youtu.be/YX9T7GHs9fQ?t=22m6s) two Obama White House economists.
 
 In March, a former union leader joined forces with a prominent libertarian to [debate](https://youtu.be/YX9T7GHs9fQ?t=22m6s) two Obama White House economists. The topic, hosted by [Intelligence²](http://www.intelligencesquaredus.org/debates/universal-basic-income-safety-net-future), was “Is Universal Basic Income The Safety Net of the Future?” with the unlikely duo — Andy Stern, President Emeritus of the Service Employees International Union, and Charles Murray, fellow at the conservative American Enterprise Institute — arguing the case for, and the economists — Jared Bernstein, former chief economist to Vice President Biden, and Jason Furman, former chairman of the Council of Economic Advisors — arguing against. Stern pitched universal basic income — giving every person a check each month without conditions — as insurance for a future where AI and robots make human workers obsolete; Murray lauded the personal liberty from solving poverty without a paternalistic bureaucracy. Bernstein and Furman claimed the math didn’t add up; that the universality requires reducing benefits for the poor, especially families with children; and that other changes needed to pay for the program would be politically infeasible.
 
@@ -1679,21 +1576,13 @@ Idealism attracts people; realism convinces them. Media coverage of pilots and a
 
 It’s time to get in the weeds and make a plan that not only lives up to the ideals of basic income, but also maximizes the number of people benefiting from it.
 
-By [Max Ghenis](https://medium.com/@maxghenis) on [June 14, 2017](https://medium.com/p/55e90010fc9e).
-
-[Canonical link](https://medium.com/@maxghenis/the-case-for-a-person-centric-basic-income-plan-55e90010fc9e)
-
-Exported from [Medium](https://medium.com) on January 10, 2026.
-
 ---
 
-## Reddit featured a misleading headline on education secretary nominee Betsy DeVos
+## Reddit featured a misleading headline on education secretary nominee Betsy DeVos
 
 **URL:** https://maxghenis.com/blog/medium/reddit-featured-a-misleading-headline-on-education/
 **Published:** 2016-11-26
-**Description:** ### Reddit Featured a Misleading Headline on Education Secretary Nominee Betsy DeVos
-
-### Reddit Featured a Misleading Headline on Education Secretary Nominee Betsy DeVos
+**Description:** “billionaire”
 
 [This headline](https://www.reddit.com/r/atheism/comments/5eobxq/meet_your_new_a_secretary_of_education/) made the top of [Reddit](http://reddit.com)’s [r/all](http://reddit.com/r/all) page on [Thursday](http://web.archive.org/web/20161124230946/https://www.reddit.com/r/all/):
 
@@ -1798,21 +1687,13 @@ There’s no need for the exaggeration and fabrication more commonly found on th
 
 *This post has been updated to reference Snopes’ fact-checking of the Facebook meme. It has also been corrected to reflect that r/politics is not a default subreddit. It was later updated to include Erik Prince’s lack of Trump campaign donations.*
 
-By [Max Ghenis](https://medium.com/@maxghenis) on [November 26, 2016](https://medium.com/p/28a2c16cc220).
-
-[Canonical link](https://medium.com/@maxghenis/reddit-featured-a-misleading-headline-on-education-secretary-nominee-betsy-devos-28a2c16cc220)
-
-Exported from [Medium](https://medium.com) on January 10, 2026.
-
 ---
 
-## Uber’s tipping settlement will reduce earnings of african-american drivers
+## Uber’s tipping settlement will reduce earnings of African-American drivers
 
 **URL:** https://maxghenis.com/blog/medium/ubers-tipping-settlement-will-reduce-earnings-of-a/
 **Published:** 2016-04-26
-**Description:** ### Uber’s Tipping Settlement Will Reduce Earnings of African-American Drivers
-
-### Uber’s Tipping Settlement Will Reduce Earnings of African-American Drivers
+**Description:** This week, Uber [reached a settlement](http://fortune.com/2016/04/21/uber-drivers-settlement/) with drivers in California and Massachusetts in a lawsuit concerning worker classification.
 
 This week, Uber [reached a settlement](http://fortune.com/2016/04/21/uber-drivers-settlement/) with drivers in California and Massachusetts in a lawsuit concerning worker classification. In addition to up to $100M in compensation, recognition of a driver’s association, and greater transparency about deactivating drivers, the settlement permits drivers to post signage in their vehicles soliciting tips. Uber drivers could always accept cash tips, but [unlike Lyft](https://help.lyft.com/hc/en-us/articles/213583978-How-to-Tip-Your-Driver), Uber has never had an in-app tipping option, and [emphasizes](https://help.uber.com/h/1be144ab-609a-43c5-82b5-b9c7de5ec073) that “you don’t need cash…there’s no need to tip.” As a result, tipping is rare: Uber drivers estimate that [between one and five percent](https://www.bostonglobe.com/business/2015/10/27/tips-raises-questions-and-tempers-among-uber-and-lyft-users/EJlZe8Eb763UewRzUNUVJN/story.html) of riders tip, versus [70% of Lyft customers](http://www.wsj.com/articles/uber-reaches-a-tipping-point-with-its-drivers-1461490205) (though [some Lyft drivers claim 20–50%](https://www.bostonglobe.com/business/2015/10/27/tips-raises-questions-and-tempers-among-uber-and-lyft-users/EJlZe8Eb763UewRzUNUVJN/story.html)).
 
@@ -1846,24 +1727,16 @@ Despite this setback, much progress has been made in tipping reform, with [nearl
 
 *Max Ghenis is the creator of the *[EndTipping subreddit](http://reddit.com/r/EndTipping)*, where he’s assembled a *[list of 190+ tip-free restaurants in the US](http://bit.ly/tip-free-restaurants)*. You can sign his petitions to *[remove Lyft’s in-app tipping option](https://www.change.org/p/lyft-remove-tipping-from-the-lyft-app)*, and to *[reverse Uber’s settlement provision permitting drivers to solicit tips](https://www.change.org/p/travis-kalanick-prevent-uber-drivers-from-soliciting-tips-to-ensure-fair-earnings-for-black-drivers)*.*
 
-By [Max Ghenis](https://medium.com/@maxghenis) on [April 26, 2016](https://medium.com/p/92f3f35cf9e).
-
-[Canonical link](https://medium.com/@maxghenis/ubers-tipping-settlement-will-reduce-earnings-of-african-american-drivers-92f3f35cf9e)
-
-Exported from [Medium](https://medium.com) on January 10, 2026.
-
 ---
 
-## If we can afford our current welfare system, we can afford basic income
+## If we can afford our current welfare system, we can afford basic income
 
 **URL:** https://maxghenis.com/blog/medium/if-we-can-afford-our-current-welfare-system-we-can/
 **Published:** 2016-01-24
-**Description:** ![](https://cdn-images-1.medium.com/max/2560/1463AHxG0pTQ4QJe2RgUbA.jpeg)
+**Description:** Replacing the antipoverty bureaucracy
 
 ![](https://cdn-images-1.medium.com/max/2560/1*_463AHxG0pTQ4QJe2RgUbA.jpeg)
 
-
-### If We Can Afford Our Current Welfare System, We Can Afford Basic Income
 
 [Basic income](https://en.wikipedia.org/wiki/Basic_income) (BI) is getting a lot of press these days. From [Switzerland’s upcoming referendum](https://en.wikipedia.org/wiki/Swiss_referendums,_2016#Basic_income_referendum) to give each citizen 2,500 francs per month, to [GiveDirectly](http://givedirectly.org)’s research upending the philanthropy world, to [Finland’s plan](https://agenda.weforum.org/2015/12/finland-basic-income/) for a 2017 BI pilot, more are warming to the idea that just giving people money may be the solution to poverty.
 
@@ -1931,12 +1804,6 @@ As the world moves to an age of increasing globalization and automation, more wi
 But if basic income is achieved via the above strategy — replace existing non-cash programs with cash, smooth out the payout curve to avoid welfare cliffs, and substitute negative income tax with basic income — affordability does not belong on the list of concerns. If the BI produced by this approach is too low, that is an indication that the existing welfare state is too stingy; if it doesn’t adequately address the needs of society, then neither do today’s programs. Criticisms of the safety net’s size (in either direction) are orthogonal from the notion that basic income is a more efficient means of distribution.
 
 Poverty is not a vague incurable condition, but one that can be directly eradicated via basic income. Finland’s proposal to move 100% to BI is admirable, but other countries can start with small steps like expanding EITC and reforming means tests. With basic income attainable, now is the time to seriously push toward its implementation.
-
-By [Max Ghenis](https://medium.com/@maxghenis) on [January 24, 2016](https://medium.com/p/9ae9b5f186af).
-
-[Canonical link](https://medium.com/@maxghenis/if-we-can-afford-our-current-welfare-system-we-can-afford-basic-income-9ae9b5f186af)
-
-Exported from [Medium](https://medium.com) on January 10, 2026.
 
 ---
 

@@ -1,10 +1,9 @@
 ---
-title: "Andrew Yang’s troubling Tucker Carlson interview"
-description: "The Democratic presidential candidate fed into Tucker’s MAGA narrative"
+title: "Andrew Yang's troubling Tucker Carlson interview"
+description: "The Democratic presidential candidate fed into Tucker's MAGA narrative"
 pubDate: '2019-03-09'
+heroImage: './lfpr-fred-chart.png'
 ---
-
-#### The Democratic presidential candidate fed into Tucker’s MAGA narrative
 
 Last Friday, Democratic presidential candidate Andrew Yang joined Fox News’s *Tucker Carlson Tonight* for a [5-minute interview](https://youtu.be/bMVCkhyg5kA). Consistent with his [book](https://www.amazon.com/War-Normal-People-Disappearing-Universal/dp/0316414247) and [platform](https://www.yang2020.com/policies), Yang warned of a coming wave of job losses due to automation, citing the fall in Midwest manufacturing employment and the 3.5 million truck drivers at risk of replacement by autonomous vehicle technology.
 

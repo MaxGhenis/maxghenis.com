@@ -4,8 +4,6 @@ description: "Suppose a real estate analyst wants to predict home prices from fa
 pubDate: '2018-10-16'
 ---
 
-Suppose a real estate analyst wants to predict home prices from factors like home age and distance from job centers. The typical goal will be generating the best home price *point estimate* given those factors, where “best” often refers to the estimate that minimizes squared deviations from reality.
-
 But what if they want to predict not just a single estimate, but also the likely range? This is called the *prediction interval*, and the general method for producing them is known as *quantile regression*. In this post I’ll describe how this problem is formalized; how to implement it in six linear, tree-based, and deep learning methods (in Python — [here’s the Jupyter notebook](https://colab.research.google.com/drive/1nXOlrmVHqCHiixqiMF6H8LSciz583_W2)); and how they perform against real-world datasets.
 
 

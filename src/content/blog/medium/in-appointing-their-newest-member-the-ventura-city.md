@@ -4,8 +4,6 @@ description: "After asking each applicant about the housing crisis, most council
 pubDate: '2021-02-24'
 ---
 
-#### After asking each applicant about the housing crisis, most councilmembers voted for those least committed to solving it
-
 On Saturday, the Ventura City Council held a special meeting to appoint someone to the seat of former District 4 Councilmember, now District Attorney, Erik Nasarenko, until the election in November 2022. They selected Jeannette Sanchez-Palacios, a concerning choice for housing (more on that below), but nearly selected a straight-up NIMBY, in a process that revealed the disinterest of many councilmembers in addressing Ventura’s housing challenges.
 
 Ventura followed a similar routine from earlier this month, when Oxnard filled now-Supervisor Carmen Ramirez’s seat. We sent a questionnaire to all applicants for the Oxnard seat, and after receiving [five responses](https://datastudio.google.com/u/0/reporting/207f8afe-b5f0-4a61-9572-6417bc724eb0/page/KE9fB), [we endorsed Gabe Teran](https://medium.com/vcyimby/ventura-county-yimby-endorses-gabe-teran-for-oxnard-city-council-district-2-4cf2c0f8c5e4), who ended up [getting the appointment](https://medium.com/vcyimby/newly-appointed-oxnard-councilmember-gabe-teran-stands-strong-on-housing-2990a6ee2dd2).
