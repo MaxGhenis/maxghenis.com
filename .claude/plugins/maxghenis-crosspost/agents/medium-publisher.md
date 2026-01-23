@@ -34,9 +34,12 @@ Before starting, ensure:
 ### Phase 2: Create Medium Story
 
 1. Navigate to `https://medium.com/new-story`
-2. Click in the title/body area
-3. Paste with Cmd+V
-4. Take screenshot to verify paste worked
+2. Click in the title area and **manually type the title** (copy from crosspost page header)
+3. Press Enter to move to the body area
+4. Paste with Cmd+V
+5. Take screenshot to verify paste worked
+
+**IMPORTANT**: The copy function does NOT include the title. You must enter it manually.
 
 ### Phase 3: Format Subtitle (CRITICAL)
 

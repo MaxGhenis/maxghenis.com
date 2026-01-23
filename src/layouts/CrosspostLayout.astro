@@ -135,13 +135,13 @@ const { title, description, pubDate, originalUrl, heroImage } = Astro.props;
 				}
 			});
 
-			// Build HTML with title and subtitle prepended
-			const title = titleEl?.textContent || '';
+			// Build HTML - don't include title as <h1> since Medium interprets it incorrectly
+			// Users should manually enter the title in Medium's title field
+			// Include subtitle as the first paragraph
 			const subtitle = subtitleEl?.textContent || '';
-			const titleHtml = title ? `<h1>${title}</h1>\n` : '';
-			const subtitleHtml = subtitle ? `<p>${subtitle}</p>\n` : '';
-			const html = titleHtml + subtitleHtml + clone.innerHTML;
-			const text = (title ? title + '\n\n' : '') + (subtitle ? subtitle + '\n\n' : '') + content.innerText;
+			const subtitleHtml = subtitle ? `<p><em>${subtitle}</em></p>\n` : '';
+			const html = subtitleHtml + clone.innerHTML;
+			const text = (subtitle ? subtitle + '\n\n' : '') + content.innerText;
 
 			// Try to copy as rich HTML (preserves links and formatting)
 			try {
