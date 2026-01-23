@@ -3,20 +3,8 @@ title: 'opencollective-py: Manage OpenCollective from your terminal or Claude Co
 description: 'A Python client, CLI, and MCP server for the OpenCollective API.'
 pubDate: 'Jan 23 2026'
 heroImage: './opencollective-py-hero.png'
+projectUrl: '/opencollective-py'
 ---
-
-<div style="display: flex; justify-content: center; margin: 1.5rem 0 2rem;">
-  <div style="width: 100px; height: 100px; background: linear-gradient(135deg, #0c2d66 0%, #1a4a8a 100%); border-radius: 20px; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 30px rgba(12, 45, 102, 0.3);">
-    <svg width="56" height="56" viewBox="0 0 288 288" fill="white"><path opacity="0.7" d="M188 21.351l-31.03 31.084c-11.025-6.104-23.702-9.579-37.19-9.579-42.526 0-77.002 34.54-77.002 77.144 0 42.604 34.476 77.144 77.003 77.144 13.487 0 26.164-3.475 37.19-9.58L188 218.65C168.64 232.11 145.131 240 119.78 240 53.629 240 0 186.274 0 120S53.628 0 119.78 0c25.351 0 48.86 7.89 68.22 21.351z"/><path d="M218.826 51C232.176 70.298 240 93.731 240 119s-7.824 48.704-21.174 68L188 156.073c6.054-10.99 9.5-23.63 9.5-37.073 0-13.444-3.446-26.08-9.5-37.07L218.826 51z"/></svg>
-  </div>
-</div>
-
-<div style="display: flex; justify-content: center;">
-<a href="/opencollective-py" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.25rem; background: #0c2d66; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; margin-bottom: 1.5rem;">
-  <svg width="20" height="20" viewBox="0 0 288 288" fill="currentColor"><path opacity="0.7" d="M188 21.351l-31.03 31.084c-11.025-6.104-23.702-9.579-37.19-9.579-42.526 0-77.002 34.54-77.002 77.144 0 42.604 34.476 77.144 77.003 77.144 13.487 0 26.164-3.475 37.19-9.58L188 218.65C168.64 232.11 145.131 240 119.78 240 53.629 240 0 186.274 0 120S53.628 0 119.78 0c25.351 0 48.86 7.89 68.22 21.351z"/><path d="M218.826 51C232.176 70.298 240 93.731 240 119s-7.824 48.704-21.174 68L188 156.073c6.054-10.99 9.5-23.63 9.5-37.073 0-13.444-3.446-26.08-9.5-37.07L218.826 51z"/></svg>
-  Visit project page →
-</a>
-</div>
 
 I manage [PolicyEngine's OpenCollective](https://opencollective.com/policyengine). We use OpenCollective because it gives anyone full visibility into our finances—every expense, donation, and transaction is public. It also handles crowdfunding, recurring donations, and community updates, and the [platform itself is open source](https://github.com/opencollective/opencollective).
 

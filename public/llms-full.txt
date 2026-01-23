@@ -1,7 +1,7 @@
 # Max Ghenis - Full Content
 
 > This file contains the full text of all blog posts from maxghenis.com, formatted for LLM consumption.
-> Generated: 2026-01-23T22:29:22.829Z
+> Generated: 2026-01-23T22:39:01.026Z
 > See also: /llms.txt for a curated overview
 
 ---
@@ -17,15 +17,15 @@
 7. [AI models favor Cuomo over Mamdani on NYC housing production](/blog/substack/ai-models-nyc-housing/)
 8. [My 2024 in code: Personal projects and AI tools](/blog/substack/my-2024-in-code/)
 9. [Why I'm a neoliberal](/blog/substack/why-im-a-neoliberal/)
-10. [In appointing their newest member, the Ventura City Council only pretended to care about housing](/blog/medium/in-appointing-their-newest-member-the-ventura-city/)
-11. [If you earned more in 2019 than 2018, don’t file your 2019 taxes yet! Otherwise, file ASAP!](/blog/medium/if-you-earned-more-in-2019-than-2018-dont-file-you/)
+10. [In appointing their newest member, the Ventura City Council only pretended to care about housing](/blog/medium/in-appointing-their-newest-member-the-ventura-city/)
+11. [If you earned more in 2019 than 2018, don't file your 2019 taxes yet! Otherwise, file ASAP!](/blog/medium/if-you-earned-more-in-2019-than-2018-dont-file-you/)
 12. [Why I’ve taken the Giving What We Can pledge](/blog/medium/why-ive-taken-the-giving-what-we-can-pledge/)
 13. [Ventura County must end its unsheltered homelessness](/blog/medium/ventura-county-must-end-its-unsheltered-homelessne/)
 14. [Warren’s wealth tax would raise less than she claims — even using her economists’ own assumptions](/blog/medium/warrens-wealth-tax-would-raise-less-than-she-claim/)
-15. [Andrew Yang’s troubling Tucker Carlson interview](/blog/medium/andrew-yangs-troubling-tucker-carlson-interview/)
+15. [Andrew Yang's troubling Tucker Carlson interview](/blog/medium/andrew-yangs-troubling-tucker-carlson-interview/)
 16. [Quantile regression, from linear models to trees to deep learning](/blog/medium/quantile-regression-from-linear-models-to-trees-to/)
 17. [We should replace the Child Tax Credit with a universal child benefit](/blog/medium/we-should-replace-the-child-tax-credit-with-a-univ/)
-18. [The case for a wonky basic income plan](/blog/medium/the-case-for-a-wonky-basic-income-plan/)
+18. [The case for a wonky basic income plan](/blog/medium/the-case-for-a-wonky-basic-income-plan/)
 19. [Reddit featured a misleading headline on education secretary nominee Betsy DeVos](/blog/medium/reddit-featured-a-misleading-headline-on-education/)
 20. [Uber’s tipping settlement will reduce earnings of African-American drivers](/blog/medium/ubers-tipping-settlement-will-reduce-earnings-of-a/)
 21. [If we can afford our current welfare system, we can afford basic income](/blog/medium/if-we-can-afford-our-current-welfare-system-we-can/)
@@ -675,37 +675,35 @@ I'm an "extreme liberal" seeking the most effective policy solutions: address po
 
 ---
 
-## In appointing their newest member, the Ventura City Council only pretended to care about housing
+## In appointing their newest member, the Ventura City Council only pretended to care about housing
 
 **URL:** https://maxghenis.com/blog/medium/in-appointing-their-newest-member-the-ventura-city/
 **Published:** 2021-02-24
-**Description:** After asking each applicant about the housing crisis, most councilmembers voted for those least committed to solving it
+**Description:** After asking each applicant about the housing crisis, most councilmembers voted for those least committed to solving it
 
-#### After asking each applicant about the housing crisis, most councilmembers voted for those least committed to solving it
+On Saturday, the Ventura City Council held a special meeting to appoint someone to the seat of former District 4 Councilmember, now District Attorney, Erik Nasarenko, until the election in November 2022. They selected Jeannette Sanchez-Palacios, a concerning choice for housing (more on that below), but nearly selected a straight-up NIMBY, in a process that revealed the disinterest of many councilmembers in addressing Ventura's housing challenges.
 
-On Saturday, the Ventura City Council held a special meeting to appoint someone to the seat of former District 4 Councilmember, now District Attorney, Erik Nasarenko, until the election in November 2022. They selected Jeannette Sanchez-Palacios, a concerning choice for housing (more on that below), but nearly selected a straight-up NIMBY, in a process that revealed the disinterest of many councilmembers in addressing Ventura’s housing challenges.
+Ventura followed a similar routine from earlier this month, when Oxnard filled now-Supervisor Carmen Ramirez's seat. We sent a questionnaire to all applicants for the Oxnard seat, and after receiving [five responses](https://datastudio.google.com/u/0/reporting/207f8afe-b5f0-4a61-9572-6417bc724eb0/page/KE9fB), [we endorsed Gabe Teran](https://medium.com/vcyimby/ventura-county-yimby-endorses-gabe-teran-for-oxnard-city-council-district-2-4cf2c0f8c5e4), who ended up [getting the appointment](https://medium.com/vcyimby/newly-appointed-oxnard-councilmember-gabe-teran-stands-strong-on-housing-2990a6ee2dd2).
 
-Ventura followed a similar routine from earlier this month, when Oxnard filled now-Supervisor Carmen Ramirez’s seat. We sent a questionnaire to all applicants for the Oxnard seat, and after receiving [five responses](https://datastudio.google.com/u/0/reporting/207f8afe-b5f0-4a61-9572-6417bc724eb0/page/KE9fB), [we endorsed Gabe Teran](https://medium.com/vcyimby/ventura-county-yimby-endorses-gabe-teran-for-oxnard-city-council-district-2-4cf2c0f8c5e4), who ended up [getting the appointment](https://medium.com/vcyimby/newly-appointed-oxnard-councilmember-gabe-teran-stands-strong-on-housing-2990a6ee2dd2).
+We also sent a questionnaire to all fourteen Ventura applicants; however, only one, design consultant John Silva, completed it. While [Silva's responses](https://drive.google.com/file/d/14xioDqC6fddhS_editAsdtfVUNY3A9VZ/view?fbclid=IwAR1U8WRj1Abe55Y2aly9LNlF9kEy4I-lj92jH6IXqfmKrVKfaen51hHFG_s) were strongly pro-housing, we didn't feel we had enough information about the full set of applicants to make a formal endorsement.
 
-We also sent a questionnaire to all fourteen Ventura applicants; however, only one, design consultant John Silva, completed it. While [Silva’s responses](https://drive.google.com/file/d/14xioDqC6fddhS_editAsdtfVUNY3A9VZ/view?fbclid=IwAR1U8WRj1Abe55Y2aly9LNlF9kEy4I-lj92jH6IXqfmKrVKfaen51hHFG_s) were strongly pro-housing, we didn’t feel we had enough information about the full set of applicants to make a formal endorsement.
+Thankfully, the Ventura City Council voted to ask each applicant about housing in their interviews; here's what they asked (in addition to opening and closing statements):
 
-Thankfully, the Ventura City Council voted to ask each applicant about housing in their interviews; here’s what they asked (in addition to opening and closing statements):
-
-- “Our community is facing a housing crisis, worsened by the current pandemic. What will you do to address rising rents and protect renters from eviction?”
-- “What do you think are the top three to five priorities for the city, and what will you do as a councilmember to achieve them?”
-- “Circumstances outside the city’s control can and have impacted dramatically the city’s budget. What approach will you take as a councilmember to balance the budget to address the issues?”
+- "Our community is facing a housing crisis, worsened by the current pandemic. What will you do to address rising rents and protect renters from eviction?"
+- "What do you think are the top three to five priorities for the city, and what will you do as a councilmember to achieve them?"
+- "Circumstances outside the city's control can and have impacted dramatically the city's budget. What approach will you take as a councilmember to balance the budget to address the issues?"
 
 These questions revealed significant differences between the applicants on housing ([watch the video here](https://youtu.be/nfIY3yKj-XA)).
 
-Several applicants acknowledged the role of the shortage. The first to speak, John Lory, [said](https://youtu.be/nfIY3yKj-XA?t=2269), “The more supply there is, the lower the rents will be, and they will increase at a lower rate.” And the final applicant, Dan Lyon, said, “We need to look at a way to increase the supply of affordable rental housing,” suggesting infill and repurposing existing properties.
+Several applicants acknowledged the role of the shortage. The first to speak, John Lory, [said](https://youtu.be/nfIY3yKj-XA?t=2269), "The more supply there is, the lower the rents will be, and they will increase at a lower rate." And the final applicant, Dan Lyon, said, "We need to look at a way to increase the supply of affordable rental housing," suggesting infill and repurposing existing properties.
 
 
 ### Brad Golden and John Silva supported housing development
 
-The strongest pro-housing interview response came from Brad Golden, a manager at a real estate insurance company; here’s his full response (**emphasis mine, **all quotes lightly edited for clarity):
+The strongest pro-housing interview response came from Brad Golden, a manager at a real estate insurance company; here's his full response (**emphasis mine, **all quotes lightly edited for clarity):
 
 
-> Rising rents are not new to our community and California, but specific to the pandemic, our government has placed eviction protections for Covid-related hardships through the middle of this year. I believe they’ll likely extend that and I hope they do. We also have city and county tenant protections during Covid, and I hope that continues as well. Ventura extended protections for tenants to the commercial side, and I know that’s helped quite a bit too, and we the Chamber of Commerce have been active in that role. Prior to Covid, California capped rental increases at 5% plus cost of living, so no matter what, we have a rent control in place, and I know that’s helped with tenants as well.
+> Rising rents are not new to our community and California, but specific to the pandemic, our government has placed eviction protections for Covid-related hardships through the middle of this year. I believe they'll likely extend that and I hope they do. We also have city and county tenant protections during Covid, and I hope that continues as well. Ventura extended protections for tenants to the commercial side, and I know that's helped quite a bit too, and we the Chamber of Commerce have been active in that role. Prior to Covid, California capped rental increases at 5% plus cost of living, so no matter what, we have a rent control in place, and I know that's helped with tenants as well.
 
 
 > But we have to remain balanced for the landlords and owners as well. Over-regulating market-driven economics cannot lead to neglect of properties in the long run. Bottom line, Covid or not: we need to work on supply and demand for housing. We need to streamline the development process and build a diversified housing stock.
@@ -713,36 +711,36 @@ The strongest pro-housing interview response came from Brad Golden, a manager at
 Golden also emphasized housing development in his list of top three priorities for the city, which included:
 
 - A pandemic response plan
-- Economic stimulation, including “an efficient development process”
-- Diversified housing stock, including being “flexible with our General Plan coming up,” a point he also brought up in terms of budget sustainability
+- Economic stimulation, including "an efficient development process"
+- Diversified housing stock, including being "flexible with our General Plan coming up," a point he also brought up in terms of budget sustainability
 
-Silva’s interview response on the housing question didn’t offer specifics, but his response to our questionnaire indicated support for policies like raising height limits near transit and legalizing fourplexes in many areas.
+Silva's interview response on the housing question didn't offer specifics, but his response to our questionnaire indicated support for policies like raising height limits near transit and legalizing fourplexes in many areas.
 
 
 ### Jenny Lagerquist opposed housing development
 
-The starkest contrast to Brad Golden’s pro-housing views came from Jenny Lagerquist, an engineer, who gave the following response to the housing question:
+The starkest contrast to Brad Golden's pro-housing views came from Jenny Lagerquist, an engineer, who gave the following response to the housing question:
 
 
-> This is a complex question. Because of the pandemic, the issue is not specific to rents and renters, I believe homeowners and business owners are feeling the same pressures. I think everyone needs to share in the solutions. So how do we propose a way forward, allowing everyone to keep their spaces and run their businesses and provide a roof over their family’s heads.
+> This is a complex question. Because of the pandemic, the issue is not specific to rents and renters, I believe homeowners and business owners are feeling the same pressures. I think everyone needs to share in the solutions. So how do we propose a way forward, allowing everyone to keep their spaces and run their businesses and provide a roof over their family's heads.
 
 
-> First, we should be looking to stay in federal grants to help protect homeowners, business owners, and renters from eviction. The state did just pass an aid package to assist those hit hardest by the pandemic, so we could help educate and guide residents to this information. And then we can look at what can the city provide, are there other types of aid, local grants, temporary rent control? Affordable housing is a very complex issue and many different facets have to be considered: on transportation, some studies have shown that people actually do want to live within a reasonable commute, so the more mass transit or public transportation that’s available, the easier to renovate or build affordable housing. Just building affordable housing without proper planning is not always the answer. Affordable housing policy can actually favor owners over renters, and we need to continue to provide a balance. It also has a long history of segregation and racism and can be expensive to build based on labor and supplies, and again transportation issues have to be addressed. Developers need incentives to build and renovate low and moderate private rental market housing. Right now, most incentives are for luxury housing, especially in a state like California. The private sector won’t build more unless the incentives change, so maybe tax credits for that kind of growth. Assistance to the low income bracket is always required, and we should be studying and seeking out grants and available funding.
+> First, we should be looking to stay in federal grants to help protect homeowners, business owners, and renters from eviction. The state did just pass an aid package to assist those hit hardest by the pandemic, so we could help educate and guide residents to this information. And then we can look at what can the city provide, are there other types of aid, local grants, temporary rent control? Affordable housing is a very complex issue and many different facets have to be considered: on transportation, some studies have shown that people actually do want to live within a reasonable commute, so the more mass transit or public transportation that's available, the easier to renovate or build affordable housing. Just building affordable housing without proper planning is not always the answer. Affordable housing policy can actually favor owners over renters, and we need to continue to provide a balance. It also has a long history of segregation and racism and can be expensive to build based on labor and supplies, and again transportation issues have to be addressed. Developers need incentives to build and renovate low and moderate private rental market housing. Right now, most incentives are for luxury housing, especially in a state like California. The private sector won't build more unless the incentives change, so maybe tax credits for that kind of growth. Assistance to the low income bracket is always required, and we should be studying and seeking out grants and available funding.
 
 Lagerquist clarified her anti-development stance in the second question, saying:
 
 
-> The number one priority for the city is to always try to retain the uniqueness and authenticity of Ventura. The Council has to scrutinize any development plan and encourage redevelopment of deteriorating spaces. It would behoove the council to require developers of any type of growth or expansion or rebuild or renovation, etc., to share with the cost of infrastructure and public needs. The city alone should not burden those costs. City planning should clearly demonstrate preservation of the city’s assets and aesthetics. I think water is a tremendous issue, we have to require and encourage conservation imposing permanent restrictions if needed.
+> The number one priority for the city is to always try to retain the uniqueness and authenticity of Ventura. The Council has to scrutinize any development plan and encourage redevelopment of deteriorating spaces. It would behoove the council to require developers of any type of growth or expansion or rebuild or renovation, etc., to share with the cost of infrastructure and public needs. The city alone should not burden those costs. City planning should clearly demonstrate preservation of the city's assets and aesthetics. I think water is a tremendous issue, we have to require and encourage conservation imposing permanent restrictions if needed.
 
-Her statement that “My focus again is certainly on preservation and maintaining Ventura” aligned with her [application](https://www.cityofventura.ca.gov/DocumentCenter/View/25998/Laqerquist-Jenny_Redacted) pledge to “promote only smart growth.” Transit, funding, and water sustainability are good, but Lagerquist invokes all as classic excuses to avoid allowing development. Ventura can’t change state and federal policymaking around grants, but they can decide whether to allow new homes to be built, which would generate tax revenue to provide their own assistance programs and expand transit. Singular focus on aesthetic preservation is antithetical to that goal.
-
-
-### Jeannette Sanchez-Palacios ignored the housing shortage
-
-Jeannette Sanchez-Palacios, district director for Assemblymember Jacqui Irwin, mostly avoided answering the housing question, though she did consider it a “huge issue” that Ventura has renters, and recommend building more single-family housing:
+Her statement that "My focus again is certainly on preservation and maintaining Ventura" aligned with her [application](https://www.cityofventura.ca.gov/DocumentCenter/View/25998/Laqerquist-Jenny_Redacted) pledge to "promote only smart growth." Transit, funding, and water sustainability are good, but Lagerquist invokes all as classic excuses to avoid allowing development. Ventura can't change state and federal policymaking around grants, but they can decide whether to allow new homes to be built, which would generate tax revenue to provide their own assistance programs and expand transit. Singular focus on aesthetic preservation is antithetical to that goal.
 
 
-> I’ve thought about this because recently I met with a group of renters here in the city of Ventura, and let me tell you, they were all women. We know that this pandemic has impacted a lot of our minority communities. And especially women, it has driven out of the workforce, or their partners out of the workforce. And some of the women, I heard stories they were renting one room in a bigger house that they share with their teenagers. Or one of the other women there, she had just had surgery, and wasn’t working, didn’t have sick days or paid leave, so she wasn’t sure how she was going to pay rent. So this issue is very prevalent in the city of Ventura as I did my research I found that close to 19,000 renter households exist here in the city of Ventura. That’s approximately 46% of all the households in the city, almost 50%. And so for me that’s a huge issue to look at. Luckily, federal and state governments have been protecting renters. We have a new program, the emergency rental assistance program, and I think as city leaders, it’s incumbent upon us to help our residents reach these resources that are being made available to them.
+### Jeannette Sanchez-Palacios ignored the housing shortage
+
+Jeannette Sanchez-Palacios, district director for Assemblymember Jacqui Irwin, mostly avoided answering the housing question, though she did consider it a "huge issue" that Ventura has renters, and recommend building more single-family housing:
+
+
+> I've thought about this because recently I met with a group of renters here in the city of Ventura, and let me tell you, they were all women. We know that this pandemic has impacted a lot of our minority communities. And especially women, it has driven out of the workforce, or their partners out of the workforce. And some of the women, I heard stories they were renting one room in a bigger house that they share with their teenagers. Or one of the other women there, she had just had surgery, and wasn't working, didn't have sick days or paid leave, so she wasn't sure how she was going to pay rent. So this issue is very prevalent in the city of Ventura as I did my research I found that close to 19,000 renter households exist here in the city of Ventura. That's approximately 46% of all the households in the city, almost 50%. And so for me that's a huge issue to look at. Luckily, federal and state governments have been protecting renters. We have a new program, the emergency rental assistance program, and I think as city leaders, it's incumbent upon us to help our residents reach these resources that are being made available to them.
 
 
 > The other thing that came to mind was the community land trust programs that can get families into single family housing and in addition can help drive down the cost of rents and home prices. I think this one in particular is very important because these programs can also potentially be an avenue for the city to fulfill the Regional Housing Needs Assessment numbers, a.k.a. the RHNA numbers, which are a state mandate. The city has to look at that as we move forward and ensure that we can meet those numbers.
@@ -752,74 +750,66 @@ This response notably omits mention of our housing shortage, except to the exten
 
 > We will grow slowly and sustainably (meaning we will respect our water supplies and our constraints such as traffic). We will protect our environment and open space. We will preserve our rivers, beaches and natural environment. We will insist on the highest quality of architecture and design. We will maintain our small town atmosphere.
 
-Despite the group’s name, they primarily [oppose](https://www.facebook.com/VenturaHillsideNeighbors/posts/3572397196123915) [dense](https://www.facebook.com/VenturaHillsideNeighbors/posts/3579702212060080) [infill](https://www.facebook.com/VenturaHillsideNeighbors/posts/3670263143003986) [developments](https://www.facebook.com/VenturaHillsideNeighbors/posts/3346468822050088). They’ve since endorsed some of the most well-known NIMBYs in Ventura, such as former councilmember Christy Weir, whose [website](https://www.christyweir.com/issues/) advocates “limits on ‘high density’ and mixed use development to prevent over-urbanization.” (We [endorsed Weir’s opponent](https://www.vcyimby.org/endorsements#h.acdsvj6ekvnq), Doug Halter, in his successful November 2020 run.) Sanchez-Palacios didn’t only accept the endorsement of Neighbors for the Ventura Hillside, she recorded [two](https://www.facebook.com/933553936674934/videos/1288276611202663) [promotional videos](https://www.facebook.com/VenturaHillsideNeighbors/videos/1267762573254067) with them.
+Despite the group's name, they primarily [oppose](https://www.facebook.com/VenturaHillsideNeighbors/posts/3572397196123915) [dense](https://www.facebook.com/VenturaHillsideNeighbors/posts/3579702212060080) [infill](https://www.facebook.com/VenturaHillsideNeighbors/posts/3670263143003986) [developments](https://www.facebook.com/VenturaHillsideNeighbors/posts/3346468822050088). They've since endorsed some of the most well-known NIMBYs in Ventura, such as former councilmember Christy Weir, whose [website](https://www.christyweir.com/issues/) advocates "limits on 'high density' and mixed use development to prevent over-urbanization." (We [endorsed Weir's opponent](https://www.vcyimby.org/endorsements#h.acdsvj6ekvnq), Doug Halter, in his successful November 2020 run.) Sanchez-Palacios didn't only accept the endorsement of Neighbors for the Ventura Hillside, she recorded [two](https://www.facebook.com/933553936674934/videos/1288276611202663) [promotional videos](https://www.facebook.com/VenturaHillsideNeighbors/videos/1267762573254067) with them.
 
 
 ### Councilmembers nearly appointed the most NIMBY of the applicants
 
 The Ventura City Council selected their appointee in a two-stage process. First, each councilmember selected their top two applicants, and the two receiving the most votes advanced to the next round. In the second round, each councilmember selected their top applicant of these two, and the applicant with the most votes was appointed.
 
-In the first round, councilmembers Halter and Jim Friedman voted for Golden and Silva, while the others — Lorrie Brown, Mike Johnson, Deputy Mayor Joe Schroeder, and Mayor Sofia Rubalcava — voted for Sanchez-Palacios and Lagerquist, advancing them. In the second round, Friedman and Schroeder voted for Lagerquist and the others voted for Sanchez-Palacios.
-
-
-![Ventura District 4 City Council applicants during appointment interviews. From left: Brad Golden, John Silva, Jeannette Sanchez-Palacios, and Jenny Lagerquist.](https://cdn-images-1.medium.com/max/800/1*rSii0hnjxlRIB5gzBKI5sA.png)
+In the first round, councilmembers Halter and Jim Friedman voted for Golden and Silva, while the others — Lorrie Brown, Mike Johnson, Deputy Mayor Joe Schroeder, and Mayor Sofia Rubalcava — voted for Sanchez-Palacios and Lagerquist, advancing them. In the second round, Friedman and Schroeder voted for Lagerquist and the others voted for Sanchez-Palacios.
 
 No councilmembers mentioned housing in their decisions.
 
 Any elected official knows what statements like those from Lagerquist indicate about housing stances, yet all but Doug Halter voted for her in either the first or second round. Christy Weir may have voted for Lagerquist over Sanchez-Palacios, and if the more pro-housing opponents of Schroeder and Johnson (whom Neighbors for the Ventura Hillside also endorsed) had won in November, they might have appointed Silva or Golden instead. NIMBYism begets NIMBYism, but so too can YIMBYism beget YIMBYism.
 
-Sanchez-Palacios suggested she may run for election in November 2022. Her NIMBY alliances and disinterest in addressing the housing shortage are concerning, but until then, we’ll be pushing her to pursue the strong housing policy Ventura needs.
+Sanchez-Palacios suggested she may run for election in November 2022. Her NIMBY alliances and disinterest in addressing the housing shortage are concerning, but until then, we'll be pushing her to pursue the strong housing policy Ventura needs.
 
 ---
 
-## If you earned more in 2019 than 2018, don’t file your 2019 taxes yet! Otherwise, file ASAP!
+## If you earned more in 2019 than 2018, don't file your 2019 taxes yet! Otherwise, file ASAP!
 
 **URL:** https://maxghenis.com/blog/medium/if-you-earned-more-in-2019-than-2018-dont-file-you/
 **Published:** 2020-03-27
-**Description:** The right tax filing schedule could get you thousands in (poorly designed) Recovery Rebates. And Congress: Let’s just do UBI next time.
-
-#### The right tax filing schedule could get you thousands in (poorly designed) Recovery Rebates. And Congress: Let’s just do UBI next time.
+**Description:** The right tax filing schedule could get you thousands in (poorly designed) Recovery Rebates. And Congress: Let's just do UBI next time.
 
 Late Wednesday night, the Senate unanimously passed the [CARES Act](https://drive.google.com/file/d/1eT-ANEEd-AgAzyQh8GVUGoRqtKRLHxDm/view), a $2.2 trillion relief package to address the Covid-19 pandemic. The House is [expected to pass it](https://www.washingtonpost.com/politics/house-leaders-seek-to-expedite-emergency-aid-package-amid-uncertainty-about-gop-lawmaker-delaying-measure/2020/03/26/392c9dba-6f7d-11ea-a3ec-70d7479d83f0_story.html) on Friday.
 
 Of all the components of the nearly-900-page bill, the Recovery Rebates will have the broadest and most tangible reach. [Over 93 percent](https://taxfoundation.org/cares-act-senate-coronavirus-bill-economic-relief-plan/) of tax filers will receive these one-time checks of up to $1,200 per adult and $500 per child.
 
-There’s a catch, though. The amounts start phasing out for tax filers with income over $75,000 (single) or $150,000 (married), and that income comes from your latest tax filing: 2019 if you’ve filed, otherwise 2018.
+There's a catch, though. The amounts start phasing out for tax filers with income over $75,000 (single) or $150,000 (married), and that income comes from your latest tax filing: 2019 if you've filed, otherwise 2018.
 
-Filers with lower earnings in 2020 than the year of the latest tax return (2018 or 2019) will get a credit on their 2020 tax refunds next year. But the reverse isn’t true; filers that get more from the current payment than they would have based on 2020 income [don’t have to pay it back](https://thehill.com/policy/finance/489578-questions-and-answers-on-coronavirus-relief-checks). So it’s in each filer’s interest to get as high a payment immediately as possible.
+Filers with lower earnings in 2020 than the year of the latest tax return (2018 or 2019) will get a credit on their 2020 tax refunds next year. But the reverse isn't true; filers that get more from the current payment than they would have based on 2020 income [don't have to pay it back](https://thehill.com/policy/finance/489578-questions-and-answers-on-coronavirus-relief-checks). So it's in each filer's interest to get as high a payment immediately as possible.
 
-Treasury Secretary Steven Mnuchin said today that the checks will start coming [in the next three weeks](https://www.cnbc.com/2020/03/26/coronavirus-stimulus-checks-will-come-within-three-weeks-mnuchin-says.html). That might mean it’s already too late, and those that haven’t filed for 2019 yet could be stuck with 2018 information. Or they might have a couple weeks. The IRS hasn’t given any information either way.
+Treasury Secretary Steven Mnuchin said today that the checks will start coming [in the next three weeks](https://www.cnbc.com/2020/03/26/coronavirus-stimulus-checks-will-come-within-three-weeks-mnuchin-says.html). That might mean it's already too late, and those that haven't filed for 2019 yet could be stuck with 2018 information. Or they might have a couple weeks. The IRS hasn't given any information either way.
 
+One thing's for sure: there's no need to worry about timing it around the normal April 15 tax day. The IRS extended the deadline to [July 15](https://www.irs.gov/newsroom/tax-day-now-july-15-treasury-irs-extend-filing-deadline-and-federal-tax-payments-regardless-of-amount-owed).
 
-![irs.gov/coronavirus would prefer you stop calling them about your money.](https://cdn-images-1.medium.com/max/800/0*YJ8DsPnAxk6JE7Tc)
-
-One thing’s for sure: there’s no need to worry about timing it around the normal April 15 tax day. The IRS extended the deadline to [July 15](https://www.irs.gov/newsroom/tax-day-now-july-15-treasury-irs-extend-filing-deadline-and-federal-tax-payments-regardless-of-amount-owed).
-
-That’s it on the PSA for maximizing the recovery rebate. If you’re interested in how to avoid poor policy design like this in the future, read on.
+That's it on the PSA for maximizing the recovery rebate. If you're interested in how to avoid poor policy design like this in the future, read on.
 
 
-### This is why you don’t means-test emergency relief money
+### This is why you don't means-test emergency relief money
 
-There’s no good way to means-test outside the tax system. SNAP (food stamps), TANF (welfare), and Medicaid restrict to low-income households through an onerous process often involving in-person interviews, mandatory contact each time a recipient’s income change, and regular recertification of work/work-seeking and other circumstances. Unemployment insurance, currently facing stresses keeping up with new volume, also requires in-depth interactions. All these programs differ by state, or even by county, and a bunch of other small programs like discounted transit often just condition on SNAP receipt.
+There's no good way to means-test outside the tax system. SNAP (food stamps), TANF (welfare), and Medicaid restrict to low-income households through an onerous process often involving in-person interviews, mandatory contact each time a recipient's income change, and regular recertification of work/work-seeking and other circumstances. Unemployment insurance, currently facing stresses keeping up with new volume, also requires in-depth interactions. All these programs differ by state, or even by county, and a bunch of other small programs like discounted transit often just condition on SNAP receipt.
 
-There’s *especially *no good way to means-test in the middle of an emergency, when Washington wants to help most of the country afford basic necessities in a matter of weeks. There’s no time or resources for anything like the SNAP process, and nationwide consistency is an essential ingredient for quick passage through Congress.
+There's *especially *no good way to means-test in the middle of an emergency, when Washington wants to help most of the country afford basic necessities in a matter of weeks. There's no time or resources for anything like the SNAP process, and nationwide consistency is an essential ingredient for quick passage through Congress.
 
-Using old tax data is the only way, and doing so doesn’t only penalize people for either filing too early or too late. What if a person got married or divorced since their last tax filing? Or had a child, or had a child age out of their household? Or even more complicated, if they got divorced and remarried? The IRS is going to have to make some tough calls to figure this out, and they’ll make mistakes that will force exes to figure out how to split the new money. And then what about the reconciliation in next year’s taxes?
+Using old tax data is the only way, and doing so doesn't only penalize people for either filing too early or too late. What if a person got married or divorced since their last tax filing? Or had a child, or had a child age out of their household? Or even more complicated, if they got divorced and remarried? The IRS is going to have to make some tough calls to figure this out, and they'll make mistakes that will force exes to figure out how to split the new money. And then what about the reconciliation in next year's taxes?
 
 Using taxes also means sending money by tax filing unit, which can create hidden discrepancies. For example, the Recovery Rebate only gives money for primary filers and child dependents. If someone claims a college-age child on taxes, or other adult dependents like an elderly parent or someone with a disability, [they get $0](https://medium.com/whatever-source-derived/dont-exclude-elderly-and-disabled-dependents-from-covid-19-aid-54fc59eb43f3) to help them through this crisis.
 
 All this effort, cost, and complexity cannot possibly be worth a bit of savings from excluding the top 7 percent of households.
 
-Instead, we should just give to everyone. Suppose we gave the $1,200 to every adult and $500 to every child. Based on the [current population](https://www.census.gov/content/dam/Census/library/publications/2020/demo/p25-1146.pdf), that’d cost $348 billion, or an extra $56 billion above the [$292 billion](https://www.jct.gov/publications.html?func=startdown&id=5252) cost of the Recovery Rebates. That’s about 2.5 percent of the total CARES Act.
+Instead, we should just give to everyone. Suppose we gave the $1,200 to every adult and $500 to every child. Based on the [current population](https://www.census.gov/content/dam/Census/library/publications/2020/demo/p25-1146.pdf), that'd cost $348 billion, or an extra $56 billion above the [$292 billion](https://www.jct.gov/publications.html?func=startdown&id=5252) cost of the Recovery Rebates. That's about 2.5 percent of the total CARES Act.
 
-If we want to, we can effectively tax that money back next year. But even if we don’t, we can expect high income people to lose a larger dollar amount than other groups, based on past recessions. More progressive taxation is a fine way to save money — and we’ll surely need more taxes to pay off the relief costs once this is all over — but either way, most rich people will lose far more income than the couple grand they’ll get in rebates.
+If we want to, we can effectively tax that money back next year. But even if we don't, we can expect high income people to lose a larger dollar amount than other groups, based on past recessions. More progressive taxation is a fine way to save money — and we'll surely need more taxes to pay off the relief costs once this is all over — but either way, most rich people will lose far more income than the couple grand they'll get in rebates.
 
 
-![Source: Congressional Budget Office. “The Distribution of Household Income, 2016.”](https://cdn-images-1.medium.com/max/800/0*UqUNf-sBuJMzJLs6)
+![Source: Congressional Budget Office. "The Distribution of Household Income, 2016."](https://cdn-images-1.medium.com/max/800/0*UqUNf-sBuJMzJLs6)
 
-Some of this will still be slowed by transaction time. The Treasury will have to spend more effort reaching people without recent tax records, or without existing direct deposit for receiving tax refunds. We could speed this up in the future by offering everyone government bank accounts, or connecting them with direct deposit or debit cards like Social Security does. Other forms of universal transfers — even small ones like a [carbon dividend](http://energyinnovationact.org) or a [child allowance](https://www.vox.com/future-perfect/2019/3/6/18249290/child-poverty-american-family-act-sherrod-brown-michael-bennet) — would create payment infrastructure that could be jacked up in times of need.
+Some of this will still be slowed by transaction time. The Treasury will have to spend more effort reaching people without recent tax records, or without existing direct deposit for receiving tax refunds. We could speed this up in the future by offering everyone government bank accounts, or connecting them with direct deposit or debit cards like Social Security does. Other forms of universal transfers — even small ones like a [carbon dividend](http://energyinnovationact.org) or a [child allowance](https://www.vox.com/future-perfect/2019/3/6/18249290/child-poverty-american-family-act-sherrod-brown-michael-bennet) — would create payment infrastructure that could be jacked up in times of need.
 
-It might not be so long before this choice rears its head again. House Speaker Nancy Pelosi has said she’s [considering more cash payments](https://thehill.com/homenews/house/489587-pelosi-democrats-eyeing-more-cash-payments-in-next-emergency-bill) in the next relief bill. She should join the eight congresspeople from both parties who have [called for making them universal](https://medium.com/ubicenter/tracking-us-emergency-cash-transfer-proposals-7c4bf90e8ac8). Crises are not the time for convoluted means-tests.
+It might not be so long before this choice rears its head again. House Speaker Nancy Pelosi has said she's [considering more cash payments](https://thehill.com/homenews/house/489587-pelosi-democrats-eyeing-more-cash-payments-in-next-emergency-bill) in the next relief bill. She should join the eight congresspeople from both parties who have [called for making them universal](https://medium.com/ubicenter/tracking-us-emergency-cash-transfer-proposals-7c4bf90e8ac8). Crises are not the time for convoluted means-tests.
 
 
 ![](https://cdn-images-1.medium.com/max/800/1*L3mYOcTbzIxlWf0N-1gIqQ.png)
@@ -841,9 +831,6 @@ When I was about 12, I sat around the dining room table with my family, paging t
 Once I started working after college, I was glad for the chance to give my own money to charities. Heifer now seemed prescriptive and arbitrary to me (why would I know the best livestock to get a farmer?),¹ so I focused on medical research and interest-free Kiva loans to poor people looking for business investment in developing countries.² My intuitions were that medical advancements served the public good, and that people in poorer countries who sought funding for a specific venture would benefit most from a dollar of giving. But I wondered whether these choices were the best use of my giving budget.
 
 I started to satisfy this curiosity in 2012, when I learned of [GiveDirectly](http://givedirectly.org), a small nonprofit that gave direct, unconditional cash transfers to extremely poor families in Kenya. Their approach was novel but not untested: other studies had shown that giving people cash improved outcomes ranging from nutrition to business investment, and GiveDirectly (founded by economists) was evaluating its own disbursements with randomized controlled trials. GiveDirectly’s focus on efficiency (90 cents of every dollar in donations ended up in the hands of a poor person), transparent measurement, and effective deployment of additional funds, earned it a [“Top Charity”](https://web.archive.org/web/20121201034608/http://www.givewell.org/international/top-charities/give-directly) rating from the evidence-based evaluator [GiveWell](http://givewell.org). GiveWell evaluates charities on the cost-effectiveness of their measured impact, and awarded only three Top Charity ratings in 2012.
-
-
-![GiveWell’s logo as of 2012 (they’ve since scrapped the slogan)](https://cdn-images-1.medium.com/max/800/0*uBygJagB-WFaixZG)
 
 Discovering GiveDirectly — and GiveWell’s review of GiveDirectly — became a seminal event in my life. My interest in cash transfers led to researching [universal basic income](http://ubicenter.org) (UBI, which GiveDirectly is [testing](https://www.givedirectly.org/ubi-study/) in Kenya), while the validation of GiveWell’s evaluation contributed to my decision to pursue a [master’s degree](http://economics.mit.edu/masters) in development economics, which I’ll start next month (the program was created by one of the researchers evaluating GiveDirectly’s UBI experiment, who just [won](https://www.nobelprize.org/uploads/2019/10/press-economicsciences2019.pdf) the Nobel Prize).
 
@@ -922,49 +909,46 @@ I plan to do another recap like this next year, and hope it will include a new c
 
 *Yesterday concluded *[Hunger & Homelessness Awareness Week](https://hhweek.org/)*.*
 
-“This is arguably one of the most contentious issues ever,” said Oxnard Mayor Tim Flynn about a [new 110-bed homeless shelter](https://www.vcstar.com/story/news/2019/11/20/oxnard-homeless-shelter-location-city-council-decision-former-salvation-army/4229839002/) on Tuesday night. Public comments from neighbors expressed concern over drug use, safety, and even insufficient parking, while homelessness advocates emphasized the need for compassion and shelter. Ultimately, Flynn joined four councilmembers in approving the shelter lease, marking a step toward addressing unsheltered homelessness in Ventura County.
+"This is arguably one of the most contentious issues ever," said Oxnard Mayor Tim Flynn about a [new 110-bed homeless shelter](https://www.vcstar.com/story/news/2019/11/20/oxnard-homeless-shelter-location-city-council-decision-former-salvation-army/4229839002/) on Tuesday night. Public comments from neighbors expressed concern over drug use, safety, and even insufficient parking, while homelessness advocates emphasized the need for compassion and shelter. Ultimately, Flynn joined four councilmembers in approving the shelter lease, marking a step toward addressing unsheltered homelessness in Ventura County.
 
 We need far more decisions like these. [1,669 Ventura County residents are homeless](http://www.venturacoc.org/images/2019_VC_Homeless_Count_Report-Final.pdf), of whom 1,258 lack shelter. Those numbers increased 29 and 53 percent, respectively, over the past year.
 
-They should be zero: Nobody in Ventura County should be forced to live on the streets or in parks without access to restrooms and medical care. As Oxnard City Manager Alex Nguyen said at Tuesday’s hearing, “This is a public health crisis.” We agree, and it should be addressed as one.
+They should be zero: Nobody in Ventura County should be forced to live on the streets or in parks without access to restrooms and medical care. As Oxnard City Manager Alex Nguyen said at Tuesday's hearing, "This is a public health crisis." We agree, and it should be addressed as one.
 
 
-> Homelessness is a public health crisis.
+> Homelessness is a public health crisis.
 
 With a combination of more shelters to house our homeless neighbors, more subsidies to keep at-risk families in their homes, and more homes to make housing more broadly affordable, we can end unsheltered homelessness in Ventura County. But first, the facts.
 
 
 ### Debunking homelessness myths
 
-Perceptions of homelessness are often based on its most visible instances. Seeing a homeless person doing drugs in public can be shocking, and it’s not unusual to then assume that this is the norm.
+Perceptions of homelessness are often based on its most visible instances. Seeing a homeless person doing drugs in public can be shocking, and it's not unusual to then assume that this is the norm.
 
-Those salient occurrences are unrepresentative, however. The stereotype of a chronically homeless out-of-towner with a mental health problem abusing substances on our streets isn’t just rare in combination, it’s rare for homeless people to have even one of those characteristics.
-
-
-![Ventura County 2019 Homeless Count, calculations by Ventura County YIMBY](https://cdn-images-1.medium.com/max/800/1*BalH6-s63BqA1tBxCqqdAw.png)
+Those salient occurrences are unrepresentative, however. The stereotype of a chronically homeless out-of-towner with a mental health problem abusing substances on our streets isn't just rare in combination, it's rare for homeless people to have even one of those characteristics.
 
 While three quarters of homeless people in Ventura County lack shelter, only about a quarter are new to Ventura County, have mental health or substance abuse problems, or are chronically homeless.
 
 For the subset who do suffer from substance abuse or mental health problems, the stability of shelter is all the more important. We have the resources to help these people get the care they need, but providing that help is difficult when they sleep on a different street corner every night.
 
 
-### The shelter shortage
+### The shelter shortage
 
 As of January, Ventura County had 464 emergency shelter and transitional housing beds, one for every 3.6 homeless people. A new 110-bed shelter has since opened, but that still leaves over 1,000 beds just to provide one for each homeless person.
 
-Realistically, ending unsheltered homelessness requires more beds than homeless people, since shelters aren’t always where our homeless people are (Ventura County is over 2,200 square miles), and each shelter tends to serve a specific subpopulation. For example, the 73 vacant beds were disproportionately reserved for domestic violence victims.
+Realistically, ending unsheltered homelessness requires more beds than homeless people, since shelters aren't always where our homeless people are (Ventura County is over 2,200 square miles), and each shelter tends to serve a specific subpopulation. For example, the 73 vacant beds were disproportionately reserved for domestic violence victims.
 
 84 percent of beds were utilized as of the point-in-time count, so assuming the same rate moving forward, and considering the newly built and approved shelters, we need 1,300 more shelter beds to end unsheltered homelessness.
 
 
 > Ventura County needs 1,300 more shelter beds to end unsheltered homelessness.
 
-This has worked elsewhere: for example, New York City’s unsheltered homeless rate is a quarter of Ventura County’s. How did they do it? [More shelters.](https://medium.com/@josefow/nicks-action-plan-on-street-homelessness-51ddecb1ad76)
+This has worked elsewhere: for example, New York City's unsheltered homeless rate is a quarter of Ventura County's. How did they do it? [More shelters.](https://medium.com/@josefow/nicks-action-plan-on-street-homelessness-51ddecb1ad76)
 
 
 ### Preventing homelessness through housing affordability
 
-A [2018 Zillow-commissioned report](https://www.zillow.com/research/homelessness-rent-affordability-22247/) found that “homelessness rises faster where rent exceeds a third of income.”
+A [2018 Zillow-commissioned report](https://www.zillow.com/research/homelessness-rent-affordability-22247/) found that "homelessness rises faster where rent exceeds a third of income."
 
 
 ![](https://cdn-images-1.medium.com/max/800/0*iboTeWseZoifCPn5)
@@ -972,13 +956,13 @@ A [2018 Zillow-commissioned report](https://www.zillow.com/research/homelessness
 While half of U.S. households spend more than 30 percent of their income on rent, 3 in 5 Ventura County households do.
 
 
-![US Census Bureau, calculations by Ventura County YIMBY](https://cdn-images-1.medium.com/max/800/0*g-M-CU2gPdp6sSht)
+![US Census Bureau, calculations by Ventura County YIMBY](https://cdn-images-1.medium.com/max/800/0*g-M-CU2gPdp6sSht)
 
-To cut households’ risk of homelessness, we need to boost incomes and/or reduce rents. Achieving the former can mean promoting economic development to raise wages, or providing subsidies or cash transfers to low-income renters.
+To cut households' risk of homelessness, we need to boost incomes and/or reduce rents. Achieving the former can mean promoting economic development to raise wages, or providing subsidies or cash transfers to low-income renters.
 
-[Evidence](https://www.whitehouse.gov/sites/whitehouse.gov/files/images/Housing_Development_Toolkit%20f.2.pdf) [increasingly](https://lao.ca.gov/Publications/Report/3345#More_Private_Home_Building_Could_Help) [shows](https://research.upjohn.org/up_workingpapers/307/) that achieving the latter — lower rents — requires [building](https://docs.wixstatic.com/ugd/7fc2bf_ee1737c3c9d4468881bf1434814a6f8f.pdf) [more](https://appam.confex.com/appam/2018/webprogram/Paper25811.html) [housing](https://www.sightline.org/2017/09/21/yes-you-can-build-your-way-to-affordable-housing/). This is especially important in Ventura County, which has 20 percent fewer [housing units per adult](https://medium.com/vcyimby/support-for-oxnard-fishermans-wharf-development-26d5204e9f7c) than the nation, and a 30 percent lower [rental vacancy rate](https://data.census.gov/cedsci/table?q=united%20states%20housing&lastDisplayedRow=159&table=DP04&tid=ACSDP1Y2018.DP04&t=Housing&g=0100000US_0400000US06_0500000US06111_1600000US0654652&hidePreview=true&moe=false). With abundant housing of all sorts, low-income households won’t have to compete with higher-income households for insufficient housing stock — under threat of homelessness if they don’t win — and formerly homeless people will have an easier time re-entering permanent housing.
+[Evidence](https://www.whitehouse.gov/sites/whitehouse.gov/files/images/Housing_Development_Toolkit%20f.2.pdf) [increasingly](https://lao.ca.gov/Publications/Report/3345#More_Private_Home_Building_Could_Help) [shows](https://research.upjohn.org/up_workingpapers/307/) that achieving the latter — lower rents — requires [building](https://docs.wixstatic.com/ugd/7fc2bf_ee1737c3c9d4468881bf1434814a6f8f.pdf) [more](https://appam.confex.com/appam/2018/webprogram/Paper25811.html) [housing](https://www.sightline.org/2017/09/21/yes-you-can-build-your-way-to-affordable-housing/). This is especially important in Ventura County, which has 20 percent fewer [housing units per adult](https://medium.com/vcyimby/support-for-oxnard-fishermans-wharf-development-26d5204e9f7c) than the nation, and a 30 percent lower [rental vacancy rate](https://data.census.gov/cedsci/table?q=united%20states%20housing&lastDisplayedRow=159&table=DP04&tid=ACSDP1Y2018.DP04&t=Housing&g=0100000US_0400000US06_0500000US06111_1600000US0654652&hidePreview=true&moe=false). With abundant housing of all sorts, low-income households won't have to compete with higher-income households for insufficient housing stock — under threat of homelessness if they don't win — and formerly homeless people will have an easier time re-entering permanent housing.
 
-We need a more humane approach to homelessness. Instead of rounding up tent dwellers as they move from one park to the next, let’s build shelters for them to live in. Instead of assuming the worst in each homeless person, let’s recognize that they are largely our neighbors who could no longer afford rent. Let’s build an affordable, inclusive Ventura County where unsheltered homelessness is a thing of the past.
+We need a more humane approach to homelessness. Instead of rounding up tent dwellers as they move from one park to the next, let's build shelters for them to live in. Instead of assuming the worst in each homeless person, let's recognize that they are largely our neighbors who could no longer afford rent. Let's build an affordable, inclusive Ventura County where unsheltered homelessness is a thing of the past.
 
 *If you believe in this approach to homelessness, consider joining *[Ventura County YIMBY](http://vcyimby.org)* and other pro-homeless organizations in the area.*
 
@@ -989,8 +973,6 @@ We need a more humane approach to homelessness. Instead of rounding up tent dwel
 **URL:** https://maxghenis.com/blog/medium/warrens-wealth-tax-would-raise-less-than-she-claim/
 **Published:** 2019-11-09
 **Description:** Using their cited assumptions around avoidance and economic growth cuts revenue by a quarter
-
-#### Using their cited assumptions around avoidance and economic growth cuts revenue by a quarter
 
 In January, Elizabeth Warren [proposed](https://www.washingtonpost.com/business/2019/01/24/elizabeth-warren-propose-new-wealth-tax-very-rich-americans-economist-says) a two percent (“two cent”) [wealth tax](https://elizabethwarren.com/plans/ultra-millionaire-tax) on families worth $50 million or more, graduated to three percent for those worth $1 billion or more. Last Friday, she [announced](https://elizabethwarren.com/plans/paying-for-m4a) an additional three percent tax on billionaires as part of her Medicare for All plan.
 
@@ -1012,10 +994,6 @@ When Warren announced her first wealth tax, Saez and Zucman published [wealthtax
 These three sources — the Warren campaign paper and the two calculators — produce different estimates. In the Warren campaign paper, this can be partly attributed to intermediate rounding, though the two calculators also differ when entering the same tax parameters, indicating differences in the underlying data.
 
 One large difference is that TJN shows Warren’s new three-percent billionaire surtax to raise $1.08 trillion, 27 percent more than the WTS estimate; TJN’s estimates 10 percent more total revenue than WTS for the base plus Medicare for All taxes. Since only the WTS data was made available to researchers, I used that for my analysis.
-
-
-![](https://cdn-images-1.medium.com/max/800/0*VTasmc5meB2EPKhl)
-
 
 ### Does the tax rate affect avoidance?
 
@@ -1076,13 +1054,11 @@ Proper avoidance modeling has a larger effect on the Sanders plan than on the Wa
 
 ---
 
-## Andrew Yang’s troubling Tucker Carlson interview
+## Andrew Yang's troubling Tucker Carlson interview
 
 **URL:** https://maxghenis.com/blog/medium/andrew-yangs-troubling-tucker-carlson-interview/
 **Published:** 2019-03-09
-**Description:** The Democratic presidential candidate fed into Tucker’s MAGA narrative
-
-#### The Democratic presidential candidate fed into Tucker’s MAGA narrative
+**Description:** The Democratic presidential candidate fed into Tucker's MAGA narrative
 
 Last Friday, Democratic presidential candidate Andrew Yang joined Fox News’s *Tucker Carlson Tonight* for a [5-minute interview](https://youtu.be/bMVCkhyg5kA). Consistent with his [book](https://www.amazon.com/War-Normal-People-Disappearing-Universal/dp/0316414247) and [platform](https://www.yang2020.com/policies), Yang warned of a coming wave of job losses due to automation, citing the fall in Midwest manufacturing employment and the 3.5 million truck drivers at risk of replacement by autonomous vehicle technology.
 
@@ -1097,9 +1073,6 @@ Carlson introduced Yang by warning of the dangers of automation and technology. 
 > Labor force participation rate in the United States is 63.2 percent, the same level as Ecuador and Costa Rica.
 
 This echoes his statements on [Twitter](https://twitter.com/AndrewYangVFA/status/1073214206823071744) and the [Joe Rogan Experience](https://youtu.be/cTsEzmFamZ8?t=971), in which he compared the US to El Salvador and Dominican Republic. Yang is referring to the civilian labor force participation rate (LFPR), [defined](https://www.bls.gov/cps/cps_htgm.htm#definitions) by the Bureau of Labor Statistics (BLS) as the share of people age 16 or older who are working or actively seeking work. It’s hovered around 63 percent since 2013, down from 67 percent around 2000, and the most recent data is from January 2019 at 63.2 percent.
-
-
-![Source: St. Louis Federal Reserve](https://cdn-images-1.medium.com/max/800/0*RuNvarFW1o1Xyut-)
 
 Data from the World Bank differs slightly from BLS (age 15+ instead of 16+, and as of 2018) but shows that the US LFPR is about in the middle of the pack (61.6 percent, higher than 46 percent of countries). While it’s similar to El Salvador, it’s substantially lower than Ecuador and Dominican Republic, and somewhat higher than Costa Rica. The United Kingdom and South Korea are both more similar to the United States than most of the countries Yang lists.
 
@@ -1170,8 +1143,6 @@ By these objectives, Yang’s interview did more to bolster the doom-and-gloom n
 **Published:** 2018-10-16
 **Description:** Suppose a real estate analyst wants to predict home prices from factors like home age and distance from job centers.
 
-Suppose a real estate analyst wants to predict home prices from factors like home age and distance from job centers. The typical goal will be generating the best home price *point estimate* given those factors, where “best” often refers to the estimate that minimizes squared deviations from reality.
-
 But what if they want to predict not just a single estimate, but also the likely range? This is called the *prediction interval*, and the general method for producing them is known as *quantile regression*. In this post I’ll describe how this problem is formalized; how to implement it in six linear, tree-based, and deep learning methods (in Python — [here’s the Jupyter notebook](https://colab.research.google.com/drive/1nXOlrmVHqCHiixqiMF6H8LSciz583_W2)); and how they perform against real-world datasets.
 
 
@@ -1179,12 +1150,9 @@ But what if they want to predict not just a single estimate, but also the likely
 
 Just as regressions minimize the squared-error loss function to predict a single point estimate, quantile regressions minimize the *quantile loss *in predicting a certain quantile. The most popular quantile is the median, or the 50th percentile, and in this case the quantile loss is simply the sum of *absolute* errors. Other quantiles could give endpoints of a prediction interval; for example a middle-80-percent range is defined by the 10th and 90th percentiles. The quantile loss differs depending on the evaluated quantile, such that more negative errors are penalized more for higher quantiles and more positive errors are penalized more for lower quantiles.
 
-Before digging into the formula, suppose we’ve made a prediction for a single point with a true value of zero, and our predictions range from -1 to +1; that is, our errors also range from -1 to +1. This graph shows how the quantile loss varies with the error, depending on the quantile.
+Before digging into the formula, suppose we've made a prediction for a single point with a true value of zero, and our predictions range from -1 to +1; that is, our errors also range from -1 to +1. This graph shows how the quantile loss varies with the error, depending on the quantile.
 
-
-![](https://cdn-images-1.medium.com/max/800/0*ufWnnvTA9AkjKrfI)
-
-Let’s look at each line separately:
+Let's look at each line separately:
 
 - The medium blue line shows the median, which is symmetric around zero, where all losses equal zero because the prediction was perfect. Looks good so far: the median aims to bisect the set of predictions, so we want to weigh underestimates equally to overestimates. As we’ll see soon, the quantile loss around the median is half the absolute deviation, so 0.5 at both -1 and +1, and 0 at 0.
 - The light blue line shows the 10th percentile, which assigns a lower loss to negative errors and a higher loss to positive errors. The 10th percentile means we think there’s a 10 percent chance that the true value is below that predicted value, so it makes sense to assign less of a loss to underestimates than to overestimates.
@@ -1336,8 +1304,6 @@ Quantile regression is valuable for each of these use cases, and machine learnin
 **Published:** 2018-04-22
 **Description:** The Child Tax Credit (CTC) is one of the largest assistance programs for children in the US.
 
-The Child Tax Credit (CTC) is one of the largest assistance programs for children in the US. With a newly expanded budgetary impact of $120 billion, it will reach 40 million households this year — 88 percent of all households with children.¹ ² For families that receive it, the CTC is highly effective, having lifted [1.5 million children](https://www.cbpp.org/research/federal-tax/policy-basics-the-child-tax-credit) out of poverty in 2016. This success has brought it bipartisan support, with both [Hillary Clinton](https://www.brookings.edu/blog/social-mobility-memos/2016/10/13/clintons-child-tax-credit-proposal-a-good-start-on-helping-low-and-middle-income-families/) and [Marco Rubio](https://www.washingtonpost.com/news/wonk/wp/2017/12/19/what-marco-rubio-got-for-his-tax-vote/?utm_term=.b7e3c72d928c) having proposed expansions in the past couple years. However, like most tax credits, it provides little if any assistance to the poorest households who need it most.
-
 There’s an easy fix: replace the CTC with a universal child benefit, a payment given monthly to parents for each of their children. I modeled this in a [new paper](https://drive.google.com/open?id=1Av1-CTBZpmDGkiG_hyoXqCi4-S1DQUCv) using the open-source [Tax-Calculator](http://pslmodels.github.io/Tax-Calculator/) software,³ showing that such a reform would be highly progressive.
 
 A revenue-neutral plan would give $1,500 per child per year,⁴ increasing by 7 percent the after-tax incomes of the bottom quartile of households with children, at a small expense to higher earning households. Or for a cost of $42 billion — a 36 percent increase to the CTC budgetary impact — we could match the CTC’s maximum of $2,000 per child per year (currently unavailable to many families), boosting incomes of the bottom quartile by 13 percent while either benefiting or not affecting other groups. Both options reduce poverty and inequality, and provide parents with a steady, dependable income to care for their children, instead of an uncertain amount every April.
@@ -1351,8 +1317,6 @@ The December 2017 tax bill changed the CTC in a few ways, most importantly: (a) 
 
 Given the complexities of the two credits, distribution of actual outcomes are useful for understanding the credit’s benefit. This chart shows the average credit value per CTC-eligible child (essentially being age 16 or younger) based on the household’s percentile of after-tax after-transfer income (that is, including programs like food stamps; called “income” from here on) without the credit. The analysis is limited to households with at least one child eligible for the CTC, and “child” is defined as children eligible for the CTC.
 
-
-![](https://cdn-images-1.medium.com/max/800/1*mfffKJMhH3jZx34nUgNnkw.png)
 
 The average credit per child exceeds $1,500 for most percentiles outside the bottom third, up until the top 1 to 2 percent — those with pre-tax incomes above $270,000 or so — who are ineligible. But for the very poor, it provides little benefit. Further, the Republican tax bill disproportionately helped upper-middle income families, without addressing the disparity for very low earners.
 
@@ -1432,47 +1396,42 @@ It should culminate in a universal child benefit, completing its path toward inc
 
 ---
 
-## The case for a wonky basic income plan
+## The case for a wonky basic income plan
 
 **URL:** https://maxghenis.com/blog/medium/the-case-for-a-wonky-basic-income-plan/
 **Published:** 2017-06-14
-**Description:** In March, a former union leader joined forces with a prominent libertarian to [debate](https://youtu.be/YX9T7GHs9fQ?t=22m6s) two Obama White House economists.
+**Description:** In March, a former union leader joined forces with a prominent libertarian to debate two Obama White House economists.
 
-In March, a former union leader joined forces with a prominent libertarian to [debate](https://youtu.be/YX9T7GHs9fQ?t=22m6s) two Obama White House economists. The topic, hosted by [Intelligence²](http://www.intelligencesquaredus.org/debates/universal-basic-income-safety-net-future), was “Is Universal Basic Income The Safety Net of the Future?” with the unlikely duo — Andy Stern, President Emeritus of the Service Employees International Union, and Charles Murray, fellow at the conservative American Enterprise Institute — arguing the case for, and the economists — Jared Bernstein, former chief economist to Vice President Biden, and Jason Furman, former chairman of the Council of Economic Advisors — arguing against. Stern pitched universal basic income — giving every person a check each month without conditions — as insurance for a future where AI and robots make human workers obsolete; Murray lauded the personal liberty from solving poverty without a paternalistic bureaucracy. Bernstein and Furman claimed the math didn’t add up; that the universality requires reducing benefits for the poor, especially families with children; and that other changes needed to pay for the program would be politically infeasible.
+Economists have expressed skepticism of this idea elsewhere. Bob Greenstein of the Center on Budget and Policy Priorities [questions](https://www.vox.com/2017/5/12/13954182/case-for-and-against-universal-basic-income-united-states) the compatibility of such a large expenditure with today's political climate. A [2016 survey](http://www.igmchicago.org/surveys/universal-basic-income) found that 70% of economists opposed replacing all transfer programs with a basic income of $13,000 per year for adults age 21 and over. Others like [blogger Tyler Cowen](http://marginalrevolution.com) believe that [work, not money](https://www.bloomberg.com/view/articles/2016-10-27/my-second-thoughts-about-universal-basic-income), is the central problem for the country.
 
-
-![From left: Charles Murray, Andy Stern, Robert Rosenkranz (moderator), Jared Bernstein, and Jason Furman.](https://cdn-images-1.medium.com/max/800/0*gemScvntAOBh9p4s.)
-
-Economists have expressed skepticism of this idea elsewhere. Bob Greenstein of the Center on Budget and Policy Priorities [questions](https://www.vox.com/2017/5/12/13954182/case-for-and-against-universal-basic-income-united-states) the compatibility of such a large expenditure with today’s political climate. A [2016 survey](http://www.igmchicago.org/surveys/universal-basic-income) found that 70% of economists opposed replacing all transfer programs with a basic income of $13,000 per year for adults age 21 and over. Others like [blogger Tyler Cowen](http://marginalrevolution.com) believe that [work, not money](https://www.bloomberg.com/view/articles/2016-10-27/my-second-thoughts-about-universal-basic-income), is the central problem for the country.
-
-And yet, there’s a lot for economists (and us all) to like about basic income. It
+And yet, there's a lot for economists (and us all) to like about basic income. It
 
 - Fills in the gaps of the current safety net, which often fails to reach the poorest and unemployed.
 - Eliminates welfare traps, where beneficiaries lose more in benefits than they earn if they choose to work more or accept a raise (i.e., improves work incentives).
 - Utilizes cash, which 84% of economists agree increases welfare more than in-kind benefits do.
 - Consolidates the portfolio of programs made costly by its complexity (even large ones cost ~10% to administer).
-- Simplifies the bureaucracy that’s difficult for beneficiaries to navigate.
+- Simplifies the bureaucracy that's difficult for beneficiaries to navigate.
 
-Their concerns are often not about basic income per se, but about the plans proposed. Political challenges aside, economists’ most compelling critique may be that existing plans harm those in most need, especially families with children. Bernstein and Furman drilled this point in the Intelligence² debate, leading them to victory: while 20% of the audience initially opposed the motion that “the universal basic income is the safety net of the future”, 61% opposed it afterward.
+Their concerns are often not about basic income per se, but about the plans proposed. Political challenges aside, economists' most compelling critique may be that existing plans harm those in most need, especially families with children. Bernstein and Furman drilled this point in the Intelligence² debate, leading them to victory: while 20% of the audience initially opposed the motion that "the universal basic income is the safety net of the future", 61% opposed it afterward.
 
-The good news is: it’s entirely possible to design a basic income plan that minimizes the net losses (and therefore political opposition) to beneficiaries and taxpayers, while still respecting the core tenets of basic income — universality, individuality, and focus on cash. Doing so requires a *person-centric* perspective, whereby we consider the current benefits received and taxes paid by all Americans today, and design the plan with the explicit goal of giving as many people as possible at least as much as they currently get.
+The good news is: it's entirely possible to design a basic income plan that minimizes the net losses (and therefore political opposition) to beneficiaries and taxpayers, while still respecting the core tenets of basic income — universality, individuality, and focus on cash. Doing so requires a *person-centric* perspective, whereby we consider the current benefits received and taxes paid by all Americans today, and design the plan with the explicit goal of giving as many people as possible at least as much as they currently get.
 
-This would be hard work, and I’ve not (yet) formed a specific plan. This piece lays out the justification for a new approach to basic income policy design, describes a framework for this design, and proposes negative income tax as a conceptual starting point. Such a policy can win expert support for basic income by emphasizing welfare of individuals.
+This would be hard work, and I've not (yet) formed a specific plan. This piece lays out the justification for a new approach to basic income policy design, describes a framework for this design, and proposes negative income tax as a conceptual starting point. Such a policy can win expert support for basic income by emphasizing welfare of individuals.
 
 
-### The current plans
+### The current plans
 
-Stern and Murray were appropriate defenders against Bernstein and Furman, as they have proposed some of the most specific and widely-cited plans for basic income in the US. Prominent basic income advocate Scott Santens also released a plan in June. So it’s worth summarizing the [Stern](https://futurism.com/heres-how-we-could-fund-a-ubi-program-in-the-united-states/), [Murray](http://www.fljs.org/files/publications/Murray.pdf), and [Santens](https://medium.com/economicsecproj/how-to-reform-welfare-and-taxes-to-provide-every-american-citizen-with-a-basic-income-bc67d3f4c2b8) plans on a few dimensions:
+Stern and Murray were appropriate defenders against Bernstein and Furman, as they have proposed some of the most specific and widely-cited plans for basic income in the US. Prominent basic income advocate Scott Santens also released a plan in June. So it's worth summarizing the [Stern](https://futurism.com/heres-how-we-could-fund-a-ubi-program-in-the-united-states/), [Murray](http://www.fljs.org/files/publications/Murray.pdf), and [Santens](https://medium.com/economicsecproj/how-to-reform-welfare-and-taxes-to-provide-every-american-citizen-with-a-basic-income-bc67d3f4c2b8) plans on a few dimensions:
 
-- Annual amount Stern: $12,000Murray: $10,000, plus $3,000 to purchase catastrophic health insuranceSantens: $13,266 for adults, $4,598 for children
+- Annual amount Stern: $12,000Murray: $10,000, plus $3,000 to purchase catastrophic health insuranceSantens: $13,266 for adults, $4,598 for children
 - Eligible age population (all plans are limited to US citizens)Stern: 18–64, though seniors can opt in if Social Security (which remains) pays less than $12,000 per yearMurray: 21+Santens: All (lower amount for children)
-- Replaced programs (I consider the Earned Income Tax Credit (EITC) and Child Tax Credit (CTC) “programs” instead of tax changes, to align with the IRS)Stern: “all or some number of the 126 [federal] welfare programs that currently cost $1 trillion a year” excluding healthcare programs like Medicaid and CHIP; also cuts military spendingMurray: “Social Security, Medicare, Medicaid, welfare programmes, social service programmes, agricultural subsidies, and corporate welfare”Santens: “Food and nutrition assistance programs ($108 billion)[,] temporary assistance for needy families ($17 billion)…the earned income credit ($73 billion), [and] the child tax credit ($56 billion)…will not touch health care, child care, or housing”
-- Tax changes (there’s uncertainty around these estimates)Stern: Phase out most tax expenditures (currently $1.2T/year); possibly add VAT of 5–10%, 1.5% wealth tax on assets over $1M, financial transaction tax, and Peter Barnes’ “Sky Trust”Murray: 17% phase-out of basic income for incomes between $30,000 to $60,000 ($5,000 for incomes above $60,000)Santens: End “home ownership tax expenditures ($340 billion), married filing jointly preferential tax treatment ($70 billion), the tax break on pensions ($160 billion), fossil fuel subsidies ($33 billion), and treating capital gains differently than ordinary income ($160 billion);” add a “[carbon tax] starting at $50/ton with annual increases of $15/ton”, a 0.34% financial transaction tax, seignorage reform, 10% VAT, and 5% land value tax
+- Replaced programs (I consider the Earned Income Tax Credit (EITC) and Child Tax Credit (CTC) "programs" instead of tax changes, to align with the IRS)Stern: "all or some number of the 126 [federal] welfare programs that currently cost $1 trillion a year" excluding healthcare programs like Medicaid and CHIP; also cuts military spendingMurray: "Social Security, Medicare, Medicaid, welfare programmes, social service programmes, agricultural subsidies, and corporate welfare"Santens: "Food and nutrition assistance programs ($108 billion)[,] temporary assistance for needy families ($17 billion)…the earned income credit ($73 billion), [and] the child tax credit ($56 billion)…will not touch health care, child care, or housing"
+- Tax changes (there's uncertainty around these estimates)Stern: Phase out most tax expenditures (currently $1.2T/year); possibly add VAT of 5–10%, 1.5% wealth tax on assets over $1M, financial transaction tax, and Peter Barnes' "Sky Trust"Murray: 17% phase-out of basic income for incomes between $30,000 to $60,000 ($5,000 for incomes above $60,000)Santens: End "home ownership tax expenditures ($340 billion), married filing jointly preferential tax treatment ($70 billion), the tax break on pensions ($160 billion), fossil fuel subsidies ($33 billion), and treating capital gains differently than ordinary income ($160 billion);" add a "[carbon tax] starting at $50/ton with annual increases of $15/ton", a 0.34% financial transaction tax, seignorage reform, 10% VAT, and 5% land value tax
 
 
-### Current proposals reduce benefits for some
+### Current proposals reduce benefits for some
 
-By limiting to adults, the Stern and Murray plans both leave most poor single-parent households significantly worse off than they are today, as Daniel Hemel finds in his [well-researched criticism](http://newramblerreview.com/book-reviews/economics/bringing-the-basic-income-back-to-earth) (this also describes the “plan” in the survey question opposed by 70% of economists). These households currently receive thousands of dollars per year from EITC, CTC, SNAP (f.k.a. food stamps), and other programs like housing assistance (if they’re in the [lucky 24%](http://www.urban.org/urban-wire/one-four-americas-housing-assistance-lottery) of eligible households to get it).
+By limiting to adults, the Stern and Murray plans both leave most poor single-parent households significantly worse off than they are today, as Daniel Hemel finds in his [well-researched criticism](http://newramblerreview.com/book-reviews/economics/bringing-the-basic-income-back-to-earth) (this also describes the "plan" in the survey question opposed by 70% of economists). These households currently receive thousands of dollars per year from EITC, CTC, SNAP (f.k.a. food stamps), and other programs like housing assistance (if they're in the [lucky 24%](http://www.urban.org/urban-wire/one-four-americas-housing-assistance-lottery) of eligible households to get it).
 
 Santens proposes $4,598 per child, in accord with [federal poverty guidelines](http://familiesusa.org/product/federal-poverty-guidelines) (adding 10% to compensate for a VAT), which vary depending on household size. But does even this amount per child compensate for lost benefits and higher taxes? Not for everyone. Consider two households earning $10,000 per year: one with a single childless person, and the other with a single person and a child. The value of marginal benefits received by the latter household is attributable to the child.
 
@@ -1483,12 +1442,12 @@ The three largest programs for this sample household total $5,958 in value, or $
 - $1,000 from CTC
 
 
-> “In most of the [basic income] proposals, the losers tend to be households with more children.” — Jason Furman
+> "In most of the [basic income] proposals, the losers tend to be households with more children." — Jason Furman
 
 Another example: all three plans are limited to citizens, despite some existing programs being [partially available](https://aspe.hhs.gov/basic-report/overview-immigrants-eligibility-snap-tanf-medicaid-and-chip) to legal permanent residents.
 
 
-### Plans’ various tax increases create more losers
+### Plans' various tax increases create more losers
 
 In addition to some households getting less in benefits under the proposed plans, the suite of tax increases required to finance them would hit virtually everyone, including the poor. To name a few items, people could expect to pay more for:
 
@@ -1496,31 +1455,31 @@ In addition to some households getting less in benefits under the proposed plans
 - Rent and real estate (land value tax and ending the mortgage interest deduction)
 - Groceries (value added tax and ending farm subsidies)
 
-This doesn’t mean these taxes aren’t worthwhile on their own: [each](http://www.igmchicago.org/surveys/tax-reform) [enjoys](http://www.economist.com/blogs/economist-explains/2014/11/economist-explains-0) [broad](http://gregmankiw.blogspot.com/2009/02/news-flash-economists-agree.html) [support](http://gregmankiw.blogspot.com/2009/10/value-added-tax.html) [among](https://www.theguardian.com/environment/climate-consensus-97-per-cent/2016/jan/04/consensus-of-economists-cut-carbon-pollution) economists (I support all).
+This doesn't mean these taxes aren't worthwhile on their own: [each](http://www.igmchicago.org/surveys/tax-reform) [enjoys](http://www.economist.com/blogs/economist-explains/2014/11/economist-explains-0) [broad](http://gregmankiw.blogspot.com/2009/02/news-flash-economists-agree.html) [support](http://gregmankiw.blogspot.com/2009/10/value-added-tax.html) [among](https://www.theguardian.com/environment/climate-consensus-97-per-cent/2016/jan/04/consensus-of-economists-cut-carbon-pollution) economists (I support all).
 
 But these ideas bear no innate relationship to basic income, and their political baggage would weigh down the cause. For example, economists have been trying to kill the mortgage interest deduction for [decades](https://www.nytimes.com/2017/05/09/magazine/how-homeownership-became-the-engine-of-american-inequality.html?_r=0), only to be consistently rebuffed by the real estate lobby. Pursuing basic income need not require battling the real estate, agriculture, and fossil fuel industries.
 
-It’s also hard to pin down how much each person pays for these taxes, relative to, say, income tax hikes. That increases the variance of who wins and who loses under these plans, meaning they could hurt even more low-income households.
+It's also hard to pin down how much each person pays for these taxes, relative to, say, income tax hikes. That increases the variance of who wins and who loses under these plans, meaning they could hurt even more low-income households.
 
 For reasons I elaborate on shortly, I favor income taxes instead to avoid these issues.
 
 
 ### A person-centric direction
 
-Fundamentally, the three plans start with a number: the amount believed needed to fund a basic income for the included population. These are big numbers — roughly $3T per year for each plan — so then they fill in the gaps with whatever it takes (except higher income taxes). Examination of example households has followed the design.
+Fundamentally, the three plans start with a number: the amount believed needed to fund a basic income for the included population. These are big numbers — roughly $3T per year for each plan — so then they fill in the gaps with whatever it takes (except higher income taxes). Examination of example households has followed the design.
 
-Let’s turn that on its head: instead of starting with the number, we can start with the people, and focus on maximizing the upside of each while minimizing the downside. The units of analysis would include people and households, not just dollars and cents.
+Let's turn that on its head: instead of starting with the number, we can start with the people, and focus on maximizing the upside of each while minimizing the downside. The units of analysis would include people and households, not just dollars and cents.
 
-This paradigm is harder to work in. It requires deep understanding of household income distributions, safety net program design, and tax codes. It then requires model-building to alter each while minimizing negative impacts. This often involves teams of policy analysts under the direction of established think tanks or policymakers. So it’s understandable that Murray, Stern, and Santens haven’t gone there yet. While I don’t yet have a plan that does, I have some ideas on how to build one.
+This paradigm is harder to work in. It requires deep understanding of household income distributions, safety net program design, and tax codes. It then requires model-building to alter each while minimizing negative impacts. This often involves teams of policy analysts under the direction of established think tanks or policymakers. So it's understandable that Murray, Stern, and Santens haven't gone there yet. While I don't yet have a plan that does, I have some ideas on how to build one.
 
 
-### How to build a person-centric UBI plan
+### How to build a person-centric UBI plan
 
 We can distill policy design to three pieces:
 
-- Non-negotiables. What’s the heart of the policy?
+- Non-negotiables. What's the heart of the policy?
 - Levers. What parts of the plan are adjustable?
-- Assessment. How do we measure the policy’s success, subject to (1) and (2)? Alternatively: what are we optimizing for?
+- Assessment. How do we measure the policy's success, subject to (1) and (2)? Alternatively: what are we optimizing for?
 
 For basic income, **non-negotiables **(1) are fairly straightforward: a basic income plan must be universal, unconditional, and 100% cash. Universality may be stratified, such that children, people with disabilities, seniors (who receive Social Security), and/or noncitizens receive different amounts. It may not be stratified by the composition of the household; for example, two adults must receive the same amount whether they are in the same household or not (it is an individual-level program, in contrast with many existing programs).
 
@@ -1528,21 +1487,21 @@ For basic income, **non-negotiables **(1) are fairly straightforward: a basic in
 
 - Amount per adult (the primary lever)
 - Different amounts for children and other categories listed above
-- Clawback/phase-out rateFor example, Murray suggests a partial clawback, such that it’s a hybrid of UBI and a negative income tax, though some would say this violates a non-negotiable aspect of universality by retaining means-testing.
+- Clawback/phase-out rateFor example, Murray suggests a partial clawback, such that it's a hybrid of UBI and a negative income tax, though some would say this violates a non-negotiable aspect of universality by retaining means-testing.
 - Programs replaced
 - Tax expenditures eliminated
 - Additional taxes leviedBeyond new taxes Murray, Stern, and Santens propose, I would add income tax increases as an important lever.
 
-**Assessment **(3) should concern the distribution of impacts to after-tax after-transfer income to individuals or households. This is difficult in the Murray, Stern, and Santens plans, since some of the funding sources aren’t easily translatable to this metric, but the one-parent one-child household example suggests that many households with children will see considerable drops in total income.
+**Assessment **(3) should concern the distribution of impacts to after-tax after-transfer income to individuals or households. This is difficult in the Murray, Stern, and Santens plans, since some of the funding sources aren't easily translatable to this metric, but the one-parent one-child household example suggests that many households with children will see considerable drops in total income.
 
 The most straightforward metric for quantifying this would be something like *average % loss per person*, i.e. ignore the winners and focus on losers*. *So if a two-person household was getting $30k after taxes and transfers (including in-kind benefits like SNAP), and with UBI they get $29k, their contribution to the metric would be -3.3% ($1k / $30k), weighted for two people.
 
-This could be extended in a couple ways. For example, winners could be included, though with less weight since politics is (appropriately) loss-averse. Studies in behavioral economics suggest that [“losses are twice as powerful, psychologically, as gains,”](https://en.wikipedia.org/wiki/Loss_aversion) so losses could receive double the weight of gains. The metric could also consider implicit wages lost due to program compliance time — perhaps at minimum wage — given existing programs require more paperwork and in-person time with bureaucrats than cashing a basic income check does. One could imagine other factors as well, such as utility lost due to restrictive in-kind benefits ([Pareto efficiency](https://en.wikipedia.org/wiki/Pareto_efficiency) and [welfare economics](https://en.wikipedia.org/wiki/Welfare_economics) could be other angles).
+This could be extended in a couple ways. For example, winners could be included, though with less weight since politics is (appropriately) loss-averse. Studies in behavioral economics suggest that ["losses are twice as powerful, psychologically, as gains,"](https://en.wikipedia.org/wiki/Loss_aversion) so losses could receive double the weight of gains. The metric could also consider implicit wages lost due to program compliance time — perhaps at minimum wage — given existing programs require more paperwork and in-person time with bureaucrats than cashing a basic income check does. One could imagine other factors as well, such as utility lost due to restrictive in-kind benefits ([Pareto efficiency](https://en.wikipedia.org/wiki/Pareto_efficiency) and [welfare economics](https://en.wikipedia.org/wiki/Welfare_economics) could be other angles).
 
 Within this framework, the goal becomes: **ensure some level of universal cash transfer by adjusting levels and financing, such that negative impact on households is minimized.**
 
 
-### Negative income tax as a starting point
+### Negative income tax as a starting point
 
 The simplest way to achieve this goal is to mimic the current suite of programs, with three important changes:
 
@@ -1550,31 +1509,31 @@ The simplest way to achieve this goal is to mimic the current suite of programs,
 - Remove restrictions like work requirements.
 - Shift from household-based to individual-based.
 
-Since existing programs are means-tested instead of universal, this would not produce a true basic income. What it would produce is what’s called a [negative income tax](https://en.wikipedia.org/wiki/Negative_income_tax), whereby people below a certain income level receive a payment which phases out with income. It turns out that most historical studies on “basic income” have actually been on negative income tax, which [nearly became law](https://www.theatlantic.com/politics/archive/2014/08/why-arent-reformicons-pushing-a-guaranteed-basic-income/375600/) in the 1970s.
+Since existing programs are means-tested instead of universal, this would not produce a true basic income. What it would produce is what's called a [negative income tax](https://en.wikipedia.org/wiki/Negative_income_tax), whereby people below a certain income level receive a payment which phases out with income. It turns out that most historical studies on "basic income" have actually been on negative income tax, which [nearly became law](https://www.theatlantic.com/politics/archive/2014/08/why-arent-reformicons-pushing-a-guaranteed-basic-income/375600/) in the 1970s.
 
-Importantly, one could design a negative income tax with *identical outcomes *to a universal basic income, and vice versa, once you set the baseline. The simplest way to turn negative income tax into basic income is to calculate the extra amount individuals get (anyone with income gets more under basic income than negative income tax), and raise their taxes by exactly that amount. After taxes and transfers, nobody gets any more or less. I’ve [written more about this](https://medium.com/basic-income/if-we-can-afford-our-current-welfare-system-we-can-afford-basic-income-9ae9b5f186af), including reasons to still prefer basic income to negative income tax.
+Importantly, one could design a negative income tax with *identical outcomes *to a universal basic income, and vice versa, once you set the baseline. The simplest way to turn negative income tax into basic income is to calculate the extra amount individuals get (anyone with income gets more under basic income than negative income tax), and raise their taxes by exactly that amount. After taxes and transfers, nobody gets any more or less. I've [written more about this](https://medium.com/basic-income/if-we-can-afford-our-current-welfare-system-we-can-afford-basic-income-9ae9b5f186af), including reasons to still prefer basic income to negative income tax.
 
-To make this a bit more concrete, consider a household with one adult and one child. As FiveThirtyEight’s Andrew Flowers [showed](http://fivethirtyeight.com/features/universal-basic-income/) in the chart below, this household faces “welfare cliffs” due to immediate or rapid phase-outs of existing programs like TANF, Medicaid, and CHIP, as well as the way they interact with each other and with income taxes.
+To make this a bit more concrete, consider a household with one adult and one child. As FiveThirtyEight's Andrew Flowers [showed](http://fivethirtyeight.com/features/universal-basic-income/) in the chart below, this household faces "welfare cliffs" due to immediate or rapid phase-outs of existing programs like TANF, Medicaid, and CHIP, as well as the way they interact with each other and with income taxes.
 
 
-![Earnings vs. after-tax after-transfer income. Source: FiveThirtyEight (line added by Max Ghenis).](https://cdn-images-1.medium.com/max/800/0*QegETrzNLHzyOqWO.)
+![Earnings vs. after-tax after-transfer income. Source: FiveThirtyEight (line added by Max Ghenis).](https://cdn-images-1.medium.com/max/800/0*QegETrzNLHzyOqWO.)
 
 The household gets ~$19k when earning $0, and ~$38k when earning $50k, or an average [implicit marginal tax rate](https://en.wikipedia.org/wiki/Tax_rate#Implicit_marginal_tax_rate) of *100%-($38k- $19k) / ($50k-0) = ~***60%. **If that seems harsh, it is: while income taxes are progressive, the highest marginal tax rates (including assistance) are actually borne by low-income households, due to means testing.
 
-I’ve added an approximate line of best fit to this chart to show what this would look like as a flat income tax. We can implement this line in one of two ways:
+I've added an approximate line of best fit to this chart to show what this would look like as a flat income tax. We can implement this line in one of two ways:
 
 - Negative income tax with a $19k minimum (for the two-person household), 60% phase-out (up to $30k, at which the household neither gets a refund nor pays taxes), and 60% tax rate after $30k (up to $50k earnings)
 - Basic income of $19k and 60% tax rate (up to $50k earnings)
 
-**These produce the same result. **The household gets/pays the same amount given their earnings, and the government gets/pays the same in net taxes. The primary difference is that negative income tax comes without the sticker shock: [Wiederspan, Rhodes, Shaefer (2015)](http://www.tandfonline.com/doi/abs/10.1080/10875549.2014.991889) estimate that a negative income tax set at US poverty line and with a 50 percent phase-out rate could be 95% paid for with the combined budgets of EITC, SSI, SNAP, TANF, school meal programs, and housing subsidies ([here’s a Vox summary](https://www.vox.com/policy-and-politics/2017/5/30/15712160/basic-income-oecd-aei-replace-welfare-state)).
+**These produce the same result. **The household gets/pays the same amount given their earnings, and the government gets/pays the same in net taxes. The primary difference is that negative income tax comes without the sticker shock: [Wiederspan, Rhodes, Shaefer (2015)](http://www.tandfonline.com/doi/abs/10.1080/10875549.2014.991889) estimate that a negative income tax set at US poverty line and with a 50 percent phase-out rate could be 95% paid for with the combined budgets of EITC, SSI, SNAP, TANF, school meal programs, and housing subsidies ([here's a Vox summary](https://www.vox.com/policy-and-politics/2017/5/30/15712160/basic-income-oecd-aei-replace-welfare-state)).
 
-Here lies the core advantage of funding basic income with income tax increases: you can only make a basic income plan equivalent to negative income tax when funding via income taxes. The increase that may seem significant would not actually be felt by households, and with income taxes representing [47% of federal tax revenues](http://www.cbpp.org/research/policy-basics-where-do-federal-tax-revenues-come-from), it’s a known quantity that doesn’t create new enemies.
+Here lies the core advantage of funding basic income with income tax increases: you can only make a basic income plan equivalent to negative income tax when funding via income taxes. The increase that may seem significant would not actually be felt by households, and with income taxes representing [47% of federal tax revenues](http://www.cbpp.org/research/policy-basics-where-do-federal-tax-revenues-come-from), it's a known quantity that doesn't create new enemies.
 
-A person-centric analysis will reveal the appropriate minimum and shape of the line to minimize losses for households. This will depend partially on what programs basic income replaces (I tend to agree with Stern and Santens in leaving out healthcare programs like Medicaid and CHIP). Inputs to the analysis would include distributions of household earnings by size, and the inclusion criteria and amounts of each existing program (essentially the above chart for each household type). Turn the resultant negative income tax into a basic income, and we’ve got a fair, focused, realistic plan.
+A person-centric analysis will reveal the appropriate minimum and shape of the line to minimize losses for households. This will depend partially on what programs basic income replaces (I tend to agree with Stern and Santens in leaving out healthcare programs like Medicaid and CHIP). Inputs to the analysis would include distributions of household earnings by size, and the inclusion criteria and amounts of each existing program (essentially the above chart for each household type). Turn the resultant negative income tax into a basic income, and we've got a fair, focused, realistic plan.
 
 Idealism attracts people; realism convinces them. Media coverage of pilots and automation have generated massive interest in the *idea *of basic income, but without a better-thought-through plan, that interest is doomed to evaporate among those concerned with the welfare of real people.
 
-It’s time to get in the weeds and make a plan that not only lives up to the ideals of basic income, but also maximizes the number of people benefiting from it.
+It's time to get in the weeds and make a plan that not only lives up to the ideals of basic income, but also maximizes the number of people benefiting from it.
 
 ---
 
@@ -1594,10 +1553,7 @@ The post in the [r/atheism](http://reddit.com/r/atheism) subreddit linked to Lib
 *I neither assert equivalence of social media misinformation between the left and right (right-wing posts are *[at least twice as likely](https://www.buzzfeed.com/craigsilverman/partisan-fb-pages-analysis?utm_term=.kloB4j3PG#.owQMpq130)* to be false), nor endorse this nomination.*
 
 
-![This top-rated Reddit post contains multiple questionable claims.](https://cdn-images-1.medium.com/max/800/1*mjZDK24rWgiJZMqxe1yxCA.png)
-
-
-#### “billionaire”
+#### "billionaire"
 
 **PROBABLY**
 
@@ -1693,7 +1649,7 @@ There’s no need for the exaggeration and fabrication more commonly found on th
 
 **URL:** https://maxghenis.com/blog/medium/ubers-tipping-settlement-will-reduce-earnings-of-a/
 **Published:** 2016-04-26
-**Description:** This week, Uber [reached a settlement](http://fortune.com/2016/04/21/uber-drivers-settlement/) with drivers in California and Massachusetts in a lawsuit concerning worker classification.
+**Description:** This week, Uber reached a settlement with drivers in California and Massachusetts in a lawsuit concerning worker classification.
 
 This week, Uber [reached a settlement](http://fortune.com/2016/04/21/uber-drivers-settlement/) with drivers in California and Massachusetts in a lawsuit concerning worker classification. In addition to up to $100M in compensation, recognition of a driver’s association, and greater transparency about deactivating drivers, the settlement permits drivers to post signage in their vehicles soliciting tips. Uber drivers could always accept cash tips, but [unlike Lyft](https://help.lyft.com/hc/en-us/articles/213583978-How-to-Tip-Your-Driver), Uber has never had an in-app tipping option, and [emphasizes](https://help.uber.com/h/1be144ab-609a-43c5-82b5-b9c7de5ec073) that “you don’t need cash…there’s no need to tip.” As a result, tipping is rare: Uber drivers estimate that [between one and five percent](https://www.bostonglobe.com/business/2015/10/27/tips-raises-questions-and-tempers-among-uber-and-lyft-users/EJlZe8Eb763UewRzUNUVJN/story.html) of riders tip, versus [70% of Lyft customers](http://www.wsj.com/articles/uber-reaches-a-tipping-point-with-its-drivers-1461490205) (though [some Lyft drivers claim 20–50%](https://www.bostonglobe.com/business/2015/10/27/tips-raises-questions-and-tempers-among-uber-and-lyft-users/EJlZe8Eb763UewRzUNUVJN/story.html)).
 
@@ -1734,9 +1690,6 @@ Despite this setback, much progress has been made in tipping reform, with [nearl
 **URL:** https://maxghenis.com/blog/medium/if-we-can-afford-our-current-welfare-system-we-can/
 **Published:** 2016-01-24
 **Description:** Replacing the antipoverty bureaucracy
-
-![](https://cdn-images-1.medium.com/max/2560/1*_463AHxG0pTQ4QJe2RgUbA.jpeg)
-
 
 [Basic income](https://en.wikipedia.org/wiki/Basic_income) (BI) is getting a lot of press these days. From [Switzerland’s upcoming referendum](https://en.wikipedia.org/wiki/Swiss_referendums,_2016#Basic_income_referendum) to give each citizen 2,500 francs per month, to [GiveDirectly](http://givedirectly.org)’s research upending the philanthropy world, to [Finland’s plan](https://agenda.weforum.org/2015/12/finland-basic-income/) for a 2017 BI pilot, more are warming to the idea that just giving people money may be the solution to poverty.
 

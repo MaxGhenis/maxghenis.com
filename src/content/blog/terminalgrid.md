@@ -3,12 +3,8 @@ title: 'TerminalGrid: Turn VS Code into a Claude Code superterminal'
 description: 'A VS Code extension for keyboard-driven terminal grid management with project picker and auto-launch for AI coding tools.'
 pubDate: 'Jan 07 2026'
 heroImage: './terminalgrid.png'
+projectUrl: '/terminalgrid'
 ---
-
-<a href="/terminalgrid" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.25rem; background: #0078d4; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; margin-bottom: 1.5rem;">
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="12" y1="3" x2="12" y2="21"/></svg>
-  Visit project page →
-</a>
 
 I run multiple Claude Code sessions simultaneously—one for each project I'm working on. VS Code's terminal panel only splits in one direction—no 2D grids. And the native terminal has [issues with image pasting](https://github.com/anthropics/claude-code/issues/1361) that matter when you're sharing screenshots with Claude.
 

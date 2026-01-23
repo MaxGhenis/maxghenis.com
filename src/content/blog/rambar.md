@@ -3,12 +3,8 @@ title: 'RAMBar: A macOS menu bar RAM monitor for developers'
 description: 'A native macOS menu bar app for tracking memory usage across Claude Code sessions, VS Code workspaces, Chrome tabs, and Python processes.'
 pubDate: 'Jan 07 2026'
 heroImage: './rambar.png'
+projectUrl: '/rambar'
 ---
-
-<a href="/rambar" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.25rem; background: #0a0a0f; color: #00ffd5; text-decoration: none; border-radius: 8px; font-weight: 600; margin-bottom: 1.5rem; border: 1px solid #00ffd5;">
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"></rect><rect x="2" y="14" width="20" height="8" rx="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
-  Visit project page →
-</a>
 
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 2rem 0;">
   <iframe
