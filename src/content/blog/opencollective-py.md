@@ -4,7 +4,7 @@ description: 'A Python client, CLI, and MCP server for the OpenCollective API—
 pubDate: 'Jan 23 2026'
 ---
 
-I manage expenses for [PolicyEngine](https://opencollective.com/policyengine) on OpenCollective. Every reimbursement meant: open browser, navigate to the collective, click "Submit Expense", fill out the form, upload a receipt, select payout method, submit. Repeat for approvals.
+I manage expenses for [PolicyEngine](https://opencollective.com/policyengine) on OpenCollective. Every reimbursement meant: open browser, navigate to the collective, click "Submit Expense", fill out the form, upload a receipt, select payout method, submit.
 
 So I built [opencollective-py](https://github.com/MaxGhenis/opencollective-py)—a Python client that handles all of this programmatically. It includes a CLI for quick terminal commands and an MCP server so Claude Code can submit expenses directly.
 
