@@ -4,7 +4,9 @@ description: 'A Python client, CLI, and MCP server for the OpenCollective API.'
 pubDate: 'Jan 23 2026'
 ---
 
-I manage [PolicyEngine's OpenCollective](https://opencollective.com/policyengine). Submitting expenses, reviewing pending ones, approving reimbursements—it all meant clicking through a web UI.
+I manage [PolicyEngine's OpenCollective](https://opencollective.com/policyengine). We use OpenCollective because it gives anyone full visibility into our finances—every expense, donation, and transaction is public. It also handles crowdfunding, recurring donations, and community updates, and the [platform itself is open source](https://github.com/opencollective/opencollective).
+
+But submitting expenses, reviewing pending ones, approving reimbursements—it all meant clicking through a web UI.
 
 So I built [opencollective-py](https://github.com/MaxGhenis/opencollective-py)—a Python client that handles OpenCollective operations programmatically. It includes a CLI for quick terminal commands and an MCP server so Claude Code can manage expenses directly.
 
