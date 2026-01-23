@@ -2,6 +2,7 @@
 title: "Quantile regression, from linear models to trees to deep learning"
 description: "Suppose a real estate analyst wants to predict home prices from factors like home age and distance from job centers."
 pubDate: '2018-10-16'
+heroImage: './quantile-loss-chart.png'
 ---
 
 But what if they want to predict not just a single estimate, but also the likely range? This is called the *prediction interval*, and the general method for producing them is known as *quantile regression*. In this post I’ll describe how this problem is formalized; how to implement it in six linear, tree-based, and deep learning methods (in Python — [here’s the Jupyter notebook](https://colab.research.google.com/drive/1nXOlrmVHqCHiixqiMF6H8LSciz583_W2)); and how they perform against real-world datasets.
@@ -11,12 +12,9 @@ But what if they want to predict not just a single estimate, but also the likely
 
 Just as regressions minimize the squared-error loss function to predict a single point estimate, quantile regressions minimize the *quantile loss *in predicting a certain quantile. The most popular quantile is the median, or the 50th percentile, and in this case the quantile loss is simply the sum of *absolute* errors. Other quantiles could give endpoints of a prediction interval; for example a middle-80-percent range is defined by the 10th and 90th percentiles. The quantile loss differs depending on the evaluated quantile, such that more negative errors are penalized more for higher quantiles and more positive errors are penalized more for lower quantiles.
 
-Before digging into the formula, suppose we’ve made a prediction for a single point with a true value of zero, and our predictions range from -1 to +1; that is, our errors also range from -1 to +1. This graph shows how the quantile loss varies with the error, depending on the quantile.
+Before digging into the formula, suppose we've made a prediction for a single point with a true value of zero, and our predictions range from -1 to +1; that is, our errors also range from -1 to +1. This graph shows how the quantile loss varies with the error, depending on the quantile.
 
-
-![](https://cdn-images-1.medium.com/max/800/0*ufWnnvTA9AkjKrfI)
-
-Let’s look at each line separately:
+Let's look at each line separately:
 
 - The medium blue line shows the median, which is symmetric around zero, where all losses equal zero because the prediction was perfect. Looks good so far: the median aims to bisect the set of predictions, so we want to weigh underestimates equally to overestimates. As we’ll see soon, the quantile loss around the median is half the absolute deviation, so 0.5 at both -1 and +1, and 0 at 0.
 - The light blue line shows the 10th percentile, which assigns a lower loss to negative errors and a higher loss to positive errors. The 10th percentile means we think there’s a 10 percent chance that the true value is below that predicted value, so it makes sense to assign less of a loss to underestimates than to overestimates.

@@ -2,6 +2,7 @@
 title: "We should replace the Child Tax Credit with a universal child benefit"
 description: "The Child Tax Credit (CTC) is one of the largest assistance programs for children in the US."
 pubDate: '2018-04-22'
+heroImage: './ctc-child-benefit-chart.png'
 ---
 
 There’s an easy fix: replace the CTC with a universal child benefit, a payment given monthly to parents for each of their children. I modeled this in a [new paper](https://drive.google.com/open?id=1Av1-CTBZpmDGkiG_hyoXqCi4-S1DQUCv) using the open-source [Tax-Calculator](http://pslmodels.github.io/Tax-Calculator/) software,³ showing that such a reform would be highly progressive.
@@ -17,8 +18,6 @@ The December 2017 tax bill changed the CTC in a few ways, most importantly: (a) 
 
 Given the complexities of the two credits, distribution of actual outcomes are useful for understanding the credit’s benefit. This chart shows the average credit value per CTC-eligible child (essentially being age 16 or younger) based on the household’s percentile of after-tax after-transfer income (that is, including programs like food stamps; called “income” from here on) without the credit. The analysis is limited to households with at least one child eligible for the CTC, and “child” is defined as children eligible for the CTC.
 
-
-![](https://cdn-images-1.medium.com/max/800/1*mfffKJMhH3jZx34nUgNnkw.png)
 
 The average credit per child exceeds $1,500 for most percentiles outside the bottom third, up until the top 1 to 2 percent — those with pre-tax incomes above $270,000 or so — who are ineligible. But for the very poor, it provides little benefit. Further, the Republican tax bill disproportionately helped upper-middle income families, without addressing the disparity for very low earners.
 

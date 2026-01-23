@@ -2,6 +2,7 @@
 title: "Warren’s wealth tax would raise less than she claims — even using her economists’ own assumptions"
 description: "Using their cited assumptions around avoidance and economic growth cuts revenue by a quarter"
 pubDate: '2019-11-09'
+heroImage: './warren-wealth-tax-revenue-comparison.png'
 ---
 
 In January, Elizabeth Warren [proposed](https://www.washingtonpost.com/business/2019/01/24/elizabeth-warren-propose-new-wealth-tax-very-rich-americans-economist-says) a two percent (“two cent”) [wealth tax](https://elizabethwarren.com/plans/ultra-millionaire-tax) on families worth $50 million or more, graduated to three percent for those worth $1 billion or more. Last Friday, she [announced](https://elizabethwarren.com/plans/paying-for-m4a) an additional three percent tax on billionaires as part of her Medicare for All plan.
@@ -24,10 +25,6 @@ When Warren announced her first wealth tax, Saez and Zucman published [wealthtax
 These three sources — the Warren campaign paper and the two calculators — produce different estimates. In the Warren campaign paper, this can be partly attributed to intermediate rounding, though the two calculators also differ when entering the same tax parameters, indicating differences in the underlying data.
 
 One large difference is that TJN shows Warren’s new three-percent billionaire surtax to raise $1.08 trillion, 27 percent more than the WTS estimate; TJN’s estimates 10 percent more total revenue than WTS for the base plus Medicare for All taxes. Since only the WTS data was made available to researchers, I used that for my analysis.
-
-
-![](https://cdn-images-1.medium.com/max/800/0*VTasmc5meB2EPKhl)
-
 
 ### Does the tax rate affect avoidance?
 

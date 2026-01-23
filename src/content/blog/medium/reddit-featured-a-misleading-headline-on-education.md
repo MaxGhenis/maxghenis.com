@@ -2,6 +2,7 @@
 title: "Reddit featured a misleading headline on education secretary nominee Betsy DeVos"
 description: "“billionaire”"
 pubDate: '2016-11-26'
+heroImage: './reddit-misleading-headline.png'
 ---
 
 [This headline](https://www.reddit.com/r/atheism/comments/5eobxq/meet_your_new_a_secretary_of_education/) made the top of [Reddit](http://reddit.com)’s [r/all](http://reddit.com/r/all) page on [Thursday](http://web.archive.org/web/20161124230946/https://www.reddit.com/r/all/):
@@ -14,10 +15,7 @@ The post in the [r/atheism](http://reddit.com/r/atheism) subreddit linked to Lib
 *I neither assert equivalence of social media misinformation between the left and right (right-wing posts are *[at least twice as likely](https://www.buzzfeed.com/craigsilverman/partisan-fb-pages-analysis?utm_term=.kloB4j3PG#.owQMpq130)* to be false), nor endorse this nomination.*
 
 
-![This top-rated Reddit post contains multiple questionable claims.](https://cdn-images-1.medium.com/max/800/1*mjZDK24rWgiJZMqxe1yxCA.png)
-
-
-#### “billionaire”
+#### "billionaire"
 
 **PROBABLY**
 

@@ -2,6 +2,7 @@
 title: "Why I’ve taken the Giving What We Can pledge"
 description: "The global poor will benefit much more from ten percent of my income than I will"
 pubDate: '2019-12-31'
+heroImage: './givewell-logo-2012.png'
 ---
 
 #### The global poor will benefit much more from ten percent of my income than I will
@@ -13,9 +14,6 @@ When I was about 12, I sat around the dining room table with my family, paging t
 Once I started working after college, I was glad for the chance to give my own money to charities. Heifer now seemed prescriptive and arbitrary to me (why would I know the best livestock to get a farmer?),¹ so I focused on medical research and interest-free Kiva loans to poor people looking for business investment in developing countries.² My intuitions were that medical advancements served the public good, and that people in poorer countries who sought funding for a specific venture would benefit most from a dollar of giving. But I wondered whether these choices were the best use of my giving budget.
 
 I started to satisfy this curiosity in 2012, when I learned of [GiveDirectly](http://givedirectly.org), a small nonprofit that gave direct, unconditional cash transfers to extremely poor families in Kenya. Their approach was novel but not untested: other studies had shown that giving people cash improved outcomes ranging from nutrition to business investment, and GiveDirectly (founded by economists) was evaluating its own disbursements with randomized controlled trials. GiveDirectly’s focus on efficiency (90 cents of every dollar in donations ended up in the hands of a poor person), transparent measurement, and effective deployment of additional funds, earned it a [“Top Charity”](https://web.archive.org/web/20121201034608/http://www.givewell.org/international/top-charities/give-directly) rating from the evidence-based evaluator [GiveWell](http://givewell.org). GiveWell evaluates charities on the cost-effectiveness of their measured impact, and awarded only three Top Charity ratings in 2012.
-
-
-![GiveWell’s logo as of 2012 (they’ve since scrapped the slogan)](https://cdn-images-1.medium.com/max/800/0*uBygJagB-WFaixZG)
 
 Discovering GiveDirectly — and GiveWell’s review of GiveDirectly — became a seminal event in my life. My interest in cash transfers led to researching [universal basic income](http://ubicenter.org) (UBI, which GiveDirectly is [testing](https://www.givedirectly.org/ubi-study/) in Kenya), while the validation of GiveWell’s evaluation contributed to my decision to pursue a [master’s degree](http://economics.mit.edu/masters) in development economics, which I’ll start next month (the program was created by one of the researchers evaluating GiveDirectly’s UBI experiment, who just [won](https://www.nobelprize.org/uploads/2019/10/press-economicsciences2019.pdf) the Nobel Prize).
 

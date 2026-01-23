@@ -19,9 +19,6 @@ Carlson introduced Yang by warning of the dangers of automation and technology. 
 
 This echoes his statements on [Twitter](https://twitter.com/AndrewYangVFA/status/1073214206823071744) and the [Joe Rogan Experience](https://youtu.be/cTsEzmFamZ8?t=971), in which he compared the US to El Salvador and Dominican Republic. Yang is referring to the civilian labor force participation rate (LFPR), [defined](https://www.bls.gov/cps/cps_htgm.htm#definitions) by the Bureau of Labor Statistics (BLS) as the share of people age 16 or older who are working or actively seeking work. It’s hovered around 63 percent since 2013, down from 67 percent around 2000, and the most recent data is from January 2019 at 63.2 percent.
 
-
-![Source: St. Louis Federal Reserve](https://cdn-images-1.medium.com/max/800/0*RuNvarFW1o1Xyut-)
-
 Data from the World Bank differs slightly from BLS (age 15+ instead of 16+, and as of 2018) but shows that the US LFPR is about in the middle of the pack (61.6 percent, higher than 46 percent of countries). While it’s similar to El Salvador, it’s substantially lower than Ecuador and Dominican Republic, and somewhat higher than Costa Rica. The United Kingdom and South Korea are both more similar to the United States than most of the countries Yang lists.
 
 The bigger problem is that LFPR is largely a function of demographics, especially the number of retirees. The higher life expectancy in the US combined with Social Security and Medicare means that more people live long enough to spend their later years out of the labor force. Indeed, Americans can expect to live considerably longer than residents of Ecuador, El Salvador and Dominican Republic.
