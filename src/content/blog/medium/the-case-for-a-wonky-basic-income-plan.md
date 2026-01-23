@@ -1,5 +1,5 @@
 ---
-title: "The Case For a Wonky Basic Income Plan"
+title: "The case for a wonky basic income plan"
 description: "In March, a former union leader joined forces with a prominent libertarian to [debate](https://youtu.be/YX9T7GHs9fQ?t=22m6s) two Obama White House economists."
 pubDate: '2017-06-14'
 ---
@@ -141,9 +141,3 @@ A person-centric analysis will reveal the appropriate minimum and shape of the l
 Idealism attracts people; realism convinces them. Media coverage of pilots and automation have generated massive interest in the *idea *of basic income, but without a better-thought-through plan, that interest is doomed to evaporate among those concerned with the welfare of real people.
 
 It’s time to get in the weeds and make a plan that not only lives up to the ideals of basic income, but also maximizes the number of people benefiting from it.
-
-By [Max Ghenis](https://medium.com/@maxghenis) on [June 14, 2017](https://medium.com/p/55e90010fc9e).
-
-[Canonical link](https://medium.com/@maxghenis/the-case-for-a-person-centric-basic-income-plan-55e90010fc9e)
-
-Exported from [Medium](https://medium.com) on January 10, 2026.

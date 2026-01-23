@@ -67,9 +67,3 @@ To cut households’ risk of homelessness, we need to boost incomes and/or reduc
 We need a more humane approach to homelessness. Instead of rounding up tent dwellers as they move from one park to the next, let’s build shelters for them to live in. Instead of assuming the worst in each homeless person, let’s recognize that they are largely our neighbors who could no longer afford rent. Let’s build an affordable, inclusive Ventura County where unsheltered homelessness is a thing of the past.
 
 *If you believe in this approach to homelessness, consider joining *[Ventura County YIMBY](http://vcyimby.org)* and other pro-homeless organizations in the area.*
-
-By [Max Ghenis](https://medium.com/@maxghenis) on [November 25, 2019](https://medium.com/p/967e537d4c1f).
-
-[Canonical link](https://medium.com/@maxghenis/ventura-county-must-end-its-unsheltered-homelessness-967e537d4c1f)
-
-Exported from [Medium](https://medium.com) on January 10, 2026.

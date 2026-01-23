@@ -87,9 +87,3 @@ Proper avoidance modeling has a larger effect on the Sanders plan than on the Wa
 
 
 ![](https://cdn-images-1.medium.com/max/800/1*9H1LQFYIzXFwpZYLgLwPWA.png)
-
-By [Max Ghenis](https://medium.com/@maxghenis) on [November 9, 2019](https://medium.com/p/bea43840bc0a).
-
-[Canonical link](https://medium.com/@maxghenis/warrens-wealth-tax-would-raise-less-than-she-claims-even-using-her-economists-own-assumptions-bea43840bc0a)
-
-Exported from [Medium](https://medium.com) on January 10, 2026.

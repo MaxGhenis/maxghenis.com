@@ -1,5 +1,5 @@
 ---
-title: "Andrew Yang’s Troubling Tucker Carlson Interview"
+title: "Andrew Yang’s troubling Tucker Carlson interview"
 description: "The Democratic presidential candidate fed into Tucker’s MAGA narrative"
 pubDate: '2019-03-09'
 ---
@@ -83,9 +83,3 @@ And yet, if he’s being trotted on Fox News to back up their host’s warnings 
 ![This fabricated quote from Fox News is almost understandable given the interview’s disposition.](https://cdn-images-1.medium.com/max/800/0*fy1LjB_ebLbFfgZe)
 
 By these objectives, Yang’s interview did more to bolster the doom-and-gloom narrative that Carlson feeds his audience — which benefits populist politicians like Donald Trump — than improve the standing of his ideas. Yang can avoid falling into this trap by making sure to pair his description of the country with his ideas for improving it. Better still would be re-examining his premise of the country’s perils: his policies like [UBI](https://www.vox.com/policy-and-politics/2017/7/17/15364546/universal-basic-income-review-stern-murray-automation) don’t need it, and the evidence contradicts it.
-
-By [Max Ghenis](https://medium.com/@maxghenis) on [March 9, 2019](https://medium.com/p/b8c0475b14f9).
-
-[Canonical link](https://medium.com/@maxghenis/andrew-yangs-troubling-tucker-carlson-interview-b8c0475b14f9)
-
-Exported from [Medium](https://medium.com) on January 10, 2026.

@@ -161,9 +161,3 @@ The tree-based methods made a comeback, and while the OLS improved, the gap betw
 Real-world problems often extend beyond predicting means. Maybe an app developer is interested not only in users’ expected usage, but also their probability of becoming super-users. Or an auto insurance company wants to know the chance of a driver’s high-value claim at different thresholds. Economists might want to stochastically impute information from one dataset onto another, picking from the CDF to ensure proper variation (an example I’ll explore in a follow-up post).
 
 Quantile regression is valuable for each of these use cases, and machine learning tools can often outperform linear models, especially the easy-to-use tree-based methods. Try it out on your own data and let me know how it goes!
-
-By [Max Ghenis](https://medium.com/@maxghenis) on [October 16, 2018](https://medium.com/p/af3738b527c3).
-
-[Canonical link](https://medium.com/@maxghenis/quantile-regression-from-linear-models-to-trees-to-deep-learning-af3738b527c3)
-
-Exported from [Medium](https://medium.com) on January 10, 2026.

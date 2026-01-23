@@ -1,5 +1,5 @@
 ---
-title: "If We Can Afford Our Current Welfare System, We Can Afford Basic Income"
+title: "If we can afford our current welfare system, we can afford basic income"
 description: "Replacing the antipoverty bureaucracy"
 pubDate: '2016-01-24'
 ---
@@ -73,9 +73,3 @@ As the world moves to an age of increasing globalization and automation, more wi
 But if basic income is achieved via the above strategy — replace existing non-cash programs with cash, smooth out the payout curve to avoid welfare cliffs, and substitute negative income tax with basic income — affordability does not belong on the list of concerns. If the BI produced by this approach is too low, that is an indication that the existing welfare state is too stingy; if it doesn’t adequately address the needs of society, then neither do today’s programs. Criticisms of the safety net’s size (in either direction) are orthogonal from the notion that basic income is a more efficient means of distribution.
 
 Poverty is not a vague incurable condition, but one that can be directly eradicated via basic income. Finland’s proposal to move 100% to BI is admirable, but other countries can start with small steps like expanding EITC and reforming means tests. With basic income attainable, now is the time to seriously push toward its implementation.
-
-By [Max Ghenis](https://medium.com/@maxghenis) on [January 24, 2016](https://medium.com/p/9ae9b5f186af).
-
-[Canonical link](https://medium.com/@maxghenis/if-we-can-afford-our-current-welfare-system-we-can-afford-basic-income-9ae9b5f186af)
-
-Exported from [Medium](https://medium.com) on January 10, 2026.

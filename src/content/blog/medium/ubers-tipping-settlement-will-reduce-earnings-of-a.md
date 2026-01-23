@@ -1,5 +1,5 @@
 ---
-title: "Uber’s Tipping Settlement Will Reduce Earnings of African-American Drivers"
+title: "Uber’s tipping settlement will reduce earnings of African-American drivers"
 description: "This week, Uber [reached a settlement](http://fortune.com/2016/04/21/uber-drivers-settlement/) with drivers in California and Massachusetts in a lawsuit concerning worker classification."
 pubDate: '2016-04-26'
 ---
@@ -35,9 +35,3 @@ Despite this setback, much progress has been made in tipping reform, with [nearl
 **Update: ***Uber clarified in a *[blog post](https://medium.com/@UberPubPolicy/our-approach-to-tipping-aa0074c0fddc#.ifie7830q)* that “Tipping is not included, nor is it expected or required.” The piece also provides rationale for their stance on tipping, which includes bias and references studies listed here.*
 
 *Max Ghenis is the creator of the *[EndTipping subreddit](http://reddit.com/r/EndTipping)*, where he’s assembled a *[list of 190+ tip-free restaurants in the US](http://bit.ly/tip-free-restaurants)*. You can sign his petitions to *[remove Lyft’s in-app tipping option](https://www.change.org/p/lyft-remove-tipping-from-the-lyft-app)*, and to *[reverse Uber’s settlement provision permitting drivers to solicit tips](https://www.change.org/p/travis-kalanick-prevent-uber-drivers-from-soliciting-tips-to-ensure-fair-earnings-for-black-drivers)*.*
-
-By [Max Ghenis](https://medium.com/@maxghenis) on [April 26, 2016](https://medium.com/p/92f3f35cf9e).
-
-[Canonical link](https://medium.com/@maxghenis/ubers-tipping-settlement-will-reduce-earnings-of-african-american-drivers-92f3f35cf9e)
-
-Exported from [Medium](https://medium.com) on January 10, 2026.

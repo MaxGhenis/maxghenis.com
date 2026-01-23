@@ -49,9 +49,3 @@ It might not be so long before this choice rears its head again. House Speaker N
 
 
 ![](https://cdn-images-1.medium.com/max/800/1*L3mYOcTbzIxlWf0N-1gIqQ.png)
-
-By [Max Ghenis](https://medium.com/@maxghenis) on [March 27, 2020](https://medium.com/p/e564a9c3d7b7).
-
-[Canonical link](https://medium.com/@maxghenis/if-you-earned-more-in-2019-than-2018-dont-file-your-2019-taxes-yet-otherwise-file-asap-e564a9c3d7b7)
-
-Exported from [Medium](https://medium.com) on January 10, 2026.

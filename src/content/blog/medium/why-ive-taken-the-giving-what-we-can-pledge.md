@@ -81,9 +81,3 @@ I plan to do another recap like this next year, and hope it will include a new c
 ³ I front-loaded some 2018 giving to 2017 for tax reasons. Bunching donations is generally advantageous in the US because of the standard deduction, and the Pledge [allows for this](https://www.givingwhatwecan.org/about-us/frequently-asked-questions/#46-how-often-should-members-donate).
 
 ⁴ Singer’s organization, *The Life You Can Save,* has [its own giving pledge](https://www.thelifeyoucansave.org/take-the-pledge/), which I’ve also taken. That pledge focuses on global development charities, i.e. from GiveWell. It has a graduated scale, and asks for less than ten percent of income for households earning less than $500,000 per year. My current income is less than $500,000, so I’m bound by the Giving What We Can pledge, but I’ll shift as needed, and also ensure that my donations to the global poor meet the Singer pledge should I choose to diversify to other EA causes in the future.
-
-By [Max Ghenis](https://medium.com/@maxghenis) on [December 31, 2019](https://medium.com/p/d5576f23df10).
-
-[Canonical link](https://medium.com/@maxghenis/why-ive-taken-the-giving-what-we-can-pledge-d5576f23df10)
-
-Exported from [Medium](https://medium.com) on January 10, 2026.

@@ -97,9 +97,3 @@ It should culminate in a universal child benefit, completing its path toward inc
 *[7] Consumption is estimated via surveys. See *[Our World In Data (2017)](https://ourworldindata.org/extreme-poverty)* for more information.*
 
 *Thanks to the Open Source Policy Center’s Cody Kallen, Matt Jensen, Sean Wang, Martin Holmer, Anderson Frailey, and Amy Xu.*
-
-By [Max Ghenis](https://medium.com/@maxghenis) on [April 22, 2018](https://medium.com/p/33773de07271).
-
-[Canonical link](https://medium.com/@maxghenis/we-should-replace-the-child-tax-credit-with-a-universal-child-benefit-33773de07271)
-
-Exported from [Medium](https://medium.com) on January 10, 2026.

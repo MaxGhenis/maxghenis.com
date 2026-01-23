@@ -1,5 +1,5 @@
 ---
-title: "Reddit Featured a Misleading Headline on Education Secretary Nominee Betsy DeVos"
+title: "Reddit featured a misleading headline on education secretary nominee Betsy DeVos"
 description: "“billionaire”"
 pubDate: '2016-11-26'
 ---
@@ -106,9 +106,3 @@ There’s no need for the exaggeration and fabrication more commonly found on th
 *Update: after *[posting this](https://www.reddit.com/r/atheism/comments/5f2igq/reddit_ratheism_featured_a_misleading_headline_on/)* to r/atheism, they locked the post, threatened to ban me, and then banned me for “brigading”.*
 
 *This post has been updated to reference Snopes’ fact-checking of the Facebook meme. It has also been corrected to reflect that r/politics is not a default subreddit. It was later updated to include Erik Prince’s lack of Trump campaign donations.*
-
-By [Max Ghenis](https://medium.com/@maxghenis) on [November 26, 2016](https://medium.com/p/28a2c16cc220).
-
-[Canonical link](https://medium.com/@maxghenis/reddit-featured-a-misleading-headline-on-education-secretary-nominee-betsy-devos-28a2c16cc220)
-
-Exported from [Medium](https://medium.com) on January 10, 2026.

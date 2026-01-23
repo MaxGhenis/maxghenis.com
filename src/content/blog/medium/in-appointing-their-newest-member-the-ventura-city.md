@@ -92,9 +92,3 @@ No councilmembers mentioned housing in their decisions.
 Any elected official knows what statements like those from Lagerquist indicate about housing stances, yet all but Doug Halter voted for her in either the first or second round. Christy Weir may have voted for Lagerquist over Sanchez-Palacios, and if the more pro-housing opponents of Schroeder and Johnson (whom Neighbors for the Ventura Hillside also endorsed) had won in November, they might have appointed Silva or Golden instead. NIMBYism begets NIMBYism, but so too can YIMBYism beget YIMBYism.
 
 Sanchez-Palacios suggested she may run for election in November 2022. Her NIMBY alliances and disinterest in addressing the housing shortage are concerning, but until then, we’ll be pushing her to pursue the strong housing policy Ventura needs.
-
-By [Max Ghenis](https://medium.com/@maxghenis) on [February 24, 2021](https://medium.com/p/443410fca172).
-
-[Canonical link](https://medium.com/@maxghenis/in-appointing-their-newest-member-the-ventura-city-council-only-pretended-to-care-about-housing-443410fca172)
-
-Exported from [Medium](https://medium.com) on January 10, 2026.
