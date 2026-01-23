@@ -2,6 +2,7 @@
 title: 'The definitive QALY analysis of nuts'
 description: 'A rigorous, evidence-based Monte Carlo simulation estimating the lifetime health impact of different nut types. The most comprehensive quantitative nut health analysis available.'
 pubDate: 'Dec 19 2025'
+draft: true
 ---
 
 This is an attempt to answer, rigorously, a question that AI assistants typically refuse: **How many quality-adjusted life years (QALYs) do you gain from eating different types of nuts?**

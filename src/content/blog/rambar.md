@@ -66,7 +66,7 @@ brew tap maxghenis/tap
 brew install --cask rambar
 ```
 
-Or download from [maxghenis.com/rambar](https://maxghenis.com/rambar). Source on [GitHub](https://github.com/MaxGhenis/rambar).
+[Project page](/rambar) ・ [GitHub](https://github.com/MaxGhenis/rambar)
 
 Requires macOS 14.0+. First launch: right-click and select Open to bypass Gatekeeper (the app is currently unsigned).
 

@@ -79,7 +79,7 @@ Install from the [VS Code Marketplace](https://marketplace.visualstudio.com/item
 code --install-extension MaxGhenis.terminalgrid
 ```
 
-Source on [GitHub](https://github.com/MaxGhenis/terminalgrid).
+[Project page](/terminalgrid) ・ [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=MaxGhenis.terminalgrid) ・ [GitHub](https://github.com/MaxGhenis/terminalgrid)
 
 ---
 

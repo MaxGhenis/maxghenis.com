@@ -96,6 +96,6 @@ Then authenticate:
 oc auth
 ```
 
-[PyPI](https://pypi.org/project/opencollective/) ・ [GitHub](https://github.com/MaxGhenis/opencollective-py)
+[Project page](/opencollective-py) ・ [PyPI](https://pypi.org/project/opencollective/) ・ [GitHub](https://github.com/MaxGhenis/opencollective-py)
 
 *This is an unofficial community project, not affiliated with OpenCollective.*
