@@ -1,6 +1,6 @@
 ---
 title: "Uber’s tipping settlement will reduce earnings of African-American drivers"
-description: "This week, Uber [reached a settlement](http://fortune.com/2016/04/21/uber-drivers-settlement/) with drivers in California and Massachusetts in a lawsuit concerning worker classification."
+description: "This week, Uber reached a settlement with drivers in California and Massachusetts in a lawsuit concerning worker classification."
 pubDate: '2016-04-26'
 ---
 

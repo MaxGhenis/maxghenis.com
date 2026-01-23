@@ -1,6 +1,6 @@
 ---
 title: "The case for a wonky basic income plan"
-description: "In March, a former union leader joined forces with a prominent libertarian to [debate](https://youtu.be/YX9T7GHs9fQ?t=22m6s) two Obama White House economists."
+description: "In March, a former union leader joined forces with a prominent libertarian to debate two Obama White House economists."
 pubDate: '2017-06-14'
 ---
 
