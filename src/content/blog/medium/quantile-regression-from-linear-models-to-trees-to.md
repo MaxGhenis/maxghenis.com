@@ -1,11 +1,8 @@
 ---
-title: "Quantile regression, from linear models to trees to deep learning"
-description: "### Quantile regression, from linear models to trees to deep learning"
+title: "Quantile regression, from linear models to trees to deep learning"
+description: "Suppose a real estate analyst wants to predict home prices from factors like home age and distance from job centers."
 pubDate: '2018-10-16'
 ---
-
-
-### Quantile regression, from linear models to trees to deep learning
 
 Suppose a real estate analyst wants to predict home prices from factors like home age and distance from job centers. The typical goal will be generating the best home price *point estimate* given those factors, where “best” often refers to the estimate that minimizes squared deviations from reality.
 

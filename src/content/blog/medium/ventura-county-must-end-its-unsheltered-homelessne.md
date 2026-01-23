@@ -1,12 +1,8 @@
 ---
-title: "Ventura county must end its unsheltered homelessness"
-description: "### Ventura County must end its unsheltered homelessness"
+title: "Ventura County must end its unsheltered homelessness"
+description: "We need to make shelters more abundant and housing more affordable"
 pubDate: '2019-11-25'
 ---
-
-
-### Ventura County must end its unsheltered homelessness
-
 
 #### We need to make shelters more abundant and housing more affordable
 

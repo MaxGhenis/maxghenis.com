@@ -1,12 +1,8 @@
 ---
-title: "Why i’ve taken the giving what we can pledge"
-description: "### Why I’ve taken the Giving What We Can pledge"
+title: "Why I’ve taken the Giving What We Can pledge"
+description: "The global poor will benefit much more from ten percent of my income than I will"
 pubDate: '2019-12-31'
 ---
-
-
-### Why I’ve taken the Giving What We Can pledge
-
 
 #### The global poor will benefit much more from ten percent of my income than I will
 

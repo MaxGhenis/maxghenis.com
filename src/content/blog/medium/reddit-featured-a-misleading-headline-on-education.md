@@ -1,11 +1,8 @@
 ---
-title: "Reddit featured a misleading headline on education secretary nominee Betsy DeVos"
-description: "### Reddit Featured a Misleading Headline on Education Secretary Nominee Betsy DeVos"
+title: "Reddit Featured a Misleading Headline on Education Secretary Nominee Betsy DeVos"
+description: "“billionaire”"
 pubDate: '2016-11-26'
 ---
-
-
-### Reddit Featured a Misleading Headline on Education Secretary Nominee Betsy DeVos
 
 [This headline](https://www.reddit.com/r/atheism/comments/5eobxq/meet_your_new_a_secretary_of_education/) made the top of [Reddit](http://reddit.com)’s [r/all](http://reddit.com/r/all) page on [Thursday](http://web.archive.org/web/20161124230946/https://www.reddit.com/r/all/):
 

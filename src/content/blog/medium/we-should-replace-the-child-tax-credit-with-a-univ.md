@@ -1,11 +1,8 @@
 ---
-title: "We should replace the child tax credit with a universal child benefit"
-description: "### We should replace the Child Tax Credit with a universal child benefit"
+title: "We should replace the Child Tax Credit with a universal child benefit"
+description: "The Child Tax Credit (CTC) is one of the largest assistance programs for children in the US."
 pubDate: '2018-04-22'
 ---
-
-
-### We should replace the Child Tax Credit with a universal child benefit
 
 The Child Tax Credit (CTC) is one of the largest assistance programs for children in the US. With a newly expanded budgetary impact of $120 billion, it will reach 40 million households this year — 88 percent of all households with children.¹ ² For families that receive it, the CTC is highly effective, having lifted [1.5 million children](https://www.cbpp.org/research/federal-tax/policy-basics-the-child-tax-credit) out of poverty in 2016. This success has brought it bipartisan support, with both [Hillary Clinton](https://www.brookings.edu/blog/social-mobility-memos/2016/10/13/clintons-child-tax-credit-proposal-a-good-start-on-helping-low-and-middle-income-families/) and [Marco Rubio](https://www.washingtonpost.com/news/wonk/wp/2017/12/19/what-marco-rubio-got-for-his-tax-vote/?utm_term=.b7e3c72d928c) having proposed expansions in the past couple years. However, like most tax credits, it provides little if any assistance to the poorest households who need it most.
 

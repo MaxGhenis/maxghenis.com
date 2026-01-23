@@ -1,12 +1,8 @@
 ---
-title: "If you earned more in 2019 than 2018, don’t file your 2019 taxes yet! otherwise, file asap!"
-description: "### If you earned more in 2019 than 2018, don’t file your 2019 taxes yet! Otherwise, file ASAP!"
+title: "If you earned more in 2019 than 2018, don’t file your 2019 taxes yet! Otherwise, file ASAP!"
+description: "The right tax filing schedule could get you thousands in (poorly designed) Recovery Rebates. And Congress: Let’s just do UBI next time."
 pubDate: '2020-03-27'
 ---
-
-
-### If you earned more in 2019 than 2018, don’t file your 2019 taxes yet! Otherwise, file ASAP!
-
 
 #### The right tax filing schedule could get you thousands in (poorly designed) Recovery Rebates. And Congress: Let’s just do UBI next time.
 

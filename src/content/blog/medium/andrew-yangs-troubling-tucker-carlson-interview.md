@@ -1,12 +1,8 @@
 ---
-title: "Andrew yang’s troubling Tucker Carlson interview"
-description: "### Andrew Yang’s Troubling Tucker Carlson Interview"
+title: "Andrew Yang’s Troubling Tucker Carlson Interview"
+description: "The Democratic presidential candidate fed into Tucker’s MAGA narrative"
 pubDate: '2019-03-09'
 ---
-
-
-### Andrew Yang’s Troubling Tucker Carlson Interview
-
 
 #### The Democratic presidential candidate fed into Tucker’s MAGA narrative
 

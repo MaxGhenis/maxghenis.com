@@ -1,12 +1,8 @@
 ---
-title: "Warren’s wealth tax would raise less than she claims — even using her economists’ own assumptions"
-description: "### Warren’s wealth tax would raise less than she claims — even using her economists’ own assumptions"
+title: "Warren’s wealth tax would raise less than she claims — even using her economists’ own assumptions"
+description: "Using their cited assumptions around avoidance and economic growth cuts revenue by a quarter"
 pubDate: '2019-11-09'
 ---
-
-
-### Warren’s wealth tax would raise less than she claims — even using her economists’ own assumptions
-
 
 #### Using their cited assumptions around avoidance and economic growth cuts revenue by a quarter
 

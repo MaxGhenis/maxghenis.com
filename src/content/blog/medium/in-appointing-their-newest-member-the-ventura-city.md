@@ -1,12 +1,8 @@
 ---
-title: "In appointing their newest member, the ventura city council only pretended to care about housing"
-description: "### In appointing their newest member, the Ventura City Council only pretended to care about housing"
+title: "In appointing their newest member, the Ventura City Council only pretended to care about housing"
+description: "After asking each applicant about the housing crisis, most councilmembers voted for those least committed to solving it"
 pubDate: '2021-02-24'
 ---
-
-
-### In appointing their newest member, the Ventura City Council only pretended to care about housing
-
 
 #### After asking each applicant about the housing crisis, most councilmembers voted for those least committed to solving it
 

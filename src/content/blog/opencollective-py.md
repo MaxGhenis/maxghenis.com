@@ -2,7 +2,7 @@
 title: 'opencollective-py: Manage OpenCollective from your terminal or Claude Code'
 description: 'A Python client, CLI, and MCP server for the OpenCollective API.'
 pubDate: 'Jan 23 2026'
-heroImage: './opencollective-py.png'
+heroImage: './opencollective-py-hero.png'
 ---
 
 <div style="display: flex; justify-content: center; margin: 1.5rem 0 2rem;">

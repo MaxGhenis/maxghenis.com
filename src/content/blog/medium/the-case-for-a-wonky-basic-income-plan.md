@@ -1,11 +1,8 @@
 ---
-title: "The case for a wonky basic income plan"
-description: "### The Case For a Wonky Basic Income Plan"
+title: "The Case For a Wonky Basic Income Plan"
+description: "In March, a former union leader joined forces with a prominent libertarian to [debate](https://youtu.be/YX9T7GHs9fQ?t=22m6s) two Obama White House economists."
 pubDate: '2017-06-14'
 ---
-
-
-### The Case For a Wonky Basic Income Plan
 
 In March, a former union leader joined forces with a prominent libertarian to [debate](https://youtu.be/YX9T7GHs9fQ?t=22m6s) two Obama White House economists. The topic, hosted by [Intelligence²](http://www.intelligencesquaredus.org/debates/universal-basic-income-safety-net-future), was “Is Universal Basic Income The Safety Net of the Future?” with the unlikely duo — Andy Stern, President Emeritus of the Service Employees International Union, and Charles Murray, fellow at the conservative American Enterprise Institute — arguing the case for, and the economists — Jared Bernstein, former chief economist to Vice President Biden, and Jason Furman, former chairman of the Council of Economic Advisors — arguing against. Stern pitched universal basic income — giving every person a check each month without conditions — as insurance for a future where AI and robots make human workers obsolete; Murray lauded the personal liberty from solving poverty without a paternalistic bureaucracy. Bernstein and Furman claimed the math didn’t add up; that the universality requires reducing benefits for the poor, especially families with children; and that other changes needed to pay for the program would be politically infeasible.
 
