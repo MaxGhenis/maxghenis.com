@@ -1,7 +1,7 @@
 # Max Ghenis - Full Content
 
 > This file contains the full text of all blog posts from maxghenis.com, formatted for LLM consumption.
-> Generated: 2026-01-23T22:39:01.026Z
+> Generated: 2026-01-23T22:51:36.750Z
 > See also: /llms.txt for a curated overview
 
 ---
@@ -27,7 +27,7 @@
 17. [We should replace the Child Tax Credit with a universal child benefit](/blog/medium/we-should-replace-the-child-tax-credit-with-a-univ/)
 18. [The case for a wonky basic income plan](/blog/medium/the-case-for-a-wonky-basic-income-plan/)
 19. [Reddit featured a misleading headline on education secretary nominee Betsy DeVos](/blog/medium/reddit-featured-a-misleading-headline-on-education/)
-20. [Uber’s tipping settlement will reduce earnings of African-American drivers](/blog/medium/ubers-tipping-settlement-will-reduce-earnings-of-a/)
+20. [Uber's tipping settlement will reduce earnings of African-American drivers](/blog/medium/ubers-tipping-settlement-will-reduce-earnings-of-a/)
 21. [If we can afford our current welfare system, we can afford basic income](/blog/medium/if-we-can-afford-our-current-welfare-system-we-can/)
 
 ---
@@ -37,19 +37,6 @@
 **URL:** https://maxghenis.com/blog/opencollective-py/
 **Published:** Jan 23 2026
 **Description:** A Python client, CLI, and MCP server for the OpenCollective API.
-
-<div style="display: flex; justify-content: center; margin: 1.5rem 0 2rem;">
-  <div style="width: 100px; height: 100px; background: linear-gradient(135deg, #0c2d66 0%, #1a4a8a 100%); border-radius: 20px; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 30px rgba(12, 45, 102, 0.3);">
-    <svg width="56" height="56" viewBox="0 0 288 288" fill="white"><path opacity="0.7" d="M188 21.351l-31.03 31.084c-11.025-6.104-23.702-9.579-37.19-9.579-42.526 0-77.002 34.54-77.002 77.144 0 42.604 34.476 77.144 77.003 77.144 13.487 0 26.164-3.475 37.19-9.58L188 218.65C168.64 232.11 145.131 240 119.78 240 53.629 240 0 186.274 0 120S53.628 0 119.78 0c25.351 0 48.86 7.89 68.22 21.351z"/><path d="M218.826 51C232.176 70.298 240 93.731 240 119s-7.824 48.704-21.174 68L188 156.073c6.054-10.99 9.5-23.63 9.5-37.073 0-13.444-3.446-26.08-9.5-37.07L218.826 51z"/></svg>
-  </div>
-</div>
-
-<div style="display: flex; justify-content: center;">
-<a href="/opencollective-py" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.25rem; background: #0c2d66; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; margin-bottom: 1.5rem;">
-  <svg width="20" height="20" viewBox="0 0 288 288" fill="currentColor"><path opacity="0.7" d="M188 21.351l-31.03 31.084c-11.025-6.104-23.702-9.579-37.19-9.579-42.526 0-77.002 34.54-77.002 77.144 0 42.604 34.476 77.144 77.003 77.144 13.487 0 26.164-3.475 37.19-9.58L188 218.65C168.64 232.11 145.131 240 119.78 240 53.629 240 0 186.274 0 120S53.628 0 119.78 0c25.351 0 48.86 7.89 68.22 21.351z"/><path d="M218.826 51C232.176 70.298 240 93.731 240 119s-7.824 48.704-21.174 68L188 156.073c6.054-10.99 9.5-23.63 9.5-37.073 0-13.444-3.446-26.08-9.5-37.07L218.826 51z"/></svg>
-  Visit project page →
-</a>
-</div>
 
 I manage [PolicyEngine's OpenCollective](https://opencollective.com/policyengine). We use OpenCollective because it gives anyone full visibility into our finances—every expense, donation, and transaction is public. It also handles crowdfunding, recurring donations, and community updates, and the [platform itself is open source](https://github.com/opencollective/opencollective).
 
@@ -236,11 +223,6 @@ When Claude Desktop works reliably, I'll abandon my TerminalGridded IDE without 
 **Published:** Jan 07 2026
 **Description:** A VS Code extension for keyboard-driven terminal grid management with project picker and auto-launch for AI coding tools.
 
-<a href="/terminalgrid" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.25rem; background: #0078d4; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; margin-bottom: 1.5rem;">
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="12" y1="3" x2="12" y2="21"/></svg>
-  Visit project page →
-</a>
-
 I run multiple Claude Code sessions simultaneously—one for each project I'm working on. VS Code's terminal panel only splits in one direction—no 2D grids. And the native terminal has [issues with image pasting](https://github.com/anthropics/claude-code/issues/1361) that matter when you're sharing screenshots with Claude.
 
 So I built [TerminalGrid](https://maxghenis.com/terminalgrid)—my first VS Code extension, built 100% with Claude Code.
@@ -328,11 +310,6 @@ code --install-extension MaxGhenis.terminalgrid
 **URL:** https://maxghenis.com/blog/rambar/
 **Published:** Jan 07 2026
 **Description:** A native macOS menu bar app for tracking memory usage across Claude Code sessions, VS Code workspaces, Chrome tabs, and Python processes.
-
-<a href="/rambar" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.25rem; background: #0a0a0f; color: #00ffd5; text-decoration: none; border-radius: 8px; font-weight: 600; margin-bottom: 1.5rem; border: 1px solid #00ffd5;">
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"></rect><rect x="2" y="14" width="20" height="8" rx="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
-  Visit project page →
-</a>
 
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 2rem 0;">
   <iframe
@@ -1645,7 +1622,7 @@ There’s no need for the exaggeration and fabrication more commonly found on th
 
 ---
 
-## Uber’s tipping settlement will reduce earnings of African-American drivers
+## Uber's tipping settlement will reduce earnings of African-American drivers
 
 **URL:** https://maxghenis.com/blog/medium/ubers-tipping-settlement-will-reduce-earnings-of-a/
 **Published:** 2016-04-26
@@ -1679,9 +1656,9 @@ Few deny that driving for Uber can be financially difficult, but introducing tip
 
 Despite this setback, much progress has been made in tipping reform, with [nearly 200 restaurants](http://bit.ly/tip-free-restaurants) having now abandoned the practice. While Uber’s stance on tipping thus far has protected black drivers from discrimination, permitting drivers to solicit tips weakens such protections. They should remove this clause from their settlement to ensure their platform provides unbiased financial opportunity for all drivers.
 
-**Update: ***Uber clarified in a *[blog post](https://medium.com/@UberPubPolicy/our-approach-to-tipping-aa0074c0fddc#.ifie7830q)* that “Tipping is not included, nor is it expected or required.” The piece also provides rationale for their stance on tipping, which includes bias and references studies listed here.*
+**Update:** *Uber clarified in a [blog post](https://medium.com/@UberPubPolicy/our-approach-to-tipping-aa0074c0fddc#.ifie7830q) that "Tipping is not included, nor is it expected or required." The piece also provides rationale for their stance on tipping, which includes bias and references studies listed here.*
 
-*Max Ghenis is the creator of the *[EndTipping subreddit](http://reddit.com/r/EndTipping)*, where he’s assembled a *[list of 190+ tip-free restaurants in the US](http://bit.ly/tip-free-restaurants)*. You can sign his petitions to *[remove Lyft’s in-app tipping option](https://www.change.org/p/lyft-remove-tipping-from-the-lyft-app)*, and to *[reverse Uber’s settlement provision permitting drivers to solicit tips](https://www.change.org/p/travis-kalanick-prevent-uber-drivers-from-soliciting-tips-to-ensure-fair-earnings-for-black-drivers)*.*
+*Max Ghenis is the creator of the [EndTipping subreddit](http://reddit.com/r/EndTipping), where he's assembled a [list of 190+ tip-free restaurants in the US](http://bit.ly/tip-free-restaurants). You can sign his petitions to [remove Lyft's in-app tipping option](https://www.change.org/p/lyft-remove-tipping-from-the-lyft-app), and to [reverse Uber's settlement provision permitting drivers to solicit tips](https://www.change.org/p/travis-kalanick-prevent-uber-drivers-from-soliciting-tips-to-ensure-fair-earnings-for-black-drivers).*
 
 ---
 

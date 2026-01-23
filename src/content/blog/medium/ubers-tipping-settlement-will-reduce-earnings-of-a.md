@@ -1,7 +1,8 @@
 ---
-title: "Uber’s tipping settlement will reduce earnings of African-American drivers"
+title: "Uber's tipping settlement will reduce earnings of African-American drivers"
 description: "This week, Uber reached a settlement with drivers in California and Massachusetts in a lawsuit concerning worker classification."
 pubDate: '2016-04-26'
+heroImage: './uber-tipping-hero.jpg'
 ---
 
 This week, Uber [reached a settlement](http://fortune.com/2016/04/21/uber-drivers-settlement/) with drivers in California and Massachusetts in a lawsuit concerning worker classification. In addition to up to $100M in compensation, recognition of a driver’s association, and greater transparency about deactivating drivers, the settlement permits drivers to post signage in their vehicles soliciting tips. Uber drivers could always accept cash tips, but [unlike Lyft](https://help.lyft.com/hc/en-us/articles/213583978-How-to-Tip-Your-Driver), Uber has never had an in-app tipping option, and [emphasizes](https://help.uber.com/h/1be144ab-609a-43c5-82b5-b9c7de5ec073) that “you don’t need cash…there’s no need to tip.” As a result, tipping is rare: Uber drivers estimate that [between one and five percent](https://www.bostonglobe.com/business/2015/10/27/tips-raises-questions-and-tempers-among-uber-and-lyft-users/EJlZe8Eb763UewRzUNUVJN/story.html) of riders tip, versus [70% of Lyft customers](http://www.wsj.com/articles/uber-reaches-a-tipping-point-with-its-drivers-1461490205) (though [some Lyft drivers claim 20–50%](https://www.bostonglobe.com/business/2015/10/27/tips-raises-questions-and-tempers-among-uber-and-lyft-users/EJlZe8Eb763UewRzUNUVJN/story.html)).
