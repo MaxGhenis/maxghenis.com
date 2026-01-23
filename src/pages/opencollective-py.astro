@@ -3,6 +3,15 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE } from '../consts';
+
+const mcpConfig = `{
+  "mcpServers": {
+    "opencollective": {
+      "command": "python",
+      "args": ["-m", "opencollective.mcp_server"]
+    }
+  }
+}`;
 ---
 
 <!doctype html>
@@ -135,14 +144,7 @@ expenses = client.list_expenses("policyengine", status="PENDING")</code></pre>
 					</div>
 					<div class="example">
 						<h3>MCP server for Claude Code</h3>
-						<pre><code>{
-  "mcpServers": {
-    "opencollective": {
-      "command": "python",
-      "args": ["-m", "opencollective.mcp_server"]
-    }
-  }
-}</code></pre>
+						<pre><code>{mcpConfig}</code></pre>
 					</div>
 				</div>
 			</section>
