@@ -2,6 +2,7 @@
 title: 'google-ads-mcp-rw: The first Google Ads MCP with write support'
 description: 'An MCP server that lets you create campaigns, ad groups, keywords, and ads—not just read metrics.'
 pubDate: 'Jan 24 2026'
+heroImage: './google-ads-mcp-hero.png'
 projectUrl: '/google-ads-mcp-rw'
 ---
 
@@ -13,9 +14,11 @@ So I built [google-ads-mcp-rw](https://github.com/MaxGhenis/google-ads-mcp-rw)�
 
 ## The problem with read-only
 
-Google has an [official Google Ads MCP](https://github.com/nicholasgriffintn/google-ads-mcp), but it only supports GAQL queries. Great for pulling reports, useless for campaign management.
+Google has an [official Google Ads MCP](https://github.com/googleads/google-ads-mcp), but it only supports two read operations: `search` and `list_accessible_customers`. Great for pulling reports, useless for campaign management.
 
-Other community MCPs follow the same pattern—query tools only. This makes sense for safety reasons: accidental writes to Google Ads can cost real money. But it also means you can't use Claude to actually *manage* your ads.
+Other community MCPs follow the same pattern. [cohnen/mcp-google-ads](https://github.com/cohnen/mcp-google-ads) provides GAQL queries and performance analytics—read-only. [bjorndavidhansen/google-ads-mcp-server](https://github.com/bjorndavidhansen/google-ads-mcp-server) lists some write tools but marks budget updates as "placeholder implementation." [samihalawa/google-ads-mcp-server](https://github.com/samihalawa/google-ads-mcp-server) can pause/enable campaigns and update budgets, but can't create campaigns, ad groups, keywords, or ads.
+
+This caution makes sense—accidental writes to Google Ads can cost real money. But it also means you can't use Claude to actually *manage* your ads.
 
 ## Full campaign management in natural language
 
