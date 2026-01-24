@@ -5,7 +5,7 @@ pubDate: 'Jan 24 2026'
 projectUrl: '/google-ads-mcp-rw'
 ---
 
-Every Google Ads MCP server I could find was read-only. You could query campaign performance and pull metrics, but creating campaigns? Adding keywords? Adjusting bids? You had to switch to the Google Ads UI.
+Every Google Ads MCP server I could find was read-only. You could query campaign performance and pull metrics, but creating campaigns? Adding keywords? Adjusting bids? You had to switch to the Google Ads UI (or use the API directly).
 
 So I built [google-ads-mcp-rw](https://github.com/MaxGhenis/google-ads-mcp-rw)—the first Google Ads MCP with full write capabilities.
 
@@ -81,13 +81,13 @@ Add negative keywords "free", "cheap", "diy", "tutorial" to campaign 19638300165
 ## Installation
 
 ```bash
-pip install google-ads-mcp
+pip install google-ads-mcp-rw
 ```
 
 Or with uv (recommended):
 
 ```bash
-uv pip install google-ads-mcp
+uv pip install google-ads-mcp-rw
 ```
 
 ## Configuration
@@ -111,7 +111,7 @@ use_proto_plus: true
   "mcpServers": {
     "google-ads": {
       "command": "uv",
-      "args": ["run", "--with", "google-ads-mcp", "google-ads-mcp"],
+      "args": ["run", "--with", "google-ads-mcp-rw", "google-ads-mcp-rw"],
       "env": {
         "GOOGLE_ADS_CONFIG_PATH": "/path/to/your/google-ads.yaml"
       }
@@ -125,7 +125,7 @@ Works with Claude Desktop, Claude Code, Cursor, or any MCP client.
 ## Get it
 
 ```bash
-pip install google-ads-mcp
+pip install google-ads-mcp-rw
 ```
 
-[Project page](/google-ads-mcp-rw) ・ [PyPI](https://pypi.org/project/google-ads-mcp/) ・ [GitHub](https://github.com/MaxGhenis/google-ads-mcp-rw)
+[Project page](/google-ads-mcp-rw) ・ [PyPI](https://pypi.org/project/google-ads-mcp-rw/) ・ [GitHub](https://github.com/MaxGhenis/google-ads-mcp-rw)
