@@ -1,0 +1,536 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE } from '../consts';
+
+const mcpConfig = `{
+  "mcpServers": {
+    "google-ads": {
+      "command": "uv",
+      "args": ["run", "--with", "google-ads-mcp", "google-ads-mcp"],
+      "env": {
+        "GOOGLE_ADS_CONFIG_PATH": "/path/to/your/google-ads.yaml"
+      }
+    }
+  }
+}`;
+
+const yamlConfig = `developer_token: YOUR_DEVELOPER_TOKEN
+client_id: YOUR_CLIENT_ID.apps.googleusercontent.com
+client_secret: YOUR_CLIENT_SECRET
+refresh_token: YOUR_REFRESH_TOKEN
+login_customer_id: "1234567890"
+use_proto_plus: true`;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`google-ads-mcp | ${SITE_TITLE}`} description="The first Google Ads MCP with write support. Create campaigns, ad groups, keywords, and responsive search ads—not just query metrics." />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<header class="page-header">
+				<div class="app-icon">
+					<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Google Ads logo">
+						<path d="M3.654 15.236l5.733-9.77a2.5 2.5 0 0 1 4.33 0l5.733 9.77a2.5 2.5 0 0 1-2.165 3.75H5.82a2.5 2.5 0 0 1-2.165-3.75z" fill="currentColor" opacity="0.6"/>
+						<circle cx="18.5" cy="17" r="3" fill="currentColor"/>
+						<circle cx="5.5" cy="17" r="3" fill="currentColor" opacity="0.8"/>
+					</svg>
+				</div>
+				<h1>google-ads-mcp</h1>
+				<p class="page-description">The first Google Ads MCP with write support. Create campaigns, ad groups, keywords, and responsive search ads—not just query metrics.</p>
+				<div class="header-actions">
+					<a href="https://pypi.org/project/google-ads-mcp/" class="install-btn">
+						<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<polyline points="4 17 10 11 4 5"></polyline>
+							<line x1="12" y1="19" x2="20" y2="19"></line>
+						</svg>
+						pip install google-ads-mcp
+					</a>
+					<a href="https://github.com/MaxGhenis/google-ads-mcp-rw" class="github-btn">
+						<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+							<path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+						</svg>
+						View source
+					</a>
+				</div>
+			</header>
+
+			<section class="features">
+				<h2>Features</h2>
+				<div class="feature-grid">
+					<div class="feature-card">
+						<div class="feature-icon">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="28" height="28">
+								<path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+								<path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+							</svg>
+						</div>
+						<h3>Write operations</h3>
+						<p>Create campaigns, ad groups, keywords, and RSAs—not just query metrics</p>
+					</div>
+					<div class="feature-card">
+						<div class="feature-icon">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="28" height="28">
+								<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+							</svg>
+						</div>
+						<h3>Safety first</h3>
+						<p>Dry run mode, paused-by-default campaigns, and clear error messages</p>
+					</div>
+					<div class="feature-card">
+						<div class="feature-icon">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="28" height="28">
+								<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+							</svg>
+						</div>
+						<h3>Natural language</h3>
+						<p>Manage campaigns conversationally with Claude Desktop or Claude Code</p>
+					</div>
+					<div class="feature-card">
+						<div class="feature-icon">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="28" height="28">
+								<line x1="18" y1="20" x2="18" y2="10"></line>
+								<line x1="12" y1="20" x2="12" y2="4"></line>
+								<line x1="6" y1="20" x2="6" y2="14"></line>
+							</svg>
+						</div>
+						<h3>GAQL queries</h3>
+						<p>Run any Google Ads Query Language query for reporting and analysis</p>
+					</div>
+					<div class="feature-card">
+						<div class="feature-icon">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="28" height="28">
+								<circle cx="12" cy="12" r="3"></circle>
+								<path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+							</svg>
+						</div>
+						<h3>Bid management</h3>
+						<p>Update CPC bids and pause/enable campaigns and ad groups</p>
+					</div>
+					<div class="feature-card">
+						<div class="feature-icon">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="28" height="28">
+								<rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+								<line x1="9" y1="9" x2="15" y2="15"></line>
+								<line x1="15" y1="9" x2="9" y2="15"></line>
+							</svg>
+						</div>
+						<h3>Negative keywords</h3>
+						<p>Block unwanted search terms at campaign or ad group level</p>
+					</div>
+				</div>
+			</section>
+
+			<section class="tools">
+				<h2>12 tools included</h2>
+				<div class="tools-grid">
+					<div class="tool-group">
+						<h3>Read</h3>
+						<ul>
+							<li><code>list_accounts</code> — List accessible Google Ads accounts</li>
+							<li><code>execute_query</code> — Run GAQL queries for reporting</li>
+						</ul>
+					</div>
+					<div class="tool-group">
+						<h3>Write</h3>
+						<ul>
+							<li><code>create_campaign</code> — Create search campaigns (paused by default)</li>
+							<li><code>create_ad_group</code> — Add ad groups to campaigns</li>
+							<li><code>add_keywords</code> — Add keywords (BROAD, PHRASE, EXACT)</li>
+							<li><code>add_negative_keywords</code> — Block unwanted terms</li>
+							<li><code>create_responsive_search_ad</code> — Build RSAs</li>
+							<li><code>pause_campaign</code> / <code>enable_campaign</code></li>
+							<li><code>pause_ad_group</code> / <code>enable_ad_group</code></li>
+							<li><code>update_ad_group_bid</code> — Adjust CPC bids</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+
+			<section class="usage">
+				<h2>Usage examples</h2>
+				<div class="usage-examples">
+					<div class="example">
+						<h3>Create a complete campaign</h3>
+						<pre><code>Create a search campaign "Widget Sale" with $20/day budget,
+add an ad group "Product Keywords" with keywords
+"buy widgets", "widget sale", "best widgets",
+then create a responsive search ad with headlines:
+"Buy Widgets Now", "50% Off Widgets", "Free Shipping"
+Final URL: https://example.com/widgets</code></pre>
+					</div>
+					<div class="example">
+						<h3>Query performance</h3>
+						<pre><code>Run this GAQL query for customer 1234567890:
+SELECT campaign.name, metrics.clicks, metrics.impressions
+FROM campaign
+WHERE segments.date DURING LAST_7_DAYS
+ORDER BY metrics.clicks DESC</code></pre>
+					</div>
+					<div class="example">
+						<h3>Add negative keywords</h3>
+						<pre><code>Add negative keywords "free", "cheap", "diy", "tutorial"
+to campaign 19638300165</code></pre>
+					</div>
+					<div class="example">
+						<h3>Pause underperformers</h3>
+						<pre><code>Show me all ad groups in campaign 19638300165
+with CTR below 1%, then pause them</code></pre>
+					</div>
+				</div>
+			</section>
+
+			<section class="install">
+				<h2>Installation</h2>
+				<div class="install-steps">
+					<div class="step">
+						<span class="step-number">1</span>
+						<div class="step-content">
+							<h3>Install</h3>
+							<pre><code>pip install google-ads-mcp
+
+# Or with uv (recommended)
+uv pip install google-ads-mcp</code></pre>
+						</div>
+					</div>
+					<div class="step">
+						<span class="step-number">2</span>
+						<div class="step-content">
+							<h3>Create google-ads.yaml</h3>
+							<pre><code>{yamlConfig}</code></pre>
+							<p>Get credentials from the <a href="https://ads.google.com/aw/apicenter">Google Ads API Center</a></p>
+						</div>
+					</div>
+					<div class="step">
+						<span class="step-number">3</span>
+						<div class="step-content">
+							<h3>Configure MCP client</h3>
+							<pre><code>{mcpConfig}</code></pre>
+							<p>Works with Claude Desktop, Claude Code, Cursor, or any MCP client</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="about">
+				<p class="disclaimer">This is an unofficial community project, not affiliated with <a href="https://ads.google.com">Google Ads</a>.</p>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	main {
+		max-width: 900px;
+	}
+
+	.page-header {
+		text-align: center;
+		margin-bottom: 3rem;
+		padding-bottom: 2rem;
+		border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+	}
+
+	.app-icon {
+		width: 80px;
+		height: 80px;
+		margin: 0 auto 1.5rem;
+		background: linear-gradient(135deg, #4285f4 0%, #34a853 50%, #fbbc04 100%);
+		border-radius: 16px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		box-shadow: 0 8px 30px rgba(66, 133, 244, 0.3);
+	}
+
+	.app-icon svg {
+		width: 44px;
+		height: 44px;
+		color: white;
+	}
+
+	.page-header h1 {
+		font-size: 2.5rem;
+		margin-bottom: 0.75rem;
+		font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, monospace;
+	}
+
+	.page-description {
+		font-size: 1.25rem;
+		color: var(--text-secondary);
+		max-width: 600px;
+		margin: 0 auto 2rem;
+	}
+
+	.header-actions {
+		display: flex;
+		gap: 1rem;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+
+	.install-btn, .github-btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.875rem 1.5rem;
+		border-radius: var(--radius-lg);
+		text-decoration: none;
+		font-weight: 600;
+		font-size: 1rem;
+		transition: all var(--duration-fast) var(--ease-out);
+	}
+
+	.install-btn {
+		background: #4285f4;
+		color: white;
+		font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, monospace;
+	}
+
+	.install-btn:hover {
+		background: #3367d6;
+		transform: translateY(-2px);
+		box-shadow: 0 8px 30px rgba(66, 133, 244, 0.4);
+	}
+
+	.github-btn {
+		background: var(--ink);
+		color: white;
+	}
+
+	.github-btn:hover {
+		background: var(--ink-soft);
+		transform: translateY(-2px);
+		box-shadow: var(--shadow-md);
+	}
+
+	section {
+		margin-bottom: 3rem;
+	}
+
+	section h2 {
+		font-size: 1.75rem;
+		margin-bottom: 1.5rem;
+	}
+
+	.feature-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+		gap: 1.25rem;
+	}
+
+	.feature-card {
+		background: white;
+		border: 1px solid rgba(15, 23, 42, 0.08);
+		border-radius: var(--radius-lg);
+		padding: 1.5rem;
+		transition: all var(--duration-fast) var(--ease-out);
+	}
+
+	.feature-card:hover {
+		transform: translateY(-2px);
+		box-shadow: var(--shadow-md);
+	}
+
+	.feature-icon {
+		width: 56px;
+		height: 56px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: rgba(66, 133, 244, 0.1);
+		border-radius: var(--radius-lg);
+		margin-bottom: 1rem;
+		color: #4285f4;
+		transition: all var(--duration-fast) var(--ease-out);
+	}
+
+	.feature-card:hover .feature-icon {
+		background: #4285f4;
+		color: white;
+		transform: scale(1.05);
+	}
+
+	.feature-card h3 {
+		font-size: 1.125rem;
+		margin-bottom: 0.5rem;
+	}
+
+	.feature-card p {
+		font-size: 0.9375rem;
+		color: var(--text-secondary);
+		line-height: 1.5;
+	}
+
+	.tools-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: 1.5rem;
+	}
+
+	.tool-group {
+		background: white;
+		border: 1px solid rgba(15, 23, 42, 0.08);
+		border-radius: var(--radius-lg);
+		padding: 1.5rem;
+	}
+
+	.tool-group h3 {
+		font-size: 1rem;
+		color: var(--text-muted);
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		margin-bottom: 1rem;
+	}
+
+	.tool-group ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	.tool-group li {
+		padding: 0.5rem 0;
+		border-bottom: 1px solid rgba(15, 23, 42, 0.04);
+		font-size: 0.9375rem;
+		color: var(--text-secondary);
+	}
+
+	.tool-group li:last-child {
+		border-bottom: none;
+	}
+
+	.tool-group code {
+		background: rgba(66, 133, 244, 0.1);
+		color: #4285f4;
+		padding: 0.125rem 0.375rem;
+		border-radius: var(--radius-sm);
+		font-size: 0.875rem;
+		font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, monospace;
+	}
+
+	.usage-examples {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: 1.25rem;
+	}
+
+	.example {
+		background: white;
+		border: 1px solid rgba(15, 23, 42, 0.08);
+		border-radius: var(--radius-lg);
+		padding: 1.5rem;
+	}
+
+	.example h3 {
+		font-size: 1rem;
+		margin-bottom: 1rem;
+		color: var(--text-secondary);
+	}
+
+	.example pre {
+		margin: 0;
+		background: #1e1e2e;
+		border-radius: var(--radius-md);
+		padding: 1rem;
+		overflow-x: auto;
+	}
+
+	.example code {
+		font-size: 0.875rem;
+		color: #cdd6f4;
+		font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, monospace;
+		white-space: pre-wrap;
+	}
+
+	.install-steps {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+	}
+
+	.step {
+		display: flex;
+		align-items: flex-start;
+		gap: 1.25rem;
+	}
+
+	.step-number {
+		width: 36px;
+		height: 36px;
+		background: #4285f4;
+		color: white;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-weight: 700;
+		flex-shrink: 0;
+	}
+
+	.step-content {
+		flex: 1;
+	}
+
+	.step-content h3 {
+		font-size: 1.125rem;
+		margin-bottom: 0.5rem;
+	}
+
+	.step-content p {
+		color: var(--text-secondary);
+		margin-top: 0.5rem;
+	}
+
+	.step-content a {
+		color: #4285f4;
+	}
+
+	.step-content pre {
+		margin: 0;
+		background: #1e1e2e;
+		border-radius: var(--radius-md);
+		padding: 1rem;
+		overflow-x: auto;
+	}
+
+	.step-content code {
+		font-size: 0.875rem;
+		color: #cdd6f4;
+		font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, monospace;
+	}
+
+	.about {
+		text-align: center;
+		padding-top: 2rem;
+		border-top: 1px solid rgba(15, 23, 42, 0.08);
+	}
+
+	.disclaimer {
+		color: var(--text-muted);
+		font-size: 0.9375rem;
+	}
+
+	.disclaimer a {
+		color: var(--text-secondary);
+	}
+
+	@media (max-width: 768px) {
+		.page-header h1 {
+			font-size: 2rem;
+		}
+
+		.page-description {
+			font-size: 1.125rem;
+		}
+
+		.usage-examples {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
