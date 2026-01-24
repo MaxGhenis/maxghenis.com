@@ -5,6 +5,8 @@ pubDate: 'Jan 24 2026'
 projectUrl: '/google-ads-mcp-rw'
 ---
 
+[PolicyEngine](https://policyengine.org) takes advantage of Google's [Ad Grants program](https://www.google.com/grants/) for nonprofits, which provides $10,000/month in free search ads. I was reviewing our strategy and exploring opportunities for new campaigns with Claude Code when I hit a wall.
+
 Every Google Ads MCP server I could find was read-only. You could query campaign performance and pull metrics, but creating campaigns? Adding keywords? Adjusting bids? You had to switch to the Google Ads UI (or use the API directly).
 
 So I built [google-ads-mcp-rw](https://github.com/MaxGhenis/google-ads-mcp-rw)—the first Google Ads MCP with full write capabilities.
