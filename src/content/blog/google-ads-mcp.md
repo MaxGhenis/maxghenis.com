@@ -1,13 +1,13 @@
 ---
-title: 'google-ads-mcp: The first Google Ads MCP with write support'
+title: 'google-ads-mcp-rw: The first Google Ads MCP with write support'
 description: 'An MCP server that lets you create campaigns, ad groups, keywords, and ads—not just read metrics.'
 pubDate: 'Jan 24 2026'
-projectUrl: '/google-ads-mcp'
+projectUrl: '/google-ads-mcp-rw'
 ---
 
 Every Google Ads MCP server I could find was read-only. You could query campaign performance and pull metrics, but creating campaigns? Adding keywords? Adjusting bids? You had to switch to the Google Ads UI.
 
-So I built [google-ads-mcp](https://github.com/MaxGhenis/google-ads-mcp-rw)—the first Google Ads MCP with full write capabilities.
+So I built [google-ads-mcp-rw](https://github.com/MaxGhenis/google-ads-mcp-rw)—the first Google Ads MCP with full write capabilities.
 
 ## The problem with read-only
 
@@ -17,7 +17,7 @@ Other community MCPs follow the same pattern—query tools only. This makes sens
 
 ## Full campaign management in natural language
 
-google-ads-mcp includes 12 tools that cover the core campaign management workflow:
+google-ads-mcp-rw includes 12 tools that cover the core campaign management workflow:
 
 **Read operations:**
 - `list_accounts` — See all accessible Google Ads accounts
@@ -128,4 +128,4 @@ Works with Claude Desktop, Claude Code, Cursor, or any MCP client.
 pip install google-ads-mcp
 ```
 
-[Project page](/google-ads-mcp) ・ [PyPI](https://pypi.org/project/google-ads-mcp/) ・ [GitHub](https://github.com/MaxGhenis/google-ads-mcp-rw)
+[Project page](/google-ads-mcp-rw) ・ [PyPI](https://pypi.org/project/google-ads-mcp/) ・ [GitHub](https://github.com/MaxGhenis/google-ads-mcp-rw)
