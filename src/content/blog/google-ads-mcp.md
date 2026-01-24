@@ -81,13 +81,13 @@ Add negative keywords "free", "cheap", "diy", "tutorial" to campaign 19638300165
 ## Installation
 
 ```bash
-pip install google-ads-mcp-rw
+uv pip install google-ads-mcp-rw
 ```
 
-Or with uv (recommended):
+Or with pip:
 
 ```bash
-uv pip install google-ads-mcp-rw
+pip install google-ads-mcp-rw
 ```
 
 ## Configuration
@@ -125,7 +125,7 @@ Works with Claude Desktop, Claude Code, Cursor, or any MCP client.
 ## Get it
 
 ```bash
-pip install google-ads-mcp-rw
+uv pip install google-ads-mcp-rw
 ```
 
 [Project page](/google-ads-mcp-rw) ・ [PyPI](https://pypi.org/project/google-ads-mcp-rw/) ・ [GitHub](https://github.com/MaxGhenis/google-ads-mcp-rw)
