@@ -3,6 +3,7 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE } from '../consts';
+import ogImage from '../content/blog/opencollective-py-hero.png';
 
 const mcpConfig = `{
   "mcpServers": {
@@ -17,7 +18,7 @@ const mcpConfig = `{
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={`opencollective-py | ${SITE_TITLE}`} description="Python client, CLI, and MCP server for OpenCollective. Submit expenses, approve reimbursements, and manage collectives from your terminal or Claude Code." />
+		<BaseHead title={`opencollective-py | ${SITE_TITLE}`} description="Python client, CLI, and MCP server for OpenCollective. Submit expenses, approve reimbursements, and manage collectives from your terminal or Claude Code." image={ogImage} />
 	</head>
 	<body>
 		<Header />
