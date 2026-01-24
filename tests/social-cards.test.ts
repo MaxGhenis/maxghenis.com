@@ -12,10 +12,10 @@ describe('Social cards', () => {
 
 		// Pages that should have custom social card images
 		const requiresCustomImage = (file: string) => {
-			// Exclude utility/internal pages
+			// Exclude utility/internal pages and full-page embeds
 			const utilityPages = [
 				'blog', 'cv', 'projects', 'voter-guides', 'elections', 'rss.xml', '404',
-				'style', 'lab', 'feed', 'brand', 'whatnut', 'mita', // utility/experimental pages
+				'style', 'lab', 'feed', 'brand', 'whatnut', 'mita', 'givewell-cea', // utility/experimental/embed pages
 			];
 
 			// Project pages (top-level pages like /rambar, /terminalgrid, /opencollective-py)
