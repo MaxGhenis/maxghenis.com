@@ -141,7 +141,7 @@ const jupyterBooks = [
 					link.addEventListener('click', (e) => {
 						e.preventDefault();
 						e.stopPropagation();
-						window.open(link.dataset.repo, '_blank');
+						window.open((link as HTMLElement).dataset.repo, '_blank');
 					});
 				});
 			</script>
