@@ -14,20 +14,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
         with:
-          node-version: "22"
-          cache: npm
+          bun-version: latest
 
       - name: Install dependencies
-        run: npm ci
+        run: bun install --frozen-lockfile
 
       - name: Build
-        run: npm run build
+        run: bun run build
 
       - name: Check TypeScript
-        run: npx astro check
+        run: bun run astro check
         env:
           NODE_OPTIONS: "--max-old-space-size=8192"
 
@@ -38,24 +37,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
         with:
-          node-version: "22"
-          cache: npm
+          bun-version: latest
 
       - name: Install dependencies
-        run: npm ci
+        run: bun install --frozen-lockfile
 
       - name: Build (for social cards test)
-        run: npm run build
+        run: bun run build
 
       - name: Start dev server
-        run: npm run dev &
+        run: bun run dev &
 
       - name: Wait for server
-        run: npx wait-on http://localhost:4321 --timeout 60000
+        run: bunx wait-on http://localhost:4321 --timeout 60000
 
       - name: Run tests
-        run: npm test
-
+        run: bun run test
