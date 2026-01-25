@@ -28,6 +28,8 @@ jobs:
 
       - name: Check TypeScript
         run: npx astro check
+        env:
+          NODE_OPTIONS: "--max-old-space-size=8192"
 
   test:
     name: Test
@@ -56,3 +58,4 @@ jobs:
 
       - name: Run tests
         run: npm test
+

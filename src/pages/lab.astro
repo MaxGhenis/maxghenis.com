@@ -137,7 +137,7 @@ const projects = [
 	},
 ];
 
-const statusLabels = {
+const statusLabels: Record<string, { text: string; color: string }> = {
 	live: { text: 'Live', color: '#10b981' },
 	wip: { text: 'In Progress', color: '#f59e0b' },
 	concept: { text: 'Concept', color: '#8b5cf6' },

@@ -371,7 +371,7 @@
     items.forEach(item => {
       const card = item.querySelector('.timeline-card');
 
-      card.addEventListener('click', () => {
+      card?.addEventListener('click', () => {
         // Close other items
         items.forEach(other => {
           if (other !== item && other.classList.contains('expanded')) {
@@ -389,7 +389,7 @@
       (entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            entry.target.style.animationPlayState = 'running';
+            (entry.target as HTMLElement).style.animationPlayState = 'running';
           }
         });
       },
@@ -397,7 +397,7 @@
     );
 
     items.forEach(item => {
-      item.style.animationPlayState = 'paused';
+      (item as HTMLElement).style.animationPlayState = 'paused';
       observer.observe(item);
     });
   });

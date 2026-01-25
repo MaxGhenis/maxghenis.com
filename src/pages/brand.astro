@@ -279,7 +279,7 @@ const icons = [
       toggleBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
 
-      const style = btn.dataset.style;
+      const style = (btn as HTMLElement).dataset.style;
       iconCards.forEach(card => {
         const outlineView = card.querySelector('.outline-view') as HTMLElement;
         const duotoneView = card.querySelector('.duotone-view') as HTMLElement;
@@ -299,7 +299,7 @@ const icons = [
   // Copy icon name on click
   iconCards.forEach(card => {
     card.addEventListener('click', () => {
-      const iconName = card.dataset.icon;
+      const iconName = (card as HTMLElement).dataset.icon;
       navigator.clipboard.writeText(`<Icon name="${iconName}" />`);
       card.classList.add('copied');
       setTimeout(() => card.classList.remove('copied'), 1000);

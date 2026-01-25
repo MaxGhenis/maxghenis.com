@@ -11,6 +11,7 @@ const blog = defineCollection({
 			updatedDate: z.coerce.date().optional(),
 			heroImage: image().optional(),
 			category: z.enum(['blog', 'voter-guide']).optional().default('blog'),
+			draft: z.boolean().optional().default(false),
 			projectUrl: z.string().optional(),
 		}),
 });
