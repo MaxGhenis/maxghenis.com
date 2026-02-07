@@ -38,7 +38,7 @@ The form itself is long. It covers household composition, address, income from a
 It wasn't perfectly smooth. A few things tripped Claude up:
 
 - **Session timeouts**: District Direct timed out while Claude was reading my financial documents to calculate quarterly investment income. It had to re-navigate the entire form from the beginning.
-- **Wrong employer address**: Claude searched the web for my employer's address and found an outdated PO Box. I caught it and had Claude read the address directly from my paystub instead.
+- **Wrong employer address**: Claude searched the web for my employer's address and found an outdated PO Box. It caught the discrepancy itself by cross-referencing against my paystub and corrected it — I didn't even notice.
 - **Form input quirks**: Some fields on the portal (like dollar amounts with a `$` prefix) wouldn't accept Claude's standard form input method. It had to fall back to clicking the field and typing directly.
 - **Context overflows**: The conversation ran out of context three times — browser automation generates a lot of data, especially screenshots. Each time, Claude resumed with a summary of what happened before and picked up where it left off.
 
