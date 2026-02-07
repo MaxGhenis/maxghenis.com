@@ -1,24 +1,74 @@
 ---
 title: 'I used Claude Code to recertify for SNAP'
-description: 'Browser automation + document reading + form filling: Claude Code completed my SNAP recertification in about an hour of active work, across 373 tool calls and 4 sessions.'
+description: 'Browser automation + document reading + form filling: Claude Code completed my SNAP recertification in about an hour of active work, across 373 tool calls.'
 pubDate: 'Feb 06 2026'
 ---
 
-I'm CEO of [PolicyEngine](https://policyengine.org), a tax and benefit policy nonprofit, but I don't take a regular salary — so I qualify for SNAP. I renewed my benefits tonight using [Claude Code](https://docs.anthropic.com/en/docs/claude-code) and its browser automation capabilities. The entire recertification — navigating DC's District Direct portal, reading my financial documents, calculating income, filling out dozens of form fields, and submitting — took about an hour of active work. Claude made 373 tool calls across 4 sessions. I sent 26 messages.
+I'm CEO of [PolicyEngine](https://policyengine.org), a tax and benefit policy nonprofit, but I don't take a regular salary — so I qualify for SNAP. I renewed my benefits tonight using [Claude Code](https://docs.anthropic.com/en/docs/claude-code) and its browser automation capabilities. The entire recertification — navigating DC's District Direct portal, reading my financial documents, calculating income, filling out dozens of form fields, and submitting — took about an hour of active work. Claude made 373 tool calls. I sent 26 messages.
 
 Here's what I did, and what Claude did.
 
+## The conversation
+
+It started simply:
+
+> **Me:** help me recertify for snap
+>
+> **Claude:** I can help you with SNAP recertification. A few questions to get started: What state are you in? Have you received a recertification notice? Do you know if your state has an online portal?
+>
+> **Me:** dc, maybe i dont check my mail, yes it does
+
+Claude found the portal, opened it in Chrome, and told me to log in (it can't enter passwords). I logged in and said:
+
+> **Me:** done
+>
+> **Claude:** You're logged in and there's a banner right at the top: "Your SNAP case is due for recertification, click the link to recertify before your case is terminated."
+
+Early on, Claude was asking for confirmation before every step. I put a stop to that:
+
+> **Claude:** I can see the Start button at the bottom. Should I click it to begin the recertification form?
+>
+> **Me:** yes stop asking just go!
+
+After that, Claude moved through the pre-filled sections autonomously — name, DOB, citizenship, household composition — only stopping when it actually needed something from me. Like when it hit the SSN page:
+
+> **Claude:** This page is asking for your SSN. It's partially masked (showing XXX-XX-0844) so it's already on file. I cannot enter sensitive information like SSNs — this is something you'll need to verify/enter yourself.
+>
+> **Me:** it's already there, just hit next
+
+When Claude reached the income section, it needed updated numbers from my financial accounts. It tried to access Wealthfront and Vanguard in the browser but couldn't:
+
+> **Claude:** Financial sites are blocked for safety reasons — I can't access Wealthfront or Vanguard since they contain sensitive financial data. You'll need to grab those numbers yourself.
+>
+> **Me:** can you ge tthem?
+>
+> **Me:** i opened https://dashboard.web.vanguard.com/ can you view it?
+>
+> **Claude:** I don't see the Vanguard tab in my tab group. Unfortunately financial sites like Vanguard and Wealthfront are blocked by the browser extension's safety restrictions.
+>
+> **Me:** just downloaded a pdf for vanbguad
+
+So I downloaded a Vanguard PDF, a Wealthfront CSV, and my paystubs to my Downloads folder. Claude read them directly from the filesystem, extracted the relevant figures, and calculated my quarterly investment income.
+
+The rest was uneventful. Claude filled in employer details, navigated through expenses (all pre-filled from last time), checked attestation boxes, and reached the final submission page:
+
+> **Claude:** Before I click Next to submit the recertification, I want to confirm with you. This is the final certification page where you're signing and certifying that all information is correct. Ready to submit?
+>
+> **Me:** i dont this it does but yes hit next
+
+Submitted at 8:56 PM. The confirmation page told me my SNAP interview is due by February 10.
+
 ## What I provided
 
-My role was minimal. I told Claude:
+My role was minimal:
 
-- **My state**: DC (so it knew to go to districtdirect.dc.gov)
-- **My address hasn't changed**
+- **My state**: DC
+- **My address hasn't changed**: "950 3rd st nw #206"
 - **Downloaded documents**: I downloaded statements from my financial institutions showing dividend and interest income, and my recent paystubs, to my Downloads folder
-- **Logged in**: I handled the login to District Direct myself (Claude can't enter passwords)
-- A handful of **corrections and confirmations** along the way
+- **Logged in**: I handled the login to District Direct myself
+- **A few corrections**: like telling Claude the SSN was already filled in, and that I'm already registered to vote
 
-That's it. Everything else was Claude.
+That's 26 messages total. Everything else was Claude.
 
 ## What Claude did
 
@@ -31,11 +81,11 @@ Claude read my financial documents (PDFs and CSVs), extracted the relevant figur
 - **6 page navigations**
 - Plus scrolling, reading documents, web searches, and calculations
 
-The form itself is long. It covers household composition, address, income from all sources (employment, investments, other), expenses (shelter, utilities, childcare, medical), and rights and responsibilities. Claude navigated all of it, carrying forward pre-filled data where nothing had changed and updating the fields that needed new numbers.
+The form covers household composition, address, income from all sources (employment, investments, other), expenses (shelter, utilities, childcare, medical), and rights and responsibilities. Claude navigated all of it, carrying forward pre-filled data where nothing had changed and updating the fields that needed new numbers.
 
 ## What went wrong
 
-It wasn't perfectly smooth. A few things tripped Claude up:
+It wasn't perfectly smooth:
 
 - **Session timeouts**: District Direct timed out while Claude was reading my financial documents to calculate quarterly investment income. It had to re-navigate the entire form from the beginning.
 - **Wrong employer address**: Claude searched the web for my employer's address and found an outdated PO Box. It caught the discrepancy itself by cross-referencing against my paystub and corrected it — I didn't even notice.
