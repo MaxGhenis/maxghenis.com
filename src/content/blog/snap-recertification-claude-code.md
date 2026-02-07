@@ -68,7 +68,7 @@ My role was minimal:
 - **Logged in**: I handled the login to District Direct myself
 - **A few corrections**: like telling Claude the SSN was already filled in, and that I'm already registered to vote
 
-That's 26 messages total. Everything else was Claude.
+That's 26 messages total. I never looked at the form itself — not once. Everything else was Claude.
 
 ## What Claude did
 
