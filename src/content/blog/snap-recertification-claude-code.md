@@ -4,7 +4,7 @@ description: 'Browser automation + document reading + form filling: Claude Code 
 pubDate: 'Feb 06 2026'
 ---
 
-I renewed my SNAP benefits tonight using [Claude Code](https://docs.anthropic.com/en/docs/claude-code) and its browser automation capabilities. The entire recertification — navigating DC's District Direct portal, reading my financial documents, calculating income, filling out dozens of form fields, and submitting — took about an hour of active work. Claude made 373 tool calls across 4 sessions. I sent 26 messages.
+I'm CEO of [PolicyEngine](https://policyengine.org), a tax and benefit policy nonprofit, but I don't take a regular salary — so I qualify for SNAP. I renewed my benefits tonight using [Claude Code](https://docs.anthropic.com/en/docs/claude-code) and its browser automation capabilities. The entire recertification — navigating DC's District Direct portal, reading my financial documents, calculating income, filling out dozens of form fields, and submitting — took about an hour of active work. Claude made 373 tool calls across 4 sessions. I sent 26 messages.
 
 Here's what I did, and what Claude did.
 
