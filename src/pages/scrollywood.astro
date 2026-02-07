@@ -1,0 +1,372 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Icon from '../components/Icons.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Scrollywood | ${SITE_TITLE}`} description="Chrome extension that records smooth scroll videos of any webpage. Set a duration, click Action, and get a WebM video of the page scrolling from top to bottom." />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<header class="page-header">
+				<div class="app-icon">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+						<rect x="6" y="2" width="12" height="20" rx="1" />
+						<rect x="8" y="4" width="8" height="3" rx="0.5" fill="currentColor" opacity="0.3" />
+						<rect x="8" y="9" width="8" height="3" rx="0.5" fill="currentColor" opacity="0.3" />
+						<rect x="8" y="14" width="8" height="3" rx="0.5" fill="currentColor" opacity="0.3" />
+						<circle cx="4" cy="5" r="1.5" />
+						<circle cx="4" cy="10" r="1.5" />
+						<circle cx="4" cy="15" r="1.5" />
+						<circle cx="4" cy="20" r="1.5" />
+						<circle cx="20" cy="5" r="1.5" />
+						<circle cx="20" cy="10" r="1.5" />
+						<circle cx="20" cy="15" r="1.5" />
+						<circle cx="20" cy="20" r="1.5" />
+					</svg>
+				</div>
+				<h1>Scrollywood</h1>
+				<p class="page-description">Chrome extension that records smooth scroll videos of any webpage. One click, perfect scroll, downloadable WebM.</p>
+				<div class="header-actions">
+					<a href="https://github.com/MaxGhenis/scrollywood/releases/latest/download/scrollywood-v1.0.zip" class="download-btn">
+						<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+							<polyline points="7 10 12 15 17 10"></polyline>
+							<line x1="12" y1="15" x2="12" y2="3"></line>
+						</svg>
+						Download for Chrome
+					</a>
+					<a href="https://github.com/MaxGhenis/scrollywood" class="github-btn">
+						<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+							<path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+						</svg>
+						View Source
+					</a>
+				</div>
+			</header>
+
+			<section class="features">
+				<h2>Features</h2>
+				<div class="feature-grid">
+					<div class="feature-card">
+						<div class="feature-icon">
+							<Icon name="lightning" size={32} duotone />
+						</div>
+						<h3>One-click recording</h3>
+						<p>Set duration, click Action. The page scrolls smoothly while recording at 30-60fps.</p>
+					</div>
+					<div class="feature-card">
+						<div class="feature-icon">
+							<Icon name="layers" size={32} duotone />
+						</div>
+						<h3>Scrollytelling support</h3>
+						<p>Smooth linear scrolling triggers IntersectionObserver naturally, so scrollytelling animations play perfectly.</p>
+					</div>
+					<div class="feature-card">
+						<div class="feature-icon">
+							<Icon name="globe" size={32} duotone />
+						</div>
+						<h3>Iframe-aware</h3>
+						<p>Handles iframe-wrapped pages automatically, scrolling the inner frame when the outer frame is just a wrapper.</p>
+					</div>
+					<div class="feature-card">
+						<div class="feature-icon">
+							<Icon name="dashboard" size={32} duotone />
+						</div>
+						<h3>Smart overflow detection</h3>
+						<p>Finds scrollable content even when pages use overflow:hidden, custom scroll containers, or non-standard layouts.</p>
+					</div>
+					<div class="feature-card">
+						<div class="feature-icon">
+							<Icon name="chart" size={32} duotone />
+						</div>
+						<h3>High quality output</h3>
+						<p>Records at 16Mbps with VP9 codec for crisp, smooth WebM video files.</p>
+					</div>
+					<div class="feature-card">
+						<div class="feature-icon">
+							<Icon name="terminal" size={32} duotone />
+						</div>
+						<h3>Stop anytime</h3>
+						<p>Reopen the popup during recording to stop early. Auto-stops when scrolling completes.</p>
+					</div>
+				</div>
+			</section>
+
+			<section class="install">
+				<h2>Installation</h2>
+				<div class="install-steps">
+					<div class="step">
+						<span class="step-number">1</span>
+						<div class="step-content">
+							<h3>Download</h3>
+							<p>Download <code>scrollywood-v1.0.zip</code> from the link above and unzip it</p>
+						</div>
+					</div>
+					<div class="step">
+						<span class="step-number">2</span>
+						<div class="step-content">
+							<h3>Load in Chrome</h3>
+							<p>Go to <code>chrome://extensions</code>, enable Developer Mode, and click "Load unpacked"</p>
+						</div>
+					</div>
+					<div class="step">
+						<span class="step-number">3</span>
+						<div class="step-content">
+							<h3>Record</h3>
+							<p>Navigate to any page, click the Scrollywood icon, set your duration, and click Action</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="how-it-works">
+				<h2>How it works</h2>
+				<p>Scrollywood uses Chrome's <code>tabCapture</code> API to record the visible tab while programmatically scrolling the page at 60fps. The scroll is smooth and linear, which naturally triggers scroll-based animations (IntersectionObserver, scrollama, GSAP ScrollTrigger) just like manual scrolling would.</p>
+				<p>The extension uses Manifest V3's offscreen document pattern: the service worker orchestrates capture and scroll injection, while an offscreen document provides the DOM context needed for MediaRecorder. This architecture lets it record arbitrarily long pages without the 30-second service worker timeout limitation.</p>
+			</section>
+
+			<section class="requirements">
+				<h2>Requirements</h2>
+				<ul>
+					<li>Google Chrome (Manifest V3)</li>
+					<li>Keep the tab active/focused during recording</li>
+				</ul>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	main {
+		max-width: 900px;
+	}
+
+	.page-header {
+		text-align: center;
+		margin-bottom: 3rem;
+		padding-bottom: 2rem;
+		border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+	}
+
+	.app-icon {
+		width: 80px;
+		height: 80px;
+		margin: 0 auto 1.5rem;
+		background: linear-gradient(135deg, #0a0a0f 0%, #1a1a24 100%);
+		border: 2px solid #c9a227;
+		border-radius: 16px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		box-shadow: 0 0 30px rgba(201, 162, 39, 0.2);
+	}
+
+	.app-icon svg {
+		width: 40px;
+		height: 40px;
+		color: #c9a227;
+	}
+
+	.page-header h1 {
+		font-size: 3rem;
+		margin-bottom: 0.75rem;
+	}
+
+	.page-description {
+		font-size: 1.25rem;
+		color: var(--text-secondary);
+		max-width: 600px;
+		margin: 0 auto 2rem;
+	}
+
+	.header-actions {
+		display: flex;
+		gap: 1rem;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+
+	.download-btn, .github-btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.875rem 1.5rem;
+		border-radius: var(--radius-lg);
+		text-decoration: none;
+		font-weight: 600;
+		font-size: 1rem;
+		transition: all var(--duration-fast) var(--ease-out);
+	}
+
+	.download-btn {
+		background: #c9a227;
+		color: #0a0a0f;
+	}
+
+	.download-btn:hover {
+		background: #a88620;
+		transform: translateY(-2px);
+		box-shadow: 0 8px 30px rgba(201, 162, 39, 0.3);
+	}
+
+	.github-btn {
+		background: var(--ink);
+		color: white;
+	}
+
+	.github-btn:hover {
+		background: var(--ink-soft);
+		transform: translateY(-2px);
+		box-shadow: var(--shadow-md);
+	}
+
+	section {
+		margin-bottom: 3rem;
+	}
+
+	section h2 {
+		font-size: 1.75rem;
+		margin-bottom: 1.5rem;
+	}
+
+	.feature-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+		gap: 1.25rem;
+	}
+
+	.feature-card {
+		background: white;
+		border: 1px solid rgba(15, 23, 42, 0.08);
+		border-radius: var(--radius-lg);
+		padding: 1.5rem;
+		transition: all var(--duration-fast) var(--ease-out);
+	}
+
+	.feature-card:hover {
+		transform: translateY(-2px);
+		box-shadow: var(--shadow-md);
+	}
+
+	.feature-icon {
+		width: 56px;
+		height: 56px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: rgba(201, 162, 39, 0.1);
+		border-radius: var(--radius-lg);
+		margin-bottom: 1rem;
+		color: #a88620;
+		transition: all var(--duration-fast) var(--ease-out);
+	}
+
+	.feature-card:hover .feature-icon {
+		background: #c9a227;
+		color: #0a0a0f;
+		transform: scale(1.05);
+	}
+
+	.feature-card h3 {
+		font-size: 1.125rem;
+		margin-bottom: 0.5rem;
+	}
+
+	.feature-card p {
+		font-size: 0.9375rem;
+		color: var(--text-secondary);
+		line-height: 1.5;
+	}
+
+	.how-it-works p {
+		color: var(--text-secondary);
+		line-height: 1.7;
+		margin-bottom: 1rem;
+	}
+
+	.how-it-works code {
+		background: rgba(201, 162, 39, 0.1);
+		padding: 0.125rem 0.375rem;
+		border-radius: 4px;
+		font-size: 0.875rem;
+	}
+
+	.install-steps {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+	}
+
+	.step {
+		display: flex;
+		align-items: flex-start;
+		gap: 1.25rem;
+	}
+
+	.step-number {
+		width: 36px;
+		height: 36px;
+		background: #c9a227;
+		color: #0a0a0f;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-weight: 700;
+		flex-shrink: 0;
+	}
+
+	.step-content h3 {
+		font-size: 1.125rem;
+		margin-bottom: 0.25rem;
+	}
+
+	.step-content p {
+		color: var(--text-secondary);
+	}
+
+	.step-content code {
+		background: rgba(201, 162, 39, 0.1);
+		padding: 0.125rem 0.375rem;
+		border-radius: 4px;
+		font-size: 0.875rem;
+	}
+
+	.requirements ul {
+		list-style: none;
+		padding: 0;
+	}
+
+	.requirements li {
+		padding: 0.5rem 0;
+		padding-left: 1.5rem;
+		position: relative;
+		color: var(--text-secondary);
+	}
+
+	.requirements li::before {
+		content: "\2713";
+		position: absolute;
+		left: 0;
+		color: #c9a227;
+		font-weight: bold;
+	}
+
+	@media (max-width: 768px) {
+		.page-header h1 {
+			font-size: 2.5rem;
+		}
+
+		.page-description {
+			font-size: 1.125rem;
+		}
+	}
+</style>
