@@ -1,14 +1,14 @@
 ---
-title: 'OpenMessages: How I built a macOS Google Messages client to give Claude my texts'
+title: 'OpenMessage: How I built a macOS Google Messages client to give Claude my texts'
 description: 'I had already connected Claude Code to WhatsApp, Signal, Slack, and Gmail. SMS was the last holdout — and no existing tool could solve it.'
 pubDate: 'Feb 07 2026'
-heroImage: './openmessages.png'
-projectUrl: 'https://openmessages.ai'
+heroImage: './openmessage.png'
+projectUrl: 'https://openmessage.ai'
 ---
 
 I've been on a mission to give Claude Code access to all my communication channels. WhatsApp, Signal, Slack, Gmail — each one has an MCP server that lets Claude read and send messages on my behalf. But one channel was missing: SMS and RCS on my Android phone.
 
-**[Download OpenMessages for Mac](https://github.com/MaxGhenis/openmessages/releases/latest/download/OpenMessages.dmg)** — free, open source, requires macOS 14.0+ and an Android phone with Google Messages.
+**[Download OpenMessage for Mac](https://github.com/MaxGhenis/openmessage/releases/latest/download/OpenMessage.dmg)** — free, open source, requires macOS 14.0+ and an Android phone with Google Messages.
 
 ## The gap
 
@@ -64,7 +64,7 @@ Everything runs locally. No cloud servers, no accounts to create, no data leavin
 
 ## What Claude can do with it
 
-With OpenMessages running, Claude Code can:
+With OpenMessage running, Claude Code can:
 
 - **Search messages** — "find the address James sent me last week"
 - **Read conversations** — "summarize my conversation with the team"
@@ -75,7 +75,7 @@ Combined with WhatsApp, Signal, Slack, and Gmail MCP servers, Claude now has acc
 
 ## What's next
 
-OpenMessages is open source, and I think it's a canvas for something bigger. The same open-source libraries (mautrix) that power OpenMessages also support WhatsApp, Signal, Telegram, Discord, Slack, and more. Beeper built a $125M company on these same libraries — but without local-first architecture or AI integration.
+OpenMessage is open source, and I think it's a canvas for something bigger. The same open-source libraries (mautrix) that power OpenMessage also support WhatsApp, Signal, Telegram, Discord, Slack, and more. Beeper built a $125M company on these same libraries — but without local-first architecture or AI integration.
 
 I think there's an opportunity for an open-source, AI-native unified messaging client. Some ideas:
 
@@ -84,10 +84,10 @@ I think there's an opportunity for an open-source, AI-native unified messaging c
 - **Natural language search** — "when did someone send me a confirmation number?"
 - **Cross-platform** — Linux and Windows versions
 
-If any of these interest you, [open an issue](https://github.com/MaxGhenis/openmessages/issues) or submit a PR.
+If any of these interest you, [open an issue](https://github.com/MaxGhenis/openmessage/issues) or submit a PR.
 
 ## Get it
 
-OpenMessages is free and open source. Requires macOS 14.0+ and an Android phone with Google Messages.
+OpenMessage is free and open source. Requires macOS 14.0+ and an Android phone with Google Messages.
 
-**[Download for Mac](https://github.com/MaxGhenis/openmessages/releases/latest/download/OpenMessages.dmg)** | [openmessages.ai](https://openmessages.ai) | [GitHub](https://github.com/MaxGhenis/openmessages)
+**[Download for Mac](https://github.com/MaxGhenis/openmessage/releases/latest/download/OpenMessage.dmg)** | [openmessage.ai](https://openmessage.ai) | [GitHub](https://github.com/MaxGhenis/openmessage)
