@@ -38,13 +38,15 @@ This was the breakthrough. The mautrix library could:
 - Send SMS and RCS messages
 - Handle group chats, reactions, and read receipts
 
-I quickly built an MCP server around it, and it worked beautifully. Claude could read my full message history and send texts. Problem solved — almost.
+I quickly built an MCP server around it, and it worked beautifully. Claude could read my full message history and send texts.
 
-## The single-device problem
+## The mistake that became a feature
 
-Google Messages only allows **one paired web device** at a time. If you pair a new device, the old one disconnects. This meant I had a choice: use Google Messages for Web in my browser like a normal person, or give that slot to my MCP server so Claude could access my texts.
+Here's where I'll admit something: I thought Google Messages only allowed one paired web device at a time. When I had Google Messages for Web paired, my phone's "Device pairing" screen didn't show the option to pair a new device. I don't know if Google changed this or if I was just looking in the wrong place, but I was convinced that running my MCP server meant giving up the web client. So I built a whole native macOS app to replace it.
 
-I chose Claude, obviously. But now I had no way to manually check my messages on my Mac without opening the MCP server's raw database. I needed a proper UI.
+Turns out... you can pair multiple devices. I didn't need to build the app at all.
+
+But I'm glad I did. What started as a workaround became something better: an open-source, native Google Messages client for Mac — the first one that exists. No browser tab to keep open, no Electron wrapper, just a real app with a built-in MCP server for AI access.
 
 ## Building the app
 
@@ -68,6 +70,18 @@ With OpenMessages running, Claude Code can:
 - **React to messages** — "thumbs up the last message from Sarah"
 
 Combined with WhatsApp, Signal, Slack, and Gmail MCP servers, Claude now has access to essentially all my communications. I can say "check all my messages for anything urgent" and it searches across every channel.
+
+## What's next
+
+OpenMessages is open source, and I think it's a canvas for something bigger. A native Messages client with full API access is a foundation that Google will never build. Some ideas I'd love to see:
+
+- **AI-powered smart replies** — context-aware suggestions, not just "Thanks!"
+- **Conversation summaries** — catch up on a busy group chat in seconds
+- **Natural language search** — "when did someone send me a confirmation number?"
+- **Priority inbox** — surface what actually needs a response
+- **Cross-platform support** — Linux and Windows versions
+
+If any of these interest you, [open an issue](https://github.com/MaxGhenis/openmessages/issues) or submit a PR. The architecture is simple enough that adding features is straightforward.
 
 ## Get it
 
