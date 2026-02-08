@@ -2,7 +2,8 @@
 title: 'OpenMessages: How I built a macOS Google Messages client to give Claude my texts'
 description: 'I had already connected Claude Code to WhatsApp, Signal, Slack, and Gmail. SMS was the last holdout — and no existing tool could solve it.'
 pubDate: 'Feb 07 2026'
-projectUrl: '/openmessages'
+heroImage: './openmessages.png'
+projectUrl: 'https://openmessages.ai'
 ---
 
 I've been on a mission to give Claude Code access to all my communication channels. WhatsApp, Signal, Slack, Gmail — each one has an MCP server that lets Claude read and send messages on my behalf. But one channel was missing: SMS and RCS on my Android phone.
@@ -11,11 +12,11 @@ I've been on a mission to give Claude Code access to all my communication channe
 
 If you have an iPhone, iMessage on Mac gives you desktop texting for free. But I use Android, and Google Messages only offers a web client — no desktop app, no API, no way for an AI assistant to interact with it.
 
-I needed Claude to be able to do things like "text my wife I'm running late" or "check if the plumber confirmed for tomorrow" without me picking up my phone. Every other messaging channel was already connected. SMS was the last holdout.
+I needed Claude to be able to do things like "text Alex that the meeting moved to 3pm" or "check if James confirmed for tomorrow" without me picking up my phone. Every other messaging channel was already connected. SMS was the last holdout.
 
 ## Attempt 1: SMS Gateway
 
-My first approach was [SMS Gateway](https://smsgateway.me), an Android app that exposes your phone's SMS capability via an API. I built an MCP server around it ([android-sms-mcp](https://github.com/MaxGhenis/android-sms-mcp)), and it worked — sort of.
+My first approach was [SMS Gateway](https://smsgateway.me), an Android app that exposes your phone's SMS capability via an API. I built an MCP server around it, and it worked — sort of.
 
 The problems:
 
@@ -61,10 +62,10 @@ Everything runs locally. No cloud servers, no accounts to create, no data leavin
 
 With OpenMessages running, Claude Code can:
 
-- **Search messages** — "find that restaurant recommendation Sarah sent last week"
-- **Read conversations** — "summarize my conversation with the contractor"
-- **Send messages** — "text Mom happy birthday"
-- **React to messages** — "thumbs up the last message from Dave"
+- **Search messages** — "find the address James sent me last week"
+- **Read conversations** — "summarize my conversation with the team"
+- **Send messages** — "text Alex that the meeting moved to 3pm"
+- **React to messages** — "thumbs up the last message from Sarah"
 
 Combined with WhatsApp, Signal, Slack, and Gmail MCP servers, Claude now has access to essentially all my communications. I can say "check all my messages for anything urgent" and it searches across every channel.
 
@@ -72,8 +73,7 @@ Combined with WhatsApp, Signal, Slack, and Gmail MCP servers, Claude now has acc
 
 OpenMessages is free and open source:
 
-- [Project page](/openmessages) — download and features
+- [openmessages.ai](https://openmessages.ai) — download and documentation
 - [GitHub](https://github.com/MaxGhenis/openmessages) — source code
-- [openmessages.ai](https://openmessages.ai) — documentation
 
 Requires macOS 14.0+ and an Android phone with Google Messages.
