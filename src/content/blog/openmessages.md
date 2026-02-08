@@ -8,6 +8,8 @@ projectUrl: 'https://openmessages.ai'
 
 I've been on a mission to give Claude Code access to all my communication channels. WhatsApp, Signal, Slack, Gmail — each one has an MCP server that lets Claude read and send messages on my behalf. But one channel was missing: SMS and RCS on my Android phone.
 
+**[Download OpenMessages for Mac](https://github.com/MaxGhenis/openmessages/releases/latest/download/OpenMessages.dmg)** — free, open source, requires macOS 14.0+ and an Android phone with Google Messages.
+
 ## The gap
 
 If you have an iPhone, iMessage on Mac gives you desktop texting for free. But I use Android, and Google Messages only offers a web client — no desktop app, no API, no way for an AI assistant to interact with it.
