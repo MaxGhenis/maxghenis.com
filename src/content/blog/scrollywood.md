@@ -11,6 +11,8 @@ The problem: there's no good way to record a smooth scroll of a webpage. Screen 
 
 So I built [Scrollywood](/scrollywood) — a Chrome extension that records a perfectly smooth scroll video of any webpage.
 
+![Scrollywood demo — smooth scroll recording of a scrollytelling page](/scrollywood-demo.gif)
+
 ## How it works
 
 Click the extension icon, set your scroll duration, and hit Action. Scrollywood scrolls the page from top to bottom at a constant rate while recording the tab at 30-60fps. The result is a WebM video file.

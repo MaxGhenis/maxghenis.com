@@ -51,6 +51,12 @@ import { SITE_TITLE } from '../consts';
 				</div>
 			</header>
 
+			<section class="demo">
+				<div class="demo-container">
+					<img src="/scrollywood-demo.gif" alt="Scrollywood demo — smooth scroll recording of a scrollytelling page" loading="lazy" />
+				</div>
+			</section>
+
 			<section class="features">
 				<h2>Features</h2>
 				<div class="feature-grid">
@@ -226,6 +232,18 @@ import { SITE_TITLE } from '../consts';
 		background: var(--ink-soft);
 		transform: translateY(-2px);
 		box-shadow: var(--shadow-md);
+	}
+
+	.demo-container {
+		border-radius: var(--radius-lg);
+		overflow: hidden;
+		border: 1px solid rgba(15, 23, 42, 0.08);
+		box-shadow: var(--shadow-md);
+	}
+
+	.demo-container img {
+		width: 100%;
+		display: block;
 	}
 
 	section {
