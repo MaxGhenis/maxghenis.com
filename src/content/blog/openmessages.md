@@ -71,9 +71,6 @@ Combined with WhatsApp, Signal, Slack, and Gmail MCP servers, Claude now has acc
 
 ## Get it
 
-OpenMessages is free and open source:
+OpenMessages is free and open source. Requires macOS 14.0+ and an Android phone with Google Messages.
 
-- [openmessages.ai](https://openmessages.ai) — download and documentation
-- [GitHub](https://github.com/MaxGhenis/openmessages) — source code
-
-Requires macOS 14.0+ and an Android phone with Google Messages.
+**[Download for Mac](https://github.com/MaxGhenis/openmessages/releases/latest/download/OpenMessages.dmg)** | [openmessages.ai](https://openmessages.ai) | [GitHub](https://github.com/MaxGhenis/openmessages)
