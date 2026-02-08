@@ -44,9 +44,9 @@ I quickly built an MCP server around it, and it worked beautifully. Claude could
 
 ## The mistake that became a feature
 
-Here's where I'll admit something: I thought Google Messages only allowed one paired web device at a time. When I had Google Messages for Web paired, my phone's "Device pairing" screen didn't show the option to pair a new device. I don't know if Google changed this or if I was just looking in the wrong place, but I was convinced that running my MCP server meant giving up the web client. So I built a whole native macOS app to replace it.
+Here's where I'll admit something: I thought Google Messages only allowed one paired web device at a time. It turns out Google Messages has two pairing methods — Google account pairing and QR code pairing — and they don't mix. I had been using Google account pairing, which blocks additional devices. When I switched to QR pairing (which is what the mautrix library uses), multiple devices work fine. But I didn't realize this at the time, so I was convinced that running my MCP server meant giving up the web client. I built a whole native macOS app to replace it.
 
-Turns out... you can pair multiple devices. I didn't need to build the app at all.
+I didn't need to build the app at all.
 
 But I'm glad I did. What started as a workaround became something better: an open-source, native Google Messages client for Mac — the first one that exists. No browser tab to keep open, no Electron wrapper, just a real app with a built-in MCP server for AI access.
 
