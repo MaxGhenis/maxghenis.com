@@ -1,168 +1,349 @@
 # Max Ghenis - Full Content
 
 > This file contains the full text of all blog posts from maxghenis.com, formatted for LLM consumption.
-> Generated: 2026-01-24T23:06:15.658Z
+> Generated: 2026-02-08T01:42:41.978Z
 > See also: /llms.txt for a curated overview
 
 ---
 
 ## Table of Contents
 
-1. [google-ads-mcp: The first Google Ads MCP with write support](/blog/google-ads-mcp/)
-2. [opencollective-py: Manage OpenCollective from your terminal or Claude Code](/blog/opencollective-py/)
-3. [From IDE to AI orchestration: The end of code-first development](/blog/ide-to-ai-orchestration/)
-4. [TerminalGrid: Turn VS Code into a Claude Code superterminal](/blog/terminalgrid/)
-5. [RAMBar: A macOS menu bar RAM monitor for developers](/blog/rambar/)
-6. [How to Use MDX for Interactive Posts](/blog/using-mdx/)
-7. [VAT thresholds, revenues, and the role of counterfactuals](/blog/substack/vat-thresholds/)
-8. [AI models favor Cuomo over Mamdani on NYC housing production](/blog/substack/ai-models-nyc-housing/)
-9. [My 2024 in code: Personal projects and AI tools](/blog/substack/my-2024-in-code/)
-10. [Why I'm a neoliberal](/blog/substack/why-im-a-neoliberal/)
-11. [In appointing their newest member, the Ventura City Council only pretended to care about housing](/blog/medium/in-appointing-their-newest-member-the-ventura-city/)
-12. [If you earned more in 2019 than 2018, don't file your 2019 taxes yet! Otherwise, file ASAP!](/blog/medium/if-you-earned-more-in-2019-than-2018-dont-file-you/)
-13. [Why I’ve taken the Giving What We Can pledge](/blog/medium/why-ive-taken-the-giving-what-we-can-pledge/)
-14. [Ventura County must end its unsheltered homelessness](/blog/medium/ventura-county-must-end-its-unsheltered-homelessne/)
-15. [Warren’s wealth tax would raise less than she claims — even using her economists’ own assumptions](/blog/medium/warrens-wealth-tax-would-raise-less-than-she-claim/)
-16. [Andrew Yang's troubling Tucker Carlson interview](/blog/medium/andrew-yangs-troubling-tucker-carlson-interview/)
-17. [Quantile regression, from linear models to trees to deep learning](/blog/medium/quantile-regression-from-linear-models-to-trees-to/)
-18. [We should replace the Child Tax Credit with a universal child benefit](/blog/medium/we-should-replace-the-child-tax-credit-with-a-univ/)
-19. [The case for a wonky basic income plan](/blog/medium/the-case-for-a-wonky-basic-income-plan/)
-20. [Reddit featured a misleading headline on education secretary nominee Betsy DeVos](/blog/medium/reddit-featured-a-misleading-headline-on-education/)
-21. [Uber's tipping settlement will reduce earnings of African-American drivers](/blog/medium/ubers-tipping-settlement-will-reduce-earnings-of-a/)
-22. [If we can afford our current welfare system, we can afford basic income](/blog/medium/if-we-can-afford-our-current-welfare-system-we-can/)
+1. [OpenMessages: How I built a macOS Google Messages client to give Claude my texts](/blog/openmessages/)
+2. [I used Claude Code to recertify for SNAP](/blog/snap-recertification-claude-code/)
+3. [Scrollywood: Smooth scroll video recording for the web](/blog/scrollywood/)
+4. [The adolescence of policy simulation: On Amodei and economic disruption](/blog/amodei-adolescence-policyengine/)
+5. [opencollective-py: Manage OpenCollective from your terminal or Claude Code](/blog/opencollective-py/)
+6. [From IDE to AI orchestration: The end of code-first development](/blog/ide-to-ai-orchestration/)
+7. [TerminalGrid: Turn VS Code into a Claude Code superterminal](/blog/terminalgrid/)
+8. [RAMBar: A macOS menu bar RAM monitor for developers](/blog/rambar/)
+9. [How to Use MDX for Interactive Posts](/blog/using-mdx/)
+10. [VAT thresholds, revenues, and the role of counterfactuals](/blog/substack/vat-thresholds/)
+11. [AI models favor Cuomo over Mamdani on NYC housing production](/blog/substack/ai-models-nyc-housing/)
+12. [My 2024 in code: Personal projects and AI tools](/blog/substack/my-2024-in-code/)
+13. [Why I'm a neoliberal](/blog/substack/why-im-a-neoliberal/)
+14. [In appointing their newest member, the Ventura City Council only pretended to care about housing](/blog/medium/in-appointing-their-newest-member-the-ventura-city/)
+15. [If you earned more in 2019 than 2018, don't file your 2019 taxes yet! Otherwise, file ASAP!](/blog/medium/if-you-earned-more-in-2019-than-2018-dont-file-you/)
+16. [Why I’ve taken the Giving What We Can pledge](/blog/medium/why-ive-taken-the-giving-what-we-can-pledge/)
+17. [Ventura County must end its unsheltered homelessness](/blog/medium/ventura-county-must-end-its-unsheltered-homelessne/)
+18. [Warren’s wealth tax would raise less than she claims — even using her economists’ own assumptions](/blog/medium/warrens-wealth-tax-would-raise-less-than-she-claim/)
+19. [Andrew Yang's troubling Tucker Carlson interview](/blog/medium/andrew-yangs-troubling-tucker-carlson-interview/)
+20. [Quantile regression, from linear models to trees to deep learning](/blog/medium/quantile-regression-from-linear-models-to-trees-to/)
+21. [We should replace the Child Tax Credit with a universal child benefit](/blog/medium/we-should-replace-the-child-tax-credit-with-a-univ/)
+22. [The case for a wonky basic income plan](/blog/medium/the-case-for-a-wonky-basic-income-plan/)
+23. [Reddit featured a misleading headline on education secretary nominee Betsy DeVos](/blog/medium/reddit-featured-a-misleading-headline-on-education/)
+24. [Uber's tipping settlement will reduce earnings of African-American drivers](/blog/medium/ubers-tipping-settlement-will-reduce-earnings-of-a/)
+25. [If we can afford our current welfare system, we can afford basic income](/blog/medium/if-we-can-afford-our-current-welfare-system-we-can/)
 
 ---
 
-## google-ads-mcp: The first Google Ads MCP with write support
+## OpenMessages: How I built a macOS Google Messages client to give Claude my texts
 
-**URL:** https://maxghenis.com/blog/google-ads-mcp/
-**Published:** Jan 24 2026
-**Description:** An MCP server that lets you create campaigns, ad groups, keywords, and ads—not just read metrics.
+**URL:** https://maxghenis.com/blog/openmessages/
+**Published:** Feb 07 2026
+**Description:** I had already connected Claude Code to WhatsApp, Signal, Slack, and Gmail. SMS was the last holdout — and no existing tool could solve it.
 
-Every Google Ads MCP server I could find was read-only. You could query campaign performance and pull metrics, but creating campaigns? Adding keywords? Adjusting bids? You had to switch to the Google Ads UI.
+I've been on a mission to give Claude Code access to all my communication channels. WhatsApp, Signal, Slack, Gmail — each one has an MCP server that lets Claude read and send messages on my behalf. But one channel was missing: SMS and RCS on my Android phone.
 
-So I built [google-ads-mcp](https://github.com/MaxGhenis/google-ads-mcp)—the first Google Ads MCP with full write capabilities.
+## The gap
 
-## The problem with read-only
+If you have an iPhone, iMessage on Mac gives you desktop texting for free. But I use Android, and Google Messages only offers a web client — no desktop app, no API, no way for an AI assistant to interact with it.
 
-Google has an [official Google Ads MCP](https://github.com/nicholasgriffintn/google-ads-mcp), but it only supports GAQL queries. Great for pulling reports, useless for campaign management.
+I needed Claude to be able to do things like "text my wife I'm running late" or "check if the plumber confirmed for tomorrow" without me picking up my phone. Every other messaging channel was already connected. SMS was the last holdout.
 
-Other community MCPs follow the same pattern—query tools only. This makes sense for safety reasons: accidental writes to Google Ads can cost real money. But it also means you can't use Claude to actually *manage* your ads.
+## Attempt 1: SMS Gateway
 
-## Full campaign management in natural language
+My first approach was [SMS Gateway](https://smsgateway.me), an Android app that exposes your phone's SMS capability via an API. I built an MCP server around it ([android-sms-mcp](https://github.com/MaxGhenis/android-sms-mcp)), and it worked — sort of.
 
-google-ads-mcp includes 12 tools that cover the core campaign management workflow:
+The problems:
 
-**Read operations:**
-- `list_accounts` — See all accessible Google Ads accounts
-- `execute_query` — Run any GAQL query for campaigns, ad groups, keywords, metrics
+- **Clunky setup** — required installing a separate Android app, configuring API keys, keeping the app running in the background
+- **SMS only** — no RCS support, so group chats and rich messages were invisible
+- **Sending was unreliable** — messages would sometimes queue but never actually send
+- **No conversation history** — you could only send messages, not read existing conversations
 
-**Write operations:**
-- `create_campaign` — Create search campaigns (paused by default)
-- `create_ad_group` — Add ad groups to campaigns
-- `add_keywords` — Add keywords with BROAD, PHRASE, or EXACT match types
-- `add_negative_keywords` — Block unwanted search terms at campaign or ad group level
-- `create_responsive_search_ad` — Build RSAs with multiple headlines and descriptions
-- `pause_campaign` / `enable_campaign` — Toggle campaign status
-- `pause_ad_group` / `enable_ad_group` — Toggle ad group status
-- `update_ad_group_bid` — Adjust CPC bids
+It was a dead end for anything beyond basic "fire and forget" SMS.
 
-## Safety first
+## Attempt 2: Google Messages protocol
 
-Write operations are dangerous. Accidental campaign creation could waste budget. So I built in multiple safety layers:
+I started digging into how Google Messages for Web actually works. It turns out Google uses an internal protocol (based on gRPC/protobuf) to pair a browser with your phone via QR code. A few open-source projects had reverse-engineered this protocol, most notably [mautrix/gmessages](https://github.com/mautrix/gmessages), a Go library originally built as a Matrix bridge.
 
-1. **Dry run mode** — Every write operation supports `dry_run=True` to validate without executing
-2. **Paused by default** — New campaigns are created in PAUSED status; you must explicitly enable them
-3. **Clear feedback** — All operations return detailed success/error messages
+This was the breakthrough. The mautrix library could:
 
-Example dry run:
+- Pair with a phone via QR code (same as messages.google.com)
+- Receive all conversations and messages in real time
+- Send SMS and RCS messages
+- Handle group chats, reactions, and read receipts
 
-```
-Create a test campaign called "Q1 Promo" with $10/day budget, but use dry_run mode first
-```
+I quickly built an MCP server around it, and it worked beautifully. Claude could read my full message history and send texts. Problem solved — almost.
 
-Claude will validate the campaign structure without creating anything.
+## The single-device problem
 
-## Example workflows
+Google Messages only allows **one paired web device** at a time. If you pair a new device, the old one disconnects. This meant I had a choice: use Google Messages for Web in my browser like a normal person, or give that slot to my MCP server so Claude could access my texts.
 
-**Create a complete campaign structure:**
+I chose Claude, obviously. But now I had no way to manually check my messages on my Mac without opening the MCP server's raw database. I needed a proper UI.
 
-```
-Create a new search campaign called "Widget Sale" with a $20/day budget,
-add an ad group "Product Keywords" with keywords "buy widgets", "widget sale",
-"best widgets", then create a responsive search ad with headlines:
-"Buy Widgets Now", "50% Off Widgets", "Free Shipping"
-and descriptions: "Shop our selection of widgets. Free shipping over $50.",
-"Premium quality widgets at the best prices. Order today!"
-Final URL: https://example.com/widgets
-```
+## Building the app
 
-Claude creates the campaign (paused), ad group, keywords, and RSA in one conversation.
+Since I already had the Go backend handling the Google Messages protocol, I wrapped it in a native macOS app using Swift. The architecture is simple:
 
-**Query and optimize:**
+- **Go backend** — handles pairing, message sync, and the MCP server. Stores everything in a local SQLite database
+- **Swift wrapper** — native macOS app that launches the Go backend and displays a web UI via WKWebView
+- **Web UI** — clean conversation list and message view served from localhost
 
-```
-Show me all ad groups in campaign 19638300165 with CTR below 1%,
-then pause the underperformers
-```
+The app pairs with your phone the same way messages.google.com does — scan a QR code — and then syncs your full conversation history. The MCP server runs alongside the UI, so Claude can access messages while you browse them yourself.
 
-**Add negative keywords:**
+Everything runs locally. No cloud servers, no accounts to create, no data leaving your machine.
 
-```
-Add negative keywords "free", "cheap", "diy", "tutorial" to campaign 19638300165
-```
+## What Claude can do with it
 
-## Installation
+With OpenMessages running, Claude Code can:
 
-```bash
-pip install google-ads-mcp
-```
+- **Search messages** — "find that restaurant recommendation Sarah sent last week"
+- **Read conversations** — "summarize my conversation with the contractor"
+- **Send messages** — "text Mom happy birthday"
+- **React to messages** — "thumbs up the last message from Dave"
 
-Or with uv (recommended):
-
-```bash
-uv pip install google-ads-mcp
-```
-
-## Configuration
-
-1. Get your Google Ads API credentials from the [Google Ads API Center](https://ads.google.com/aw/apicenter)
-2. Create `google-ads.yaml`:
-
-```yaml
-developer_token: YOUR_DEVELOPER_TOKEN
-client_id: YOUR_CLIENT_ID.apps.googleusercontent.com
-client_secret: YOUR_CLIENT_SECRET
-refresh_token: YOUR_REFRESH_TOKEN
-login_customer_id: "1234567890"  # MCC ID if using multiple accounts
-use_proto_plus: true
-```
-
-3. Add to Claude Desktop config (`~/Library/Application Support/Claude/claude_desktop_config.json`):
-
-```json
-{
-  "mcpServers": {
-    "google-ads": {
-      "command": "uv",
-      "args": ["run", "--with", "google-ads-mcp", "google-ads-mcp"],
-      "env": {
-        "GOOGLE_ADS_CONFIG_PATH": "/path/to/your/google-ads.yaml"
-      }
-    }
-  }
-}
-```
-
-Works with Claude Desktop, Claude Code, Cursor, or any MCP client.
+Combined with WhatsApp, Signal, Slack, and Gmail MCP servers, Claude now has access to essentially all my communications. I can say "check all my messages for anything urgent" and it searches across every channel.
 
 ## Get it
 
-```bash
-pip install google-ads-mcp
-```
+OpenMessages is free and open source:
 
-[Project page](/google-ads-mcp) ・ [PyPI](https://pypi.org/project/google-ads-mcp/) ・ [GitHub](https://github.com/MaxGhenis/google-ads-mcp)
+- [Project page](/openmessages) — download and features
+- [GitHub](https://github.com/MaxGhenis/openmessages) — source code
+- [openmessages.ai](https://openmessages.ai) — documentation
+
+Requires macOS 14.0+ and an Android phone with Google Messages.
+
+---
+
+## I used Claude Code to recertify for SNAP
+
+**URL:** https://maxghenis.com/blog/snap-recertification-claude-code/
+**Published:** Feb 06 2026
+**Description:** Browser automation + document reading + form filling: Claude Code completed my SNAP recertification in about an hour of active work, across 373 tool calls.
+
+I'm CEO of [PolicyEngine](https://policyengine.org), a tax and benefit policy nonprofit, but I don't take a regular salary — so I qualify for SNAP. I renewed my benefits tonight using [Claude Code](https://docs.anthropic.com/en/docs/claude-code) and its browser automation capabilities. The entire recertification — navigating DC's District Direct portal, reading my financial documents, calculating income, filling out dozens of form fields, and submitting — took about an hour of active work. Claude made 373 tool calls. I sent 26 messages.
+
+Here's what I did, and what Claude did.
+
+## The conversation
+
+It started simply:
+
+> **Me:** help me recertify for snap
+>
+> **Claude:** I can help you with SNAP recertification. A few questions to get started: What state are you in? Have you received a recertification notice? Do you know if your state has an online portal?
+>
+> **Me:** dc, maybe i dont check my mail, yes it does
+
+Claude found the portal, opened it in Chrome, and told me to log in (it can't enter passwords). I logged in and said:
+
+> **Me:** done
+>
+> **Claude:** You're logged in and there's a banner right at the top: "Your SNAP case is due for recertification, click the link to recertify before your case is terminated."
+
+Early on, Claude was asking for confirmation before every step. I put a stop to that:
+
+> **Claude:** I can see the Start button at the bottom. Should I click it to begin the recertification form?
+>
+> **Me:** yes stop asking just go!
+
+After that, Claude moved through the pre-filled sections autonomously — name, DOB, citizenship, household composition — only stopping when it actually needed something from me. Like when it hit the SSN page:
+
+> **Claude:** This page is asking for your SSN. It's partially masked (showing XXX-XX-0844) so it's already on file. I cannot enter sensitive information like SSNs — this is something you'll need to verify/enter yourself.
+>
+> **Me:** it's already there, just hit next
+
+When Claude reached the income section, it needed updated numbers from my financial accounts. It tried to access Wealthfront and Vanguard in the browser but couldn't:
+
+> **Claude:** Financial sites are blocked for safety reasons — I can't access Wealthfront or Vanguard since they contain sensitive financial data. You'll need to grab those numbers yourself.
+>
+> **Me:** can you ge tthem?
+>
+> **Me:** i opened https://dashboard.web.vanguard.com/ can you view it?
+>
+> **Claude:** I don't see the Vanguard tab in my tab group. Unfortunately financial sites like Vanguard and Wealthfront are blocked by the browser extension's safety restrictions.
+>
+> **Me:** just downloaded a pdf for vanbguad
+
+So I downloaded a Vanguard PDF, a Wealthfront CSV, and my paystubs to my Downloads folder. Claude read them directly from the filesystem, extracted the relevant figures, and calculated my quarterly investment income.
+
+The rest was uneventful. Claude filled in employer details, navigated through expenses (all pre-filled from last time), checked attestation boxes, and reached the final submission page:
+
+> **Claude:** Before I click Next to submit the recertification, I want to confirm with you. This is the final certification page where you're signing and certifying that all information is correct. Ready to submit?
+>
+> **Me:** i dont this it does but yes hit next
+
+Submitted at 8:56 PM. The confirmation page told me my SNAP interview is due by February 10.
+
+## What I provided
+
+My role was minimal:
+
+- **My state**: DC
+- **My address hasn't changed**: "950 3rd st nw #206"
+- **Downloaded documents**: I downloaded statements from my financial institutions showing dividend and interest income, and my recent paystubs, to my Downloads folder
+- **Logged in**: I handled the login to District Direct myself
+- **A few corrections**: like telling Claude the SSN was already filled in, and that I'm already registered to vote
+
+That's 26 messages total. I never looked at the form itself — not once. Everything else was Claude.
+
+## What Claude did
+
+Claude read my financial documents (PDFs and CSVs), extracted the relevant figures, navigated the multi-page recertification form, and filled in every field. Here's a rough breakdown of its 373 tool calls:
+
+- **72 screenshots** to see the current state of the page
+- **88 clicks** to navigate buttons, dropdowns, checkboxes, and links
+- **28 find operations** to locate elements on the page
+- **22 form inputs** to fill text fields, select options, and enter data
+- **6 page navigations**
+- Plus scrolling, reading documents, web searches, and calculations
+
+The form covers household composition, address, income from all sources (employment, investments, other), expenses (shelter, utilities, childcare, medical), and rights and responsibilities. Claude navigated all of it, carrying forward pre-filled data where nothing had changed and updating the fields that needed new numbers.
+
+## What went wrong
+
+It wasn't perfectly smooth:
+
+- **Session timeouts**: District Direct timed out while Claude was reading my financial documents to calculate quarterly investment income. It had to re-navigate the entire form from the beginning.
+- **Wrong employer address**: Claude searched the web for my employer's address and found an outdated PO Box. It caught the discrepancy itself by cross-referencing against my paystub and corrected it — I didn't even notice.
+- **Form input quirks**: Some fields on the portal (like dollar amounts with a `$` prefix) wouldn't accept Claude's standard form input method. It had to fall back to clicking the field and typing directly.
+- **Context overflows**: The conversation ran out of context three times — browser automation generates a lot of data, especially screenshots. Each time, Claude resumed with a summary of what happened before and picked up where it left off.
+
+## How long it took
+
+The whole process spanned about 3 hours and 40 minutes wall-clock, but most of that was idle time — me downloading documents, reading what Claude was doing, or stepping away. The active working time was roughly 1 hour and 20 minutes.
+
+For comparison, doing this manually takes me at least an hour of focused attention: logging in, finding the right forms, looking up all my financial information, entering it carefully, reviewing everything, and submitting. Claude's version required about 5 minutes of my attention spread across the session.
+
+## Why this matters
+
+SNAP recertification is exactly the kind of task that AI should help with. It's:
+
+- **High-stakes but routine**: Getting it wrong could mean losing benefits, but the process itself is just data entry
+- **Document-heavy**: It requires pulling numbers from paystubs, bank statements, and investment accounts
+- **Tedious**: The form is long, repetitive, and easy to make mistakes on
+- **Time-sensitive**: Miss the deadline and you lose benefits
+
+People who receive SNAP benefits are, by definition, low-income. Their time is valuable. The bureaucratic burden of maintaining benefits is a real cost, and it causes people to lose benefits they're entitled to. Tools that reduce that burden matter.
+
+## What you'd need to try this
+
+This used Claude Code with the [Claude in Chrome](https://chromewebstore.google.com/detail/claude-in-chrome/blelmpkgncmhfbjlccpkbjbdgfdjpgol) extension for browser automation. You'd need:
+
+- A Claude Pro or Max subscription (for Claude Code access)
+- The Chrome extension installed
+- Your financial documents downloaded and accessible
+- Comfort with Claude having access to your browser and local files
+
+This is still early-stage technology. I wouldn't recommend it for someone who isn't comfortable reviewing what Claude is doing as it works. But the trajectory is clear: the boring, stressful parts of interfacing with government systems are exactly what AI agents should handle.
+
+---
+
+## Scrollywood: Smooth scroll video recording for the web
+
+**URL:** https://maxghenis.com/blog/scrollywood/
+**Published:** Feb 06 2026
+**Description:** A Chrome extension that records smooth-scrolling videos of any webpage, built for capturing scrollytelling stories and long-form content.
+
+At [PolicyEngine](https://policyengine.org), we're building more scrollytelling stories to explain how tax and benefit policy works. Pages like [MITA](https://maxghenis.com/mita) use scroll-driven animations to walk through data visualizations step by step, and we want to share these experiences beyond the browser — in presentations, social posts, and demos.
+
+The problem: there's no good way to record a smooth scroll of a webpage. Screen recording tools require you to scroll manually, which is never perfectly smooth. Browser automation tools can screenshot sequences but don't capture scroll-triggered animations. And scrollytelling pages depend on continuous scrolling to trigger IntersectionObserver callbacks that animate the content.
+
+So I built [Scrollywood](/scrollywood) — a Chrome extension that records a perfectly smooth scroll video of any webpage.
+
+## How it works
+
+Click the extension icon, set your scroll duration, and hit Action. Scrollywood scrolls the page from top to bottom at a constant rate while recording the tab at 30-60fps. The result is a WebM video file.
+
+The scroll is smooth and linear at 60fps, which is critical for scrollytelling pages. Libraries like [scrollama](https://github.com/russellsamora/scrollama) and [react-scrollama](https://github.com/jsonkao/react-scrollama) use IntersectionObserver to trigger animations as elements enter the viewport. A smooth programmatic scroll naturally crosses these thresholds, so the animations play exactly as they would during manual scrolling.
+
+## Technical challenges
+
+Building this was straightforward in concept but tricky in practice, mostly due to Chrome's Manifest V3 architecture:
+
+**Service worker timeouts.** MV3 service workers sleep after ~30 seconds of inactivity, which makes `setTimeout` unreliable for recordings longer than 30 seconds. The fix: the offscreen document (which has a persistent DOM context) handles all timing, while the service worker only handles one-shot operations like script injection and downloads.
+
+**Iframe-wrapped pages.** Some sites embed content in full-page iframes (e.g., a custom domain wrapping a GitHub Pages site). The outer frame has no scrollable content. Scrollywood detects these wrappers and defers to the inner frame, which handles its own scrolling via `allFrames: true` injection.
+
+**CSS scroll-behavior conflicts.** Pages with `scroll-behavior: smooth` in CSS fight with programmatic scrolling. Scrollywood temporarily overrides this to `auto`, but carefully avoids overriding `overflow`, which would break `position: sticky` — the CSS property that makes scrollytelling graphics stay in place.
+
+**Large recording downloads.** At 16Mbps for a 60-second recording, the video can be 100MB+. The original approach (base64-encoding the blob and sending it via `chrome.runtime.sendMessage`) silently fails at that size. The fix: download directly from the offscreen document using a blob URL.
+
+## Get it
+
+[Download Scrollywood](/scrollywood) and load it as an unpacked extension in Chrome. It's free and open source.
+
+[Project page](/scrollywood) · [GitHub](https://github.com/MaxGhenis/scrollywood)
+
+---
+
+## The adolescence of policy simulation: On Amodei and economic disruption
+
+**URL:** https://maxghenis.com/blog/amodei-adolescence-policyengine/
+**Published:** Jan 27 2026
+**Description:** AI can answer policy questions. It cannot yet model policy impacts. That requires infrastructure we are still building.
+
+Anthropic CEO Dario Amodei published a [20,000-word essay](https://www.darioamodei.com/essay/the-adolescence-of-technology) today called "The Adolescence of Technology." It covers AI safety, bioweapons, authoritarianism, and more. But one section stood out to me: his predictions about economic disruption.
+
+Amodei writes that AI "will have effects that are much broader and occur much faster" than previous technological transitions. He predicts this will trigger an "unusually painful" short-term shock in the labor market, potentially displacing half of entry-level white collar jobs within the next five years.
+
+If he's right, we'll need policy responses. And to design policy responses, we need to model them. That's where things get interesting.
+
+## What AI can and cannot do
+
+AI has gotten remarkably good at answering policy questions. Ask a frontier model about EITC phase-out rates or CTC eligibility rules and you'll probably get a correct answer. The models have read the tax code.
+
+But there's a difference between answering policy questions and modeling policy impacts. Try this:
+
+> "If the US expanded the Child Tax Credit to $3,600 for all children regardless of income, what would happen to the child poverty rate and the Gini coefficient?"
+
+I asked myself this question. Here's my honest answer:
+
+*I don't know. I could tell you the current child poverty rate is around 12% (SPM) and guess it would drop significantly—maybe to 8-9%?—based on vague memories of studies from the 2021 expanded CTC. For Gini, I'd guess a small decrease, maybe 0.005-0.01 points? But these are guesses anchored to half-remembered papers, not calculations. I have no microdata. I can't run a counterfactual. I'm pattern-matching to priors.*
+
+This isn't a prompting problem. It's an infrastructure problem.
+
+## Policy simulation requires three things
+
+To actually model the impact of a policy change, you need:
+
+1. **Policy** — The rules: tax formulas, benefit eligibility, phase-outs, interactions between programs
+2. **Data** — Representative microdata: who earns what, household composition, geographic distribution
+3. **Theory** — Behavioral assumptions: how do people respond to incentives, what's the takeup rate
+
+AI might eventually nail the policy part. With enough statute text in context—or better, with deterministic APIs encoding the rules—models can learn to apply tax law correctly.
+
+But AI can't conjure CPS microdata. It can't know the joint distribution of income, household size, and state of residence for 130 million US households. It can't decide whether to assume zero behavioral response or apply elasticities from the labor economics literature.
+
+That's not intelligence. That's infrastructure.
+
+## Two sides of the same coin
+
+The same infrastructure serves another purpose. In "Machines of Loving Grace," Amodei imagines "a very thoughtful and informed AI whose job is to give you everything you're legally entitled to by the government." That's not hypothetical—tools like MyFriendBen and Amplifi already use PolicyEngine's API to screen people for benefits. Policy simulation and benefit access are two sides of the same coin. One computes law against population data, the other against your data.
+
+## The adolescence parallel
+
+Amodei calls this moment the "adolescence of technology"—powerful but not yet mature, capable of great things and great harm.
+
+Policy simulation is in its own adolescence. We can model reforms in hours instead of months. [Governments are starting to use these tools](https://policyengine.org/uk/research/policyengine-10-downing-street). But the infrastructure is still clunky, adoption is still sparse, and most policy debates still happen without quantitative grounding.
+
+The question is whether policy simulation grows up fast enough to match the disruption it needs to respond to.
+
+## What this implies
+
+If Amodei's timeline is right—powerful AI within two years, significant labor displacement within five—we don't have time for the traditional policy analysis cycle. Bills get introduced, CBO scores them months later, revisions happen, repeat. That works when policy moves at legislative pace.
+
+But if the economy is changing faster than legislatures can respond, we need infrastructure that lets policymakers iterate quickly. Not just ideas about what to do, but tools for modeling trade-offs in real time.
+
+This is part of why I've spent the last few years building [PolicyEngine](https://policyengine.org). It's one attempt at closing the gap—open-source microsimulation that anyone can use. But the broader point isn't about any one tool. It's that policy response capacity needs to exist before crises, not during them.
+
+AI can accelerate parts of this. [We've been experimenting with AI workflows](https://policyengine.org/us/research/multi-agent-workflows-policy-research) that compress hours of analysis into minutes. But AI can only accelerate infrastructure that exists. It can't replace infrastructure that doesn't.
+
+---
+
+*Read Amodei's full essay: [The Adolescence of Technology](https://www.darioamodei.com/essay/the-adolescence-of-technology)*
 
 ---
 
