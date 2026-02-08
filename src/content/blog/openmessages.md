@@ -75,15 +75,16 @@ Combined with WhatsApp, Signal, Slack, and Gmail MCP servers, Claude now has acc
 
 ## What's next
 
-OpenMessages is open source, and I think it's a canvas for something bigger. A native Messages client with full API access is a foundation that Google will never build. Some ideas I'd love to see:
+OpenMessages is open source, and I think it's a canvas for something bigger. The same open-source libraries (mautrix) that power OpenMessages also support WhatsApp, Signal, Telegram, Discord, Slack, and more. Beeper built a $125M company on these same libraries — but without local-first architecture or AI integration.
 
-- **AI-powered smart replies** — context-aware suggestions, not just "Thanks!"
-- **Conversation summaries** — catch up on a busy group chat in seconds
+I think there's an opportunity for an open-source, AI-native unified messaging client. Some ideas:
+
+- **More services** — WhatsApp, Signal, Telegram via the mautrix ecosystem
+- **AI-powered features** — smart replies, conversation summaries, priority inbox
 - **Natural language search** — "when did someone send me a confirmation number?"
-- **Priority inbox** — surface what actually needs a response
-- **Cross-platform support** — Linux and Windows versions
+- **Cross-platform** — Linux and Windows versions
 
-If any of these interest you, [open an issue](https://github.com/MaxGhenis/openmessages/issues) or submit a PR. The architecture is simple enough that adding features is straightforward.
+If any of these interest you, [open an issue](https://github.com/MaxGhenis/openmessages/issues) or submit a PR.
 
 ## Get it
 
