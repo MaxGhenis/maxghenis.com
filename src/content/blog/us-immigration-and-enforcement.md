@@ -12,54 +12,19 @@ The performance reached an estimated [130 million viewers](https://variety.com/2
 
 ## Most US immigrants come from the Americas
 
-**53%** of the roughly 50 million foreign-born people in the United States come from other countries and territories in the American continent, according to [2024 American Community Survey](https://data.census.gov/table/ACSDT1Y2024.B05006) data:
-
-| Region | Share of US foreign-born |
-|---|---|
-| Mexico | 22.2% |
-| Caribbean | 10.5% |
-| Central America | 9.1% |
-| South America | 9.6% |
-| Canada | 1.6% |
-| **Total Americas** | **53.0%** |
-| Asia | 28.1% |
-| Europe | 9.7% |
-| Sub-Saharan Africa | 5.0% |
-| Middle East / North Africa | 3.6% |
-
-Every country Bad Bunny named on that stage falls within the Americas share of this breakdown.
+**53%** of the roughly 50 million foreign-born people in the United States come from other countries and territories in the American continent — Mexico alone accounts for 22% — according to the [2024 American Community Survey](https://data.census.gov/table/ACSDT1Y2024.B05006). Every country Bad Bunny named on that stage falls within that share.
 
 ## Spanish is the most common non-English language
 
 Bad Bunny performed entirely in Spanish. Spanish is the most common non-English language in the United States, [spoken at home by about 45 million people](https://data.census.gov/table/ACSST1Y2024.S1601), about 14% of the US population. Of the 74 million people who speak a non-English language at home, **61% speak Spanish**, per [2024 ACS data](https://data.census.gov/table/ACSST1Y2024.S1601).
 
-Congress has never passed a law designating an official language, though an [executive order in March 2025](https://www.usa.gov/official-language-of-us) designated English as the official language. Spanish has been spoken continuously in what is now the US [since the 1500s](https://en.wikipedia.org/wiki/Spanish_language_in_the_United_States), predating the first permanent English settlement at Jamestown in 1607.
+Congress has never passed a law designating an official language. In March 2025, [Executive Order 14224](https://www.federalregister.gov/documents/2025/03/06/2025-03694/designating-english-as-the-official-language-of-the-united-states) designated English as the official language and revoked [EO 13166](https://www.govinfo.gov/content/pkg/FR-2000-08-16/pdf/00-20938.pdf), a 2000 Clinton-era order that directed agencies to improve access for people with limited English proficiency. However, the order also states that agencies are "not required to amend, remove, or otherwise stop production of documents...in languages other than English." Spanish has been spoken continuously in what is now the US [since the 1500s](https://en.wikipedia.org/wiki/Spanish_language_in_the_United_States), predating the first permanent English settlement at Jamestown in 1607.
 
 ## ICE enforcement is concentrated in the Americas
 
 While the foreign-born population is 53% from the Americas, ICE enforcement skews more heavily toward those countries.
 
-[Official ICE data](https://www.ice.gov/statistics) shows that **98-99% of ICE administrative arrests** from FY2021 through Q1 FY2025 involved people from other countries in the Americas. The [UC Berkeley Deportation Data Project](https://deportationdata.org), which publishes record-level FOIA'd arrest data, allows a more granular look at the current administration. From January 20 to October 15, 2025, of 220,931 arrests:
-
-| Region | Arrests | Share |
-|---|---|---|
-| Americas (total) | 204,528 | 92.6% |
-| Latin America | 202,795 | 91.8% |
-| Non-Americas | 16,403 | 7.4% |
-
-The top countries of citizenship:
-
-| Country | Arrests | Share |
-|---|---|---|
-| Mexico | 85,363 | 38.6% |
-| Guatemala | 31,231 | 14.1% |
-| Honduras | 24,296 | 11.0% |
-| Venezuela | 14,606 | 6.6% |
-| El Salvador | 10,487 | 4.7% |
-| Colombia | 10,194 | 4.6% |
-| Ecuador | 8,802 | 4.0% |
-
-*Source: [UC Berkeley Deportation Data Project](https://deportationdata.org), author's analysis of FOIA'd ICE arrest records (Jan 20 - Oct 15, 2025)*
+[Official ICE data](https://www.ice.gov/statistics) shows that **98-99% of ICE administrative arrests** from FY2021 through Q1 FY2025 involved people from other countries in the Americas. The [UC Berkeley Deportation Data Project](https://deportationdata.org), which publishes record-level FOIA'd arrest data, provides a more granular look: from January 20 to October 15, 2025, **92.6%** of 220,931 arrests involved nationals of countries in the Americas, with Mexico (38.6%), Guatemala (14.1%), and Honduras (11.0%) as the top three countries.
 
 A [UCLA Luskin study](https://knowledge.luskin.ucla.edu/wp-content/uploads/2025/10/Unseen_Latino-Ice-Arrests-Surge-Under-Trump_20251027.pdf) found that about 90% of ICE arrests during the first six months of Trump's second term involved nationals of Latin American countries, using the same Berkeley FOIA data.
 
@@ -83,6 +48,6 @@ Key outcomes of the operation:
 
 ## Summary
 
-A majority of foreign-born people in the United States — 53% — come from other countries in the Americas. ICE enforcement is even more concentrated, with over 92% of arrests in 2025 involving nationals of countries in the Western Hemisphere. The largest enforcement operation, in Minnesota, was framed around the Somali community but resulted in over 3,000 arrests across nationalities.
+A majority of foreign-born people in the United States — 53% — come from other countries in the Americas. ICE enforcement is even more concentrated, with over 92% of arrests in 2025 involving nationals of countries in the Western Hemisphere. The largest enforcement operation, in Minnesota, was focused on the Somali community but resulted in over 3,000 arrests across nationalities.
 
 Bad Bunny's halftime show put a spotlight on the hemispheric connections between the US and the rest of the Americas. The immigration and enforcement data provide context for the scale of those connections.
