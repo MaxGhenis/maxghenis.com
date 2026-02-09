@@ -31,9 +31,9 @@ Every country Bad Bunny named on that stage falls within the Americas share of t
 
 ## Spanish is the most common non-English language
 
-Bad Bunny performed entirely in Spanish. Spanish is the most common non-English language in the United States, [spoken at home by over 43 million people](https://data.census.gov/table/ACSST1Y2023.S1601), about 13% of the US population. Among immigrants who speak a non-English language at home, **61% speak Spanish**, per the [Migration Policy Institute](https://www.migrationpolicy.org/article/frequently-requested-statistics-immigrants-and-immigration-united-states).
+Bad Bunny performed entirely in Spanish. Spanish is the most common non-English language in the United States, [spoken at home by about 45 million people](https://data.census.gov/table/ACSST1Y2024.S1601), about 14% of the US population. Of the 74 million people who speak a non-English language at home, **61% speak Spanish**, per [2024 ACS data](https://data.census.gov/table/ACSST1Y2024.S1601).
 
-The United States has [never designated an official language](https://www.congress.gov/crs-product/IF11806). Spanish has been spoken continuously in what is now the US [since the 1500s](https://en.wikipedia.org/wiki/Spanish_language_in_the_United_States), predating the first permanent English settlement at Jamestown in 1607.
+Congress has never passed a law designating an official language, though an [executive order in March 2025](https://www.usa.gov/official-language-of-us) designated English as the official language. Spanish has been spoken continuously in what is now the US [since the 1500s](https://en.wikipedia.org/wiki/Spanish_language_in_the_United_States), predating the first permanent English settlement at Jamestown in 1607.
 
 ## ICE enforcement is concentrated in the Americas
 
