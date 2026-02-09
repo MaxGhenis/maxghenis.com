@@ -1,7 +1,7 @@
 ---
 title: 'OpenMessage: How I built a macOS Google Messages client to give Claude my texts'
 description: 'I had already connected Claude Code to WhatsApp, Signal, Slack, and Gmail. SMS was the last holdout — and no existing tool could solve it.'
-pubDate: 'Feb 07 2026'
+pubDate: 'Feb 09 2026'
 projectUrl: 'https://openmessage.ai'
 ---
 
