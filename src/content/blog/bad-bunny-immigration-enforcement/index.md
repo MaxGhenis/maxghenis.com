@@ -13,7 +13,7 @@ The performance reached an estimated [130 million viewers](https://variety.com/2
 
 ## Most US immigrants come from the Americas
 
-**53%** of the roughly 50 million foreign-born people in the United States come from other countries and territories in the American continent — Mexico alone accounts for 22% — according to the [2024 American Community Survey](https://data.census.gov/table/ACSDT1Y2024.B05006). Every country Bad Bunny named on that stage falls within that share.
+**53%** of the 50.2 million foreign-born people in the United States come from other countries and territories in the American continent — Mexico alone accounts for 22.2% — according to the [2024 American Community Survey](https://data.census.gov/table/ACSDT1Y2024.B05006). Every country Bad Bunny named on that stage falls within that share.
 
 ## Spanish is the most common non-English language
 
@@ -25,7 +25,7 @@ At the time of the [first US census in 1790](https://www.census.gov/library/publ
 
 ## ICE enforcement is concentrated in the Americas
 
-While the foreign-born population is 53% from the Americas, ICE enforcement skews more heavily toward those countries.
+While 53% of the foreign-born population is from the Americas, ICE enforcement skews more heavily toward those countries.
 
 [Official ICE data](https://www.ice.gov/statistics) shows that **98-99% of ICE administrative arrests** from FY2021 through Q1 FY2025 involved people from other countries in the Americas. The [UC Berkeley Deportation Data Project](https://deportationdata.org), which publishes record-level FOIA'd arrest data, provides a more granular look: from January 20 to October 15, 2025, **92.6%** of 220,931 arrests involved nationals of countries in the Americas, with Mexico (38.6%), Guatemala (14.1%), and Honduras (11.0%) as the top three countries.
 
@@ -51,6 +51,6 @@ Key outcomes of the operation:
 
 ## Summary
 
-A majority of foreign-born people in the United States — 53% — come from other countries in the Americas. ICE enforcement is even more concentrated, with over 92% of arrests in 2025 involving nationals of countries in the Western Hemisphere. The largest enforcement operation, in Minnesota, was focused on the Somali community but resulted in over 3,000 arrests across nationalities.
+53% of the 50.2 million foreign-born people in the United States come from other countries in the Americas. ICE enforcement is even more concentrated, with over 92% of arrests in 2025 involving nationals of countries in the Western Hemisphere. The largest enforcement operation, in Minnesota, was focused on the Somali community but resulted in over 3,000 arrests across nationalities.
 
 Bad Bunny's halftime show put a spotlight on the hemispheric connections between the US and the rest of the Americas. The immigration and enforcement data provide context for the scale of those connections.

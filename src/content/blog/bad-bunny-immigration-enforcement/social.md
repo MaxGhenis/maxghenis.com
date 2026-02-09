@@ -26,7 +26,7 @@ Bad Bunny's Super Bowl halftime show last night named every country in the Ameri
 
 Key findings from Census, ICE, and FOIA data:
 
-- 53% of the ~50M foreign-born people in the US come from other countries in the Americas (ACS 2024)
+- 53% of the 50.2M foreign-born people in the US come from other countries in the Americas (ACS 2024)
 - 93% of ICE arrests in 2025 involved nationals from those same countries (UC Berkeley Deportation Data Project)
 - 45 million people speak Spanish at home — 61% of all non-English speakers
 - Operation Metro Surge in Minneapolis, framed around the Somali community, led to 3,000+ arrests — only 23 from Somalia
