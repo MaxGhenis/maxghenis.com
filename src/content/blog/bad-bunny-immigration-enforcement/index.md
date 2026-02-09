@@ -2,6 +2,7 @@
 title: 'Where US immigrants come from, and where ICE focuses enforcement'
 description: 'Bad Bunny''s Super Bowl halftime show highlighted the Americas. Here''s what the data shows about immigration and enforcement patterns.'
 pubDate: 'Feb 09 2026'
+heroImage: './hero.png'
 ---
 
 Last night, Bad Bunny performed the [first primarily Spanish-language Super Bowl halftime show](https://www.rollingstone.com/music/music-news/bad-bunny-super-bowl-performance-1235513007/) in history. At the end, holding a football that read "Together, we are America," he said "God bless America" and then [named every country and territory in the American continent](https://sports.yahoo.com/nfl/breaking-news/article/bad-bunny-echoes-grammy-message-with-super-bowl-halftime-show-together-we-are-america-015121748.html): Chile, Argentina, Uruguay, Paraguay, Bolivia, Peru, Ecuador, Brazil, Colombia, Venezuela, Panama, Costa Rica, Nicaragua, Honduras, El Salvador, Guatemala, Mexico, Cuba, the Dominican Republic, Jamaica, Haiti, the United States, Canada, and the US territory of Puerto Rico. Performers carried each flag behind him.
