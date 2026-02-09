@@ -1,58 +1,156 @@
 # Max Ghenis - Full Content
 
 > This file contains the full text of all blog posts from maxghenis.com, formatted for LLM consumption.
-> Generated: 2026-02-08T01:42:41.978Z
+> Generated: 2026-02-09T15:07:54.368Z
 > See also: /llms.txt for a curated overview
 
 ---
 
 ## Table of Contents
 
-1. [OpenMessages: How I built a macOS Google Messages client to give Claude my texts](/blog/openmessages/)
-2. [I used Claude Code to recertify for SNAP](/blog/snap-recertification-claude-code/)
-3. [Scrollywood: Smooth scroll video recording for the web](/blog/scrollywood/)
-4. [The adolescence of policy simulation: On Amodei and economic disruption](/blog/amodei-adolescence-policyengine/)
-5. [opencollective-py: Manage OpenCollective from your terminal or Claude Code](/blog/opencollective-py/)
-6. [From IDE to AI orchestration: The end of code-first development](/blog/ide-to-ai-orchestration/)
-7. [TerminalGrid: Turn VS Code into a Claude Code superterminal](/blog/terminalgrid/)
-8. [RAMBar: A macOS menu bar RAM monitor for developers](/blog/rambar/)
-9. [How to Use MDX for Interactive Posts](/blog/using-mdx/)
-10. [VAT thresholds, revenues, and the role of counterfactuals](/blog/substack/vat-thresholds/)
-11. [AI models favor Cuomo over Mamdani on NYC housing production](/blog/substack/ai-models-nyc-housing/)
-12. [My 2024 in code: Personal projects and AI tools](/blog/substack/my-2024-in-code/)
-13. [Why I'm a neoliberal](/blog/substack/why-im-a-neoliberal/)
-14. [In appointing their newest member, the Ventura City Council only pretended to care about housing](/blog/medium/in-appointing-their-newest-member-the-ventura-city/)
-15. [If you earned more in 2019 than 2018, don't file your 2019 taxes yet! Otherwise, file ASAP!](/blog/medium/if-you-earned-more-in-2019-than-2018-dont-file-you/)
-16. [Why I’ve taken the Giving What We Can pledge](/blog/medium/why-ive-taken-the-giving-what-we-can-pledge/)
-17. [Ventura County must end its unsheltered homelessness](/blog/medium/ventura-county-must-end-its-unsheltered-homelessne/)
-18. [Warren’s wealth tax would raise less than she claims — even using her economists’ own assumptions](/blog/medium/warrens-wealth-tax-would-raise-less-than-she-claim/)
-19. [Andrew Yang's troubling Tucker Carlson interview](/blog/medium/andrew-yangs-troubling-tucker-carlson-interview/)
-20. [Quantile regression, from linear models to trees to deep learning](/blog/medium/quantile-regression-from-linear-models-to-trees-to/)
-21. [We should replace the Child Tax Credit with a universal child benefit](/blog/medium/we-should-replace-the-child-tax-credit-with-a-univ/)
-22. [The case for a wonky basic income plan](/blog/medium/the-case-for-a-wonky-basic-income-plan/)
-23. [Reddit featured a misleading headline on education secretary nominee Betsy DeVos](/blog/medium/reddit-featured-a-misleading-headline-on-education/)
-24. [Uber's tipping settlement will reduce earnings of African-American drivers](/blog/medium/ubers-tipping-settlement-will-reduce-earnings-of-a/)
-25. [If we can afford our current welfare system, we can afford basic income](/blog/medium/if-we-can-afford-our-current-welfare-system-we-can/)
+1. [America is bigger than you think](/blog/america-is-bigger-than-you-think/)
+2. [OpenMessage: How I built a macOS Google Messages client to give Claude my texts](/blog/openmessage/)
+3. [I used Claude Code to recertify for SNAP](/blog/snap-recertification-claude-code/)
+4. [Scrollywood: Smooth scroll video recording for the web](/blog/scrollywood/)
+5. [The adolescence of policy simulation: On Amodei and economic disruption](/blog/amodei-adolescence-policyengine/)
+6. [opencollective-py: Manage OpenCollective from your terminal or Claude Code](/blog/opencollective-py/)
+7. [From IDE to AI orchestration: The end of code-first development](/blog/ide-to-ai-orchestration/)
+8. [TerminalGrid: Turn VS Code into a Claude Code superterminal](/blog/terminalgrid/)
+9. [RAMBar: A macOS menu bar RAM monitor for developers](/blog/rambar/)
+10. [How to Use MDX for Interactive Posts](/blog/using-mdx/)
+11. [VAT thresholds, revenues, and the role of counterfactuals](/blog/substack/vat-thresholds/)
+12. [AI models favor Cuomo over Mamdani on NYC housing production](/blog/substack/ai-models-nyc-housing/)
+13. [My 2024 in code: Personal projects and AI tools](/blog/substack/my-2024-in-code/)
+14. [Why I'm a neoliberal](/blog/substack/why-im-a-neoliberal/)
+15. [In appointing their newest member, the Ventura City Council only pretended to care about housing](/blog/medium/in-appointing-their-newest-member-the-ventura-city/)
+16. [If you earned more in 2019 than 2018, don't file your 2019 taxes yet! Otherwise, file ASAP!](/blog/medium/if-you-earned-more-in-2019-than-2018-dont-file-you/)
+17. [Why I’ve taken the Giving What We Can pledge](/blog/medium/why-ive-taken-the-giving-what-we-can-pledge/)
+18. [Ventura County must end its unsheltered homelessness](/blog/medium/ventura-county-must-end-its-unsheltered-homelessne/)
+19. [Warren’s wealth tax would raise less than she claims — even using her economists’ own assumptions](/blog/medium/warrens-wealth-tax-would-raise-less-than-she-claim/)
+20. [Andrew Yang's troubling Tucker Carlson interview](/blog/medium/andrew-yangs-troubling-tucker-carlson-interview/)
+21. [Quantile regression, from linear models to trees to deep learning](/blog/medium/quantile-regression-from-linear-models-to-trees-to/)
+22. [We should replace the Child Tax Credit with a universal child benefit](/blog/medium/we-should-replace-the-child-tax-credit-with-a-univ/)
+23. [The case for a wonky basic income plan](/blog/medium/the-case-for-a-wonky-basic-income-plan/)
+24. [Reddit featured a misleading headline on education secretary nominee Betsy DeVos](/blog/medium/reddit-featured-a-misleading-headline-on-education/)
+25. [Uber's tipping settlement will reduce earnings of African-American drivers](/blog/medium/ubers-tipping-settlement-will-reduce-earnings-of-a/)
+26. [If we can afford our current welfare system, we can afford basic income](/blog/medium/if-we-can-afford-our-current-welfare-system-we-can/)
 
 ---
 
-## OpenMessages: How I built a macOS Google Messages client to give Claude my texts
+## America is bigger than you think
 
-**URL:** https://maxghenis.com/blog/openmessages/
+**URL:** https://maxghenis.com/blog/america-is-bigger-than-you-think/
+**Published:** Feb 09 2026
+**Description:** Bad Bunny reminded 130 million viewers that America spans continents. The data on immigration and ICE enforcement tells the rest of the story.
+
+Last night, Bad Bunny performed the [first primarily Spanish-language Super Bowl halftime show](https://www.rollingstone.com/music/music-news/bad-bunny-super-bowl-performance-1235513007/) in history. At the end, holding a football that read "Together, we are America," he said "God bless America" — and then [named every country and territory in the American continent](https://sports.yahoo.com/nfl/breaking-news/article/bad-bunny-echoes-grammy-message-with-super-bowl-halftime-show-together-we-are-america-015121748.html): Chile, Argentina, Uruguay, Paraguay, Bolivia, Peru, Ecuador, Brazil, Colombia, Venezuela, Panama, Costa Rica, Nicaragua, Honduras, El Salvador, Guatemala, Mexico, Cuba, the Dominican Republic, Jamaica, Haiti, the United States, Canada, and the US territory of Puerto Rico. Performers carried each flag behind him. The jumbotron read: "The only thing more powerful than hate is love."
+
+The performance reached an estimated [130 million viewers](https://variety.com/2026/music/news/bad-bunny-super-bowl-lady-gaga-real-wedding-ceremony-1236656381/). His point was geographic: America is a pair of continents, not just one country, and the people who come to the United States from elsewhere in those continents are part of the same hemisphere.
+
+Here's what the data says.
+
+<iframe src="https://americas-immigration.vercel.app" width="100%" height="1600" style="border: none; border-radius: 14px; margin: 1.5rem 0;" loading="lazy"></iframe>
+
+## Most US immigrants come from the Americas
+
+About **54%** of the roughly 51 million foreign-born people in the United States come from other countries and territories in the American continent, according to the [Migration Policy Institute's analysis](https://www.migrationpolicy.org/article/frequently-requested-statistics-immigrants-and-immigration-united-states) of [2023 American Community Survey](https://www.census.gov/library/visualizations/interactive/foreign-born-population-2019-2023.html) data:
+
+| Region | Share of US foreign-born |
+|---|---|
+| Mexico | ~22% |
+| Caribbean | ~10% |
+| Central America | ~8% |
+| South America | ~8% |
+| Canada | ~2% |
+| **Total Americas** | **~54%** |
+| Asia | ~27% |
+| Europe | ~10% |
+| Sub-Saharan Africa | ~5% |
+| Middle East / North Africa | ~4% |
+
+Every country Bad Bunny named on that stage is represented in this breakdown.
+
+## Spanish is the most common immigrant language
+
+Bad Bunny performed entirely in Spanish, which [drew criticism from some commentators](https://www.foxnews.com/opinion/bad-bunnys-polarizing-super-bowl-halftime-show-felt-like-slap-america). But Spanish is by far the most common non-English language in the United States, [spoken at home by over 43 million people](https://data.census.gov/table/ACSST1Y2023.S1601), about 13% of the US population. Among immigrants who speak a non-English language at home, **61% speak Spanish**, per the [Migration Policy Institute](https://www.migrationpolicy.org/article/frequently-requested-statistics-immigrants-and-immigration-united-states).
+
+The United States has [never designated an official language](https://www.congress.gov/crs-product/IF11806). As Bad Bunny put it: "English wasn't my first language, but that's OK — it wasn't America's either." Hundreds of Indigenous languages were spoken on this land for millennia before European contact, and Spanish has been spoken continuously in what is now the US [since the 1500s](https://en.wikipedia.org/wiki/Spanish_language_in_the_United_States), predating the first permanent English settlement at Jamestown in 1607.
+
+## ICE enforcement disproportionately targets the Americas
+
+If the immigrant population is 54% from the Americas, enforcement patterns are even more concentrated.
+
+[Official ICE data](https://www.ice.gov/statistics) shows that **98–99% of ICE administrative arrests** from FY2021 through Q1 FY2025 involved people from other countries in the Americas. The [UC Berkeley Deportation Data Project](https://deportationdata.org), which publishes record-level FOIA'd arrest data, allows a more granular look at the current administration. From January 20 to October 15, 2025, of 220,931 arrests:
+
+| Region | Arrests | Share |
+|---|---|---|
+| Americas (total) | 204,528 | 92.6% |
+| Latin America | 202,795 | 91.8% |
+| Non-Americas | 16,403 | 7.4% |
+
+The top countries of citizenship:
+
+| Country | Arrests | Share |
+|---|---|---|
+| Mexico | 85,363 | 38.6% |
+| Guatemala | 31,231 | 14.1% |
+| Honduras | 24,296 | 11.0% |
+| Venezuela | 14,606 | 6.6% |
+| El Salvador | 10,487 | 4.7% |
+| Colombia | 10,194 | 4.6% |
+| Ecuador | 8,802 | 4.0% |
+
+*Source: [UC Berkeley Deportation Data Project](https://deportationdata.org), author's analysis of FOIA'd ICE arrest records (Jan 20 – Oct 15, 2025)*
+
+A [UCLA Luskin study](https://knowledge.luskin.ucla.edu/wp-content/uploads/2025/10/Unseen_Latino-Ice-Arrests-Surge-Under-Trump_20251027.pdf) found that about 90% of ICE arrests during the first six months of Trump's second term targeted "Latinos" — which they define as individuals from Latin American countries, using the same Berkeley FOIA data. This is a nationality-based classification, not an ethnicity field in ICE records.
+
+This concentration likely reflects the composition of the unauthorized population, which [skews more heavily Latin American](https://www.migrationpolicy.org/article/frequently-requested-statistics-immigrants-and-immigration-united-states) than the foreign-born population as a whole, as well as geographic proximity and enforcement priorities.
+
+## Operation Metro Surge in Minnesota
+
+Enforcement has extended beyond Latin American communities. In December 2025, DHS launched [Operation Metro Surge](https://www.britannica.com/event/2025-26-Minnesota-ICE-Deployment) in Minneapolis — what it called the largest immigration enforcement operation ever, [deploying up to 2,000 federal agents](https://www.cbsnews.com/minnesota/live-updates/ice-somali-immigrants-minneapolis-st-paul/) to the Twin Cities.
+
+The operation was framed around fraud in the Somali-American community. Minnesota is home to the largest Somali population in the US — roughly [84,000 people in the Twin Cities alone](https://www.pbs.org/newshour/nation/5-things-to-know-about-the-somali-community-in-minnesota-after-trumps-attacks). Of those, nearly **58% were born in the United States**, and of the foreign-born Somalis in Minnesota, **87% are naturalized US citizens**, according to [Census data reported by PBS](https://www.pbs.org/newshour/nation/5-things-to-know-about-the-somali-community-in-minnesota-after-trumps-attacks).
+
+Key outcomes of the operation:
+
+- **3,000+ people arrested** as of January 19, 2026, per [DHS](https://www.dhs.gov/news/2026/01/19/ice-continues-remove-worst-worst-minneapolis-streets-dhs-law-enforcement-marks-3000)
+- Only **23 arrestees were from Somalia** — despite the operation's stated focus on Somali fraud ([Britannica](https://www.britannica.com/event/2025-26-Minnesota-ICE-Deployment)). Nationally, just 118 of 220,931 ICE arrests (0.05%) from January 20 to October 15, 2025 involved Somali nationals, per the [UC Berkeley Deportation Data Project](https://deportationdata.org)
+- About **5% of arrestees had violent criminal records** ([Britannica](https://www.britannica.com/event/2025-26-Minnesota-ICE-Deployment))
+- **Two US citizens were killed** by federal agents during the operation: Renée Good and Alex Pretti ([CBS News](https://www.cbsnews.com/news/minneapolis-trump-immigration-ice-border-patrol-arrests-protests-shootings/))
+- **50,000 people** gathered on January 23 for a statewide general strike in protest ([Britannica](https://www.britannica.com/event/2025-26-Minnesota-ICE-Deployment))
+
+[Sahan Journal reported](https://sahanjournal.com/immigration/immigration-enforcement-somali-community-impact/) that community members skipped medical appointments, families ran out of food because they were afraid to leave their apartments, and attendance at mosques dropped sharply. Hundreds of businesses closed. Minnesota and the Twin Cities [filed a federal lawsuit against DHS](https://www.ag.state.mn.us/Office/Communications/2026/docs/00190_DHS_Complaint.pdf).
+
+## "Together, we are America"
+
+The people currently subject to immigration enforcement are overwhelmingly from the Americas — the same hemisphere, connected by geography and centuries of migration. They speak Spanish, Portuguese, Haitian Creole, Somali, and dozens of other languages. Many are US citizens.
+
+When Bad Bunny said "God bless America" and then named 24 countries and the US territory of Puerto Rico, he was making a geographic point that the data corroborates: the majority of immigrants in the United States come from other parts of the American continent.
+
+The football said it plainly: together, we are America.
+
+---
+
+## OpenMessage: How I built a macOS Google Messages client to give Claude my texts
+
+**URL:** https://maxghenis.com/blog/openmessage/
 **Published:** Feb 07 2026
 **Description:** I had already connected Claude Code to WhatsApp, Signal, Slack, and Gmail. SMS was the last holdout — and no existing tool could solve it.
 
 I've been on a mission to give Claude Code access to all my communication channels. WhatsApp, Signal, Slack, Gmail — each one has an MCP server that lets Claude read and send messages on my behalf. But one channel was missing: SMS and RCS on my Android phone.
 
+**[Download OpenMessage for Mac](https://github.com/MaxGhenis/openmessage/releases/latest/download/OpenMessage.dmg)** — free, open source, requires macOS 14.0+ and an Android phone with Google Messages.
+
 ## The gap
 
 If you have an iPhone, iMessage on Mac gives you desktop texting for free. But I use Android, and Google Messages only offers a web client — no desktop app, no API, no way for an AI assistant to interact with it.
 
-I needed Claude to be able to do things like "text my wife I'm running late" or "check if the plumber confirmed for tomorrow" without me picking up my phone. Every other messaging channel was already connected. SMS was the last holdout.
+I needed Claude to be able to do things like "text Alex that the meeting moved to 3pm" or "check if James confirmed for tomorrow" without me picking up my phone. Every other messaging channel was already connected. SMS was the last holdout.
 
 ## Attempt 1: SMS Gateway
 
-My first approach was [SMS Gateway](https://smsgateway.me), an Android app that exposes your phone's SMS capability via an API. I built an MCP server around it ([android-sms-mcp](https://github.com/MaxGhenis/android-sms-mcp)), and it worked — sort of.
+My first approach was [SMS Gateway](https://smsgateway.me), an Android app that exposes your phone's SMS capability via an API. I built an MCP server around it, and it worked — sort of.
 
 The problems:
 
@@ -74,13 +172,15 @@ This was the breakthrough. The mautrix library could:
 - Send SMS and RCS messages
 - Handle group chats, reactions, and read receipts
 
-I quickly built an MCP server around it, and it worked beautifully. Claude could read my full message history and send texts. Problem solved — almost.
+I quickly built an MCP server around it, and it worked beautifully. Claude could read my full message history and send texts.
 
-## The single-device problem
+## The mistake that became a feature
 
-Google Messages only allows **one paired web device** at a time. If you pair a new device, the old one disconnects. This meant I had a choice: use Google Messages for Web in my browser like a normal person, or give that slot to my MCP server so Claude could access my texts.
+Here's where I'll admit something: I thought Google Messages only allowed one paired web device at a time. It turns out Google Messages has two pairing methods — Google account pairing and QR code pairing — and they don't mix. I had been using Google account pairing, which blocks additional devices. When I switched to QR pairing (which is what the mautrix library uses), multiple devices work fine. But I didn't realize this at the time, so I was convinced that running my MCP server meant giving up the web client. I built a whole native macOS app to replace it.
 
-I chose Claude, obviously. But now I had no way to manually check my messages on my Mac without opening the MCP server's raw database. I needed a proper UI.
+I didn't need to build the app at all.
+
+But I'm glad I did. What started as a workaround became something better: an open-source, native Google Messages client for Mac — the first one that exists. No browser tab to keep open, no Electron wrapper, just a real app with a built-in MCP server for AI access.
 
 ## Building the app
 
@@ -96,24 +196,33 @@ Everything runs locally. No cloud servers, no accounts to create, no data leavin
 
 ## What Claude can do with it
 
-With OpenMessages running, Claude Code can:
+With OpenMessage running, Claude Code can:
 
-- **Search messages** — "find that restaurant recommendation Sarah sent last week"
-- **Read conversations** — "summarize my conversation with the contractor"
-- **Send messages** — "text Mom happy birthday"
-- **React to messages** — "thumbs up the last message from Dave"
+- **Search messages** — "find the address James sent me last week"
+- **Read conversations** — "summarize my conversation with the team"
+- **Send messages** — "text Alex that the meeting moved to 3pm"
+- **React to messages** — "thumbs up the last message from Sarah"
 
 Combined with WhatsApp, Signal, Slack, and Gmail MCP servers, Claude now has access to essentially all my communications. I can say "check all my messages for anything urgent" and it searches across every channel.
 
+## What's next
+
+OpenMessage is open source, and I think it's a canvas for something bigger. The same open-source libraries (mautrix) that power OpenMessage also support WhatsApp, Signal, Telegram, Discord, Slack, and more. Beeper built a $125M company on these same libraries — but without local-first architecture or AI integration.
+
+I think there's an opportunity for an open-source, AI-native unified messaging client. Some ideas:
+
+- **More services** — WhatsApp, Signal, Telegram via the mautrix ecosystem
+- **AI-powered features** — smart replies, conversation summaries, priority inbox
+- **Natural language search** — "when did someone send me a confirmation number?"
+- **Cross-platform** — Linux and Windows versions
+
+If any of these interest you, [open an issue](https://github.com/MaxGhenis/openmessage/issues) or submit a PR.
+
 ## Get it
 
-OpenMessages is free and open source:
+OpenMessage is free and open source. Requires macOS 14.0+ and an Android phone with Google Messages.
 
-- [Project page](/openmessages) — download and features
-- [GitHub](https://github.com/MaxGhenis/openmessages) — source code
-- [openmessages.ai](https://openmessages.ai) — documentation
-
-Requires macOS 14.0+ and an Android phone with Google Messages.
+**[Download for Mac](https://github.com/MaxGhenis/openmessage/releases/latest/download/OpenMessage.dmg)** | [openmessage.ai](https://openmessage.ai) | [GitHub](https://github.com/MaxGhenis/openmessage)
 
 ---
 
@@ -252,6 +361,8 @@ At [PolicyEngine](https://policyengine.org), we're building more scrollytelling 
 The problem: there's no good way to record a smooth scroll of a webpage. Screen recording tools require you to scroll manually, which is never perfectly smooth. Browser automation tools can screenshot sequences but don't capture scroll-triggered animations. And scrollytelling pages depend on continuous scrolling to trigger IntersectionObserver callbacks that animate the content.
 
 So I built [Scrollywood](/scrollywood) — a Chrome extension that records a perfectly smooth scroll video of any webpage.
+
+![Scrollywood demo — smooth scroll recording of a scrollytelling page](/scrollywood-demo.gif)
 
 ## How it works
 
