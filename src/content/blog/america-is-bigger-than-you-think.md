@@ -14,20 +14,20 @@ Here's what the data says.
 
 ## Most US immigrants come from the Americas
 
-About **54%** of the roughly 51 million foreign-born people in the United States come from other countries and territories in the American continent, according to the [Migration Policy Institute's analysis](https://www.migrationpolicy.org/article/frequently-requested-statistics-immigrants-and-immigration-united-states) of [2023 American Community Survey](https://www.census.gov/library/visualizations/interactive/foreign-born-population-2019-2023.html) data:
+About **53%** of the roughly 50 million foreign-born people in the United States come from other countries and territories in the American continent, according to [2024 American Community Survey](https://data.census.gov/table/ACSDT1Y2024.B05006) data:
 
 | Region | Share of US foreign-born |
 |---|---|
-| Mexico | ~22% |
-| Caribbean | ~10% |
-| Central America | ~8% |
-| South America | ~8% |
-| Canada | ~2% |
-| **Total Americas** | **~54%** |
-| Asia | ~27% |
-| Europe | ~10% |
-| Sub-Saharan Africa | ~5% |
-| Middle East / North Africa | ~4% |
+| Mexico | 22.2% |
+| Caribbean | 10.5% |
+| Central America | 9.1% |
+| South America | 9.6% |
+| Canada | 1.6% |
+| **Total Americas** | **53.0%** |
+| Asia | 28.1% |
+| Europe | 9.7% |
+| Sub-Saharan Africa | 5.0% |
+| Middle East / North Africa | 3.6% |
 
 Every country Bad Bunny named on that stage is represented in this breakdown.
 
@@ -39,7 +39,7 @@ The United States has [never designated an official language](https://www.congre
 
 ## ICE enforcement disproportionately targets the Americas
 
-If the immigrant population is 54% from the Americas, enforcement patterns are even more concentrated.
+If the immigrant population is 53% from the Americas, enforcement patterns are even more concentrated.
 
 [Official ICE data](https://www.ice.gov/statistics) shows that **98–99% of ICE administrative arrests** from FY2021 through Q1 FY2025 involved people from other countries in the Americas. The [UC Berkeley Deportation Data Project](https://deportationdata.org), which publishes record-level FOIA'd arrest data, allows a more granular look at the current administration. From January 20 to October 15, 2025, of 220,931 arrests:
 
