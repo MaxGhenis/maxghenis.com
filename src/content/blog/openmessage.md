@@ -60,7 +60,7 @@ Since I already had the Go backend handling the Google Messages protocol, I wrap
 
 The app pairs with your phone the same way messages.google.com does — scan a QR code — and then syncs your full conversation history. The MCP server runs alongside the UI, so Claude can access messages while you browse them yourself.
 
-Everything runs locally. No cloud servers, no accounts to create, no data leaving your machine.
+Everything is stored locally — SQLite database, no cloud sync, no accounts to create. When you use AI tools via the MCP server, only the messages you ask about are sent to your chosen AI provider (e.g. Anthropic's API for Claude). OpenMessage itself never sends your data anywhere.
 
 ## What Claude can do with it
 
