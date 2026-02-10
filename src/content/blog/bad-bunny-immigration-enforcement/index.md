@@ -42,7 +42,7 @@ DHS said the operation focused on fraud in the Somali-American community. Minnes
 Key outcomes of the operation:
 
 - **3,000+ people arrested** as of January 19, 2026, per [DHS](https://www.dhs.gov/news/2026/01/19/ice-continues-remove-worst-worst-minneapolis-streets-dhs-law-enforcement-marks-3000)
-- **23 arrestees were from Somalia**, while the operation's stated focus was on Somali fraud ([Britannica](https://www.britannica.com/event/2025-26-Minnesota-ICE-Deployment)). Nationally, 118 of 220,931 ICE arrests (0.05%) from January 20 to October 15, 2025 involved Somali nationals, per the [UC Berkeley Deportation Data Project](https://deportationdata.org)
+- DHS publicly identified a subset of arrestees on its website. Of those, **23 were from Somalia** — while the operation's stated focus was on Somali fraud ([Britannica](https://www.britannica.com/event/2025-26-Minnesota-ICE-Deployment)). A [Washington Times analysis](https://www.washingtontimes.com/news/2026/jan/29/operation-metro-surge-crosses-3500-arrest-mark-heres-whos-getting/) of 170 DHS-released arrests found Mexico and Laos were the top two nationalities, with Somalia third. The full nationality breakdown of all arrests has not been made public
 - About **5% of arrestees had violent criminal records** ([Britannica](https://www.britannica.com/event/2025-26-Minnesota-ICE-Deployment))
 - **Two US citizens were killed** by federal agents during the operation: Renee Good and Alex Pretti ([CBS News](https://www.cbsnews.com/news/minneapolis-trump-immigration-ice-border-patrol-arrests-protests-shootings/))
 - **50,000 people** gathered on January 23 for a statewide general strike in protest ([Britannica](https://www.britannica.com/event/2025-26-Minnesota-ICE-Deployment))

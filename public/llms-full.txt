@@ -1,39 +1,148 @@
 # Max Ghenis - Full Content
 
 > This file contains the full text of all blog posts from maxghenis.com, formatted for LLM consumption.
-> Generated: 2026-02-09T20:15:14.472Z
+> Generated: 2026-02-10T14:48:59.089Z
 > See also: /llms.txt for a curated overview
 
 ---
 
 ## Table of Contents
 
-1. [OpenMessage: How I built a macOS Google Messages client to give Claude my texts](/blog/openmessage/)
-2. [Where US immigrants come from, and where ICE focuses enforcement](/blog/bad-bunny-immigration-enforcement/)
-3. [I used Claude Code to recertify for SNAP](/blog/snap-recertification-claude-code/)
-4. [Scrollywood: Smooth scroll video recording for the web](/blog/scrollywood/)
-5. [The adolescence of policy simulation: On Amodei and economic disruption](/blog/amodei-adolescence-policyengine/)
-6. [opencollective-py: Manage OpenCollective from your terminal or Claude Code](/blog/opencollective-py/)
-7. [From IDE to AI orchestration: The end of code-first development](/blog/ide-to-ai-orchestration/)
-8. [TerminalGrid: Turn VS Code into a Claude Code superterminal](/blog/terminalgrid/)
-9. [RAMBar: A macOS menu bar RAM monitor for developers](/blog/rambar/)
-10. [How to Use MDX for Interactive Posts](/blog/using-mdx/)
-11. [VAT thresholds, revenues, and the role of counterfactuals](/blog/substack/vat-thresholds/)
-12. [AI models favor Cuomo over Mamdani on NYC housing production](/blog/substack/ai-models-nyc-housing/)
-13. [My 2024 in code: Personal projects and AI tools](/blog/substack/my-2024-in-code/)
-14. [Why I'm a neoliberal](/blog/substack/why-im-a-neoliberal/)
-15. [In appointing their newest member, the Ventura City Council only pretended to care about housing](/blog/medium/in-appointing-their-newest-member-the-ventura-city/)
-16. [If you earned more in 2019 than 2018, don't file your 2019 taxes yet! Otherwise, file ASAP!](/blog/medium/if-you-earned-more-in-2019-than-2018-dont-file-you/)
-17. [Why I’ve taken the Giving What We Can pledge](/blog/medium/why-ive-taken-the-giving-what-we-can-pledge/)
-18. [Ventura County must end its unsheltered homelessness](/blog/medium/ventura-county-must-end-its-unsheltered-homelessne/)
-19. [Warren’s wealth tax would raise less than she claims — even using her economists’ own assumptions](/blog/medium/warrens-wealth-tax-would-raise-less-than-she-claim/)
-20. [Andrew Yang's troubling Tucker Carlson interview](/blog/medium/andrew-yangs-troubling-tucker-carlson-interview/)
-21. [Quantile regression, from linear models to trees to deep learning](/blog/medium/quantile-regression-from-linear-models-to-trees-to/)
-22. [We should replace the Child Tax Credit with a universal child benefit](/blog/medium/we-should-replace-the-child-tax-credit-with-a-univ/)
-23. [The case for a wonky basic income plan](/blog/medium/the-case-for-a-wonky-basic-income-plan/)
-24. [Reddit featured a misleading headline on education secretary nominee Betsy DeVos](/blog/medium/reddit-featured-a-misleading-headline-on-education/)
-25. [Uber's tipping settlement will reduce earnings of African-American drivers](/blog/medium/ubers-tipping-settlement-will-reduce-earnings-of-a/)
-26. [If we can afford our current welfare system, we can afford basic income](/blog/medium/if-we-can-afford-our-current-welfare-system-we-can/)
+1. [Replicating GiveWell''s cost-effectiveness analysis in code: an interactive calculator and what I learned](/blog/givewell-cea/)
+2. [OpenMessage: How I built a macOS Google Messages client to give Claude my texts](/blog/openmessage/)
+3. [Where US immigrants come from, and where ICE focuses enforcement](/blog/bad-bunny-immigration-enforcement/)
+4. [I used Claude Code to recertify for SNAP](/blog/snap-recertification-claude-code/)
+5. [Scrollywood: Smooth scroll video recording for the web](/blog/scrollywood/)
+6. [The adolescence of policy simulation: On Amodei and economic disruption](/blog/amodei-adolescence-policyengine/)
+7. [opencollective-py: Manage OpenCollective from your terminal or Claude Code](/blog/opencollective-py/)
+8. [From IDE to AI orchestration: The end of code-first development](/blog/ide-to-ai-orchestration/)
+9. [TerminalGrid: Turn VS Code into a Claude Code superterminal](/blog/terminalgrid/)
+10. [RAMBar: A macOS menu bar RAM monitor for developers](/blog/rambar/)
+11. [How to Use MDX for Interactive Posts](/blog/using-mdx/)
+12. [VAT thresholds, revenues, and the role of counterfactuals](/blog/substack/vat-thresholds/)
+13. [AI models favor Cuomo over Mamdani on NYC housing production](/blog/substack/ai-models-nyc-housing/)
+14. [My 2024 in code: Personal projects and AI tools](/blog/substack/my-2024-in-code/)
+15. [Why I'm a neoliberal](/blog/substack/why-im-a-neoliberal/)
+16. [In appointing their newest member, the Ventura City Council only pretended to care about housing](/blog/medium/in-appointing-their-newest-member-the-ventura-city/)
+17. [If you earned more in 2019 than 2018, don't file your 2019 taxes yet! Otherwise, file ASAP!](/blog/medium/if-you-earned-more-in-2019-than-2018-dont-file-you/)
+18. [Why I’ve taken the Giving What We Can pledge](/blog/medium/why-ive-taken-the-giving-what-we-can-pledge/)
+19. [Ventura County must end its unsheltered homelessness](/blog/medium/ventura-county-must-end-its-unsheltered-homelessne/)
+20. [Warren’s wealth tax would raise less than she claims — even using her economists’ own assumptions](/blog/medium/warrens-wealth-tax-would-raise-less-than-she-claim/)
+21. [Andrew Yang's troubling Tucker Carlson interview](/blog/medium/andrew-yangs-troubling-tucker-carlson-interview/)
+22. [Quantile regression, from linear models to trees to deep learning](/blog/medium/quantile-regression-from-linear-models-to-trees-to/)
+23. [We should replace the Child Tax Credit with a universal child benefit](/blog/medium/we-should-replace-the-child-tax-credit-with-a-univ/)
+24. [The case for a wonky basic income plan](/blog/medium/the-case-for-a-wonky-basic-income-plan/)
+25. [Reddit featured a misleading headline on education secretary nominee Betsy DeVos](/blog/medium/reddit-featured-a-misleading-headline-on-education/)
+26. [Uber's tipping settlement will reduce earnings of African-American drivers](/blog/medium/ubers-tipping-settlement-will-reduce-earnings-of-a/)
+27. [If we can afford our current welfare system, we can afford basic income](/blog/medium/if-we-can-afford-our-current-welfare-system-we-can/)
+
+---
+
+## Replicating GiveWell''s cost-effectiveness analysis in code: an interactive calculator and what I learned
+
+**URL:** https://maxghenis.com/blog/givewell-cea/
+**Published:** Feb 10 2026
+**Description:** I re-implemented GiveWell''s cost-effectiveness models for all six top charities as an open-source web tool with editable parameters, moral weights, and sensitivity analysis.
+
+I re-implemented GiveWell's cost-effectiveness models for all six top charities as an open-source web tool: **[maxghenis.com/givewell-cea](https://maxghenis.com/givewell-cea)**
+
+This post describes the replication, what I learned about GiveWell's methodology in the process, the verification results, and some observations about moral weight sensitivity. The tool itself lets you edit any parameter and immediately see the effect on charity rankings.
+
+## Motivation
+
+Others have done excellent work examining specific parts of GiveWell's CEA — [Joel's critical review](https://forum.effectivealtruism.org/posts/6dtwkwBrHBGtc3xes/a-critical-review-of-givewell-s-2022-cost-effectiveness) of model architecture, [GiveWell's own uncertainty work](https://forum.effectivealtruism.org/posts/Nb2HnrqG4nkjCqmRg/quantifying-uncertainty-in-givewell-cost-effectiveness), and several pieces on [deworming](https://forum.effectivealtruism.org/posts/MKiqGvijAXfcBHCYJ/deworming-and-decay-replicating-givewell-s-cost) and [AMF](https://forum.effectivealtruism.org/posts/4Qdjkf8PatGBsBExK/adding-quantified-uncertainty-to-givewell-s-cost) uncertainty. But I couldn't find a tool that implements all six charities together and makes it easy to compare them while adjusting assumptions.
+
+GiveWell's spreadsheets are powerful but hard to explore casually. Each charity has its own multi-tab workbook. Changing a moral weight means editing cells across multiple sheets and comparing results manually. I wanted something where you could adjust one slider and immediately see how all six charities re-rank.
+
+## What the model covers
+
+For each charity I implemented the core pipeline from GiveWell's spreadsheets:
+
+1. **People reached**: Grant size / cost per person reached
+2. **Deaths averted** (or equivalent): People reached × mortality/disease rate × intervention effect size
+3. **Units of value**: Deaths averted × moral weight (age-adjusted)
+4. **Cost-effectiveness**: Units of value per dollar / benchmark value per dollar
+5. **Adjustments**: Charity-level (quality, track record), intervention-level (external validity), leverage and funging
+
+The six charities each have their own structure:
+- **AMF** and **Malaria Consortium**: Under-5 mortality reduction, with separate pathways for older age mortality and developmental effects
+- **Helen Keller International**: VAS effect on under-5 mortality
+- **New Incentives**: Incremental vaccinations from cash incentives, converted to deaths averted using vaccine-specific effect sizes
+- **GiveDirectly**: Consumption increase valued directly (no mortality pathway)
+- **Deworm the World**: Long-run earnings effects of deworming, valued via ln(consumption)
+
+All 46 charity/country combinations operate independently — each country has its own cost per person, mortality rate, adjustment factors, etc.
+
+## Observations from the replication
+
+A few things stood out:
+
+**The benchmark matters more than you'd think.** AMF uses a benchmark of 0.00333 units of value per dollar, while MC and HKI use 0.0033545. This 0.75% difference in the denominator propagates directly to the final multiple. It took careful cell-tracing to realize different charities use slightly different benchmark constants — they're buried in separate sheets with different update cycles.
+
+**Mortality rate definitions vary.** AMF's spreadsheet has both a raw malaria mortality rate and a derived "mortality rate in the absence of nets" rate. The latter accounts for existing net coverage and is the correct input. My first extraction accidentally used the raw rates, which underestimated AMF's cost-effectiveness by roughly 2x for some countries (e.g., DRC: 0.00306 raw vs. 0.00798 in-absence-of-nets).
+
+**New Incentives' counterfactual coverage is the key driver.** The `proportionReachedCounterfactual` parameter (what fraction of children would get vaccinated anyway, without NI's incentives) varies dramatically by state — from 0.58 in Kano to 0.91 in Kaduna. This single parameter creates most of the 4x spread in NI's cost-effectiveness across Nigerian states. Getting this wrong (my first extraction had older values) produces large errors.
+
+**Helen Keller's leverage/funging adjustments need careful reading.** In my first pass, the funging adjustment for Burkina Faso extracted as 531.99 instead of -0.431. These values come from separate rows in the spreadsheet that are easy to confuse — a "percentage change" row vs. an "adjusted value" row.
+
+## Verification
+
+Parameters are extracted from GiveWell's November 2025 CEA spreadsheets ([AMF](https://docs.google.com/spreadsheets/d/1VEtie59TgRvZSEVjfG7qcKBKcQyJn8zO91Lau9YNqXc), [MC](https://docs.google.com/spreadsheets/d/1De3ZnT2Co5ts6Ccm9guWl8Ew31grzrZZwGfPtp-_t50), [HKI](https://docs.google.com/spreadsheets/d/1L6D1mf8AMKoUHrN0gBGiJjtstic4RvqLZCxXZ99kdnA), [NI](https://docs.google.com/spreadsheets/d/1mTKQuZRyVMie-K_KUppeCq7eBbXX15Of3jV7uo3z-PM)). I verified all 46 charity/country final cost-effectiveness multiples against the spreadsheets:
+
+| Charity | Countries | Max difference |
+|---------|-----------|---------------|
+| Against Malaria Foundation | 8 | <0.001% |
+| Malaria Consortium | 8 | <0.001% |
+| Helen Keller International | 8 | <0.001% |
+| New Incentives | 9 | 0.000% (exact) |
+| Deworm the World | 13 | 0.000% (exact) |
+
+GiveDirectly uses older parameter extractions. 298 automated tests verify the calculations. The remaining <0.001% differences for AMF/MC/HKI are floating-point precision, not model discrepancies.
+
+## Interactive features
+
+![Expanded view showing AMF in DRC with the step-by-step calculation breakdown and editable parameters](./detail-view.png)
+
+**Calculation breakdown**: Click any country to see the step-by-step calculation with every intermediate value. Click any highlighted number to edit it.
+
+**Moral weights**: GiveWell's default weights peak at ages 5-9 (134) and weight under-5 at 116. You can adjust these with a single multiplier or set each age bracket independently. Charities with different age profiles (AMF and MC focus on under-5; NI and HKI have broader age effects) shift rankings when you change these.
+
+**Sensitivity analysis**: Sweep any moral weight parameter across its range and see how all six charities' cost-effectiveness changes. This makes crossover points visible — for instance, the under-5 weight where NI overtakes MC, or the discount rate at which deworming drops below cash transfers.
+
+## How assumptions affect rankings
+
+A few examples of what you see when you adjust parameters:
+
+**Default rankings (best country per charity, GiveWell Nov 2025 defaults):**
+
+| Rank | Charity | Best country | x benchmark |
+|------|---------|-------------|-------------|
+| 1 | Helen Keller | Niger | 79× |
+| 2 | New Incentives | Sokoto | 39× |
+| 3 | AMF | Guinea | 23× |
+| 4 | Malaria Consortium | Chad | 15× |
+| 5 | GiveDirectly | Mozambique | 4× |
+
+**Double the under-5 moral weight.** All four mortality-focused charities see exactly +100% gains — their value comes entirely from deaths averted, so doubling the weight doubles the result. GiveDirectly gains only +3.4% because its value comes from consumption benefits, not mortality. Rankings don't change.
+
+**Equal moral weights across ages (all set to 100).** This reflects a view that a life saved is equally valuable at any age. It penalizes child-focused charities by 14-16% (since the default under-5 weight of ~116 drops to 100). Helen Keller drops from 79× to 67×. But rankings remain the same.
+
+**Double AMF's cost per child in DRC.** The relationship is perfectly linear: doubling cost halves the x benchmark from 14.6× to 7.3×. This is a more powerful lever for changing *relative* rankings within mortality-focused charities than moral weight changes, which scale all of them equally.
+
+The main takeaway: rankings are remarkably stable to moral weight changes because the top charities all work through similar mortality-reduction mechanisms. Operational cost differences between countries create much more variation than ethical assumptions.
+
+## Limitations
+
+This replicates the *structure* of GiveWell's models but not their full analytical process. Specifically:
+
+- I implement the calculation pipeline but not the reasoning behind parameter choices. GiveWell's adjustments (charity quality, external validity, leverage, funging) encode substantial judgment that this tool takes as given.
+- No uncertainty analysis. The tool shows point estimates only. [Several](https://forum.effectivealtruism.org/posts/4Qdjkf8PatGBsBExK/adding-quantified-uncertainty-to-givewell-s-cost) [excellent](https://forum.effectivealtruism.org/posts/ycLhq4Bmep8ssr4wR/quantifying-uncertainty-in-givewell-s-givedirectly-cost) [posts](https://forum.effectivealtruism.org/posts/Nb2HnrqG4nkjCqmRg/quantifying-uncertainty-in-givewell-cost-effectiveness) have explored what happens when you put distributions around these estimates.
+- The tool currently covers GiveWell's top 6 charities but not newer additions.
+- GiveDirectly and deworming use older parameter extractions.
+
+For donation decisions, use [GiveWell's published estimates](https://www.givewell.org/how-we-work/our-criteria/cost-effectiveness/cost-effectiveness-models).
+
+Source code: [github.com/MaxGhenis/givewell-cea](https://github.com/MaxGhenis/givewell-cea)
 
 ---
 
@@ -97,7 +206,7 @@ Since I already had the Go backend handling the Google Messages protocol, I wrap
 
 The app pairs with your phone the same way messages.google.com does — scan a QR code — and then syncs your full conversation history. The MCP server runs alongside the UI, so Claude can access messages while you browse them yourself.
 
-Everything runs locally. No cloud servers, no accounts to create, no data leaving your machine.
+Everything is stored locally — SQLite database, no cloud sync, no accounts to create. When you use AI tools via the MCP server, only the messages you ask about are sent to your chosen AI provider (e.g. Anthropic's API for Claude). OpenMessage itself never sends your data anywhere.
 
 ## What Claude can do with it
 
@@ -139,13 +248,13 @@ OpenMessage is free and open source. Requires macOS 14.0+ and an Android phone w
 
 Last night, Bad Bunny performed the [first primarily Spanish-language Super Bowl halftime show](https://www.rollingstone.com/music/music-news/bad-bunny-super-bowl-performance-1235513007/) in history. At the end, holding a football that read "Together, we are America," he said "God bless America" and then [named every country and territory in the American continent](https://sports.yahoo.com/nfl/breaking-news/article/bad-bunny-echoes-grammy-message-with-super-bowl-halftime-show-together-we-are-america-015121748.html): Chile, Argentina, Uruguay, Paraguay, Bolivia, Peru, Ecuador, Brazil, Colombia, Venezuela, Panama, Costa Rica, Nicaragua, Honduras, El Salvador, Guatemala, Mexico, Cuba, the Dominican Republic, Jamaica, Haiti, the United States, Canada, and the US territory of Puerto Rico. Performers carried each flag behind him.
 
-The performance reached an estimated [130 million viewers](https://variety.com/2026/music/news/bad-bunny-super-bowl-lady-gaga-real-wedding-ceremony-1236656381/). The gesture drew both [praise](https://sports.yahoo.com/nfl/breaking-news/article/bad-bunny-echoes-grammy-message-with-super-bowl-halftime-show-together-we-are-america-015121748.html) and [criticism](https://www.foxnews.com/opinion/bad-bunnys-polarizing-super-bowl-halftime-show-felt-like-slap-america). Here's what the data shows about immigration from the Americas and current enforcement patterns.
+The performance reached an estimated [130 million viewers](https://variety.com/2026/music/news/bad-bunny-super-bowl-lady-gaga-real-wedding-ceremony-1236656381/). Here's what the data shows about immigration from the Americas and current enforcement patterns.
 
 <iframe src="https://americas-immigration.vercel.app" width="100%" height="1600" style="border: none; border-radius: 14px; margin: 1.5rem 0;" loading="lazy"></iframe>
 
 ## Most US immigrants come from the Americas
 
-**53%** of the roughly 50 million foreign-born people in the United States come from other countries and territories in the American continent — Mexico alone accounts for 22% — according to the [2024 American Community Survey](https://data.census.gov/table/ACSDT1Y2024.B05006). Every country Bad Bunny named on that stage falls within that share.
+**53%** of the 50.2 million foreign-born people in the United States come from other countries and territories in the American continent — Mexico alone accounts for 22.2% — according to the [2024 American Community Survey](https://data.census.gov/table/ACSDT1Y2024.B05006). Every country Bad Bunny named on that stage falls within that share.
 
 ## Spanish is the most common non-English language
 
@@ -157,7 +266,7 @@ At the time of the [first US census in 1790](https://www.census.gov/library/publ
 
 ## ICE enforcement is concentrated in the Americas
 
-While the foreign-born population is 53% from the Americas, ICE enforcement skews more heavily toward those countries.
+While 53% of the foreign-born population is from the Americas, ICE enforcement skews more heavily toward those countries.
 
 [Official ICE data](https://www.ice.gov/statistics) shows that **98-99% of ICE administrative arrests** from FY2021 through Q1 FY2025 involved people from other countries in the Americas. The [UC Berkeley Deportation Data Project](https://deportationdata.org), which publishes record-level FOIA'd arrest data, provides a more granular look: from January 20 to October 15, 2025, **92.6%** of 220,931 arrests involved nationals of countries in the Americas, with Mexico (38.6%), Guatemala (14.1%), and Honduras (11.0%) as the top three countries.
 
@@ -174,7 +283,7 @@ DHS said the operation focused on fraud in the Somali-American community. Minnes
 Key outcomes of the operation:
 
 - **3,000+ people arrested** as of January 19, 2026, per [DHS](https://www.dhs.gov/news/2026/01/19/ice-continues-remove-worst-worst-minneapolis-streets-dhs-law-enforcement-marks-3000)
-- **23 arrestees were from Somalia**, while the operation's stated focus was on Somali fraud ([Britannica](https://www.britannica.com/event/2025-26-Minnesota-ICE-Deployment)). Nationally, 118 of 220,931 ICE arrests (0.05%) from January 20 to October 15, 2025 involved Somali nationals, per the [UC Berkeley Deportation Data Project](https://deportationdata.org)
+- DHS publicly identified a subset of arrestees on its website. Of those, **23 were from Somalia** — while the operation's stated focus was on Somali fraud ([Britannica](https://www.britannica.com/event/2025-26-Minnesota-ICE-Deployment)). A [Washington Times analysis](https://www.washingtontimes.com/news/2026/jan/29/operation-metro-surge-crosses-3500-arrest-mark-heres-whos-getting/) of 170 DHS-released arrests found Mexico and Laos were the top two nationalities, with Somalia third. The full nationality breakdown of all arrests has not been made public
 - About **5% of arrestees had violent criminal records** ([Britannica](https://www.britannica.com/event/2025-26-Minnesota-ICE-Deployment))
 - **Two US citizens were killed** by federal agents during the operation: Renee Good and Alex Pretti ([CBS News](https://www.cbsnews.com/news/minneapolis-trump-immigration-ice-border-patrol-arrests-protests-shootings/))
 - **50,000 people** gathered on January 23 for a statewide general strike in protest ([Britannica](https://www.britannica.com/event/2025-26-Minnesota-ICE-Deployment))
@@ -183,7 +292,7 @@ Key outcomes of the operation:
 
 ## Summary
 
-A majority of foreign-born people in the United States — 53% — come from other countries in the Americas. ICE enforcement is even more concentrated, with over 92% of arrests in 2025 involving nationals of countries in the Western Hemisphere. The largest enforcement operation, in Minnesota, was focused on the Somali community but resulted in over 3,000 arrests across nationalities.
+53% of the 50.2 million foreign-born people in the United States come from other countries in the Americas. ICE enforcement is even more concentrated, with over 92% of arrests in 2025 involving nationals of countries in the Western Hemisphere. The largest enforcement operation, in Minnesota, was focused on the Somali community but resulted in over 3,000 arrests across nationalities.
 
 Bad Bunny's halftime show put a spotlight on the hemispheric connections between the US and the rest of the Americas. The immigration and enforcement data provide context for the scale of those connections.
 
