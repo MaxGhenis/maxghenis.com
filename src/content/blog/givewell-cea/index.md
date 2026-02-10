@@ -47,7 +47,36 @@ A few things stood out:
 
 **Mortality rate definitions vary.** AMF's spreadsheet has both a raw malaria mortality rate and a derived "mortality rate in the absence of nets" rate. The latter accounts for existing net coverage and is the correct input. My first extraction accidentally used the raw rates, which underestimated AMF's cost-effectiveness by roughly 2x for some countries (e.g., DRC: 0.00306 raw vs. 0.00798 in-absence-of-nets).
 
-**New Incentives' counterfactual coverage is the key driver.** The `proportionReachedCounterfactual` parameter (what fraction of children would get vaccinated anyway, without NI's incentives) varies dramatically by state — from 0.58 in Kano to 0.91 in Kaduna. This single parameter creates most of the 4x spread in NI's cost-effectiveness across Nigerian states. Getting this wrong (my first extraction had older values) produces large errors.
+**Counterfactual coverage drives most of the within-charity variation.** Both Helen Keller and New Incentives have a `proportionReachedCounterfactual` parameter — what fraction of people would receive the intervention anyway, without the charity's involvement. The remaining fraction is the charity's incremental impact. These tables show how this parameter (alongside cost, mortality rates, and adjustments) determines each location's cost-effectiveness:
+
+Helen Keller (VAS):
+
+| Country | Existing coverage | Incremental | x benchmark |
+|---------|------------------|-------------|-------------|
+| Niger | 15% | 85% | 79× |
+| DRC | 20% | 80% | 30× |
+| Mali | 21% | 79% | 17× |
+| Madagascar | 33% | 67% | 12× |
+| Guinea | 18% | 82% | 11× |
+| Cameroon | 23% | 78% | 8× |
+| Burkina Faso | 29% | 71% | 7× |
+| Côte d'Ivoire | 40% | 60% | 6× |
+
+New Incentives (vaccinations, Nigerian states):
+
+| State | Would get vaccinated anyway | Incremental | x benchmark |
+|-------|---------------------------|-------------|-------------|
+| Sokoto | 69% | 32% | 39× |
+| Zamfara | 79% | 21% | 31× |
+| Kebbi | 72% | 28% | 29× |
+| Bauchi | 81% | 19% | 20× |
+| Jigawa | 86% | 14% | 18× |
+| Katsina | 81% | 19% | 17× |
+| Kano | 83% | 17% | 13× |
+| Gombe | 88% | 12% | 10× |
+| Kaduna | 84% | 16% | 9× |
+
+The pattern is clear but imperfect — Niger's 85% incremental coverage is similar to Guinea's 82%, yet Niger scores 7x higher because its mortality rate is higher (1.4% vs 1.1%), VAS effect is double (11.1% vs 5.5%), and cost per child is 70% lower. The counterfactual sets the scale; the other parameters determine the multiplier within it.
 
 **Helen Keller's leverage/funging adjustments need careful reading.** In my first pass, the funging adjustment for Burkina Faso extracted as 531.99 instead of -0.431. These values come from separate rows in the spreadsheet that are easy to confuse — a "percentage change" row vs. an "adjusted value" row.
 
