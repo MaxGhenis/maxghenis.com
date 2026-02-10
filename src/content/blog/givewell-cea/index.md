@@ -126,6 +126,80 @@ A few examples of what you see when you adjust parameters:
 
 The main takeaway: rankings are remarkably stable to moral weight changes because the top charities all work through similar mortality-reduction mechanisms. Operational cost differences between countries create much more variation than ethical assumptions.
 
+## Programmatic access
+
+The models are pure TypeScript functions — no UI dependency. Clone the repo and run analyses directly:
+
+```bash
+git clone https://github.com/MaxGhenis/givewell-cea && cd givewell-cea
+bun install
+```
+
+Sweep a parameter:
+
+```typescript
+// save as sweep.ts, run with: bunx tsx sweep.ts
+import { calculateHelenKeller } from "./src/lib/models/helen-keller";
+import { HK_COUNTRY_PARAMS } from "./src/lib/models/countries";
+
+const niger = HK_COUNTRY_PARAMS.niger;
+for (let effect = 0.05; effect <= 0.2; effect += 0.05) {
+  const r = calculateHelenKeller({
+    grantSize: 1_000_000,
+    ...niger,
+    vasEffect: effect,
+  });
+  console.log(`VAS effect ${(effect * 100).toFixed(0)}% → ${r.finalXBenchmark.toFixed(1)}×`);
+}
+// VAS effect 5%  → 35.6×
+// VAS effect 10% → 71.3×
+// VAS effect 15% → 106.9×
+// VAS effect 20% → 142.5×
+```
+
+Rank all charity/country combinations:
+
+```typescript
+// save as rank.ts, run with: bunx tsx rank.ts
+import { calculateHelenKeller } from "./src/lib/models/helen-keller";
+import { calculateAMF } from "./src/lib/models/amf";
+import { calculateNewIncentives } from "./src/lib/models/new-incentives";
+import {
+  HK_COUNTRY_PARAMS, HK_COUNTRY_NAMES,
+  AMF_COUNTRY_PARAMS, AMF_COUNTRY_NAMES,
+  NI_COUNTRY_PARAMS, NI_COUNTRY_NAMES,
+} from "./src/lib/models/countries";
+
+const G = 1_000_000;
+const all = [
+  ...Object.entries(AMF_COUNTRY_PARAMS).map(([k, v]) => ({
+    charity: "AMF", country: AMF_COUNTRY_NAMES[k],
+    xb: calculateAMF({ grantSize: G, ...v }).finalXBenchmark,
+  })),
+  ...Object.entries(HK_COUNTRY_PARAMS).map(([k, v]) => ({
+    charity: "HKI", country: HK_COUNTRY_NAMES[k],
+    xb: calculateHelenKeller({ grantSize: G, ...v }).finalXBenchmark,
+  })),
+  ...Object.entries(NI_COUNTRY_PARAMS).map(([k, v]) => ({
+    charity: "NI", country: NI_COUNTRY_NAMES[k],
+    xb: calculateNewIncentives({ grantSize: G, ...v }).finalXBenchmark,
+  })),
+];
+all.sort((a, b) => b.xb - a.xb);
+for (const r of all.slice(0, 10)) {
+  console.log(`${r.charity.padEnd(4)} ${r.country.padEnd(16)} ${r.xb.toFixed(1)}×`);
+}
+// HKI  Niger            79.1×
+// NI   Sokoto           38.6×
+// NI   Zamfara          31.3×
+// HKI  DRC              29.9×
+// NI   Kebbi            29.0×
+// AMF  Guinea           22.8×
+// ...
+```
+
+Each model function (`calculateAMF`, `calculateHelenKeller`, `calculateNewIncentives`, etc.) takes a flat parameter object and returns all intermediate values, so you can inspect any step of the pipeline.
+
 ## Limitations
 
 This replicates the *structure* of GiveWell's models but not their full analytical process. Specifically:
