@@ -43,6 +43,8 @@ All 46 charity/country combinations operate independently — each country has i
 
 A few things stood out:
 
+**The benchmarks aren't on the same scale.** Each charity's cost-effectiveness is expressed as a multiple: "this charity does X times as much good per dollar as unconditional cash transfers." But the denominator — the value of $1 of cash transfers — differs slightly across GiveWell's spreadsheets. AMF uses 0.00333, while MC and HKI use 0.0033545. The difference is only 0.75%, but it means a charity showing "10×" on one benchmark would show "10.075×" on the other. When comparing across charities, it's worth knowing they're not graded on exactly the same curve.
+
 **Mortality rate definitions vary.** AMF's spreadsheet has both a raw malaria mortality rate and a derived "mortality rate in the absence of nets" rate. The latter accounts for existing net coverage and is the correct input. My first extraction accidentally used the raw rates, which underestimated AMF's cost-effectiveness by roughly 2x for some countries (e.g., DRC: 0.00306 raw vs. 0.00798 in-absence-of-nets).
 
 **Counterfactual coverage drives most of the within-charity variation.** Both Helen Keller and New Incentives have a `proportionReachedCounterfactual` parameter — what fraction of people would receive the intervention anyway, without the charity's involvement. The remaining fraction is the charity's incremental impact. These tables show how this parameter (alongside cost, mortality rates, and adjustments) determines each location's cost-effectiveness:
