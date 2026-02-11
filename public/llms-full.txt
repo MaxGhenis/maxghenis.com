@@ -1,7 +1,7 @@
 # Max Ghenis - Full Content
 
 > This file contains the full text of all blog posts from maxghenis.com, formatted for LLM consumption.
-> Generated: 2026-02-11T00:03:25.106Z
+> Generated: 2026-02-11T00:27:49.403Z
 > See also: /llms.txt for a curated overview
 
 ---
@@ -59,7 +59,7 @@ When someone is close to you, their two eyes occupy noticeably different positio
 
 ## Try it yourself
 
-Toggle between looking at each eye. Drag the face closer or farther to see how distance changes the angular separation.
+Toggle between looking at each eye, and slide the distance to see how angular separation changes.
 
 <EyeConvergence client:load />
 

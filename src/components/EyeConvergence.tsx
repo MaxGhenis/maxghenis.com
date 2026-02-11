@@ -7,8 +7,7 @@ import { useState, useEffect, useMemo } from 'react';
  * a foveal circle shows your ~2° acuity zone, and the unfocused eye
  * blurs proportionally — simulating what you actually experience.
  *
- * Aesthetic: Scientific illustration — warm parchment, detailed iris,
- * peripheral vignette. Like looking through your own eyes at an anatomy plate.
+ * All face dimensions derived from real anatomy (mm).
  */
 
 // Viewport represents ~40° of horizontal visual field
@@ -36,7 +35,6 @@ const C = {
   cardBorder: '#e8dcc8',
   label: '#8b7355',
   focusRing: '#c45a28',
-  vignette: '#1a1008',
 };
 
 function deg(rad: number) {
@@ -44,13 +42,17 @@ function deg(rad: number) {
 }
 
 type FocusTarget = 'left' | 'right';
+type UnitSystem = 'metric' | 'imperial';
 
-/** Detailed eye component (scales with face) */
+/** Detailed eye component with anatomically correct proportions */
 function FaceEye({
   id,
   cx,
   cy,
-  r,
+  rx,
+  ry,
+  irisR,
+  pupilR,
   blurAmount,
   focused,
   onClick,
@@ -58,19 +60,23 @@ function FaceEye({
   id: string;
   cx: number;
   cy: number;
-  r: number; // eye radius, scales with distance
+  rx: number;
+  ry: number;
+  irisR: number;
+  pupilR: number;
   blurAmount: number;
   focused: boolean;
   onClick: () => void;
 }) {
-  const irisR = r * 0.72;
-  const pupilR = r * 0.36;
   const filterId = `blur-${id}`;
   return (
     <g
-      filter={blurAmount > 0.3 ? `url(#${filterId})` : undefined}
+      filter={blurAmount > 0.5 ? `url(#${filterId})` : undefined}
       onClick={onClick}
-      style={{ cursor: 'pointer' }}
+      style={{ cursor: 'pointer', transition: 'filter 0.3s ease' }}
+      role="button"
+      aria-label={`Look at their ${id} eye`}
+      aria-pressed={focused}
     >
       <defs>
         <filter id={filterId}>
@@ -92,26 +98,26 @@ function FaceEye({
       <ellipse
         cx={cx}
         cy={cy}
-        rx={r}
-        ry={r * 0.82}
+        rx={rx}
+        ry={ry}
         fill={`url(#${id}-sclera)`}
         stroke={C.inkFaint}
-        strokeWidth={Math.max(0.5, r * 0.06)}
+        strokeWidth={Math.max(0.3, rx * 0.04)}
       />
       {/* Iris */}
-      <circle cx={cx} cy={cy} r={irisR} fill={`url(#${id}-iris)`} stroke={C.irisOuter} strokeWidth={r * 0.03} />
+      <circle cx={cx} cy={cy} r={irisR} fill={`url(#${id}-iris)`} stroke={C.irisOuter} strokeWidth={Math.max(0.2, irisR * 0.06)} />
       {/* Iris ring */}
-      <circle cx={cx} cy={cy} r={irisR * 0.7} fill="none" stroke={C.irisInner} strokeWidth={r * 0.03} opacity={0.4} />
+      <circle cx={cx} cy={cy} r={irisR * 0.7} fill="none" stroke={C.irisInner} strokeWidth={Math.max(0.2, irisR * 0.06)} opacity={0.4} />
       {/* Pupil */}
       <circle cx={cx} cy={cy} r={pupilR} fill={C.pupil} />
       {/* Catchlight */}
-      <circle cx={cx - r * 0.12} cy={cy - r * 0.15} r={r * 0.1} fill="white" opacity={0.85} />
-      <circle cx={cx + r * 0.08} cy={cy + r * 0.06} r={r * 0.05} fill="white" opacity={0.45} />
+      <circle cx={cx - irisR * 0.2} cy={cy - irisR * 0.25} r={irisR * 0.15} fill="white" opacity={0.85} />
+      <circle cx={cx + irisR * 0.15} cy={cy + irisR * 0.1} r={irisR * 0.08} fill="white" opacity={0.45} />
 
       {/* Focus ring */}
       {focused && (
-        <circle cx={cx} cy={cy} r={r + r * 0.35} fill="none" stroke={C.focusRing} strokeWidth={Math.max(1, r * 0.08)} opacity={0.5}>
-          <animate attributeName="r" values={`${r + r * 0.3};${r + r * 0.5};${r + r * 0.3}`} dur="2.5s" repeatCount="indefinite" />
+        <circle cx={cx} cy={cy} r={rx * 1.35} fill="none" stroke={C.focusRing} strokeWidth={Math.max(0.8, rx * 0.06)} opacity={0.5}>
+          <animate attributeName="r" values={`${rx * 1.3};${rx * 1.5};${rx * 1.3}`} dur="2.5s" repeatCount="indefinite" />
           <animate attributeName="opacity" values="0.5;0.2;0.5" dur="2.5s" repeatCount="indefinite" />
         </circle>
       )}
@@ -119,9 +125,26 @@ function FaceEye({
   );
 }
 
+/** Format distance label */
+function formatDist(cm: number, units: UnitSystem): string {
+  if (units === 'imperial') {
+    const inches = cm / 2.54;
+    if (inches < 24) return `${Math.round(inches)} in`;
+    const feet = inches / 12;
+    return `${feet.toFixed(1)} ft`;
+  }
+  return cm < 100 ? `${Math.round(cm)} cm` : `${(cm / 100).toFixed(1)} m`;
+}
+
+/** Slider range labels */
+function rangeLabels(units: UnitSystem): [string, string] {
+  return units === 'imperial' ? ['6 in', '16 ft'] : ['15 cm', '5 m'];
+}
+
 export default function EyeConvergence() {
   const [focus, setFocus] = useState<FocusTarget>('left');
-  const [distCm, setDistCm] = useState(30); // 15cm–500cm
+  const [distCm, setDistCm] = useState(30);
+  const [units, setUnits] = useState<UnitSystem>('metric');
 
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
@@ -140,27 +163,22 @@ export default function EyeConvergence() {
   const rightEyeX = VW / 2 + ipdPx / 2;
   const eyeY = VH / 2;
 
-  // Eye radius scales inversely with distance (closer = bigger face)
-  // At 30cm, eye ≈ 18px radius. Iris is ~12mm diameter, so angular size = 12/dist(mm) * 180/π
-  const eyeAngularDeg = deg(12 / (distCm * 10)); // 12mm iris at dist mm
-  const eyeR = Math.max(3, eyeAngularDeg * PX_PER_DEG * 1.4); // scale up slightly for sclera
+  // All face dimensions from real anatomy (mm) → angular pixels
+  const mmToPx = (mm: number) => Math.max(0, deg(mm / (distCm * 10)) * PX_PER_DEG);
 
-  // Blur: how far is the unfocused eye from foveal center? (in pixels)
+  const eyeR = Math.max(2, mmToPx(28) / 2);     // palpebral fissure half-width
+  const eyeRy = Math.max(1.5, mmToPx(11) / 2);   // half-height
+  const irisR = Math.max(1, mmToPx(12) / 2);      // iris radius
+  const pupilR = Math.max(0.5, mmToPx(4) / 2);    // pupil radius
+  const faceRx = Math.max(8, mmToPx(140) / 2);    // face half-width
+  const faceRy = Math.max(10, mmToPx(190) / 2);   // face half-height
+
+  // Blur proportional to how far outside the fovea the other eye is
   const focusedX = focus === 'left' ? leftEyeX : rightEyeX;
-  const unfocusedX = focus === 'left' ? rightEyeX : leftEyeX;
-  const unfocusedDist = Math.abs(unfocusedX - focusedX);
-  // Blur stdDeviation proportional to distance from foveal center
-  // Beyond fovea (FOVEA_R ~13px), blur ramps up
-  const blurAmount = Math.max(0, (unfocusedDist - FOVEA_R) * 0.12);
+  const excessDeg = Math.max(0, separation - FOVEA_DEG);
+  const blurAmount = excessDeg * 0.4;
 
-  // Face outline scales with distance
-  const faceRx = ipdPx / 2 + eyeR * 2.5;
-  const faceRy = faceRx * 1.2;
-
-  // Nose bridge
-  const noseW = ipdPx * 0.15;
-
-  // Status
+  // Status text
   const statusText =
     separation > 10
       ? 'Way beyond your fovea (~2\u00b0) \u2014 you must pick one'
@@ -171,8 +189,7 @@ export default function EyeConvergence() {
           : 'Within your fovea \u2014 feels like both at once';
   const statusColor = separation > 5 ? C.accent : separation > 2 ? C.inkLight : '#5a7a3a';
 
-  // Distance label
-  const distLabel = distCm < 100 ? `${Math.round(distCm)} cm` : `${(distCm / 100).toFixed(1)} m`;
+  const [minLabel, maxLabel] = rangeLabels(units);
 
   return (
     <div
@@ -184,7 +201,7 @@ export default function EyeConvergence() {
         transition: 'opacity 0.6s ease, transform 0.6s ease',
       }}
     >
-      {/* Toggle */}
+      {/* Eye toggle */}
       <div style={{ display: 'flex', justifyContent: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
         {(['left', 'right'] as const).map((side) => {
           const active = focus === side;
@@ -192,6 +209,7 @@ export default function EyeConvergence() {
             <button
               key={side}
               onClick={() => setFocus(side)}
+              aria-pressed={active}
               style={{
                 padding: '0.5rem 1.25rem',
                 borderRadius: '100px',
@@ -215,6 +233,8 @@ export default function EyeConvergence() {
       <svg
         viewBox={`0 0 ${VW} ${VH}`}
         width="100%"
+        role="img"
+        aria-label={`Face at ${formatDist(distCm, units)} distance. Angular separation between eyes: ${separation.toFixed(1)} degrees. Currently focusing on their ${focus} eye.`}
         style={{
           borderRadius: '16px',
           border: `1px solid ${C.cardBorder}`,
@@ -222,28 +242,43 @@ export default function EyeConvergence() {
           display: 'block',
         }}
       >
+        <title>Eye convergence visualization</title>
+        <desc>
+          Interactive first-person view showing how the angular separation between someone's eyes changes with distance.
+          At close range, one eye appears blurry because it falls outside your fovea.
+        </desc>
+
         <defs>
-          {/* Background gradient */}
           <radialGradient id="bg-glow" cx="0.5" cy="0.5" r="0.55">
             <stop offset="0%" stopColor="#fefaf2" />
             <stop offset="100%" stopColor={C.parchment} />
           </radialGradient>
-          {/* Peripheral vignette — simulates vision falloff */}
           <radialGradient id="vignette" cx="0.5" cy="0.5" r="0.5">
             <stop offset="50%" stopColor="black" stopOpacity="0" />
             <stop offset="85%" stopColor="black" stopOpacity="0.06" />
             <stop offset="100%" stopColor="black" stopOpacity="0.2" />
           </radialGradient>
-          {/* Grain */}
           <filter id="grain">
             <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch" />
             <feColorMatrix type="saturate" values="0" />
             <feBlend in="SourceGraphic" mode="multiply" />
           </filter>
-          {/* Fovea highlight */}
           <radialGradient id="fovea-glow" cx="0.5" cy="0.5" r="0.5">
             <stop offset="0%" stopColor="white" stopOpacity="0.08" />
             <stop offset="80%" stopColor="white" stopOpacity="0" />
+          </radialGradient>
+          <radialGradient id="skin-grad" cx="0.5" cy="0.4" r="0.55">
+            <stop offset="0%" stopColor="#f5dcc3" />
+            <stop offset="60%" stopColor="#e8c9a8" />
+            <stop offset="100%" stopColor="#d4ad84" />
+          </radialGradient>
+          <radialGradient id="cheek-l" cx="0.5" cy="0.5" r="0.5">
+            <stop offset="0%" stopColor="#e8a090" stopOpacity="0.25" />
+            <stop offset="100%" stopColor="#e8a090" stopOpacity="0" />
+          </radialGradient>
+          <radialGradient id="cheek-r" cx="0.5" cy="0.5" r="0.5">
+            <stop offset="0%" stopColor="#e8a090" stopOpacity="0.25" />
+            <stop offset="100%" stopColor="#e8a090" stopOpacity="0" />
           </radialGradient>
         </defs>
 
@@ -251,117 +286,73 @@ export default function EyeConvergence() {
         <rect width={VW} height={VH} fill="url(#bg-glow)" />
         <rect width={VW} height={VH} filter="url(#grain)" opacity="0.025" />
 
-        {/* Face group — everything scales with distance */}
+        {/* Face */}
         <g>
-          {/* Face outline (subtle) */}
-          {faceRx > 8 && (
-            <ellipse
-              cx={VW / 2}
-              cy={eyeY + faceRy * 0.1}
-              rx={faceRx}
-              ry={faceRy}
-              fill="none"
-              stroke={C.inkFaint}
-              strokeWidth={Math.max(0.5, eyeR * 0.04)}
-              strokeDasharray={`${Math.max(1, eyeR * 0.1)} ${Math.max(2, eyeR * 0.2)}`}
-              opacity={0.3}
-            />
+          {/* Face shape */}
+          {faceRx > 5 && (
+            <>
+              <ellipse
+                cx={VW / 2}
+                cy={eyeY + faceRy * 0.1}
+                rx={faceRx}
+                ry={faceRy}
+                fill="url(#skin-grad)"
+                stroke="#c9a57a"
+                strokeWidth={Math.max(0.3, eyeR * 0.03)}
+                opacity={0.95}
+              />
+              <circle cx={leftEyeX - mmToPx(5)} cy={eyeY + mmToPx(25)} r={mmToPx(20)} fill="url(#cheek-l)" />
+              <circle cx={rightEyeX + mmToPx(5)} cy={eyeY + mmToPx(25)} r={mmToPx(20)} fill="url(#cheek-r)" />
+            </>
           )}
 
-          {/* Nose bridge */}
-          {noseW > 1 && (
-            <line
-              x1={VW / 2}
-              y1={eyeY + eyeR * 0.3}
-              x2={VW / 2}
-              y2={eyeY + eyeR * 2}
-              stroke={C.inkFaint}
-              strokeWidth={Math.max(0.3, noseW * 0.3)}
-              opacity={0.2}
-              strokeLinecap="round"
-            />
+          {/* Nose */}
+          {mmToPx(10) > 1 && (
+            <g opacity={0.4}>
+              <line x1={VW / 2} y1={eyeY + mmToPx(5)} x2={VW / 2} y2={eyeY + mmToPx(32)} stroke="#b8956a" strokeWidth={Math.max(0.3, mmToPx(2))} strokeLinecap="round" />
+              <path d={`M ${VW / 2 - mmToPx(9)} ${eyeY + mmToPx(34)} Q ${VW / 2} ${eyeY + mmToPx(40)} ${VW / 2 + mmToPx(9)} ${eyeY + mmToPx(34)}`} fill="none" stroke="#b8956a" strokeWidth={Math.max(0.3, mmToPx(1.5))} strokeLinecap="round" />
+            </g>
+          )}
+
+          {/* Mouth */}
+          {mmToPx(10) > 1.5 && (
+            <g opacity={0.35}>
+              <path d={`M ${VW / 2 - mmToPx(22)} ${eyeY + mmToPx(55)} Q ${VW / 2 - mmToPx(8)} ${eyeY + mmToPx(50)} ${VW / 2} ${eyeY + mmToPx(53)} Q ${VW / 2 + mmToPx(8)} ${eyeY + mmToPx(50)} ${VW / 2 + mmToPx(22)} ${eyeY + mmToPx(55)}`} fill="none" stroke="#c48870" strokeWidth={Math.max(0.4, mmToPx(1.5))} strokeLinecap="round" />
+              <path d={`M ${VW / 2 - mmToPx(18)} ${eyeY + mmToPx(56)} Q ${VW / 2} ${eyeY + mmToPx(64)} ${VW / 2 + mmToPx(18)} ${eyeY + mmToPx(56)}`} fill="none" stroke="#c48870" strokeWidth={Math.max(0.3, mmToPx(1.2))} strokeLinecap="round" />
+            </g>
           )}
 
           {/* Eyebrows */}
-          {eyeR > 4 && (
+          {mmToPx(5) > 1 && (
             <>
-              <path
-                d={`M ${leftEyeX - eyeR * 1.1} ${eyeY - eyeR * 1.3} Q ${leftEyeX} ${eyeY - eyeR * 1.8} ${leftEyeX + eyeR * 1.1} ${eyeY - eyeR * 1.3}`}
-                fill="none"
-                stroke={C.inkFaint}
-                strokeWidth={Math.max(0.5, eyeR * 0.1)}
-                strokeLinecap="round"
-                opacity={0.35}
-              />
-              <path
-                d={`M ${rightEyeX - eyeR * 1.1} ${eyeY - eyeR * 1.3} Q ${rightEyeX} ${eyeY - eyeR * 1.8} ${rightEyeX + eyeR * 1.1} ${eyeY - eyeR * 1.3}`}
-                fill="none"
-                stroke={C.inkFaint}
-                strokeWidth={Math.max(0.5, eyeR * 0.1)}
-                strokeLinecap="round"
-                opacity={0.35}
-              />
+              <path d={`M ${leftEyeX - mmToPx(17)} ${eyeY - mmToPx(13)} Q ${leftEyeX} ${eyeY - mmToPx(20)} ${leftEyeX + mmToPx(15)} ${eyeY - mmToPx(14)}`} fill="none" stroke="#6b4e35" strokeWidth={Math.max(0.5, mmToPx(2.5))} strokeLinecap="round" opacity={0.45} />
+              <path d={`M ${rightEyeX - mmToPx(15)} ${eyeY - mmToPx(14)} Q ${rightEyeX} ${eyeY - mmToPx(20)} ${rightEyeX + mmToPx(17)} ${eyeY - mmToPx(13)}`} fill="none" stroke="#6b4e35" strokeWidth={Math.max(0.5, mmToPx(2.5))} strokeLinecap="round" opacity={0.45} />
             </>
           )}
 
           {/* Eyes */}
-          <FaceEye
-            id="left"
-            cx={leftEyeX}
-            cy={eyeY}
-            r={eyeR}
-            blurAmount={focus === 'left' ? 0 : blurAmount}
-            focused={focus === 'left'}
-            onClick={() => setFocus('left')}
-          />
-          <FaceEye
-            id="right"
-            cx={rightEyeX}
-            cy={eyeY}
-            r={eyeR}
-            blurAmount={focus === 'right' ? 0 : blurAmount}
-            focused={focus === 'right'}
-            onClick={() => setFocus('right')}
-          />
+          <FaceEye id="left" cx={leftEyeX} cy={eyeY} rx={eyeR} ry={eyeRy} irisR={irisR} pupilR={pupilR} blurAmount={focus === 'left' ? 0 : blurAmount} focused={focus === 'left'} onClick={() => setFocus('left')} />
+          <FaceEye id="right" cx={rightEyeX} cy={eyeY} rx={eyeR} ry={eyeRy} irisR={irisR} pupilR={pupilR} blurAmount={focus === 'right' ? 0 : blurAmount} focused={focus === 'right'} onClick={() => setFocus('right')} />
         </g>
 
-        {/* Foveal circle — fixed size, always centered on focused eye */}
-        <circle
-          cx={focusedX}
-          cy={eyeY}
-          r={FOVEA_R}
-          fill="url(#fovea-glow)"
-          stroke={C.accent}
-          strokeWidth={0.8}
-          strokeDasharray="3 4"
-          opacity={0.5}
-        />
-
-        {/* Fovea label */}
+        {/* Foveal circle */}
+        <circle cx={focusedX} cy={eyeY} r={FOVEA_R} fill="url(#fovea-glow)" stroke={C.accent} strokeWidth={0.8} strokeDasharray="3 4" opacity={0.5} style={{ transition: 'cx 0.3s ease' }} />
         {FOVEA_R > 6 && (
-          <text
-            x={focusedX}
-            y={eyeY - FOVEA_R - 6}
-            textAnchor="middle"
-            fontSize="9"
-            fill={C.accent}
-            opacity={0.6}
-            fontStyle="italic"
-          >
+          <text x={focusedX} y={eyeY - FOVEA_R - 6} textAnchor="middle" fontSize="9" fill={C.accent} opacity={0.6} fontStyle="italic" style={{ transition: 'x 0.3s ease' }}>
             fovea (~2°)
           </text>
         )}
 
-        {/* Peripheral vignette overlay */}
+        {/* Peripheral vignette */}
         <rect width={VW} height={VH} fill="url(#vignette)" />
       </svg>
 
       {/* Distance slider */}
       <div style={{ marginTop: '1rem', padding: '0 0.25rem' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.7rem', color: C.label, marginBottom: '0.3rem' }}>
-          <span>15 cm</span>
+          <span>{minLabel}</span>
           <span style={{ fontStyle: 'italic' }}>distance</span>
-          <span>5 m</span>
+          <span>{maxLabel}</span>
         </div>
         <input
           type="range"
@@ -369,6 +360,11 @@ export default function EyeConvergence() {
           max={100}
           value={distToSlider(distCm)}
           onChange={(e) => setDistCm(sliderToDist(Number(e.target.value)))}
+          aria-label={`Distance: ${formatDist(distCm, units)}`}
+          aria-valuemin={15}
+          aria-valuemax={500}
+          aria-valuenow={Math.round(distCm)}
+          aria-valuetext={formatDist(distCm, units)}
           style={{
             width: '100%',
             height: '6px',
@@ -388,9 +384,27 @@ export default function EyeConvergence() {
           <div style={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: C.label, marginBottom: '0.25rem' }}>
             Distance
           </div>
-          <div style={{ fontSize: '1.5rem', fontWeight: 700, color: C.ink, fontVariantNumeric: 'tabular-nums' }}>
-            {distLabel}
+          <div style={{ fontSize: '1.5rem', fontWeight: 700, color: C.ink, fontVariantNumeric: 'tabular-nums', transition: 'all 0.15s ease' }}>
+            {formatDist(distCm, units)}
           </div>
+          <button
+            onClick={() => setUnits(u => u === 'metric' ? 'imperial' : 'metric')}
+            aria-label={`Switch to ${units === 'metric' ? 'imperial' : 'metric'} units`}
+            style={{
+              marginTop: '0.2rem',
+              padding: 0,
+              border: 'none',
+              background: 'none',
+              color: C.label,
+              fontSize: '0.65rem',
+              cursor: 'pointer',
+              textDecoration: 'underline',
+              textDecorationStyle: 'dotted' as const,
+              fontFamily: 'inherit',
+            }}
+          >
+            {units === 'metric' ? 'show ft/in' : 'show cm/m'}
+          </button>
         </div>
         <div style={{ padding: '0.75rem', borderRadius: '12px', border: `1px solid ${C.cardBorder}`, background: C.parchment, textAlign: 'center' }}>
           <div style={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: C.label, marginBottom: '0.25rem' }}>
@@ -401,7 +415,7 @@ export default function EyeConvergence() {
           </div>
         </div>
       </div>
-      <div style={{ textAlign: 'center', fontSize: '0.8rem', color: C.inkLight, marginTop: '0.4rem' }}>
+      <div style={{ textAlign: 'center', fontSize: '0.8rem', color: C.inkLight, marginTop: '0.4rem', transition: 'color 0.3s ease' }}>
         {statusText}
       </div>
     </div>
