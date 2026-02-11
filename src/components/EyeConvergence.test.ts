@@ -2,7 +2,7 @@ import { describe, expect, test } from 'vitest';
 
 // Extract the pure math functions for testing
 const IPD_CM = 6.3;
-const FOVEA_DEG = 2;
+const FOVEA_DEG = 1;
 
 function deg(rad: number) {
   return (rad * 180) / Math.PI;
@@ -49,9 +49,10 @@ describe('angular separation', () => {
     expect(sep).toBeLessThan(5);
   });
 
-  test('300cm should be ~1.2° (within fovea)', () => {
+  test('300cm should be ~1.2° (just outside fovea)', () => {
     const sep = angularSeparation(300);
     expect(sep).toBeCloseTo(1.2, 0);
+    expect(sep).toBeGreaterThan(1);
     expect(sep).toBeLessThan(2);
   });
 });
@@ -73,11 +74,13 @@ describe('blur amount', () => {
     expect(b).toBeLessThan(1.5);
   });
 
-  test('at 300cm, blur should be zero (within fovea)', () => {
-    expect(blurAmount(300)).toBe(0);
+  test('at 300cm, blur should be near-zero (barely outside fovea)', () => {
+    const b = blurAmount(300);
+    expect(b).toBeGreaterThanOrEqual(0);
+    expect(b).toBeLessThan(0.2);
   });
 
-  test('at 500cm, blur should be zero', () => {
+  test('at 500cm, blur should be zero (within fovea)', () => {
     expect(blurAmount(500)).toBe(0);
   });
 
