@@ -37,13 +37,13 @@ The six charities each have their own structure:
 - **GiveDirectly**: Consumption increase valued directly (no mortality pathway)
 - **Deworm the World**: Long-run earnings effects of deworming, valued via ln(consumption)
 
-All 46 charity/country combinations operate independently — each country has its own cost per person, mortality rate, adjustment factors, etc.
+All 51 charity/country combinations operate independently — each country has its own cost per person, mortality rate, adjustment factors, etc.
 
 ## Observations from the replication
 
 A few things stood out:
 
-**The benchmarks aren't on the same scale.** Each charity's cost-effectiveness is expressed as a multiple: "this charity does X times as much good per dollar as unconditional cash transfers." But the denominator — the value of $1 of cash transfers — differs slightly across GiveWell's spreadsheets. AMF uses 0.00333, while MC and HKI use 0.0033545. The difference is only 0.75%, but it means a charity showing "10×" on one benchmark would show "10.075×" on the other. When comparing across charities, it's worth knowing they're not graded on exactly the same curve.
+**The benchmarks aren't on the same scale.** Each charity's cost-effectiveness is expressed as a multiple of "how much good $1 of cash transfers does." But this denominator differs slightly across GiveWell's spreadsheets — AMF uses 0.00333, MC and HKI use 0.0033545, and GiveDirectly uses 0.003. This reflects different calibration snapshots rather than an error: different spreadsheets were built at different times with different moral weight assumptions baked in. GiveWell's allocation committee doesn't mechanically compare these multiples across spreadsheets, but for a tool that displays them side by side, it's worth knowing the denominators aren't identical.
 
 **Mortality rate definitions vary.** AMF's spreadsheet has both a raw malaria mortality rate and a derived "mortality rate in the absence of nets" rate. The latter accounts for existing net coverage and is the correct input. My first extraction accidentally used the raw rates, which underestimated AMF's cost-effectiveness by roughly 2x for some countries (e.g., DRC: 0.00306 raw vs. 0.00798 in-absence-of-nets).
 
@@ -51,8 +51,8 @@ A few things stood out:
 
 Helen Keller (VAS):
 
-| Country | Existing coverage | Incremental | x benchmark |
-|---------|------------------|-------------|-------------|
+| Country | Would receive VAS anyway | Incremental | x benchmark |
+|---------|-------------------------|-------------|-------------|
 | Niger | 15% | 85% | 79× |
 | DRC | 20% | 80% | 30× |
 | Mali | 21% | 79% | 17× |
@@ -66,15 +66,15 @@ New Incentives (vaccinations, Nigerian states):
 
 | State | Would get vaccinated anyway | Incremental | x benchmark |
 |-------|---------------------------|-------------|-------------|
-| Sokoto | 69% | 32% | 39× |
-| Zamfara | 79% | 21% | 31× |
-| Kebbi | 72% | 28% | 29× |
-| Bauchi | 81% | 19% | 20× |
-| Jigawa | 86% | 14% | 18× |
-| Katsina | 81% | 19% | 17× |
-| Kano | 83% | 17% | 13× |
-| Gombe | 88% | 12% | 10× |
-| Kaduna | 84% | 16% | 9× |
+| Sokoto | 68.5% | 31.5% | 39× |
+| Zamfara | 79.4% | 20.6% | 31× |
+| Kebbi | 71.9% | 28.1% | 29× |
+| Bauchi | 81.5% | 18.5% | 20× |
+| Jigawa | 85.8% | 14.2% | 18× |
+| Katsina | 81.0% | 19.0% | 17× |
+| Kano | 83.2% | 16.8% | 13× |
+| Gombe | 88.0% | 12.0% | 10× |
+| Kaduna | 84.2% | 15.8% | 9× |
 
 The pattern is clear but imperfect — Niger's 85% incremental coverage is similar to Guinea's 82%, yet Niger scores 7x higher because its mortality rate is higher (1.4% vs 1.1%), VAS effect is double (11.1% vs 5.5%), and cost per child is 70% lower. The counterfactual sets the scale; the other parameters determine the multiplier within it.
 
@@ -82,7 +82,7 @@ The pattern is clear but imperfect — Niger's 85% incremental coverage is simil
 
 ## Verification
 
-Parameters are extracted from GiveWell's November 2025 CEA spreadsheets ([AMF](https://docs.google.com/spreadsheets/d/1VEtie59TgRvZSEVjfG7qcKBKcQyJn8zO91Lau9YNqXc), [MC](https://docs.google.com/spreadsheets/d/1De3ZnT2Co5ts6Ccm9guWl8Ew31grzrZZwGfPtp-_t50), [HKI](https://docs.google.com/spreadsheets/d/1L6D1mf8AMKoUHrN0gBGiJjtstic4RvqLZCxXZ99kdnA), [NI](https://docs.google.com/spreadsheets/d/1mTKQuZRyVMie-K_KUppeCq7eBbXX15Of3jV7uo3z-PM)). I verified all 46 charity/country final cost-effectiveness multiples against the spreadsheets:
+Parameters are extracted from GiveWell's November 2025 CEA spreadsheets ([AMF](https://docs.google.com/spreadsheets/d/1VEtie59TgRvZSEVjfG7qcKBKcQyJn8zO91Lau9YNqXc), [MC](https://docs.google.com/spreadsheets/d/1De3ZnT2Co5ts6Ccm9guWl8Ew31grzrZZwGfPtp-_t50), [HKI](https://docs.google.com/spreadsheets/d/1L6D1mf8AMKoUHrN0gBGiJjtstic4RvqLZCxXZ99kdnA), [NI](https://docs.google.com/spreadsheets/d/1mTKQuZRyVMie-K_KUppeCq7eBbXX15Of3jV7uo3z-PM)). I verified 46 of the 51 charity/country final cost-effectiveness multiples against the spreadsheets (GiveDirectly excluded — see Limitations):
 
 | Charity | Countries | Max difference |
 |---------|-----------|---------------|
@@ -113,10 +113,13 @@ A few examples of what you see when you adjust parameters:
 | Rank | Charity | Best country | x benchmark |
 |------|---------|-------------|-------------|
 | 1 | Helen Keller | Niger | 79× |
-| 2 | New Incentives | Sokoto | 39× |
-| 3 | AMF | Guinea | 23× |
-| 4 | Malaria Consortium | Chad | 15× |
-| 5 | GiveDirectly | Mozambique | 4× |
+| 2 | Deworm the World | Kenya | 35× |
+| 3 | New Incentives | Sokoto | 39× |
+| 4 | AMF | Guinea | 23× |
+| 5 | Malaria Consortium | Chad | 15× |
+| 6 | GiveDirectly* | Mozambique | 4× |
+
+*GiveDirectly uses a simplified model with older parameters — see Limitations.
 
 **Double the under-5 moral weight.** All four mortality-focused charities see exactly +100% gains — their value comes entirely from deaths averted, so doubling the weight doubles the result. GiveDirectly gains only +3.4% because its value comes from consumption benefits, not mortality. Rankings don't change.
 
@@ -124,7 +127,7 @@ A few examples of what you see when you adjust parameters:
 
 **Double AMF's cost per child in DRC.** The relationship is perfectly linear: doubling cost halves the x benchmark from 14.6× to 7.3×. This is a more powerful lever for changing *relative* rankings within mortality-focused charities than moral weight changes, which scale all of them equally.
 
-The main takeaway: rankings are remarkably stable to moral weight changes because the top charities all work through similar mortality-reduction mechanisms. Operational cost differences between countries create much more variation than ethical assumptions.
+This is predictable in hindsight — when most top charities prevent child deaths, changing the weight on child deaths scales them all in the same direction. The more useful question is: what *does* break the rankings? Operational cost differences between countries create far more variation than moral weight changes. The tool lets you find the specific crossover points where, say, doubling a cost parameter in one country moves it below another charity entirely.
 
 ## Programmatic access
 
@@ -204,10 +207,10 @@ Each model function (`calculateAMF`, `calculateHelenKeller`, `calculateNewIncent
 
 This replicates the *structure* of GiveWell's models but not their full analytical process. Specifically:
 
-- I implement the calculation pipeline but not the reasoning behind parameter choices. GiveWell's adjustments (charity quality, external validity, leverage, funging) encode substantial judgment that this tool takes as given.
+- I implement the calculation pipeline but not the reasoning behind parameter choices. GiveWell's adjustments (charity quality, external validity, leverage, funging) encode substantial judgment that this tool takes as given. The parameters themselves — particularly the adjustment factors — represent years of investigation, site visits, literature reviews, and internal debate. This tool lets you see the arithmetic, but the arithmetic was never the hard part.
 - No uncertainty analysis. The tool shows point estimates only. [Several](https://forum.effectivealtruism.org/posts/4Qdjkf8PatGBsBExK/adding-quantified-uncertainty-to-givewell-s-cost) [excellent](https://forum.effectivealtruism.org/posts/ycLhq4Bmep8ssr4wR/quantifying-uncertainty-in-givewell-s-givedirectly-cost) [posts](https://forum.effectivealtruism.org/posts/Nb2HnrqG4nkjCqmRg/quantifying-uncertainty-in-givewell-cost-effectiveness) have explored what happens when you put distributions around these estimates.
+- The GiveDirectly model is a simplified approximation based on an older spreadsheet and blog post, not a direct replication of GiveWell's current model. Its parameters (spillover effects, mortality effects, consumption persistence) are identical across all five countries, unlike GiveWell's country-differentiated approach.
 - The tool currently covers GiveWell's top 6 charities but not newer additions.
-- GiveDirectly and deworming use older parameter extractions.
 
 For donation decisions, use [GiveWell's published estimates](https://www.givewell.org/how-we-work/our-criteria/cost-effectiveness/cost-effectiveness-models).
 
