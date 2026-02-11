@@ -1,40 +1,77 @@
 # Max Ghenis - Full Content
 
 > This file contains the full text of all blog posts from maxghenis.com, formatted for LLM consumption.
-> Generated: 2026-02-10T14:48:59.089Z
+> Generated: 2026-02-11T00:03:25.106Z
 > See also: /llms.txt for a curated overview
 
 ---
 
 ## Table of Contents
 
-1. [Replicating GiveWell''s cost-effectiveness analysis in code: an interactive calculator and what I learned](/blog/givewell-cea/)
-2. [OpenMessage: How I built a macOS Google Messages client to give Claude my texts](/blog/openmessage/)
-3. [Where US immigrants come from, and where ICE focuses enforcement](/blog/bad-bunny-immigration-enforcement/)
-4. [I used Claude Code to recertify for SNAP](/blog/snap-recertification-claude-code/)
-5. [Scrollywood: Smooth scroll video recording for the web](/blog/scrollywood/)
-6. [The adolescence of policy simulation: On Amodei and economic disruption](/blog/amodei-adolescence-policyengine/)
-7. [opencollective-py: Manage OpenCollective from your terminal or Claude Code](/blog/opencollective-py/)
-8. [From IDE to AI orchestration: The end of code-first development](/blog/ide-to-ai-orchestration/)
-9. [TerminalGrid: Turn VS Code into a Claude Code superterminal](/blog/terminalgrid/)
-10. [RAMBar: A macOS menu bar RAM monitor for developers](/blog/rambar/)
-11. [How to Use MDX for Interactive Posts](/blog/using-mdx/)
-12. [VAT thresholds, revenues, and the role of counterfactuals](/blog/substack/vat-thresholds/)
-13. [AI models favor Cuomo over Mamdani on NYC housing production](/blog/substack/ai-models-nyc-housing/)
-14. [My 2024 in code: Personal projects and AI tools](/blog/substack/my-2024-in-code/)
-15. [Why I'm a neoliberal](/blog/substack/why-im-a-neoliberal/)
-16. [In appointing their newest member, the Ventura City Council only pretended to care about housing](/blog/medium/in-appointing-their-newest-member-the-ventura-city/)
-17. [If you earned more in 2019 than 2018, don't file your 2019 taxes yet! Otherwise, file ASAP!](/blog/medium/if-you-earned-more-in-2019-than-2018-dont-file-you/)
-18. [Why I’ve taken the Giving What We Can pledge](/blog/medium/why-ive-taken-the-giving-what-we-can-pledge/)
-19. [Ventura County must end its unsheltered homelessness](/blog/medium/ventura-county-must-end-its-unsheltered-homelessne/)
-20. [Warren’s wealth tax would raise less than she claims — even using her economists’ own assumptions](/blog/medium/warrens-wealth-tax-would-raise-less-than-she-claim/)
-21. [Andrew Yang's troubling Tucker Carlson interview](/blog/medium/andrew-yangs-troubling-tucker-carlson-interview/)
-22. [Quantile regression, from linear models to trees to deep learning](/blog/medium/quantile-regression-from-linear-models-to-trees-to/)
-23. [We should replace the Child Tax Credit with a universal child benefit](/blog/medium/we-should-replace-the-child-tax-credit-with-a-univ/)
-24. [The case for a wonky basic income plan](/blog/medium/the-case-for-a-wonky-basic-income-plan/)
-25. [Reddit featured a misleading headline on education secretary nominee Betsy DeVos](/blog/medium/reddit-featured-a-misleading-headline-on-education/)
-26. [Uber's tipping settlement will reduce earnings of African-American drivers](/blog/medium/ubers-tipping-settlement-will-reduce-earnings-of-a/)
-27. [If we can afford our current welfare system, we can afford basic income](/blog/medium/if-we-can-afford-our-current-welfare-system-we-can/)
+1. [Why you can''t make double eye contact](/blog/double-eye-contact/)
+2. [Replicating GiveWell''s cost-effectiveness analysis in code: an interactive calculator and what I learned](/blog/givewell-cea/)
+3. [OpenMessage: How I built a macOS Google Messages client to give Claude my texts](/blog/openmessage/)
+4. [Where US immigrants come from, and where ICE focuses enforcement](/blog/bad-bunny-immigration-enforcement/)
+5. [I used Claude Code to recertify for SNAP](/blog/snap-recertification-claude-code/)
+6. [Scrollywood: Smooth scroll video recording for the web](/blog/scrollywood/)
+7. [The adolescence of policy simulation: On Amodei and economic disruption](/blog/amodei-adolescence-policyengine/)
+8. [opencollective-py: Manage OpenCollective from your terminal or Claude Code](/blog/opencollective-py/)
+9. [From IDE to AI orchestration: The end of code-first development](/blog/ide-to-ai-orchestration/)
+10. [TerminalGrid: Turn VS Code into a Claude Code superterminal](/blog/terminalgrid/)
+11. [RAMBar: A macOS menu bar RAM monitor for developers](/blog/rambar/)
+12. [How to Use MDX for Interactive Posts](/blog/using-mdx/)
+13. [VAT thresholds, revenues, and the role of counterfactuals](/blog/substack/vat-thresholds/)
+14. [AI models favor Cuomo over Mamdani on NYC housing production](/blog/substack/ai-models-nyc-housing/)
+15. [My 2024 in code: Personal projects and AI tools](/blog/substack/my-2024-in-code/)
+16. [Why I'm a neoliberal](/blog/substack/why-im-a-neoliberal/)
+17. [In appointing their newest member, the Ventura City Council only pretended to care about housing](/blog/medium/in-appointing-their-newest-member-the-ventura-city/)
+18. [If you earned more in 2019 than 2018, don't file your 2019 taxes yet! Otherwise, file ASAP!](/blog/medium/if-you-earned-more-in-2019-than-2018-dont-file-you/)
+19. [Why I’ve taken the Giving What We Can pledge](/blog/medium/why-ive-taken-the-giving-what-we-can-pledge/)
+20. [Ventura County must end its unsheltered homelessness](/blog/medium/ventura-county-must-end-its-unsheltered-homelessne/)
+21. [Warren’s wealth tax would raise less than she claims — even using her economists’ own assumptions](/blog/medium/warrens-wealth-tax-would-raise-less-than-she-claim/)
+22. [Andrew Yang's troubling Tucker Carlson interview](/blog/medium/andrew-yangs-troubling-tucker-carlson-interview/)
+23. [Quantile regression, from linear models to trees to deep learning](/blog/medium/quantile-regression-from-linear-models-to-trees-to/)
+24. [We should replace the Child Tax Credit with a universal child benefit](/blog/medium/we-should-replace-the-child-tax-credit-with-a-univ/)
+25. [The case for a wonky basic income plan](/blog/medium/the-case-for-a-wonky-basic-income-plan/)
+26. [Reddit featured a misleading headline on education secretary nominee Betsy DeVos](/blog/medium/reddit-featured-a-misleading-headline-on-education/)
+27. [Uber's tipping settlement will reduce earnings of African-American drivers](/blog/medium/ubers-tipping-settlement-will-reduce-earnings-of-a/)
+28. [If we can afford our current welfare system, we can afford basic income](/blog/medium/if-we-can-afford-our-current-welfare-system-we-can/)
+
+---
+
+## Why you can''t make double eye contact
+
+**URL:** https://maxghenis.com/blog/double-eye-contact/
+**Published:** Feb 10 2026
+**Description:** Your eyes can only converge on a single point. Up close, that means you have to pick one of the other person''s eyes to look at.
+
+import EyeConvergence from '../../components/EyeConvergence.tsx';
+
+Have you ever noticed that when you're face-to-face with someone, you can't actually look at both of their eyes at the same time? You're always picking one — left or right — and subtly switching between them.
+
+This isn't a limitation of attention or focus. It's geometry.
+
+## One convergence point
+
+Your two eyes can only aim at a single point in space at any given moment. This is called [**vergence**](https://academic.oup.com/book/3243/chapter/144221776) — the inward rotation of both eyes to fixate on the same target. It's what gives you depth perception, and it's physically limited to one target at a time.
+
+When someone is close to you, their two eyes occupy noticeably different positions in your visual field. The angular separation between them is large enough that you can't fit both into the single point your eyes converge on. So you pick one.
+
+## Try it yourself
+
+Toggle between looking at each eye. Drag the face closer or farther to see how distance changes the angular separation.
+
+<EyeConvergence client:load />
+
+When the face is close, the angular separation between their eyes is large — well beyond the [~2° of your fovea](https://www.ncbi.nlm.nih.gov/books/NBK11556/) (the high-resolution center of your vision). You're clearly choosing one eye.
+
+As the face moves farther away, both eyes fall into a tighter angular range. Eventually they're so close together in your visual field that it _feels_ like you're looking at both — even though you're still converging on a single point.
+
+## Why it doesn't matter at a distance
+
+Human interpupillary distance [averages about 63mm](https://pmc.ncbi.nlm.nih.gov/articles/PMC3520592/). At 1 meter away, that subtends roughly 3.6°. At 3 meters, it's about 1.2° — well within foveal range. This is why you don't notice the effect in normal conversation distance, but you absolutely feel it during an intimate close-up.
+
+Next time you're close to someone, pay attention — you'll catch yourself switching between their eyes. Now you know why.
 
 ---
 
@@ -50,9 +87,13 @@ This post describes the replication, what I learned about GiveWell's methodology
 
 ## Motivation
 
-Others have done excellent work examining specific parts of GiveWell's CEA — [Joel's critical review](https://forum.effectivealtruism.org/posts/6dtwkwBrHBGtc3xes/a-critical-review-of-givewell-s-2022-cost-effectiveness) of model architecture, [GiveWell's own uncertainty work](https://forum.effectivealtruism.org/posts/Nb2HnrqG4nkjCqmRg/quantifying-uncertainty-in-givewell-cost-effectiveness), and several pieces on [deworming](https://forum.effectivealtruism.org/posts/MKiqGvijAXfcBHCYJ/deworming-and-decay-replicating-givewell-s-cost) and [AMF](https://forum.effectivealtruism.org/posts/4Qdjkf8PatGBsBExK/adding-quantified-uncertainty-to-givewell-s-cost) uncertainty. But I couldn't find a tool that implements all six charities together and makes it easy to compare them while adjusting assumptions.
+Others have done excellent work examining specific parts of GiveWell's CEA — [Froolow's critical review](https://forum.effectivealtruism.org/posts/6dtwkwBrHBGtc3xes/a-critical-review-of-givewell-s-2022-cost-effectiveness) of model architecture, [Nolan, Rokebrand, and Rao's uncertainty quantification](https://forum.effectivealtruism.org/posts/Nb2HnrqG4nkjCqmRg/quantifying-uncertainty-in-givewell-cost-effectiveness), and several pieces on [deworming](https://forum.effectivealtruism.org/posts/MKiqGvijAXfcBHCYJ/deworming-and-decay-replicating-givewell-s-cost) and [AMF](https://forum.effectivealtruism.org/posts/4Qdjkf8PatGBsBExK/adding-quantified-uncertainty-to-givewell-s-cost) uncertainty. But I couldn't find a tool that implements all six charities together and makes it easy to compare them while adjusting assumptions.
 
-GiveWell's spreadsheets are powerful but hard to explore casually. Each charity has its own multi-tab workbook. Changing a moral weight means editing cells across multiple sheets and comparing results manually. I wanted something where you could adjust one slider and immediately see how all six charities re-rank.
+GiveWell's spreadsheets are powerful but hard to explore casually. Each charity has its own multi-tab workbook with dozens of sheets, specialized terminology, and cross-references between cells:
+
+![GiveWell's AMF cost-effectiveness spreadsheet showing multiple sheet tabs and the key sheet with terminology definitions](./givewell-spreadsheet.png)
+
+Changing a moral weight means editing cells across multiple sheets and comparing results manually. I wanted something where you could adjust one slider and immediately see how all six charities re-rank.
 
 ## What the model covers
 
@@ -81,7 +122,36 @@ A few things stood out:
 
 **Mortality rate definitions vary.** AMF's spreadsheet has both a raw malaria mortality rate and a derived "mortality rate in the absence of nets" rate. The latter accounts for existing net coverage and is the correct input. My first extraction accidentally used the raw rates, which underestimated AMF's cost-effectiveness by roughly 2x for some countries (e.g., DRC: 0.00306 raw vs. 0.00798 in-absence-of-nets).
 
-**New Incentives' counterfactual coverage is the key driver.** The `proportionReachedCounterfactual` parameter (what fraction of children would get vaccinated anyway, without NI's incentives) varies dramatically by state — from 0.58 in Kano to 0.91 in Kaduna. This single parameter creates most of the 4x spread in NI's cost-effectiveness across Nigerian states. Getting this wrong (my first extraction had older values) produces large errors.
+**Counterfactual coverage drives most of the within-charity variation.** Both Helen Keller and New Incentives have a `proportionReachedCounterfactual` parameter — what fraction of people would receive the intervention anyway, without the charity's involvement. The remaining fraction is the charity's incremental impact. These tables show how this parameter (alongside cost, mortality rates, and adjustments) determines each location's cost-effectiveness:
+
+Helen Keller (VAS):
+
+| Country | Existing coverage | Incremental | x benchmark |
+|---------|------------------|-------------|-------------|
+| Niger | 15% | 85% | 79× |
+| DRC | 20% | 80% | 30× |
+| Mali | 21% | 79% | 17× |
+| Madagascar | 33% | 67% | 12× |
+| Guinea | 18% | 82% | 11× |
+| Cameroon | 23% | 78% | 8× |
+| Burkina Faso | 29% | 71% | 7× |
+| Côte d'Ivoire | 40% | 60% | 6× |
+
+New Incentives (vaccinations, Nigerian states):
+
+| State | Would get vaccinated anyway | Incremental | x benchmark |
+|-------|---------------------------|-------------|-------------|
+| Sokoto | 69% | 32% | 39× |
+| Zamfara | 79% | 21% | 31× |
+| Kebbi | 72% | 28% | 29× |
+| Bauchi | 81% | 19% | 20× |
+| Jigawa | 86% | 14% | 18× |
+| Katsina | 81% | 19% | 17× |
+| Kano | 83% | 17% | 13× |
+| Gombe | 88% | 12% | 10× |
+| Kaduna | 84% | 16% | 9× |
+
+The pattern is clear but imperfect — Niger's 85% incremental coverage is similar to Guinea's 82%, yet Niger scores 7x higher because its mortality rate is higher (1.4% vs 1.1%), VAS effect is double (11.1% vs 5.5%), and cost per child is 70% lower. The counterfactual sets the scale; the other parameters determine the multiplier within it.
 
 **Helen Keller's leverage/funging adjustments need careful reading.** In my first pass, the funging adjustment for Burkina Faso extracted as 531.99 instead of -0.431. These values come from separate rows in the spreadsheet that are easy to confuse — a "percentage change" row vs. an "adjusted value" row.
 
@@ -130,6 +200,80 @@ A few examples of what you see when you adjust parameters:
 **Double AMF's cost per child in DRC.** The relationship is perfectly linear: doubling cost halves the x benchmark from 14.6× to 7.3×. This is a more powerful lever for changing *relative* rankings within mortality-focused charities than moral weight changes, which scale all of them equally.
 
 The main takeaway: rankings are remarkably stable to moral weight changes because the top charities all work through similar mortality-reduction mechanisms. Operational cost differences between countries create much more variation than ethical assumptions.
+
+## Programmatic access
+
+The models are pure TypeScript functions — no UI dependency. Clone the repo and run analyses directly:
+
+```bash
+git clone https://github.com/MaxGhenis/givewell-cea && cd givewell-cea
+bun install
+```
+
+Sweep a parameter:
+
+```typescript
+// save as sweep.ts, run with: bunx tsx sweep.ts
+import { calculateHelenKeller } from "./src/lib/models/helen-keller";
+import { HK_COUNTRY_PARAMS } from "./src/lib/models/countries";
+
+const niger = HK_COUNTRY_PARAMS.niger;
+for (let effect = 0.05; effect <= 0.2; effect += 0.05) {
+  const r = calculateHelenKeller({
+    grantSize: 1_000_000,
+    ...niger,
+    vasEffect: effect,
+  });
+  console.log(`VAS effect ${(effect * 100).toFixed(0)}% → ${r.finalXBenchmark.toFixed(1)}×`);
+}
+// VAS effect 5%  → 35.6×
+// VAS effect 10% → 71.3×
+// VAS effect 15% → 106.9×
+// VAS effect 20% → 142.5×
+```
+
+Rank all charity/country combinations:
+
+```typescript
+// save as rank.ts, run with: bunx tsx rank.ts
+import { calculateHelenKeller } from "./src/lib/models/helen-keller";
+import { calculateAMF } from "./src/lib/models/amf";
+import { calculateNewIncentives } from "./src/lib/models/new-incentives";
+import {
+  HK_COUNTRY_PARAMS, HK_COUNTRY_NAMES,
+  AMF_COUNTRY_PARAMS, AMF_COUNTRY_NAMES,
+  NI_COUNTRY_PARAMS, NI_COUNTRY_NAMES,
+} from "./src/lib/models/countries";
+
+const G = 1_000_000;
+const all = [
+  ...Object.entries(AMF_COUNTRY_PARAMS).map(([k, v]) => ({
+    charity: "AMF", country: AMF_COUNTRY_NAMES[k],
+    xb: calculateAMF({ grantSize: G, ...v }).finalXBenchmark,
+  })),
+  ...Object.entries(HK_COUNTRY_PARAMS).map(([k, v]) => ({
+    charity: "HKI", country: HK_COUNTRY_NAMES[k],
+    xb: calculateHelenKeller({ grantSize: G, ...v }).finalXBenchmark,
+  })),
+  ...Object.entries(NI_COUNTRY_PARAMS).map(([k, v]) => ({
+    charity: "NI", country: NI_COUNTRY_NAMES[k],
+    xb: calculateNewIncentives({ grantSize: G, ...v }).finalXBenchmark,
+  })),
+];
+all.sort((a, b) => b.xb - a.xb);
+for (const r of all.slice(0, 10)) {
+  console.log(`${r.charity.padEnd(4)} ${r.country.padEnd(16)} ${r.xb.toFixed(1)}×`);
+}
+// HKI  Niger            79.1×
+// NI   Sokoto           38.6×
+// NI   Zamfara          31.3×
+// HKI  DRC              29.9×
+// NI   Kebbi            29.0×
+// AMF  Guinea           22.8×
+// ...
+```
+
+Each model function (`calculateAMF`, `calculateHelenKeller`, `calculateNewIncentives`, etc.) takes a flat parameter object and returns all intermediate values, so you can inspect any step of the pipeline.
 
 ## Limitations
 
