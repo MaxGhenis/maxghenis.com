@@ -43,8 +43,6 @@ All 46 charity/country combinations operate independently — each country has i
 
 A few things stood out:
 
-**The benchmark matters more than you'd think.** AMF uses a benchmark of 0.00333 units of value per dollar, while MC and HKI use 0.0033545. This 0.75% difference in the denominator propagates directly to the final multiple. It took careful cell-tracing to realize different charities use slightly different benchmark constants — they're buried in separate sheets with different update cycles.
-
 **Mortality rate definitions vary.** AMF's spreadsheet has both a raw malaria mortality rate and a derived "mortality rate in the absence of nets" rate. The latter accounts for existing net coverage and is the correct input. My first extraction accidentally used the raw rates, which underestimated AMF's cost-effectiveness by roughly 2x for some countries (e.g., DRC: 0.00306 raw vs. 0.00798 in-absence-of-nets).
 
 **Counterfactual coverage drives most of the within-charity variation.** Both Helen Keller and New Incentives have a `proportionReachedCounterfactual` parameter — what fraction of people would receive the intervention anyway, without the charity's involvement. The remaining fraction is the charity's incremental impact. These tables show how this parameter (alongside cost, mortality rates, and adjustments) determines each location's cost-effectiveness:
