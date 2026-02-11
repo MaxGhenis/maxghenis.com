@@ -114,13 +114,6 @@ function FaceEye({
       <circle cx={cx - irisR * 0.2} cy={cy - irisR * 0.25} r={irisR * 0.15} fill="white" opacity={0.85} />
       <circle cx={cx + irisR * 0.15} cy={cy + irisR * 0.1} r={irisR * 0.08} fill="white" opacity={0.45} />
 
-      {/* Focus ring */}
-      {focused && (
-        <circle cx={cx} cy={cy} r={rx * 1.35} fill="none" stroke={C.focusRing} strokeWidth={Math.max(0.8, rx * 0.06)} opacity={0.5}>
-          <animate attributeName="r" values={`${rx * 1.3};${rx * 1.5};${rx * 1.3}`} dur="2.5s" repeatCount="indefinite" />
-          <animate attributeName="opacity" values="0.5;0.2;0.5" dur="2.5s" repeatCount="indefinite" />
-        </circle>
-      )}
     </g>
   );
 }
@@ -144,7 +137,7 @@ function rangeLabels(units: UnitSystem): [string, string] {
 export default function EyeConvergence() {
   const [focus, setFocus] = useState<FocusTarget>('left');
   const [distCm, setDistCm] = useState(30);
-  const [units, setUnits] = useState<UnitSystem>('metric');
+  const [units, setUnits] = useState<UnitSystem>('imperial');
 
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
@@ -336,9 +329,9 @@ export default function EyeConvergence() {
         </g>
 
         {/* Foveal circle */}
-        <circle cx={focusedX} cy={eyeY} r={FOVEA_R} fill="url(#fovea-glow)" stroke={C.accent} strokeWidth={0.8} strokeDasharray="3 4" opacity={0.5} style={{ transition: 'cx 0.3s ease' }} />
+        <circle cx={focusedX} cy={eyeY} r={FOVEA_R} fill="url(#fovea-glow)" stroke={C.accent} strokeWidth={1.5} strokeDasharray="4 3" opacity={0.7} style={{ transition: 'cx 0.3s ease' }} />
         {FOVEA_R > 6 && (
-          <text x={focusedX} y={eyeY - FOVEA_R - 6} textAnchor="middle" fontSize="9" fill={C.accent} opacity={0.6} fontStyle="italic" style={{ transition: 'x 0.3s ease' }}>
+          <text x={focusedX} y={eyeY - FOVEA_R - 6} textAnchor="middle" fontSize="10" fill={C.accent} opacity={0.8} fontWeight={500} fontStyle="italic" style={{ transition: 'x 0.3s ease' }}>
             fovea (~5°)
           </text>
         )}
