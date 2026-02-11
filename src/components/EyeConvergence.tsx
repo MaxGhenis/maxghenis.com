@@ -4,7 +4,7 @@ import { useState, useEffect, useMemo } from 'react';
  * First-person eye convergence visualization.
  *
  * Shows a face from YOUR perspective. The face scales with distance,
- * a foveal circle shows your ~1° acuity zone, and the unfocused eye
+ * a foveal circle shows your ~5° acuity zone, and the unfocused eye
  * blurs proportionally — simulating what you actually experience.
  *
  * All face dimensions derived from real anatomy (mm).
@@ -16,8 +16,8 @@ const VH = 360;
 const FIELD_OF_VIEW_DEG = 40;
 const PX_PER_DEG = VW / FIELD_OF_VIEW_DEG; // 13px per degree
 const IPD_CM = 6.3;
-const FOVEA_DEG = 2;
-const FOVEA_R = (FOVEA_DEG / 2) * PX_PER_DEG; // ~13px radius
+const FOVEA_DEG = 5;
+const FOVEA_R = (FOVEA_DEG / 2) * PX_PER_DEG; // ~32.5px radius
 
 // Palette
 const C = {
@@ -181,13 +181,13 @@ export default function EyeConvergence() {
   // Status text
   const statusText =
     separation > 10
-      ? 'Way beyond your fovea (~1\u00b0) \u2014 you must pick one'
+      ? 'Way beyond your fovea (~5\u00b0) \u2014 you must pick one'
       : separation > 5
         ? 'Outside your fovea \u2014 clearly choosing one eye'
-        : separation > 1
-          ? 'Near foveal range \u2014 you notice, but barely'
-          : 'Within your fovea \u2014 feels like both at once';
-  const statusColor = separation > 5 ? C.accent : separation > 1 ? C.inkLight : '#5a7a3a';
+        : separation > 3
+          ? 'Near the edge of your fovea \u2014 you notice, but barely'
+          : 'Both eyes within your fovea \u2014 feels like both at once';
+  const statusColor = separation > 5 ? C.accent : separation > 3 ? C.inkLight : '#5a7a3a';
 
   const [minLabel, maxLabel] = rangeLabels(units);
 
@@ -339,7 +339,7 @@ export default function EyeConvergence() {
         <circle cx={focusedX} cy={eyeY} r={FOVEA_R} fill="url(#fovea-glow)" stroke={C.accent} strokeWidth={0.8} strokeDasharray="3 4" opacity={0.5} style={{ transition: 'cx 0.3s ease' }} />
         {FOVEA_R > 6 && (
           <text x={focusedX} y={eyeY - FOVEA_R - 6} textAnchor="middle" fontSize="9" fill={C.accent} opacity={0.6} fontStyle="italic" style={{ transition: 'x 0.3s ease' }}>
-            fovea (~1°)
+            fovea (~5°)
           </text>
         )}
 
