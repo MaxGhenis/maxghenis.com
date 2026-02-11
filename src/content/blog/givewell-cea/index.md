@@ -43,7 +43,7 @@ All 51 charity/country combinations operate independently — each country has i
 
 A few things stood out:
 
-**The benchmarks aren't on the same scale.** Each charity's cost-effectiveness is expressed as a multiple of "how much good $1 of cash transfers does." But this denominator differs slightly across GiveWell's spreadsheets — AMF uses 0.00333, MC and HKI use 0.0033545, and GiveDirectly uses 0.003. This reflects different calibration snapshots rather than an error: different spreadsheets were built at different times with different moral weight assumptions baked in. GiveWell's allocation committee doesn't mechanically compare these multiples across spreadsheets, but for a tool that displays them side by side, it's worth knowing the denominators aren't identical.
+**The benchmarks aren't on the same scale.** Each charity's cost-effectiveness is expressed as a multiple of GiveDirectly cash transfers. The denominator — how many "units of value" (GiveWell's composite of moral-weight-adjusted lives saved) one dollar of cash generates — differs across spreadsheets: AMF uses 0.00333, MC and HKI use 0.00335, and GiveDirectly uses 0.003. Different spreadsheets were built at different times with different moral weight calibrations baked in. GiveWell doesn't mechanically compare multiples across spreadsheets, but for a tool that displays them side by side, it's worth knowing the denominators aren't identical.
 
 **Mortality rate definitions vary.** AMF's spreadsheet has both a raw malaria mortality rate and a derived "mortality rate in the absence of nets" rate. The latter accounts for existing net coverage and is the correct input. My first extraction accidentally used the raw rates, which underestimated AMF's cost-effectiveness by roughly 2x for some countries (e.g., DRC: 0.00306 raw vs. 0.00798 in-absence-of-nets).
 
@@ -127,7 +127,7 @@ A few examples of what you see when you adjust parameters:
 
 **Double AMF's cost per child in DRC.** The relationship is perfectly linear: doubling cost halves the x benchmark from 14.6× to 7.3×. This is a more powerful lever for changing *relative* rankings within mortality-focused charities than moral weight changes, which scale all of them equally.
 
-This is predictable in hindsight — when most top charities prevent child deaths, changing the weight on child deaths scales them all in the same direction. The more useful question is: what *does* break the rankings? Operational cost differences between countries create far more variation than moral weight changes. The tool lets you find the specific crossover points where, say, doubling a cost parameter in one country moves it below another charity entirely.
+When most top charities prevent child deaths, changing the weight on child deaths scales them all in the same direction. What *does* break the rankings is operational cost differences between countries. The tool lets you find the specific crossover points where, say, doubling a cost parameter in one country moves it below another charity entirely.
 
 ## Programmatic access
 
