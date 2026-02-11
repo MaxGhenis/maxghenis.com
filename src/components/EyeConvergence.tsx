@@ -16,8 +16,8 @@ const VH = 360;
 const FIELD_OF_VIEW_DEG = 40;
 const PX_PER_DEG = VW / FIELD_OF_VIEW_DEG; // 13px per degree
 const IPD_CM = 6.3;
-const FOVEA_DEG = 1;
-const FOVEA_R = (FOVEA_DEG / 2) * PX_PER_DEG; // ~6.5px radius
+const FOVEA_DEG = 2;
+const FOVEA_R = (FOVEA_DEG / 2) * PX_PER_DEG; // ~13px radius
 
 // Palette
 const C = {
