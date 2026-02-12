@@ -16,7 +16,7 @@ It started simply:
 >
 > **Claude:** I can help you with SNAP recertification. A few questions to get started: What state are you in? Have you received a recertification notice? Do you know if your state has an online portal?
 >
-> **Me:** dc, maybe i dont check my mail, yes it does
+> **Me:** dc, idk, yes it does
 
 Claude found the portal, opened it in Chrome, and told me to log in (it can't enter passwords). I logged in and said:
 
@@ -32,7 +32,7 @@ Early on, Claude was asking for confirmation before every step. I put a stop to 
 
 After that, Claude moved through the pre-filled sections autonomously — name, DOB, citizenship, household composition — only stopping when it actually needed something from me. Like when it hit the SSN page:
 
-> **Claude:** This page is asking for your SSN. It's partially masked (showing XXX-XX-0844) so it's already on file. I cannot enter sensitive information like SSNs — this is something you'll need to verify/enter yourself.
+> **Claude:** This page is asking for your SSN. It's partially masked (showing the last four digits) so it's already on file. I cannot enter sensitive information like SSNs — this is something you'll need to verify/enter yourself.
 >
 > **Me:** it's already there, just hit next
 
@@ -47,6 +47,8 @@ When Claude reached the income section, it needed updated numbers from my financ
 > **Claude:** I don't see the Vanguard tab in my tab group. Unfortunately financial sites like Vanguard and Wealthfront are blocked by the browser extension's safety restrictions.
 >
 > **Me:** just downloaded a pdf for vanbguad
+
+(You'll notice the typos — I've gotten sloppier with typing since Claude handles it fine, so I don't bother correcting myself.)
 
 So I downloaded a Vanguard PDF, a Wealthfront CSV, and my paystubs to my Downloads folder. Claude read them directly from the filesystem, extracted the relevant figures, and calculated my quarterly investment income.
 
@@ -63,7 +65,7 @@ Submitted at 8:56 PM. The confirmation page told me my SNAP interview is due by 
 My role was minimal:
 
 - **My state**: DC
-- **My address hasn't changed**: "950 3rd st nw #206"
+- **My address hasn't changed**
 - **Downloaded documents**: I downloaded statements from my financial institutions showing dividend and interest income, and my recent paystubs, to my Downloads folder
 - **Logged in**: I handled the login to District Direct myself
 - **A few corrections**: like telling Claude the SSN was already filled in, and that I'm already registered to vote
@@ -82,15 +84,6 @@ Claude read my financial documents (PDFs and CSVs), extracted the relevant figur
 - Plus scrolling, reading documents, web searches, and calculations
 
 The form covers household composition, address, income from all sources (employment, investments, other), expenses (shelter, utilities, childcare, medical), and rights and responsibilities. Claude navigated all of it, carrying forward pre-filled data where nothing had changed and updating the fields that needed new numbers.
-
-## What went wrong
-
-It wasn't perfectly smooth:
-
-- **Session timeouts**: District Direct timed out while Claude was reading my financial documents to calculate quarterly investment income. It had to re-navigate the entire form from the beginning.
-- **Wrong employer address**: Claude searched the web for my employer's address and found an outdated PO Box. It caught the discrepancy itself by cross-referencing against my paystub and corrected it — I didn't even notice.
-- **Form input quirks**: Some fields on the portal (like dollar amounts with a `$` prefix) wouldn't accept Claude's standard form input method. It had to fall back to clicking the field and typing directly.
-- **Context overflows**: The conversation ran out of context three times — browser automation generates a lot of data, especially screenshots. Each time, Claude resumed with a summary of what happened before and picked up where it left off.
 
 ## How long it took
 
