@@ -8,7 +8,7 @@ projectUrl: 'https://maxghenis.com/givewell-cea'
 
 I re-implemented GiveWell's cost-effectiveness models for all six top charities as an open-source web tool: **[maxghenis.com/givewell-cea](https://maxghenis.com/givewell-cea)**
 
-This post describes the replication, what I learned about GiveWell's methodology in the process, the verification results, and some observations about moral weight sensitivity. The tool itself lets you edit any parameter and immediately see the effect on charity rankings.
+The tool lets you edit any parameter and immediately see the effect on charity rankings.
 
 ## Motivation
 
@@ -41,13 +41,11 @@ All 51 charity/country combinations operate independently — each country has i
 
 ## Observations from the replication
 
-A few things stood out:
-
-**The benchmarks aren't on the same scale.** Each charity's cost-effectiveness is expressed as a multiple of GiveDirectly cash transfers. The denominator — how many "units of value" (GiveWell's composite of moral-weight-adjusted lives saved) one dollar of cash generates — differs across spreadsheets: AMF uses 0.00333, MC and HKI use 0.00335, and GiveDirectly uses 0.003. Different spreadsheets were built at different times with different moral weight calibrations baked in. GiveWell doesn't mechanically compare multiples across spreadsheets, but for a tool that displays them side by side, it's worth knowing the denominators aren't identical.
+**The benchmarks aren't on the same scale.** Each charity's cost-effectiveness is expressed as a multiple of GiveDirectly cash transfers. The denominator — how many "units of value" (GiveWell's composite of moral-weight-adjusted lives saved) one dollar of cash generates — differs across spreadsheets: AMF uses 0.00333, MC and HKI use 0.00335, and GiveDirectly uses 0.003. Different spreadsheets were built at different times with different moral weight calibrations baked in. GiveWell doesn't mechanically compare multiples across spreadsheets, but a tool that displays them side by side inherits this inconsistency.
 
 **Mortality rate definitions vary.** AMF's spreadsheet has both a raw malaria mortality rate and a derived "mortality rate in the absence of nets" rate. The latter accounts for existing net coverage and is the correct input. My first extraction accidentally used the raw rates, which underestimated AMF's cost-effectiveness by roughly 2x for some countries (e.g., DRC: 0.00306 raw vs. 0.00798 in-absence-of-nets).
 
-**Counterfactual coverage drives most of the within-charity variation.** Both Helen Keller and New Incentives have a `proportionReachedCounterfactual` parameter — what fraction of people would receive the intervention anyway, without the charity's involvement. The remaining fraction is the charity's incremental impact. These tables show how this parameter (alongside cost, mortality rates, and adjustments) determines each location's cost-effectiveness:
+**Counterfactual coverage drives most of the within-charity variation.** Both Helen Keller and New Incentives have a `proportionReachedCounterfactual` parameter — what fraction of people would receive the intervention anyway, without the charity's involvement. The remaining fraction is the charity's incremental impact:
 
 Helen Keller (VAS):
 
@@ -76,7 +74,7 @@ New Incentives (vaccinations, Nigerian states):
 | Gombe | 88.0% | 12.0% | 10× |
 | Kaduna | 84.2% | 15.8% | 9× |
 
-The pattern is clear but imperfect — Niger's 85% incremental coverage is similar to Guinea's 82%, yet Niger scores 7x higher because its mortality rate is higher (1.4% vs 1.1%), VAS effect is double (11.1% vs 5.5%), and cost per child is 70% lower. The counterfactual sets the scale; the other parameters determine the multiplier within it.
+Counterfactual coverage correlates with cost-effectiveness but doesn't determine it alone. Niger's 85% incremental coverage is similar to Guinea's 82%, yet Niger scores 7x higher: higher mortality rate (1.4% vs 1.1%), double the VAS effect (11.1% vs 5.5%), and 70% lower cost per child.
 
 **Helen Keller's leverage/funging adjustments need careful reading.** In my first pass, the funging adjustment for Burkina Faso extracted as 531.99 instead of -0.431. These values come from separate rows in the spreadsheet that are easy to confuse — a "percentage change" row vs. an "adjusted value" row.
 
@@ -92,7 +90,7 @@ Parameters are extracted from GiveWell's November 2025 CEA spreadsheets ([AMF](h
 | New Incentives | 9 | 0.000% (exact) |
 | Deworm the World | 13 | 0.000% (exact) |
 
-GiveDirectly uses older parameter extractions. 298 automated tests verify the calculations. The remaining <0.001% differences for AMF/MC/HKI are floating-point precision, not model discrepancies.
+298 automated tests pass. The remaining <0.001% differences for AMF/MC/HKI are floating-point precision, not model discrepancies.
 
 ## Interactive features
 
@@ -113,8 +111,8 @@ A few examples of what you see when you adjust parameters:
 | Rank | Charity | Best country | x benchmark |
 |------|---------|-------------|-------------|
 | 1 | Helen Keller | Niger | 79× |
-| 2 | Deworm the World | Kenya | 35× |
-| 3 | New Incentives | Sokoto | 39× |
+| 2 | New Incentives | Sokoto | 39× |
+| 3 | Deworm the World | Kenya | 35× |
 | 4 | AMF | Guinea | 23× |
 | 5 | Malaria Consortium | Chad | 15× |
 | 6 | GiveDirectly* | Mozambique | 4× |
@@ -123,7 +121,7 @@ A few examples of what you see when you adjust parameters:
 
 **Double the under-5 moral weight.** All four mortality-focused charities see exactly +100% gains — their value comes entirely from deaths averted, so doubling the weight doubles the result. GiveDirectly gains only +3.4% because its value comes from consumption benefits, not mortality. Rankings don't change.
 
-**Equal moral weights across ages (all set to 100).** This reflects a view that a life saved is equally valuable at any age. It penalizes child-focused charities by 14-16% (since the default under-5 weight of ~116 drops to 100). Helen Keller drops from 79× to 67×. But rankings remain the same.
+**Equal moral weights across ages (all set to 100).** Child-focused charities drop 14-16% (the default under-5 weight of ~116 falls to 100). Helen Keller drops from 79× to 67×. Rankings stay the same.
 
 **Double AMF's cost per child in DRC.** The relationship is perfectly linear: doubling cost halves the x benchmark from 14.6× to 7.3×. This is a more powerful lever for changing *relative* rankings within mortality-focused charities than moral weight changes, which scale all of them equally.
 
