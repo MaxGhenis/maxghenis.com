@@ -1,5 +1,5 @@
 ---
-title: 'Replicating GiveWell''s cost-effectiveness analysis in code: an interactive calculator and what I learned'
+title: 'Interactive replication of GiveWell''s cost-effectiveness analysis'
 description: 'I re-implemented GiveWell''s cost-effectiveness models for all six top charities as an open-source web tool with editable parameters, moral weights, and sensitivity analysis.'
 pubDate: 'Feb 10 2026'
 heroImage: './hero.png'
