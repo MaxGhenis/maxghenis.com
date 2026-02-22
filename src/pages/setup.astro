@@ -33,7 +33,7 @@ import { SITE_TITLE } from '../consts';
 				</ul>
 
 				<h3>The <code>cc</code> script</h3>
-				<p>Creates a new Claude Code pane, names it, and re-tiles the grid. Lives at <code>~/bin/cc</code>.</p>
+				<p>Creates a new Claude Code pane, names it, and re-tiles the grid. Lives at <code>~/bin/cc</code>. Uses <code>send-keys</code> instead of passing the command directly to <code>split-window</code>, so exiting Claude drops to a shell instead of closing the pane.</p>
 				<pre class="code-block">#!/bin/zsh
 # Usage: cc [name]
 # Creates a new Claude Code pane in the current tmux session.
@@ -45,8 +45,8 @@ if [[ -z "$TMUX" ]]; then
 fi
 
 name="$&#123;1:-$(date +%H%M%S)&#125;"
-tmux split-window -d -c ~ "claude --dangerously-skip-permissions"
-pane=$(tmux list-panes -F '#&#123;pane_index&#125;' | tail -1)
+pane=$(tmux split-window -c ~ -P -F '#&#123;pane_index&#125;')
+tmux send-keys -t "$pane" "claude --dangerously-skip-permissions" Enter
 tmux select-pane -t "$pane" -T "$name"
 tmux select-layout tiled</pre>
 
@@ -54,9 +54,9 @@ tmux select-layout tiled</pre>
 				<p>This block in <code>.zshrc</code> ensures every terminal session lands inside tmux. SSH connections create a grouped session so phone and laptop share windows but can view them independently.</p>
 				<pre class="code-block">if [[ -z "$TMUX" ]]; then
   if [[ -n "$SSH_CONNECTION" ]]; then
-    tmux new-session -A -t c -s "remote-$$" \; new-window -n remote 'claude --dangerously-skip-permissions' 2&gt;/dev/null || tmux new -s c 'claude --dangerously-skip-permissions'
+    tmux new-session -A -t c -s "remote-$$" \; new-window -n remote 'claude --dangerously-skip-permissions; exec zsh' 2&gt;/dev/null || tmux new -s c 'claude --dangerously-skip-permissions; exec zsh'
   else
-    tmux attach -t c 2&gt;/dev/null || tmux new -s c 'claude --dangerously-skip-permissions'
+    tmux attach -t c 2&gt;/dev/null || tmux new -s c 'claude --dangerously-skip-permissions; exec zsh'
   fi
 fi</pre>
 
@@ -118,6 +118,10 @@ fi</pre>
 				<h2>Dotfiles</h2>
 				<p>Tracked in a separate repo: <a href="https://github.com/MaxGhenis/dotfiles">MaxGhenis/dotfiles</a></p>
 				<p>Contains <code>.tmux.conf</code>, <code>.zshrc</code>, and <code>bin/cc</code>. Kept separate from <code>.claude</code> because these files also include non-Claude config (conda, NVM, Julia, PATH, etc.).</p>
+				<p>Home directory files are symlinks to the repo, so edits are always in sync:</p>
+				<pre class="code-block">~/.zshrc      → ~/dotfiles/.zshrc
+~/.tmux.conf  → ~/dotfiles/.tmux.conf
+~/bin/cc      → ~/dotfiles/bin/cc</pre>
 			</section>
 
 			<section>
