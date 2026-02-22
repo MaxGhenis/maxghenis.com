@@ -275,7 +275,9 @@ bind g select-layout tiled
 | Zoom pane fullscreen | `prefix+z` |
 | Return to grid | `prefix+z` again |
 | Jump to pane by number | `prefix+q` then number |
-| Next pane | `prefix+o` |
+| Next pane (stays zoomed) | `prefix+n` |
+| Previous pane (stays zoomed) | `prefix+p` |
+| Next pane (unzooms) | `prefix+o` |
 | Move pane to its own window (hide) | `prefix+!` |
 | Kill pane | `prefix+x` then `y` |
 
