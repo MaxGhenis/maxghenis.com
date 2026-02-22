@@ -1,0 +1,276 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Setup | ${SITE_TITLE}`} description="My terminal, Claude Code, and dotfiles setup for running multiple AI coding agents in parallel with tmux." />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<header class="page-header">
+				<h1>Setup</h1>
+				<p class="page-description">How I run multiple Claude Code sessions in parallel with tmux, plus dotfiles and phone access.</p>
+			</header>
+
+			<section>
+				<h2>Terminal</h2>
+				<p>Everything runs inside <a href="https://github.com/tmux/tmux">tmux</a>. My shell auto-attaches on launch, and I spawn Claude Code panes with a one-line script.</p>
+
+				<h3>tmux config highlights</h3>
+				<ul>
+					<li>Mouse enabled (scroll, click, resize)</li>
+					<li>Scrollback buffer: 50,000 lines</li>
+					<li>True color support (<code>tmux-256color</code>)</li>
+					<li>Pane border titles showing pane name</li>
+					<li><code>aggressive-resize</code> so multiple clients can have different window sizes</li>
+					<li>Plugins via <a href="https://github.com/tmux-plugins/tpm">tpm</a>: <a href="https://github.com/tmux-plugins/tmux-resurrect">resurrect</a> + <a href="https://github.com/tmux-plugins/tmux-continuum">continuum</a> (auto-save/restore sessions)</li>
+				</ul>
+
+				<h3>The <code>cc</code> script</h3>
+				<p>Creates a new Claude Code pane, names it, and re-tiles the grid. Lives at <code>~/bin/cc</code>.</p>
+				<pre class="code-block">#!/bin/zsh
+# Usage: cc [name]
+# Creates a new Claude Code pane in the current tmux session.
+# Falls back to a timestamp if no name is given.
+
+if [[ -z "$TMUX" ]]; then
+  echo "Error: not inside a tmux session" &gt;&amp;2
+  exit 1
+fi
+
+name="$&#123;1:-$(date +%H%M%S)&#125;"
+tmux split-window -d -c ~ "claude --dangerously-skip-permissions"
+pane=$(tmux list-panes -F '#&#123;pane_index&#125;' | tail -1)
+tmux select-pane -t "$pane" -T "$name"
+tmux select-layout tiled</pre>
+
+				<h3>Auto-attach on shell start</h3>
+				<p>This block in <code>.zshrc</code> ensures every terminal session lands inside tmux. SSH connections create a grouped session so phone and laptop share windows but can view them independently.</p>
+				<pre class="code-block">if [[ -z "$TMUX" ]]; then
+  if [[ -n "$SSH_CONNECTION" ]]; then
+    tmux new-session -A -t c -s "remote-$$" \; new-window -n remote 'claude --dangerously-skip-permissions' 2&gt;/dev/null || tmux new -s c 'claude --dangerously-skip-permissions'
+  else
+    tmux attach -t c 2&gt;/dev/null || tmux new -s c 'claude --dangerously-skip-permissions'
+  fi
+fi</pre>
+
+				<h3>Navigation cheatsheet</h3>
+				<div class="table-wrapper">
+					<table>
+						<thead>
+							<tr>
+								<th>Action</th>
+								<th>Key</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr><td>Grid view (re-tile)</td><td><kbd>prefix+g</kbd></td></tr>
+							<tr><td>Zoom pane fullscreen</td><td><kbd>prefix+z</kbd></td></tr>
+							<tr><td>Return to grid</td><td><kbd>prefix+z</kbd> again</td></tr>
+							<tr><td>Jump to pane by number</td><td><kbd>prefix+q</kbd> then number</td></tr>
+							<tr><td>Next pane</td><td><kbd>prefix+o</kbd></td></tr>
+							<tr><td>Move pane to own window</td><td><kbd>prefix+!</kbd></td></tr>
+							<tr><td>Kill pane</td><td><kbd>prefix+x</kbd> then <kbd>y</kbd></td></tr>
+						</tbody>
+					</table>
+				</div>
+			</section>
+
+			<section>
+				<h2>Claude Code</h2>
+				<p>Configuration lives in a dedicated repo: <a href="https://github.com/MaxGhenis/.claude">MaxGhenis/.claude</a></p>
+
+				<h3>Key settings</h3>
+				<ul>
+					<li><strong>teammateMode:</strong> <code>in-process</code></li>
+					<li><strong>Bypass permissions:</strong> enabled for trusted repos</li>
+					<li><strong>Hooks:</strong>
+						<ul>
+							<li><code>enforce-package-managers</code> &mdash; blocks wrong package managers per project</li>
+							<li><code>auto-commit-wip</code> &mdash; commits work-in-progress on session end</li>
+							<li><code>warn-uncommitted</code> &mdash; alerts on large uncommitted diffs</li>
+						</ul>
+					</li>
+				</ul>
+
+				<h3>Skills</h3>
+				<p>11 on-demand skills that load based on conversation context (not preloaded). Examples: Whoop health data, Xero UK accounting, App Store Connect, GCP billing, OpenCollective expenses, Modal/Vercel deployment, agent teams, Slack patterns.</p>
+
+				<h3>Plugins</h3>
+				<ul>
+					<li><strong>max-productivity</strong> (local) &mdash; custom commands + all 11 skills</li>
+					<li><strong>policyengine-claude</strong> &mdash; PolicyEngine design system and patterns</li>
+					<li><strong>rules-foundation</strong> &mdash; tax/benefit rules engine conventions</li>
+					<li><strong>frontend-design</strong> &mdash; production-grade UI generation</li>
+					<li><strong>plugin-dev</strong> &mdash; Claude Code plugin development</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Dotfiles</h2>
+				<p>Tracked in a separate repo: <a href="https://github.com/MaxGhenis/dotfiles">MaxGhenis/dotfiles</a></p>
+				<p>Contains <code>.tmux.conf</code>, <code>.zshrc</code>, and <code>bin/cc</code>. Kept separate from <code>.claude</code> because these files also include non-Claude config (conda, NVM, Julia, PATH, etc.).</p>
+			</section>
+
+			<section>
+				<h2>Phone access</h2>
+				<ul>
+					<li><strong>Grouped sessions:</strong> SSH creates a linked tmux session that shares windows but has its own independent view (cursor position, active pane)</li>
+					<li><strong>Tailscale:</strong> mesh VPN for networking between devices without port forwarding</li>
+					<li><strong>Termux on Android:</strong> full Linux environment for SSH access from a phone</li>
+					<li><strong><code>aggressive-resize</code>:</strong> set in <code>.tmux.conf</code> so phone and laptop can have different window sizes simultaneously</li>
+				</ul>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	main {
+		max-width: 900px;
+	}
+
+	.page-header {
+		margin-bottom: 3rem;
+		padding-bottom: 2rem;
+		border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+	}
+
+	.page-header h1 {
+		font-size: 3rem;
+		margin-bottom: 0.75rem;
+	}
+
+	.page-description {
+		font-size: 1.25rem;
+		color: var(--text-secondary);
+		max-width: 600px;
+	}
+
+	section {
+		margin-bottom: 3rem;
+	}
+
+	section h2 {
+		font-size: 1.75rem;
+		margin-bottom: 1.5rem;
+	}
+
+	section h3 {
+		font-size: 1.25rem;
+		margin-top: 1.5rem;
+		margin-bottom: 0.75rem;
+	}
+
+	section p {
+		color: var(--text-secondary);
+		line-height: 1.6;
+		margin-bottom: 1rem;
+	}
+
+	section ul {
+		color: var(--text-secondary);
+		line-height: 1.6;
+		margin-bottom: 1rem;
+		padding-left: 1.5rem;
+	}
+
+	section ul ul {
+		margin-bottom: 0;
+		margin-top: 0.25rem;
+	}
+
+	section li {
+		margin-bottom: 0.35rem;
+	}
+
+	section a {
+		color: var(--ink);
+		text-decoration: underline;
+		text-underline-offset: 2px;
+	}
+
+	section a:hover {
+		color: var(--amber-dark);
+	}
+
+	code {
+		background: rgba(15, 23, 42, 0.06);
+		padding: 0.15rem 0.4rem;
+		border-radius: 4px;
+		font-family: 'SF Mono', 'Fira Code', monospace;
+		font-size: 0.875em;
+	}
+
+	.code-block {
+		background: #1e1e2e;
+		color: #cdd6f4;
+		padding: 1.25rem 1.5rem;
+		border-radius: var(--radius-lg);
+		font-family: 'SF Mono', 'Fira Code', monospace;
+		font-size: 0.85rem;
+		line-height: 1.5;
+		overflow-x: auto;
+		margin-bottom: 1.5rem;
+	}
+
+	.table-wrapper {
+		overflow-x: auto;
+		margin-bottom: 1.5rem;
+	}
+
+	table {
+		width: 100%;
+		border-collapse: collapse;
+	}
+
+	th, td {
+		text-align: left;
+		padding: 0.75rem 1rem;
+		border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+	}
+
+	th {
+		font-weight: 600;
+		color: var(--ink);
+		font-size: 0.9375rem;
+	}
+
+	td {
+		color: var(--text-secondary);
+		font-size: 0.9375rem;
+	}
+
+	kbd {
+		background: #1e1e2e;
+		color: #cdd6f4;
+		padding: 0.25rem 0.5rem;
+		border-radius: 5px;
+		font-family: 'SF Mono', 'Fira Code', monospace;
+		font-size: 0.8125rem;
+		border: 1px solid #45475a;
+		white-space: nowrap;
+	}
+
+	@media (max-width: 768px) {
+		.page-header h1 {
+			font-size: 2.5rem;
+		}
+
+		.page-description {
+			font-size: 1.125rem;
+		}
+
+		.code-block {
+			font-size: 0.8rem;
+			padding: 1rem;
+		}
+	}
+</style>
