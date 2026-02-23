@@ -29,11 +29,11 @@ import { SITE_TITLE } from '../consts';
 					<li>True color support (<code>tmux-256color</code>)</li>
 					<li>Pane border titles showing pane name</li>
 					<li><code>aggressive-resize</code> so multiple clients can have different window sizes</li>
-					<li>Plugins via <a href="https://github.com/tmux-plugins/tpm">tpm</a>: <a href="https://github.com/tmux-plugins/tmux-resurrect">resurrect</a> + <a href="https://github.com/tmux-plugins/tmux-continuum">continuum</a> (auto-save/restore sessions)</li>
+					<li>Plugins via <a href="https://github.com/tmux-plugins/tpm">tpm</a>: <a href="https://github.com/tmux-plugins/tmux-resurrect">resurrect</a> + <a href="https://github.com/tmux-plugins/tmux-continuum">continuum</a> (auto-save/restore pane layout, but <em>not</em> processes &mdash; Claude Code can't resume from a restore)</li>
 				</ul>
 
 				<h3>The <code>cc</code> script</h3>
-				<p>Creates a new Claude Code pane, names it, and re-tiles the grid. Lives at <code>~/bin/cc</code>. Uses <code>send-keys</code> instead of passing the command directly to <code>split-window</code>, so exiting Claude drops to a shell instead of closing the pane.</p>
+				<p>Creates a new Claude Code pane, names it, and re-tiles the grid. Lives at <code>~/bin/cc</code>. Launches Claude directly via <code>split-window</code> command (not <code>send-keys</code>) so resurrect won't try to re-launch it on restore. <code>exec zsh</code> keeps the pane alive as a shell after Claude exits.</p>
 				<pre class="code-block">#!/bin/zsh
 # Usage: cc [name]
 # Creates a new Claude Code pane in the current tmux session.
@@ -45,9 +45,8 @@ if [[ -z "$TMUX" ]]; then
 fi
 
 name="$&#123;1:-$(date +%H%M%S)&#125;"
-pane=$(tmux split-window -c ~ -P -F '#&#123;pane_index&#125;')
-tmux send-keys -t "$pane" "claude --dangerously-skip-permissions" Enter
-tmux select-pane -t "$pane" -T "$name"
+tmux split-window -c ~ -t '&#123;end&#125;' "claude --dangerously-skip-permissions; exec zsh"
+tmux select-pane -T "$name"
 tmux select-layout tiled</pre>
 
 				<h3>Auto-attach on shell start</h3>
@@ -97,16 +96,20 @@ fi</pre>
 							<li><code>enforce-package-managers</code> &mdash; blocks wrong package managers per project</li>
 							<li><code>auto-commit-wip</code> &mdash; commits work-in-progress on session end</li>
 							<li><code>warn-uncommitted</code> &mdash; alerts on large uncommitted diffs</li>
+							<li><code>sync-setup-page</code> &mdash; reminds Claude to update this page after dotfiles/config commits</li>
 						</ul>
 					</li>
 				</ul>
 
 				<h3>Skills</h3>
-				<p>11 on-demand skills that load based on conversation context (not preloaded). Examples: Whoop health data, Xero UK accounting, App Store Connect, GCP billing, OpenCollective expenses, Modal/Vercel deployment, agent teams, Slack patterns.</p>
+				<p>13 on-demand skills that load based on conversation context (not preloaded). Examples: Whoop health data, Xero UK accounting, App Store Connect, GCP billing, OpenCollective expenses, Modal/Vercel deployment, OpenMessage patterns, agent teams, Slack patterns, Cloudflare domains.</p>
+
+				<h3>Commands</h3>
+				<p>11 slash commands including <code>/briefing</code> (daily summary), <code>/search-everything</code> (cross-platform search), <code>/expense</code> (OpenCollective filing), <code>/config-tidy</code> (audit and reorganize config layers), and more.</p>
 
 				<h3>Plugins</h3>
 				<ul>
-					<li><strong>max-productivity</strong> (local) &mdash; custom commands + all 11 skills</li>
+					<li><strong>max-productivity</strong> (local) &mdash; custom commands + all 13 skills</li>
 					<li><strong>policyengine-claude</strong> &mdash; PolicyEngine design system and patterns</li>
 					<li><strong>rules-foundation</strong> &mdash; tax/benefit rules engine conventions</li>
 					<li><strong>frontend-design</strong> &mdash; production-grade UI generation</li>
