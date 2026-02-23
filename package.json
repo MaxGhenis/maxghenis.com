@@ -6,6 +6,7 @@
     "dev": "astro dev",
     "prebuild": "npx tsx scripts/generate-llms-full.ts",
     "build": "astro build",
+    "vercel-build": "bun run prebuild && astro build && node scripts/fix-vercel-rewrites.js",
     "preview": "astro preview",
     "astro": "astro",
     "test": "vitest run",

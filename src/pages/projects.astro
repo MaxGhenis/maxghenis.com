@@ -6,13 +6,6 @@ import { SITE_TITLE } from '../consts';
 
 const software = [
 	{
-		title: 'google-ads-mcp-rw',
-		description: 'The first Google Ads MCP with write support. Create campaigns, ad groups, keywords, and RSAs—not just query metrics.',
-		href: '/google-ads-mcp-rw',
-		repo: 'https://github.com/MaxGhenis/google-ads-mcp-rw',
-		tag: 'MCP',
-	},
-	{
 		title: 'opencollective-py',
 		description: 'Python client for OpenCollective API with CLI and MCP server for Claude Code integration.',
 		href: '/opencollective-py',
@@ -71,8 +64,8 @@ const papers = [
 		date: '2025',
 		abstract: 'Agent-based simulation analyzing welfare effects of income-based vs flat traffic fines, showing labor supply distortions from implicit marginal tax rates.',
 		links: [
-			{ label: 'Read', href: 'https://maxghenis.github.io/traffic-fine-sim/' },
-			{ label: 'PDF', href: 'https://maxghenis.github.io/traffic-fine-sim/traffic-fines.pdf' },
+			{ label: 'Read', href: '/traffic-fine-sim/' },
+			{ label: 'PDF', href: '/traffic-fine-sim/traffic-fines.pdf' },
 			{ label: 'Code', href: 'https://github.com/MaxGhenis/traffic-fine-sim' },
 		],
 	},
@@ -83,8 +76,8 @@ const papers = [
 		date: '2025',
 		abstract: 'How uncertainty around marginal tax rates affects social welfare.',
 		links: [
-			{ label: 'Read', href: 'https://maxghenis.github.io/disutility-of-uncertainty/' },
-			{ label: 'PDF', href: 'https://maxghenis.github.io/disutility-of-uncertainty/tax-uncertainty.pdf' },
+			{ label: 'Read', href: '/disutility-of-uncertainty/' },
+			{ label: 'PDF', href: '/disutility-of-uncertainty/tax-uncertainty.pdf' },
 			{ label: 'Code', href: 'https://github.com/MaxGhenis/disutility-of-uncertainty' },
 		],
 	},
@@ -95,8 +88,8 @@ const papers = [
 		date: '2025',
 		abstract: 'Monte Carlo analysis of life expectancy from nut consumption, with evidence-traced claims and hierarchical nutrient models.',
 		links: [
-			{ label: 'Read', href: 'https://maxghenis.github.io/whatnut/' },
-			{ label: 'PDF', href: 'https://maxghenis.github.io/whatnut/whatnut.pdf' },
+			{ label: 'Read', href: '/whatnut-paper/' },
+			{ label: 'PDF', href: '/whatnut-paper/whatnut.pdf' },
 			{ label: 'Code', href: 'https://github.com/MaxGhenis/whatnut' },
 		],
 	},
@@ -107,8 +100,8 @@ const papers = [
 		date: '2025',
 		abstract: 'We investigate how large language models perceive and simulate behavioral responses to tax policy changes, with implications for using LLMs in policy analysis.',
 		links: [
-			{ label: 'Read', href: 'https://maxghenis.github.io/llm-eti/' },
-			{ label: 'PDF', href: 'https://maxghenis.github.io/llm-eti/book.pdf' },
+			{ label: 'Read', href: '/llm-eti/' },
+			{ label: 'PDF', href: '/llm-eti/book.pdf' },
 			{ label: 'SSRN', href: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5410643' },
 			{ label: 'Code', href: 'https://github.com/MaxGhenis/llm-eti' },
 		],
@@ -120,8 +113,8 @@ const papers = [
 		date: '2025',
 		abstract: 'Testing whether language models can predict moral and value change trajectories using historical General Social Survey data as ground truth.',
 		links: [
-			{ label: 'Read', href: 'https://maxghenis.github.io/value-forecasting/' },
-			{ label: 'PDF', href: 'https://maxghenis.github.io/value-forecasting/value-forecasting.pdf' },
+			{ label: 'Read', href: '/value-forecasting/' },
+			{ label: 'PDF', href: '/value-forecasting/value-forecasting.pdf' },
 			{ label: 'Code', href: 'https://github.com/MaxGhenis/value-forecasting' },
 		],
 	},
@@ -142,8 +135,8 @@ const papers = [
 		date: '2024',
 		abstract: 'An economic analysis of consumer welfare, revenue, and externalities from stadium beer pricing policies.',
 		links: [
-			{ label: 'Read', href: 'https://maxghenis.github.io/yankee-stadium-beer-price-controls/' },
-			{ label: 'PDF', href: 'https://maxghenis.github.io/yankee-stadium-beer-price-controls/beer-price-controls.pdf' },
+			{ label: 'Read', href: '/yankee-stadium-beer-price-controls/' },
+			{ label: 'PDF', href: '/yankee-stadium-beer-price-controls/beer-price-controls.pdf' },
 			{ label: 'Code', href: 'https://github.com/MaxGhenis/yankee-stadium-beer-price-controls' },
 		],
 	},
@@ -248,7 +241,7 @@ const papers = [
 							<p class="abstract">{paper.abstract}</p>
 							<div class="links">
 								{paper.links.map((link) => (
-									<a href={link.href} target="_blank" rel="noopener">{link.label}</a>
+									<a href={link.href} {...(link.href.startsWith('/') ? {} : { target: '_blank', rel: 'noopener' })}>{link.label}</a>
 								))}
 							</div>
 						</article>
