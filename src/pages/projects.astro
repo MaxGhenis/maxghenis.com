@@ -65,19 +65,92 @@ const software = [
 
 const papers = [
 	{
-		title: 'What can LLMs tell us about the ETI?',
-		authors: 'Max Ghenis & Jason DeBacker',
-		venue: 'SSRN Working Paper',
-		date: 'August 2025',
-		abstract: 'We investigate how large language models perceive and simulate behavioral responses to tax policy changes, with implications for using LLMs in policy analysis.',
+		title: 'The double distortion: Income-based traffic fines and labor supply',
+		authors: 'Max Ghenis',
+		status: 'Working paper',
+		date: '2025',
+		abstract: 'Agent-based simulation analyzing welfare effects of income-based vs flat traffic fines, showing labor supply distortions from implicit marginal tax rates.',
 		links: [
-			{ label: 'SSRN', href: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5410643' },
+			{ label: 'Read', href: 'https://maxghenis.github.io/traffic-fine-sim/' },
+			{ label: 'PDF', href: 'https://maxghenis.github.io/traffic-fine-sim/traffic-fines.pdf' },
+			{ label: 'Code', href: 'https://github.com/MaxGhenis/traffic-fine-sim' },
 		],
 	},
 	{
-		title: 'AI Model Policy Impact Forecasts: A Narrative Prompting Approach',
+		title: 'The disutility of uncertainty',
 		authors: 'Max Ghenis',
-		venue: 'Working Paper',
+		status: 'Working paper',
+		date: '2025',
+		abstract: 'How uncertainty around marginal tax rates affects social welfare.',
+		links: [
+			{ label: 'Read', href: 'https://maxghenis.github.io/disutility-of-uncertainty/' },
+			{ label: 'PDF', href: 'https://maxghenis.github.io/disutility-of-uncertainty/tax-uncertainty.pdf' },
+			{ label: 'Code', href: 'https://github.com/MaxGhenis/disutility-of-uncertainty' },
+		],
+	},
+	{
+		title: 'What Nut?',
+		authors: 'Max Ghenis',
+		status: 'Working paper',
+		date: '2025',
+		abstract: 'Monte Carlo analysis of life expectancy from nut consumption, with evidence-traced claims and hierarchical nutrient models.',
+		links: [
+			{ label: 'Read', href: 'https://maxghenis.github.io/whatnut/' },
+			{ label: 'PDF', href: 'https://maxghenis.github.io/whatnut/whatnut.pdf' },
+			{ label: 'Code', href: 'https://github.com/MaxGhenis/whatnut' },
+		],
+	},
+	{
+		title: 'What can LLMs tell us about the ETI?',
+		authors: 'Max Ghenis & Jason DeBacker',
+		status: 'Working paper',
+		date: '2025',
+		abstract: 'We investigate how large language models perceive and simulate behavioral responses to tax policy changes, with implications for using LLMs in policy analysis.',
+		links: [
+			{ label: 'Read', href: 'https://maxghenis.github.io/llm-eti/' },
+			{ label: 'PDF', href: 'https://maxghenis.github.io/llm-eti/book.pdf' },
+			{ label: 'SSRN', href: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5410643' },
+			{ label: 'Code', href: 'https://github.com/MaxGhenis/llm-eti' },
+		],
+	},
+	{
+		title: 'Can LLMs forecast human value evolution?',
+		authors: 'Max Ghenis',
+		status: 'Working paper',
+		date: '2025',
+		abstract: 'Testing whether language models can predict moral and value change trajectories using historical General Social Survey data as ground truth.',
+		links: [
+			{ label: 'Read', href: 'https://maxghenis.github.io/value-forecasting/' },
+			{ label: 'PDF', href: 'https://maxghenis.github.io/value-forecasting/value-forecasting.pdf' },
+			{ label: 'Code', href: 'https://github.com/MaxGhenis/value-forecasting' },
+		],
+	},
+	{
+		title: 'The Mind: LLM coordination',
+		authors: 'Max Ghenis',
+		status: 'In progress',
+		date: '2025',
+		abstract: 'Simulating The Mind card game with large language models to study emergent coordination without explicit communication.',
+		links: [
+			{ label: 'Code', href: 'https://github.com/MaxGhenis/the-mind' },
+		],
+	},
+	{
+		title: 'Beer price controls at Yankee Stadium',
+		authors: 'Max Ghenis',
+		status: 'Working paper',
+		date: '2024',
+		abstract: 'An economic analysis of consumer welfare, revenue, and externalities from stadium beer pricing policies.',
+		links: [
+			{ label: 'Read', href: 'https://maxghenis.github.io/yankee-stadium-beer-price-controls/' },
+			{ label: 'PDF', href: 'https://maxghenis.github.io/yankee-stadium-beer-price-controls/beer-price-controls.pdf' },
+			{ label: 'Code', href: 'https://github.com/MaxGhenis/yankee-stadium-beer-price-controls' },
+		],
+	},
+	{
+		title: 'AI model policy impact forecasts: A narrative prompting approach',
+		authors: 'Max Ghenis',
+		status: 'Working paper',
 		date: '2024',
 		abstract: 'Examining the use of large language models for forecasting policy outcomes under different U.S. presidential administrations using narrative prompting techniques.',
 		links: [
@@ -86,8 +159,9 @@ const papers = [
 		],
 	},
 	{
-		title: 'Enhancing Survey Microdata with Administrative Records',
+		title: 'Enhancing survey microdata with administrative records',
 		authors: 'Max Ghenis & Nikhil Woodruff',
+		status: 'Published',
 		venue: 'National Tax Association Annual Meeting',
 		date: 'November 2024',
 		abstract: 'A novel approach to microsimulation dataset construction that combines Current Population Survey data with IRS administrative records for improved tax-benefit modeling.',
@@ -96,14 +170,18 @@ const papers = [
 			{ label: 'Code', href: 'https://github.com/PolicyEngine/policyengine-us-data' },
 		],
 	},
-];
-
-const jupyterBooks = [
 	{
-		title: 'Beer Price Controls at Yankee Stadium',
-		description: 'An economic analysis of consumer welfare, revenue, and externalities from stadium beer pricing policies.',
-		href: 'https://maxghenis.github.io/yankee-stadium-beer-price-controls/',
-		repo: 'https://github.com/maxghenis/yankee-stadium-beer-price-controls',
+		title: 'Farness: Forecasting as a harness for decision-making',
+		authors: 'Max Ghenis',
+		status: 'Working paper',
+		date: '2024',
+		abstract: 'A decision-making framework that reframes subjective questions into forecasting problems with explicit KPIs, confidence intervals, and calibration tracking. Includes a Python package and methodology for measuring framework effectiveness in LLMs.',
+		links: [
+			{ label: 'Read', href: 'https://farness.ai' },
+			{ label: 'Paper', href: 'https://github.com/MaxGhenis/farness/blob/main/paper/preemptive_rigor.md' },
+			{ label: 'PyPI', href: 'https://pypi.org/project/farness/' },
+			{ label: 'Code', href: 'https://github.com/MaxGhenis/farness' },
+		],
 	},
 ];
 ---
@@ -154,14 +232,17 @@ const jupyterBooks = [
 			</script>
 
 			<section>
-				<h2>Papers</h2>
+				<h2>Research</h2>
 				<div class="papers">
 					{papers.map((paper) => (
 						<article class="paper">
-							<h3>{paper.title}</h3>
+							<div class="paper-header">
+								<h3>{paper.title}</h3>
+								<span class={`status-tag status-${paper.status.toLowerCase().replace(/\s+/g, '-')}`}>{paper.status}</span>
+							</div>
 							<p class="meta">
 								<span class="authors">{paper.authors}</span>
-								<span class="venue">{paper.venue}</span>
+								{paper.venue && <span class="venue">{paper.venue}</span>}
 								<span class="date">{paper.date}</span>
 							</p>
 							<p class="abstract">{paper.abstract}</p>
@@ -171,23 +252,6 @@ const jupyterBooks = [
 								))}
 							</div>
 						</article>
-					))}
-				</div>
-			</section>
-
-			<section>
-				<h2>Interactive research</h2>
-				<p>
-					Full research articles built with Jupyter Book, featuring interactive
-					visualizations and executable code.
-				</p>
-				<div class="jupyter-books">
-					{jupyterBooks.map((book) => (
-						<a href={book.href} class="book-card" target="_blank" rel="noopener">
-							<h3>{book.title}</h3>
-							<p>{book.description}</p>
-							<span class="view-link">View project →</span>
-						</a>
 					))}
 				</div>
 			</section>
@@ -323,10 +387,50 @@ const jupyterBooks = [
 		border-radius: var(--radius-lg);
 	}
 
-	.paper h3 {
+	.paper-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		gap: 0.75rem;
 		margin-bottom: 0.5rem;
+	}
+
+	.paper-header h3 {
+		margin: 0;
 		color: var(--ink);
 		font-size: 1.125rem;
+	}
+
+	.status-tag {
+		display: inline-block;
+		padding: 0.25rem 0.625rem;
+		font-size: 0.75rem;
+		font-weight: 600;
+		border-radius: var(--radius-sm);
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		white-space: nowrap;
+		flex-shrink: 0;
+	}
+
+	.status-published {
+		background: #dcfce7;
+		color: #166534;
+	}
+
+	.status-working-paper {
+		background: var(--cream-dark);
+		color: var(--text-muted);
+	}
+
+	.status-in-progress {
+		background: #fef3c7;
+		color: #92400e;
+	}
+
+	.status-framework {
+		background: #dbeafe;
+		color: #1e40af;
 	}
 
 	.meta {
