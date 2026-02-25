@@ -1,81 +1,403 @@
 # Max Ghenis - Full Content
 
 > This file contains the full text of all blog posts from maxghenis.com, formatted for LLM consumption.
-> Generated: 2026-02-11T00:41:06.822Z
+> Generated: 2026-02-23T01:24:47.058Z
 > See also: /llms.txt for a curated overview
 
 ---
 
 ## Table of Contents
 
-1. [Why you can''t make double eye contact](/blog/double-eye-contact/)
-2. [Replicating GiveWell''s cost-effectiveness analysis in code: an interactive calculator and what I learned](/blog/givewell-cea/)
-3. [OpenMessage: How I built a macOS Google Messages client to give Claude my texts](/blog/openmessage/)
-4. [Where US immigrants come from, and where ICE focuses enforcement](/blog/bad-bunny-immigration-enforcement/)
-5. [I used Claude Code to recertify for SNAP](/blog/snap-recertification-claude-code/)
-6. [Scrollywood: Smooth scroll video recording for the web](/blog/scrollywood/)
-7. [The adolescence of policy simulation: On Amodei and economic disruption](/blog/amodei-adolescence-policyengine/)
-8. [opencollective-py: Manage OpenCollective from your terminal or Claude Code](/blog/opencollective-py/)
-9. [From IDE to AI orchestration: The end of code-first development](/blog/ide-to-ai-orchestration/)
-10. [TerminalGrid: Turn VS Code into a Claude Code superterminal](/blog/terminalgrid/)
-11. [RAMBar: A macOS menu bar RAM monitor for developers](/blog/rambar/)
-12. [How to Use MDX for Interactive Posts](/blog/using-mdx/)
-13. [VAT thresholds, revenues, and the role of counterfactuals](/blog/substack/vat-thresholds/)
-14. [AI models favor Cuomo over Mamdani on NYC housing production](/blog/substack/ai-models-nyc-housing/)
-15. [My 2024 in code: Personal projects and AI tools](/blog/substack/my-2024-in-code/)
-16. [Why I'm a neoliberal](/blog/substack/why-im-a-neoliberal/)
-17. [In appointing their newest member, the Ventura City Council only pretended to care about housing](/blog/medium/in-appointing-their-newest-member-the-ventura-city/)
-18. [If you earned more in 2019 than 2018, don't file your 2019 taxes yet! Otherwise, file ASAP!](/blog/medium/if-you-earned-more-in-2019-than-2018-dont-file-you/)
-19. [Why I’ve taken the Giving What We Can pledge](/blog/medium/why-ive-taken-the-giving-what-we-can-pledge/)
-20. [Ventura County must end its unsheltered homelessness](/blog/medium/ventura-county-must-end-its-unsheltered-homelessne/)
-21. [Warren’s wealth tax would raise less than she claims — even using her economists’ own assumptions](/blog/medium/warrens-wealth-tax-would-raise-less-than-she-claim/)
-22. [Andrew Yang's troubling Tucker Carlson interview](/blog/medium/andrew-yangs-troubling-tucker-carlson-interview/)
-23. [Quantile regression, from linear models to trees to deep learning](/blog/medium/quantile-regression-from-linear-models-to-trees-to/)
-24. [We should replace the Child Tax Credit with a universal child benefit](/blog/medium/we-should-replace-the-child-tax-credit-with-a-univ/)
-25. [The case for a wonky basic income plan](/blog/medium/the-case-for-a-wonky-basic-income-plan/)
-26. [Reddit featured a misleading headline on education secretary nominee Betsy DeVos](/blog/medium/reddit-featured-a-misleading-headline-on-education/)
-27. [Uber's tipping settlement will reduce earnings of African-American drivers](/blog/medium/ubers-tipping-settlement-will-reduce-earnings-of-a/)
-28. [If we can afford our current welfare system, we can afford basic income](/blog/medium/if-we-can-afford-our-current-welfare-system-we-can/)
+1. [One year of Claude Code](/blog/my-claude-code-config/)
+2. [Interactive replication of GiveWell''s cost-effectiveness analysis](/blog/givewell-cea/)
+3. [Why you can''t make double eye contact](/blog/double-eye-contact/)
+4. [OpenMessage: How I built a macOS Google Messages client to give Claude my texts](/blog/openmessage/)
+5. [Where US immigrants come from, and where ICE focuses enforcement](/blog/bad-bunny-immigration-enforcement/)
+6. [I used Claude Code to recertify for SNAP](/blog/snap-recertification-claude-code/)
+7. [Scrollywood: Smooth scroll video recording for the web](/blog/scrollywood/)
+8. [The adolescence of policy simulation: On Amodei and economic disruption](/blog/amodei-adolescence-policyengine/)
+9. [opencollective-py: Manage OpenCollective from your terminal or Claude Code](/blog/opencollective-py/)
+10. [From IDE to AI orchestration: The end of code-first development](/blog/ide-to-ai-orchestration/)
+11. [TerminalGrid: Turn VS Code into a Claude Code superterminal](/blog/terminalgrid/)
+12. [RAMBar: A macOS menu bar RAM monitor for developers](/blog/rambar/)
+13. [How to Use MDX for Interactive Posts](/blog/using-mdx/)
+14. [VAT thresholds, revenues, and the role of counterfactuals](/blog/vat-thresholds/)
+15. [AI models favor Cuomo over Mamdani on NYC housing production](/blog/ai-models-nyc-housing/)
+16. [My 2024 in code: Personal projects and AI tools](/blog/my-2024-in-code/)
+17. [Why I'm a neoliberal](/blog/why-im-a-neoliberal/)
+18. [In appointing their newest member, the Ventura City Council only pretended to care about housing](/blog/in-appointing-their-newest-member-the-ventura-city/)
+19. [If you earned more in 2019 than 2018, don't file your 2019 taxes yet! Otherwise, file ASAP!](/blog/if-you-earned-more-in-2019-than-2018-dont-file-you/)
+20. [Why I’ve taken the Giving What We Can pledge](/blog/why-ive-taken-the-giving-what-we-can-pledge/)
+21. [Ventura County must end its unsheltered homelessness](/blog/ventura-county-must-end-its-unsheltered-homelessne/)
+22. [Warren’s wealth tax would raise less than she claims — even using her economists’ own assumptions](/blog/warrens-wealth-tax-would-raise-less-than-she-claim/)
+23. [Andrew Yang's troubling Tucker Carlson interview](/blog/andrew-yangs-troubling-tucker-carlson-interview/)
+24. [Quantile regression, from linear models to trees to deep learning](/blog/quantile-regression-from-linear-models-to-trees-to/)
+25. [We should replace the Child Tax Credit with a universal child benefit](/blog/we-should-replace-the-child-tax-credit-with-a-univ/)
+26. [The case for a wonky basic income plan](/blog/the-case-for-a-wonky-basic-income-plan/)
+27. [Reddit featured a misleading headline on education secretary nominee Betsy DeVos](/blog/reddit-featured-a-misleading-headline-on-education/)
+28. [Uber's tipping settlement will reduce earnings of African-American drivers](/blog/ubers-tipping-settlement-will-reduce-earnings-of-a/)
+29. [If we can afford our current welfare system, we can afford basic income](/blog/if-we-can-afford-our-current-welfare-system-we-can/)
 
 ---
 
-## Why you can''t make double eye contact
+## One year of Claude Code
 
-**URL:** https://maxghenis.com/blog/double-eye-contact/
-**Published:** Feb 10 2026
-**Description:** Your eyes can only converge on a single point. Up close, that means you have to pick one of the other person''s eyes to look at.
+**URL:** https://maxghenis.com/blog/my-claude-code-config/
+**Published:** Feb 24 2026
+**Description:** A year ago today, Anthropic launched Claude Code. I''ve since consumed 10 billion tokens, mass-tweeted about it, and mass-customized it. Here''s my setup and what I''ve learned.
 
-import EyeConvergence from '../../../components/EyeConvergence.tsx';
+Anthropic launched Claude Code on February 24, 2025. I [tweeted about it](https://x.com/MaxGhenis) three times on day one. A year later, it's my primary development environment, and I've mass-customized the `~/.claude` directory that powers it.
 
-Have you ever noticed that when you're face-to-face with someone, you can't actually look at both of their eyes at the same time? You're always picking one — left or right — and subtly switching between them.
+### A year in numbers
 
-This isn't a limitation of attention or focus. It's geometry.
+| Stat | Value |
+|------|-------|
+| Tokens consumed | 10.2 billion |
+| Messages sent | 520,000+ |
+| Sessions | 2,346 |
+| Tweets about Claude Code | ~33 |
+| Peak API spend (Aug 2025) | $5,861/month |
+| Biggest single day (Feb 7, 2026) | $505 equivalent |
 
-## One convergence point
+I started on the API, paying per-token. August 2025 hit $5,861. On July 20, 2025, I switched to the Max plan ($200/month, unlimited usage) and added a second subscription on a personal account in February 2026. The $200 plan replaced a $6K/month habit.
 
-Your two eyes can only aim at a single point in space at any given moment. This is called [**vergence**](https://academic.oup.com/book/3243/chapter/144221776) — the inward rotation of both eyes to fixate on the same target. It's what gives you depth perception, and it's physically limited to one target at a time.
+My IDE journey followed a similar arc of simplification. I went from VS Code to VS Code + [TerminalGrid](/blog/terminalgrid) (a custom extension for running multiple Claude Code sessions) to iTerm2 + tmux. Each migration stripped away a layer of complexity. The tmux setup I use now is three small config changes --- the TerminalGrid extension was hundreds of lines of TypeScript solving the same problem worse.
 
-When someone is close to you, their two eyes occupy noticeably different positions in your visual field. The angular separation between them is large enough that you can't fit both into the single point your eyes converge on. So you pick one.
+I recently audited my `~/.claude` directory and [made it public](https://github.com/MaxGhenis/.claude). Here's the full setup.
 
-## Try it yourself
+## How it started
 
-Toggle between looking at each eye, and slide the distance to see how angular separation changes.
+I went to `git init` my `~/.claude` directory and discovered it was already a git repo. One of my installed plugins had initialized its own repo there, and my personal config files were sitting alongside it, untracked. The `.git` directory pointed to the plugin's remote. My files were just along for the ride.
 
-<EyeConvergence client:load />
+So the first step was cleaning house. I removed the plugin's git history, initialized a fresh repo, and started deciding what to track.
 
-When the face is close, the angular separation between their eyes is large — well beyond the [~1° of your fovea](https://pressbooks.umn.edu/sensationandperception/chapter/eccentricity-draft/) (the high-resolution center of your vision). You're clearly choosing one eye.
+## The audit
 
-As the face moves farther away, both eyes fall into a tighter angular range. Eventually they're so close together in your visual field that it _feels_ like you're looking at both — even though you're still converging on a single point.
+Before making anything public, I went through every file. The `~/.claude` directory accumulates a lot: conversation transcripts, clipboard images, debug logs, session state, plugin caches. Most of that is ephemeral or sensitive and belongs in `.gitignore`.
 
-## Why it doesn't matter at a distance
+What's left after exclusions is surprisingly small: a `CLAUDE.md` global instructions file, a `settings.json`, four hook scripts, a handful of slash commands, a few local plugins, and a pair of shell scripts for secrets management.
 
-Human interpupillary distance [averages about 63mm](https://pmc.ncbi.nlm.nih.gov/articles/PMC3520592/). At 1 meter away, that subtends roughly 3.6°. At 3 meters, it's about 1.2° — near foveal range. This is why you barely notice the effect in normal conversation but absolutely feel it during an intimate close-up.
+While auditing, I also noticed that 36 GB of stale repo clones had accumulated in my home directory from multi-agent work. PolicyEngine US alone had 10 separate clones for different PRs, each a full copy of a large repo. That's not in `~/.claude`, but the audit prompted me to clean it up.
 
-Next time you're close to someone, pay attention — you'll catch yourself switching between their eyes. Now you know why.
+## Slash commands
+
+Claude Code lets you define [custom slash commands](https://docs.anthropic.com/en/docs/claude-code/slash-commands) as markdown files in `~/.claude/commands/`. Each file is a prompt template you invoke with `/command-name`. I have ten:
+
+- **`/briefing`** --- Pulls today's calendar, unread emails, and (in the first week of the month) monthly task reminders. I run this most mornings.
+- **`/search-everything`** --- Cross-platform search across local files, WhatsApp, Gmail, Granola meeting notes, and the browser. It works through sources in order of speed and stops when it finds what I need.
+- **`/expense`** and **`/anthropic-expenses`** --- Automate filing reimbursements on [Open Collective](https://opencollective.com/policyengine). They search my email for invoices, download receipts, and submit expenses.
+- **`/download-receipts`** --- Extracts PDF attachments from Gmail search results and saves them locally.
+- **`/gmail`** and **`/google-api`** --- Reference commands for email patterns and Google API authentication across my work and personal accounts.
+- **`/personal-info`** --- Loads my personal details from a private file for form-filling, applications, and profile creation.
+- **`/slides`** --- Generates presentation decks from a brief or topic using a Next.js + Tailwind framework.
+- **`/search-transcripts`** --- Searches past Claude Code conversation transcripts by keyword using [`claude-search`](https://github.com/nicobailon/claude-search).
+
+Most of these compose multiple tools --- MCP servers, CLI utilities, APIs --- into a single action. The `/briefing` command, for example, calls the Google Calendar API, searches Gmail, and checks a task list, then synthesizes everything into a summary. Writing it as a slash command means I don't re-explain the workflow every session.
+
+## Hooks
+
+[Hooks](https://docs.anthropic.com/en/docs/claude-code/hooks) are shell scripts that run automatically before or after Claude Code events. I have four. The audit revealed a gap: three of the original scripts existed on disk, but only one was wired up in `settings.json`. The other two were doing nothing.
+
+This is an easy mistake to make. You write the script, mark it executable, and forget that hooks also need a corresponding entry in `settings.json` to actually fire. I fixed it --- all four are now connected.
+
+**`enforce-package-managers.sh`** runs before every Bash command. It blocks `npm`, `npx`, `yarn`, `pip`, and `pipx` and tells Claude to use `bun` or `uv` instead. Without this, Claude defaults to npm about half the time regardless of what `CLAUDE.md` says. The hook makes the preference absolute:
+
+```bash
+if echo "$command" | grep -qE '\bnpm\s+(install|i|add|...)\b'; then
+  echo '{"decision": "block", "reason": "Use bun instead of npm."}'
+  exit 0
+fi
+```
+
+**`auto-commit-wip.sh`** runs before context compression (the `PreCompact` event). Context compression often precedes crashes or context exhaustion, so this hook auto-commits all uncommitted changes. I added it after losing an entire branch of multi-agent work --- 10 files, 262 KB --- because agents wrote to the working tree without committing, then the session crashed. The commit uses `--fixup=HEAD` so that fixup commits can be cleanly squashed later with `git rebase --autosquash`.
+
+**`warn-uncommitted.sh`** runs on session stop. If there are uncommitted changes in the current repo, it prints a warning. Same motivation: don't lose work.
+
+**`sync-setup-page.sh`** runs after every Bash command (`PostToolUse`). It watches for `git commit` in the `dotfiles` or `.claude` repos and reminds Claude to check whether the [setup page](/setup) on my site needs updating. This keeps the living reference in sync with config changes.
+
+## CLAUDE.md
+
+The `CLAUDE.md` at the repo root is my global instructions file --- it applies to every Claude Code session regardless of which directory I'm in. During this audit I trimmed it from about 113 lines to about 70.
+
+What I removed: instructions about the current year (Opus 4.6 already knows the date), package manager preferences (the hook enforces this more reliably than a text instruction), and verbose TDD workflow steps (Claude already follows test-first patterns when asked).
+
+What survived:
+
+- **Fake data disclosure**: Claude must never present mock data without prominent warnings. This matters because I work on policy analysis where fake numbers could be mistaken for real projections.
+- **Model routing**: Use Opus or Haiku for subagents, never Sonnet.
+- **Sentence case for headings**: A style preference that applies to everything I write.
+- **Google API and email patterns**: Pointers to the relevant slash commands and account details.
+
+The general lesson: if something can be enforced by a hook, put it in a hook. `CLAUDE.md` is a suggestion. A hook that returns `{"decision": "block"}` is a hard stop.
+
+## Skills: on-demand context loading
+
+After the initial audit, I restructured how Claude Code accesses domain-specific reference information.
+
+The problem: Claude Code has a persistent memory system --- a `MEMORY.md` file that's loaded into every session's system prompt. Mine had grown to 215 lines (past the 200-line truncation limit) with detailed API references, credential locations, deployment procedures, and troubleshooting guides for services like Whoop, Xero, App Store Connect, GCP billing, and Slack. Most of this was irrelevant to any given session but cost context every time.
+
+The solution: [skills](https://docs.anthropic.com/en/docs/claude-code/plugins#skills). Skills are markdown files in a plugin's `skills/` directory that load on-demand based on trigger keywords in the conversation. When I mention "whoop" or "sleep data," the Whoop skill loads. When I mention "xero" or "UK expense," the Xero skill loads. Otherwise, they don't exist in the context window.
+
+I moved 12 domain-specific reference sections from `MEMORY.md` into skills in my `max-productivity` local plugin:
+
+| Skill | Triggers on | What it contains |
+|-------|------------|-----------------|
+| `whoop-health` | whoop, sleep, recovery, hrv | API endpoints, token refresh flow, cached data locations |
+| `xero-uk-accounting` | xero, UK expense | OAuth flow, tenant ID, account codes |
+| `app-store-connect` | app store, fastlane, xcode | API key, bundle IDs, build commands |
+| `gcp-billing` | gcp, google cloud | Billing account IDs, project list |
+| `opencollective-expenses` | expense, reimbursement | Collective details, currency handling |
+| `cbo-baseline` | cbo, budget outlook | Excel file IDs, row numbers, YAML paths |
+| `modal-vercel-deployment` | modal deploy, vercel deploy | Workspace config, failure modes |
+| `openmessage-patterns` | text, sms, iMessage | MCP tools, HTTP API fallback, message ordering |
+| `agent-teams` | agent team, TeamCreate | Workflow steps, gotchas |
+| `slack-patterns` | slack, DM | Channel IDs, pagination rules, DM access |
+| `search-email-patterns` | draft email, find meeting | Search priority, drafting preferences |
+| `claude-in-chrome` | chrome extension, browser automation | Setup, account matching, troubleshooting |
+
+`MEMORY.md` went from 215 lines to 61 --- just core operating principles, account identifiers, and hard-won lessons that apply to every session. Everything else loads only when relevant.
+
+The skill file format is straightforward:
+
+```markdown
+---
+name: Whoop health data
+description: Use this skill when working with Whoop API, health data,
+  sleep analysis, recovery scores, or HRV data. Triggers: "whoop",
+  "sleep", "recovery", "hrv", "health data".
+version: 0.1.0
+---
+
+# Whoop API & health data
+
+## Credentials
+- **Config**: `~/.config/whoop/credentials.json`
+...
+```
+
+The `description` field is what Claude Code matches against. If the conversation context matches the trigger keywords, the full skill content loads into the prompt. The plugin's `plugin.json` just needs `"skills": "./skills"` to auto-discover all skill directories.
+
+This is the same pattern the [PolicyEngine plugin](https://github.com/PolicyEngine/policyengine-claude) uses for its 60+ skills --- I just hadn't applied it to my personal reference material until now.
+
+To verify it worked, I restarted Claude Code and asked a single question that touches three different skills:
+
+> What's Pavel's Slack DM channel ID? And what's the Whoop sleep API endpoint? And how do I deploy to Modal?
+
+<details>
+<summary>Full response from Claude Code</summary>
+
+Claude spawned three parallel Explore agents that searched the skill files on-demand, then synthesized the results:
+
+**Pavel's Slack DM channel ID**
+
+`D047FDWKAKC` (user ID: `U047HTB58BE`)
+
+**Whoop sleep API endpoint**
+
+```
+GET https://api.prod.whoop.com/developer/v2/activity/sleep?limit=25
+```
+- Auth: `Bearer {access_token}` header
+- Max limit: 25 (50 fails)
+- Pagination: `&nextToken=TOKEN`
+- Credentials: `~/.config/whoop/credentials.json`
+- Tokens expire frequently --- re-auth via OAuth if you get 403
+
+**Modal deployment**
+
+```bash
+# Critical: unset keychain env vars first to use PE workspace
+unset MODAL_TOKEN_ID MODAL_TOKEN_SECRET && modal deploy modal_app.py
+```
+- PE workspace: `policyengine` (verify with `modal profile current`)
+- URL pattern: `https://policyengine--{app-name}-{function-name}.modal.run`
+- If URL shows `maxghenis--` instead of `policyengine--`, you deployed to the wrong workspace --- unset env vars and redeploy
+- For Vercel-fronted apps, update `VITE_API_URL` env var and force redeploy with `vercel --prod --force`
+
+</details>
+
+All three answers came from skills that loaded on-demand --- none of this was in the system prompt until the question triggered it.
+
+### Keeping it clean: the config audit agent
+
+The migration raised an obvious question: how do I keep things from drifting back? `MEMORY.md` grows automatically as Claude learns things during sessions. Without maintenance, it'll be back at 200+ lines within weeks.
+
+Two mechanisms handle this. First, a `config-audit` [agent](https://docs.anthropic.com/en/docs/claude-code/plugins#agents) in the `max-productivity` plugin triggers proactively when `MEMORY.md` exceeds 150 lines or when I mention "clean up config." Second, a `/config-tidy` slash command I can run on demand to audit and reorganize.
+
+Both know the same classification rules:
+
+- **Behavioral rules** ("always do X") belong in `CLAUDE.md`
+- **Compact facts** (account IDs, 1-2 line lessons) belong in `MEMORY.md`
+- **Detailed reference** (API docs, step-by-step guides, anything >5 lines on one topic) belongs in a skill
+
+When triggered, they read all three layers, report line counts, flag misplaced content, and propose moves. After I approve, they create new skill files, edit `MEMORY.md`, and update `CLAUDE.md` as needed. They never delete information --- they move it to the right layer.
+
+This closes the loop: skills handle the *what*, the agent and command handle the *when* and *where*. Configuration maintenance becomes something Claude does for me rather than something I have to remember to do.
+
+## Secrets management
+
+The repo includes two shell scripts for secrets, both safe to publish:
+
+- **`load-secrets.sh`** reads secrets from the macOS Keychain (service `claude-env`) and exports them as environment variables. It's sourced from `.zshrc` so every shell session has access.
+- **`manage-secret.sh`** is a CRUD interface for the same Keychain service: `set`, `get`, `del`, `list`.
+
+The scripts contain no secrets, just the Keychain lookup logic. I previously had an [age](https://github.com/FiloSottile/age)-encrypted secrets file alongside them, but it was redundant with the Keychain approach and added complexity. I removed it.
+
+## Settings
+
+`settings.json` configures MCP servers, permissions, hooks, enabled plugins, and plugin sources. The notable parts:
+
+- **MCP servers**: Gmail, Google Ads, Chrome DevTools, and [OpenMessage](https://github.com/MaxGhenis/openmessage) (a unified SMS/iMessage/RCS gateway), each defined with their command and environment variables (using `${VAR}` references that resolve from the macOS Keychain at runtime --- no secrets in the file).
+- **Permissions**: I run in bypass mode with broad tool access. This is a personal machine and I prefer speed over confirmation dialogs.
+- **Plugin sources**: Pointers to local plugin directories for plugins I'm developing.
+
+## tmux: how not to set up a terminal grid
+
+The latest evolution in my year-long IDE journey: I moved from VS Code ([TerminalGrid](/blog/terminalgrid)) to iTerm2 + tmux for running multiple Claude Code sessions. The final setup took about 15 minutes. Getting there took most of a day.
+
+The goal was simple: run 6+ Claude Code sessions in a visible grid, persistent across restarts. What followed was a comedy of errors --- each failure spawning a more complex workaround, each workaround failing in a more spectacular way, until the entire tmux server crashed and I was forced to start over with the obvious solution.
+
+### Attempt 1: separate sessions + join-pane grid toggle
+
+The first idea was one tmux session per project, then a `tmux-grid` script that would `join-pane` them all into a single window for a grid view. The problem: `join-pane` is destructive. It doesn't copy panes --- it *moves* them. Every time I toggled the grid, it permanently ripped windows out of their sessions. I rewrote the script at least eight times, each version breaking in a new way. Windows disappeared. Sessions ended up empty. The undo path was nonexistent because `join-pane` doesn't have one.
+
+### Attempt 2: capture-pane read-only dashboard
+
+OK, so don't move panes --- just *read* them. A `watch` command running `capture-pane` on each session, displaying the output in a split grid. This worked for about 30 seconds before I noticed the output was garbage. Claude Code uses [Ink](https://github.com/vadimdemedes/ink) (React for terminals) to render its TUI --- spinners, progress bars, dynamically updating panels. `capture-pane` grabs the raw terminal buffer, which is whatever escape sequences Ink happened to write last. The result was a grid of mangled ANSI artifacts. One pane out of six showed a readable header, purely by luck of timing.
+
+This wasn't a bug to fix. It was a fundamental incompatibility: `capture-pane` can't render what Ink is drawing.
+
+### Attempt 3: iTerm2 AppleScript automation
+
+The Claude Code docs mention that `tmux -CC` in iTerm2 is the "suggested entrypoint." iTerm2 can host tmux sessions as native split panes, where each pane is a real terminal that Ink renders into properly. So I wrote an AppleScript to automatically split iTerm2 into a grid of tmux sessions.
+
+This was the longest rabbit hole. At least eight rewrites. A catalog of errors:
+
+- **App naming chaos.** AppleScript couldn't find `"iTerm2"`. Or `"iTerm"`. The working invocation turned out to be `application id "com.googlecode.iterm2"` --- the bundle identifier.
+- **Type errors.** AppleScript error `-1700` (type coercion failure), `-609` (connection invalid), `-2741` (can't get reference). Each fix introduced the next error.
+- **Infinite recursion.** When iTerm2 opened a new split pane, it loaded `.zshrc`, which contained the auto-launch script for the grid, which opened more split panes, which loaded `.zshrc`, which... the tmux server crashed under the load.
+- **Pane reference failures.** AppleScript's object model for iTerm2 sessions is barely documented. `session 1 of current tab` worked for the first split but threw errors for subsequent ones.
+
+After the tmux server crashed, I killed everything and sat with a blank terminal.
+
+### The solution
+
+I stopped iterating and asked a different question: what's the simplest thing that could work?
+
+The answer was one tmux session, multiple panes, and a single built-in command: `select-layout tiled`. No AppleScript. No dashboard. No `join-pane`. No `capture-pane`. Just panes in a grid, each one a real terminal, each one rendering Claude Code's TUI perfectly.
+
+The whole setup is three small changes.
+
+**Auto-launch in `.zshrc`** --- every new terminal window attaches to the session or creates it:
+
+```bash
+if [[ -z "$TMUX" ]]; then
+  tmux attach -t c 2>/dev/null || tmux new -s c 'claude --dangerously-skip-permissions; exec zsh'
+fi
+```
+
+The `exec zsh` at the end means that if Claude Code exits, the pane drops to a shell instead of closing. Close iTerm2, reopen it, and you're back where you left off.
+
+**The `cc` script** at `~/bin/cc` creates new named Claude Code panes:
+
+```bash
+#!/bin/zsh
+# Usage: cc [name]
+if [[ -z "$TMUX" ]]; then echo "Error: not inside a tmux session" >&2; exit 1; fi
+name="${1:-$(date +%H%M%S)}"
+tmux split-window -d -c ~ "claude --dangerously-skip-permissions"
+pane=$(tmux list-panes -F '#{pane_index}' | tail -1)
+tmux select-pane -t "$pane" -T "$name"
+tmux select-layout tiled
+```
+
+**tmux.conf additions** --- pane borders show names, `prefix+c` prompts for a name and creates a new Claude Code pane, and `prefix+g` re-tiles the grid:
+
+```bash
+# Pane border titles
+set -g pane-border-status top
+set -g pane-border-format " #{pane_index}: #{pane_title} "
+
+# prefix+c: new named Claude Code pane (prompts for name, delegates to cc)
+bind c command-prompt -p "name:" "run-shell '~/bin/cc %1'"
+
+# prefix+g: re-tile into grid
+bind g select-layout tiled
+```
+
+Hit `prefix+c`, type a name like "yankee-beer," and a new instance appears in the grid, titled accordingly. The layout re-tiles automatically.
+
+**Navigation:**
+
+| Action | Key |
+|--------|-----|
+| Grid view (re-tile) | `prefix+g` |
+| Zoom pane fullscreen | `prefix+z` |
+| Return to grid | `prefix+z` again |
+| Jump to pane by number | `prefix+q` then number |
+| Next pane (stays zoomed) | `prefix+n` |
+| Previous pane (stays zoomed) | `prefix+p` |
+| Next pane (unzooms) | `prefix+o` |
+| Move pane to its own window (hide) | `prefix+!` |
+| Kill pane | `prefix+x` then `y` |
+
+The zoom toggle is the key workflow: `prefix+z` to focus on one session fullscreen, `prefix+z` again to see the whole grid.
+
+### Phone access
+
+SSH from a phone (via [Termux](https://termux.dev/) on Android or any SSH client on iOS) connects to the same tmux session. The `.zshrc` block detects `$SSH_CONNECTION` and creates a *grouped session* --- a linked session that shares windows but has its own independent view:
+
+```bash
+if [[ -n "$SSH_CONNECTION" ]]; then
+  tmux new-session -A -t c -s "remote-$$" \; new-window -n remote 'claude --dangerously-skip-permissions; exec zsh'
+fi
+```
+
+With `aggressive-resize on` in `tmux.conf`, the phone and laptop can have different window sizes without either one getting squished. [Tailscale](https://tailscale.com/) handles networking so I can reach the laptop from anywhere without port forwarding.
+
+### Agent teams stay contained
+
+Claude Code has an experimental [agent teams](https://code.claude.com/docs/en/agent-teams) feature where one session coordinates multiple teammates. By default, if it detects tmux, it creates new panes for each teammate --- which clutters your manually-arranged grid. Setting `teammateMode` to `in-process` in `settings.json` keeps teammates inside their lead's pane:
+
+```json
+{
+  "teammateMode": "in-process"
+}
+```
+
+Teammates still work in parallel, but they're contained within a single pane. Use `shift+down` to cycle through them.
+
+### Why it took so long
+
+The pattern of failure is worth more than the final config. Each broken approach spawned a more complex workaround instead of a simpler alternative. At no point --- through eight rewrites of `tmux-grid`, the dashboard dead end, and the iTerm2 AppleScript ordeal --- did either of us (me or Claude) ask "what's the simplest thing that works?" We only asked that question after the tmux server crashed and there was nothing left to iterate on.
+
+The lesson is the same one that applies to most software projects: when the third workaround fails, the architecture is wrong. Step back. The solution to "my grid script breaks every time I run it" wasn't a better grid script. It was `select-layout tiled`.
+
+All the config files are in [github.com/MaxGhenis/dotfiles](https://github.com/MaxGhenis/dotfiles). A living reference version with the latest config is at [/setup](/setup).
+
+## What I learned
+
+A few things came out of this audit that I wasn't expecting:
+
+**Hooks beat instructions.** The enforce-package-managers hook catches every `npm install` before it runs. The equivalent `CLAUDE.md` instruction ("use bun, not npm") works maybe half the time. If you care about a behavior strongly enough to write it down, write it as a hook instead.
+
+**Hooks on disk aren't hooks in practice.** Two of my three safety hooks existed as executable scripts but weren't registered in `settings.json`. They'd never fired. The gap between "I wrote this" and "this is running" is easy to miss, especially since there's no warning that a hook script exists but isn't configured.
+
+**Config directories accumulate without you noticing.** The 36 GB of stale clones, the plugin that had taken over my git history, the age-encrypted secrets file I'd stopped using months ago --- none of this was visible until I sat down and went through everything deliberately. Periodic audits are worth the time.
+
+## Why make it public
+
+A few reasons:
+
+1. **Reference for others setting up Claude Code.** The documentation covers each feature individually, but seeing a real configuration that ties them together is more useful than reading about each piece in isolation.
+2. **Backup and portability.** If I set up a new machine, I can clone this repo and have my workflow back immediately (minus secrets, which live in the Keychain).
+3. **Accountability.** Knowing it's public makes me more deliberate about what goes in there.
+
+The repo is at [github.com/MaxGhenis/.claude](https://github.com/MaxGhenis/.claude).
 
 ---
 
-## Replicating GiveWell''s cost-effectiveness analysis in code: an interactive calculator and what I learned
+## Interactive replication of GiveWell''s cost-effectiveness analysis
 
 **URL:** https://maxghenis.com/blog/givewell-cea/
 **Published:** Feb 10 2026
@@ -83,9 +405,13 @@ Next time you're close to someone, pay attention — you'll catch yourself switc
 
 I re-implemented GiveWell's cost-effectiveness models for all six top charities as an open-source web tool: **[maxghenis.com/givewell-cea](https://maxghenis.com/givewell-cea)**
 
-This post describes the replication, what I learned about GiveWell's methodology in the process, the verification results, and some observations about moral weight sensitivity. The tool itself lets you edit any parameter and immediately see the effect on charity rankings.
+The tool lets you edit any parameter and immediately see the effect on charity rankings.
 
 ## Motivation
+
+I discovered GiveDirectly in 2012 when Google.org made a grant to help them expand from Kenya to Uganda. I loved the RCT emphasis — a charity that treated evidence the way I'd want any intervention evaluated. GiveDirectly led me to GiveWell, and GiveWell's cost-effectiveness analysis has guided my giving for almost a decade since my first donation in 2017.
+
+When I first dug into GiveWell's CEA spreadsheets, I was amazed by the depth. Every parameter sourced, every assumption explicit, every step auditable. A public good built on radical transparency. That concept — computational epistemic infrastructure, open models that let anyone verify and challenge the reasoning — eventually inspired me to build [PolicyEngine](https://policyengine.org), though I wouldn't have foreseen that when I first opened the spreadsheet. I view GiveWell's CEA as one of the original products of the effective altruism community, which has increasingly shaped my worldview with its emphasis on a broad moral circle and methodical assessment of [where to invest resources to maximize impact](/blog/why-ive-taken-the-giving-what-we-can-pledge/).
 
 Others have done excellent work examining specific parts of GiveWell's CEA — [Froolow's critical review](https://forum.effectivealtruism.org/posts/6dtwkwBrHBGtc3xes/a-critical-review-of-givewell-s-2022-cost-effectiveness) of model architecture, [Nolan, Rokebrand, and Rao's uncertainty quantification](https://forum.effectivealtruism.org/posts/Nb2HnrqG4nkjCqmRg/quantifying-uncertainty-in-givewell-cost-effectiveness), and several pieces on [deworming](https://forum.effectivealtruism.org/posts/MKiqGvijAXfcBHCYJ/deworming-and-decay-replicating-givewell-s-cost) and [AMF](https://forum.effectivealtruism.org/posts/4Qdjkf8PatGBsBExK/adding-quantified-uncertainty-to-givewell-s-cost) uncertainty. But I couldn't find a tool that implements all six charities together and makes it easy to compare them while adjusting assumptions.
 
@@ -108,56 +434,54 @@ For each charity I implemented the core pipeline from GiveWell's spreadsheets:
 The six charities each have their own structure:
 - **AMF** and **Malaria Consortium**: Under-5 mortality reduction, with separate pathways for older age mortality and developmental effects
 - **Helen Keller International**: VAS effect on under-5 mortality
-- **New Incentives**: Incremental vaccinations from cash incentives, converted to deaths averted using vaccine-specific effect sizes
-- **GiveDirectly**: Consumption increase valued directly (no mortality pathway)
-- **Deworm the World**: Long-run earnings effects of deworming, valued via ln(consumption)
+- **New Incentives**: Cash incentives increase vaccination rates; the model converts incremental vaccinations to deaths averted using vaccine-specific effect sizes
+- **GiveDirectly**: The model values consumption increases directly (no mortality pathway)
+- **Deworm the World**: The model values long-run earnings effects of deworming via ln(consumption)
 
-All 46 charity/country combinations operate independently — each country has its own cost per person, mortality rate, adjustment factors, etc.
+All 51 charity/country combinations operate independently — each country has its own cost per person, mortality rate, adjustment factors, etc.
 
 ## Observations from the replication
 
-A few things stood out:
-
-**The benchmark matters more than you'd think.** AMF uses a benchmark of 0.00333 units of value per dollar, while MC and HKI use 0.0033545. This 0.75% difference in the denominator propagates directly to the final multiple. It took careful cell-tracing to realize different charities use slightly different benchmark constants — they're buried in separate sheets with different update cycles.
+**The benchmarks aren't on the same scale.** GiveWell expresses each charity's cost-effectiveness as a multiple of GiveDirectly cash transfers. The denominator — how many "units of value" (GiveWell's composite of moral-weight-adjusted lives saved) one dollar of cash generates — differs across spreadsheets: AMF uses 0.00333, MC and HKI use 0.00335, and GiveDirectly uses 0.003. GiveWell built different spreadsheets at different times and baked in different moral weight calibrations. They don't mechanically compare multiples across spreadsheets, but a tool that displays them side by side inherits this inconsistency.
 
 **Mortality rate definitions vary.** AMF's spreadsheet has both a raw malaria mortality rate and a derived "mortality rate in the absence of nets" rate. The latter accounts for existing net coverage and is the correct input. My first extraction accidentally used the raw rates, which underestimated AMF's cost-effectiveness by roughly 2x for some countries (e.g., DRC: 0.00306 raw vs. 0.00798 in-absence-of-nets).
 
-**Counterfactual coverage drives most of the within-charity variation.** Both Helen Keller and New Incentives have a `proportionReachedCounterfactual` parameter — what fraction of people would receive the intervention anyway, without the charity's involvement. The remaining fraction is the charity's incremental impact. These tables show how this parameter (alongside cost, mortality rates, and adjustments) determines each location's cost-effectiveness:
+**Counterfactual coverage drives most of the within-charity variation.** Both Helen Keller and New Incentives have a `proportionReachedCounterfactual` parameter — what fraction of people would receive the intervention anyway, without the charity's involvement. The remaining fraction is the charity's incremental impact:
 
 Helen Keller (VAS):
 
-| Country | Existing coverage | Incremental | x benchmark |
-|---------|------------------|-------------|-------------|
-| Niger | 15% | 85% | 79× |
-| DRC | 20% | 80% | 30× |
-| Mali | 21% | 79% | 17× |
-| Madagascar | 33% | 67% | 12× |
-| Guinea | 18% | 82% | 11× |
-| Cameroon | 23% | 78% | 8× |
-| Burkina Faso | 29% | 71% | 7× |
-| Côte d'Ivoire | 40% | 60% | 6× |
+| Country | Would receive VAS anyway | x benchmark |
+|---------|-------------------------|-------------|
+| Niger | 15% | 79× |
+| DRC | 20% | 30× |
+| Mali | 21% | 17× |
+| Madagascar | 33% | 12× |
+| Guinea | 18% | 11× |
+| Cameroon | 23% | 8× |
+| Burkina Faso | 29% | 7× |
+| Côte d'Ivoire | 40% | 6× |
 
 New Incentives (vaccinations, Nigerian states):
 
-| State | Would get vaccinated anyway | Incremental | x benchmark |
-|-------|---------------------------|-------------|-------------|
-| Sokoto | 69% | 32% | 39× |
-| Zamfara | 79% | 21% | 31× |
-| Kebbi | 72% | 28% | 29× |
-| Bauchi | 81% | 19% | 20× |
-| Jigawa | 86% | 14% | 18× |
-| Katsina | 81% | 19% | 17× |
-| Kano | 83% | 17% | 13× |
-| Gombe | 88% | 12% | 10× |
-| Kaduna | 84% | 16% | 9× |
+| State | Would get vaccinated anyway | x benchmark |
+|-------|---------------------------|-------------|
+| Sokoto | 68.5% | 39× |
+| Zamfara | 79.4% | 31× |
+| Kebbi | 71.9% | 29× |
+| Bauchi | 81.5% | 20× |
+| Jigawa | 85.8% | 18× |
+| Katsina | 81.0% | 17× |
+| Kano | 83.2% | 13× |
+| Gombe | 88.0% | 10× |
+| Kaduna | 84.2% | 9× |
 
-The pattern is clear but imperfect — Niger's 85% incremental coverage is similar to Guinea's 82%, yet Niger scores 7x higher because its mortality rate is higher (1.4% vs 1.1%), VAS effect is double (11.1% vs 5.5%), and cost per child is 70% lower. The counterfactual sets the scale; the other parameters determine the multiplier within it.
+Counterfactual coverage correlates with cost-effectiveness but doesn't determine it alone. Niger's 85% incremental coverage is similar to Guinea's 82%, yet Niger scores 7x higher: higher mortality rate (1.4% vs 1.1%), double the VAS effect (11.1% vs 5.5%), and 70% lower cost per child.
 
 **Helen Keller's leverage/funging adjustments need careful reading.** In my first pass, the funging adjustment for Burkina Faso extracted as 531.99 instead of -0.431. These values come from separate rows in the spreadsheet that are easy to confuse — a "percentage change" row vs. an "adjusted value" row.
 
 ## Verification
 
-Parameters are extracted from GiveWell's November 2025 CEA spreadsheets ([AMF](https://docs.google.com/spreadsheets/d/1VEtie59TgRvZSEVjfG7qcKBKcQyJn8zO91Lau9YNqXc), [MC](https://docs.google.com/spreadsheets/d/1De3ZnT2Co5ts6Ccm9guWl8Ew31grzrZZwGfPtp-_t50), [HKI](https://docs.google.com/spreadsheets/d/1L6D1mf8AMKoUHrN0gBGiJjtstic4RvqLZCxXZ99kdnA), [NI](https://docs.google.com/spreadsheets/d/1mTKQuZRyVMie-K_KUppeCq7eBbXX15Of3jV7uo3z-PM)). I verified all 46 charity/country final cost-effectiveness multiples against the spreadsheets:
+I extracted parameters from GiveWell's November 2025 CEA spreadsheets ([AMF](https://docs.google.com/spreadsheets/d/1VEtie59TgRvZSEVjfG7qcKBKcQyJn8zO91Lau9YNqXc), [MC](https://docs.google.com/spreadsheets/d/1De3ZnT2Co5ts6Ccm9guWl8Ew31grzrZZwGfPtp-_t50), [HKI](https://docs.google.com/spreadsheets/d/1L6D1mf8AMKoUHrN0gBGiJjtstic4RvqLZCxXZ99kdnA), [NI](https://docs.google.com/spreadsheets/d/1mTKQuZRyVMie-K_KUppeCq7eBbXX15Of3jV7uo3z-PM)). I verified 46 of the 51 charity/country final cost-effectiveness multiples against the spreadsheets (GiveDirectly excluded — see Limitations):
 
 | Charity | Countries | Max difference |
 |---------|-----------|---------------|
@@ -167,7 +491,7 @@ Parameters are extracted from GiveWell's November 2025 CEA spreadsheets ([AMF](h
 | New Incentives | 9 | 0.000% (exact) |
 | Deworm the World | 13 | 0.000% (exact) |
 
-GiveDirectly uses older parameter extractions. 298 automated tests verify the calculations. The remaining <0.001% differences for AMF/MC/HKI are floating-point precision, not model discrepancies.
+298 automated tests pass. The remaining <0.001% differences for AMF/MC/HKI are floating-point precision, not model discrepancies.
 
 ## Interactive features
 
@@ -189,17 +513,20 @@ A few examples of what you see when you adjust parameters:
 |------|---------|-------------|-------------|
 | 1 | Helen Keller | Niger | 79× |
 | 2 | New Incentives | Sokoto | 39× |
-| 3 | AMF | Guinea | 23× |
-| 4 | Malaria Consortium | Chad | 15× |
-| 5 | GiveDirectly | Mozambique | 4× |
+| 3 | Deworm the World | Kenya | 35× |
+| 4 | AMF | Guinea | 23× |
+| 5 | Malaria Consortium | Chad | 15× |
+| 6 | GiveDirectly* | Mozambique | 4× |
 
-**Double the under-5 moral weight.** All four mortality-focused charities see exactly +100% gains — their value comes entirely from deaths averted, so doubling the weight doubles the result. GiveDirectly gains only +3.4% because its value comes from consumption benefits, not mortality. Rankings don't change.
+*GiveDirectly uses a simplified model with older parameters — see Limitations.
 
-**Equal moral weights across ages (all set to 100).** This reflects a view that a life saved is equally valuable at any age. It penalizes child-focused charities by 14-16% (since the default under-5 weight of ~116 drops to 100). Helen Keller drops from 79× to 67×. But rankings remain the same.
+**Double the under-5 moral weight.** All four mortality-focused charities see exactly +100% gains — their value comes entirely from deaths averted, so doubling the weight doubles the result. GiveDirectly gains only +3.4% because most of its value comes from consumption benefits. (A [2025 study](https://www.givedirectly.org/mortality2025/) found $1,000 transfers cut infant mortality by 48%, and [GiveWell now includes mortality effects](https://www.givedirectly.org/givewell-2024/) in GiveDirectly's CEA — but with steep discounts, so consumption still dominates.) Rankings don't change.
+
+**Equal moral weights across ages (all set to 100).** Child-focused charities drop 14-16% (the default under-5 weight of ~116 falls to 100). Helen Keller drops from 79× to 67×. Rankings stay the same.
 
 **Double AMF's cost per child in DRC.** The relationship is perfectly linear: doubling cost halves the x benchmark from 14.6× to 7.3×. This is a more powerful lever for changing *relative* rankings within mortality-focused charities than moral weight changes, which scale all of them equally.
 
-The main takeaway: rankings are remarkably stable to moral weight changes because the top charities all work through similar mortality-reduction mechanisms. Operational cost differences between countries create much more variation than ethical assumptions.
+When most top charities prevent child deaths, changing the weight on child deaths scales them all in the same direction. What *does* break the rankings is operational cost differences between countries. The tool lets you find the specific crossover points where, say, doubling a cost parameter in one country moves it below another charity entirely.
 
 ## Programmatic access
 
@@ -277,16 +604,58 @@ Each model function (`calculateAMF`, `calculateHelenKeller`, `calculateNewIncent
 
 ## Limitations
 
-This replicates the *structure* of GiveWell's models but not their full analytical process. Specifically:
+I replicated the *structure* of GiveWell's models but not their full analytical process:
 
-- I implement the calculation pipeline but not the reasoning behind parameter choices. GiveWell's adjustments (charity quality, external validity, leverage, funging) encode substantial judgment that this tool takes as given.
-- No uncertainty analysis. The tool shows point estimates only. [Several](https://forum.effectivealtruism.org/posts/4Qdjkf8PatGBsBExK/adding-quantified-uncertainty-to-givewell-s-cost) [excellent](https://forum.effectivealtruism.org/posts/ycLhq4Bmep8ssr4wR/quantifying-uncertainty-in-givewell-s-givedirectly-cost) [posts](https://forum.effectivealtruism.org/posts/Nb2HnrqG4nkjCqmRg/quantifying-uncertainty-in-givewell-cost-effectiveness) have explored what happens when you put distributions around these estimates.
+- I implement the calculation pipeline but not the reasoning behind parameter choices. GiveWell's adjustments (charity quality, external validity, leverage, funging) encode substantial judgment that this tool takes as given. The parameters themselves — particularly the adjustment factors — represent years of investigation, site visits, literature reviews, and internal debate. This tool lets you see the arithmetic, but the arithmetic was never the hard part.
+- No uncertainty analysis. The tool supports sensitivity analysis — sweeping one parameter at a time to see how results change — but does not place joint distributions over parameters or propagate uncertainty through the model. [Several](https://forum.effectivealtruism.org/posts/4Qdjkf8PatGBsBExK/adding-quantified-uncertainty-to-givewell-s-cost) [excellent](https://forum.effectivealtruism.org/posts/ycLhq4Bmep8ssr4wR/quantifying-uncertainty-in-givewell-s-givedirectly-cost) [posts](https://forum.effectivealtruism.org/posts/Nb2HnrqG4nkjCqmRg/quantifying-uncertainty-in-givewell-cost-effectiveness) have explored what happens when you put distributions around these estimates.
+- I built the GiveDirectly model as a simplified approximation from an older spreadsheet and blog post, not a direct replication of GiveWell's current model. It uses identical parameters (spillover effects, mortality effects, consumption persistence) across all five countries, unlike GiveWell's country-differentiated approach.
 - The tool currently covers GiveWell's top 6 charities but not newer additions.
-- GiveDirectly and deworming use older parameter extractions.
 
 For donation decisions, use [GiveWell's published estimates](https://www.givewell.org/how-we-work/our-criteria/cost-effectiveness/cost-effectiveness-models).
 
 Source code: [github.com/MaxGhenis/givewell-cea](https://github.com/MaxGhenis/givewell-cea)
+
+---
+
+## Why you can''t make double eye contact
+
+**URL:** https://maxghenis.com/blog/double-eye-contact/
+**Published:** Feb 10 2026
+**Description:** Your eyes can only converge on a single point. Up close, that means you have to pick one of the other person''s eyes to look at.
+
+import EyeConvergence from '../../../components/EyeConvergence.tsx';
+
+Have you ever noticed that when you're face-to-face with someone, you can't actually look at both of their eyes at the same time? You're always picking one — left or right — and subtly switching between them.
+
+This isn't a limitation of attention or focus. It's geometry.
+
+## One convergence point
+
+Your two eyes always rotate as a pair to aim at the same target. This is called [**vergence**](https://pmc.ncbi.nlm.nih.gov/articles/PMC5122972/), and it means they converge on a single point in space at any given moment.
+
+When someone is close to you, their two eyes occupy noticeably different positions in your visual field. The angular separation between them is large enough that you can't fit both into the single point your eyes converge on. So you pick one.
+
+## Try it yourself
+
+Toggle between looking at each eye, and slide the distance to see how angular separation changes.
+
+<EyeConvergence client:load />
+
+When the face is close, the angular separation between their eyes is large — well beyond your [fovea](https://pmc.ncbi.nlm.nih.gov/articles/PMC12330045/) (the high-resolution center of your vision, [~1.5mm across](https://pmc.ncbi.nlm.nih.gov/articles/PMC12330045/) or roughly 5° of visual angle). You're clearly choosing one eye.
+
+As the face moves farther away, both eyes fall into a tighter angular range. Eventually they're so close together in your visual field that it _feels_ like you're looking at both — even though you're still converging on a single point.
+
+## Why it doesn't matter at a distance
+
+Human interpupillary distance [averages about 63mm](https://pmc.ncbi.nlm.nih.gov/articles/PMC3520592/). At 1 meter away, that subtends roughly 3.6°. At 3 meters, it's about 1.2° — easily within your fovea's ~5° span. This is why you barely notice the effect in normal conversation but absolutely feel it during an intimate close-up.
+
+## What about Magic Eye?
+
+If you've viewed a [Magic Eye stereogram](https://en.wikipedia.org/wiki/Magic_Eye), you know it's possible to diverge your eyes — point them more parallel than the object distance would normally call for — while still focusing on a near surface. Could you use this trick to aim each eye at a different target?
+
+No. Even in Magic Eye viewing, both eyes are still aimed at a single convergence point — it's just a virtual one behind the page rather than on the surface. You've moved _where_ your eyes converge, but you haven't split that point in two. To make double eye contact, you'd need each eye aimed at a completely independent target, and that's not something the [vergence system](https://www.ncbi.nlm.nih.gov/books/NBK11070/) supports — it always drives both eyes toward the same point in space.
+
+I never would have built an interactive visualization to explore a random curiosity like this before. But with [Claude Code](https://claude.ai/claude-code), describing what I wanted and getting a working widget took a couple hours — so why not? The idle question gets a better answer when you can play with it yourself.
 
 ---
 
@@ -460,7 +829,7 @@ It started simply:
 >
 > **Claude:** I can help you with SNAP recertification. A few questions to get started: What state are you in? Have you received a recertification notice? Do you know if your state has an online portal?
 >
-> **Me:** dc, maybe i dont check my mail, yes it does
+> **Me:** dc, idk, yes it does
 
 Claude found the portal, opened it in Chrome, and told me to log in (it can't enter passwords). I logged in and said:
 
@@ -476,7 +845,7 @@ Early on, Claude was asking for confirmation before every step. I put a stop to 
 
 After that, Claude moved through the pre-filled sections autonomously — name, DOB, citizenship, household composition — only stopping when it actually needed something from me. Like when it hit the SSN page:
 
-> **Claude:** This page is asking for your SSN. It's partially masked (showing XXX-XX-0844) so it's already on file. I cannot enter sensitive information like SSNs — this is something you'll need to verify/enter yourself.
+> **Claude:** This page is asking for your SSN. It's partially masked (showing the last four digits) so it's already on file. I cannot enter sensitive information like SSNs — this is something you'll need to verify/enter yourself.
 >
 > **Me:** it's already there, just hit next
 
@@ -491,6 +860,8 @@ When Claude reached the income section, it needed updated numbers from my financ
 > **Claude:** I don't see the Vanguard tab in my tab group. Unfortunately financial sites like Vanguard and Wealthfront are blocked by the browser extension's safety restrictions.
 >
 > **Me:** just downloaded a pdf for vanbguad
+
+(You'll notice the typos — I've gotten sloppier with typing since Claude handles it fine, so I don't bother correcting myself.)
 
 So I downloaded a Vanguard PDF, a Wealthfront CSV, and my paystubs to my Downloads folder. Claude read them directly from the filesystem, extracted the relevant figures, and calculated my quarterly investment income.
 
@@ -507,7 +878,7 @@ Submitted at 8:56 PM. The confirmation page told me my SNAP interview is due by 
 My role was minimal:
 
 - **My state**: DC
-- **My address hasn't changed**: "950 3rd st nw #206"
+- **My address hasn't changed**
 - **Downloaded documents**: I downloaded statements from my financial institutions showing dividend and interest income, and my recent paystubs, to my Downloads folder
 - **Logged in**: I handled the login to District Direct myself
 - **A few corrections**: like telling Claude the SSN was already filled in, and that I'm already registered to vote
@@ -526,15 +897,6 @@ Claude read my financial documents (PDFs and CSVs), extracted the relevant figur
 - Plus scrolling, reading documents, web searches, and calculations
 
 The form covers household composition, address, income from all sources (employment, investments, other), expenses (shelter, utilities, childcare, medical), and rights and responsibilities. Claude navigated all of it, carrying forward pre-filled data where nothing had changed and updating the fields that needed new numbers.
-
-## What went wrong
-
-It wasn't perfectly smooth:
-
-- **Session timeouts**: District Direct timed out while Claude was reading my financial documents to calculate quarterly investment income. It had to re-navigate the entire form from the beginning.
-- **Wrong employer address**: Claude searched the web for my employer's address and found an outdated PO Box. It caught the discrepancy itself by cross-referencing against my paystub and corrected it — I didn't even notice.
-- **Form input quirks**: Some fields on the portal (like dollar amounts with a `$` prefix) wouldn't accept Claude's standard form input method. It had to fall back to clicking the field and typing directly.
-- **Context overflows**: The conversation ran out of context three times — browser automation generates a lot of data, especially screenshots. Each time, Claude resumed with a summary of what happened before and picked up where it left off.
 
 ## How long it took
 
@@ -1101,7 +1463,7 @@ You can also embed Streamlit apps, Observable notebooks, or any iframe-compatibl
 
 ## VAT thresholds, revenues, and the role of counterfactuals
 
-**URL:** https://maxghenis.com/blog/substack/vat-thresholds/
+**URL:** https://maxghenis.com/blog/vat-thresholds/
 **Published:** Aug 30 2025
 **Description:** Debunking claims that raising the UK VAT threshold would increase tax revenues through growth effects.
 
@@ -1145,7 +1507,7 @@ The revenue increase in 2028-29 reflects inflation indexing. The £90,000 thresh
 
 ## AI models favor Cuomo over Mamdani on NYC housing production
 
-**URL:** https://maxghenis.com/blog/substack/ai-models-nyc-housing/
+**URL:** https://maxghenis.com/blog/ai-models-nyc-housing/
 **Published:** Jun 23 2025
 **Description:** An experiment using six AI models to forecast NYC housing production under two mayoral candidates.
 
@@ -1210,7 +1572,7 @@ You can read the [full 48 pages of AI predictions here](https://docs.google.com/
 
 ## My 2024 in code: Personal projects and AI tools
 
-**URL:** https://maxghenis.com/blog/substack/my-2024-in-code/
+**URL:** https://maxghenis.com/blog/my-2024-in-code/
 **Published:** Jan 02 2025
 **Description:** How AI helped me build useful software while leading PolicyEngine.
 
@@ -1246,7 +1608,7 @@ Want to explore these tools? Check out the links above and let me know what you 
 
 ## Why I'm a neoliberal
 
-**URL:** https://maxghenis.com/blog/substack/why-im-a-neoliberal/
+**URL:** https://maxghenis.com/blog/why-im-a-neoliberal/
 **Published:** Mar 18 2022
 **Description:** My political philosophy and why I identify with neoliberalism - emphasizing evidence-based policy, market mechanisms, and a strong social safety net.
 
@@ -1296,7 +1658,7 @@ I'm an "extreme liberal" seeking the most effective policy solutions: address po
 
 ## In appointing their newest member, the Ventura City Council only pretended to care about housing
 
-**URL:** https://maxghenis.com/blog/medium/in-appointing-their-newest-member-the-ventura-city/
+**URL:** https://maxghenis.com/blog/in-appointing-their-newest-member-the-ventura-city/
 **Published:** 2021-02-24
 **Description:** After asking each applicant about the housing crisis, most councilmembers voted for those least committed to solving it
 
@@ -1388,7 +1750,7 @@ Sanchez-Palacios suggested she may run for election in November 2022. Her NIMBY 
 
 ## If you earned more in 2019 than 2018, don't file your 2019 taxes yet! Otherwise, file ASAP!
 
-**URL:** https://maxghenis.com/blog/medium/if-you-earned-more-in-2019-than-2018-dont-file-you/
+**URL:** https://maxghenis.com/blog/if-you-earned-more-in-2019-than-2018-dont-file-you/
 **Published:** 2020-03-27
 **Description:** The right tax filing schedule could get you thousands in (poorly designed) Recovery Rebates. And Congress: Let's just do UBI next time.
 
@@ -1437,7 +1799,7 @@ It might not be so long before this choice rears its head again. House Speaker N
 
 ## Why I’ve taken the Giving What We Can pledge
 
-**URL:** https://maxghenis.com/blog/medium/why-ive-taken-the-giving-what-we-can-pledge/
+**URL:** https://maxghenis.com/blog/why-ive-taken-the-giving-what-we-can-pledge/
 **Published:** 2019-12-31
 **Description:** The global poor will benefit much more from ten percent of my income than I will
 
@@ -1520,7 +1882,7 @@ I plan to do another recap like this next year, and hope it will include a new c
 
 ## Ventura County must end its unsheltered homelessness
 
-**URL:** https://maxghenis.com/blog/medium/ventura-county-must-end-its-unsheltered-homelessne/
+**URL:** https://maxghenis.com/blog/ventura-county-must-end-its-unsheltered-homelessne/
 **Published:** 2019-11-25
 **Description:** We need to make shelters more abundant and housing more affordable
 
@@ -1589,7 +1951,7 @@ We need a more humane approach to homelessness. Instead of rounding up tent dwel
 
 ## Warren’s wealth tax would raise less than she claims — even using her economists’ own assumptions
 
-**URL:** https://maxghenis.com/blog/medium/warrens-wealth-tax-would-raise-less-than-she-claim/
+**URL:** https://maxghenis.com/blog/warrens-wealth-tax-would-raise-less-than-she-claim/
 **Published:** 2019-11-09
 **Description:** Using their cited assumptions around avoidance and economic growth cuts revenue by a quarter
 
@@ -1675,7 +2037,7 @@ Proper avoidance modeling has a larger effect on the Sanders plan than on the Wa
 
 ## Andrew Yang's troubling Tucker Carlson interview
 
-**URL:** https://maxghenis.com/blog/medium/andrew-yangs-troubling-tucker-carlson-interview/
+**URL:** https://maxghenis.com/blog/andrew-yangs-troubling-tucker-carlson-interview/
 **Published:** 2019-03-09
 **Description:** The Democratic presidential candidate fed into Tucker's MAGA narrative
 
@@ -1758,7 +2120,7 @@ By these objectives, Yang’s interview did more to bolster the doom-and-gloom n
 
 ## Quantile regression, from linear models to trees to deep learning
 
-**URL:** https://maxghenis.com/blog/medium/quantile-regression-from-linear-models-to-trees-to/
+**URL:** https://maxghenis.com/blog/quantile-regression-from-linear-models-to-trees-to/
 **Published:** 2018-10-16
 **Description:** Suppose a real estate analyst wants to predict home prices from factors like home age and distance from job centers.
 
@@ -1919,7 +2281,7 @@ Quantile regression is valuable for each of these use cases, and machine learnin
 
 ## We should replace the Child Tax Credit with a universal child benefit
 
-**URL:** https://maxghenis.com/blog/medium/we-should-replace-the-child-tax-credit-with-a-univ/
+**URL:** https://maxghenis.com/blog/we-should-replace-the-child-tax-credit-with-a-univ/
 **Published:** 2018-04-22
 **Description:** The Child Tax Credit (CTC) is one of the largest assistance programs for children in the US.
 
@@ -2017,7 +2379,7 @@ It should culminate in a universal child benefit, completing its path toward inc
 
 ## The case for a wonky basic income plan
 
-**URL:** https://maxghenis.com/blog/medium/the-case-for-a-wonky-basic-income-plan/
+**URL:** https://maxghenis.com/blog/the-case-for-a-wonky-basic-income-plan/
 **Published:** 2017-06-14
 **Description:** In March, a former union leader joined forces with a prominent libertarian to debate two Obama White House economists.
 
@@ -2158,7 +2520,7 @@ It's time to get in the weeds and make a plan that not only lives up to the idea
 
 ## Reddit featured a misleading headline on education secretary nominee Betsy DeVos
 
-**URL:** https://maxghenis.com/blog/medium/reddit-featured-a-misleading-headline-on-education/
+**URL:** https://maxghenis.com/blog/reddit-featured-a-misleading-headline-on-education/
 **Published:** 2016-11-26
 **Description:** “billionaire”
 
@@ -2266,7 +2628,7 @@ There’s no need for the exaggeration and fabrication more commonly found on th
 
 ## Uber's tipping settlement will reduce earnings of African-American drivers
 
-**URL:** https://maxghenis.com/blog/medium/ubers-tipping-settlement-will-reduce-earnings-of-a/
+**URL:** https://maxghenis.com/blog/ubers-tipping-settlement-will-reduce-earnings-of-a/
 **Published:** 2016-04-26
 **Description:** This week, Uber reached a settlement with drivers in California and Massachusetts in a lawsuit concerning worker classification.
 
@@ -2306,7 +2668,7 @@ Despite this setback, much progress has been made in tipping reform, with [nearl
 
 ## If we can afford our current welfare system, we can afford basic income
 
-**URL:** https://maxghenis.com/blog/medium/if-we-can-afford-our-current-welfare-system-we-can/
+**URL:** https://maxghenis.com/blog/if-we-can-afford-our-current-welfare-system-we-can/
 **Published:** 2016-01-24
 **Description:** Replacing the antipoverty bureaucracy
 

@@ -34,7 +34,7 @@ I finally built an interactive version of all six GiveWell top charity models. Y
 - Adjust moral weights by age bracket
 - Run sensitivity analysis to find crossover points between charities
 
-I verified 46 of 51 charity/country results against GiveWell's November 2025 spreadsheets — all match within floating-point precision.
+I verified every charity/country result against GiveWell's November 2025 spreadsheets — all match within floating-point precision.
 
 Some observations from the replication: the benchmark denominators differ across GiveWell's spreadsheets, and counterfactual coverage drives most within-charity variation — Helen Keller in Niger scores 79x the benchmark while Cote d'Ivoire scores 6x.
 
