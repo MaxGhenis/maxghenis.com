@@ -20,7 +20,12 @@ import { SITE_TITLE } from '../consts';
 
 			<section>
 				<h2>Terminal</h2>
-				<p>Everything runs inside <a href="https://github.com/tmux/tmux">tmux</a>. My shell auto-attaches on launch, and I spawn Claude Code panes with a one-line script.</p>
+
+				<div class="callout">
+					<strong>Pick one approach and stick with it.</strong> VS Code has a built-in Claude Code panel. iTerm2 + tmux is a standalone alternative. Running both creates duplicate sessions that don't talk to each other. If you use VS Code, close iTerm2 (or vice versa). The <code>.zshrc</code> below auto-skips tmux inside VS Code terminals so you won't get duplicates.
+				</div>
+
+				<p>My setup uses <a href="https://github.com/tmux/tmux">tmux</a> in iTerm2. The shell auto-attaches on launch, and I spawn Claude Code panes with a one-line script.</p>
 
 				<h3>tmux config highlights</h3>
 				<ul>
@@ -45,8 +50,9 @@ import { SITE_TITLE } from '../consts';
 				<p>The keyword search is the key feature: it greps the first few user messages of every session transcript (<code>~/.claude/projects/*/*.jsonl</code>), excludes active sessions, decodes the project directory, and opens <code>claude --resume</code> in the right place. Smart pane detection uses child process checks and content markers to reliably identify CC panes even when they report <code>zsh</code> as their command.</p>
 
 				<h3>Auto-attach on shell start</h3>
-				<p>This block in <code>.zshrc</code> ensures every terminal session lands inside tmux. SSH connections create a grouped session so phone and laptop share windows but can view them independently.</p>
-				<pre class="code-block">if [[ -z "$TMUX" ]]; then
+				<p>This block in <code>.zshrc</code> ensures every terminal session lands inside tmux &mdash; but skips VS Code terminals (which have their own Claude Code panel). SSH connections create a grouped session so phone and laptop share windows but can view them independently.</p>
+				<pre class="code-block"># Skip auto-attach in VS Code terminals (use VS Code's Claude Code panel instead)
+if [[ -z "$TMUX" &amp;&amp; -z "$VSCODE_INJECTION" ]]; then
   if [[ -n "$SSH_CONNECTION" ]]; then
     tmux new-session -A -t c -s "remote-$$" \; new-window -n remote 'claude --dangerously-skip-permissions; exec zsh' 2&gt;/dev/null || tmux new -s c 'claude --dangerously-skip-permissions; exec zsh'
   else
@@ -164,6 +170,17 @@ fi</pre>
 
 	section {
 		margin-bottom: 3rem;
+	}
+
+	.callout {
+		background: #fef3c7;
+		border-left: 4px solid #f59e0b;
+		padding: 1rem 1.25rem;
+		border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+		margin-bottom: 1.5rem;
+		color: #78350f;
+		line-height: 1.6;
+		font-size: 0.9375rem;
 	}
 
 	section h2 {
