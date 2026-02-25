@@ -39,7 +39,7 @@ While auditing, I also noticed that 36 GB of stale repo clones had accumulated i
 
 ## Slash commands
 
-Claude Code lets you define [custom slash commands](https://docs.anthropic.com/en/docs/claude-code/slash-commands) as markdown files in `~/.claude/commands/`. Each file is a prompt template you invoke with `/command-name`. I have ten:
+Claude Code lets you define [custom slash commands](https://docs.anthropic.com/en/docs/claude-code/slash-commands) as markdown files in `~/.claude/commands/`. Each file is a prompt template you invoke with `/command-name`. I have eleven:
 
 - **`/briefing`** --- Pulls today's calendar, unread emails, and (in the first week of the month) monthly task reminders. I run this most mornings.
 - **`/search-everything`** --- Cross-platform search across local files, WhatsApp, Gmail, Granola meeting notes, and the browser. It works through sources in order of speed and stops when it finds what I need.
@@ -49,6 +49,7 @@ Claude Code lets you define [custom slash commands](https://docs.anthropic.com/e
 - **`/personal-info`** --- Loads my personal details from a private file for form-filling, applications, and profile creation.
 - **`/slides`** --- Generates presentation decks from a brief or topic using a Next.js + Tailwind framework.
 - **`/search-transcripts`** --- Searches past Claude Code conversation transcripts by keyword using [`claude-search`](https://github.com/nicobailon/claude-search).
+- **`/config-tidy`** --- Audits and reorganizes `CLAUDE.md`, `MEMORY.md`, and skills to keep each layer within its target size.
 
 Most of these compose multiple tools --- MCP servers, CLI utilities, APIs --- into a single action. The `/briefing` command, for example, calls the Google Calendar API, searches Gmail, and checks a task list, then synthesizes everything into a summary. Writing it as a slash command means I don't re-explain the workflow every session.
 
@@ -148,7 +149,7 @@ Claude spawned three parallel Explore agents that searched the skill files on-de
 
 **Pavel's Slack DM channel ID**
 
-`D047FDWKAKC` (user ID: `U047HTB58BE`)
+`D04xxxxx` (found via skill lookup)
 
 **Whoop sleep API endpoint**
 
@@ -249,12 +250,12 @@ The whole setup is three small changes.
 **Auto-launch in `.zshrc`** --- every new terminal window attaches to the session or creates it:
 
 ```bash
-if [[ -z "$TMUX" ]]; then
+if [[ -z "$TMUX" && -z "$VSCODE_INJECTION" ]]; then
   tmux attach -t c 2>/dev/null || tmux new -s c 'claude --dangerously-skip-permissions; exec zsh'
 fi
 ```
 
-The `exec zsh` at the end means that if Claude Code exits, the pane drops to a shell instead of closing. Close iTerm2, reopen it, and you're back where you left off.
+The `$VSCODE_INJECTION` guard skips auto-attach in VS Code terminals, which have their own Claude Code panel. The `exec zsh` at the end means that if Claude Code exits, the pane drops to a shell instead of closing. Close iTerm2, reopen it, and you're back where you left off. (The full block also handles SSH connections --- see [phone access](#phone-access) below.)
 
 **[tmux-claude-code](https://github.com/MaxGhenis/tmux-claude-code)** is a TPM plugin I built to manage sessions. The `cc` script evolved from a five-line pane creator into a proper plugin with session search, resume, and browse features. It installs as a one-liner in `.tmux.conf`:
 
@@ -298,11 +299,17 @@ The zoom toggle is the key workflow: `prefix+z` to focus on one session fullscre
 
 ### Phone access
 
-SSH from a phone (via [Termux](https://termux.dev/) on Android or any SSH client on iOS) connects to the same tmux session. The `.zshrc` block detects `$SSH_CONNECTION` and creates a *grouped session* --- a linked session that shares windows but has its own independent view:
+The simplest approach: [Remote Control](https://code.claude.com/docs/en/remote-control). With it enabled for all sessions, every local Claude Code session is automatically available at [claude.ai/code](https://claude.ai/code) and the Claude mobile app ([iOS](https://apps.apple.com/us/app/claude-by-anthropic/id6473753684)/[Android](https://play.google.com/store/apps/details?id=com.anthropic.claude)). No SSH or VPN needed --- just open the app and pick a session.
+
+For full terminal access, SSH from a phone (via [Termux](https://termux.dev/) on Android or any SSH client on iOS) connects to the same tmux session. The `.zshrc` block detects `$SSH_CONNECTION` and creates a *grouped session* --- a linked session that shares windows but has its own independent view:
 
 ```bash
-if [[ -n "$SSH_CONNECTION" ]]; then
-  tmux new-session -A -t c -s "remote-$$" \; new-window -n remote 'claude --dangerously-skip-permissions; exec zsh'
+if [[ -z "$TMUX" && -z "$VSCODE_INJECTION" ]]; then
+  if [[ -n "$SSH_CONNECTION" ]]; then
+    tmux new-session -A -t c -s "remote-$$" \; new-window -n remote 'claude --dangerously-skip-permissions; exec zsh'
+  else
+    tmux attach -t c 2>/dev/null || tmux new -s c 'claude --dangerously-skip-permissions; exec zsh'
+  fi
 fi
 ```
 

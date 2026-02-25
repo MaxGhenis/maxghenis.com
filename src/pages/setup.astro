@@ -22,7 +22,7 @@ import { SITE_TITLE } from '../consts';
 				<h2>Terminal</h2>
 
 				<div class="callout">
-					<strong>Pick one approach and stick with it.</strong> VS Code has a built-in Claude Code panel. iTerm2 + tmux is a standalone alternative. Running both creates duplicate sessions that don't talk to each other. If you use VS Code, close iTerm2 (or vice versa). The <code>.zshrc</code> below auto-skips tmux inside VS Code terminals so you won't get duplicates.
+					<strong>Pick one approach and stick with it.</strong> VS Code has a built-in Claude Code panel; iTerm2 + tmux is a standalone alternative. Running both creates duplicate sessions that can't see each other. The <code>.zshrc</code> below auto-skips tmux inside VS Code terminals to prevent this.
 				</div>
 
 				<p>My setup uses <a href="https://github.com/tmux/tmux">tmux</a> in iTerm2. The shell auto-attaches on launch, and I spawn Claude Code panes with a one-line script.</p>
@@ -94,7 +94,7 @@ fi</pre>
 
 				<h3>Key settings</h3>
 				<ul>
-					<li><strong>Remote Control:</strong> enabled for all sessions &mdash; every session is automatically accessible from <a href="https://claude.ai/code">claude.ai/code</a> and the Claude mobile app. Use <code>/rc</code> in an existing session or run <code>claude remote-control</code> to start one.</li>
+					<li><strong>Remote Control:</strong> enabled for all sessions &mdash; every session is automatically accessible from <a href="https://claude.ai/code">claude.ai/code</a> and the Claude mobile app. Start a standalone remote session with <code>claude remote-control</code>, or type <code>/rc</code> inside an existing session.</li>
 					<li><strong>teammateMode:</strong> <code>in-process</code></li>
 					<li><strong>Bypass permissions:</strong> enabled for trusted repos</li>
 					<li><strong>Hooks:</strong>
@@ -135,7 +135,7 @@ fi</pre>
 
 			<section>
 				<h2>Phone access</h2>
-				<p>The simplest way: <a href="https://code.claude.com/docs/en/remote-control">Remote Control</a>. With it enabled for all sessions (see above), every local session is automatically available at <a href="https://claude.ai/code">claude.ai/code</a> and the Claude mobile app (<a href="https://apps.apple.com/us/app/claude-by-anthropic/id6473753684">iOS</a>/<a href="https://play.google.com/store/apps/details?id=com.anthropic.claude">Android</a>). No SSH or VPN needed.</p>
+				<p>The simplest way: <a href="https://code.claude.com/docs/en/remote-control">Remote Control</a>. Every local session is automatically available at <a href="https://claude.ai/code">claude.ai/code</a> and the Claude mobile app (<a href="https://apps.apple.com/us/app/claude-by-anthropic/id6473753684">iOS</a> / <a href="https://play.google.com/store/apps/details?id=com.anthropic.claude">Android</a>) with no SSH or VPN.</p>
 				<p>For direct terminal access from a phone (e.g. to run shell commands), I also have:</p>
 				<ul>
 					<li><strong>Grouped sessions:</strong> SSH creates a linked tmux session that shares windows but has its own independent view (cursor position, active pane)</li>
