@@ -29,25 +29,20 @@ import { SITE_TITLE } from '../consts';
 					<li>True color support (<code>tmux-256color</code>)</li>
 					<li>Pane border titles showing pane name</li>
 					<li><code>aggressive-resize</code> so multiple clients can have different window sizes</li>
-					<li>Plugins via <a href="https://github.com/tmux-plugins/tpm">tpm</a>: <a href="https://github.com/tmux-plugins/tmux-resurrect">resurrect</a> + <a href="https://github.com/tmux-plugins/tmux-continuum">continuum</a> (auto-save/restore pane layout, but <em>not</em> processes &mdash; Claude Code can't resume from a restore)</li>
+					<li>Plugins via <a href="https://github.com/tmux-plugins/tpm">tpm</a>: <a href="https://github.com/MaxGhenis/tmux-claude-code">tmux-claude-code</a> (session management), <a href="https://github.com/tmux-plugins/tmux-resurrect">resurrect</a> + <a href="https://github.com/tmux-plugins/tmux-continuum">continuum</a> (auto-save/restore pane layout, but <em>not</em> processes &mdash; Claude Code can't resume from a restore)</li>
 				</ul>
 
-				<h3>The <code>cc</code> script</h3>
-				<p>Creates a new Claude Code pane, names it, and re-tiles the grid. Lives at <code>~/bin/cc</code>. Launches Claude directly via <code>split-window</code> command (not <code>send-keys</code>) so resurrect won't try to re-launch it on restore. <code>exec zsh</code> keeps the pane alive as a shell after Claude exits.</p>
-				<pre class="code-block">#!/bin/zsh
-# Usage: cc [name]
-# Creates a new Claude Code pane in the current tmux session.
-# Falls back to a timestamp if no name is given.
-
-if [[ -z "$TMUX" ]]; then
-  echo "Error: not inside a tmux session" &gt;&amp;2
-  exit 1
-fi
-
-name="$&#123;1:-$(date +%H%M%S)&#125;"
-tmux split-window -c ~ -t '&#123;end&#125;' "claude --dangerously-skip-permissions; exec zsh"
-tmux select-pane -T "$name"
-tmux select-layout tiled</pre>
+				<h3><a href="https://github.com/MaxGhenis/tmux-claude-code">tmux-claude-code</a> plugin</h3>
+				<p>A <a href="https://github.com/tmux-plugins/tpm">TPM</a> plugin for managing Claude Code sessions. Searches past conversations by keyword, resumes them in the correct working directory, and shows active session count in the status bar.</p>
+				<ul>
+					<li><strong><kbd>prefix+c</kbd></strong> &mdash; new Claude Code pane</li>
+					<li><strong><kbd>prefix+C</kbd></strong> &mdash; new named pane</li>
+					<li><strong><kbd>prefix+Ctrl-r</kbd></strong> &mdash; resume session by keyword search</li>
+					<li><strong><kbd>prefix+Ctrl-b</kbd></strong> &mdash; browse all sessions with fzf</li>
+					<li><strong><code>cc list</code></strong> &mdash; list recent sessions with active/inactive status</li>
+					<li><strong><code>cc detect</code></strong> &mdash; show which panes are running CC</li>
+				</ul>
+				<p>The keyword search is the key feature: it greps the first few user messages of every session transcript (<code>~/.claude/projects/*/*.jsonl</code>), excludes active sessions, decodes the project directory, and opens <code>claude --resume</code> in the right place. Smart pane detection uses child process checks and content markers to reliably identify CC panes even when they report <code>zsh</code> as their command.</p>
 
 				<h3>Auto-attach on shell start</h3>
 				<p>This block in <code>.zshrc</code> ensures every terminal session lands inside tmux. SSH connections create a grouped session so phone and laptop share windows but can view them independently.</p>
@@ -69,6 +64,10 @@ fi</pre>
 							</tr>
 						</thead>
 						<tbody>
+							<tr><td>New Claude Code pane</td><td><kbd>prefix+c</kbd></td></tr>
+							<tr><td>New named CC pane</td><td><kbd>prefix+C</kbd></td></tr>
+							<tr><td>Resume CC session by keyword</td><td><kbd>prefix+Ctrl-r</kbd></td></tr>
+							<tr><td>Browse CC sessions (fzf)</td><td><kbd>prefix+Ctrl-b</kbd></td></tr>
 							<tr><td>Grid view (re-tile)</td><td><kbd>prefix+g</kbd></td></tr>
 							<tr><td>Zoom pane fullscreen</td><td><kbd>prefix+z</kbd></td></tr>
 							<tr><td>Return to grid</td><td><kbd>prefix+z</kbd> again</td></tr>
@@ -120,11 +119,11 @@ fi</pre>
 			<section>
 				<h2>Dotfiles</h2>
 				<p>Tracked in a separate repo: <a href="https://github.com/MaxGhenis/dotfiles">MaxGhenis/dotfiles</a></p>
-				<p>Contains <code>.tmux.conf</code>, <code>.zshrc</code>, and <code>bin/cc</code>. Kept separate from <code>.claude</code> because these files also include non-Claude config (conda, NVM, Julia, PATH, etc.).</p>
+				<p>Contains <code>.tmux.conf</code> and <code>.zshrc</code>. Kept separate from <code>.claude</code> because these files also include non-Claude config (conda, NVM, Julia, PATH, etc.).</p>
 				<p>Home directory files are symlinks to the repo, so edits are always in sync:</p>
 				<pre class="code-block">~/.zshrc      → ~/dotfiles/.zshrc
 ~/.tmux.conf  → ~/dotfiles/.tmux.conf
-~/bin/cc      → ~/dotfiles/bin/cc</pre>
+~/bin/cc      → ~/tmux-claude-code/cc</pre>
 			</section>
 
 			<section>

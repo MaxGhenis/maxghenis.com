@@ -1,13 +1,27 @@
 ---
-title: 'My Claude Code config'
-description: 'I audited my ~/.claude directory, cleaned it up, and made it public. Here''s what I found, what I changed, and how I later moved domain-specific memory into on-demand skills.'
-pubDate: 'Feb 18 2026'
-updatedDate: 'Feb 21 2026'
+title: 'One year of Claude Code'
+description: 'A year ago, Anthropic launched Claude Code. I''ve since consumed 10 billion tokens, mass-tweeted about it, and mass-customized it. Here''s my setup and what I''ve learned.'
+pubDate: 'Feb 25 2026'
 ---
 
-I use [Claude Code](https://docs.anthropic.com/en/docs/claude-code) as my primary development environment. Over the past few months my `~/.claude` directory has accumulated a lot of customization --- slash commands, hooks, plugins, settings, secrets management. Today I made it all public: [github.com/MaxGhenis/.claude](https://github.com/MaxGhenis/.claude).
+Anthropic launched Claude Code on February 24, 2025. I [tweeted about it](https://x.com/MaxGhenis) three times on day one. A year later, it's my primary development environment, and I've mass-customized the `~/.claude` directory that powers it.
 
-The path to making it public was more interesting than the final result.
+### A year in numbers
+
+| Stat | Value |
+|------|-------|
+| Tokens consumed | 10.2 billion |
+| Messages sent | 520,000+ |
+| Sessions | 2,346 |
+| Tweets about Claude Code | ~33 |
+| Peak API spend (Aug 2025) | $5,861/month |
+| Biggest single day (Feb 7, 2026) | $505 equivalent |
+
+I started on the API, paying per-token. August 2025 hit $5,861. On July 20, 2025, I switched to the Max plan ($200/month, unlimited usage) and added a second subscription on a personal account in February 2026. The $200 plan replaced a $6K/month habit.
+
+My IDE journey followed a similar arc of simplification. I went from VS Code to VS Code + [TerminalGrid](/blog/terminalgrid) (a custom extension for running multiple Claude Code sessions) to iTerm2 + tmux. Each migration stripped away a layer of complexity. The tmux setup I use now is three small config changes --- the TerminalGrid extension was hundreds of lines of TypeScript solving the same problem worse.
+
+I recently audited my `~/.claude` directory and [made it public](https://github.com/MaxGhenis/.claude). Here's the full setup.
 
 ## How it started
 
@@ -19,19 +33,20 @@ So the first step was cleaning house. I removed the plugin's git history, initia
 
 Before making anything public, I went through every file. The `~/.claude` directory accumulates a lot: conversation transcripts, clipboard images, debug logs, session state, plugin caches. Most of that is ephemeral or sensitive and belongs in `.gitignore`.
 
-What's left after exclusions is surprisingly small: a `CLAUDE.md` global instructions file, a `settings.json`, three hook scripts, a handful of slash commands, two local plugins, and a pair of shell scripts for secrets management.
+What's left after exclusions is surprisingly small: a `CLAUDE.md` global instructions file, a `settings.json`, four hook scripts, a handful of slash commands, a few local plugins, and a pair of shell scripts for secrets management.
 
 While auditing, I also noticed that 36 GB of stale repo clones had accumulated in my home directory from multi-agent work. PolicyEngine US alone had 10 separate clones for different PRs, each a full copy of a large repo. That's not in `~/.claude`, but the audit prompted me to clean it up.
 
 ## Slash commands
 
-Claude Code lets you define [custom slash commands](https://docs.anthropic.com/en/docs/claude-code/slash-commands) as markdown files in `~/.claude/commands/`. Each file is a prompt template you invoke with `/command-name`. I have nine:
+Claude Code lets you define [custom slash commands](https://docs.anthropic.com/en/docs/claude-code/slash-commands) as markdown files in `~/.claude/commands/`. Each file is a prompt template you invoke with `/command-name`. I have ten:
 
 - **`/briefing`** --- Pulls today's calendar, unread emails, and (in the first week of the month) monthly task reminders. I run this most mornings.
 - **`/search-everything`** --- Cross-platform search across local files, WhatsApp, Gmail, Granola meeting notes, and the browser. It works through sources in order of speed and stops when it finds what I need.
 - **`/expense`** and **`/anthropic-expenses`** --- Automate filing reimbursements on [Open Collective](https://opencollective.com/policyengine). They search my email for invoices, download receipts, and submit expenses.
 - **`/download-receipts`** --- Extracts PDF attachments from Gmail search results and saves them locally.
 - **`/gmail`** and **`/google-api`** --- Reference commands for email patterns and Google API authentication across my work and personal accounts.
+- **`/personal-info`** --- Loads my personal details from a private file for form-filling, applications, and profile creation.
 - **`/slides`** --- Generates presentation decks from a brief or topic using a Next.js + Tailwind framework.
 - **`/search-transcripts`** --- Searches past Claude Code conversation transcripts by keyword using [`claude-search`](https://github.com/nicobailon/claude-search).
 
@@ -39,9 +54,9 @@ Most of these compose multiple tools --- MCP servers, CLI utilities, APIs --- in
 
 ## Hooks
 
-[Hooks](https://docs.anthropic.com/en/docs/claude-code/hooks) are shell scripts that run automatically before or after Claude Code events. I have three, and the audit revealed a gap: all three scripts existed on disk, but only one was wired up in `settings.json`. The other two were doing nothing.
+[Hooks](https://docs.anthropic.com/en/docs/claude-code/hooks) are shell scripts that run automatically before or after Claude Code events. I have four. The audit revealed a gap: three of the original scripts existed on disk, but only one was wired up in `settings.json`. The other two were doing nothing.
 
-This is an easy mistake to make. You write the script, mark it executable, and forget that hooks also need a corresponding entry in `settings.json` to actually fire. I fixed it --- all three are now connected.
+This is an easy mistake to make. You write the script, mark it executable, and forget that hooks also need a corresponding entry in `settings.json` to actually fire. I fixed it --- all four are now connected.
 
 **`enforce-package-managers.sh`** runs before every Bash command. It blocks `npm`, `npx`, `yarn`, `pip`, and `pipx` and tells Claude to use `bun` or `uv` instead. Without this, Claude defaults to npm about half the time regardless of what `CLAUDE.md` says. The hook makes the preference absolute:
 
@@ -55,6 +70,8 @@ fi
 **`auto-commit-wip.sh`** runs before context compression (the `PreCompact` event). Context compression often precedes crashes or context exhaustion, so this hook auto-commits all uncommitted changes. I added it after losing an entire branch of multi-agent work --- 10 files, 262 KB --- because agents wrote to the working tree without committing, then the session crashed. The commit uses `--fixup=HEAD` so that fixup commits can be cleanly squashed later with `git rebase --autosquash`.
 
 **`warn-uncommitted.sh`** runs on session stop. If there are uncommitted changes in the current repo, it prints a warning. Same motivation: don't lose work.
+
+**`sync-setup-page.sh`** runs after every Bash command (`PostToolUse`). It watches for `git commit` in the `dotfiles` or `.claude` repos and reminds Claude to check whether the [setup page](/setup) on my site needs updating. This keeps the living reference in sync with config changes.
 
 ## CLAUDE.md
 
@@ -73,13 +90,13 @@ The general lesson: if something can be enforced by a hook, put it in a hook. `C
 
 ## Skills: on-demand context loading
 
-**Update (Feb 20):** Two days after publishing this post, I restructured how Claude Code accesses domain-specific reference information.
+After the initial audit, I restructured how Claude Code accesses domain-specific reference information.
 
 The problem: Claude Code has a persistent memory system --- a `MEMORY.md` file that's loaded into every session's system prompt. Mine had grown to 215 lines (past the 200-line truncation limit) with detailed API references, credential locations, deployment procedures, and troubleshooting guides for services like Whoop, Xero, App Store Connect, GCP billing, and Slack. Most of this was irrelevant to any given session but cost context every time.
 
 The solution: [skills](https://docs.anthropic.com/en/docs/claude-code/plugins#skills). Skills are markdown files in a plugin's `skills/` directory that load on-demand based on trigger keywords in the conversation. When I mention "whoop" or "sleep data," the Whoop skill loads. When I mention "xero" or "UK expense," the Xero skill loads. Otherwise, they don't exist in the context window.
 
-I moved 11 domain-specific reference sections from `MEMORY.md` into skills in my `max-productivity` local plugin:
+I moved 12 domain-specific reference sections from `MEMORY.md` into skills in my `max-productivity` local plugin:
 
 | Skill | Triggers on | What it contains |
 |-------|------------|-----------------|
@@ -90,6 +107,7 @@ I moved 11 domain-specific reference sections from `MEMORY.md` into skills in my
 | `opencollective-expenses` | expense, reimbursement | Collective details, currency handling |
 | `cbo-baseline` | cbo, budget outlook | Excel file IDs, row numbers, YAML paths |
 | `modal-vercel-deployment` | modal deploy, vercel deploy | Workspace config, failure modes |
+| `openmessage-patterns` | text, sms, iMessage | MCP tools, HTTP API fallback, message ordering |
 | `agent-teams` | agent team, TeamCreate | Workflow steps, gotchas |
 | `slack-patterns` | slack, DM | Channel IDs, pagination rules, DM access |
 | `search-email-patterns` | draft email, find meeting | Search priority, drafting preferences |
@@ -162,17 +180,17 @@ All three answers came from skills that loaded on-demand --- none of this was in
 
 The migration raised an obvious question: how do I keep things from drifting back? `MEMORY.md` grows automatically as Claude learns things during sessions. Without maintenance, it'll be back at 200+ lines within weeks.
 
-The answer is an [agent](https://docs.anthropic.com/en/docs/claude-code/plugins#agents) --- an autonomous subprocess that can read files, analyze content, and make changes. I added a `config-audit` agent to the same `max-productivity` plugin. It triggers when `MEMORY.md` exceeds 150 lines or when I mention "clean up config" or "audit memory."
+Two mechanisms handle this. First, a `config-audit` [agent](https://docs.anthropic.com/en/docs/claude-code/plugins#agents) in the `max-productivity` plugin triggers proactively when `MEMORY.md` exceeds 150 lines or when I mention "clean up config." Second, a `/config-tidy` slash command I can run on demand to audit and reorganize.
 
-The agent knows the classification rules:
+Both know the same classification rules:
 
 - **Behavioral rules** ("always do X") belong in `CLAUDE.md`
 - **Compact facts** (account IDs, 1-2 line lessons) belong in `MEMORY.md`
 - **Detailed reference** (API docs, step-by-step guides, anything >5 lines on one topic) belongs in a skill
 
-When triggered, it reads all three layers, reports line counts, flags misplaced content, and proposes moves. After I approve, it creates new skill files, edits `MEMORY.md`, and updates `CLAUDE.md` as needed. It never deletes information --- it moves it to the right layer.
+When triggered, they read all three layers, report line counts, flag misplaced content, and propose moves. After I approve, they create new skill files, edit `MEMORY.md`, and update `CLAUDE.md` as needed. They never delete information --- they move it to the right layer.
 
-This closes the loop: skills handle the *what*, the agent handles the *when* and *where*. Configuration maintenance becomes something Claude does for me rather than something I have to remember to do.
+This closes the loop: skills handle the *what*, the agent and command handle the *when* and *where*. Configuration maintenance becomes something Claude does for me rather than something I have to remember to do.
 
 ## Secrets management
 
@@ -187,13 +205,13 @@ The scripts contain no secrets, just the Keychain lookup logic. I previously had
 
 `settings.json` configures MCP servers, permissions, hooks, enabled plugins, and plugin sources. The notable parts:
 
-- **MCP servers**: Gmail, Google Ads, Chrome DevTools, and an Android SMS gateway, each defined with their command and environment variables (using `${VAR}` references that resolve from the macOS Keychain at runtime --- no secrets in the file).
+- **MCP servers**: Gmail, Google Ads, Chrome DevTools, and [OpenMessage](https://github.com/MaxGhenis/openmessage) (a unified SMS/iMessage/RCS gateway), each defined with their command and environment variables (using `${VAR}` references that resolve from the macOS Keychain at runtime --- no secrets in the file).
 - **Permissions**: I run in bypass mode with broad tool access. This is a personal machine and I prefer speed over confirmation dialogs.
 - **Plugin sources**: Pointers to local plugin directories for plugins I'm developing.
 
 ## tmux: how not to set up a terminal grid
 
-**Update (Feb 21):** I've moved from VS Code ([TerminalGrid](/blog/terminalgrid)) to iTerm2 + tmux for running multiple Claude Code sessions. The final setup took about 15 minutes. Getting there took most of a day.
+The latest evolution in my year-long IDE journey: I moved from VS Code ([TerminalGrid](/blog/terminalgrid)) to iTerm2 + tmux for running multiple Claude Code sessions. The final setup took about 15 minutes. Getting there took most of a day.
 
 The goal was simple: run 6+ Claude Code sessions in a visible grid, persistent across restarts. What followed was a comedy of errors --- each failure spawning a more complex workaround, each workaround failing in a more spectacular way, until the entire tmux server crashed and I was forced to start over with the obvious solution.
 
@@ -232,45 +250,40 @@ The whole setup is three small changes.
 
 ```bash
 if [[ -z "$TMUX" ]]; then
-  tmux attach -t c 2>/dev/null || tmux new -s c 'claude --dangerously-skip-permissions'
+  tmux attach -t c 2>/dev/null || tmux new -s c 'claude --dangerously-skip-permissions; exec zsh'
 fi
 ```
 
-Close iTerm2, reopen it, and you're back where you left off.
+The `exec zsh` at the end means that if Claude Code exits, the pane drops to a shell instead of closing. Close iTerm2, reopen it, and you're back where you left off.
 
-**The `cc` script** at `~/bin/cc` creates new Claude Code panes:
-
-```bash
-#!/bin/zsh
-# Usage: cc [name]
-if [[ -z "$TMUX" ]]; then echo "Error: not inside a tmux session" >&2; exit 1; fi
-name="${1:-$(date +%H%M%S)}"
-tmux split-window -d -c ~ "claude --dangerously-skip-permissions"
-pane=$(tmux list-panes -F '#{pane_index}' | tail -1)
-tmux select-pane -t "$pane" -T "$name"
-tmux select-layout tiled
-```
-
-Run `cc yankee-beer` and a new instance appears in the grid, titled "yankee-beer." The layout re-tiles automatically.
-
-**tmux.conf additions** --- pane borders show names, and two keybindings handle the grid:
+**[tmux-claude-code](https://github.com/MaxGhenis/tmux-claude-code)** is a TPM plugin I built to manage sessions. The `cc` script evolved from a five-line pane creator into a proper plugin with session search, resume, and browse features. It installs as a one-liner in `.tmux.conf`:
 
 ```bash
-# Pane border titles
-set -g pane-border-status top
-set -g pane-border-format " #{pane_index}: #{pane_title} "
-
-# prefix+c: new named Claude Code pane (prompts for name)
-bind c command-prompt -p "name:" "run-shell '~/bin/cc %1'"
-
-# prefix+g: re-tile into grid
-bind g select-layout tiled
+set -g @plugin 'MaxGhenis/tmux-claude-code'
+set -g @claude_code_flags '--dangerously-skip-permissions'
 ```
+
+The killer feature is keyword search across session transcripts. Every Claude Code session stores its conversation as a JSONL file in `~/.claude/projects/`. The plugin searches the first few user messages of every session, excludes currently active ones, resolves the correct working directory from the encoded project path, and opens `claude --resume` in the right place:
+
+```bash
+cc resume nextladder proposal    # finds and resumes the matching session
+cc resume fix ctc phaseout       # keyword search across all transcripts
+```
+
+The plugin also handles three bugs that plagued my original script:
+
+1. **Nested session detection**: Claude Code sets a `CLAUDECODE` environment variable. New panes inherit it, causing the child instance to refuse to start. The plugin strips it with `env -u CLAUDECODE` on every pane creation.
+2. **Pane detection**: Claude Code sessions report `zsh` as their `pane_current_command` when idle at their prompt (because they're launched via `zsh -c "claude ...; exec zsh"`). Naive "is this pane free?" checks fail. The plugin uses a three-tier approach: check the command name, check for a child process named `claude` via `pgrep`, then fall back to checking pane content for CC prompt markers.
+3. **Window overflow**: When a tmux window has too many panes, `split-window` silently fails ("no space for new pane"). The plugin falls back to `new-window` automatically.
 
 **Navigation:**
 
 | Action | Key |
 |--------|-----|
+| New Claude Code pane | `prefix+c` |
+| New named CC pane | `prefix+C` |
+| Resume CC session by keyword | `prefix+Ctrl-r` |
+| Browse CC sessions (fzf) | `prefix+Ctrl-b` |
 | Grid view (re-tile) | `prefix+g` |
 | Zoom pane fullscreen | `prefix+z` |
 | Return to grid | `prefix+z` again |
@@ -289,11 +302,19 @@ SSH from a phone (via [Termux](https://termux.dev/) on Android or any SSH client
 
 ```bash
 if [[ -n "$SSH_CONNECTION" ]]; then
-  tmux new-session -A -t c -s "remote-$$" \; new-window -n remote 'claude --dangerously-skip-permissions'
+  tmux new-session -A -t c -s "remote-$$" \; new-window -n remote 'claude --dangerously-skip-permissions; exec zsh'
 fi
 ```
 
 With `aggressive-resize on` in `tmux.conf`, the phone and laptop can have different window sizes without either one getting squished. [Tailscale](https://tailscale.com/) handles networking so I can reach the laptop from anywhere without port forwarding.
+
+### Cross-pane awareness
+
+The most useful emergent behavior of running multiple Claude Code sessions in tmux: [one session can read another's terminal output](https://x.com/MaxGhenis/status/2026254649309749640). One pane was rebasing a policyengine-core branch against master after a towncrier migration PR merged, resolving merge conflicts in push.yaml. I told a different pane to look at what it was doing. It ran `tmux capture-pane` on the sibling, read through the rebase output, and noticed that the "Build changelog" step in push.yaml had lost its `run:` command during the merge --- an empty CI step that would silently break versioning on the next PR merge. It then checked every other repo we'd just merged towncrier into, found the same bug in policyengine-canada, and fixed both directly on master. One agent caught a bug introduced by another agent's work, by reading its terminal.
+
+This is a tmux-specific capability. VS Code and iTerm2 can split terminals visually, but there's no programmatic API for one terminal to read the contents of a sibling split. In tmux, every pane's buffer is accessible from any other pane.
+
+I've started organizing sessions into named windows --- `work` and `personal` --- and temporarily pulling subsets of panes into a `focus` window when I need to zoom in on two related tasks. Moving panes between windows is `join-pane -s %ID -t window-name`, and `select-layout tiled` re-tiles after every move.
 
 ### Agent teams stay contained
 
@@ -313,7 +334,7 @@ The pattern of failure is worth more than the final config. Each broken approach
 
 The lesson is the same one that applies to most software projects: when the third workaround fails, the architecture is wrong. Step back. The solution to "my grid script breaks every time I run it" wasn't a better grid script. It was `select-layout tiled`.
 
-All the config files are in [github.com/MaxGhenis/dotfiles](https://github.com/MaxGhenis/dotfiles). A living reference version with the latest config is at [/setup](/setup).
+All the config files are in [github.com/MaxGhenis/dotfiles](https://github.com/MaxGhenis/dotfiles). The tmux plugin is at [github.com/MaxGhenis/tmux-claude-code](https://github.com/MaxGhenis/tmux-claude-code). A living reference version with the latest config is at [/setup](/setup).
 
 ## What I learned
 
