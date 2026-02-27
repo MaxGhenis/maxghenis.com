@@ -1,0 +1,717 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`mystquarto | ${SITE_TITLE}`} description="Bidirectional MyST Markdown ↔ Quarto converter. Transforms directives, roles, config files, and frontmatter between the two academic writing formats." />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<header class="page-header">
+				<div class="app-icon">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="44" height="44" role="img" aria-label="Bidirectional arrows">
+						<path d="M7 16l-4-4 4-4" />
+						<path d="M17 8l4 4-4 4" />
+						<line x1="3" y1="12" x2="21" y2="12" />
+					</svg>
+				</div>
+				<h1>mystquarto</h1>
+				<p class="page-description">Bidirectional MyST ↔ Quarto converter. Transforms directives, roles, config files, and frontmatter between the two academic writing formats.</p>
+				<div class="header-actions">
+					<a href="https://pypi.org/project/mystquarto/" class="install-btn">
+						<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<polyline points="4 17 10 11 4 5"></polyline>
+							<line x1="12" y1="19" x2="20" y2="19"></line>
+						</svg>
+						pip install mystquarto
+					</a>
+					<a href="https://github.com/MaxGhenis/mystquarto" class="github-btn">
+						<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+							<path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+						</svg>
+						View source
+					</a>
+				</div>
+			</header>
+
+			<section class="why">
+				<h2>The problem</h2>
+				<div class="problem-grid">
+					<div class="problem-card myst-side">
+						<h3>MyST Markdown</h3>
+						<p>Jupyter Book ecosystem. Sphinx directives and roles. Great for executable notebooks.</p>
+						<pre><code>```&lbrace;code-cell&rbrace; python
+:tags: [hide-input]
+df.plot()
+```
+
+As shown in &lbrace;numref&rbrace;`fig-results`,
+the effect is &lbrace;cite&rbrace;`smith2024`.</code></pre>
+					</div>
+					<div class="arrow-divider">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="32" height="32">
+							<path d="M7 16l-4-4 4-4" />
+							<path d="M17 8l4 4-4 4" />
+							<line x1="3" y1="12" x2="21" y2="12" />
+						</svg>
+					</div>
+					<div class="problem-card quarto-side">
+						<h3>Quarto</h3>
+						<p>Pandoc-based publishing. Callouts and cross-references. Better PDF and web output.</p>
+						<pre><code>```&lbrace;python&rbrace;
+#| code-fold: true
+df.plot()
+```
+
+As shown in @fig-results,
+the effect is [@smith2024].</code></pre>
+					</div>
+				</div>
+				<p class="problem-summary">Both are excellent for academic writing, but their syntax is incompatible. No converter existed — until now.</p>
+			</section>
+
+			<section class="usage">
+				<h2>Usage</h2>
+				<div class="usage-examples">
+					<div class="example">
+						<h3>Convert a MyST project to Quarto</h3>
+						<pre><code>myst2quarto docs/ -o docs-quarto/</code></pre>
+					</div>
+					<div class="example">
+						<h3>Convert a Quarto project to MyST</h3>
+						<pre><code>quarto2myst docs/ -o docs-myst/</code></pre>
+					</div>
+					<div class="example">
+						<h3>Run without installing</h3>
+						<pre><code>uvx myst2quarto docs/</code></pre>
+					</div>
+					<div class="example">
+						<h3>Unified CLI</h3>
+						<pre><code>mystquarto to-quarto docs/ --dry-run
+mystquarto to-myst docs/ --in-place</code></pre>
+					</div>
+				</div>
+			</section>
+
+			<section class="conversions">
+				<h2>What it converts</h2>
+				<div class="conversion-tabs">
+					<div class="conversion-group">
+						<h3>Block directives</h3>
+						<div class="mapping-table">
+							<div class="mapping-row header-row">
+								<span>MyST</span>
+								<span>Quarto</span>
+							</div>
+							<div class="mapping-row">
+								<code>```{'{'}code-cell{'}'} python</code>
+								<code>```{'{'}python{'}'}</code>
+							</div>
+							<div class="mapping-row">
+								<code>:tags: [hide-input]</code>
+								<code>#| code-fold: true</code>
+							</div>
+							<div class="mapping-row">
+								<code>```{'{'}figure{'}'} path</code>
+								<code>![cap](path){'{'}#fig-id{'}'}</code>
+							</div>
+							<div class="mapping-row">
+								<code>```{'{'}note{'}'}</code>
+								<code>::: {'{'}.callout-note{'}'}</code>
+							</div>
+							<div class="mapping-row">
+								<code>```{'{'}math{'}'} :label:</code>
+								<code>$$ ... $$ {'{'}#eq-id{'}'}</code>
+							</div>
+							<div class="mapping-row">
+								<code>::::{'{'}tab-set{'}'}</code>
+								<code>::: {'{'}.panel-tabset{'}'}</code>
+							</div>
+						</div>
+					</div>
+					<div class="conversion-group">
+						<h3>Inline roles</h3>
+						<div class="mapping-table">
+							<div class="mapping-row header-row">
+								<span>MyST</span>
+								<span>Quarto</span>
+							</div>
+							<div class="mapping-row">
+								<code>{'{'}eval{'}'}`expr`</code>
+								<code>`{'{'}python{'}'} expr`</code>
+							</div>
+							<div class="mapping-row">
+								<code>{'{'}cite{'}'}`key`</code>
+								<code>[@key]</code>
+							</div>
+							<div class="mapping-row">
+								<code>{'{'}cite:t{'}'}`key`</code>
+								<code>@key</code>
+							</div>
+							<div class="mapping-row">
+								<code>{'{'}numref{'}'}`fig-id`</code>
+								<code>@fig-id</code>
+							</div>
+							<div class="mapping-row">
+								<code>{'{'}eq{'}'}`label`</code>
+								<code>@eq-label</code>
+							</div>
+							<div class="mapping-row">
+								<code>{'{'}doc{'}'}`path`</code>
+								<code>[path](path.qmd)</code>
+							</div>
+						</div>
+					</div>
+					<div class="conversion-group">
+						<h3>Config and frontmatter</h3>
+						<div class="mapping-table">
+							<div class="mapping-row header-row">
+								<span>MyST</span>
+								<span>Quarto</span>
+							</div>
+							<div class="mapping-row">
+								<code>myst.yml</code>
+								<code>_quarto.yml</code>
+							</div>
+							<div class="mapping-row">
+								<code>project.toc</code>
+								<code>book.chapters</code>
+							</div>
+							<div class="mapping-row">
+								<code>project.exports</code>
+								<code>format: pdf/docx</code>
+							</div>
+							<div class="mapping-row">
+								<code>kernelspec: python3</code>
+								<code>jupyter: python3</code>
+							</div>
+						</div>
+					</div>
+				</div>
+				<p class="conversions-note">Plus 13 more block directive types, file extension renaming (.md ↔ .qmd), asset copying, and more. All conversions are bidirectional.</p>
+			</section>
+
+			<section class="architecture">
+				<h2>How it works</h2>
+				<div class="arch-cards">
+					<div class="arch-card">
+						<div class="arch-icon">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28">
+								<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+								<polyline points="14 2 14 8 20 8"></polyline>
+								<line x1="16" y1="13" x2="8" y2="13"></line>
+								<line x1="16" y1="17" x2="8" y2="17"></line>
+							</svg>
+						</div>
+						<h3>Line scanner</h3>
+						<p>Regex-based scanner processes files line by line, detecting backtick and colon fences with a directive stack for proper nesting</p>
+					</div>
+					<div class="arch-card">
+						<div class="arch-icon">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28">
+								<polyline points="16 18 22 12 16 6"></polyline>
+								<polyline points="8 6 2 12 8 18"></polyline>
+							</svg>
+						</div>
+						<h3>Transform rules</h3>
+						<p>Each directive and inline role has a paired forward and reverse transform function — 13 block types, 9 inline roles</p>
+					</div>
+					<div class="arch-card">
+						<div class="arch-icon">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28">
+								<circle cx="12" cy="12" r="3"></circle>
+								<path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+							</svg>
+						</div>
+						<h3>Lightweight</h3>
+						<p>Only click + pyyaml as dependencies. No markdown-it-py, myst-parser, or docutils — keeps install fast and simple</p>
+					</div>
+				</div>
+			</section>
+
+			<section class="install">
+				<h2>Get started</h2>
+				<div class="install-steps">
+					<div class="step">
+						<span class="step-number">1</span>
+						<div class="step-content">
+							<h3>Install</h3>
+							<pre><code>pip install mystquarto</code></pre>
+						</div>
+					</div>
+					<div class="step">
+						<span class="step-number">2</span>
+						<div class="step-content">
+							<h3>Convert</h3>
+							<pre><code># MyST → Quarto
+myst2quarto docs/ -o docs-quarto/
+
+# Quarto → MyST
+quarto2myst docs/ -o docs-myst/</code></pre>
+						</div>
+					</div>
+					<div class="step">
+						<span class="step-number">3</span>
+						<div class="step-content">
+							<h3>Build</h3>
+							<pre><code>cd docs-quarto/ && quarto render</code></pre>
+							<p>Your MyST project now builds with Quarto</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="options-section">
+				<h2>CLI options</h2>
+				<div class="options-grid">
+					<div class="option">
+						<code>-o DIR</code>
+						<p>Output directory</p>
+					</div>
+					<div class="option">
+						<code>--in-place</code>
+						<p>Modify files in-place</p>
+					</div>
+					<div class="option">
+						<code>--dry-run</code>
+						<p>Preview without writing</p>
+					</div>
+					<div class="option">
+						<code>--config-only</code>
+						<p>Only convert config files</p>
+					</div>
+					<div class="option">
+						<code>--no-config</code>
+						<p>Skip config conversion</p>
+					</div>
+					<div class="option">
+						<code>--strict</code>
+						<p>Warnings become errors</p>
+					</div>
+				</div>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	main {
+		max-width: 900px;
+	}
+
+	.page-header {
+		text-align: center;
+		margin-bottom: 3rem;
+		padding-bottom: 2rem;
+		border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+	}
+
+	.app-icon {
+		width: 80px;
+		height: 80px;
+		margin: 0 auto 1.5rem;
+		background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+		border-radius: 16px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		box-shadow: 0 8px 30px rgba(124, 58, 237, 0.3);
+	}
+
+	.app-icon svg {
+		color: white;
+	}
+
+	.page-header h1 {
+		font-size: 2.5rem;
+		margin-bottom: 0.75rem;
+		font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, monospace;
+	}
+
+	.page-description {
+		font-size: 1.25rem;
+		color: var(--text-secondary);
+		max-width: 600px;
+		margin: 0 auto 2rem;
+	}
+
+	.header-actions {
+		display: flex;
+		gap: 1rem;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+
+	.install-btn, .github-btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.875rem 1.5rem;
+		border-radius: var(--radius-lg);
+		text-decoration: none;
+		font-weight: 600;
+		font-size: 1rem;
+		transition: all var(--duration-fast) var(--ease-out);
+	}
+
+	.install-btn {
+		background: #7c3aed;
+		color: white;
+		font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, monospace;
+	}
+
+	.install-btn:hover {
+		background: #6d28d9;
+		transform: translateY(-2px);
+		box-shadow: 0 8px 30px rgba(124, 58, 237, 0.4);
+	}
+
+	.github-btn {
+		background: var(--ink);
+		color: white;
+	}
+
+	.github-btn:hover {
+		background: var(--ink-soft);
+		transform: translateY(-2px);
+		box-shadow: var(--shadow-md);
+	}
+
+	section {
+		margin-bottom: 3rem;
+	}
+
+	section h2 {
+		font-size: 1.75rem;
+		margin-bottom: 1.5rem;
+	}
+
+	/* Problem section */
+	.problem-grid {
+		display: flex;
+		align-items: stretch;
+		gap: 1rem;
+		margin-bottom: 1.5rem;
+	}
+
+	.problem-card {
+		flex: 1;
+		background: white;
+		border: 1px solid rgba(15, 23, 42, 0.08);
+		border-radius: var(--radius-lg);
+		padding: 1.5rem;
+	}
+
+	.problem-card h3 {
+		font-size: 1.125rem;
+		margin-bottom: 0.5rem;
+	}
+
+	.problem-card p {
+		font-size: 0.9375rem;
+		color: var(--text-secondary);
+		line-height: 1.5;
+		margin-bottom: 1rem;
+	}
+
+	.myst-side {
+		border-top: 3px solid #2563eb;
+	}
+
+	.quarto-side {
+		border-top: 3px solid #7c3aed;
+	}
+
+	.arrow-divider {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: var(--text-muted);
+		flex-shrink: 0;
+	}
+
+	.problem-card pre {
+		margin: 0;
+		background: #1e1e2e;
+		border-radius: var(--radius-md);
+		padding: 1rem;
+		overflow-x: auto;
+	}
+
+	.problem-card code {
+		font-size: 0.8125rem;
+		color: #cdd6f4;
+		font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, monospace;
+	}
+
+	.problem-summary {
+		text-align: center;
+		color: var(--text-secondary);
+		font-size: 1.0625rem;
+	}
+
+	/* Usage */
+	.usage-examples {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		gap: 1.25rem;
+	}
+
+	.example {
+		background: white;
+		border: 1px solid rgba(15, 23, 42, 0.08);
+		border-radius: var(--radius-lg);
+		padding: 1.5rem;
+	}
+
+	.example h3 {
+		font-size: 1rem;
+		margin-bottom: 1rem;
+		color: var(--text-secondary);
+	}
+
+	.example pre {
+		margin: 0;
+		background: #1e1e2e;
+		border-radius: var(--radius-md);
+		padding: 1rem;
+		overflow-x: auto;
+	}
+
+	.example code {
+		font-size: 0.875rem;
+		color: #cdd6f4;
+		font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, monospace;
+	}
+
+	/* Conversion mapping tables */
+	.conversion-tabs {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+		gap: 1.5rem;
+	}
+
+	.conversion-group {
+		background: white;
+		border: 1px solid rgba(15, 23, 42, 0.08);
+		border-radius: var(--radius-lg);
+		padding: 1.5rem;
+	}
+
+	.conversion-group h3 {
+		font-size: 1.125rem;
+		margin-bottom: 1rem;
+	}
+
+	.mapping-table {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	.mapping-row {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 0.75rem;
+		padding: 0.5rem 0;
+		border-bottom: 1px solid rgba(15, 23, 42, 0.04);
+		align-items: center;
+	}
+
+	.mapping-row:last-child {
+		border-bottom: none;
+	}
+
+	.mapping-row.header-row {
+		border-bottom: 1px solid rgba(15, 23, 42, 0.12);
+		padding-bottom: 0.625rem;
+	}
+
+	.mapping-row.header-row span {
+		font-weight: 700;
+		font-size: 0.8125rem;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		color: var(--text-secondary);
+	}
+
+	.mapping-row code {
+		font-size: 0.75rem;
+		background: rgba(15, 23, 42, 0.04);
+		padding: 0.25rem 0.5rem;
+		border-radius: var(--radius-sm);
+		font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, monospace;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	.conversions-note {
+		margin-top: 1.25rem;
+		color: var(--text-secondary);
+		font-size: 0.9375rem;
+		text-align: center;
+	}
+
+	/* Architecture */
+	.arch-cards {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+		gap: 1.25rem;
+	}
+
+	.arch-card {
+		background: white;
+		border: 1px solid rgba(15, 23, 42, 0.08);
+		border-radius: var(--radius-lg);
+		padding: 1.5rem;
+		transition: all var(--duration-fast) var(--ease-out);
+	}
+
+	.arch-card:hover {
+		transform: translateY(-2px);
+		box-shadow: var(--shadow-md);
+	}
+
+	.arch-icon {
+		width: 56px;
+		height: 56px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: rgba(124, 58, 237, 0.1);
+		border-radius: var(--radius-lg);
+		margin-bottom: 1rem;
+		color: #7c3aed;
+		transition: all var(--duration-fast) var(--ease-out);
+	}
+
+	.arch-card:hover .arch-icon {
+		background: #7c3aed;
+		color: white;
+		transform: scale(1.05);
+	}
+
+	.arch-card h3 {
+		font-size: 1.125rem;
+		margin-bottom: 0.5rem;
+	}
+
+	.arch-card p {
+		font-size: 0.9375rem;
+		color: var(--text-secondary);
+		line-height: 1.5;
+	}
+
+	/* Install steps */
+	.install-steps {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+	}
+
+	.step {
+		display: flex;
+		align-items: flex-start;
+		gap: 1.25rem;
+	}
+
+	.step-number {
+		width: 36px;
+		height: 36px;
+		background: #7c3aed;
+		color: white;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-weight: 700;
+		flex-shrink: 0;
+	}
+
+	.step-content {
+		flex: 1;
+	}
+
+	.step-content h3 {
+		font-size: 1.125rem;
+		margin-bottom: 0.5rem;
+	}
+
+	.step-content p {
+		color: var(--text-secondary);
+		margin-top: 0.5rem;
+	}
+
+	.step-content pre {
+		margin: 0;
+		background: #1e1e2e;
+		border-radius: var(--radius-md);
+		padding: 1rem;
+		overflow-x: auto;
+	}
+
+	.step-content code {
+		font-size: 0.875rem;
+		color: #cdd6f4;
+		font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, monospace;
+	}
+
+	/* CLI options */
+	.options-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+		gap: 1rem;
+	}
+
+	.option {
+		background: white;
+		border: 1px solid rgba(15, 23, 42, 0.08);
+		border-radius: var(--radius-lg);
+		padding: 1.25rem;
+	}
+
+	.option code {
+		font-size: 0.9375rem;
+		font-weight: 600;
+		font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, monospace;
+		color: #7c3aed;
+	}
+
+	.option p {
+		font-size: 0.9375rem;
+		color: var(--text-secondary);
+		margin-top: 0.375rem;
+	}
+
+	@media (max-width: 768px) {
+		.page-header h1 {
+			font-size: 2rem;
+		}
+
+		.page-description {
+			font-size: 1.125rem;
+		}
+
+		.problem-grid {
+			flex-direction: column;
+		}
+
+		.arrow-divider {
+			transform: rotate(90deg);
+			padding: 0.5rem 0;
+		}
+
+		.usage-examples,
+		.conversion-tabs {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
