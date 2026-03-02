@@ -2,6 +2,7 @@
 title: 'One year of Claude Code'
 description: 'A year ago, Anthropic launched Claude Code. I''ve since consumed 10 billion tokens, mass-tweeted about it, and mass-customized it. Here''s my setup and what I''ve learned.'
 pubDate: 'Feb 25 2026'
+heroImage: './og-blog.png'
 ---
 
 Anthropic launched Claude Code on February 24, 2025. I [tweeted about it](https://x.com/MaxGhenis) three times on day one. A year later, it's my primary development environment, and I've mass-customized the `~/.claude` directory that powers it.

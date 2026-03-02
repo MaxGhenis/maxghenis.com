@@ -3,12 +3,13 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE } from '../consts';
+import ogImage from '../assets/og-setup.png';
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={`Setup | ${SITE_TITLE}`} description="My terminal, Claude Code, and dotfiles setup for running multiple AI coding agents in parallel with tmux." />
+		<BaseHead title={`Setup | ${SITE_TITLE}`} description="My terminal, Claude Code, and dotfiles setup for running multiple AI coding agents in parallel with tmux." image={ogImage} />
 	</head>
 	<body>
 		<Header />
