@@ -33,13 +33,13 @@ So the first step was cleaning house. I removed the plugin's git history, initia
 
 Before making anything public, I went through every file. The `~/.claude` directory accumulates a lot: conversation transcripts, clipboard images, debug logs, session state, plugin caches. Most of that is ephemeral or sensitive and belongs in `.gitignore`.
 
-What's left after exclusions is surprisingly small: a `CLAUDE.md` global instructions file, a `settings.json`, four hook scripts, a handful of slash commands, a few local plugins, and a pair of shell scripts for secrets management.
+What's left after exclusions is surprisingly small: a `CLAUDE.md` global instructions file, a `settings.json`, five hook scripts, a handful of slash commands, a few local plugins, and a pair of shell scripts for secrets management.
 
 While auditing, I also noticed that 36 GB of stale repo clones had accumulated in my home directory from multi-agent work. PolicyEngine US alone had 10 separate clones for different PRs, each a full copy of a large repo. That's not in `~/.claude`, but the audit prompted me to clean it up.
 
 ## Slash commands
 
-Claude Code lets you define [custom slash commands](https://docs.anthropic.com/en/docs/claude-code/slash-commands) as markdown files in `~/.claude/commands/`. Each file is a prompt template you invoke with `/command-name`. I have eleven:
+Claude Code lets you define [custom slash commands](https://docs.anthropic.com/en/docs/claude-code/slash-commands) as markdown files in `~/.claude/commands/`. Each file is a prompt template you invoke with `/command-name`. I have twelve:
 
 - **`/briefing`** --- Pulls today's calendar, unread emails, and (in the first week of the month) monthly task reminders. I run this most mornings.
 - **`/search-everything`** --- Cross-platform search across local files, WhatsApp, Gmail, Granola meeting notes, and the browser. It works through sources in order of speed and stops when it finds what I need.
@@ -50,14 +50,17 @@ Claude Code lets you define [custom slash commands](https://docs.anthropic.com/e
 - **`/slides`** --- Generates presentation decks from a brief or topic using a Next.js + Tailwind framework.
 - **`/search-transcripts`** --- Searches past Claude Code conversation transcripts by keyword using [`claude-search`](https://github.com/nicobailon/claude-search).
 - **`/config-tidy`** --- Audits and reorganizes `CLAUDE.md`, `MEMORY.md`, and skills to keep each layer within its target size.
+- **`/bounce`** --- Sends a question or plan snippet to GPT for a second opinion. Claude uses this proactively during plan mode to gut-check architecture decisions, trade-offs, or whether it's missing something. Works alongside the `bounce-plan-gpt` hook, which handles the automatic final review.
 
 Most of these compose multiple tools --- MCP servers, CLI utilities, APIs --- into a single action. The `/briefing` command, for example, calls the Google Calendar API, searches Gmail, and checks a task list, then synthesizes everything into a summary. Writing it as a slash command means I don't re-explain the workflow every session.
 
 ## Hooks
 
-[Hooks](https://docs.anthropic.com/en/docs/claude-code/hooks) are shell scripts that run automatically before or after Claude Code events. I have four. The audit revealed a gap: three of the original scripts existed on disk, but only one was wired up in `settings.json`. The other two were doing nothing.
+[Hooks](https://docs.anthropic.com/en/docs/claude-code/hooks) are shell scripts that run automatically before or after Claude Code events. I have five. The audit revealed a gap: three of the original scripts existed on disk, but only one was wired up in `settings.json`. The other two were doing nothing.
 
 This is an easy mistake to make. You write the script, mark it executable, and forget that hooks also need a corresponding entry in `settings.json` to actually fire. I fixed it --- all four are now connected.
+
+**`bounce-plan-gpt.sh`** runs before every `ExitPlanMode` call. When Claude finishes writing an implementation plan and tries to exit plan mode, this hook reads the plan from a standardized temp file, sends it to GPT for review, and either approves or blocks. If GPT has substantive feedback, the hook returns `{"decision": "block"}` with the feedback --- Claude sees the critique, incorporates it, and tries again. A bounce counter caps this at two rounds to prevent infinite loops. The hook pairs with a `/bounce` slash command that Claude can invoke mid-planning for ad-hoc second opinions on architecture choices or trade-offs. Together, they make cross-model review automatic rather than something Claude has to remember to do.
 
 **`enforce-package-managers.sh`** runs before every Bash command. It blocks `npm`, `npx`, `yarn`, `pip`, and `pipx` and tells Claude to use `bun` or `uv` instead. Without this, Claude defaults to npm about half the time regardless of what `CLAUDE.md` says. The hook makes the preference absolute:
 
@@ -306,12 +309,17 @@ For full terminal access, SSH from a phone (via [Termux](https://termux.dev/) on
 ```bash
 if [[ -z "$TMUX" && -z "$VSCODE_INJECTION" ]]; then
   if [[ -n "$SSH_CONNECTION" ]]; then
-    tmux new-session -A -t c -s "remote-$$" \; new-window -n remote 'claude --dangerously-skip-permissions; exec zsh'
+    # Skip during tmux-resurrect restore to prevent pane explosion
+    if [[ -z "$(tmux show-environment -g TMUX_RESTORING 2>/dev/null | grep -v '^-')" ]]; then
+      tmux new-session -A -t c -s "remote-$$" \; new-window -n remote 'claude; exec zsh'
+    fi
   else
-    tmux attach -t c 2>/dev/null || tmux new -s c 'claude --dangerously-skip-permissions; exec zsh'
+    tmux attach -t c 2>/dev/null || tmux new -s c 'claude; exec zsh'
   fi
 fi
 ```
+
+The `TMUX_RESTORING` guard prevents a feedback loop: when tmux-resurrect restores panes, each spawns a shell that sources `.zshrc`, which would create more grouped sessions, which would spawn more panes. With the guard, restored panes just start as plain shells. Auto-restore is also disabled (`@continuum-restore 'off'`); this guard is defense-in-depth. The `new_session.sh` script in the tmux-claude-code plugin also caps panes at 20 per window.
 
 With `aggressive-resize on` in `tmux.conf`, the phone and laptop can have different window sizes without either one getting squished. [Tailscale](https://tailscale.com/) handles networking so I can reach the laptop from anywhere without port forwarding.
 

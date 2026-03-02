@@ -34,7 +34,7 @@ import { SITE_TITLE } from '../consts';
 					<li>True color support (<code>tmux-256color</code>)</li>
 					<li>Pane border titles showing pane name</li>
 					<li><code>aggressive-resize</code> so multiple clients can have different window sizes</li>
-					<li>Plugins via <a href="https://github.com/tmux-plugins/tpm">tpm</a>: <a href="https://github.com/MaxGhenis/tmux-claude-code">tmux-claude-code</a> (session management), <a href="https://github.com/tmux-plugins/tmux-resurrect">resurrect</a> + <a href="https://github.com/tmux-plugins/tmux-continuum">continuum</a> (auto-save/restore pane layout, but <em>not</em> processes &mdash; Claude Code can't resume from a restore)</li>
+					<li>Plugins via <a href="https://github.com/tmux-plugins/tpm">tpm</a>: <a href="https://github.com/MaxGhenis/tmux-claude-code">tmux-claude-code</a> (session management), <a href="https://github.com/tmux-plugins/tmux-resurrect">resurrect</a> + <a href="https://github.com/tmux-plugins/tmux-continuum">continuum</a> (auto-save every 15 min, but auto-restore disabled &mdash; it caused pane explosions with grouped sessions. Manual restore via <kbd>prefix+Ctrl-r</kbd>)</li>
 				</ul>
 
 				<h3><a href="https://github.com/MaxGhenis/tmux-claude-code">tmux-claude-code</a> plugin</h3>
@@ -54,9 +54,12 @@ import { SITE_TITLE } from '../consts';
 				<pre class="code-block"># Skip auto-attach in VS Code terminals (use VS Code's Claude Code panel instead)
 if [[ -z "$TMUX" &amp;&amp; -z "$VSCODE_INJECTION" ]]; then
   if [[ -n "$SSH_CONNECTION" ]]; then
-    tmux new-session -A -t c -s "remote-$$" \; new-window -n remote 'claude --dangerously-skip-permissions; exec zsh' 2&gt;/dev/null || tmux new -s c 'claude --dangerously-skip-permissions; exec zsh'
+    # Skip during tmux-resurrect restore to prevent pane explosion
+    if [[ -z "$(tmux show-environment -g TMUX_RESTORING 2&gt;/dev/null | grep -v '^-')" ]]; then
+      tmux new-session -A -t c -s "remote-$$" \; new-window -n remote 'claude; exec zsh' 2&gt;/dev/null || tmux new -s c 'claude; exec zsh'
+    fi
   else
-    tmux attach -t c 2&gt;/dev/null || tmux new -s c 'claude --dangerously-skip-permissions; exec zsh'
+    tmux attach -t c 2&gt;/dev/null || tmux new -s c 'claude; exec zsh'
   fi
 fi</pre>
 
@@ -121,6 +124,7 @@ fi</pre>
 					<li><strong>Hooks:</strong>
 						<ul>
 							<li><code>enforce-package-managers</code> &mdash; blocks wrong package managers per project</li>
+							<li><code>bounce-plan-gpt</code> &mdash; automatically bounces implementation plans off GPT before exiting plan mode (max 2 rounds)</li>
 							<li><code>auto-commit-wip</code> &mdash; commits work-in-progress on session end</li>
 							<li><code>warn-uncommitted</code> &mdash; alerts on large uncommitted diffs</li>
 							<li><code>sync-setup-page</code> &mdash; reminds Claude to update this page after dotfiles/config commits</li>
@@ -132,7 +136,7 @@ fi</pre>
 				<p>13 on-demand skills that load based on conversation context (not preloaded). Examples: Whoop health data, Xero UK accounting, App Store Connect, GCP billing, OpenCollective expenses, Modal/Vercel deployment, OpenMessage patterns, agent teams, Slack patterns, Cloudflare domains.</p>
 
 				<h3>Commands</h3>
-				<p>11 slash commands including <code>/briefing</code> (daily summary), <code>/search-everything</code> (cross-platform search), <code>/expense</code> (OpenCollective filing), <code>/config-tidy</code> (audit and reorganize config layers), and more.</p>
+				<p>12 slash commands including <code>/briefing</code> (daily summary), <code>/search-everything</code> (cross-platform search), <code>/expense</code> (OpenCollective filing), <code>/config-tidy</code> (audit and reorganize config layers), and more.</p>
 
 				<h3>Plugins</h3>
 				<ul>
