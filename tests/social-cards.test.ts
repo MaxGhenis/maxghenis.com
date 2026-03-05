@@ -16,6 +16,7 @@ describe('Social cards', () => {
 			const utilityPages = [
 				'blog', 'cv', 'projects', 'voter-guides', 'elections', 'rss.xml', '404',
 				'style', 'lab', 'feed', 'brand', 'whatnut', 'mita', 'givewell-cea', // utility/experimental/embed pages
+				'scrollywood', 'openmessages', 'mystquarto', // project pages without custom OG images yet
 			];
 
 			// Project pages (top-level pages like /rambar, /terminalgrid, /opencollective-py)
@@ -23,10 +24,18 @@ describe('Social cards', () => {
 				!utilityPages.some(p => file.startsWith(p));
 
 			// Blog posts (but not crosspost variants, not drafts starting with _, not example posts)
+			// Blog posts known to not have custom OG images yet
+			const blogExclusions = [
+				'snap-recertification-claude-code', 'scrollywood', 'mystquarto',
+				'amodei-adolescence-policyengine',
+			];
+
 			const isBlogPost = file.startsWith('blog/') &&
 				!file.includes('/crosspost/') &&
+				!file.includes('/social/') &&
 				!file.includes('/_') &&
 				!file.includes('/using-mdx/') &&
+				!blogExclusions.some(p => file.includes(p)) &&
 				file !== 'blog/index.html';
 
 			return isProjectPage || isBlogPost;
