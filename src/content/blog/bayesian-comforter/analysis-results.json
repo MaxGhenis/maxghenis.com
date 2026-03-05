@@ -1,0 +1,122 @@
+{
+  "data": {
+    "n_nights": 57,
+    "score_mean": 78.96491228070175,
+    "score_std": 10.522026068274762,
+    "temp_mean": 29.284087053234682,
+    "temp_std": 1.2428539387167434,
+    "date_range": [
+      "2025-12-03",
+      "2026-03-04"
+    ]
+  },
+  "regression": {
+    "coef": 2.8755865677065393,
+    "se": 1.0736894196638573,
+    "t_stat": 2.6782293976658598,
+    "p_value": 0.009739912076700368,
+    "r_squared": 0.11537038228175579,
+    "n": 57,
+    "residual_std": 9.98602801243426
+  },
+  "whoop_validation": {
+    "controlled_coef": 2.8771099176080828,
+    "controlled_se": 1.078337262870417,
+    "controlled_t_stat": 2.6680983924728037,
+    "controlled_p_value": 0.010312367116363852,
+    "n": 54,
+    "control_coefs": {
+      "whoop_hrv": -0.11799098047712381,
+      "whoop_rhr": -0.8296925991469333,
+      "whoop_strain": -0.1590829746900545
+    }
+  },
+  "predictions": [
+    {
+      "scenario": "Current (waffle knit)",
+      "temp_delta_c": 0.0,
+      "predicted_score_mean": 78.96604561403508,
+      "predicted_score_p5": 60.0,
+      "predicted_score_p25": 73.0,
+      "predicted_score_p50": 80.0,
+      "predicted_score_p75": 86.0,
+      "predicted_score_p95": 94.0,
+      "delta_from_baseline": 0.0011333333333283235,
+      "prob_above_80": 0.527259649122807
+    },
+    {
+      "scenario": "Quince Ultra-Warm 700fp",
+      "temp_delta_c": 0.5,
+      "predicted_score_mean": 80.36819539042772,
+      "predicted_score_p5": 62.17148777098562,
+      "predicted_score_p25": 74.10453293796564,
+      "predicted_score_p50": 81.4018498271764,
+      "predicted_score_p75": 87.94258270878672,
+      "predicted_score_p95": 95.18796904533289,
+      "delta_from_baseline": 1.4032831097259617,
+      "prob_above_80": 0.5333333333333333
+    },
+    {
+      "scenario": "Brooklinen Ultra-Warm 750fp",
+      "temp_delta_c": 0.8,
+      "predicted_score_mean": 81.303679445673,
+      "predicted_score_p5": 63.29661480688733,
+      "predicted_score_p25": 75.1844137087707,
+      "predicted_score_p50": 82.31025426900727,
+      "predicted_score_p75": 88.93719436632647,
+      "predicted_score_p95": 96.19796436106662,
+      "delta_from_baseline": 2.3387671649712445,
+      "prob_above_80": 0.5661403508771929
+    },
+    {
+      "scenario": "Hamvay-Lang Winter 800fp",
+      "temp_delta_c": 1.0,
+      "predicted_score_mean": 81.81539564998194,
+      "predicted_score_p5": 63.87950745992724,
+      "predicted_score_p25": 75.66470576765487,
+      "predicted_score_p50": 82.84782968903986,
+      "predicted_score_p75": 89.48727589239657,
+      "predicted_score_p95": 96.83126653919246,
+      "delta_from_baseline": 2.850483369280184,
+      "prob_above_80": 0.5886
+    }
+  ],
+  "decision_table": [
+    {
+      "scenario": "Current (waffle knit)",
+      "price": 0,
+      "delta_score": 0.0011333333333283235,
+      "annual_value": 0.7197799999968182,
+      "payback_days": 0.0,
+      "roi_1yr": Infinity,
+      "prob_above_80": 0.527259649122807
+    },
+    {
+      "scenario": "Quince Ultra-Warm 700fp",
+      "price": 240,
+      "delta_score": 1.4032831097259617,
+      "annual_value": 891.2251029869583,
+      "payback_days": 98.29166582764208,
+      "roi_1yr": 2.713437929112326,
+      "prob_above_80": 0.5333333333333333
+    },
+    {
+      "scenario": "Brooklinen Ultra-Warm 750fp",
+      "price": 430,
+      "delta_score": 2.3387671649712445,
+      "annual_value": 1485.3510264732374,
+      "payback_days": 105.66525838182257,
+      "roi_1yr": 2.454304712728459,
+      "prob_above_80": 0.5661403508771929
+    },
+    {
+      "scenario": "Hamvay-Lang Winter 800fp",
+      "price": 885,
+      "delta_score": 2.850483369280184,
+      "annual_value": 1810.3419878298448,
+      "payback_days": 178.43313703795138,
+      "roi_1yr": 1.0455841670393726,
+      "prob_above_80": 0.5886
+    }
+  ]
+}
