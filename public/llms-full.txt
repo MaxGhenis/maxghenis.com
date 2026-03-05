@@ -1,50 +1,117 @@
 # Max Ghenis - Full Content
 
 > This file contains the full text of all blog posts from maxghenis.com, formatted for LLM consumption.
-> Generated: 2026-02-23T01:24:47.058Z
+> Generated: 2026-02-27T17:16:21.668Z
 > See also: /llms.txt for a curated overview
 
 ---
 
 ## Table of Contents
 
-1. [One year of Claude Code](/blog/my-claude-code-config/)
-2. [Interactive replication of GiveWell''s cost-effectiveness analysis](/blog/givewell-cea/)
-3. [Why you can''t make double eye contact](/blog/double-eye-contact/)
-4. [OpenMessage: How I built a macOS Google Messages client to give Claude my texts](/blog/openmessage/)
-5. [Where US immigrants come from, and where ICE focuses enforcement](/blog/bad-bunny-immigration-enforcement/)
-6. [I used Claude Code to recertify for SNAP](/blog/snap-recertification-claude-code/)
-7. [Scrollywood: Smooth scroll video recording for the web](/blog/scrollywood/)
-8. [The adolescence of policy simulation: On Amodei and economic disruption](/blog/amodei-adolescence-policyengine/)
-9. [opencollective-py: Manage OpenCollective from your terminal or Claude Code](/blog/opencollective-py/)
-10. [From IDE to AI orchestration: The end of code-first development](/blog/ide-to-ai-orchestration/)
-11. [TerminalGrid: Turn VS Code into a Claude Code superterminal](/blog/terminalgrid/)
-12. [RAMBar: A macOS menu bar RAM monitor for developers](/blog/rambar/)
-13. [How to Use MDX for Interactive Posts](/blog/using-mdx/)
-14. [VAT thresholds, revenues, and the role of counterfactuals](/blog/vat-thresholds/)
-15. [AI models favor Cuomo over Mamdani on NYC housing production](/blog/ai-models-nyc-housing/)
-16. [My 2024 in code: Personal projects and AI tools](/blog/my-2024-in-code/)
-17. [Why I'm a neoliberal](/blog/why-im-a-neoliberal/)
-18. [In appointing their newest member, the Ventura City Council only pretended to care about housing](/blog/in-appointing-their-newest-member-the-ventura-city/)
-19. [If you earned more in 2019 than 2018, don't file your 2019 taxes yet! Otherwise, file ASAP!](/blog/if-you-earned-more-in-2019-than-2018-dont-file-you/)
-20. [Why I’ve taken the Giving What We Can pledge](/blog/why-ive-taken-the-giving-what-we-can-pledge/)
-21. [Ventura County must end its unsheltered homelessness](/blog/ventura-county-must-end-its-unsheltered-homelessne/)
-22. [Warren’s wealth tax would raise less than she claims — even using her economists’ own assumptions](/blog/warrens-wealth-tax-would-raise-less-than-she-claim/)
-23. [Andrew Yang's troubling Tucker Carlson interview](/blog/andrew-yangs-troubling-tucker-carlson-interview/)
-24. [Quantile regression, from linear models to trees to deep learning](/blog/quantile-regression-from-linear-models-to-trees-to/)
-25. [We should replace the Child Tax Credit with a universal child benefit](/blog/we-should-replace-the-child-tax-credit-with-a-univ/)
-26. [The case for a wonky basic income plan](/blog/the-case-for-a-wonky-basic-income-plan/)
-27. [Reddit featured a misleading headline on education secretary nominee Betsy DeVos](/blog/reddit-featured-a-misleading-headline-on-education/)
-28. [Uber's tipping settlement will reduce earnings of African-American drivers](/blog/ubers-tipping-settlement-will-reduce-earnings-of-a/)
-29. [If we can afford our current welfare system, we can afford basic income](/blog/if-we-can-afford-our-current-welfare-system-we-can/)
+1. [I built a MyST-to-Quarto converter (and why you might need one)](/blog/mystquarto/)
+2. [One year of Claude Code](/blog/my-claude-code-config/)
+3. [Interactive replication of GiveWell''s cost-effectiveness analysis](/blog/givewell-cea/)
+4. [Why you can''t make double eye contact](/blog/double-eye-contact/)
+5. [OpenMessage: How I built a macOS Google Messages client to give Claude my texts](/blog/openmessage/)
+6. [Where US immigrants come from, and where ICE focuses enforcement](/blog/bad-bunny-immigration-enforcement/)
+7. [I used Claude Code to recertify for SNAP](/blog/snap-recertification-claude-code/)
+8. [Scrollywood: Smooth scroll video recording for the web](/blog/scrollywood/)
+9. [The adolescence of policy simulation: On Amodei and economic disruption](/blog/amodei-adolescence-policyengine/)
+10. [opencollective-py: Manage OpenCollective from your terminal or Claude Code](/blog/opencollective-py/)
+11. [From IDE to AI orchestration: The end of code-first development](/blog/ide-to-ai-orchestration/)
+12. [TerminalGrid: Turn VS Code into a Claude Code superterminal](/blog/terminalgrid/)
+13. [RAMBar: A macOS menu bar RAM monitor for developers](/blog/rambar/)
+14. [How to Use MDX for Interactive Posts](/blog/using-mdx/)
+15. [VAT thresholds, revenues, and the role of counterfactuals](/blog/vat-thresholds/)
+16. [AI models favor Cuomo over Mamdani on NYC housing production](/blog/ai-models-nyc-housing/)
+17. [My 2024 in code: Personal projects and AI tools](/blog/my-2024-in-code/)
+18. [Why I'm a neoliberal](/blog/why-im-a-neoliberal/)
+19. [In appointing their newest member, the Ventura City Council only pretended to care about housing](/blog/in-appointing-their-newest-member-the-ventura-city/)
+20. [If you earned more in 2019 than 2018, don't file your 2019 taxes yet! Otherwise, file ASAP!](/blog/if-you-earned-more-in-2019-than-2018-dont-file-you/)
+21. [Why I’ve taken the Giving What We Can pledge](/blog/why-ive-taken-the-giving-what-we-can-pledge/)
+22. [Ventura County must end its unsheltered homelessness](/blog/ventura-county-must-end-its-unsheltered-homelessne/)
+23. [Warren’s wealth tax would raise less than she claims — even using her economists’ own assumptions](/blog/warrens-wealth-tax-would-raise-less-than-she-claim/)
+24. [Andrew Yang's troubling Tucker Carlson interview](/blog/andrew-yangs-troubling-tucker-carlson-interview/)
+25. [Quantile regression, from linear models to trees to deep learning](/blog/quantile-regression-from-linear-models-to-trees-to/)
+26. [We should replace the Child Tax Credit with a universal child benefit](/blog/we-should-replace-the-child-tax-credit-with-a-univ/)
+27. [The case for a wonky basic income plan](/blog/the-case-for-a-wonky-basic-income-plan/)
+28. [Reddit featured a misleading headline on education secretary nominee Betsy DeVos](/blog/reddit-featured-a-misleading-headline-on-education/)
+29. [Uber's tipping settlement will reduce earnings of African-American drivers](/blog/ubers-tipping-settlement-will-reduce-earnings-of-a/)
+30. [If we can afford our current welfare system, we can afford basic income](/blog/if-we-can-afford-our-current-welfare-system-we-can/)
+
+---
+
+## I built a MyST-to-Quarto converter (and why you might need one)
+
+**URL:** https://maxghenis.com/blog/mystquarto/
+**Published:** Feb 27 2026
+**Description:** mystquarto converts academic markdown between MyST and Quarto formats — directives, roles, config files, and frontmatter. Now on PyPI.
+
+I have about 20 academic papers written in [MyST Markdown](https://mystmd.org/). MyST is great — Jupyter Book integration, Sphinx directives, executable code cells. But I've been increasingly drawn to [Quarto](https://quarto.org/) for its PDF output, built-in cross-referencing, and the fact that it's becoming the standard for reproducible academic publishing.
+
+The problem: converting between the two isn't trivial. Both formats use markdown, but their syntax for the interesting parts — executable code, citations, figures, admonitions, cross-references — is completely different. And no converter existed.
+
+So I built one.
+
+## What mystquarto does
+
+```bash
+pip install mystquarto
+
+myst2quarto docs/ -o docs-quarto/
+quarto2myst docs/ -o docs-myst/
+```
+
+It handles the full conversion in both directions:
+
+**Block directives.** MyST uses Sphinx-style directives (`` ```{code-cell} python `` with `:tags: [hide-input]`). Quarto uses pandoc-style fences (`` ```{python} `` with `#| code-fold: true`). mystquarto converts between all 13+ directive types: code cells, figures, math blocks, admonitions, tab sets, margin content, tables, images, and more.
+
+**Inline roles.** MyST's `` {cite}`smith2024` `` becomes Quarto's `[@smith2024]`. Same for cross-references (`` {numref}`fig-results` `` → `@fig-results`), equations, inline code evaluation, and document links. Nine role types in total.
+
+**Config files.** `myst.yml` and `_quarto.yml` have different structures for the same concepts — project type, table of contents, bibliography, export formats, author metadata. mystquarto maps between them, detecting book vs. article projects automatically.
+
+**Frontmatter.** Per-file YAML like `kernelspec` → `jupyter`, `label` → `id`, and `exports` → `format`.
+
+**File extensions.** `.md` ↔ `.qmd` renaming, with asset copying and `_build`/`.git` directory skipping.
+
+## Why not use Pandoc?
+
+Pandoc is the universal markdown converter, but it operates at the document level — parsing to an AST and rendering back. It doesn't understand MyST directives or Quarto's executable code cells. These are treated as raw content or code blocks, not as semantic constructs that need structural transformation.
+
+The conversion between MyST and Quarto is fundamentally about syntax mapping between two directive systems, not about document parsing. A code cell's `:tags: [hide-input]` needs to become `#| code-fold: true` — that's a structural transform, not a format conversion.
+
+## How it works
+
+The architecture is deliberately simple: a regex-based line scanner with a directive stack, processing files line by line. The scanner detects opening fences (both backtick and colon styles), tracks nesting depth, parses option blocks, and dispatches to transform functions on close.
+
+No heavy dependencies. The entire package uses just `click` for the CLI and `pyyaml` for config/frontmatter parsing. No `markdown-it-py`, `myst-parser`, or `docutils`. This keeps the install fast and the code easy to understand and extend.
+
+225 tests cover every transform rule, with fixture-based comparisons and roundtrip tests (MyST → Quarto → MyST).
+
+## Try it
+
+```bash
+# Install
+pip install mystquarto
+
+# Or run without installing
+uvx myst2quarto docs/
+
+# Preview what would change
+myst2quarto docs/ --dry-run
+```
+
+The code is at [github.com/MaxGhenis/mystquarto](https://github.com/MaxGhenis/mystquarto), MIT-0 licensed (no attribution required). The [project page](/mystquarto) has the full syntax mapping table.
+
+If you're sitting on MyST projects and want to try Quarto — or vice versa — give it a shot.
 
 ---
 
 ## One year of Claude Code
 
 **URL:** https://maxghenis.com/blog/my-claude-code-config/
-**Published:** Feb 24 2026
-**Description:** A year ago today, Anthropic launched Claude Code. I''ve since consumed 10 billion tokens, mass-tweeted about it, and mass-customized it. Here''s my setup and what I''ve learned.
+**Published:** Feb 25 2026
+**Description:** A year ago, Anthropic launched Claude Code. I''ve since consumed 10 billion tokens, mass-tweeted about it, and mass-customized it. Here''s my setup and what I''ve learned.
 
 Anthropic launched Claude Code on February 24, 2025. I [tweeted about it](https://x.com/MaxGhenis) three times on day one. A year later, it's my primary development environment, and I've mass-customized the `~/.claude` directory that powers it.
 
@@ -81,7 +148,7 @@ While auditing, I also noticed that 36 GB of stale repo clones had accumulated i
 
 ## Slash commands
 
-Claude Code lets you define [custom slash commands](https://docs.anthropic.com/en/docs/claude-code/slash-commands) as markdown files in `~/.claude/commands/`. Each file is a prompt template you invoke with `/command-name`. I have ten:
+Claude Code lets you define [custom slash commands](https://docs.anthropic.com/en/docs/claude-code/slash-commands) as markdown files in `~/.claude/commands/`. Each file is a prompt template you invoke with `/command-name`. I have eleven:
 
 - **`/briefing`** --- Pulls today's calendar, unread emails, and (in the first week of the month) monthly task reminders. I run this most mornings.
 - **`/search-everything`** --- Cross-platform search across local files, WhatsApp, Gmail, Granola meeting notes, and the browser. It works through sources in order of speed and stops when it finds what I need.
@@ -91,6 +158,7 @@ Claude Code lets you define [custom slash commands](https://docs.anthropic.com/e
 - **`/personal-info`** --- Loads my personal details from a private file for form-filling, applications, and profile creation.
 - **`/slides`** --- Generates presentation decks from a brief or topic using a Next.js + Tailwind framework.
 - **`/search-transcripts`** --- Searches past Claude Code conversation transcripts by keyword using [`claude-search`](https://github.com/nicobailon/claude-search).
+- **`/config-tidy`** --- Audits and reorganizes `CLAUDE.md`, `MEMORY.md`, and skills to keep each layer within its target size.
 
 Most of these compose multiple tools --- MCP servers, CLI utilities, APIs --- into a single action. The `/briefing` command, for example, calls the Google Calendar API, searches Gmail, and checks a task list, then synthesizes everything into a summary. Writing it as a slash command means I don't re-explain the workflow every session.
 
@@ -190,7 +258,7 @@ Claude spawned three parallel Explore agents that searched the skill files on-de
 
 **Pavel's Slack DM channel ID**
 
-`D047FDWKAKC` (user ID: `U047HTB58BE`)
+`D04xxxxx` (found via skill lookup)
 
 **Whoop sleep API endpoint**
 
@@ -291,46 +359,41 @@ The whole setup is three small changes.
 **Auto-launch in `.zshrc`** --- every new terminal window attaches to the session or creates it:
 
 ```bash
-if [[ -z "$TMUX" ]]; then
+if [[ -z "$TMUX" && -z "$VSCODE_INJECTION" ]]; then
   tmux attach -t c 2>/dev/null || tmux new -s c 'claude --dangerously-skip-permissions; exec zsh'
 fi
 ```
 
-The `exec zsh` at the end means that if Claude Code exits, the pane drops to a shell instead of closing. Close iTerm2, reopen it, and you're back where you left off.
+The `$VSCODE_INJECTION` guard skips auto-attach in VS Code terminals, which have their own Claude Code panel. The `exec zsh` at the end means that if Claude Code exits, the pane drops to a shell instead of closing. Close iTerm2, reopen it, and you're back where you left off. (The full block also handles SSH connections --- see [phone access](#phone-access) below.)
 
-**The `cc` script** at `~/bin/cc` creates new named Claude Code panes:
-
-```bash
-#!/bin/zsh
-# Usage: cc [name]
-if [[ -z "$TMUX" ]]; then echo "Error: not inside a tmux session" >&2; exit 1; fi
-name="${1:-$(date +%H%M%S)}"
-tmux split-window -d -c ~ "claude --dangerously-skip-permissions"
-pane=$(tmux list-panes -F '#{pane_index}' | tail -1)
-tmux select-pane -t "$pane" -T "$name"
-tmux select-layout tiled
-```
-
-**tmux.conf additions** --- pane borders show names, `prefix+c` prompts for a name and creates a new Claude Code pane, and `prefix+g` re-tiles the grid:
+**[tmux-claude-code](https://github.com/MaxGhenis/tmux-claude-code)** is a TPM plugin I built to manage sessions. The `cc` script evolved from a five-line pane creator into a proper plugin with session search, resume, and browse features. It installs as a one-liner in `.tmux.conf`:
 
 ```bash
-# Pane border titles
-set -g pane-border-status top
-set -g pane-border-format " #{pane_index}: #{pane_title} "
-
-# prefix+c: new named Claude Code pane (prompts for name, delegates to cc)
-bind c command-prompt -p "name:" "run-shell '~/bin/cc %1'"
-
-# prefix+g: re-tile into grid
-bind g select-layout tiled
+set -g @plugin 'MaxGhenis/tmux-claude-code'
+set -g @claude_code_flags '--dangerously-skip-permissions'
 ```
 
-Hit `prefix+c`, type a name like "yankee-beer," and a new instance appears in the grid, titled accordingly. The layout re-tiles automatically.
+The killer feature is keyword search across session transcripts. Every Claude Code session stores its conversation as a JSONL file in `~/.claude/projects/`. The plugin searches the first few user messages of every session, excludes currently active ones, resolves the correct working directory from the encoded project path, and opens `claude --resume` in the right place:
+
+```bash
+cc resume nextladder proposal    # finds and resumes the matching session
+cc resume fix ctc phaseout       # keyword search across all transcripts
+```
+
+The plugin also handles three bugs that plagued my original script:
+
+1. **Nested session detection**: Claude Code sets a `CLAUDECODE` environment variable. New panes inherit it, causing the child instance to refuse to start. The plugin strips it with `env -u CLAUDECODE` on every pane creation.
+2. **Pane detection**: Claude Code sessions report `zsh` as their `pane_current_command` when idle at their prompt (because they're launched via `zsh -c "claude ...; exec zsh"`). Naive "is this pane free?" checks fail. The plugin uses a three-tier approach: check the command name, check for a child process named `claude` via `pgrep`, then fall back to checking pane content for CC prompt markers.
+3. **Window overflow**: When a tmux window has too many panes, `split-window` silently fails ("no space for new pane"). The plugin falls back to `new-window` automatically.
 
 **Navigation:**
 
 | Action | Key |
 |--------|-----|
+| New Claude Code pane | `prefix+c` |
+| New named CC pane | `prefix+C` |
+| Resume CC session by keyword | `prefix+Ctrl-r` |
+| Browse CC sessions (fzf) | `prefix+Ctrl-b` |
 | Grid view (re-tile) | `prefix+g` |
 | Zoom pane fullscreen | `prefix+z` |
 | Return to grid | `prefix+z` again |
@@ -345,15 +408,29 @@ The zoom toggle is the key workflow: `prefix+z` to focus on one session fullscre
 
 ### Phone access
 
-SSH from a phone (via [Termux](https://termux.dev/) on Android or any SSH client on iOS) connects to the same tmux session. The `.zshrc` block detects `$SSH_CONNECTION` and creates a *grouped session* --- a linked session that shares windows but has its own independent view:
+The simplest approach: [Remote Control](https://code.claude.com/docs/en/remote-control). With it enabled for all sessions, every local Claude Code session is automatically available at [claude.ai/code](https://claude.ai/code) and the Claude mobile app ([iOS](https://apps.apple.com/us/app/claude-by-anthropic/id6473753684)/[Android](https://play.google.com/store/apps/details?id=com.anthropic.claude)). No SSH or VPN needed --- just open the app and pick a session.
+
+For full terminal access, SSH from a phone (via [Termux](https://termux.dev/) on Android or any SSH client on iOS) connects to the same tmux session. The `.zshrc` block detects `$SSH_CONNECTION` and creates a *grouped session* --- a linked session that shares windows but has its own independent view:
 
 ```bash
-if [[ -n "$SSH_CONNECTION" ]]; then
-  tmux new-session -A -t c -s "remote-$$" \; new-window -n remote 'claude --dangerously-skip-permissions; exec zsh'
+if [[ -z "$TMUX" && -z "$VSCODE_INJECTION" ]]; then
+  if [[ -n "$SSH_CONNECTION" ]]; then
+    tmux new-session -A -t c -s "remote-$$" \; new-window -n remote 'claude --dangerously-skip-permissions; exec zsh'
+  else
+    tmux attach -t c 2>/dev/null || tmux new -s c 'claude --dangerously-skip-permissions; exec zsh'
+  fi
 fi
 ```
 
 With `aggressive-resize on` in `tmux.conf`, the phone and laptop can have different window sizes without either one getting squished. [Tailscale](https://tailscale.com/) handles networking so I can reach the laptop from anywhere without port forwarding.
+
+### Cross-pane awareness
+
+The most useful emergent behavior of running multiple Claude Code sessions in tmux: [one session can read another's terminal output](https://x.com/MaxGhenis/status/2026254649309749640). One pane was rebasing a policyengine-core branch against master after a towncrier migration PR merged, resolving merge conflicts in push.yaml. I told a different pane to look at what it was doing. It ran `tmux capture-pane` on the sibling, read through the rebase output, and noticed that the "Build changelog" step in push.yaml had lost its `run:` command during the merge --- an empty CI step that would silently break versioning on the next PR merge. It then checked every other repo we'd just merged towncrier into, found the same bug in policyengine-canada, and fixed both directly on master. One agent caught a bug introduced by another agent's work, by reading its terminal.
+
+This is a tmux-specific capability. VS Code and iTerm2 can split terminals visually, but there's no programmatic API for one terminal to read the contents of a sibling split. In tmux, every pane's buffer is accessible from any other pane.
+
+I've started organizing sessions into named windows --- `work` and `personal` --- and temporarily pulling subsets of panes into a `focus` window when I need to zoom in on two related tasks. Moving panes between windows is `join-pane -s %ID -t window-name`, and `select-layout tiled` re-tiles after every move.
 
 ### Agent teams stay contained
 
@@ -373,7 +450,7 @@ The pattern of failure is worth more than the final config. Each broken approach
 
 The lesson is the same one that applies to most software projects: when the third workaround fails, the architecture is wrong. Step back. The solution to "my grid script breaks every time I run it" wasn't a better grid script. It was `select-layout tiled`.
 
-All the config files are in [github.com/MaxGhenis/dotfiles](https://github.com/MaxGhenis/dotfiles). A living reference version with the latest config is at [/setup](/setup).
+All the config files are in [github.com/MaxGhenis/dotfiles](https://github.com/MaxGhenis/dotfiles). The tmux plugin is at [github.com/MaxGhenis/tmux-claude-code](https://github.com/MaxGhenis/tmux-claude-code). A living reference version with the latest config is at [/setup](/setup).
 
 ## What I learned
 
