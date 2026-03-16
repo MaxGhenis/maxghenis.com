@@ -1,0 +1,827 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE } from '../consts';
+import protocolData from '../data/protocol-data.json';
+
+const { summary, supplements, bundles, portfolio, config, profile } = protocolData;
+
+// Group supplements by category
+const categories = [
+	{ key: 'rx_current', label: 'Prescriptions', status: 'taking' },
+	{ key: 'supplement_current', label: 'Current supplements', status: 'taking' },
+	{ key: 'supplement_bought', label: 'Recently added', status: 'testing' },
+	{ key: 'rx_candidate', label: 'Prescription candidates', status: 'considering' },
+	{ key: 'supplement_candidate', label: 'Supplement candidates', status: 'watching' },
+];
+
+const grouped = Object.fromEntries(
+	categories.map(c => [c.key, supplements.filter(s => s.category === c.key)])
+);
+
+// Top items by gross value (in portfolio)
+const coreStack = supplements
+	.filter(s => s.in_portfolio && (s.category === 'rx_current' || s.category === 'supplement_current' || s.category === 'supplement_bought'))
+	.slice(0, 15);
+
+// Excluded items (not in portfolio, not candidates)
+const excluded = supplements
+	.filter(s => !s.in_portfolio && s.category !== 'rx_candidate' && s.category !== 'supplement_candidate')
+	.sort((a, b) => b.gross_value - a.gross_value);
+
+const statusColors: Record<string, string> = {
+	taking: '#059669',
+	testing: '#d97706',
+	considering: '#6366f1',
+	watching: '#64748b',
+};
+
+// Time-of-day schedule for items currently being taken
+const timeSlots: Record<string, { label: string; items: { name: string; note?: string }[] }> = {
+	mix: {
+		label: 'Morning mix',
+		items: [
+			{ name: 'Blueprint Longevity Mix', note: 'powder base' },
+			{ name: 'Creatine 5g' },
+			{ name: 'Prebiotics combo' },
+		],
+	},
+	nutty_pudding: {
+		label: 'Nutty pudding + pill batch 1',
+		items: [
+			{ name: 'Finasteride 1.25mg' },
+			{ name: 'Omega-3 CLO (1 pill)', note: 'fat-soluble' },
+			{ name: 'NAC (2 of 3 pills)', note: '800mg' },
+			{ name: 'Vitamin D 2000 IU', note: 'fat-soluble' },
+			{ name: 'Vitamin K2 MK-7+MK-4', note: 'fat-soluble, synergy with D' },
+			{ name: 'Lions Mane 1g', note: '2 capsules' },
+			{ name: 'Cistanche 200mg' },
+			{ name: 'Blueprint Essential Capsules', note: 'bundle' },
+			{ name: 'Blueprint NAC+Ginger+Curcumin', note: 'finishing container, then switching to standalone NAC' },
+		],
+	},
+	super_veggie: {
+		label: 'Second meal + pill batch 2',
+		items: [
+			{ name: 'Tadalafil 2.5mg' },
+			{ name: 'Omega-3 CLO (1 pill)', note: 'fat-soluble' },
+			{ name: 'High-EPA Omega-3 +2g', note: 'fat-soluble' },
+			{ name: 'NAC (1 of 3 pills)', note: '400mg' },
+			{ name: 'Garlic 1200mg' },
+			{ name: 'Blueprint Advanced Antioxidants', note: 'bundle' },
+		],
+	},
+	evening: {
+		label: 'Before bed',
+		items: [
+			{ name: 'Trazodone 50mg', note: 'sleep maintenance' },
+			{ name: 'Melatonin 300mcg', note: 'sleep onset' },
+			{ name: 'Magnesium 200mg', note: 'relaxation, sleep quality' },
+			{ name: 'Glycine 2g', note: 'sleep quality, neuroprotective' },
+			{ name: 'Apigenin 50mg', note: 'anxiolytic, CD38 inhibitor' },
+			{ name: 'Taurine 500mg top-up', note: 'calming' },
+		],
+	},
+};
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Protocol | ${SITE_TITLE}`} description="My quantified health stack: supplements, sleep optimization, and environmental interventions. Evidence-graded with Bayesian QALY analysis." />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<header class="page-header">
+				<h1>Protocol</h1>
+				<p class="page-description">My quantified health stack &mdash; supplements, sleep, and environmental optimization.</p>
+				<p class="last-updated">Last updated {protocolData.generated_at}</p>
+			</header>
+
+			<div class="callout">
+				This is my personal protocol, not medical advice. Most supplement evidence is observational and heavily confounded. I use a Bayesian QALY framework (<a href="https://github.com/maxghenis/optiqal-ai">Optiqal</a>) to account for confounding and publication bias. Consult your doctor before making health decisions.
+			</div>
+
+			<!-- At a glance -->
+			<section>
+				<h2>At a glance</h2>
+				<div class="stats-grid">
+					<div class="stat-card">
+						<div class="stat-value">{summary.total_items}</div>
+						<div class="stat-label">Daily items</div>
+					</div>
+					<div class="stat-card">
+						<div class="stat-value">${summary.total_annual_cost.toLocaleString()}</div>
+						<div class="stat-label">Annual cost</div>
+					</div>
+					<div class="stat-card">
+						<div class="stat-value">+{Math.round(summary.total_days / 365.25 * 10) / 10}yr</div>
+						<div class="stat-label">Expected gain</div>
+					</div>
+					<div class="stat-card">
+						<div class="stat-value">2</div>
+						<div class="stat-label">Sleep devices</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Philosophy -->
+			<section>
+				<h2>Philosophy</h2>
+				<p>I treat health optimization as a portfolio problem under uncertainty. Each intervention has an expected benefit (measured in <a href="https://en.wikipedia.org/wiki/Quality-adjusted_life_year">QALYs</a>), a cost, and uncertainty about whether the observed effect is causal or confounded.</p>
+				<p>The framework: estimate each intervention's hazard ratio from literature, shrink it 30% toward null to correct for publication bias, apply a Bayesian confounding prior to discount observational evidence, simulate 50,000 Monte Carlo samples through CDC life tables, then greedily select the highest expected-value stack under a budget.</p>
+				<p>Key parameters: willingness-to-pay of $200K per QALY, 40-year horizon, diminishing returns (each additional item gets 95% of the prior item's benefit, floor at 80%), and a complexity penalty beyond 3 items (0.0005 QALYs/yr per extra item). This penalizes sprawling regimens while still allowing justified expansion.</p>
+				<p>I am not a doctor. I have no medical training. This is <em>expected value reasoning applied to personal health decisions</em>, not clinical guidance. Most of these effect sizes are small, uncertain, and could be entirely confounded.</p>
+			</section>
+
+			<!-- Core stack -->
+			<section>
+				<h2>Core stack</h2>
+				<p>The top {coreStack.length} highest-conviction items I take daily, ranked by expected value.</p>
+				<div class="table-wrapper">
+					<table>
+						<thead>
+							<tr>
+								<th>Item</th>
+								<th>Status</th>
+								<th>Evidence</th>
+								<th class="num">E[days]</th>
+								<th class="num">P(+)</th>
+								<th class="num">$/yr</th>
+							</tr>
+						</thead>
+						<tbody>
+							{coreStack.map(s => (
+								<tr>
+									<td>
+										<strong>{s.name}</strong>
+										<details class="evidence-details">
+											<summary>Details</summary>
+											<p>HR observed: {s.hr_observed} &rarr; corrected: {s.hr_corrected}<br/>{s.notes}{s.sources?.length > 0 && <><br/><a href={s.sources[0]}>Product link</a></>}</p>
+										</details>
+									</td>
+									<td><span class="status-pill" style={`background: ${statusColors[s.status]}20; color: ${statusColors[s.status]}`}>{s.status}</span></td>
+									<td><span class={`evidence-badge evidence-${s.evidence}`}>{s.evidence}</span></td>
+									<td class="num">+{s.days.toFixed(0)}</td>
+									<td class="num">{Math.round(s.p_benefit * 100)}%</td>
+									<td class="num">{s.annual_cost === 0 ? 'bundled' : `$${s.annual_cost}`}</td>
+								</tr>
+							))}
+						</tbody>
+					</table>
+				</div>
+			</section>
+
+			<!-- Daily schedule -->
+			<section>
+				<h2>Daily schedule</h2>
+				<p>How the stack breaks down by time of day. Bundles contain multiple catalog items.</p>
+
+				{Object.entries(timeSlots).map(([key, slot]) => (
+					<div class="time-block">
+						<h3>{slot.label}</h3>
+						<div class="schedule-list">
+							{slot.items.map(item => (
+								<div class="schedule-item">
+									<span class="schedule-name">{item.name}</span>
+									{item.note && <span class="schedule-note">{item.note}</span>}
+								</div>
+							))}
+						</div>
+					</div>
+				))}
+			</section>
+
+			<!-- Meals -->
+			<section>
+				<h2>Meals</h2>
+				<p>I follow <a href="https://blueprint.bryanjohnson.com">Blueprint</a> meals with some modifications. Nutty pudding is daily; super veggie about half of days.</p>
+
+				<h3>Nutty pudding</h3>
+				<p>Based on <a href="https://www.reddit.com/r/blueprint_/comments/1jlu0dv/whats_the_latest_nutty_pudding_recipe/">Bryan Johnson's recipe</a>. My modifications: double the cocoa powder (extra flavanols) and blend in collagen.</p>
+
+				<p><strong>Blended base:</strong></p>
+				<ul>
+					<li>60 ml pomegranate juice</li>
+					<li>50&ndash;100 ml nut milk</li>
+					<li>3 tbsp ground macadamia nuts</li>
+					<li>2 tsp ground walnuts</li>
+					<li>1 tsp ground flaxseed</li>
+					<li>1/4 Brazil nut</li>
+					<li>1/4 cup berries + 3 cherries</li>
+					<li>1 tsp sunflower lecithin</li>
+					<li>1/2 tsp ceylon cinnamon</li>
+					<li>Blueprint Cocoa 12g (2x standard 6g)</li>
+					<li>1 tbsp EVOO</li>
+					<li>Collagen 22g</li>
+					<li>Blueprint Metabolic Protein</li>
+				</ul>
+				<p><strong>Toppings:</strong></p>
+				<ul>
+					<li>Blueprint Blueberry Nut Mix</li>
+					<li>2 tbsp chia seeds</li>
+					<li>1/4 cup berries</li>
+				</ul>
+
+				<h3>Sweet treat</h3>
+				<p><a href="https://www.amazon.com/Tru-Fru-Natures-Cherries-Chocolate/dp/B08939KTFZ">Tru Fru dark chocolate covered cherries</a> &mdash; frozen fruit in dark chocolate. Extra cocoa flavanols as a bonus.</p>
+
+				<h3>Super veggie (~half of days)</h3>
+				<p>Blueprint base recipe plus avocado and crispy onions/garlic for flavor and fat.</p>
+				<ul>
+					<li>Broccoli, cauliflower, lentils, mushrooms (black or shiitake)</li>
+					<li>Garlic, ginger, lime, cumin, apple cider vinegar</li>
+					<li>Hemp seeds, olive oil</li>
+					<li>1 avocado</li>
+					<li>Chopped shallots, cabbage</li>
+					<li>Crispy onions + crispy garlic (not healthy, just tasty)</li>
+					<li>Hummus</li>
+					<li><a href="https://www.amazon.com/CLEVELAND-KRAUT-Classic-Kimchi-16/dp/B098PVNV18/">Cleveland Kitchen kimchi</a></li>
+				</ul>
+			</section>
+
+			<!-- Exercise -->
+			<section>
+				<h2>Exercise</h2>
+				<p>Daily morning workout, typically strength and cardio combined, following <a href="https://youtu.be/sYyVi-H-ozI?si=lq0qPorXlv9kCNW6">Bryan Johnson's workout protocol</a>. Consistency matters more than intensity &mdash; the goal is a sustainable daily habit, not periodic heroic sessions.</p>
+			</section>
+
+			<!-- Full catalog by category -->
+			<section>
+				<h2>Full catalog</h2>
+				<p>All {supplements.length} items evaluated, organized by category. Items marked "bundled" are included in Blueprint products below.</p>
+
+				{categories.filter(c => grouped[c.key]?.length > 0).map(cat => {
+					const items = grouped[cat.key];
+					const isCandidate = cat.key.includes('candidate');
+					return (
+						<details open={!isCandidate}>
+							<summary class="category-summary">
+								{cat.label} <span class="category-count">({items.length})</span>
+							</summary>
+							<div class="table-wrapper">
+								<table>
+									<thead>
+										<tr>
+											<th>Item</th>
+											<th>Evidence</th>
+											<th class="num">E[days]</th>
+											<th class="num">P(+)</th>
+											<th class="num">$/yr</th>
+											<th class="num">Net value</th>
+										</tr>
+									</thead>
+									<tbody>
+										{items.map(s => (
+											<tr class={s.in_portfolio ? '' : 'excluded-row'}>
+												<td>
+													<strong>{s.name}</strong>
+													{s.in_portfolio && <span class="in-portfolio-mark" title="In optimized portfolio"> *</span>}
+													<details class="evidence-details">
+														<summary>Details</summary>
+														<p>HR: {s.hr_observed} &rarr; {s.hr_corrected} | QoL: {s.qol_annual > 0 ? '+' : ''}{s.qol_annual}/yr<br/>{s.notes}{s.sources?.length > 0 && <><br/><a href={s.sources[0]}>Product link</a></>}</p>
+													</details>
+												</td>
+												<td><span class={`evidence-badge evidence-${s.evidence}`}>{s.evidence}</span></td>
+												<td class="num">+{s.days.toFixed(0)}</td>
+												<td class="num">{Math.round(s.p_benefit * 100)}%</td>
+												<td class="num">{s.annual_cost === 0 ? 'bundled' : `$${s.annual_cost}`}</td>
+												<td class="num">${s.gross_value.toLocaleString()}</td>
+											</tr>
+										))}
+									</tbody>
+								</table>
+							</div>
+						</details>
+					);
+				})}
+			</section>
+
+			<!-- Blueprint bundles -->
+			<section>
+				<h2>Blueprint bundles</h2>
+				<p>I use <a href="https://blueprint.bryanjohnson.com">Blueprint</a> products for items where bundling is cheaper than buying individually. Each bundle contains multiple catalog items.</p>
+				<div class="table-wrapper">
+					<table>
+						<thead>
+							<tr>
+								<th>Bundle</th>
+								<th class="num">$/mo</th>
+								<th class="num">Items used</th>
+								<th class="num">Net value</th>
+								<th>Verdict</th>
+							</tr>
+						</thead>
+						<tbody>
+							{bundles.map(b => (
+								<tr>
+									<td>
+										<strong>{b.name}</strong>
+										<details class="evidence-details">
+											<summary>Contents</summary>
+											<p>{b.items.join(', ')}</p>
+										</details>
+									</td>
+									<td class="num">${b.monthly_cost}</td>
+									<td class="num">{b.n_selected}/{b.n_total}</td>
+									<td class="num">${b.net_value.toLocaleString()}</td>
+									<td><span class={`verdict-badge ${b.worth_it ? 'verdict-yes' : 'verdict-no'}`}>{b.worth_it ? 'worth it' : 'not worth it'}</span></td>
+								</tr>
+							))}
+						</tbody>
+					</table>
+				</div>
+			</section>
+
+			<!-- Portfolio optimization -->
+			<section>
+				<h2>Portfolio optimization</h2>
+				<p>The optimizer greedily adds items by marginal net value (QALY gain &times; $200K &minus; cost), applying diminishing returns and a complexity penalty. It stops when the next item would have negative marginal value.</p>
+				<p><strong>Result:</strong> {summary.total_items} items selected, +{Math.round(summary.total_days)} expected days ({(summary.total_days / 365.25).toFixed(1)} years), ${summary.total_annual_cost.toLocaleString()}/yr.</p>
+
+				<details>
+					<summary class="category-summary">Selection order ({portfolio.length} steps)</summary>
+					<div class="table-wrapper">
+						<table>
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>Item added</th>
+									<th class="num">+days</th>
+									<th class="num">Marginal $</th>
+									<th class="num">Cumulative $/yr</th>
+									<th class="num">DR factor</th>
+								</tr>
+							</thead>
+							<tbody>
+								{portfolio.map(p => (
+									<tr>
+										<td>{p.step}</td>
+										<td>{p.name}</td>
+										<td class="num">+{p.marginal_days.toFixed(0)}</td>
+										<td class="num">${p.marginal_net_value.toLocaleString()}</td>
+										<td class="num">${p.total_annual_cost.toLocaleString()}</td>
+										<td class="num">{p.diminishing_returns < 1 ? p.diminishing_returns.toFixed(2) : '1.00'}</td>
+									</tr>
+								))}
+							</tbody>
+						</table>
+					</div>
+				</details>
+
+				{excluded.length > 0 && (
+					<details>
+						<summary class="category-summary">Excluded from portfolio ({excluded.length} items)</summary>
+						<p class="excluded-note">Items not selected due to negative marginal value after diminishing returns and complexity penalty.</p>
+						<div class="table-wrapper">
+							<table>
+								<thead>
+									<tr>
+										<th>Item</th>
+										<th class="num">E[days]</th>
+										<th class="num">$/yr</th>
+										<th class="num">Net value</th>
+										<th>Why excluded</th>
+									</tr>
+								</thead>
+								<tbody>
+									{excluded.map(s => (
+										<tr>
+											<td>{s.name}</td>
+											<td class="num">+{s.days.toFixed(0)}</td>
+											<td class="num">{s.annual_cost === 0 ? 'bundled' : `$${s.annual_cost}`}</td>
+											<td class="num">${s.gross_value.toLocaleString()}</td>
+											<td class="excluded-reason">{s.gross_value < 0 ? 'Negative expected value' : 'Marginal value below threshold after DR'}</td>
+										</tr>
+									))}
+								</tbody>
+							</table>
+						</div>
+					</details>
+				)}
+			</section>
+
+			<!-- Sleep -->
+			<section>
+				<h2>Sleep optimization</h2>
+				<p>Sleep is the highest-leverage health behavior. I track it obsessively with two devices and have made several environmental interventions.</p>
+
+				<h3>Devices</h3>
+				<ul>
+					<li><strong>Eight Sleep Pod 5</strong> &mdash; bed temperature control, sleep scoring, HRV, respiratory rate, snoring detection, sleep stages</li>
+					<li><strong>Whoop</strong> &mdash; recovery score, strain, HRV, RHR, SPO2, sleep performance</li>
+				</ul>
+
+				<h3>Environmental interventions</h3>
+				<ul>
+					<li><strong>Hamvay-Lang PureDelight 800fp winter duvet</strong> ($885) &mdash; Bayesian analysis showed bed temperature has a +3.0 score/&deg;C causal effect on Eight Sleep sleep score. The duvet raises bed temperature, improving sleep quality. Estimated 165-day payback period.</li>
+					<li><strong>Bed incline</strong> &mdash; Eight Sleep adjustable base, slight incline for reflux and breathing</li>
+					<li><strong>Nasal strips + Nasacort</strong> &mdash; first night with this combination: zero snoring (vs. 13.2 min/night average). The clearest win in the protocol.</li>
+				</ul>
+
+				<h3>Medications</h3>
+				<ul>
+					<li><strong>Trazodone 50mg</strong> &mdash; sleep maintenance. Whoop data confirms it wears off at 4-5 hours, leading to second-half fragmentation.</li>
+					<li><strong>Melatonin 300mcg</strong> &mdash; low-dose for sleep onset. Higher doses are not more effective.</li>
+				</ul>
+
+				<h3>Key findings</h3>
+				<ul>
+					<li>Sleep duration is the #1 lever: +8.6 Whoop recovery points per hour</li>
+					<li>Bedtime before 11pm yields a 13-point recovery advantage</li>
+					<li>SPO2 drops below 95% on 36% of nights (flagged for apnea investigation)</li>
+					<li>Disturbances trending up (+0.009/day, p&lt;0.0001)</li>
+				</ul>
+			</section>
+
+			<!-- Tracking -->
+			<section>
+				<h2>Tracking</h2>
+				<p>I maintain a SQLite database of nightly health data with 12+ tables, synced from Eight Sleep and Whoop APIs. Metrics that actually influence decisions:</p>
+				<ul>
+					<li><strong>Sleep score</strong> (Eight Sleep) &mdash; primary outcome for environmental experiments</li>
+					<li><strong>Recovery</strong> (Whoop) &mdash; composite of HRV, RHR, sleep quality; guides training intensity</li>
+					<li><strong>HRV</strong> &mdash; parasympathetic tone; trending metric for stress and recovery</li>
+					<li><strong>Snoring duration</strong> (Eight Sleep) &mdash; proxy for airway obstruction; guides nasal interventions</li>
+					<li><strong>SPO2</strong> (Whoop) &mdash; blood oxygen; apnea screening metric</li>
+				</ul>
+				<p>Most other metrics (strain, respiratory rate, sleep stages) I log but rarely act on directly.</p>
+			</section>
+
+			<!-- Investigating -->
+			<section>
+				<h2>What I'm investigating</h2>
+				<ul>
+					<li><strong>Sleep apnea</strong> &mdash; Bayesian estimate: 66% probability based on SPO2 patterns, snoring, and family history. Pending home sleep study. Treatment options: CPAP, Inspire nerve stimulator, Dayvigo (lemborexant).</li>
+					<li><strong>Rapamycin</strong> &mdash; strongest longevity candidate in the Rx list (ITP mice +26% lifespan). Requires physician willing to prescribe off-label. Immunosuppression concern.</li>
+					<li><strong>Semaglutide</strong> &mdash; SELECT trial HR 0.80 for MACE. High cost ($6K/yr) but enormous effect size. Watching for generic timeline.</li>
+					<li><strong>Lion's mane, cistanche</strong> &mdash; recently purchased but not yet started. Low evidence confidence but low cost.</li>
+					<li><strong>Trazodone alternatives</strong> &mdash; wears off at 4-5h. Evaluating lemborexant (Dayvigo) for better second-half sleep maintenance.</li>
+				</ul>
+			</section>
+
+			<!-- Methodology -->
+			<section>
+				<h2>Methodology</h2>
+				<p>This page is generated from the <a href="https://github.com/maxghenis/optiqal-ai">Optiqal</a> Python package. The data pipeline:</p>
+				<ol>
+					<li>Literature hazard ratios are entered into a structured catalog with uncertainty estimates and confounding priors</li>
+					<li>Each HR is shrunk 30% toward null (publication bias correction)</li>
+					<li>A Beta-distributed confounding prior discounts the causal fraction (e.g., Beta(2,4) means ~33% of the observed effect is believed causal)</li>
+					<li>50,000 Monte Carlo simulations propagate uncertainty through CDC life tables for a {profile.age}-year-old {profile.sex}</li>
+					<li>Expected days gained = mean QALY gain &times; 365.25</li>
+					<li>Greedy portfolio optimizer selects items by marginal net value until returns go negative</li>
+				</ol>
+				<p>Evidence confidence labels: <span class="evidence-badge evidence-high">high</span> = strong causal prior + tight uncertainty; <span class="evidence-badge evidence-medium">medium</span> = moderate evidence or wider uncertainty; <span class="evidence-badge evidence-low">low</span> = weak causal evidence, speculative.</p>
+				<p>Profile: {profile.age}yo {profile.sex}, BMI {profile.bmi_category}, {profile.smoking_status} smoker. WTP ${config.wtp.toLocaleString()}/QALY, {config.horizon_years}-year horizon, {config.n_simulations.toLocaleString()} simulations.</p>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	main {
+		max-width: 900px;
+	}
+
+	.page-header {
+		margin-bottom: 3rem;
+		padding-bottom: 2rem;
+		border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+	}
+
+	.page-header h1 {
+		font-size: 3rem;
+		margin-bottom: 0.75rem;
+	}
+
+	.page-description {
+		font-size: 1.25rem;
+		color: var(--text-secondary);
+		max-width: 600px;
+	}
+
+	.last-updated {
+		font-size: 0.875rem;
+		color: var(--ink-muted);
+		margin-top: 0.5rem;
+	}
+
+	.callout {
+		background: #fef3c7;
+		border-left: 4px solid #f59e0b;
+		padding: 1rem 1.25rem;
+		border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+		margin-bottom: 2rem;
+		color: #78350f;
+		line-height: 1.6;
+		font-size: 0.9375rem;
+	}
+
+	.callout a {
+		color: #92400e;
+		text-decoration: underline;
+	}
+
+	/* Schedule */
+	.time-block {
+		margin-bottom: 1.5rem;
+	}
+
+	.schedule-list {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 0.375rem 1.5rem;
+	}
+
+	.schedule-item {
+		display: flex;
+		align-items: baseline;
+		gap: 0.5rem;
+		padding: 0.25rem 0;
+	}
+
+	.schedule-name {
+		font-weight: 500;
+		color: var(--ink);
+		font-size: 0.9375rem;
+	}
+
+	.schedule-note {
+		font-size: 0.8125rem;
+		color: var(--ink-muted);
+	}
+
+	@media (max-width: 768px) {
+		.schedule-list {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	/* Stats grid */
+	.stats-grid {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 1rem;
+		margin-top: 1rem;
+	}
+
+	.stat-card {
+		background: rgba(15, 23, 42, 0.03);
+		border: 1px solid rgba(15, 23, 42, 0.06);
+		border-radius: var(--radius-lg);
+		padding: 1.25rem;
+		text-align: center;
+	}
+
+	.stat-value {
+		font-family: 'Playfair Display', Georgia, serif;
+		font-size: 1.75rem;
+		font-weight: 700;
+		color: var(--ink);
+		line-height: 1.2;
+	}
+
+	.stat-label {
+		font-size: 0.8125rem;
+		color: var(--ink-muted);
+		margin-top: 0.25rem;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+
+	/* Sections */
+	section {
+		margin-bottom: 3rem;
+	}
+
+	section h2 {
+		font-size: 1.75rem;
+		margin-bottom: 1rem;
+	}
+
+	section h3 {
+		font-size: 1.25rem;
+		margin-top: 1.5rem;
+		margin-bottom: 0.75rem;
+	}
+
+	section p {
+		color: var(--text-secondary);
+		line-height: 1.6;
+		margin-bottom: 1rem;
+	}
+
+	section ul, section ol {
+		color: var(--text-secondary);
+		line-height: 1.6;
+		margin-bottom: 1rem;
+		padding-left: 1.5rem;
+	}
+
+	section li {
+		margin-bottom: 0.5rem;
+	}
+
+	section a {
+		color: var(--ink);
+		text-decoration: underline;
+		text-underline-offset: 2px;
+	}
+
+	section a:hover {
+		color: var(--amber-dark);
+	}
+
+	/* Tables */
+	.table-wrapper {
+		overflow-x: auto;
+		margin-bottom: 1.5rem;
+	}
+
+	table {
+		width: 100%;
+		border-collapse: collapse;
+		font-size: 0.9375rem;
+	}
+
+	th, td {
+		text-align: left;
+		padding: 0.625rem 0.75rem;
+		border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+	}
+
+	th {
+		font-weight: 600;
+		color: var(--ink);
+		font-size: 0.8125rem;
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+		border-bottom: 2px solid rgba(15, 23, 42, 0.12);
+	}
+
+	td {
+		color: var(--text-secondary);
+	}
+
+	.num {
+		text-align: right;
+		font-variant-numeric: tabular-nums;
+		white-space: nowrap;
+	}
+
+	.excluded-row {
+		opacity: 0.6;
+	}
+
+	.in-portfolio-mark {
+		color: var(--amber);
+		font-weight: 700;
+	}
+
+	/* Status pills */
+	.status-pill {
+		display: inline-block;
+		padding: 0.125rem 0.5rem;
+		border-radius: 9999px;
+		font-size: 0.75rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.03em;
+	}
+
+	/* Evidence badges */
+	.evidence-badge {
+		display: inline-block;
+		padding: 0.125rem 0.5rem;
+		border-radius: 4px;
+		font-size: 0.75rem;
+		font-weight: 600;
+	}
+
+	.evidence-high {
+		background: #dcfce7;
+		color: #166534;
+	}
+
+	.evidence-medium {
+		background: #fef3c7;
+		color: #92400e;
+	}
+
+	.evidence-low {
+		background: #f1f5f9;
+		color: #64748b;
+	}
+
+	/* Verdict badges */
+	.verdict-badge {
+		display: inline-block;
+		padding: 0.125rem 0.5rem;
+		border-radius: 4px;
+		font-size: 0.75rem;
+		font-weight: 600;
+	}
+
+	.verdict-yes {
+		background: #dcfce7;
+		color: #166534;
+	}
+
+	.verdict-no {
+		background: #fef2f2;
+		color: #991b1b;
+	}
+
+	/* Details/summary */
+	details {
+		margin-bottom: 1rem;
+	}
+
+	.category-summary {
+		font-size: 1.125rem;
+		font-weight: 600;
+		color: var(--ink);
+		cursor: pointer;
+		padding: 0.75rem 0;
+		border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+		list-style: none;
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.category-summary::before {
+		content: '\25B6';
+		font-size: 0.625rem;
+		transition: transform 0.15s ease;
+	}
+
+	details[open] > .category-summary::before {
+		transform: rotate(90deg);
+	}
+
+	.category-summary::-webkit-details-marker {
+		display: none;
+	}
+
+	.category-count {
+		font-weight: 400;
+		color: var(--ink-muted);
+		font-size: 0.875rem;
+	}
+
+	.evidence-details {
+		margin-top: 0.25rem;
+	}
+
+	.evidence-details summary {
+		font-size: 0.75rem;
+		color: var(--ink-muted);
+		cursor: pointer;
+	}
+
+	.evidence-details p {
+		font-size: 0.8125rem;
+		color: var(--ink-muted);
+		margin: 0.25rem 0 0;
+		line-height: 1.4;
+	}
+
+	.excluded-note {
+		font-size: 0.875rem;
+		color: var(--ink-muted);
+		margin-bottom: 1rem;
+	}
+
+	.excluded-reason {
+		font-size: 0.8125rem;
+		color: var(--ink-muted);
+		font-style: italic;
+	}
+
+	@media (max-width: 768px) {
+		.page-header h1 {
+			font-size: 2.5rem;
+		}
+
+		.page-description {
+			font-size: 1.125rem;
+		}
+
+		.stats-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		table {
+			font-size: 0.8125rem;
+		}
+
+		th, td {
+			padding: 0.5rem;
+		}
+	}
+</style>

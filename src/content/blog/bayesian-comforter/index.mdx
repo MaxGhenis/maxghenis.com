@@ -1,22 +1,25 @@
 ---
-title: 'I used Bayesian statistics to pick a comforter'
-description: 'How I analyzed 57 nights of Eight Sleep data to find the optimal comforter for sleep quality'
+title: 'I used Bayesian statistics to optimize my bedding'
+description: 'How I combined Eight Sleep data, Whoop biometrics, and RCT evidence to pick a comforter and pillow'
 pubDate: 'Mar 04 2026'
 heroImage: './score-vs-temp.png'
 category: 'blog'
+draft: true
 ---
 
 import CrosspostAware from '../../../components/CrosspostAware.astro';
 
-I have an [Eight Sleep Pod 5](https://www.eightsleep.com/) that tracks my sleep every night — heart rate, HRV, respiratory rate, bed temperature, and an overall sleep score. After a few months of data, I started noticing something: my scores were higher on warmer nights. So I did what any reasonable person would do: I ran a Bayesian linear regression to figure out which comforter to buy.
+I have an [Eight Sleep Pod 5](https://www.eightsleep.com/) that tracks my sleep every night — heart rate, HRV, respiratory rate, bed temperature, and an overall sleep score. After a few months of data, I started noticing two things: my scores were higher on warmer nights, and they jumped when I switched pillows. So I did what any reasonable person would do: I ran Bayesian regressions and reviewed the clinical trial literature to figure out what bedding to buy.
 
-## The data
+## Part 1: the comforter
 
-I had 57 nights of Eight Sleep data from December 2025 through March 2026, each with a sleep score (0-100) and continuous bed temperature readings averaged across the night. My current setup was a lightweight waffle knit blanket over the Pod 5, which runs on autopilot at -78 (heavy cooling). The average bed temperature was 29.3°C with a standard deviation of 1.2°C. My average sleep score was 79.0 with a standard deviation of 10.5.
+### The data
+
+I had 57 nights of Eight Sleep data from December 2025 through March 2026, each with a sleep score (0-100) and continuous bed temperature readings averaged across the night. My setup was a lightweight waffle knit blanket over the Pod 5, which runs on autopilot at -78 (heavy cooling). The average bed temperature was 29.3°C with a standard deviation of 1.2°C. My average sleep score was 79.0 with a standard deviation of 10.5.
 
 That temperature variation isn't from me adjusting settings — it's natural fluctuation from room temperature, how much I move the covers, and seasonal changes. Enough variance to estimate a causal relationship.
 
-## The model
+### The model
 
 I fit a Bayesian linear regression with a diffuse conjugate normal-inverse-gamma prior: bed temperature as the sole predictor, Eight Sleep score as the outcome. The conjugate posterior under diffuse priors is equivalent to OLS with a Bayesian interpretation of the uncertainty.
 
@@ -26,7 +29,7 @@ The result: **+2.9 score points per °C** (SE = 1.1, t = 2.68, p = 0.010). R² =
 
 Each blue dot is one night. The red line is the posterior mean, and the blue band is the 95% credible interval for the regression line.
 
-## Validating causality
+### Validating causality
 
 A positive correlation doesn't prove causation. Maybe warmer nights coincide with lower stress or better recovery. To check, I ran the same regression controlling for Whoop biometrics — HRV, resting heart rate, and strain — as proxies for physiological state.
 
@@ -34,11 +37,11 @@ The bed temperature coefficient barely moved: **2.88 → 2.88** after adding con
 
 I also tested for nonlinearity with a quadratic term. It was nonsignificant (p = 0.83), confirming the linear model is adequate in this temperature range.
 
-## The constraint: Pod 5 thermal ceiling
+### The constraint: Pod 5 thermal ceiling
 
-Here's where it gets interesting. The Pod 5 actively cools your bed. When you add insulation on top, the Pod compensates — it has to work harder to hit its target temperature. This means a heavier comforter doesn't raise bed temperature by the full amount you'd expect from its insulation value.
+The Pod 5 actively cools your bed. When you add insulation on top, the Pod compensates — it has to work harder to hit its target temperature. This means a heavier comforter doesn't raise bed temperature by the full amount you'd expect from its insulation value.
 
-Community reports and my own data suggest that with the Pod running at heavy cooling, the practical bed temperature range is 26-34°C. A high-CLO comforter might add 0.5-1.5°C rather than the 2-3°C you'd see on a passive mattress. I used conservative estimates for each comforter tier:
+Community reports and my own data suggest the Pod running at heavy cooling keeps bed temperature in a 26-34°C range. A high-CLO comforter might add 0.5-1.5°C rather than the 2-3°C you'd see on a passive mattress. I used conservative estimates for each comforter tier:
 
 | Comforter | CLO | Expected temp delta |
 |-----------|-----|-------------------|
@@ -47,7 +50,19 @@ Community reports and my own data suggest that with the Pod running at heavy coo
 | Brooklinen Ultra-Warm 750fp | ~3.0 | +0.8°C |
 | Hamvay-Lang Winter 800fp | ~4.0 | +1.0°C |
 
-## The decision
+### What the clinical trials say
+
+After running the analysis but before settling on a purchase, I reviewed the RCT literature on bedding and sleep quality. The key findings:
+
+**Weighted blankets** have the strongest trial evidence. Ackerley et al. (2015) found weighted blankets reduced movement and increased sleep bout duration in a crossover RCT. Eron et al. (2020) showed a weighted blanket reduced insomnia severity (ISI score -5.5 vs -1.5 for control, p < 0.001). Ekholm et al. (2020) found weighted blankets improved sleep in psychiatric patients. The mechanism is deep pressure stimulation, which reduces sympathetic arousal.
+
+**Thermal regulation** matters too. Kräuchi et al. (2018) showed that manipulating the thermal microclimate (warming the feet/hands via a "thermosuit") shortened sleep onset latency. Herberger et al. (2024) demonstrated in a crossover RCT that a climate-regulating comforter improved sleep efficiency compared to cotton.
+
+**The concern**: a heavy, high-CLO comforter on an actively cooled mattress creates an asymmetric microclimate — cold below, warm above. Okamoto-Mizuno & Mizuno (2012) place the optimal bed microclimate at 30-34°C. Going too warm disrupts sleep just as going too cold does.
+
+**My situation tilted toward more insulation**: I kept waking up cold and clammy around 4am. My Eight Sleep timeseries data showed bed temperature dropping to 19-20°C in the early morning hours — well below the 30-34°C optimum. My waffle knit blanket wasn't even king-sized. I needed more insulation, not less.
+
+### The decision
 
 I used empirical Bayes bootstrapping to predict sleep scores under each comforter. Rather than relying on the intercept (which has its own uncertainty), I anchored predictions to my actual 57-night score distribution and shifted each night's score by β × ΔT. This preserves real sleep variability while propagating slope uncertainty through 5,000 posterior draws.
 
@@ -64,8 +79,6 @@ To convert score improvements to dollar values, I used Eight Sleep's subscriptio
 | Quince Ultra-Warm 700fp | $240 | +1.4 | $891 | 98 days | 271% |
 | Brooklinen Ultra-Warm 750fp | $430 | +2.3 | $1,485 | 106 days | 245% |
 | Hamvay-Lang Winter 800fp | $885 | +2.9 | $1,810 | 178 days | 105% |
-
-All three options have strong ROI. The Quince is the most efficient (highest ROI), but the Hamvay-Lang maximizes absolute score improvement. The probability of scoring above 80 (my target) increases from 53% to 59% with the Hamvay-Lang — a 6 percentage point lift on every night.
 
 ### Try it yourself
 
@@ -87,15 +100,56 @@ Adjust the value-per-point and temperature coefficient to see how the decision c
   </Fragment>
 </CrosspostAware>
 
-## The pick
+### The pick
 
 I went with the **Hamvay-Lang PureDelight 800 fill power Winter comforter** ($885). The decision came down to:
 
 1. **Maximizing absolute improvement** — the extra 1.5 points over the Quince compound over thousands of nights
 2. **Build quality** — 800fp Hungarian goose down with a 13.5 tog rating means it should last 15-20 years
 3. **Conservative estimates** — if the real temp delta is closer to 1.5°C instead of 1.0°C, the payback drops to ~120 days
+4. **RCT alignment** — the weighted blanket literature supports heavier bedding for reducing movement and sympathetic arousal, and my early-morning temperature data confirmed I needed more insulation
 
-At 59% probability of improvement on any given night and a 178-day payback period, the expected value is strongly positive. And unlike most purchases, the value literally accrues while I sleep.
+## Part 2: the pillow
+
+### The natural experiment
+
+In late December, I switched from a too-tall Tempur-Pedic foam pillow to a [Cozy Earth Silk Pillow](https://www.cozyearth.com/) (King, $158). This created a natural experiment: 10 pre-switch nights vs 50 post-switch nights.
+
+The raw effect was large: **+10 points** on Eight Sleep score (73.2 → 83.2). After controlling for bed temperature, resting heart rate, and a time trend, the Bayesian posterior mean was **+4.9 points** (SE = 4.1, P(improvement) = 88.7%). Not as dramatic as the raw number, but still meaningful.
+
+I ran a causal mediation analysis to check whether the pillow might improve scores by extending sleep duration (better pillow → longer sleep → higher score). The indirect pathway was negligible: the pillow barely changed duration (-3.8 min, p = 0.90). The entire effect runs through sleep quality, not quantity.
+
+### What the clinical trials say about pillows
+
+The RCT literature here is surprisingly rich:
+
+**Latex pillows have the strongest evidence.** Radwan et al. (2021) ran a crossover RCT comparing rubber (latex), polyester, feather, foam, and contour pillows. Latex ranked first on waking cervical stiffness and sleep quality. Gordon et al. (2009) reviewed multiple trials systematically and found latex pillows outperformed all other materials, with feather pillows performing worst.
+
+**Memory foam underperforms in trials.** Despite marketing claims, foam pillows consistently score lower than latex in head-to-head RCTs. The likely mechanism: foam traps heat, and head/neck temperature directly affects sleep quality.
+
+**Pillow height matters more than fill.** Multiple RCTs confirm that cervical alignment — keeping the spine neutral — dominates material choice. A pillow that's too tall or too flat disrupts alignment regardless of fill. For side sleepers, the optimal height is roughly shoulder width minus head width; for back sleepers, it's lower.
+
+### The evidence-adjusted model
+
+I combined my Bayesian analysis (Cozy Earth effect = +4.9 points) with RCT evidence to predict scores for pillow options I hadn't tried. Each pillow gets an "effectiveness fraction" based on how its properties compare to the Cozy Earth across dimensions supported by trial evidence: material (latex > silk > down > foam), height match, and breathability.
+
+| Pillow | Price | Predicted score | Delta vs current |
+|--------|-------|----------------|-----------------|
+| Cozy Earth Silk (current) | $158 | 78.5 | baseline |
+| Brooklyn Bedding Talalay Latex Low | $199 | 79.1 | +0.6 |
+| Saatva Latex Low | $165 | 78.9 | +0.4 |
+| Eli & Elm Side Sleeper | $150 | 78.7 | +0.2 |
+
+The improvements are modest — we're already in a good range with the Cozy Earth. But the RCT evidence consistently favoring latex over other materials, combined with a competitive price point, made the Brooklyn Bedding Talalay Latex (King, Low profile, $149 with 25% off) the pick for the second pillow on my king bed.
+
+## Results pending
+
+I ordered the Hamvay-Lang comforter on March 5 and the Brooklyn Bedding pillow on March 7. Both should arrive by mid-March. I'll update this post with before/after Eight Sleep data once I have 30+ nights with the new setup.
+
+The key metrics to watch:
+- **Bed temperature** — does the Hamvay-Lang raise the 4am trough above 25°C?
+- **Eight Sleep score** — does the posterior prediction of +2.9 points per °C hold?
+- **Pillow A/B** — alternating nights with the Cozy Earth and Brooklyn Bedding latex to estimate a within-subject effect
 
 ## The code
 
@@ -113,4 +167,4 @@ The `comforter` module includes Bayesian regression, empirical Bayes bootstrappi
 
 ---
 
-*Disclosure: I have no affiliation with any of the comforter brands mentioned. I bought the Hamvay-Lang at full price. The Eight Sleep Pod 5 was also purchased at full price. This analysis uses my real sleep data.*
+*Disclosure: I have no affiliation with any of the bedding brands mentioned. I bought all products at full price (Hamvay-Lang $885, Brooklyn Bedding $149 after 25% off coupon, Cozy Earth $158) and the Eight Sleep Pod 5 at full price. This analysis uses my real sleep data.*
