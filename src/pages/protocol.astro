@@ -142,124 +142,189 @@ const statusColors: Record<string, string> = {
 				<h2>Daily schedule</h2>
 				<p>How the stack breaks down by time of day. Generated from a private health database I maintain on GitHub. Bundles contain multiple catalog items.</p>
 
-				{scheduleSlots.map(slot => {
-					const items = schedule[slot.key] || [];
-					return items.length > 0 && (
-						<div class="time-block">
-							<h3>{slot.label}</h3>
-							<div class="table-wrapper">
-								<table class="schedule-table">
-									<thead>
-										<tr>
-											<th>Item</th>
-											<th>Dose</th>
-											<th class="num">$/yr</th>
-										</tr>
-									</thead>
-									<tbody>
-										{items.map(item => (
-											<tr>
-												<td>{item.source_url ? <a href={item.source_url}>{item.name}</a> : item.name}</td>
-												<td class="schedule-dose">{item.dose_notes}</td>
-												<td class="num">{item.annual_cost > 0 ? `$${item.annual_cost}` : <em>bundled</em>}</td>
-											</tr>
-										))}
-									</tbody>
-								</table>
-							</div>
-						</div>
-					);
-				})}
-			</section>
-
-			<!-- Meals -->
-			<section>
-				<h2>Meals</h2>
-				<p>I follow <a href="https://blueprint.bryanjohnson.com">Blueprint</a> meals with some modifications. Nutty pudding is daily; super veggie about half of days.</p>
-
-				<h3>Nutty pudding</h3>
-				<p>Based on <a href="https://www.reddit.com/r/blueprint_/comments/1jlu0dv/whats_the_latest_nutty_pudding_recipe/">Bryan Johnson's recipe</a>. My modifications: double the cocoa powder (extra flavanols) and blend in collagen. I blend 4 servings at a time and refrigerate.</p>
-
-				<p><strong>Blended base:</strong>
-					<span class="np-toggle">
-						<button class="np-toggle-btn active" data-servings="1">x1</button>
-						<button class="np-toggle-btn" data-servings="4">x4</button>
-					</span>
-				</p>
-				<ul class="np-recipe">
-					<li><span class="np-qty" data-x1="60 ml" data-x4="1 cup">60 ml</span> pomegranate juice</li>
-					<li><span class="np-qty" data-x1="50&ndash;100 ml" data-x4="1 cup">50&ndash;100 ml</span> nut milk</li>
-					<li><span class="np-qty" data-x1="3 tbsp" data-x4="&frac34; cup">3 tbsp</span> ground macadamia nuts</li>
-					<li><span class="np-qty" data-x1="2 tsp" data-x4="2 tbsp + 2 tsp">2 tsp</span> ground walnuts</li>
-					<li><span class="np-qty" data-x1="1 tsp" data-x4="1 tbsp + 1 tsp">1 tsp</span> ground flaxseed</li>
-					<li><span class="np-qty" data-x1="&frac14;" data-x4="1">&frac14;</span> Brazil nut</li>
-					<li><span class="np-qty" data-x1="&frac14; cup berries + 3 cherries" data-x4="1 cup berries + 12 cherries">&frac14; cup berries + 3 cherries</span></li>
-					<li><span class="np-qty" data-x1="1 tsp" data-x4="1 tbsp + 1 tsp">1 tsp</span> sunflower lecithin</li>
-					<li><span class="np-qty" data-x1="&frac12; tsp" data-x4="2 tsp">&frac12; tsp</span> ceylon cinnamon</li>
-					<!-- Cocoa is all in the bulk premix (12g per serving) -->
-					<li><span class="np-qty" data-x1="1 scoop (22g)" data-x4="4 scoops (88g)">1 scoop (22g)</span> Collagen</li>
-					<li><span class="np-qty" data-x1="2 scoops" data-x4="8 scoops">2 scoops</span> Blueprint Metabolic Protein (73g, 30g protein)</li>
-				</ul>
-				<p><strong>Toppings (per serving):</strong></p>
-				<ul>
-					<li>1 tbsp EVOO</li>
-					<li>Blueprint Blueberry Nut Mix</li>
-					<li>2 tbsp chia seeds</li>
-					<li>1/4 cup berries</li>
-				</ul>
-
-				<h3>Super veggie (~half of days)</h3>
-				<p>Blueprint base recipe plus avocado, shallots, cabbage, crispy onions, and crispy garlic.</p>
-				<ul>
-					<li>Steamed broccoli, cauliflower, shiitake mushrooms</li>
-					<li><a href="https://www.amazon.com/dp/B08BNPW71P">Black beluga lentils</a></li>
-					<li><strong>Dressing:</strong> garlic, ginger, lime, cumin, apple cider vinegar</li>
-					<li>Hemp seeds</li>
-					<li>1 avocado</li>
-					<li>Chopped shallots, cabbage</li>
-					<li><a href="https://www.amazon.com/Fresh-Gourmet-Crispy-Onions-Ounce/dp/B00HHFWEPU">Crispy onions</a> + <a href="https://www.amazon.com/Fresh-Gourmet-Crispy-Lightly-Seasoned/dp/B07P5JHC6B">crispy garlic</a> (not healthy, just tasty)</li>
-					<li>Hummus</li>
-					<li><a href="https://www.amazon.com/CLEVELAND-KRAUT-Classic-Kimchi-16/dp/B098PVNV18/">Cleveland Kitchen kimchi</a></li>
-					<li>EVOO on top</li>
-				</ul>
-
-				<h3>Sweet treat</h3>
-				<p><a href="https://www.amazon.com/Tru-Fru-Natures-Cherries-Chocolate/dp/B08939KTFZ">Tru Fru dark chocolate covered cherries</a> &mdash; frozen fruit in dark chocolate. Extra cocoa flavanols as a bonus.</p>
-			</section>
-
-			<!-- Bulk prep -->
-			<section>
-				<h2>Bulk prep</h2>
-				<p>I pre-mix dry ingredients in bulk to reduce daily prep to a single scoop.</p>
-
-				<h3>Nutty pudding dry mix (12 servings)</h3>
-				<p>Fills a 1-gallon glass mason jar. Workflow: open a fresh bag of protein, scoop 8 scoops (4 servings) straight into the blender, then dump the remaining 22 scoops into the jar with 12 servings of everything else. Each jar scoop has slightly less protein (~1.83 vs 2 scoops), but it evens out across all 16 servings per bag. Scoop ~1&frac14; cups per serving (or ~5 cups for 4 servings), then add fresh ingredients.</p>
-				<div class="table-wrapper">
-					<table>
-						<thead>
-							<tr>
-								<th>Ingredient</th>
-								<th class="num">Per serving</th>
-								<th class="num">&times;12 (full jar)</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr><td>Ground macadamia nuts</td><td class="num">3 tbsp</td><td class="num">2&frac14; cups</td></tr>
-							<tr><td>Blueprint Metabolic Protein</td><td class="num">~1.83 scoops</td><td class="num">rest of bag (22 scoops)</td></tr>
-							<tr><td>Collagen protein</td><td class="num">1 scoop (22g)</td><td class="num">2&frac34; cups</td></tr>
-							<tr><td>Blueprint Cocoa</td><td class="num">~2 tbsp</td><td class="num">1&frac12; cups</td></tr>
-							<tr><td>Ground walnuts</td><td class="num">2 tsp</td><td class="num">&frac12; cup</td></tr>
-							<tr><td>Ground flax seeds</td><td class="num">1 tsp</td><td class="num">&frac14; cup</td></tr>
-							<tr><td>Sunflower lecithin</td><td class="num">1 tsp</td><td class="num">&frac14; cup</td></tr>
-							<tr><td>Ceylon cinnamon</td><td class="num">&frac12; tsp</td><td class="num">2 tbsp</td></tr>
-						</tbody>
-					</table>
+				<!-- Morning mix -->
+				<div class="time-block">
+					<h3>Morning mix</h3>
+					<p>All powders mixed into water. I pre-mix several days' worth into a smaller mason jar and scoop daily.</p>
+					<div class="table-wrapper">
+						<table class="schedule-table">
+							<thead>
+								<tr>
+									<th>Item</th>
+									<th>Dose</th>
+									<th class="num">$/yr</th>
+								</tr>
+							</thead>
+							<tbody>
+								{(schedule.morning_mix || []).map(item => (
+									<tr>
+										<td>{item.source_url ? <a href={item.source_url}>{item.name}</a> : item.name}</td>
+										<td class="schedule-dose">{item.dose_notes}</td>
+										<td class="num">{item.annual_cost > 0 ? `$${item.annual_cost}` : <em>bundled</em>}</td>
+									</tr>
+								))}
+							</tbody>
+						</table>
+					</div>
 				</div>
-				<p><strong>Mixing order:</strong> finest powders first (cinnamon, cocoa, lecithin, flax), then proteins (pea/metabolic, collagen), then coarsest (ground nuts). Shake hard to combine; shake before each scoop.</p>
-				<p><strong>Add fresh per serving:</strong> &frac14; cup berries, 3 cherries, &frac14; Brazil nut, 50&ndash;100 ml nut milk, 60 ml pomegranate juice. Top with 2 tbsp chia seeds, 1 tbsp EVOO, and Blueprint Blueberry Nut Mix.</p>
 
-				<h3>Morning mix powders</h3>
-				<p>I pre-mix the morning drink powders (Blueprint Longevity Mix, Blueprint Creatine, prebiotics) into a smaller mason jar. Each powder has its own scoop, so I measure out several days' worth at a time and shake to combine. Daily prep is then a single scoop into water.</p>
+				<!-- Nutty pudding + pill batch 1 -->
+				<div class="time-block">
+					<h3>Nutty pudding + pill batch 1</h3>
+					<p>Based on <a href="https://www.reddit.com/r/blueprint_/comments/1jlu0dv/whats_the_latest_nutty_pudding_recipe/">Bryan Johnson's recipe</a>. My modifications: double the cocoa powder (extra flavanols) and blend in collagen. I blend 4 servings at a time and refrigerate.</p>
+					<div class="table-wrapper">
+						<table class="schedule-table">
+							<thead>
+								<tr>
+									<th>Item</th>
+									<th>Dose</th>
+									<th class="num">$/yr</th>
+								</tr>
+							</thead>
+							<tbody>
+								{(schedule.meal_1 || []).map(item => (
+									<tr>
+										<td>{item.source_url ? <a href={item.source_url}>{item.name}</a> : item.name}</td>
+										<td class="schedule-dose">{item.dose_notes}</td>
+										<td class="num">{item.annual_cost > 0 ? `$${item.annual_cost}` : <em>bundled</em>}</td>
+									</tr>
+								))}
+							</tbody>
+						</table>
+					</div>
+
+					<details>
+						<summary class="category-summary">Recipe</summary>
+						<p><strong>Blended base:</strong>
+							<span class="np-toggle">
+								<button class="np-toggle-btn active" data-servings="1">x1</button>
+								<button class="np-toggle-btn" data-servings="4">x4</button>
+							</span>
+						</p>
+						<ul class="np-recipe">
+							<li><span class="np-qty" data-x1="60 ml" data-x4="1 cup">60 ml</span> pomegranate juice</li>
+							<li><span class="np-qty" data-x1="50&ndash;100 ml" data-x4="1 cup">50&ndash;100 ml</span> nut milk</li>
+							<li><span class="np-qty" data-x1="3 tbsp" data-x4="&frac34; cup">3 tbsp</span> ground macadamia nuts</li>
+							<li><span class="np-qty" data-x1="2 tsp" data-x4="2 tbsp + 2 tsp">2 tsp</span> ground walnuts</li>
+							<li><span class="np-qty" data-x1="1 tsp" data-x4="1 tbsp + 1 tsp">1 tsp</span> ground flaxseed</li>
+							<li><span class="np-qty" data-x1="&frac14;" data-x4="1">&frac14;</span> Brazil nut</li>
+							<li><span class="np-qty" data-x1="&frac14; cup berries + 3 cherries" data-x4="1 cup berries + 12 cherries">&frac14; cup berries + 3 cherries</span></li>
+							<li><span class="np-qty" data-x1="1 tsp" data-x4="1 tbsp + 1 tsp">1 tsp</span> sunflower lecithin</li>
+							<li><span class="np-qty" data-x1="&frac12; tsp" data-x4="2 tsp">&frac12; tsp</span> ceylon cinnamon</li>
+							<li>Blueprint Cocoa (12g per serving, all in premix)</li>
+							<li><span class="np-qty" data-x1="1 scoop (22g)" data-x4="4 scoops (88g)">1 scoop (22g)</span> Collagen</li>
+							<li><span class="np-qty" data-x1="2 scoops" data-x4="8 scoops">2 scoops</span> Blueprint Metabolic Protein (73g, 30g protein)</li>
+						</ul>
+						<p><strong>Toppings (per serving):</strong></p>
+						<ul>
+							<li>1 tbsp EVOO</li>
+							<li>Blueprint Blueberry Nut Mix</li>
+							<li>2 tbsp chia seeds</li>
+							<li>1/4 cup berries</li>
+						</ul>
+					</details>
+
+					<details>
+						<summary class="category-summary">Bulk dry mix (12 servings in 1-gallon mason jar)</summary>
+						<p>Workflow: open a fresh bag of protein, scoop 8 scoops (4 servings) straight into the blender, then dump the remaining 22 scoops into the jar with 12 servings of everything else. Each jar scoop has slightly less protein (~1.83 vs 2 scoops), but it evens out across all 16 servings per bag. Scoop ~1&frac14; cups per serving (or ~5 cups for 4 servings).</p>
+						<div class="table-wrapper">
+							<table>
+								<thead>
+									<tr>
+										<th>Ingredient</th>
+										<th class="num">Per serving</th>
+										<th class="num">&times;12 (full jar)</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr><td>Ground macadamia nuts</td><td class="num">3 tbsp</td><td class="num">2&frac14; cups</td></tr>
+									<tr><td>Blueprint Metabolic Protein</td><td class="num">~1.83 scoops</td><td class="num">rest of bag (22 scoops)</td></tr>
+									<tr><td>Collagen protein</td><td class="num">1 scoop (22g)</td><td class="num">2&frac34; cups</td></tr>
+									<tr><td>Blueprint Cocoa</td><td class="num">~2 tbsp</td><td class="num">1&frac12; cups</td></tr>
+									<tr><td>Ground walnuts</td><td class="num">2 tsp</td><td class="num">&frac12; cup</td></tr>
+									<tr><td>Ground flax seeds</td><td class="num">1 tsp</td><td class="num">&frac14; cup</td></tr>
+									<tr><td>Sunflower lecithin</td><td class="num">1 tsp</td><td class="num">&frac14; cup</td></tr>
+									<tr><td>Ceylon cinnamon</td><td class="num">&frac12; tsp</td><td class="num">2 tbsp</td></tr>
+								</tbody>
+							</table>
+						</div>
+						<p><strong>Mixing order:</strong> finest powders first (cinnamon, cocoa, lecithin, flax), then proteins (pea/metabolic, collagen), then coarsest (ground nuts). Shake hard to combine; shake before each scoop.</p>
+					</details>
+				</div>
+
+				<!-- Second meal + pill batch 2 -->
+				<div class="time-block">
+					<h3>Second meal + pill batch 2</h3>
+					<p><a href="https://blueprint.bryanjohnson.com">Blueprint super veggie</a> about half of days, otherwise pills with any meal.</p>
+					<div class="table-wrapper">
+						<table class="schedule-table">
+							<thead>
+								<tr>
+									<th>Item</th>
+									<th>Dose</th>
+									<th class="num">$/yr</th>
+								</tr>
+							</thead>
+							<tbody>
+								{(schedule.meal_2 || []).map(item => (
+									<tr>
+										<td>{item.source_url ? <a href={item.source_url}>{item.name}</a> : item.name}</td>
+										<td class="schedule-dose">{item.dose_notes}</td>
+										<td class="num">{item.annual_cost > 0 ? `$${item.annual_cost}` : <em>bundled</em>}</td>
+									</tr>
+								))}
+							</tbody>
+						</table>
+					</div>
+
+					<details>
+						<summary class="category-summary">Super veggie recipe</summary>
+						<p>Blueprint base recipe plus avocado, shallots, cabbage, crispy onions, and crispy garlic.</p>
+						<ul>
+							<li>Steamed broccoli, cauliflower, shiitake mushrooms</li>
+							<li><a href="https://www.amazon.com/dp/B08BNPW71P">Black beluga lentils</a></li>
+							<li><strong>Dressing:</strong> garlic, ginger, lime, cumin, apple cider vinegar</li>
+							<li>Hemp seeds</li>
+							<li>1 avocado</li>
+							<li>Chopped shallots, cabbage</li>
+							<li><a href="https://www.amazon.com/Fresh-Gourmet-Crispy-Onions-Ounce/dp/B00HHFWEPU">Crispy onions</a> + <a href="https://www.amazon.com/Fresh-Gourmet-Crispy-Lightly-Seasoned/dp/B07P5JHC6B">crispy garlic</a> (not healthy, just tasty)</li>
+							<li>Hummus</li>
+							<li><a href="https://www.amazon.com/CLEVELAND-KRAUT-Classic-Kimchi-16/dp/B098PVNV18/">Cleveland Kitchen kimchi</a></li>
+							<li>EVOO on top</li>
+						</ul>
+					</details>
+				</div>
+
+				<!-- Sweet treat -->
+				<div class="time-block">
+					<h3>Sweet treat</h3>
+					<p><a href="https://www.amazon.com/Tru-Fru-Natures-Cherries-Chocolate/dp/B08939KTFZ">Tru Fru dark chocolate covered cherries</a> &mdash; frozen fruit in dark chocolate. Extra cocoa flavanols as a bonus.</p>
+				</div>
+
+				<!-- Before bed -->
+				<div class="time-block">
+					<h3>Before bed</h3>
+					<div class="table-wrapper">
+						<table class="schedule-table">
+							<thead>
+								<tr>
+									<th>Item</th>
+									<th>Dose</th>
+									<th class="num">$/yr</th>
+								</tr>
+							</thead>
+							<tbody>
+								{(schedule.before_bed || []).map(item => (
+									<tr>
+										<td>{item.source_url ? <a href={item.source_url}>{item.name}</a> : item.name}</td>
+										<td class="schedule-dose">{item.dose_notes}</td>
+										<td class="num">{item.annual_cost > 0 ? `$${item.annual_cost}` : <em>bundled</em>}</td>
+									</tr>
+								))}
+							</tbody>
+						</table>
+					</div>
+				</div>
 			</section>
 
 			<!-- Exercise -->
