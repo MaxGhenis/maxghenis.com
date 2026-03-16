@@ -147,17 +147,25 @@ const statusColors: Record<string, string> = {
 					return items.length > 0 && (
 						<div class="time-block">
 							<h3>{slot.label}</h3>
-							<div class="schedule-list">
-								{items.map(item => (
-									<div class="schedule-item">
-										<span class="schedule-name">
-											{item.source_url ? <a href={item.source_url}>{item.name}</a> : item.name}
-										</span>
-										{item.dose_notes && <span class="schedule-note">{item.dose_notes}</span>}
-										{item.annual_cost > 0 && <span class="schedule-cost">${item.annual_cost}/yr</span>}
-										{item.annual_cost === 0 && <span class="schedule-cost bundled">bundled</span>}
-									</div>
-								))}
+							<div class="table-wrapper">
+								<table class="schedule-table">
+									<thead>
+										<tr>
+											<th>Item</th>
+											<th>Dose</th>
+											<th class="num">$/yr</th>
+										</tr>
+									</thead>
+									<tbody>
+										{items.map(item => (
+											<tr>
+												<td>{item.source_url ? <a href={item.source_url}>{item.name}</a> : item.name}</td>
+												<td class="schedule-dose">{item.dose_notes}</td>
+												<td class="num">{item.annual_cost > 0 ? `$${item.annual_cost}` : <em>bundled</em>}</td>
+											</tr>
+										))}
+									</tbody>
+								</table>
 							</div>
 						</div>
 					);
@@ -538,47 +546,17 @@ const statusColors: Record<string, string> = {
 
 	/* Schedule */
 	.time-block {
-		margin-bottom: 1.5rem;
+		margin-bottom: 2rem;
 	}
 
-	.schedule-list {
-		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-		gap: 0.375rem 1.5rem;
-	}
-
-	.schedule-item {
-		display: flex;
-		align-items: baseline;
-		gap: 0.5rem;
-		padding: 0.25rem 0;
-	}
-
-	.schedule-name {
+	.schedule-table td:first-child {
 		font-weight: 500;
-		color: var(--ink);
-		font-size: 0.9375rem;
+		white-space: nowrap;
 	}
 
-	.schedule-note {
-		font-size: 0.8125rem;
+	.schedule-dose {
+		font-size: 0.875rem;
 		color: var(--ink-muted);
-	}
-
-	.schedule-cost {
-		font-size: 0.75rem;
-		color: var(--ink-muted);
-		font-variant-numeric: tabular-nums;
-	}
-
-	.schedule-cost.bundled {
-		font-style: italic;
-	}
-
-	@media (max-width: 768px) {
-		.schedule-list {
-			grid-template-columns: 1fr;
-		}
 	}
 
 	/* Stats grid */

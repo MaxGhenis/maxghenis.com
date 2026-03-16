@@ -689,8 +689,8 @@
       "brand": "Blueprint",
       "serving_size": "3 capsules",
       "daily_servings": 1.0,
-      "dose_notes": "3 capsules, finishing container then switching to standalone NAC",
-      "time_of_day": "meal_1",
+      "dose_notes": "2 capsules meal 1, 1 capsule meal 2",
+      "time_of_day": "meal_1,meal_2",
       "source_url": "https://blueprint.bryanjohnson.com/products/nac-ginger-capsules",
       "package_price": 27.0,
       "ingredients": [
@@ -1601,8 +1601,8 @@
       "brand": "Blueprint",
       "serving_size": "3 capsules",
       "daily_servings": 1.0,
-      "dose_notes": "3 capsules, finishing container then switching to standalone NAC",
-      "time_of_day": "meal_1",
+      "dose_notes": "2 capsules meal 1, 1 capsule meal 2",
+      "time_of_day": "meal_1,meal_2",
       "source_url": "https://blueprint.bryanjohnson.com/products/nac-ginger-capsules",
       "package_price": 27.0,
       "ingredients": [
@@ -2222,8 +2222,8 @@
       "brand": "Blueprint",
       "serving_size": "3 capsules",
       "daily_servings": 1.0,
-      "dose_notes": "3 capsules, finishing container then switching to standalone NAC",
-      "time_of_day": "meal_1",
+      "dose_notes": "2 capsules meal 1, 1 capsule meal 2",
+      "time_of_day": "meal_1,meal_2",
       "source_url": "https://blueprint.bryanjohnson.com/products/nac-ginger-capsules",
       "package_price": 27.0,
       "ingredients": [
@@ -3098,7 +3098,7 @@
         "brand": "Blueprint",
         "type": "supplement",
         "serving_size": "3 capsules",
-        "dose_notes": "3 capsules, finishing container then switching to standalone NAC",
+        "dose_notes": "2 capsules meal 1, 1 capsule meal 2",
         "package_price": 27.0,
         "servings_per_package": 30,
         "daily_servings": 1.0,
@@ -3298,6 +3298,35 @@
           {
             "ingredient": "Zeaxanthin",
             "amount": 2.0,
+            "unit": "mg"
+          }
+        ]
+      },
+      {
+        "name": "Blueprint NAC+Ginger+Curcumin",
+        "brand": "Blueprint",
+        "type": "supplement",
+        "serving_size": "3 capsules",
+        "dose_notes": "2 capsules meal 1, 1 capsule meal 2",
+        "package_price": 27.0,
+        "servings_per_package": 30,
+        "daily_servings": 1.0,
+        "annual_cost": 329.0,
+        "source_url": "https://blueprint.bryanjohnson.com/products/nac-ginger-capsules",
+        "ingredients": [
+          {
+            "ingredient": "Curcumin Extract",
+            "amount": 250.0,
+            "unit": "mg"
+          },
+          {
+            "ingredient": "Ginger Extract (26% gingerols)",
+            "amount": 400.0,
+            "unit": "mg"
+          },
+          {
+            "ingredient": "N-Acetyl-L-Cysteine (NAC)",
+            "amount": 1200.0,
             "unit": "mg"
           }
         ]
