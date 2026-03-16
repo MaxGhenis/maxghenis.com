@@ -18,7 +18,7 @@
     "total_days": 1586.6,
     "total_qaly": 4.3439,
     "catalog_size": 59,
-    "db_products": 26,
+    "db_products": 24,
     "db_ingredients": 75
   },
   "supplements": [
@@ -1577,22 +1577,7 @@
       "notes": "VITAL NS. Bolland meta D3 HR 0.97.",
       "sources": [],
       "in_portfolio": true,
-      "cost_per_qaly": 31173,
-      "db_product": "Vitamin D 2000 IU",
-      "brand": "NatureWise",
-      "serving_size": "1 softgel",
-      "daily_servings": 1.0,
-      "dose_notes": "2000 IU, standalone + in Essential Capsules",
-      "time_of_day": "meal_1",
-      "source_url": "https://www.amazon.com/dp/B00GW4G4VS",
-      "package_price": 13.42,
-      "ingredients": [
-        {
-          "ingredient": "Vitamin D3",
-          "amount": 2000.0,
-          "unit": "IU"
-        }
-      ]
+      "cost_per_qaly": 31173
     },
     {
       "id": "curcumin_250",
@@ -1655,27 +1640,7 @@
       "notes": "Rotterdam obs. Calcification RCTs.",
       "sources": [],
       "in_portfolio": false,
-      "cost_per_qaly": 35330,
-      "db_product": "Vitamin K2",
-      "brand": null,
-      "serving_size": "1 capsule",
-      "daily_servings": 1.0,
-      "dose_notes": "MK-7 + MK-4",
-      "time_of_day": "meal_1",
-      "source_url": "https://www.amazon.com/dp/B00ETZQ5GM",
-      "package_price": 14.99,
-      "ingredients": [
-        {
-          "ingredient": "Vitamin K2 MK-4",
-          "amount": 1000.0,
-          "unit": "mcg"
-        },
-        {
-          "ingredient": "Vitamin K2 MK-7",
-          "amount": 100.0,
-          "unit": "mcg"
-        }
-      ]
+      "cost_per_qaly": 35330
     },
     {
       "id": "aspirin_81mg",
@@ -3264,49 +3229,6 @@
             "ingredient": "Vitamin A",
             "amount": 63.0,
             "unit": "mcg RAE"
-          }
-        ]
-      },
-      {
-        "name": "Vitamin D 2000 IU",
-        "brand": "NatureWise",
-        "type": "supplement",
-        "serving_size": "1 softgel",
-        "dose_notes": "2000 IU, standalone + in Essential Capsules",
-        "package_price": 13.42,
-        "servings_per_package": 360,
-        "daily_servings": 1.0,
-        "annual_cost": 14.0,
-        "source_url": "https://www.amazon.com/dp/B00GW4G4VS",
-        "ingredients": [
-          {
-            "ingredient": "Vitamin D3",
-            "amount": 2000.0,
-            "unit": "IU"
-          }
-        ]
-      },
-      {
-        "name": "Vitamin K2",
-        "brand": null,
-        "type": "supplement",
-        "serving_size": "1 capsule",
-        "dose_notes": "MK-7 + MK-4",
-        "package_price": 14.99,
-        "servings_per_package": 90,
-        "daily_servings": 1.0,
-        "annual_cost": 61.0,
-        "source_url": "https://www.amazon.com/dp/B00ETZQ5GM",
-        "ingredients": [
-          {
-            "ingredient": "Vitamin K2 MK-4",
-            "amount": 1000.0,
-            "unit": "mcg"
-          },
-          {
-            "ingredient": "Vitamin K2 MK-7",
-            "amount": 100.0,
-            "unit": "mcg"
           }
         ]
       },
