@@ -233,7 +233,7 @@
       "cost_per_qaly": 18677,
       "db_product": "Magnesium Lysinate Glycinate",
       "brand": "Doctors Best",
-      "serving_size": "1 capsule",
+      "serving_size": "2 capsules",
       "daily_servings": 1.0,
       "dose_notes": "200mg before bed",
       "time_of_day": "before_bed",
@@ -2878,9 +2878,9 @@
         "serving_size": "1 tsp",
         "dose_notes": "1 tsp morning mix",
         "package_price": 17.99,
-        "servings_per_package": 90,
+        "servings_per_package": 100,
         "daily_servings": 1.0,
-        "annual_cost": 73.0,
+        "annual_cost": 66.0,
         "source_url": "https://goddessall.com/products/prebiotic-blue-agave-inulin-powder-17-6oz-500g",
         "ingredients": [
           {
@@ -2916,9 +2916,9 @@
         "serving_size": "1 tsp",
         "dose_notes": "1 tsp morning",
         "package_price": 34.5,
-        "servings_per_package": 60,
+        "servings_per_package": 150,
         "daily_servings": 1.0,
-        "annual_cost": 210.0,
+        "annual_cost": 84.0,
         "source_url": "https://www.amazon.com/dp/B00FRFQ2SM",
         "ingredients": [
           {
@@ -2961,9 +2961,9 @@
         "serving_size": "3 capsules",
         "dose_notes": "3 capsules with meal 1",
         "package_price": 49.0,
-        "servings_per_package": 30,
+        "servings_per_package": 20,
         "daily_servings": 1.0,
-        "annual_cost": 596.0,
+        "annual_cost": 894.0,
         "source_url": "https://blueprint.bryanjohnson.com/products/essentials-capsules",
         "ingredients": [
           {
@@ -3460,9 +3460,9 @@
         "serving_size": "2 capsules",
         "dose_notes": "600mg (2 x 300mg caps) before bed",
         "package_price": 21.99,
-        "servings_per_package": 90,
+        "servings_per_package": 45,
         "daily_servings": 1.0,
-        "annual_cost": 89.0,
+        "annual_cost": 178.0,
         "source_url": "https://www.amazon.com/dp/B01CZ2EFT2",
         "ingredients": [
           {
@@ -3495,12 +3495,12 @@
         "name": "Magnesium Lysinate Glycinate",
         "brand": "Doctors Best",
         "type": "supplement",
-        "serving_size": "1 capsule",
+        "serving_size": "2 capsules",
         "dose_notes": "200mg before bed",
         "package_price": 11.99,
-        "servings_per_package": 120,
+        "servings_per_package": 60,
         "daily_servings": 1.0,
-        "annual_cost": 36.0,
+        "annual_cost": 73.0,
         "source_url": "https://www.amazon.com/dp/B000BD0RT0",
         "ingredients": [
           {
