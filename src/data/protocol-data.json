@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-15",
+  "generated_at": "2026-03-16",
   "profile": {
     "age": 39,
     "sex": "male",
@@ -17,7 +17,9 @@
     "total_annual_cost": 2907,
     "total_days": 1586.6,
     "total_qaly": 4.3439,
-    "catalog_size": 59
+    "catalog_size": 59,
+    "db_products": 24,
+    "db_ingredients": 73
   },
   "supplements": [
     {
@@ -36,7 +38,23 @@
       "evidence": "medium",
       "notes": "Anderson 2016 obs HR 0.67. Endothelial RCTs.",
       "sources": [],
-      "in_portfolio": true
+      "in_portfolio": true,
+      "cost_per_qaly": 11689,
+      "db_product": "Tadalafil",
+      "brand": null,
+      "serving_size": "1 tablet",
+      "daily_servings": 1.0,
+      "dose_notes": "2.5mg daily",
+      "time_of_day": "meal_2",
+      "source_url": null,
+      "package_price": 20.72,
+      "ingredients": [
+        {
+          "ingredient": "Tadalafil",
+          "amount": 2.5,
+          "unit": "mg"
+        }
+      ]
     },
     {
       "id": "finasteride_1.25mg",
@@ -54,7 +72,23 @@
       "evidence": "high",
       "notes": "PCPT RCT n=18882. Hair preservation.",
       "sources": [],
-      "in_portfolio": true
+      "in_portfolio": true,
+      "cost_per_qaly": 10329,
+      "db_product": "Finasteride",
+      "brand": null,
+      "serving_size": "1 tablet",
+      "daily_servings": 1.0,
+      "dose_notes": "1.25mg daily (quarter 5mg tablet)",
+      "time_of_day": "meal_1",
+      "source_url": null,
+      "package_price": 14.99,
+      "ingredients": [
+        {
+          "ingredient": "Finasteride",
+          "amount": 1.25,
+          "unit": "mg"
+        }
+      ]
     },
     {
       "id": "trazodone_50mg",
@@ -72,7 +106,23 @@
       "evidence": "medium",
       "notes": "Sleep maintenance. No mortality data.",
       "sources": [],
-      "in_portfolio": true
+      "in_portfolio": true,
+      "cost_per_qaly": 22807,
+      "db_product": "Trazodone",
+      "brand": null,
+      "serving_size": "1 tablet",
+      "daily_servings": 1.0,
+      "dose_notes": "50mg before bed",
+      "time_of_day": "before_bed",
+      "source_url": null,
+      "package_price": 18.34,
+      "ingredients": [
+        {
+          "ingredient": "Trazodone",
+          "amount": 50.0,
+          "unit": "mg"
+        }
+      ]
     },
     {
       "id": "melatonin_300mcg",
@@ -90,7 +140,23 @@
       "evidence": "medium",
       "notes": "Sleep onset RCTs.",
       "sources": [],
-      "in_portfolio": true
+      "in_portfolio": true,
+      "cost_per_qaly": 3696,
+      "db_product": "Melatonin",
+      "brand": "Life Extension",
+      "serving_size": "1 tablet",
+      "daily_servings": 1.0,
+      "dose_notes": "1.5mg before bed",
+      "time_of_day": "before_bed",
+      "source_url": "https://www.amazon.com/dp/B00CDAWFN2",
+      "package_price": 7.5,
+      "ingredients": [
+        {
+          "ingredient": "Melatonin",
+          "amount": 1.5,
+          "unit": "mg"
+        }
+      ]
     },
     {
       "id": "ashwagandha_600",
@@ -108,7 +174,8 @@
       "evidence": "medium",
       "notes": "RCTs: cortisol, anxiety, sleep, testosterone. Rare liver concern.",
       "sources": [],
-      "in_portfolio": true
+      "in_portfolio": true,
+      "cost_per_qaly": 7387
     },
     {
       "id": "glycine_2g",
@@ -128,7 +195,23 @@
       "sources": [
         "https://www.amazon.com/dp/B0013OVZJW"
       ],
-      "in_portfolio": true
+      "in_portfolio": true,
+      "cost_per_qaly": 4569,
+      "db_product": "Glycine 2g",
+      "brand": "NOW Foods",
+      "serving_size": "1 scoop",
+      "daily_servings": 1.0,
+      "dose_notes": "2g before bed",
+      "time_of_day": "before_bed",
+      "source_url": "https://www.amazon.com/dp/B0013OVZJW",
+      "package_price": 17.4,
+      "ingredients": [
+        {
+          "ingredient": "Glycine",
+          "amount": 2000.0,
+          "unit": "mg"
+        }
+      ]
     },
     {
       "id": "magnesium_200",
@@ -146,7 +229,23 @@
       "evidence": "medium",
       "notes": "Fang meta. BP RCTs.",
       "sources": [],
-      "in_portfolio": true
+      "in_portfolio": true,
+      "cost_per_qaly": 18677,
+      "db_product": "Magnesium Lysinate Glycinate",
+      "brand": "Doctors Best",
+      "serving_size": "1 capsule",
+      "daily_servings": 1.0,
+      "dose_notes": "200mg before bed",
+      "time_of_day": "before_bed",
+      "source_url": "https://www.amazon.com/dp/B000BD0RT0",
+      "package_price": 11.99,
+      "ingredients": [
+        {
+          "ingredient": "Magnesium (as lysinate glycinate)",
+          "amount": 200.0,
+          "unit": "mg"
+        }
+      ]
     },
     {
       "id": "apigenin_50",
@@ -166,7 +265,23 @@
       "sources": [
         "https://www.amazon.com/dp/B09DGTBBSF"
       ],
-      "in_portfolio": true
+      "in_portfolio": true,
+      "cost_per_qaly": 14844,
+      "db_product": "Apigenin 50mg",
+      "brand": "Double Wood",
+      "serving_size": "1 capsule",
+      "daily_servings": 1.0,
+      "dose_notes": "50mg before bed",
+      "time_of_day": "before_bed",
+      "source_url": "https://www.amazon.com/dp/B09DGTBBSF",
+      "package_price": 24.95,
+      "ingredients": [
+        {
+          "ingredient": "Apigenin",
+          "amount": 50.0,
+          "unit": "mg"
+        }
+      ]
     },
     {
       "id": "creatine_5g",
@@ -184,7 +299,23 @@
       "evidence": "medium",
       "notes": "Muscle/cognitive RCTs. No mortality.",
       "sources": [],
-      "in_portfolio": true
+      "in_portfolio": true,
+      "cost_per_qaly": 23844,
+      "db_product": "Blueprint Creatine",
+      "brand": "Blueprint",
+      "serving_size": "1 scoop",
+      "daily_servings": 1.0,
+      "dose_notes": "5g morning mix",
+      "time_of_day": "morning_mix",
+      "source_url": "https://blueprint.bryanjohnson.com/products/creatine",
+      "package_price": 37.8,
+      "ingredients": [
+        {
+          "ingredient": "Creatine Monohydrate",
+          "amount": 5000.0,
+          "unit": "mg"
+        }
+      ]
     },
     {
       "id": "cocoa_flavanols_500",
@@ -202,7 +333,8 @@
       "evidence": "medium",
       "notes": "COSMOS RCT HR 0.73 CVD. Free via cocoa powder.",
       "sources": [],
-      "in_portfolio": true
+      "in_portfolio": true,
+      "cost_per_qaly": null
     },
     {
       "id": "prebiotics",
@@ -220,7 +352,23 @@
       "evidence": "medium",
       "notes": "Gut health markers.",
       "sources": [],
-      "in_portfolio": true
+      "in_portfolio": true,
+      "cost_per_qaly": 56993,
+      "db_product": "Goddess Agave Inulin",
+      "brand": "Goddess",
+      "serving_size": "1 tsp",
+      "daily_servings": 1.0,
+      "dose_notes": "1 tsp morning mix",
+      "time_of_day": "morning_mix",
+      "source_url": "https://goddessall.com/products/prebiotic-blue-agave-inulin-powder-17-6oz-500g",
+      "package_price": 17.99,
+      "ingredients": [
+        {
+          "ingredient": "Agave Inulin",
+          "amount": 4000.0,
+          "unit": "mg"
+        }
+      ]
     },
     {
       "id": "astaxanthin_12",
@@ -238,7 +386,53 @@
       "evidence": "medium",
       "notes": "CRP/HDL RCTs. Bundled.",
       "sources": [],
-      "in_portfolio": true
+      "in_portfolio": true,
+      "cost_per_qaly": null,
+      "db_product": "Blueprint Advanced Antioxidants",
+      "brand": "Blueprint",
+      "serving_size": "1 capsule",
+      "daily_servings": 1.0,
+      "dose_notes": "1 capsule with meal 2",
+      "time_of_day": "meal_2",
+      "source_url": "https://blueprint.bryanjohnson.com/products/advanced-antioxidants",
+      "package_price": 49.0,
+      "ingredients": [
+        {
+          "ingredient": "Astaxanthin",
+          "amount": 12.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Lutein",
+          "amount": 10.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Lycopene",
+          "amount": 15.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin K1",
+          "amount": 1.5,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin K2 MK-4",
+          "amount": 5.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin K2 MK-7",
+          "amount": 0.6,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Zeaxanthin",
+          "amount": 2.0,
+          "unit": "mg"
+        }
+      ]
     },
     {
       "id": "lutein_zeaxanthin",
@@ -256,7 +450,53 @@
       "evidence": "medium",
       "notes": "AREDS2. Eye health. Bundled.",
       "sources": [],
-      "in_portfolio": true
+      "in_portfolio": true,
+      "cost_per_qaly": null,
+      "db_product": "Blueprint Advanced Antioxidants",
+      "brand": "Blueprint",
+      "serving_size": "1 capsule",
+      "daily_servings": 1.0,
+      "dose_notes": "1 capsule with meal 2",
+      "time_of_day": "meal_2",
+      "source_url": "https://blueprint.bryanjohnson.com/products/advanced-antioxidants",
+      "package_price": 49.0,
+      "ingredients": [
+        {
+          "ingredient": "Astaxanthin",
+          "amount": 12.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Lutein",
+          "amount": 10.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Lycopene",
+          "amount": 15.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin K1",
+          "amount": 1.5,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin K2 MK-4",
+          "amount": 5.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin K2 MK-7",
+          "amount": 0.6,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Zeaxanthin",
+          "amount": 2.0,
+          "unit": "mg"
+        }
+      ]
     },
     {
       "id": "lions_mane_1g",
@@ -276,7 +516,23 @@
       "sources": [
         "https://www.amazon.com/dp/B00OVF9DVM"
       ],
-      "in_portfolio": true
+      "in_portfolio": true,
+      "cost_per_qaly": 96386,
+      "db_product": "Lions Mane 1g",
+      "brand": "Host Defense",
+      "serving_size": "2 capsules",
+      "daily_servings": 1.0,
+      "dose_notes": "1g (2 capsules) with meal 1",
+      "time_of_day": "meal_1",
+      "source_url": "https://www.amazon.com/dp/B00OVF9DVM",
+      "package_price": 47.21,
+      "ingredients": [
+        {
+          "ingredient": "Lions Mane Extract (Hericium erinaceus)",
+          "amount": 1000.0,
+          "unit": "mg"
+        }
+      ]
     },
     {
       "id": "omega3_epa_2g",
@@ -296,7 +552,33 @@
       "sources": [
         "https://www.amazon.com/dp/B07DX89ZHN"
       ],
-      "in_portfolio": true
+      "in_portfolio": true,
+      "cost_per_qaly": 88221,
+      "db_product": "High-EPA Omega-3",
+      "brand": "Sports Research",
+      "serving_size": "1 softgel",
+      "daily_servings": 1.0,
+      "dose_notes": "1 softgel with meal 2",
+      "time_of_day": "meal_2",
+      "source_url": "https://www.amazon.com/dp/B07DX89ZHN",
+      "package_price": 27.95,
+      "ingredients": [
+        {
+          "ingredient": "DHA",
+          "amount": 488.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "EPA",
+          "amount": 1250.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Total Omega-3s",
+          "amount": 2145.0,
+          "unit": "mg"
+        }
+      ]
     },
     {
       "id": "statin_5mg",
@@ -314,7 +596,8 @@
       "evidence": "high",
       "notes": "CTT meta: 21% CVD reduction per mmol/L LDL. LDL already 64.",
       "sources": [],
-      "in_portfolio": true
+      "in_portfolio": true,
+      "cost_per_qaly": 59465
     },
     {
       "id": "metformin_500mg",
@@ -332,7 +615,8 @@
       "evidence": "medium",
       "notes": "Bannister 2014: diabetics on metformin outlived controls. TAME pending.",
       "sources": [],
-      "in_portfolio": true
+      "in_portfolio": true,
+      "cost_per_qaly": 29376
     },
     {
       "id": "omega3_clo",
@@ -350,7 +634,38 @@
       "evidence": "medium",
       "notes": "Aung 2018 meta. VITAL.",
       "sources": [],
-      "in_portfolio": true
+      "in_portfolio": true,
+      "cost_per_qaly": 78968,
+      "db_product": "Nordic Naturals Arctic Cod Liver Oil",
+      "brand": "Nordic Naturals",
+      "serving_size": "1 softgel",
+      "daily_servings": 1.0,
+      "dose_notes": "1 softgel with each meal",
+      "time_of_day": "meal_1,meal_2",
+      "source_url": "https://www.amazon.com/dp/B002CQU59Q",
+      "package_price": 42.46,
+      "ingredients": [
+        {
+          "ingredient": "DHA",
+          "amount": 120.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "EPA",
+          "amount": 80.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Total Omega-3s",
+          "amount": 250.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin A",
+          "amount": 63.0,
+          "unit": "mcg RAE"
+        }
+      ]
     },
     {
       "id": "nac_1200",
@@ -368,7 +683,33 @@
       "evidence": "medium",
       "notes": "Critical care RCTs. Glutathione precursor.",
       "sources": [],
-      "in_portfolio": true
+      "in_portfolio": true,
+      "cost_per_qaly": 25546,
+      "db_product": "Blueprint NAC+Ginger+Curcumin",
+      "brand": "Blueprint",
+      "serving_size": "3 capsules",
+      "daily_servings": 1.0,
+      "dose_notes": "3 capsules, finishing container then switching to standalone NAC",
+      "time_of_day": "meal_1",
+      "source_url": "https://blueprint.bryanjohnson.com/products/nac-ginger-capsules",
+      "package_price": 27.0,
+      "ingredients": [
+        {
+          "ingredient": "Curcumin Extract",
+          "amount": 250.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Ginger Extract (26% gingerols)",
+          "amount": 400.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "N-Acetyl-L-Cysteine (NAC)",
+          "amount": 1200.0,
+          "unit": "mg"
+        }
+      ]
     },
     {
       "id": "lithium_5mg",
@@ -386,7 +727,8 @@
       "evidence": "low",
       "notes": "Ecological: municipal Li \u2192 lower suicide/dementia. No RCTs at low dose.",
       "sources": [],
-      "in_portfolio": true
+      "in_portfolio": true,
+      "cost_per_qaly": 37854
     },
     {
       "id": "ubiquinol_50",
@@ -404,7 +746,143 @@
       "evidence": "medium",
       "notes": "Q-SYMBIO RCT in HF. Healthy-pop extrapolation.",
       "sources": [],
-      "in_portfolio": true
+      "in_portfolio": true,
+      "cost_per_qaly": null,
+      "db_product": "Blueprint Essential Capsules",
+      "brand": "Blueprint",
+      "serving_size": "3 capsules",
+      "daily_servings": 1.0,
+      "dose_notes": "3 capsules with meal 1",
+      "time_of_day": "meal_1",
+      "source_url": "https://blueprint.bryanjohnson.com/products/essentials-capsules",
+      "package_price": 49.0,
+      "ingredients": [
+        {
+          "ingredient": "Biotin",
+          "amount": 50.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Boron",
+          "amount": 3.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Broccoli Seed Extract",
+          "amount": 200.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Calcium",
+          "amount": 50.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Fisetin",
+          "amount": 100.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Folate",
+          "amount": 200.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Glucoraphanin",
+          "amount": 20.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Iodine",
+          "amount": 200.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Lactobacillus acidophilus",
+          "amount": 4.0,
+          "unit": "billion CFU"
+        },
+        {
+          "ingredient": "Lithium Orotate",
+          "amount": 1.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Luteolin",
+          "amount": 100.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Manganese",
+          "amount": 1.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Nicotinamide Riboside (NR)",
+          "amount": 300.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Selenium",
+          "amount": 28.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Spermidine",
+          "amount": 10.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Ubiquinol (CoQ10)",
+          "amount": 50.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B1 (Thiamine)",
+          "amount": 1.1,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B12",
+          "amount": 125.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Vitamin B2 (Riboflavin)",
+          "amount": 1.4,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B3 (Niacin)",
+          "amount": 15.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B5 (Pantothenic Acid)",
+          "amount": 6.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B6",
+          "amount": 1.4,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin D",
+          "amount": 2000.0,
+          "unit": "IU"
+        },
+        {
+          "ingredient": "Vitamin E",
+          "amount": 67.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Zinc",
+          "amount": 15.0,
+          "unit": "mg"
+        }
+      ]
     },
     {
       "id": "collagen_22g",
@@ -422,7 +900,28 @@
       "evidence": "medium",
       "notes": "No mortality data. Joint/skin RCTs.",
       "sources": [],
-      "in_portfolio": true
+      "in_portfolio": true,
+      "cost_per_qaly": 119785,
+      "db_product": "Blueprint Collagen Peptides",
+      "brand": "Blueprint",
+      "serving_size": "1 scoop (22g)",
+      "daily_servings": 1.0,
+      "dose_notes": "22g blended in nutty pudding",
+      "time_of_day": "meal_1",
+      "source_url": "https://blueprint.bryanjohnson.com/products/collagen",
+      "package_price": 45.0,
+      "ingredients": [
+        {
+          "ingredient": "Collagen Peptides (Types I & III)",
+          "amount": 20000.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Undenatured Type II Collagen",
+          "amount": 10.0,
+          "unit": "mg"
+        }
+      ]
     },
     {
       "id": "nr_300",
@@ -440,7 +939,143 @@
       "evidence": "medium",
       "notes": "NAD+ precursor. Bundled.",
       "sources": [],
-      "in_portfolio": true
+      "in_portfolio": true,
+      "cost_per_qaly": null,
+      "db_product": "Blueprint Essential Capsules",
+      "brand": "Blueprint",
+      "serving_size": "3 capsules",
+      "daily_servings": 1.0,
+      "dose_notes": "3 capsules with meal 1",
+      "time_of_day": "meal_1",
+      "source_url": "https://blueprint.bryanjohnson.com/products/essentials-capsules",
+      "package_price": 49.0,
+      "ingredients": [
+        {
+          "ingredient": "Biotin",
+          "amount": 50.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Boron",
+          "amount": 3.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Broccoli Seed Extract",
+          "amount": 200.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Calcium",
+          "amount": 50.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Fisetin",
+          "amount": 100.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Folate",
+          "amount": 200.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Glucoraphanin",
+          "amount": 20.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Iodine",
+          "amount": 200.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Lactobacillus acidophilus",
+          "amount": 4.0,
+          "unit": "billion CFU"
+        },
+        {
+          "ingredient": "Lithium Orotate",
+          "amount": 1.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Luteolin",
+          "amount": 100.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Manganese",
+          "amount": 1.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Nicotinamide Riboside (NR)",
+          "amount": 300.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Selenium",
+          "amount": 28.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Spermidine",
+          "amount": 10.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Ubiquinol (CoQ10)",
+          "amount": 50.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B1 (Thiamine)",
+          "amount": 1.1,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B12",
+          "amount": 125.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Vitamin B2 (Riboflavin)",
+          "amount": 1.4,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B3 (Niacin)",
+          "amount": 15.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B5 (Pantothenic Acid)",
+          "amount": 6.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B6",
+          "amount": 1.4,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin D",
+          "amount": 2000.0,
+          "unit": "IU"
+        },
+        {
+          "ingredient": "Vitamin E",
+          "amount": 67.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Zinc",
+          "amount": 15.0,
+          "unit": "mg"
+        }
+      ]
     },
     {
       "id": "luteolin_100",
@@ -458,7 +1093,143 @@
       "evidence": "medium",
       "notes": "Anti-inflammatory. Neuroprotective. Bundled.",
       "sources": [],
-      "in_portfolio": true
+      "in_portfolio": true,
+      "cost_per_qaly": null,
+      "db_product": "Blueprint Essential Capsules",
+      "brand": "Blueprint",
+      "serving_size": "3 capsules",
+      "daily_servings": 1.0,
+      "dose_notes": "3 capsules with meal 1",
+      "time_of_day": "meal_1",
+      "source_url": "https://blueprint.bryanjohnson.com/products/essentials-capsules",
+      "package_price": 49.0,
+      "ingredients": [
+        {
+          "ingredient": "Biotin",
+          "amount": 50.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Boron",
+          "amount": 3.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Broccoli Seed Extract",
+          "amount": 200.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Calcium",
+          "amount": 50.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Fisetin",
+          "amount": 100.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Folate",
+          "amount": 200.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Glucoraphanin",
+          "amount": 20.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Iodine",
+          "amount": 200.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Lactobacillus acidophilus",
+          "amount": 4.0,
+          "unit": "billion CFU"
+        },
+        {
+          "ingredient": "Lithium Orotate",
+          "amount": 1.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Luteolin",
+          "amount": 100.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Manganese",
+          "amount": 1.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Nicotinamide Riboside (NR)",
+          "amount": 300.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Selenium",
+          "amount": 28.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Spermidine",
+          "amount": 10.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Ubiquinol (CoQ10)",
+          "amount": 50.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B1 (Thiamine)",
+          "amount": 1.1,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B12",
+          "amount": 125.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Vitamin B2 (Riboflavin)",
+          "amount": 1.4,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B3 (Niacin)",
+          "amount": 15.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B5 (Pantothenic Acid)",
+          "amount": 6.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B6",
+          "amount": 1.4,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin D",
+          "amount": 2000.0,
+          "unit": "IU"
+        },
+        {
+          "ingredient": "Vitamin E",
+          "amount": 67.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Zinc",
+          "amount": 15.0,
+          "unit": "mg"
+        }
+      ]
     },
     {
       "id": "lithium_1mg_orotate",
@@ -476,7 +1247,143 @@
       "evidence": "medium",
       "notes": "Ecological Li data. Neuroprotective. Bundled.",
       "sources": [],
-      "in_portfolio": true
+      "in_portfolio": true,
+      "cost_per_qaly": null,
+      "db_product": "Blueprint Essential Capsules",
+      "brand": "Blueprint",
+      "serving_size": "3 capsules",
+      "daily_servings": 1.0,
+      "dose_notes": "3 capsules with meal 1",
+      "time_of_day": "meal_1",
+      "source_url": "https://blueprint.bryanjohnson.com/products/essentials-capsules",
+      "package_price": 49.0,
+      "ingredients": [
+        {
+          "ingredient": "Biotin",
+          "amount": 50.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Boron",
+          "amount": 3.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Broccoli Seed Extract",
+          "amount": 200.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Calcium",
+          "amount": 50.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Fisetin",
+          "amount": 100.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Folate",
+          "amount": 200.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Glucoraphanin",
+          "amount": 20.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Iodine",
+          "amount": 200.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Lactobacillus acidophilus",
+          "amount": 4.0,
+          "unit": "billion CFU"
+        },
+        {
+          "ingredient": "Lithium Orotate",
+          "amount": 1.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Luteolin",
+          "amount": 100.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Manganese",
+          "amount": 1.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Nicotinamide Riboside (NR)",
+          "amount": 300.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Selenium",
+          "amount": 28.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Spermidine",
+          "amount": 10.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Ubiquinol (CoQ10)",
+          "amount": 50.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B1 (Thiamine)",
+          "amount": 1.1,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B12",
+          "amount": 125.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Vitamin B2 (Riboflavin)",
+          "amount": 1.4,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B3 (Niacin)",
+          "amount": 15.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B5 (Pantothenic Acid)",
+          "amount": 6.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B6",
+          "amount": 1.4,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin D",
+          "amount": 2000.0,
+          "unit": "IU"
+        },
+        {
+          "ingredient": "Vitamin E",
+          "amount": 67.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Zinc",
+          "amount": 15.0,
+          "unit": "mg"
+        }
+      ]
     },
     {
       "id": "hyaluronic_acid_120",
@@ -494,7 +1401,73 @@
       "evidence": "medium",
       "notes": "Already 120mg in Longevity Mix. Joint/skin. No mortality.",
       "sources": [],
-      "in_portfolio": true
+      "in_portfolio": true,
+      "cost_per_qaly": null,
+      "db_product": "Blueprint Longevity Mix",
+      "brand": "Blueprint",
+      "serving_size": "1 scoop (14.8g)",
+      "daily_servings": 1.0,
+      "dose_notes": "Morning, mixed in water",
+      "time_of_day": "morning_mix",
+      "source_url": "https://blueprint.bryanjohnson.com/products/longevity-blend-multinutrient-drink-mix-blood-orange-flavor",
+      "package_price": 44.1,
+      "ingredients": [
+        {
+          "ingredient": "CaAKG",
+          "amount": 2000.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Creatine Monohydrate",
+          "amount": 2500.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Glucosamine Sulfate",
+          "amount": 750.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Glycine",
+          "amount": 1200.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "L-Lysine",
+          "amount": 1000.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "L-Theanine",
+          "amount": 200.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Magnesium Citrate",
+          "amount": 150.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Reduced Glutathione",
+          "amount": 250.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Sodium Hyaluronate",
+          "amount": 120.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Taurine",
+          "amount": 1500.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin C",
+          "amount": 250.0,
+          "unit": "mg"
+        }
+      ]
     },
     {
       "id": "cistanche_200",
@@ -514,7 +1487,23 @@
       "sources": [
         "https://www.amazon.com/dp/B08VTFXWQF"
       ],
-      "in_portfolio": true
+      "in_portfolio": true,
+      "cost_per_qaly": 109641,
+      "db_product": "Cistanche 200mg",
+      "brand": "Nootropics Depot",
+      "serving_size": "1 capsule",
+      "daily_servings": 1.0,
+      "dose_notes": "200mg with meal 1",
+      "time_of_day": "meal_1",
+      "source_url": "https://www.amazon.com/dp/B08VTFXWQF",
+      "package_price": 37.99,
+      "ingredients": [
+        {
+          "ingredient": "Cistanche tubulosa Extract",
+          "amount": 200.0,
+          "unit": "mg"
+        }
+      ]
     },
     {
       "id": "taurine_500_topup",
@@ -534,7 +1523,23 @@
       "sources": [
         "https://www.amazon.com/dp/B00ENSLW7A"
       ],
-      "in_portfolio": true
+      "in_portfolio": true,
+      "cost_per_qaly": 4134,
+      "db_product": "Taurine 500mg",
+      "brand": "BulkSupplements",
+      "serving_size": "1 capsule",
+      "daily_servings": 0.25,
+      "dose_notes": "500mg before bed",
+      "time_of_day": "before_bed",
+      "source_url": "https://www.amazon.com/dp/B00ENSLW7A",
+      "package_price": 23.97,
+      "ingredients": [
+        {
+          "ingredient": "Taurine",
+          "amount": 500.0,
+          "unit": "mg"
+        }
+      ]
     },
     {
       "id": "zinc_carnosine_75",
@@ -552,7 +1557,8 @@
       "evidence": "medium",
       "notes": "Gut barrier integrity. Already getting zinc 15mg.",
       "sources": [],
-      "in_portfolio": true
+      "in_portfolio": true,
+      "cost_per_qaly": 52535
     },
     {
       "id": "vitamin_d_2000",
@@ -570,7 +1576,23 @@
       "evidence": "medium",
       "notes": "VITAL NS. Bolland meta D3 HR 0.97.",
       "sources": [],
-      "in_portfolio": true
+      "in_portfolio": true,
+      "cost_per_qaly": 31173,
+      "db_product": "Vitamin D 2000 IU",
+      "brand": "NatureWise",
+      "serving_size": "1 softgel",
+      "daily_servings": 1.0,
+      "dose_notes": "2000 IU, standalone + in Essential Capsules",
+      "time_of_day": "meal_1",
+      "source_url": "https://www.amazon.com/dp/B00GW4G4VS",
+      "package_price": 13.42,
+      "ingredients": [
+        {
+          "ingredient": "Vitamin D3",
+          "amount": 2000.0,
+          "unit": "IU"
+        }
+      ]
     },
     {
       "id": "curcumin_250",
@@ -588,7 +1610,33 @@
       "evidence": "low",
       "notes": "Anti-inflam. Bioavailability issues.",
       "sources": [],
-      "in_portfolio": false
+      "in_portfolio": false,
+      "cost_per_qaly": 47110,
+      "db_product": "Blueprint NAC+Ginger+Curcumin",
+      "brand": "Blueprint",
+      "serving_size": "3 capsules",
+      "daily_servings": 1.0,
+      "dose_notes": "3 capsules, finishing container then switching to standalone NAC",
+      "time_of_day": "meal_1",
+      "source_url": "https://blueprint.bryanjohnson.com/products/nac-ginger-capsules",
+      "package_price": 27.0,
+      "ingredients": [
+        {
+          "ingredient": "Curcumin Extract",
+          "amount": 250.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Ginger Extract (26% gingerols)",
+          "amount": 400.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "N-Acetyl-L-Cysteine (NAC)",
+          "amount": 1200.0,
+          "unit": "mg"
+        }
+      ]
     },
     {
       "id": "vitamin_k2",
@@ -606,7 +1654,28 @@
       "evidence": "medium",
       "notes": "Rotterdam obs. Calcification RCTs.",
       "sources": [],
-      "in_portfolio": false
+      "in_portfolio": false,
+      "cost_per_qaly": 35330,
+      "db_product": "Vitamin K2",
+      "brand": null,
+      "serving_size": "1 capsule",
+      "daily_servings": 1.0,
+      "dose_notes": "MK-7 + MK-4",
+      "time_of_day": "meal_1",
+      "source_url": "https://www.amazon.com/dp/B00ETZQ5GM",
+      "package_price": 14.99,
+      "ingredients": [
+        {
+          "ingredient": "Vitamin K2 MK-4",
+          "amount": 1000.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Vitamin K2 MK-7",
+          "amount": 100.0,
+          "unit": "mcg"
+        }
+      ]
     },
     {
       "id": "aspirin_81mg",
@@ -624,7 +1693,8 @@
       "evidence": "high",
       "notes": "ASPREE (>70yr): no benefit, more bleeding. USPSTF equivocal at 39.",
       "sources": [],
-      "in_portfolio": false
+      "in_portfolio": false,
+      "cost_per_qaly": 24046
     },
     {
       "id": "ghk_cu",
@@ -642,7 +1712,8 @@
       "evidence": "medium",
       "notes": "Wound healing, collagen. Skin only.",
       "sources": [],
-      "in_portfolio": false
+      "in_portfolio": false,
+      "cost_per_qaly": 153970
     },
     {
       "id": "egcg_400",
@@ -660,7 +1731,8 @@
       "evidence": "medium",
       "notes": "Obs meta HR 0.74-0.85. Heavily confounded. Liver risk at high dose.",
       "sources": [],
-      "in_portfolio": false
+      "in_portfolio": false,
+      "cost_per_qaly": 90993
     },
     {
       "id": "broccoli_seed_200",
@@ -678,7 +1750,143 @@
       "evidence": "medium",
       "notes": "Sulforaphane. Phase 2 enzyme induction. Bundled.",
       "sources": [],
-      "in_portfolio": false
+      "in_portfolio": false,
+      "cost_per_qaly": null,
+      "db_product": "Blueprint Essential Capsules",
+      "brand": "Blueprint",
+      "serving_size": "3 capsules",
+      "daily_servings": 1.0,
+      "dose_notes": "3 capsules with meal 1",
+      "time_of_day": "meal_1",
+      "source_url": "https://blueprint.bryanjohnson.com/products/essentials-capsules",
+      "package_price": 49.0,
+      "ingredients": [
+        {
+          "ingredient": "Biotin",
+          "amount": 50.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Boron",
+          "amount": 3.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Broccoli Seed Extract",
+          "amount": 200.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Calcium",
+          "amount": 50.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Fisetin",
+          "amount": 100.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Folate",
+          "amount": 200.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Glucoraphanin",
+          "amount": 20.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Iodine",
+          "amount": 200.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Lactobacillus acidophilus",
+          "amount": 4.0,
+          "unit": "billion CFU"
+        },
+        {
+          "ingredient": "Lithium Orotate",
+          "amount": 1.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Luteolin",
+          "amount": 100.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Manganese",
+          "amount": 1.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Nicotinamide Riboside (NR)",
+          "amount": 300.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Selenium",
+          "amount": 28.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Spermidine",
+          "amount": 10.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Ubiquinol (CoQ10)",
+          "amount": 50.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B1 (Thiamine)",
+          "amount": 1.1,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B12",
+          "amount": 125.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Vitamin B2 (Riboflavin)",
+          "amount": 1.4,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B3 (Niacin)",
+          "amount": 15.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B5 (Pantothenic Acid)",
+          "amount": 6.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B6",
+          "amount": 1.4,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin D",
+          "amount": 2000.0,
+          "unit": "IU"
+        },
+        {
+          "ingredient": "Vitamin E",
+          "amount": 67.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Zinc",
+          "amount": 15.0,
+          "unit": "mg"
+        }
+      ]
     },
     {
       "id": "black_seed_oil_1g",
@@ -696,7 +1904,8 @@
       "evidence": "low",
       "notes": "Thymoquinone. Anti-inflammatory. No mortality RCTs.",
       "sources": [],
-      "in_portfolio": false
+      "in_portfolio": false,
+      "cost_per_qaly": 105790
     },
     {
       "id": "quercetin_500",
@@ -714,7 +1923,8 @@
       "evidence": "medium",
       "notes": "Senolytic. Anti-inflammatory. Animal lifespan.",
       "sources": [],
-      "in_portfolio": false
+      "in_portfolio": false,
+      "cost_per_qaly": 113339
     },
     {
       "id": "spermidine_10",
@@ -732,7 +1942,143 @@
       "evidence": "medium",
       "notes": "Madeo obs HR 0.70. Animal.",
       "sources": [],
-      "in_portfolio": false
+      "in_portfolio": false,
+      "cost_per_qaly": null,
+      "db_product": "Blueprint Essential Capsules",
+      "brand": "Blueprint",
+      "serving_size": "3 capsules",
+      "daily_servings": 1.0,
+      "dose_notes": "3 capsules with meal 1",
+      "time_of_day": "meal_1",
+      "source_url": "https://blueprint.bryanjohnson.com/products/essentials-capsules",
+      "package_price": 49.0,
+      "ingredients": [
+        {
+          "ingredient": "Biotin",
+          "amount": 50.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Boron",
+          "amount": 3.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Broccoli Seed Extract",
+          "amount": 200.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Calcium",
+          "amount": 50.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Fisetin",
+          "amount": 100.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Folate",
+          "amount": 200.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Glucoraphanin",
+          "amount": 20.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Iodine",
+          "amount": 200.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Lactobacillus acidophilus",
+          "amount": 4.0,
+          "unit": "billion CFU"
+        },
+        {
+          "ingredient": "Lithium Orotate",
+          "amount": 1.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Luteolin",
+          "amount": 100.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Manganese",
+          "amount": 1.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Nicotinamide Riboside (NR)",
+          "amount": 300.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Selenium",
+          "amount": 28.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Spermidine",
+          "amount": 10.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Ubiquinol (CoQ10)",
+          "amount": 50.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B1 (Thiamine)",
+          "amount": 1.1,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B12",
+          "amount": 125.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Vitamin B2 (Riboflavin)",
+          "amount": 1.4,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B3 (Niacin)",
+          "amount": 15.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B5 (Pantothenic Acid)",
+          "amount": 6.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B6",
+          "amount": 1.4,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin D",
+          "amount": 2000.0,
+          "unit": "IU"
+        },
+        {
+          "ingredient": "Vitamin E",
+          "amount": 67.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Zinc",
+          "amount": 15.0,
+          "unit": "mg"
+        }
+      ]
     },
     {
       "id": "lycopene_15",
@@ -750,7 +2096,53 @@
       "evidence": "medium",
       "notes": "Song meta obs. Bundled.",
       "sources": [],
-      "in_portfolio": false
+      "in_portfolio": false,
+      "cost_per_qaly": null,
+      "db_product": "Blueprint Advanced Antioxidants",
+      "brand": "Blueprint",
+      "serving_size": "1 capsule",
+      "daily_servings": 1.0,
+      "dose_notes": "1 capsule with meal 2",
+      "time_of_day": "meal_2",
+      "source_url": "https://blueprint.bryanjohnson.com/products/advanced-antioxidants",
+      "package_price": 49.0,
+      "ingredients": [
+        {
+          "ingredient": "Astaxanthin",
+          "amount": 12.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Lutein",
+          "amount": 10.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Lycopene",
+          "amount": 15.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin K1",
+          "amount": 1.5,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin K2 MK-4",
+          "amount": 5.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin K2 MK-7",
+          "amount": 0.6,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Zeaxanthin",
+          "amount": 2.0,
+          "unit": "mg"
+        }
+      ]
     },
     {
       "id": "garlic_1200",
@@ -768,7 +2160,23 @@
       "evidence": "medium",
       "notes": "Obs HR 0.88. BP + calcification RCTs.",
       "sources": [],
-      "in_portfolio": false
+      "in_portfolio": false,
+      "cost_per_qaly": 180584,
+      "db_product": "Kyolic Aged Garlic Extract",
+      "brand": "Wakunaga",
+      "serving_size": "2 capsules",
+      "daily_servings": 1.0,
+      "dose_notes": "2 capsules per meal, twice daily",
+      "time_of_day": "meal_1,meal_2",
+      "source_url": "https://www.amazon.com/dp/B00012NGIA",
+      "package_price": 31.12,
+      "ingredients": [
+        {
+          "ingredient": "Aged Garlic Extract",
+          "amount": 600.0,
+          "unit": "mg"
+        }
+      ]
     },
     {
       "id": "vitamin_c_500_extra",
@@ -786,7 +2194,8 @@
       "evidence": "medium",
       "notes": "Already getting 250mg from Longevity Mix. Obs meta: modest CVD.",
       "sources": [],
-      "in_portfolio": false
+      "in_portfolio": false,
+      "cost_per_qaly": 64604
     },
     {
       "id": "pqq_20",
@@ -804,7 +2213,8 @@
       "evidence": "medium",
       "notes": "Mitochondrial biogenesis. Small RCTs. Expensive.",
       "sources": [],
-      "in_portfolio": false
+      "in_portfolio": false,
+      "cost_per_qaly": 171700
     },
     {
       "id": "ergothioneine_5",
@@ -822,7 +2232,8 @@
       "evidence": "medium",
       "notes": "Longevity vitamin hypothesis. Obs: low ergo \u2192 higher mortality.",
       "sources": [],
-      "in_portfolio": false
+      "in_portfolio": false,
+      "cost_per_qaly": 181907
     },
     {
       "id": "ginger_400",
@@ -840,7 +2251,33 @@
       "evidence": "medium",
       "notes": "Bundled. Anti-nausea.",
       "sources": [],
-      "in_portfolio": false
+      "in_portfolio": false,
+      "cost_per_qaly": null,
+      "db_product": "Blueprint NAC+Ginger+Curcumin",
+      "brand": "Blueprint",
+      "serving_size": "3 capsules",
+      "daily_servings": 1.0,
+      "dose_notes": "3 capsules, finishing container then switching to standalone NAC",
+      "time_of_day": "meal_1",
+      "source_url": "https://blueprint.bryanjohnson.com/products/nac-ginger-capsules",
+      "package_price": 27.0,
+      "ingredients": [
+        {
+          "ingredient": "Curcumin Extract",
+          "amount": 250.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Ginger Extract (26% gingerols)",
+          "amount": 400.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "N-Acetyl-L-Cysteine (NAC)",
+          "amount": 1200.0,
+          "unit": "mg"
+        }
+      ]
     },
     {
       "id": "boron_3",
@@ -858,7 +2295,143 @@
       "evidence": "medium",
       "notes": "Prostate/bone obs. Bundled.",
       "sources": [],
-      "in_portfolio": false
+      "in_portfolio": false,
+      "cost_per_qaly": null,
+      "db_product": "Blueprint Essential Capsules",
+      "brand": "Blueprint",
+      "serving_size": "3 capsules",
+      "daily_servings": 1.0,
+      "dose_notes": "3 capsules with meal 1",
+      "time_of_day": "meal_1",
+      "source_url": "https://blueprint.bryanjohnson.com/products/essentials-capsules",
+      "package_price": 49.0,
+      "ingredients": [
+        {
+          "ingredient": "Biotin",
+          "amount": 50.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Boron",
+          "amount": 3.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Broccoli Seed Extract",
+          "amount": 200.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Calcium",
+          "amount": 50.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Fisetin",
+          "amount": 100.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Folate",
+          "amount": 200.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Glucoraphanin",
+          "amount": 20.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Iodine",
+          "amount": 200.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Lactobacillus acidophilus",
+          "amount": 4.0,
+          "unit": "billion CFU"
+        },
+        {
+          "ingredient": "Lithium Orotate",
+          "amount": 1.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Luteolin",
+          "amount": 100.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Manganese",
+          "amount": 1.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Nicotinamide Riboside (NR)",
+          "amount": 300.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Selenium",
+          "amount": 28.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Spermidine",
+          "amount": 10.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Ubiquinol (CoQ10)",
+          "amount": 50.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B1 (Thiamine)",
+          "amount": 1.1,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B12",
+          "amount": 125.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Vitamin B2 (Riboflavin)",
+          "amount": 1.4,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B3 (Niacin)",
+          "amount": 15.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B5 (Pantothenic Acid)",
+          "amount": 6.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B6",
+          "amount": 1.4,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin D",
+          "amount": 2000.0,
+          "unit": "IU"
+        },
+        {
+          "ingredient": "Vitamin E",
+          "amount": 67.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Zinc",
+          "amount": 15.0,
+          "unit": "mg"
+        }
+      ]
     },
     {
       "id": "fisetin_100",
@@ -876,7 +2449,143 @@
       "evidence": "medium",
       "notes": "Senolytic. Animal. Bundled.",
       "sources": [],
-      "in_portfolio": false
+      "in_portfolio": false,
+      "cost_per_qaly": null,
+      "db_product": "Blueprint Essential Capsules",
+      "brand": "Blueprint",
+      "serving_size": "3 capsules",
+      "daily_servings": 1.0,
+      "dose_notes": "3 capsules with meal 1",
+      "time_of_day": "meal_1",
+      "source_url": "https://blueprint.bryanjohnson.com/products/essentials-capsules",
+      "package_price": 49.0,
+      "ingredients": [
+        {
+          "ingredient": "Biotin",
+          "amount": 50.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Boron",
+          "amount": 3.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Broccoli Seed Extract",
+          "amount": 200.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Calcium",
+          "amount": 50.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Fisetin",
+          "amount": 100.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Folate",
+          "amount": 200.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Glucoraphanin",
+          "amount": 20.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Iodine",
+          "amount": 200.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Lactobacillus acidophilus",
+          "amount": 4.0,
+          "unit": "billion CFU"
+        },
+        {
+          "ingredient": "Lithium Orotate",
+          "amount": 1.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Luteolin",
+          "amount": 100.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Manganese",
+          "amount": 1.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Nicotinamide Riboside (NR)",
+          "amount": 300.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Selenium",
+          "amount": 28.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Spermidine",
+          "amount": 10.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Ubiquinol (CoQ10)",
+          "amount": 50.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B1 (Thiamine)",
+          "amount": 1.1,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B12",
+          "amount": 125.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Vitamin B2 (Riboflavin)",
+          "amount": 1.4,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B3 (Niacin)",
+          "amount": 15.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B5 (Pantothenic Acid)",
+          "amount": 6.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B6",
+          "amount": 1.4,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin D",
+          "amount": 2000.0,
+          "unit": "IU"
+        },
+        {
+          "ingredient": "Vitamin E",
+          "amount": 67.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Zinc",
+          "amount": 15.0,
+          "unit": "mg"
+        }
+      ]
     },
     {
       "id": "tmg_1g",
@@ -894,7 +2603,8 @@
       "evidence": "medium",
       "notes": "Methyl donor. Homocysteine reduction. Often paired with NR/NMN.",
       "sources": [],
-      "in_portfolio": false
+      "in_portfolio": false,
+      "cost_per_qaly": 368482
     },
     {
       "id": "alpha_lipoic_acid_300",
@@ -912,7 +2622,8 @@
       "evidence": "medium",
       "notes": "Antioxidant. RCTs for diabetic neuropathy.",
       "sources": [],
-      "in_portfolio": false
+      "in_portfolio": false,
+      "cost_per_qaly": 339734
     },
     {
       "id": "sulforaphane_20_extra",
@@ -930,7 +2641,8 @@
       "evidence": "medium",
       "notes": "NRF2 activator. Incremental over Broccoli Seed Ext.",
       "sources": [],
-      "in_portfolio": false
+      "in_portfolio": false,
+      "cost_per_qaly": 449270
     },
     {
       "id": "urolithin_a_500",
@@ -948,7 +2660,8 @@
       "evidence": "medium",
       "notes": "Mitopure. RCTs: improved mitochondrial function. Expensive.",
       "sources": [],
-      "in_portfolio": false
+      "in_portfolio": false,
+      "cost_per_qaly": 229368
     },
     {
       "id": "pterostilbene_50",
@@ -966,7 +2679,8 @@
       "evidence": "medium",
       "notes": "Resveratrol analog. AMPK/SIRT1. Animal only.",
       "sources": [],
-      "in_portfolio": false
+      "in_portfolio": false,
+      "cost_per_qaly": 1453200
     },
     {
       "id": "nmn_500",
@@ -984,7 +2698,8 @@
       "evidence": "medium",
       "notes": "NAD+ precursor (alt to NR). Already getting NR 300mg. Expensive.",
       "sources": [],
-      "in_portfolio": false
+      "in_portfolio": false,
+      "cost_per_qaly": 305964
     },
     {
       "id": "17a_estradiol",
@@ -1002,7 +2717,8 @@
       "evidence": "low",
       "notes": "ITP mice: +19% median lifespan (males only). No human data.",
       "sources": [],
-      "in_portfolio": false
+      "in_portfolio": false,
+      "cost_per_qaly": null
     },
     {
       "id": "rapamycin_5mg_wk",
@@ -1020,7 +2736,8 @@
       "evidence": "medium",
       "notes": "ITP mice: +26% median lifespan. Mannick 2014. Immunosuppression risk.",
       "sources": [],
-      "in_portfolio": false
+      "in_portfolio": false,
+      "cost_per_qaly": null
     },
     {
       "id": "berberine_500",
@@ -1038,7 +2755,8 @@
       "evidence": "low",
       "notes": "Metformin-like. RCTs in diabetes. GI side effects.",
       "sources": [],
-      "in_portfolio": false
+      "in_portfolio": false,
+      "cost_per_qaly": null
     },
     {
       "id": "acarbose_50mg",
@@ -1056,7 +2774,8 @@
       "evidence": "medium",
       "notes": "ITP mice: +22% median lifespan (males). GI side effects.",
       "sources": [],
-      "in_portfolio": false
+      "in_portfolio": false,
+      "cost_per_qaly": null
     },
     {
       "id": "empagliflozin",
@@ -1074,7 +2793,8 @@
       "evidence": "high",
       "notes": "EMPA-REG: HR 0.68 CV death (diabetics). Off-label in healthy unclear.",
       "sources": [],
-      "in_portfolio": false
+      "in_portfolio": false,
+      "cost_per_qaly": 635635
     },
     {
       "id": "semaglutide",
@@ -1092,9 +2812,774 @@
       "evidence": "high",
       "notes": "SELECT trial: HR 0.80 MACE. Weight loss. Expensive, GI effects.",
       "sources": [],
-      "in_portfolio": false
+      "in_portfolio": false,
+      "cost_per_qaly": 374233
     }
   ],
+  "schedule": {
+    "morning_mix": [
+      {
+        "name": "Blueprint Creatine",
+        "brand": "Blueprint",
+        "type": "supplement",
+        "serving_size": "1 scoop",
+        "dose_notes": "5g morning mix",
+        "package_price": 37.8,
+        "servings_per_package": 30,
+        "daily_servings": 1.0,
+        "annual_cost": 460.0,
+        "source_url": "https://blueprint.bryanjohnson.com/products/creatine",
+        "ingredients": [
+          {
+            "ingredient": "Creatine Monohydrate",
+            "amount": 5000.0,
+            "unit": "mg"
+          }
+        ]
+      },
+      {
+        "name": "Blueprint Longevity Mix",
+        "brand": "Blueprint",
+        "type": "supplement",
+        "serving_size": "1 scoop (14.8g)",
+        "dose_notes": "Morning, mixed in water",
+        "package_price": 44.1,
+        "servings_per_package": 30,
+        "daily_servings": 1.0,
+        "annual_cost": 537.0,
+        "source_url": "https://blueprint.bryanjohnson.com/products/longevity-blend-multinutrient-drink-mix-blood-orange-flavor",
+        "ingredients": [
+          {
+            "ingredient": "CaAKG",
+            "amount": 2000.0,
+            "unit": "mg"
+          },
+          {
+            "ingredient": "Creatine Monohydrate",
+            "amount": 2500.0,
+            "unit": "mg"
+          },
+          {
+            "ingredient": "Glucosamine Sulfate",
+            "amount": 750.0,
+            "unit": "mg"
+          },
+          {
+            "ingredient": "Glycine",
+            "amount": 1200.0,
+            "unit": "mg"
+          },
+          {
+            "ingredient": "L-Lysine",
+            "amount": 1000.0,
+            "unit": "mg"
+          },
+          {
+            "ingredient": "L-Theanine",
+            "amount": 200.0,
+            "unit": "mg"
+          },
+          {
+            "ingredient": "Magnesium Citrate",
+            "amount": 150.0,
+            "unit": "mg"
+          },
+          {
+            "ingredient": "Reduced Glutathione",
+            "amount": 250.0,
+            "unit": "mg"
+          },
+          {
+            "ingredient": "Sodium Hyaluronate",
+            "amount": 120.0,
+            "unit": "mg"
+          },
+          {
+            "ingredient": "Taurine",
+            "amount": 1500.0,
+            "unit": "mg"
+          },
+          {
+            "ingredient": "Vitamin C",
+            "amount": 250.0,
+            "unit": "mg"
+          }
+        ]
+      },
+      {
+        "name": "Goddess Agave Inulin",
+        "brand": "Goddess",
+        "type": "supplement",
+        "serving_size": "1 tsp",
+        "dose_notes": "1 tsp morning mix",
+        "package_price": 17.99,
+        "servings_per_package": 90,
+        "daily_servings": 1.0,
+        "annual_cost": 73.0,
+        "source_url": "https://goddessall.com/products/prebiotic-blue-agave-inulin-powder-17-6oz-500g",
+        "ingredients": [
+          {
+            "ingredient": "Agave Inulin",
+            "amount": 4000.0,
+            "unit": "mg"
+          }
+        ]
+      },
+      {
+        "name": "LiftMode GOS",
+        "brand": "LiftMode",
+        "type": "supplement",
+        "serving_size": "0.5 tsp",
+        "dose_notes": "0.5 tsp morning",
+        "package_price": 18.88,
+        "servings_per_package": 167,
+        "daily_servings": 1.0,
+        "annual_cost": 41.0,
+        "source_url": "https://liftmode.com/products/galacto-oligosaccharides-gos-powder",
+        "ingredients": [
+          {
+            "ingredient": "Galactooligosaccharides (GOS)",
+            "amount": 1500.0,
+            "unit": "mg"
+          }
+        ]
+      },
+      {
+        "name": "Vital Nutrients Arabinogalactan",
+        "brand": "Vital Nutrients",
+        "type": "supplement",
+        "serving_size": "1 tsp",
+        "dose_notes": "1 tsp morning",
+        "package_price": 34.5,
+        "servings_per_package": 60,
+        "daily_servings": 1.0,
+        "annual_cost": 210.0,
+        "source_url": "https://www.amazon.com/dp/B00FRFQ2SM",
+        "ingredients": [
+          {
+            "ingredient": "Larch Arabinogalactan",
+            "amount": 3000.0,
+            "unit": "mg"
+          }
+        ]
+      }
+    ],
+    "meal_1": [
+      {
+        "name": "Blueprint Collagen Peptides",
+        "brand": "Blueprint",
+        "type": "supplement",
+        "serving_size": "1 scoop (22g)",
+        "dose_notes": "22g blended in nutty pudding",
+        "package_price": 45.0,
+        "servings_per_package": 30,
+        "daily_servings": 1.0,
+        "annual_cost": 548.0,
+        "source_url": "https://blueprint.bryanjohnson.com/products/collagen",
+        "ingredients": [
+          {
+            "ingredient": "Collagen Peptides (Types I & III)",
+            "amount": 20000.0,
+            "unit": "mg"
+          },
+          {
+            "ingredient": "Undenatured Type II Collagen",
+            "amount": 10.0,
+            "unit": "mg"
+          }
+        ]
+      },
+      {
+        "name": "Blueprint Essential Capsules",
+        "brand": "Blueprint",
+        "type": "supplement",
+        "serving_size": "3 capsules",
+        "dose_notes": "3 capsules with meal 1",
+        "package_price": 49.0,
+        "servings_per_package": 30,
+        "daily_servings": 1.0,
+        "annual_cost": 596.0,
+        "source_url": "https://blueprint.bryanjohnson.com/products/essentials-capsules",
+        "ingredients": [
+          {
+            "ingredient": "Biotin",
+            "amount": 50.0,
+            "unit": "mcg"
+          },
+          {
+            "ingredient": "Boron",
+            "amount": 3.0,
+            "unit": "mg"
+          },
+          {
+            "ingredient": "Broccoli Seed Extract",
+            "amount": 200.0,
+            "unit": "mg"
+          },
+          {
+            "ingredient": "Calcium",
+            "amount": 50.0,
+            "unit": "mg"
+          },
+          {
+            "ingredient": "Fisetin",
+            "amount": 100.0,
+            "unit": "mg"
+          },
+          {
+            "ingredient": "Folate",
+            "amount": 200.0,
+            "unit": "mcg"
+          },
+          {
+            "ingredient": "Glucoraphanin",
+            "amount": 20.0,
+            "unit": "mg"
+          },
+          {
+            "ingredient": "Iodine",
+            "amount": 200.0,
+            "unit": "mcg"
+          },
+          {
+            "ingredient": "Lactobacillus acidophilus",
+            "amount": 4.0,
+            "unit": "billion CFU"
+          },
+          {
+            "ingredient": "Lithium Orotate",
+            "amount": 1.0,
+            "unit": "mg"
+          },
+          {
+            "ingredient": "Luteolin",
+            "amount": 100.0,
+            "unit": "mg"
+          },
+          {
+            "ingredient": "Manganese",
+            "amount": 1.0,
+            "unit": "mg"
+          },
+          {
+            "ingredient": "Nicotinamide Riboside (NR)",
+            "amount": 300.0,
+            "unit": "mg"
+          },
+          {
+            "ingredient": "Selenium",
+            "amount": 28.0,
+            "unit": "mcg"
+          },
+          {
+            "ingredient": "Spermidine",
+            "amount": 10.0,
+            "unit": "mg"
+          },
+          {
+            "ingredient": "Ubiquinol (CoQ10)",
+            "amount": 50.0,
+            "unit": "mg"
+          },
+          {
+            "ingredient": "Vitamin B1 (Thiamine)",
+            "amount": 1.1,
+            "unit": "mg"
+          },
+          {
+            "ingredient": "Vitamin B12",
+            "amount": 125.0,
+            "unit": "mcg"
+          },
+          {
+            "ingredient": "Vitamin B2 (Riboflavin)",
+            "amount": 1.4,
+            "unit": "mg"
+          },
+          {
+            "ingredient": "Vitamin B3 (Niacin)",
+            "amount": 15.0,
+            "unit": "mg"
+          },
+          {
+            "ingredient": "Vitamin B5 (Pantothenic Acid)",
+            "amount": 6.0,
+            "unit": "mg"
+          },
+          {
+            "ingredient": "Vitamin B6",
+            "amount": 1.4,
+            "unit": "mg"
+          },
+          {
+            "ingredient": "Vitamin D",
+            "amount": 2000.0,
+            "unit": "IU"
+          },
+          {
+            "ingredient": "Vitamin E",
+            "amount": 67.0,
+            "unit": "mg"
+          },
+          {
+            "ingredient": "Zinc",
+            "amount": 15.0,
+            "unit": "mg"
+          }
+        ]
+      },
+      {
+        "name": "Blueprint NAC+Ginger+Curcumin",
+        "brand": "Blueprint",
+        "type": "supplement",
+        "serving_size": "3 capsules",
+        "dose_notes": "3 capsules, finishing container then switching to standalone NAC",
+        "package_price": 27.0,
+        "servings_per_package": 30,
+        "daily_servings": 1.0,
+        "annual_cost": 329.0,
+        "source_url": "https://blueprint.bryanjohnson.com/products/nac-ginger-capsules",
+        "ingredients": [
+          {
+            "ingredient": "Curcumin Extract",
+            "amount": 250.0,
+            "unit": "mg"
+          },
+          {
+            "ingredient": "Ginger Extract (26% gingerols)",
+            "amount": 400.0,
+            "unit": "mg"
+          },
+          {
+            "ingredient": "N-Acetyl-L-Cysteine (NAC)",
+            "amount": 1200.0,
+            "unit": "mg"
+          }
+        ]
+      },
+      {
+        "name": "Cistanche 200mg",
+        "brand": "Nootropics Depot",
+        "type": "supplement",
+        "serving_size": "1 capsule",
+        "dose_notes": "200mg with meal 1",
+        "package_price": 37.99,
+        "servings_per_package": 60,
+        "daily_servings": 1.0,
+        "annual_cost": 231.0,
+        "source_url": "https://www.amazon.com/dp/B08VTFXWQF",
+        "ingredients": [
+          {
+            "ingredient": "Cistanche tubulosa Extract",
+            "amount": 200.0,
+            "unit": "mg"
+          }
+        ]
+      },
+      {
+        "name": "Finasteride",
+        "brand": null,
+        "type": "prescription",
+        "serving_size": "1 tablet",
+        "dose_notes": "1.25mg daily (quarter 5mg tablet)",
+        "package_price": 14.99,
+        "servings_per_package": 32,
+        "daily_servings": 1.0,
+        "annual_cost": 171.0,
+        "source_url": null,
+        "ingredients": [
+          {
+            "ingredient": "Finasteride",
+            "amount": 1.25,
+            "unit": "mg"
+          }
+        ]
+      },
+      {
+        "name": "Kyolic Aged Garlic Extract",
+        "brand": "Wakunaga",
+        "type": "supplement",
+        "serving_size": "2 capsules",
+        "dose_notes": "2 capsules per meal, twice daily",
+        "package_price": 31.12,
+        "servings_per_package": 75,
+        "daily_servings": 1.0,
+        "annual_cost": 151.0,
+        "source_url": "https://www.amazon.com/dp/B00012NGIA",
+        "ingredients": [
+          {
+            "ingredient": "Aged Garlic Extract",
+            "amount": 600.0,
+            "unit": "mg"
+          }
+        ]
+      },
+      {
+        "name": "Lions Mane 1g",
+        "brand": "Host Defense",
+        "type": "supplement",
+        "serving_size": "2 capsules",
+        "dose_notes": "1g (2 capsules) with meal 1",
+        "package_price": 47.21,
+        "servings_per_package": 60,
+        "daily_servings": 1.0,
+        "annual_cost": 287.0,
+        "source_url": "https://www.amazon.com/dp/B00OVF9DVM",
+        "ingredients": [
+          {
+            "ingredient": "Lions Mane Extract (Hericium erinaceus)",
+            "amount": 1000.0,
+            "unit": "mg"
+          }
+        ]
+      },
+      {
+        "name": "Nordic Naturals Arctic Cod Liver Oil",
+        "brand": "Nordic Naturals",
+        "type": "supplement",
+        "serving_size": "1 softgel",
+        "dose_notes": "1 softgel with each meal",
+        "package_price": 42.46,
+        "servings_per_package": 90,
+        "daily_servings": 1.0,
+        "annual_cost": 172.0,
+        "source_url": "https://www.amazon.com/dp/B002CQU59Q",
+        "ingredients": [
+          {
+            "ingredient": "DHA",
+            "amount": 120.0,
+            "unit": "mg"
+          },
+          {
+            "ingredient": "EPA",
+            "amount": 80.0,
+            "unit": "mg"
+          },
+          {
+            "ingredient": "Total Omega-3s",
+            "amount": 250.0,
+            "unit": "mg"
+          },
+          {
+            "ingredient": "Vitamin A",
+            "amount": 63.0,
+            "unit": "mcg RAE"
+          }
+        ]
+      },
+      {
+        "name": "Vitamin D 2000 IU",
+        "brand": "NatureWise",
+        "type": "supplement",
+        "serving_size": "1 softgel",
+        "dose_notes": "2000 IU, standalone + in Essential Capsules",
+        "package_price": 13.42,
+        "servings_per_package": 360,
+        "daily_servings": 1.0,
+        "annual_cost": 14.0,
+        "source_url": "https://www.amazon.com/dp/B00GW4G4VS",
+        "ingredients": [
+          {
+            "ingredient": "Vitamin D3",
+            "amount": 2000.0,
+            "unit": "IU"
+          }
+        ]
+      },
+      {
+        "name": "Vitamin K2",
+        "brand": null,
+        "type": "supplement",
+        "serving_size": "1 capsule",
+        "dose_notes": "MK-7 + MK-4",
+        "package_price": 14.99,
+        "servings_per_package": 90,
+        "daily_servings": 1.0,
+        "annual_cost": 61.0,
+        "source_url": "https://www.amazon.com/dp/B00ETZQ5GM",
+        "ingredients": [
+          {
+            "ingredient": "Vitamin K2 MK-4",
+            "amount": 1000.0,
+            "unit": "mcg"
+          },
+          {
+            "ingredient": "Vitamin K2 MK-7",
+            "amount": 100.0,
+            "unit": "mcg"
+          }
+        ]
+      }
+    ],
+    "meal_2": [
+      {
+        "name": "Blueprint Advanced Antioxidants",
+        "brand": "Blueprint",
+        "type": "supplement",
+        "serving_size": "1 capsule",
+        "dose_notes": "1 capsule with meal 2",
+        "package_price": 49.0,
+        "servings_per_package": 30,
+        "daily_servings": 1.0,
+        "annual_cost": 596.0,
+        "source_url": "https://blueprint.bryanjohnson.com/products/advanced-antioxidants",
+        "ingredients": [
+          {
+            "ingredient": "Astaxanthin",
+            "amount": 12.0,
+            "unit": "mg"
+          },
+          {
+            "ingredient": "Lutein",
+            "amount": 10.0,
+            "unit": "mg"
+          },
+          {
+            "ingredient": "Lycopene",
+            "amount": 15.0,
+            "unit": "mg"
+          },
+          {
+            "ingredient": "Vitamin K1",
+            "amount": 1.5,
+            "unit": "mg"
+          },
+          {
+            "ingredient": "Vitamin K2 MK-4",
+            "amount": 5.0,
+            "unit": "mg"
+          },
+          {
+            "ingredient": "Vitamin K2 MK-7",
+            "amount": 0.6,
+            "unit": "mg"
+          },
+          {
+            "ingredient": "Zeaxanthin",
+            "amount": 2.0,
+            "unit": "mg"
+          }
+        ]
+      },
+      {
+        "name": "High-EPA Omega-3",
+        "brand": "Sports Research",
+        "type": "supplement",
+        "serving_size": "1 softgel",
+        "dose_notes": "1 softgel with meal 2",
+        "package_price": 27.95,
+        "servings_per_package": 90,
+        "daily_servings": 1.0,
+        "annual_cost": 113.0,
+        "source_url": "https://www.amazon.com/dp/B07DX89ZHN",
+        "ingredients": [
+          {
+            "ingredient": "DHA",
+            "amount": 488.0,
+            "unit": "mg"
+          },
+          {
+            "ingredient": "EPA",
+            "amount": 1250.0,
+            "unit": "mg"
+          },
+          {
+            "ingredient": "Total Omega-3s",
+            "amount": 2145.0,
+            "unit": "mg"
+          }
+        ]
+      },
+      {
+        "name": "Kyolic Aged Garlic Extract",
+        "brand": "Wakunaga",
+        "type": "supplement",
+        "serving_size": "2 capsules",
+        "dose_notes": "2 capsules per meal, twice daily",
+        "package_price": 31.12,
+        "servings_per_package": 75,
+        "daily_servings": 1.0,
+        "annual_cost": 151.0,
+        "source_url": "https://www.amazon.com/dp/B00012NGIA",
+        "ingredients": [
+          {
+            "ingredient": "Aged Garlic Extract",
+            "amount": 600.0,
+            "unit": "mg"
+          }
+        ]
+      },
+      {
+        "name": "Nordic Naturals Arctic Cod Liver Oil",
+        "brand": "Nordic Naturals",
+        "type": "supplement",
+        "serving_size": "1 softgel",
+        "dose_notes": "1 softgel with each meal",
+        "package_price": 42.46,
+        "servings_per_package": 90,
+        "daily_servings": 1.0,
+        "annual_cost": 172.0,
+        "source_url": "https://www.amazon.com/dp/B002CQU59Q",
+        "ingredients": [
+          {
+            "ingredient": "DHA",
+            "amount": 120.0,
+            "unit": "mg"
+          },
+          {
+            "ingredient": "EPA",
+            "amount": 80.0,
+            "unit": "mg"
+          },
+          {
+            "ingredient": "Total Omega-3s",
+            "amount": 250.0,
+            "unit": "mg"
+          },
+          {
+            "ingredient": "Vitamin A",
+            "amount": 63.0,
+            "unit": "mcg RAE"
+          }
+        ]
+      },
+      {
+        "name": "Tadalafil",
+        "brand": null,
+        "type": "prescription",
+        "serving_size": "1 tablet",
+        "dose_notes": "2.5mg daily",
+        "package_price": 20.72,
+        "servings_per_package": 30,
+        "daily_servings": 1.0,
+        "annual_cost": 252.0,
+        "source_url": null,
+        "ingredients": [
+          {
+            "ingredient": "Tadalafil",
+            "amount": 2.5,
+            "unit": "mg"
+          }
+        ]
+      }
+    ],
+    "before_bed": [
+      {
+        "name": "Apigenin 50mg",
+        "brand": "Double Wood",
+        "type": "supplement",
+        "serving_size": "1 capsule",
+        "dose_notes": "50mg before bed",
+        "package_price": 24.95,
+        "servings_per_package": 120,
+        "daily_servings": 1.0,
+        "annual_cost": 76.0,
+        "source_url": "https://www.amazon.com/dp/B09DGTBBSF",
+        "ingredients": [
+          {
+            "ingredient": "Apigenin",
+            "amount": 50.0,
+            "unit": "mg"
+          }
+        ]
+      },
+      {
+        "name": "Glycine 2g",
+        "brand": "NOW Foods",
+        "type": "supplement",
+        "serving_size": "1 scoop",
+        "dose_notes": "2g before bed",
+        "package_price": 17.4,
+        "servings_per_package": 227,
+        "daily_servings": 1.0,
+        "annual_cost": 28.0,
+        "source_url": "https://www.amazon.com/dp/B0013OVZJW",
+        "ingredients": [
+          {
+            "ingredient": "Glycine",
+            "amount": 2000.0,
+            "unit": "mg"
+          }
+        ]
+      },
+      {
+        "name": "Magnesium Lysinate Glycinate",
+        "brand": "Doctors Best",
+        "type": "supplement",
+        "serving_size": "1 capsule",
+        "dose_notes": "200mg before bed",
+        "package_price": 11.99,
+        "servings_per_package": 120,
+        "daily_servings": 1.0,
+        "annual_cost": 36.0,
+        "source_url": "https://www.amazon.com/dp/B000BD0RT0",
+        "ingredients": [
+          {
+            "ingredient": "Magnesium (as lysinate glycinate)",
+            "amount": 200.0,
+            "unit": "mg"
+          }
+        ]
+      },
+      {
+        "name": "Melatonin",
+        "brand": "Life Extension",
+        "type": "supplement",
+        "serving_size": "1 tablet",
+        "dose_notes": "1.5mg before bed",
+        "package_price": 7.5,
+        "servings_per_package": 100,
+        "daily_servings": 1.0,
+        "annual_cost": 27.0,
+        "source_url": "https://www.amazon.com/dp/B00CDAWFN2",
+        "ingredients": [
+          {
+            "ingredient": "Melatonin",
+            "amount": 1.5,
+            "unit": "mg"
+          }
+        ]
+      },
+      {
+        "name": "Taurine 500mg",
+        "brand": "BulkSupplements",
+        "type": "supplement",
+        "serving_size": "1 capsule",
+        "dose_notes": "500mg before bed",
+        "package_price": 23.97,
+        "servings_per_package": 500,
+        "daily_servings": 0.25,
+        "annual_cost": 4.0,
+        "source_url": "https://www.amazon.com/dp/B00ENSLW7A",
+        "ingredients": [
+          {
+            "ingredient": "Taurine",
+            "amount": 500.0,
+            "unit": "mg"
+          }
+        ]
+      },
+      {
+        "name": "Trazodone",
+        "brand": null,
+        "type": "prescription",
+        "serving_size": "1 tablet",
+        "dose_notes": "50mg before bed",
+        "package_price": 18.34,
+        "servings_per_package": 30,
+        "daily_servings": 1.0,
+        "annual_cost": 223.0,
+        "source_url": null,
+        "ingredients": [
+          {
+            "ingredient": "Trazodone",
+            "amount": 50.0,
+            "unit": "mg"
+          }
+        ]
+      }
+    ]
+  },
   "bundles": [
     {
       "id": "blueprint_longevity_mix",

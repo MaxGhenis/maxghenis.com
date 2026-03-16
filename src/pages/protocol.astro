@@ -5,7 +5,15 @@ import Footer from '../components/Footer.astro';
 import { SITE_TITLE } from '../consts';
 import protocolData from '../data/protocol-data.json';
 
-const { summary, supplements, bundles, portfolio, config, profile } = protocolData;
+const { summary, supplements, bundles, portfolio, config, profile, schedule } = protocolData;
+
+// Schedule slot display names
+const scheduleSlots = [
+	{ key: 'morning_mix', label: 'Morning mix' },
+	{ key: 'meal_1', label: 'Nutty pudding + pill batch 1' },
+	{ key: 'meal_2', label: 'Second meal + pill batch 2' },
+	{ key: 'before_bed', label: 'Before bed' },
+];
 
 // Group supplements by category
 const categories = [
@@ -37,53 +45,6 @@ const statusColors: Record<string, string> = {
 	watching: '#64748b',
 };
 
-// Time-of-day schedule for items currently being taken
-const timeSlots: Record<string, { label: string; items: { name: string; note?: string }[] }> = {
-	mix: {
-		label: 'Morning mix',
-		items: [
-			{ name: 'Blueprint Longevity Mix', note: 'powder base' },
-			{ name: 'Creatine 5g' },
-			{ name: 'Prebiotics combo' },
-		],
-	},
-	nutty_pudding: {
-		label: 'Nutty pudding + pill batch 1',
-		items: [
-			{ name: 'Finasteride 1.25mg' },
-			{ name: 'Omega-3 CLO (1 pill)', note: 'fat-soluble' },
-			{ name: 'NAC (2 of 3 pills)', note: '800mg' },
-			{ name: 'Vitamin D 2000 IU', note: 'fat-soluble' },
-			{ name: 'Vitamin K2 MK-7+MK-4', note: 'fat-soluble, synergy with D' },
-			{ name: 'Lions Mane 1g', note: '2 capsules' },
-			{ name: 'Cistanche 200mg' },
-			{ name: 'Blueprint Essential Capsules', note: 'bundle' },
-			{ name: 'Blueprint NAC+Ginger+Curcumin', note: 'finishing container, then switching to standalone NAC' },
-		],
-	},
-	super_veggie: {
-		label: 'Second meal + pill batch 2',
-		items: [
-			{ name: 'Tadalafil 2.5mg' },
-			{ name: 'Omega-3 CLO (1 pill)', note: 'fat-soluble' },
-			{ name: 'High-EPA Omega-3 +2g', note: 'fat-soluble' },
-			{ name: 'NAC (1 of 3 pills)', note: '400mg' },
-			{ name: 'Garlic 1200mg' },
-			{ name: 'Blueprint Advanced Antioxidants', note: 'bundle' },
-		],
-	},
-	evening: {
-		label: 'Before bed',
-		items: [
-			{ name: 'Trazodone 50mg', note: 'sleep maintenance' },
-			{ name: 'Melatonin 300mcg', note: 'sleep onset' },
-			{ name: 'Magnesium 200mg', note: 'relaxation, sleep quality' },
-			{ name: 'Glycine 2g', note: 'sleep quality, neuroprotective' },
-			{ name: 'Apigenin 50mg', note: 'anxiolytic, CD38 inhibitor' },
-			{ name: 'Taurine 500mg top-up', note: 'calming' },
-		],
-	},
-};
 ---
 
 <!doctype html>
@@ -150,6 +111,7 @@ const timeSlots: Record<string, { label: string; items: { name: string; note?: s
 								<th class="num">E[days]</th>
 								<th class="num">P(+)</th>
 								<th class="num">$/yr</th>
+								<th class="num">$/QALY</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -167,6 +129,7 @@ const timeSlots: Record<string, { label: string; items: { name: string; note?: s
 									<td class="num">+{s.days.toFixed(0)}</td>
 									<td class="num">{Math.round(s.p_benefit * 100)}%</td>
 									<td class="num">{s.annual_cost === 0 ? 'bundled' : `$${s.annual_cost}`}</td>
+									<td class="num">{s.cost_per_qaly ? `$${s.cost_per_qaly.toLocaleString()}` : 'bundled'}</td>
 								</tr>
 							))}
 						</tbody>
@@ -177,21 +140,28 @@ const timeSlots: Record<string, { label: string; items: { name: string; note?: s
 			<!-- Daily schedule -->
 			<section>
 				<h2>Daily schedule</h2>
-				<p>How the stack breaks down by time of day. Bundles contain multiple catalog items.</p>
+				<p>How the stack breaks down by time of day. Generated from a private health database I maintain on GitHub. Bundles contain multiple catalog items.</p>
 
-				{Object.entries(timeSlots).map(([key, slot]) => (
-					<div class="time-block">
-						<h3>{slot.label}</h3>
-						<div class="schedule-list">
-							{slot.items.map(item => (
-								<div class="schedule-item">
-									<span class="schedule-name">{item.name}</span>
-									{item.note && <span class="schedule-note">{item.note}</span>}
-								</div>
-							))}
+				{scheduleSlots.map(slot => {
+					const items = schedule[slot.key] || [];
+					return items.length > 0 && (
+						<div class="time-block">
+							<h3>{slot.label}</h3>
+							<div class="schedule-list">
+								{items.map(item => (
+									<div class="schedule-item">
+										<span class="schedule-name">
+											{item.source_url ? <a href={item.source_url}>{item.name}</a> : item.name}
+										</span>
+										{item.dose_notes && <span class="schedule-note">{item.dose_notes}</span>}
+										{item.annual_cost > 0 && <span class="schedule-cost">${item.annual_cost}/yr</span>}
+										{item.annual_cost === 0 && <span class="schedule-cost bundled">bundled</span>}
+									</div>
+								))}
+							</div>
 						</div>
-					</div>
-				))}
+					);
+				})}
 			</section>
 
 			<!-- Meals -->
@@ -200,26 +170,31 @@ const timeSlots: Record<string, { label: string; items: { name: string; note?: s
 				<p>I follow <a href="https://blueprint.bryanjohnson.com">Blueprint</a> meals with some modifications. Nutty pudding is daily; super veggie about half of days.</p>
 
 				<h3>Nutty pudding</h3>
-				<p>Based on <a href="https://www.reddit.com/r/blueprint_/comments/1jlu0dv/whats_the_latest_nutty_pudding_recipe/">Bryan Johnson's recipe</a>. My modifications: double the cocoa powder (extra flavanols) and blend in collagen.</p>
+				<p>Based on <a href="https://www.reddit.com/r/blueprint_/comments/1jlu0dv/whats_the_latest_nutty_pudding_recipe/">Bryan Johnson's recipe</a>. My modifications: double the cocoa powder (extra flavanols) and blend in collagen. I blend 4 servings at a time and refrigerate.</p>
 
-				<p><strong>Blended base:</strong></p>
-				<ul>
-					<li>60 ml pomegranate juice</li>
-					<li>50&ndash;100 ml nut milk</li>
-					<li>3 tbsp ground macadamia nuts</li>
-					<li>2 tsp ground walnuts</li>
-					<li>1 tsp ground flaxseed</li>
-					<li>1/4 Brazil nut</li>
-					<li>1/4 cup berries + 3 cherries</li>
-					<li>1 tsp sunflower lecithin</li>
-					<li>1/2 tsp ceylon cinnamon</li>
-					<li>Blueprint Cocoa 12g (2x standard 6g)</li>
-					<li>1 tbsp EVOO</li>
-					<li>Collagen 22g</li>
-					<li>Blueprint Metabolic Protein</li>
+				<p><strong>Blended base:</strong>
+					<span class="np-toggle">
+						<button class="np-toggle-btn active" data-servings="1">x1</button>
+						<button class="np-toggle-btn" data-servings="4">x4</button>
+					</span>
+				</p>
+				<ul class="np-recipe">
+					<li><span class="np-qty" data-x1="60 ml" data-x4="1 cup">60 ml</span> pomegranate juice</li>
+					<li><span class="np-qty" data-x1="50&ndash;100 ml" data-x4="1 cup">50&ndash;100 ml</span> nut milk</li>
+					<li><span class="np-qty" data-x1="3 tbsp" data-x4="&frac34; cup">3 tbsp</span> ground macadamia nuts</li>
+					<li><span class="np-qty" data-x1="2 tsp" data-x4="2 tbsp + 2 tsp">2 tsp</span> ground walnuts</li>
+					<li><span class="np-qty" data-x1="1 tsp" data-x4="1 tbsp + 1 tsp">1 tsp</span> ground flaxseed</li>
+					<li><span class="np-qty" data-x1="&frac14;" data-x4="1">&frac14;</span> Brazil nut</li>
+					<li><span class="np-qty" data-x1="&frac14; cup berries + 3 cherries" data-x4="1 cup berries + 12 cherries">&frac14; cup berries + 3 cherries</span></li>
+					<li><span class="np-qty" data-x1="1 tsp" data-x4="1 tbsp + 1 tsp">1 tsp</span> sunflower lecithin</li>
+					<li><span class="np-qty" data-x1="&frac12; tsp" data-x4="2 tsp">&frac12; tsp</span> ceylon cinnamon</li>
+					<li><span class="np-qty" data-x1="6g" data-x4="24g">6g</span> Blueprint Cocoa (in addition to 6g in bulk mix, for 12g total per serving)</li>
+					<li><span class="np-qty" data-x1="22g" data-x4="88g">22g</span> Collagen</li>
+					<li><span class="np-qty" data-x1="1 scoop" data-x4="4 scoops">1 scoop</span> Blueprint Metabolic Protein</li>
 				</ul>
-				<p><strong>Toppings:</strong></p>
+				<p><strong>Toppings (per serving):</strong></p>
 				<ul>
+					<li>1 tbsp EVOO</li>
 					<li>Blueprint Blueberry Nut Mix</li>
 					<li>2 tbsp chia seeds</li>
 					<li>1/4 cup berries</li>
@@ -240,6 +215,42 @@ const timeSlots: Record<string, { label: string; items: { name: string; note?: s
 					<li>Hummus</li>
 					<li><a href="https://www.amazon.com/CLEVELAND-KRAUT-Classic-Kimchi-16/dp/B098PVNV18/">Cleveland Kitchen kimchi</a></li>
 				</ul>
+			</section>
+
+			<!-- Bulk prep -->
+			<section>
+				<h2>Bulk prep</h2>
+				<p>I pre-mix dry ingredients in bulk to reduce daily prep to a single scoop.</p>
+
+				<h3>Nutty pudding dry mix (22 servings)</h3>
+				<p>Fills a 1-gallon glass mason jar. Scoop &frac34; cup per serving, then add fresh ingredients.</p>
+				<div class="table-wrapper">
+					<table>
+						<thead>
+							<tr>
+								<th>Ingredient</th>
+								<th class="num">Per serving</th>
+								<th class="num">&times;22 (full jar)</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr><td>Ground macadamia nuts</td><td class="num">3 tbsp</td><td class="num">4&frac18; cups</td></tr>
+							<tr><td>Pea / metabolic protein</td><td class="num">~3 tbsp</td><td class="num">4&frac18; cups</td></tr>
+							<tr><td>Chia seeds</td><td class="num">2 tbsp</td><td class="num">2&frac34; cups</td></tr>
+							<tr><td>Collagen protein</td><td class="num">~1 tbsp</td><td class="num">1&frac38; cups</td></tr>
+							<tr><td>Blueprint Cocoa (6g standard)</td><td class="num">~1 tbsp</td><td class="num">1&frac38; cups</td></tr>
+							<tr><td>Ground walnuts</td><td class="num">2 tsp</td><td class="num">1 cup</td></tr>
+							<tr><td>Ground flax seeds</td><td class="num">1 tsp</td><td class="num">&frac12; cup</td></tr>
+							<tr><td>Sunflower lecithin</td><td class="num">1 tsp</td><td class="num">&frac12; cup</td></tr>
+							<tr><td>Ceylon cinnamon</td><td class="num">&frac12; tsp</td><td class="num">&frac14; cup</td></tr>
+						</tbody>
+					</table>
+				</div>
+				<p><strong>Mixing order:</strong> finest powders first (cinnamon, cocoa, lecithin, flax), then proteins (pea/metabolic, collagen), then coarsest (ground nuts, chia seeds). Shake hard to combine; shake before each scoop.</p>
+				<p><strong>Add fresh per serving:</strong> &frac14; cup berries, 3 cherries, &frac14; Brazil nut, 50&ndash;100 ml nut milk, 60 ml pomegranate juice, 1 tbsp EVOO.</p>
+
+				<h3>Morning mix powders</h3>
+				<p>I pre-mix the morning drink powders (Blueprint Longevity Mix, Blueprint Creatine, prebiotics) into a smaller mason jar. Each powder has its own scoop, so I measure out several days' worth at a time and shake to combine. Daily prep is then a single scoop into water.</p>
 			</section>
 
 			<!-- Exercise -->
@@ -411,7 +422,7 @@ const timeSlots: Record<string, { label: string; items: { name: string; note?: s
 				<h3>Devices</h3>
 				<ul>
 					<li><strong>Eight Sleep Pod 5</strong> &mdash; bed temperature control, sleep scoring, HRV, respiratory rate, snoring detection, sleep stages</li>
-					<li><strong>Whoop</strong> &mdash; recovery score, strain, HRV, RHR, SPO2, sleep performance</li>
+					<li><strong>Whoop MG</strong> &mdash; recovery score, strain, HRV, RHR, SPO2, sleep performance</li>
 				</ul>
 
 				<h3>Environmental interventions</h3>
@@ -457,7 +468,7 @@ const timeSlots: Record<string, { label: string; items: { name: string; note?: s
 					<li><strong>Sleep apnea</strong> &mdash; Bayesian estimate: 66% probability based on SPO2 patterns, snoring, and family history. Pending home sleep study. Treatment options: CPAP, Inspire nerve stimulator, Dayvigo (lemborexant).</li>
 					<li><strong>Rapamycin</strong> &mdash; strongest longevity candidate in the Rx list (ITP mice +26% lifespan). Requires physician willing to prescribe off-label. Immunosuppression concern.</li>
 					<li><strong>Semaglutide</strong> &mdash; SELECT trial HR 0.80 for MACE. High cost ($6K/yr) but enormous effect size. Watching for generic timeline.</li>
-					<li><strong>Lion's mane, cistanche</strong> &mdash; recently purchased but not yet started. Low evidence confidence but low cost.</li>
+					<li><strong>Lion's mane, cistanche</strong> &mdash; recently added to stack. Low evidence confidence but low cost.</li>
 					<li><strong>Trazodone alternatives</strong> &mdash; wears off at 4-5h. Evaluating lemborexant (Dayvigo) for better second-half sleep maintenance.</li>
 				</ul>
 			</section>
@@ -553,6 +564,16 @@ const timeSlots: Record<string, { label: string; items: { name: string; note?: s
 	.schedule-note {
 		font-size: 0.8125rem;
 		color: var(--ink-muted);
+	}
+
+	.schedule-cost {
+		font-size: 0.75rem;
+		color: var(--ink-muted);
+		font-variant-numeric: tabular-nums;
+	}
+
+	.schedule-cost.bundled {
+		font-style: italic;
 	}
 
 	@media (max-width: 768px) {
@@ -824,4 +845,56 @@ const timeSlots: Record<string, { label: string; items: { name: string; note?: s
 			padding: 0.5rem;
 		}
 	}
+
+	/* NP recipe toggle */
+	.np-toggle {
+		display: inline-flex;
+		gap: 0;
+		margin-left: 0.5rem;
+		border: 1px solid rgba(15, 23, 42, 0.15);
+		border-radius: 4px;
+		overflow: hidden;
+		vertical-align: middle;
+	}
+
+	.np-toggle-btn {
+		background: transparent;
+		border: none;
+		padding: 0.125rem 0.625rem;
+		font-size: 0.8125rem;
+		font-weight: 600;
+		cursor: pointer;
+		color: var(--ink-muted);
+		transition: all 0.15s ease;
+	}
+
+	.np-toggle-btn.active {
+		background: var(--ink);
+		color: #fff;
+	}
+
+	.np-toggle-btn:not(.active):hover {
+		background: rgba(15, 23, 42, 0.05);
+	}
+
+	.np-qty {
+		font-weight: 600;
+		color: var(--ink);
+	}
 </style>
+
+<script>
+	document.querySelectorAll('.np-toggle-btn').forEach(btn => {
+		btn.addEventListener('click', () => {
+			const servings = btn.dataset.servings;
+			document.querySelectorAll('.np-toggle-btn').forEach(b => b.classList.remove('active'));
+			btn.classList.add('active');
+			document.querySelectorAll('.np-qty').forEach(qty => {
+				const key = `x${servings}`;
+				if (qty.dataset[key]) {
+					qty.innerHTML = qty.dataset[key];
+				}
+			});
+		});
+	});
+</script>
