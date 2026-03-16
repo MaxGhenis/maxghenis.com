@@ -3506,13 +3506,13 @@
         "name": "Ashwagandha KSM-66 600mg",
         "brand": "Nootropics Depot",
         "type": "supplement",
-        "serving_size": "1 capsule",
-        "dose_notes": "600mg before bed",
-        "package_price": 19.95,
+        "serving_size": "2 capsules",
+        "dose_notes": "600mg (2 x 300mg caps) before bed",
+        "package_price": 21.99,
         "servings_per_package": 90,
         "daily_servings": 1.0,
-        "annual_cost": 81.0,
-        "source_url": "https://www.amazon.com/dp/B08FX2NS51",
+        "annual_cost": 89.0,
+        "source_url": "https://www.amazon.com/dp/B01CZ2EFT2",
         "ingredients": [
           {
             "ingredient": "Ashwagandha Root Extract (KSM-66)",
