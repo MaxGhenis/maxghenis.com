@@ -18,8 +18,8 @@
     "total_days": 1586.6,
     "total_qaly": 4.3439,
     "catalog_size": 59,
-    "db_products": 24,
-    "db_ingredients": 73
+    "db_products": 26,
+    "db_ingredients": 75
   },
   "supplements": [
     {
@@ -3309,6 +3309,25 @@
             "unit": "mcg"
           }
         ]
+      },
+      {
+        "name": "Zinc Carnosine 75mg",
+        "brand": "Integrative Therapeutics",
+        "type": "supplement",
+        "serving_size": "1 capsule",
+        "dose_notes": "75mg with meal 1",
+        "package_price": 25.2,
+        "servings_per_package": 60,
+        "daily_servings": 1.0,
+        "annual_cost": 153.0,
+        "source_url": "https://www.amazon.com/dp/B000FGXJ5A",
+        "ingredients": [
+          {
+            "ingredient": "Zinc Carnosine (PepZin GI)",
+            "amount": 75.0,
+            "unit": "mg"
+          }
+        ]
       }
     ],
     "meal_2": [
@@ -3479,6 +3498,25 @@
           {
             "ingredient": "Apigenin",
             "amount": 50.0,
+            "unit": "mg"
+          }
+        ]
+      },
+      {
+        "name": "Ashwagandha KSM-66 600mg",
+        "brand": "Nootropics Depot",
+        "type": "supplement",
+        "serving_size": "1 capsule",
+        "dose_notes": "600mg before bed",
+        "package_price": 19.95,
+        "servings_per_package": 90,
+        "daily_servings": 1.0,
+        "annual_cost": 81.0,
+        "source_url": "https://www.amazon.com/dp/B08FX2NS51",
+        "ingredients": [
+          {
+            "ingredient": "Ashwagandha Root Extract (KSM-66)",
+            "amount": 600.0,
             "unit": "mg"
           }
         ]
