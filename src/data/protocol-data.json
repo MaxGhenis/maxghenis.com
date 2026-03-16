@@ -2790,9 +2790,9 @@
         "serving_size": "1 scoop",
         "dose_notes": "5g morning mix",
         "package_price": 37.8,
-        "servings_per_package": 30,
+        "servings_per_package": 100,
         "daily_servings": 1.0,
-        "annual_cost": 460.0,
+        "annual_cost": 138.0,
         "source_url": "https://blueprint.bryanjohnson.com/products/creatine",
         "ingredients": [
           {
