@@ -201,11 +201,8 @@ for r in result.item_results:
         "notes": entry.notes,
         "sources": list(entry.sources) if entry.sources else [],
         "in_portfolio": r["id"] in result.selected_ids,
+        "cost_per_qaly": round(r["cost_per_qaly"]) if r.get("cost_per_qaly") else None,
     }
-    # $/QALY = total cost over horizon / QALYs gained
-    qaly = r["days"] / 365.25
-    total_cost = entry.annual_cost * config.horizon_years
-    s["cost_per_qaly"] = round(total_cost / qaly) if qaly > 0 and entry.annual_cost > 0 else None
     enrich_with_db(s)
     supplements.append(s)
 
@@ -281,6 +278,8 @@ data = {
     "config": {
         "wtp": config.wtp,
         "horizon_years": config.horizon_years,
+        "qaly_discount_rate": config.qaly_discount_rate,
+        "cost_discount_rate": config.cost_discount_rate,
         "pub_bias_shrinkage": config.pub_bias_shrinkage,
         "n_simulations": config.n_simulations,
     },
