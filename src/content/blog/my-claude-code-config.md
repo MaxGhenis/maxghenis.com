@@ -5,20 +5,24 @@ pubDate: 'Feb 25 2026'
 heroImage: './og-blog.png'
 ---
 
-Anthropic launched Claude Code on February 24, 2025. I [tweeted about it](https://x.com/MaxGhenis) three times on day one. A year later, it's my primary development environment, and I've mass-customized the `~/.claude` directory that powers it.
+_Update (March 27, 2026): I've shifted most of my day-to-day coding to Codex lately, but this is still the clearest writeup of how I spent a year using Claude Code, what I customized, and which workflow ideas still carry over._
 
-### A year in numbers
+Anthropic launched Claude Code on February 24, 2025. I [tweeted about it](https://x.com/MaxGhenis) three times on day one. A year later, it had become my primary development environment, and I'd mass-customized the `~/.claude` directory that powers it.
+
+### Recent usage stats
 
 | Stat | Value |
 |------|-------|
-| Tokens consumed | 10.2 billion |
-| Messages sent | 520,000+ |
+| Date range covered | Dec 12, 2025 to Feb 18, 2026 |
+| Messages sent | 520,379 |
 | Sessions | 2,346 |
 | Tweets about Claude Code | ~33 |
-| Peak API spend (Aug 2025) | $5,861/month |
+| Peak API-equivalent month | $5,861 |
 | Biggest single day (Feb 7, 2026) | $505 equivalent |
 
-I started on the API, paying per-token. August 2025 hit $5,861. On July 20, 2025, I switched to the Max plan ($200/month, unlimited usage) and added a second subscription on a personal account in February 2026. The $200 plan replaced a $6K/month habit.
+These are not true lifetime totals. My surviving local Claude stats on this machine currently cover December 12, 2025 through February 18, 2026, which was also the period when Claude Code became my default environment and my usage was heaviest.
+
+I never actually paid per-token API prices. But at one point my Claude Max usage reached an API-equivalent run rate of $5,861 for the month. Max turned what would have been a roughly $6K/month habit into a $200/month subscription, and I added a second subscription on a personal account in February 2026.
 
 My IDE journey followed a similar arc of simplification. I went from VS Code to VS Code + [TerminalGrid](/blog/terminalgrid) (a custom extension for running multiple Claude Code sessions) to iTerm2 + tmux. Each migration stripped away a layer of complexity. The tmux setup I use now is three small config changes --- the TerminalGrid extension was hundreds of lines of TypeScript solving the same problem worse.
 

@@ -1,0 +1,326 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE } from '../consts';
+import protocolData from '../data/protocol-data.json';
+
+const { current_stack, optimal_portfolio, supplements } = protocolData;
+
+const byId = Object.fromEntries(supplements.map((supplement) => [supplement.id, supplement]));
+
+const currentItems = current_stack.item_ids.map((id) => byId[id]).filter(Boolean);
+const frontierItems = optimal_portfolio.item_ids.map((id) => byId[id]).filter(Boolean);
+
+const currentSet = new Set(current_stack.item_ids);
+const frontierSet = new Set(optimal_portfolio.item_ids);
+
+const adds = frontierItems.filter((item) => !currentSet.has(item.id));
+const drops = currentItems.filter((item) => !frontierSet.has(item.id));
+const keeps = frontierItems.filter((item) => currentSet.has(item.id));
+
+const fmt = new Intl.NumberFormat('en-US');
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Protocol Compare | ${SITE_TITLE}`} description="Side-by-side comparison of the current stack and ranked protocol frontier." />
+	</head>
+	<body>
+		<Header />
+		<main class="compare-page">
+			<header class="hero">
+				<h1>Protocol Compare</h1>
+				<p>Current stack vs the latest ranked Optiqal frontier. No default cutoff.</p>
+			</header>
+
+			<section class="summary-grid">
+				<div class="summary-card current">
+					<h2>Current</h2>
+					<div class="metric">{current_stack.item_ids.length} items</div>
+					<div class="metric">${fmt.format(current_stack.total_annual_cost)}/yr</div>
+					<div class="metric">+{current_stack.adjusted_days.toFixed(1)} days</div>
+					<div class="submetric">{current_stack.adjusted_qaly.toFixed(4)} QALY</div>
+				</div>
+				<div class="summary-card optimal">
+					<h2>Ranked Frontier</h2>
+					<div class="metric">{optimal_portfolio.item_ids.length} items</div>
+					<div class="metric">${fmt.format(optimal_portfolio.total_annual_cost)}/yr</div>
+					<div class="metric">+{optimal_portfolio.adjusted_days.toFixed(1)} days</div>
+					<div class="submetric">{optimal_portfolio.adjusted_qaly.toFixed(4)} QALY</div>
+				</div>
+				<div class="summary-card delta">
+					<h2>Delta</h2>
+					<div class="metric">+{(optimal_portfolio.adjusted_days - current_stack.adjusted_days).toFixed(1)} days</div>
+					<div class="metric">+${fmt.format(optimal_portfolio.total_annual_cost - current_stack.total_annual_cost)}/yr</div>
+					<div class="submetric">{adds.length} adds, {drops.length} drops, {keeps.length} keeps</div>
+				</div>
+			</section>
+
+			<section class="columns">
+				<div class="column">
+					<h2>Current Stack</h2>
+					<table>
+						<thead>
+							<tr>
+								<th>Item</th>
+								<th class="num">Days</th>
+								<th class="num">$/yr</th>
+								<th>Model</th>
+							</tr>
+						</thead>
+						<tbody>
+							{currentItems.map((item) => (
+								<tr>
+									<td>{item.name}</td>
+									<td class="num">{item.days.toFixed(1)}</td>
+									<td class="num">{item.annual_cost === 0 ? 'bundled' : `$${fmt.format(item.annual_cost)}`}</td>
+									<td><span class={`source source-${item.qaly_source}`}>{item.qaly_source}</span></td>
+								</tr>
+							))}
+						</tbody>
+					</table>
+				</div>
+
+				<div class="column">
+					<h2>Ranked Frontier</h2>
+					<table>
+						<thead>
+							<tr>
+								<th>Item</th>
+								<th class="num">Days</th>
+								<th class="num">$/yr</th>
+								<th>Model</th>
+							</tr>
+						</thead>
+						<tbody>
+							{frontierItems.map((item) => (
+								<tr>
+									<td>{item.name}</td>
+									<td class="num">{item.days.toFixed(1)}</td>
+									<td class="num">{item.annual_cost === 0 ? 'bundled' : `$${fmt.format(item.annual_cost)}`}</td>
+									<td><span class={`source source-${item.qaly_source}`}>{item.qaly_source}</span></td>
+								</tr>
+							))}
+						</tbody>
+					</table>
+				</div>
+			</section>
+
+			<section class="changes-grid">
+				<div class="change-card add">
+					<h2>Adds</h2>
+					<ul>
+						{adds.map((item) => (
+							<li>
+								<strong>{item.name}</strong>
+								<span>+{item.days.toFixed(1)}d</span>
+								<span>{item.annual_cost === 0 ? 'bundled' : `$${fmt.format(item.annual_cost)}/yr`}</span>
+							</li>
+						))}
+					</ul>
+				</div>
+				<div class="change-card keep">
+					<h2>Keeps</h2>
+					<ul>
+						{keeps.map((item) => (
+							<li>
+								<strong>{item.name}</strong>
+								<span>+{item.days.toFixed(1)}d</span>
+								<span>{item.annual_cost === 0 ? 'bundled' : `$${fmt.format(item.annual_cost)}/yr`}</span>
+							</li>
+						))}
+					</ul>
+				</div>
+				<div class="change-card drop">
+					<h2>Drops</h2>
+					<ul>
+						{drops.map((item) => (
+							<li>
+								<strong>{item.name}</strong>
+								<span>{item.days >= 0 ? '+' : ''}{item.days.toFixed(1)}d</span>
+								<span>{item.annual_cost === 0 ? 'bundled' : `$${fmt.format(item.annual_cost)}/yr`}</span>
+							</li>
+						))}
+					</ul>
+				</div>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	:global(body) {
+		background: #f5f0e8;
+		color: #1f1b16;
+	}
+
+	.compare-page {
+		max-width: 1500px;
+		margin: 0 auto;
+		padding: 2rem 1.25rem 4rem;
+	}
+
+	.hero {
+		margin-bottom: 1.5rem;
+	}
+
+	.hero h1 {
+		font-size: clamp(2rem, 5vw, 3.5rem);
+		margin: 0 0 0.5rem;
+	}
+
+	.hero p {
+		margin: 0;
+		font-size: 1.05rem;
+		color: #5b5348;
+	}
+
+	.summary-grid,
+	.changes-grid,
+	.columns {
+		display: grid;
+		gap: 1rem;
+	}
+
+	.summary-grid,
+	.changes-grid {
+		grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+		margin-bottom: 1.25rem;
+	}
+
+	.columns {
+		grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+		margin-bottom: 1.25rem;
+		align-items: start;
+	}
+
+	.summary-card,
+	.column,
+	.change-card {
+		background: rgba(255, 255, 255, 0.78);
+		border: 1px solid rgba(31, 27, 22, 0.1);
+		border-radius: 20px;
+		padding: 1rem 1.1rem;
+		box-shadow: 0 8px 30px rgba(31, 27, 22, 0.05);
+	}
+
+	.summary-card.current {
+		background: linear-gradient(135deg, rgba(16, 185, 129, 0.12), rgba(255, 255, 255, 0.9));
+	}
+
+	.summary-card.optimal {
+		background: linear-gradient(135deg, rgba(37, 99, 235, 0.12), rgba(255, 255, 255, 0.9));
+	}
+
+	.summary-card.delta {
+		background: linear-gradient(135deg, rgba(217, 119, 6, 0.12), rgba(255, 255, 255, 0.9));
+	}
+
+	h2 {
+		margin-top: 0;
+		margin-bottom: 0.75rem;
+		font-size: 1.1rem;
+	}
+
+	.metric {
+		font-size: 1.6rem;
+		font-weight: 700;
+		line-height: 1.1;
+		margin-bottom: 0.35rem;
+	}
+
+	.submetric {
+		color: #5b5348;
+	}
+
+	table {
+		width: 100%;
+		border-collapse: collapse;
+		font-size: 0.95rem;
+	}
+
+	th,
+	td {
+		padding: 0.55rem 0.4rem;
+		border-bottom: 1px solid rgba(31, 27, 22, 0.08);
+		text-align: left;
+		vertical-align: top;
+	}
+
+	th {
+		font-size: 0.8rem;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+		color: #746b60;
+	}
+
+	.num {
+		text-align: right;
+		white-space: nowrap;
+	}
+
+	.source {
+		display: inline-block;
+		padding: 0.18rem 0.45rem;
+		border-radius: 999px;
+		font-size: 0.72rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+	}
+
+	.source-ground_up {
+		background: rgba(16, 185, 129, 0.12);
+		color: #047857;
+	}
+
+	.source-catalog {
+		background: rgba(37, 99, 235, 0.12);
+		color: #1d4ed8;
+	}
+
+	.change-card ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	.change-card li {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) auto auto;
+		gap: 0.6rem;
+		padding: 0.55rem 0;
+		border-bottom: 1px solid rgba(31, 27, 22, 0.08);
+		align-items: baseline;
+	}
+
+	.change-card li:last-child {
+		border-bottom: 0;
+	}
+
+	.change-card.add {
+		background: linear-gradient(180deg, rgba(37, 99, 235, 0.08), rgba(255, 255, 255, 0.85));
+	}
+
+	.change-card.keep {
+		background: linear-gradient(180deg, rgba(16, 185, 129, 0.08), rgba(255, 255, 255, 0.85));
+	}
+
+	.change-card.drop {
+		background: linear-gradient(180deg, rgba(239, 68, 68, 0.08), rgba(255, 255, 255, 0.85));
+	}
+
+	@media (max-width: 720px) {
+		.columns {
+			grid-template-columns: 1fr;
+		}
+
+		.change-card li {
+			grid-template-columns: 1fr;
+			gap: 0.15rem;
+		}
+	}
+</style>

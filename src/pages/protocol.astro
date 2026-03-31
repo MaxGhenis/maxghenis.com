@@ -5,7 +5,9 @@ import Footer from '../components/Footer.astro';
 import { SITE_TITLE } from '../consts';
 import protocolData from '../data/protocol-data.json';
 
-const { summary, supplements, bundles, portfolio, config, profile, schedule } = protocolData;
+const { summary, supplements, bundles, portfolio, config, profile, schedule, meal_costs = {} } = protocolData;
+const nuttyPuddingCost = meal_costs.nutty_pudding ?? null;
+const superVeggieCost = meal_costs.super_veggie ?? null;
 
 // Schedule slot display names
 const scheduleSlots = [
@@ -28,15 +30,26 @@ const grouped = Object.fromEntries(
 	categories.map(c => [c.key, supplements.filter(s => s.category === c.key)])
 );
 
+function standaloneRank(a, b) {
+	const aPositive = a.days > 0 ? 0 : 1;
+	const bPositive = b.days > 0 ? 0 : 1;
+	if (aPositive !== bPositive) return aPositive - bPositive;
+	const aRatio = a.cost_per_qaly ?? (a.days > 0 ? -1 : Number.POSITIVE_INFINITY);
+	const bRatio = b.cost_per_qaly ?? (b.days > 0 ? -1 : Number.POSITIVE_INFINITY);
+	if (aRatio !== bRatio) return aRatio - bRatio;
+	return b.days - a.days;
+}
+
 // Top items by gross value (in portfolio)
 const coreStack = supplements
 	.filter(s => s.in_portfolio && (s.category === 'rx_current' || s.category === 'supplement_current' || s.category === 'supplement_bought'))
+	.sort(standaloneRank)
 	.slice(0, 15);
 
 // Excluded items (not in portfolio, not candidates)
 const excluded = supplements
 	.filter(s => !s.in_portfolio && s.category !== 'rx_candidate' && s.category !== 'supplement_candidate')
-	.sort((a, b) => b.gross_value - a.gross_value);
+	.sort(standaloneRank);
 
 const statusColors: Record<string, string> = {
 	taking: '#059669',
@@ -44,6 +57,10 @@ const statusColors: Record<string, string> = {
 	considering: '#6366f1',
 	watching: '#64748b',
 };
+
+function formatMoney(value) {
+	return `$${Number(value || 0).toFixed(2)}`;
+}
 
 ---
 
@@ -71,15 +88,15 @@ const statusColors: Record<string, string> = {
 				<div class="stats-grid">
 					<div class="stat-card">
 						<div class="stat-value">{summary.total_items}</div>
-						<div class="stat-label">Daily items</div>
+						<div class="stat-label">Ranked items</div>
 					</div>
 					<div class="stat-card">
 						<div class="stat-value">${summary.total_annual_cost.toLocaleString()}</div>
-						<div class="stat-label">Annual cost</div>
+						<div class="stat-label">Frontier annual cost</div>
 					</div>
 					<div class="stat-card">
 						<div class="stat-value">+{Math.round(summary.total_days / 365.25 * 10) / 10}yr</div>
-						<div class="stat-label">Expected gain</div>
+						<div class="stat-label">Frontier gain</div>
 					</div>
 					<div class="stat-card">
 						<div class="stat-value">2</div>
@@ -92,8 +109,8 @@ const statusColors: Record<string, string> = {
 			<section>
 				<h2>Philosophy</h2>
 				<p>I treat health optimization as a portfolio problem under uncertainty. Each intervention has an expected benefit (measured in <a href="https://en.wikipedia.org/wiki/Quality-adjusted_life_year">QALYs</a>), a cost, and uncertainty about whether the observed effect is causal or confounded.</p>
-				<p>The framework: estimate each intervention's hazard ratio from literature, shrink it 30% toward null to correct for publication bias, apply a Bayesian confounding prior to discount observational evidence, simulate 50,000 Monte Carlo samples through CDC life tables, then greedily select the highest expected-value stack under a budget.</p>
-				<p>Key parameters: willingness-to-pay of $200K per QALY, 40-year horizon, diminishing returns (each additional item gets 95% of the prior item's benefit, floor at 80%), and a complexity penalty beyond 3 items (0.0005 QALYs/yr per extra item). This penalizes sprawling regimens while still allowing justified expansion.</p>
+				<p>The framework: estimate each intervention's hazard ratio from literature, shrink it toward null to correct for publication bias, apply a Bayesian confounding prior to discount observational evidence, simulate 50,000 Monte Carlo samples through CDC life tables, and account for explicit interaction penalties and shared product costs.</p>
+				<p>For my personal protocol, I do not use a hard willingness-to-pay cutoff. I rank items by <em>marginal cost per QALY</em> after interaction penalties, then decide where to stop.</p>
 				<p>I am not a doctor. I have no medical training. This is <em>expected value reasoning applied to personal health decisions</em>, not clinical guidance. Most of these effect sizes are small, uncertain, and could be entirely confounded.</p>
 			</section>
 
@@ -166,12 +183,40 @@ const statusColors: Record<string, string> = {
 							</tbody>
 						</table>
 					</div>
+					<details>
+						<summary class="category-summary">Mason jar prep (1 full Longevity Mix bag = 30 servings)</summary>
+						<p>When I dump a full bag of Longevity Mix into the jar, I add 30 servings of everything else so the mix stays balanced across the whole bag.</p>
+						<div class="table-wrapper">
+							<table>
+								<thead>
+									<tr>
+										<th>Ingredient</th>
+										<th class="num">Per serving</th>
+										<th class="num">Add per full bag</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr><td>Blueprint Creatine</td><td class="num">1 scoop (5g)</td><td class="num">~1 cup (30 scoops)</td></tr>
+									<tr><td>Goddess Agave Inulin</td><td class="num">1 tsp</td><td class="num">30 tsp (10 tbsp / &frac12; cup + 2 tbsp)</td></tr>
+									<tr><td>LiftMode GOS</td><td class="num">&frac12; tsp</td><td class="num">15 tsp (5 tbsp / &frac14; cup + 1 tbsp)</td></tr>
+									<tr><td>Vital Nutrients Arabinogalactan</td><td class="num">1 tsp</td><td class="num">30 tsp (10 tbsp / &frac12; cup + 2 tbsp)</td></tr>
+								</tbody>
+							</table>
+						</div>
+						<p><strong>Shortcut:</strong> after the full bag goes in, add about 1 cup creatine, 30 tsp inulin, 15 tsp GOS, and 30 tsp arabinogalactan. Shake hard to combine, then shake before each scoop.</p>
+					</details>
 				</div>
 
 				<!-- Nutty pudding + pill batch 1 -->
 				<div class="time-block">
 					<h3>Nutty pudding + pill batch 1</h3>
-					<p>Based on <a href="https://www.reddit.com/r/blueprint_/comments/1jlu0dv/whats_the_latest_nutty_pudding_recipe/">Bryan Johnson's recipe</a>. My modifications: double the cocoa powder (extra flavanols) and blend in collagen. I blend 4 servings at a time and refrigerate.</p>
+					<p>Based on <a href="https://www.reddit.com/r/blueprint_/comments/1jlu0dv/whats_the_latest_nutty_pudding_recipe/">Bryan Johnson's recipe</a>. My modifications: double the cocoa powder (extra flavanols), blend in collagen, and split each serving roughly half pre-workout and half post-workout. I blend 4 servings at a time and refrigerate.</p>
+					{nuttyPuddingCost && (
+						<p class="meal-cost-summary">
+							Estimated food cost: <strong>{formatMoney(nuttyPuddingCost.cost_per_serving)}/serving</strong>
+							<span class="meal-cost-meta"> (~{formatMoney(nuttyPuddingCost.annual_cost)}/yr at {nuttyPuddingCost.servings_per_day} serving/day)</span>
+						</p>
+					)}
 					<div class="table-wrapper">
 						<table class="schedule-table">
 							<thead>
@@ -208,7 +253,7 @@ const statusColors: Record<string, string> = {
 							<li><span class="np-qty" data-x1="2 tsp" data-x4="2 tbsp + 2 tsp">2 tsp</span> ground walnuts</li>
 							<li><span class="np-qty" data-x1="1 tsp" data-x4="1 tbsp + 1 tsp">1 tsp</span> ground flaxseed</li>
 							<li><span class="np-qty" data-x1="&frac14;" data-x4="1">&frac14;</span> Brazil nut</li>
-							<li><span class="np-qty" data-x1="&frac14; cup berries + 3 cherries" data-x4="1 cup berries + 12 cherries">&frac14; cup berries + 3 cherries</span></li>
+							<li><span class="np-qty" data-x1="&frac14; cup frozen berries + 3 cherries" data-x4="1 cup frozen berries + 12 cherries">&frac14; cup frozen berries + 3 cherries</span></li>
 							<li><span class="np-qty" data-x1="1 tsp" data-x4="1 tbsp + 1 tsp">1 tsp</span> sunflower lecithin</li>
 							<li><span class="np-qty" data-x1="&frac12; tsp" data-x4="2 tsp">&frac12; tsp</span> ceylon cinnamon</li>
 							<li>Blueprint Cocoa (12g per serving, all in premix)</li>
@@ -220,8 +265,35 @@ const statusColors: Record<string, string> = {
 							<li>1 tbsp EVOO</li>
 							<li>Blueprint Blueberry Nut Mix</li>
 							<li>2 tbsp chia seeds</li>
-							<li>1/4 cup berries</li>
+							<li>1/4 cup fresh berries</li>
 						</ul>
+						{nuttyPuddingCost && (
+							<>
+								<p class="meal-cost-note">Cost estimate blends current product prices, Whole Foods receipt-backed pricing where available, and grocery assumptions for ingredients I still don’t have direct receipt data for.</p>
+								<div class="table-wrapper">
+									<table class="meal-cost-table">
+										<thead>
+											<tr>
+												<th>Ingredient</th>
+												<th>Amount</th>
+												<th>Price basis</th>
+												<th class="num">$/serving</th>
+											</tr>
+										</thead>
+										<tbody>
+											{nuttyPuddingCost.ingredients.map(item => (
+												<tr>
+													<td>{item.source_url ? <a href={item.source_url}>{item.ingredient}</a> : item.ingredient}</td>
+													<td>{item.amount_text}</td>
+													<td>{item.package_text || item.notes || 'Estimate'}</td>
+													<td class="num">{formatMoney(item.cost_per_serving)}</td>
+												</tr>
+											))}
+										</tbody>
+									</table>
+								</div>
+							</>
+						)}
 					</details>
 
 					<details>
@@ -256,6 +328,12 @@ const statusColors: Record<string, string> = {
 				<div class="time-block">
 					<h3>Second meal + pill batch 2</h3>
 					<p><a href="https://blueprint.bryanjohnson.com">Blueprint super veggie</a> about half of days, otherwise pills with any meal.</p>
+					{superVeggieCost && (
+						<p class="meal-cost-summary">
+							Estimated food cost: <strong>{formatMoney(superVeggieCost.cost_per_serving)}/serving</strong>
+							<span class="meal-cost-meta"> (~{formatMoney(superVeggieCost.annual_cost)}/yr at current frequency of {superVeggieCost.servings_per_day} serving/day)</span>
+						</p>
+					)}
 					<div class="table-wrapper">
 						<table class="schedule-table">
 							<thead>
@@ -292,6 +370,33 @@ const statusColors: Record<string, string> = {
 							<li><a href="https://www.amazon.com/CLEVELAND-KRAUT-Classic-Kimchi-16/dp/B098PVNV18/">Cleveland Kitchen kimchi</a></li>
 							<li>EVOO on top</li>
 						</ul>
+						{superVeggieCost && (
+							<>
+								<p class="meal-cost-note">Cost estimate uses Whole Foods receipt-backed pricing where available and grocery assumptions for the remaining pantry / produce items.</p>
+								<div class="table-wrapper">
+									<table class="meal-cost-table">
+										<thead>
+											<tr>
+												<th>Ingredient</th>
+												<th>Amount</th>
+												<th>Price basis</th>
+												<th class="num">$/serving</th>
+											</tr>
+										</thead>
+										<tbody>
+											{superVeggieCost.ingredients.map(item => (
+												<tr>
+													<td>{item.source_url ? <a href={item.source_url}>{item.ingredient}</a> : item.ingredient}</td>
+													<td>{item.amount_text}</td>
+													<td>{item.package_text || item.notes || 'Estimate'}</td>
+													<td class="num">{formatMoney(item.cost_per_serving)}</td>
+												</tr>
+											))}
+										</tbody>
+									</table>
+								</div>
+							</>
+						)}
 					</details>
 				</div>
 
@@ -355,7 +460,7 @@ const statusColors: Record<string, string> = {
 											<th class="num">E[days]</th>
 											<th class="num">P(+)</th>
 											<th class="num">$/yr</th>
-											<th class="num">Net value</th>
+											<th class="num">$/QALY</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -373,7 +478,7 @@ const statusColors: Record<string, string> = {
 												<td class="num">+{s.days.toFixed(0)}</td>
 												<td class="num">{Math.round(s.p_benefit * 100)}%</td>
 												<td class="num">{s.annual_cost === 0 ? 'bundled' : `$${s.annual_cost}`}</td>
-												<td class="num">${s.gross_value.toLocaleString()}</td>
+												<td class="num">{s.cost_per_qaly ? `$${s.cost_per_qaly.toLocaleString()}` : 'bundled'}</td>
 											</tr>
 										))}
 									</tbody>
@@ -395,8 +500,8 @@ const statusColors: Record<string, string> = {
 								<th>Bundle</th>
 								<th class="num">$/mo</th>
 								<th class="num">Items used</th>
-								<th class="num">Net value</th>
-								<th>Verdict</th>
+								<th class="num">$/yr</th>
+								<th>Coverage</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -411,8 +516,8 @@ const statusColors: Record<string, string> = {
 									</td>
 									<td class="num">${b.monthly_cost}</td>
 									<td class="num">{b.n_selected}/{b.n_total}</td>
-									<td class="num">${b.net_value.toLocaleString()}</td>
-									<td><span class={`verdict-badge ${b.worth_it ? 'verdict-yes' : 'verdict-no'}`}>{b.worth_it ? 'worth it' : 'not worth it'}</span></td>
+									<td class="num">${b.annual_cost.toLocaleString()}</td>
+									<td>{b.n_selected > 0 ? 'used' : 'unused'}</td>
 								</tr>
 							))}
 						</tbody>
@@ -422,12 +527,12 @@ const statusColors: Record<string, string> = {
 
 			<!-- Portfolio optimization -->
 			<section>
-				<h2>Portfolio optimization</h2>
-				<p>The optimizer greedily adds items by marginal net value (QALY gain &times; $200K &minus; cost), applying diminishing returns and a complexity penalty. It stops when the next item would have negative marginal value.</p>
-				<p><strong>Result:</strong> {summary.total_items} items selected, +{Math.round(summary.total_days)} expected days ({(summary.total_days / 365.25).toFixed(1)} years), ${summary.total_annual_cost.toLocaleString()}/yr.</p>
+				<h2>Ordered recommendations</h2>
+				<p>The ranking greedily adds the next intervention with the lowest positive marginal <code>$ / QALY</code>, after explicit interaction penalties and shared product pricing. There is no baked-in cutoff.</p>
+				<p><strong>Frontier:</strong> {summary.total_items} positive-marginal items ranked, reaching +{Math.round(summary.total_days)} expected days ({(summary.total_days / 365.25).toFixed(1)} years) at ${summary.total_annual_cost.toLocaleString()}/yr if taken all the way down the current list.</p>
 
 				<details>
-					<summary class="category-summary">Selection order ({portfolio.length} steps)</summary>
+					<summary class="category-summary">Recommendation order ({portfolio.length} steps)</summary>
 					<div class="table-wrapper">
 						<table>
 							<thead>
@@ -435,9 +540,9 @@ const statusColors: Record<string, string> = {
 									<th>#</th>
 									<th>Item added</th>
 									<th class="num">+days</th>
-									<th class="num">Marginal $</th>
+									<th class="num">Marginal $/QALY</th>
 									<th class="num">Cumulative $/yr</th>
-									<th class="num">DR factor</th>
+									<th class="num">Cumulative days</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -446,9 +551,9 @@ const statusColors: Record<string, string> = {
 										<td>{p.step}</td>
 										<td>{p.name}</td>
 										<td class="num">+{p.marginal_days.toFixed(0)}</td>
-										<td class="num">${p.marginal_net_value.toLocaleString()}</td>
+										<td class="num">{p.marginal_cost_per_qaly ? `$${p.marginal_cost_per_qaly.toLocaleString()}` : 'bundled'}</td>
 										<td class="num">${p.total_annual_cost.toLocaleString()}</td>
-										<td class="num">{p.diminishing_returns < 1 ? p.diminishing_returns.toFixed(2) : '1.00'}</td>
+										<td class="num">+{p.cumulative_days.toFixed(0)}</td>
 									</tr>
 								))}
 							</tbody>
@@ -458,8 +563,8 @@ const statusColors: Record<string, string> = {
 
 				{excluded.length > 0 && (
 					<details>
-						<summary class="category-summary">Excluded from portfolio ({excluded.length} items)</summary>
-						<p class="excluded-note">Items not selected due to negative marginal value after diminishing returns and complexity penalty.</p>
+						<summary class="category-summary">Not ranked ({excluded.length} items)</summary>
+						<p class="excluded-note">Items not ranked because their marginal QALY turned nonpositive after interaction penalties.</p>
 						<div class="table-wrapper">
 							<table>
 								<thead>
@@ -467,7 +572,7 @@ const statusColors: Record<string, string> = {
 										<th>Item</th>
 										<th class="num">E[days]</th>
 										<th class="num">$/yr</th>
-										<th class="num">Net value</th>
+										<th class="num">$/QALY</th>
 										<th>Why excluded</th>
 									</tr>
 								</thead>
@@ -477,8 +582,8 @@ const statusColors: Record<string, string> = {
 											<td>{s.name}</td>
 											<td class="num">+{s.days.toFixed(0)}</td>
 											<td class="num">{s.annual_cost === 0 ? 'bundled' : `$${s.annual_cost}`}</td>
-											<td class="num">${s.gross_value.toLocaleString()}</td>
-											<td class="excluded-reason">{s.gross_value < 0 ? 'Negative expected value' : 'Marginal value below threshold after DR'}</td>
+											<td class="num">{s.cost_per_qaly ? `$${s.cost_per_qaly.toLocaleString()}` : 'bundled'}</td>
+											<td class="excluded-reason">{s.days < 0 ? 'Negative expected effect' : 'Nonpositive marginal QALY after interaction penalties'}</td>
 										</tr>
 									))}
 								</tbody>
@@ -557,10 +662,10 @@ const statusColors: Record<string, string> = {
 					<li>A Beta-distributed confounding prior discounts the causal fraction (e.g., Beta(2,4) means ~33% of the observed effect is believed causal)</li>
 					<li>50,000 Monte Carlo simulations propagate uncertainty through CDC life tables for a {profile.age}-year-old {profile.sex}</li>
 					<li>Expected days gained = mean QALY gain &times; 365.25</li>
-					<li>Greedy portfolio optimizer selects items by marginal net value until returns go negative</li>
+					<li>A greedy ranking adds the next item with the lowest positive marginal <code>$ / QALY</code> after interaction penalties and shared product costs</li>
 				</ol>
 				<p>Evidence confidence labels: <span class="evidence-badge evidence-high">high</span> = strong causal prior + tight uncertainty; <span class="evidence-badge evidence-medium">medium</span> = moderate evidence or wider uncertainty; <span class="evidence-badge evidence-low">low</span> = weak causal evidence, speculative.</p>
-				<p>Profile: {profile.age}yo {profile.sex}, BMI {profile.bmi_category}, {profile.smoking_status} smoker. WTP ${config.wtp.toLocaleString()}/QALY, {config.horizon_years}-year horizon, {config.n_simulations.toLocaleString()} simulations.</p>
+				<p>Profile: {profile.age}yo {profile.sex}, BMI {profile.bmi_category}, {profile.smoking_status} smoker. {config.horizon_years}-year horizon, {config.n_simulations.toLocaleString()} simulations.</p>
 			</section>
 		</main>
 		<Footer />
@@ -622,6 +727,27 @@ const statusColors: Record<string, string> = {
 	}
 
 	.schedule-dose {
+		font-size: 0.875rem;
+		color: var(--ink-muted);
+	}
+
+	.meal-cost-summary {
+		margin-top: -0.25rem;
+		margin-bottom: 1rem;
+		font-size: 0.9375rem;
+	}
+
+	.meal-cost-meta {
+		color: var(--ink-muted);
+	}
+
+	.meal-cost-note {
+		font-size: 0.875rem;
+		color: var(--ink-muted);
+	}
+
+	.meal-cost-table td:nth-child(2),
+	.meal-cost-table td:nth-child(3) {
 		font-size: 0.875rem;
 		color: var(--ink-muted);
 	}
