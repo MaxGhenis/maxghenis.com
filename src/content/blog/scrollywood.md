@@ -1,6 +1,6 @@
 ---
 title: 'Scrollywood: Smooth scroll video recording for the web'
-description: 'A Chrome extension that records smooth-scrolling videos of any webpage, built for capturing scrollytelling stories and long-form content.'
+description: 'A Chrome extension that records smooth-scrolling videos and GIFs of any webpage, built for capturing scrollytelling stories and long-form content.'
 pubDate: 'Feb 06 2026'
 projectUrl: '/scrollywood'
 ---
@@ -9,13 +9,13 @@ At [PolicyEngine](https://policyengine.org), we're building more scrollytelling 
 
 The problem: there's no good way to record a smooth scroll of a webpage. Screen recording tools require you to scroll manually, which is never perfectly smooth. Browser automation tools can screenshot sequences but don't capture scroll-triggered animations. And scrollytelling pages depend on continuous scrolling to trigger IntersectionObserver callbacks that animate the content.
 
-So I built [Scrollywood](/scrollywood) — a Chrome extension that records a perfectly smooth scroll video of any webpage.
+So I built [Scrollywood](/scrollywood) — a Chrome extension that records a perfectly smooth scroll capture of any webpage.
 
 ![Scrollywood demo — smooth scroll recording of a scrollytelling page](/scrollywood-demo.gif)
 
 ## How it works
 
-Click the extension icon, set your scroll duration, and hit Action. Scrollywood scrolls the page from top to bottom at a constant rate while recording the tab at 30-60fps. The result is a WebM video file.
+Click the extension icon, set your scroll duration, choose WebM, MP4, or GIF, and start recording. Scrollywood scrolls the page from top to bottom at a constant rate while recording the tab at 30-60fps. The result is a downloadable capture in your selected format, with MP4 shown when Chrome supports it.
 
 The scroll is smooth and linear at 60fps, which is critical for scrollytelling pages. Libraries like [scrollama](https://github.com/russellsamora/scrollama) and [react-scrollama](https://github.com/jsonkao/react-scrollama) use IntersectionObserver to trigger animations as elements enter the viewport. A smooth programmatic scroll naturally crosses these thresholds, so the animations play exactly as they would during manual scrolling.
 

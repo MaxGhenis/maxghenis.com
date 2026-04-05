@@ -9,7 +9,7 @@ import { SITE_TITLE } from '../consts';
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={`Scrollywood | ${SITE_TITLE}`} description="Chrome extension that records smooth scroll videos of any webpage. Set a duration, click Action, and get a WebM video of the page scrolling from top to bottom." />
+		<BaseHead title={`Scrollywood | ${SITE_TITLE}`} description="Chrome extension that records smooth scroll captures of any webpage. Set a duration, choose WebM, MP4, or GIF, and export the page scrolling from top to bottom." />
 	</head>
 	<body>
 		<Header />
@@ -32,15 +32,15 @@ import { SITE_TITLE } from '../consts';
 					</svg>
 				</div>
 				<h1>Scrollywood</h1>
-				<p class="page-description">Chrome extension that records smooth scroll videos of any webpage. One click, perfect scroll, downloadable WebM.</p>
+				<p class="page-description">Chrome extension that records smooth scroll captures of any webpage. Export as WebM, MP4, or GIF.</p>
 				<div class="header-actions">
-					<a href="https://github.com/MaxGhenis/scrollywood/releases/latest/download/scrollywood-v1.0.zip" class="download-btn">
+					<a href="https://github.com/MaxGhenis/scrollywood/archive/refs/heads/main.zip" class="download-btn">
 						<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 							<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
 							<polyline points="7 10 12 15 17 10"></polyline>
 							<line x1="12" y1="15" x2="12" y2="3"></line>
 						</svg>
-						Download for Chrome
+						Download Latest ZIP
 					</a>
 					<a href="https://github.com/MaxGhenis/scrollywood" class="github-btn">
 						<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
@@ -65,7 +65,7 @@ import { SITE_TITLE } from '../consts';
 							<Icon name="lightning" size={32} duotone />
 						</div>
 						<h3>One-click recording</h3>
-						<p>Set duration, click Action. The page scrolls smoothly while recording at 30-60fps.</p>
+						<p>Choose a duration and format, then start recording. The page eases into a smooth scroll while capture runs at 30-60fps.</p>
 					</div>
 					<div class="feature-card">
 						<div class="feature-icon">
@@ -93,7 +93,7 @@ import { SITE_TITLE } from '../consts';
 							<Icon name="chart" size={32} duotone />
 						</div>
 						<h3>High quality output</h3>
-						<p>Records at 16Mbps with VP9 codec for crisp, smooth WebM video files.</p>
+						<p>Export WebM, MP4 when Chrome supports it, or GIF from the same capture flow.</p>
 					</div>
 					<div class="feature-card">
 						<div class="feature-icon">
@@ -112,7 +112,7 @@ import { SITE_TITLE } from '../consts';
 						<span class="step-number">1</span>
 						<div class="step-content">
 							<h3>Download</h3>
-							<p>Download <code>scrollywood-v1.0.zip</code> from the link above and unzip it</p>
+							<p>Download the latest ZIP from the link above and unzip it</p>
 						</div>
 					</div>
 					<div class="step">
@@ -126,7 +126,7 @@ import { SITE_TITLE } from '../consts';
 						<span class="step-number">3</span>
 						<div class="step-content">
 							<h3>Record</h3>
-							<p>Navigate to any page, click the Scrollywood icon, set your duration, and click Action</p>
+							<p>Navigate to any page, click the Scrollywood icon, choose your duration and format, and start recording</p>
 						</div>
 					</div>
 				</div>
@@ -135,7 +135,8 @@ import { SITE_TITLE } from '../consts';
 			<section class="how-it-works">
 				<h2>How it works</h2>
 				<p>Scrollywood uses Chrome's <code>tabCapture</code> API to record the visible tab while programmatically scrolling the page at 60fps. The scroll is smooth and linear, which naturally triggers scroll-based animations (IntersectionObserver, scrollama, GSAP ScrollTrigger) just like manual scrolling would.</p>
-				<p>The extension uses Manifest V3's offscreen document pattern: the service worker orchestrates capture and scroll injection, while an offscreen document provides the DOM context needed for MediaRecorder. This architecture lets it record arbitrarily long pages without the 30-second service worker timeout limitation.</p>
+				<p>Capture runs through Chrome's MediaRecorder path for WebM and MP4 when available, and the offscreen document can also export a GIF from the same take.</p>
+				<p>The extension uses Manifest V3's offscreen document pattern: the service worker orchestrates capture and scroll injection, while an offscreen document provides the DOM context needed for MediaRecorder and GIF assembly. This architecture lets it record arbitrarily long pages without the 30-second service worker timeout limitation.</p>
 			</section>
 
 			<section class="requirements">
