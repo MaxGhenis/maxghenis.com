@@ -12,8 +12,8 @@
     { "source": "/yankee-stadium-beer-price-controls/:path*", "destination": "https://maxghenis.github.io/yankee-stadium-beer-price-controls/:path*" },
     { "source": "/whatnut-paper", "destination": "https://maxghenis.github.io/whatnut/" },
     { "source": "/whatnut-paper/:path*", "destination": "https://maxghenis.github.io/whatnut/:path*" },
-    { "source": "/mita", "destination": "https://maxghenis.github.io/mita/" },
-    { "source": "/mita/:path*", "destination": "https://maxghenis.github.io/mita/:path*" }
+    { "source": "/mita", "destination": "https://mita-iota.vercel.app/mita" },
+    { "source": "/mita/:path*", "destination": "https://mita-iota.vercel.app/mita/:path*" }
   ],
   "redirects": [
     { "source": "/2022/11/california", "destination": "/blog/voter-guides/2022-11-california", "permanent": true },
