@@ -90,18 +90,22 @@ function StackedBarChart({ daily }: { daily: DailyRow[] }) {
     return { val, y: paddingTop + chartHeight - (val / maxCost) * chartHeight };
   });
 
-  const monthLabels = daily
-    .map((d, i) => {
-      const date = new Date(d.date);
-      if (date.getUTCDate() <= 3) {
-        return {
-          i,
-          label: date.toLocaleDateString("en-US", { month: "short", timeZone: "UTC" }),
-        };
-      }
-      return null;
-    })
-    .filter((x): x is { i: number; label: string } => x !== null);
+  const monthLabels: { i: number; label: string }[] = [];
+  const seenMonths = new Set<string>();
+  for (let i = 0; i < daily.length; i++) {
+    const date = new Date(daily[i].date);
+    const key = `${date.getUTCFullYear()}-${date.getUTCMonth()}`;
+    if (!seenMonths.has(key)) {
+      seenMonths.add(key);
+      monthLabels.push({
+        i,
+        label: date.toLocaleDateString("en-US", {
+          month: "short",
+          timeZone: "UTC",
+        }),
+      });
+    }
+  }
 
   return (
     <svg
