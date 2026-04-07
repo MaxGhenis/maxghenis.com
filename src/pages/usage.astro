@@ -4,6 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE } from '../consts';
 import UsageDashboard from '../components/UsageDashboard.tsx';
+import ogImage from '../assets/og-usage.png';
 ---
 
 <!doctype html>
@@ -12,6 +13,7 @@ import UsageDashboard from '../components/UsageDashboard.tsx';
 		<BaseHead
 			title={`Usage | ${SITE_TITLE}`}
 			description="Live Claude Code and Codex CLI token usage across all my projects, updated throughout the day."
+			image={ogImage}
 		/>
 	</head>
 	<body>

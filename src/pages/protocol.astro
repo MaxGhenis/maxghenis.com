@@ -928,15 +928,15 @@ const statusColors: Record<string, string> = {
 </style>
 
 <script>
-	document.querySelectorAll('.np-toggle-btn').forEach(btn => {
+	document.querySelectorAll<HTMLButtonElement>('.np-toggle-btn').forEach(btn => {
 		btn.addEventListener('click', () => {
 			const servings = btn.dataset.servings;
 			document.querySelectorAll('.np-toggle-btn').forEach(b => b.classList.remove('active'));
 			btn.classList.add('active');
-			document.querySelectorAll('.np-qty').forEach(qty => {
+			document.querySelectorAll<HTMLElement>('.np-qty').forEach(qty => {
 				const key = `x${servings}`;
 				if (qty.dataset[key]) {
-					qty.innerHTML = qty.dataset[key];
+					qty.innerHTML = qty.dataset[key] as string;
 				}
 			});
 		});
