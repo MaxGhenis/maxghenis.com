@@ -5,7 +5,12 @@ import { useEffect, useRef, useState } from "react";
 const DATA_URL =
   "https://cdn.jsdelivr.net/gh/MaxGhenis/usage-data@main/usage.json";
 
-type Bucket = { tokens: number; cost: number; msgs: number };
+type Bucket = {
+  tokens: number;
+  cost: number;
+  msgs: number;
+  prompts: number;
+};
 type DailyRow = {
   date: string;
   claude: Bucket;
@@ -106,11 +111,12 @@ function fmtWeekLabel(iso: string): string {
 
 type Granularity = "day" | "week";
 type RangeChoice = "7" | "30" | "90" | "all";
-type Metric = "cost" | "tokens" | "msgs";
+type Metric = "cost" | "tokens" | "prompts" | "msgs";
 
 const METRIC_KEYS: Record<Metric, keyof Bucket> = {
   cost: "cost",
   tokens: "tokens",
+  prompts: "prompts",
   msgs: "msgs",
 };
 
@@ -129,7 +135,8 @@ function fmtAxisTick(metric: Metric, value: number): string {
 const METRIC_LABELS: Record<Metric, string> = {
   cost: "Cost",
   tokens: "Tokens",
-  msgs: "Messages",
+  prompts: "Prompts",
+  msgs: "Records",
 };
 
 function applyRange(daily: DailyRow[], range: RangeChoice): DailyRow[] {
@@ -139,11 +146,10 @@ function applyRange(daily: DailyRow[], range: RangeChoice): DailyRow[] {
 }
 
 function aggregateWeekly(daily: DailyRow[]): DailyRow[] {
-  // Group by ISO week-Monday start. Each output row's date is the Monday.
   const groups = new Map<string, DailyRow>();
   for (const r of daily) {
     const d = new Date(r.date);
-    const dow = (d.getUTCDay() + 6) % 7; // Mon = 0
+    const dow = (d.getUTCDay() + 6) % 7;
     const monday = new Date(d);
     monday.setUTCDate(d.getUTCDate() - dow);
     const key = monday.toISOString().slice(0, 10);
@@ -151,9 +157,9 @@ function aggregateWeekly(daily: DailyRow[]): DailyRow[] {
     if (!agg) {
       agg = {
         date: key,
-        claude: { tokens: 0, cost: 0, msgs: 0 },
-        codex: { tokens: 0, cost: 0, msgs: 0 },
-        other: { tokens: 0, cost: 0, msgs: 0 },
+        claude: { tokens: 0, cost: 0, msgs: 0, prompts: 0 },
+        codex: { tokens: 0, cost: 0, msgs: 0, prompts: 0 },
+        other: { tokens: 0, cost: 0, msgs: 0, prompts: 0 },
       };
       groups.set(key, agg);
     }
@@ -161,6 +167,7 @@ function aggregateWeekly(daily: DailyRow[]): DailyRow[] {
       agg[k].tokens += r[k].tokens;
       agg[k].cost += r[k].cost;
       agg[k].msgs += r[k].msgs;
+      agg[k].prompts += r[k].prompts ?? 0;
     }
   }
   return Array.from(groups.values()).sort((a, b) =>
@@ -562,14 +569,27 @@ export default function UsageDashboard() {
           </h2>
           <div className="chart-controls">
             <div className="seg-group" role="group" aria-label="Metric">
-              {(["cost", "tokens", "msgs"] as Metric[]).map((m) => (
+              {(["cost", "tokens", "prompts", "msgs"] as Metric[]).map((m) => (
                 <button
                   key={m}
                   type="button"
                   className={`seg-btn${metric === m ? " active" : ""}`}
                   onClick={() => setMetric(m)}
+                  title={
+                    m === "prompts"
+                      ? "Real user-typed prompts"
+                      : m === "msgs"
+                        ? "All message records (assistant + tool results + user)"
+                        : undefined
+                  }
                 >
-                  {m === "cost" ? "$" : m === "tokens" ? "Tokens" : "Msgs"}
+                  {m === "cost"
+                    ? "$"
+                    : m === "tokens"
+                      ? "Tokens"
+                      : m === "prompts"
+                        ? "Prompts"
+                        : "Records"}
                 </button>
               ))}
             </div>
