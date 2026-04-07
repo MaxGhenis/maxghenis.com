@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 
+// jsdelivr honors cache-busting via query params; raw.githubusercontent.com
+// does not and serves stale responses for minutes after a push.
 const DATA_URL =
-  "https://raw.githubusercontent.com/MaxGhenis/usage-data/main/usage.json";
+  "https://cdn.jsdelivr.net/gh/MaxGhenis/usage-data@main/usage.json";
 
 type Bucket = { tokens: number; cost: number; msgs: number };
 type DailyRow = {
@@ -64,6 +66,20 @@ function fmtRelTime(iso: string): string {
   return `${days} day${days === 1 ? "" : "s"} ago`;
 }
 
+// Snap step to the nearest 1/2/5 × 10^n (common "nice ticks" algorithm)
+function niceStep125(rawStep: number): number {
+  if (rawStep <= 0) return 1;
+  const exp = Math.floor(Math.log10(rawStep));
+  const base = Math.pow(10, exp);
+  const norm = rawStep / base;
+  let nice: number;
+  if (norm <= 1) nice = 1;
+  else if (norm <= 2) nice = 2;
+  else if (norm <= 5) nice = 5;
+  else nice = 10;
+  return nice * base;
+}
+
 function StackedBarChart({ daily }: { daily: DailyRow[] }) {
   if (daily.length === 0) return null;
 
@@ -76,7 +92,7 @@ function StackedBarChart({ daily }: { daily: DailyRow[] }) {
   const chartWidth = width - paddingLeft - paddingRight;
   const chartHeight = height - paddingTop - paddingBottom;
 
-  const maxCost = Math.max(
+  const dataMax = Math.max(
     ...daily.map((d) => d.claude.cost + d.codex.cost + d.other.cost),
     1,
   );
@@ -84,10 +100,14 @@ function StackedBarChart({ daily }: { daily: DailyRow[] }) {
   const barGap = Math.max(0, barWidth * 0.1);
   const barW = Math.max(1, barWidth - barGap);
 
-  const tickCount = 5;
+  // Nice y-axis: pick step that gives 4-6 ticks, round scale up to a whole step
+  const targetTicks = 5;
+  const step = niceStep125(dataMax / targetTicks);
+  const yMax = Math.ceil(dataMax / step) * step;
+  const tickCount = Math.round(yMax / step);
   const ticks = Array.from({ length: tickCount + 1 }, (_, i) => {
-    const val = (maxCost / tickCount) * i;
-    return { val, y: paddingTop + chartHeight - (val / maxCost) * chartHeight };
+    const val = step * i;
+    return { val, y: paddingTop + chartHeight - (val / yMax) * chartHeight };
   });
 
   const monthLabels: { i: number; label: string }[] = [];
@@ -137,9 +157,9 @@ function StackedBarChart({ daily }: { daily: DailyRow[] }) {
 
       {daily.map((d, i) => {
         const totalCost = d.claude.cost + d.codex.cost + d.other.cost;
-        const claudeH = (d.claude.cost / maxCost) * chartHeight;
-        const codexH = (d.codex.cost / maxCost) * chartHeight;
-        const otherH = (d.other.cost / maxCost) * chartHeight;
+        const claudeH = (d.claude.cost / yMax) * chartHeight;
+        const codexH = (d.codex.cost / yMax) * chartHeight;
+        const otherH = (d.other.cost / yMax) * chartHeight;
         const x = paddingLeft + i * barWidth;
         const baseY = paddingTop + chartHeight;
         return (
@@ -282,7 +302,7 @@ export default function UsageDashboard() {
   useEffect(() => {
     let cancelled = false;
     const load = () => {
-      fetch(DATA_URL + "?t=" + Date.now())
+      fetch(DATA_URL + "?t=" + Date.now(), { cache: "no-store" })
         .then((r) => {
           if (!r.ok) throw new Error(`HTTP ${r.status}`);
           return r.json();
