@@ -106,6 +106,31 @@ function fmtWeekLabel(iso: string): string {
 
 type Granularity = "day" | "week";
 type RangeChoice = "7" | "30" | "90" | "all";
+type Metric = "cost" | "tokens" | "msgs";
+
+const METRIC_KEYS: Record<Metric, keyof Bucket> = {
+  cost: "cost",
+  tokens: "tokens",
+  msgs: "msgs",
+};
+
+function fmtMetric(metric: Metric, value: number): string {
+  if (metric === "cost") return fmtUSD(value);
+  if (metric === "tokens") return fmtTokens(value);
+  return value.toLocaleString();
+}
+
+function fmtAxisTick(metric: Metric, value: number): string {
+  if (metric === "cost") return "$" + Math.round(value).toLocaleString();
+  if (metric === "tokens") return fmtTokens(value);
+  return Math.round(value).toLocaleString();
+}
+
+const METRIC_LABELS: Record<Metric, string> = {
+  cost: "Cost",
+  tokens: "Tokens",
+  msgs: "Messages",
+};
 
 function applyRange(daily: DailyRow[], range: RangeChoice): DailyRow[] {
   if (range === "all") return daily;
@@ -146,9 +171,11 @@ function aggregateWeekly(daily: DailyRow[]): DailyRow[] {
 function StackedBarChart({
   daily,
   granularity,
+  metric,
 }: {
   daily: DailyRow[];
   granularity: Granularity;
+  metric: Metric;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [hover, setHover] = useState<{
@@ -159,9 +186,10 @@ function StackedBarChart({
 
   if (daily.length === 0) return null;
 
+  const k = METRIC_KEYS[metric];
   const width = 760;
   const height = 240;
-  const paddingLeft = 50;
+  const paddingLeft = metric === "tokens" ? 60 : 60;
   const paddingRight = 10;
   const paddingTop = 10;
   const paddingBottom = 30;
@@ -169,7 +197,7 @@ function StackedBarChart({
   const chartHeight = height - paddingTop - paddingBottom;
 
   const dataMax = Math.max(
-    ...daily.map((d) => d.claude.cost + d.codex.cost + d.other.cost),
+    ...daily.map((d) => d.claude[k] + d.codex[k] + d.other[k]),
     1,
   );
   const barWidth = chartWidth / daily.length;
@@ -221,7 +249,7 @@ function StackedBarChart({
 
   const hovered = hover ? daily[hover.index] : null;
   const hoveredTotal = hovered
-    ? hovered.claude.cost + hovered.codex.cost + hovered.other.cost
+    ? hovered.claude[k] + hovered.codex[k] + hovered.other[k]
     : 0;
 
   return (
@@ -250,21 +278,21 @@ function StackedBarChart({
               fill="#888"
               textAnchor="end"
             >
-              ${Math.round(t.val).toLocaleString()}
+              {fmtAxisTick(metric, t.val)}
             </text>
           </g>
         ))}
 
         {daily.map((d, i) => {
-          const claudeH = (d.claude.cost / yMax) * chartHeight;
-          const codexH = (d.codex.cost / yMax) * chartHeight;
-          const otherH = (d.other.cost / yMax) * chartHeight;
+          const claudeH = (d.claude[k] / yMax) * chartHeight;
+          const codexH = (d.codex[k] / yMax) * chartHeight;
+          const otherH = (d.other[k] / yMax) * chartHeight;
           const x = paddingLeft + i * barWidth;
           const baseY = paddingTop + chartHeight;
           const isHovered = hover?.index === i;
           return (
             <g key={d.date} opacity={hover && !isHovered ? 0.5 : 1}>
-              {d.claude.cost > 0 && (
+              {d.claude[k] > 0 && (
                 <rect
                   x={x}
                   y={baseY - claudeH}
@@ -273,7 +301,7 @@ function StackedBarChart({
                   fill={CLAUDE_COLOR}
                 />
               )}
-              {d.codex.cost > 0 && (
+              {d.codex[k] > 0 && (
                 <rect
                   x={x}
                   y={baseY - claudeH - codexH}
@@ -282,7 +310,7 @@ function StackedBarChart({
                   fill={CODEX_COLOR}
                 />
               )}
-              {d.other.cost > 0 && (
+              {d.other[k] > 0 && (
                 <rect
                   x={x}
                   y={baseY - claudeH - codexH - otherH}
@@ -335,43 +363,37 @@ function StackedBarChart({
               ? fmtWeekLabel(hovered.date)
               : fmtFullDate(hovered.date)}
           </div>
-          <div className="chart-tooltip-total">{fmtUSD(hoveredTotal)}</div>
-          {hovered.claude.cost > 0 && (
-            <div className="chart-tooltip-row">
-              <span
-                className="chart-tooltip-swatch"
-                style={{ background: CLAUDE_COLOR }}
-              />
-              Claude {fmtUSD(hovered.claude.cost)}
-              <span className="chart-tooltip-meta">
-                {fmtTokens(hovered.claude.tokens)}
-              </span>
-            </div>
-          )}
-          {hovered.codex.cost > 0 && (
-            <div className="chart-tooltip-row">
-              <span
-                className="chart-tooltip-swatch"
-                style={{ background: CODEX_COLOR }}
-              />
-              Codex {fmtUSD(hovered.codex.cost)}
-              <span className="chart-tooltip-meta">
-                {fmtTokens(hovered.codex.tokens)}
-              </span>
-            </div>
-          )}
-          {hovered.other.cost > 0 && (
-            <div className="chart-tooltip-row">
-              <span
-                className="chart-tooltip-swatch"
-                style={{ background: OTHER_COLOR }}
-              />
-              Other {fmtUSD(hovered.other.cost)}
-              <span className="chart-tooltip-meta">
-                {fmtTokens(hovered.other.tokens)}
-              </span>
-            </div>
-          )}
+          <div className="chart-tooltip-total">
+            {fmtMetric(metric, hoveredTotal)}
+          </div>
+          {(["claude", "codex", "other"] as const).map((cli) => {
+            if (hovered[cli][k] === 0) return null;
+            const color =
+              cli === "claude"
+                ? CLAUDE_COLOR
+                : cli === "codex"
+                  ? CODEX_COLOR
+                  : OTHER_COLOR;
+            const name =
+              cli === "claude" ? "Claude" : cli === "codex" ? "Codex" : "Other";
+            // Show secondary metrics in the meta column
+            const meta =
+              metric === "cost"
+                ? fmtTokens(hovered[cli].tokens)
+                : metric === "tokens"
+                  ? fmtUSD(hovered[cli].cost)
+                  : `${fmtUSD(hovered[cli].cost)} · ${fmtTokens(hovered[cli].tokens)}`;
+            return (
+              <div key={cli} className="chart-tooltip-row">
+                <span
+                  className="chart-tooltip-swatch"
+                  style={{ background: color }}
+                />
+                {name} {fmtMetric(metric, hovered[cli][k])}
+                <span className="chart-tooltip-meta">{meta}</span>
+              </div>
+            );
+          })}
         </div>
       )}
     </div>
@@ -467,6 +489,7 @@ export default function UsageDashboard() {
   const [err, setErr] = useState<string | null>(null);
   const [granularity, setGranularity] = useState<Granularity>("day");
   const [range, setRange] = useState<RangeChoice>("all");
+  const [metric, setMetric] = useState<Metric>("cost");
 
   useEffect(() => {
     let cancelled = false;
@@ -533,8 +556,23 @@ export default function UsageDashboard() {
 
       <section>
         <div className="chart-header">
-          <h2>{granularity === "week" ? "Weekly spend" : "Daily spend"}</h2>
+          <h2>
+            {granularity === "week" ? "Weekly " : "Daily "}
+            {METRIC_LABELS[metric].toLowerCase()}
+          </h2>
           <div className="chart-controls">
+            <div className="seg-group" role="group" aria-label="Metric">
+              {(["cost", "tokens", "msgs"] as Metric[]).map((m) => (
+                <button
+                  key={m}
+                  type="button"
+                  className={`seg-btn${metric === m ? " active" : ""}`}
+                  onClick={() => setMetric(m)}
+                >
+                  {m === "cost" ? "$" : m === "tokens" ? "Tokens" : "Msgs"}
+                </button>
+              ))}
+            </div>
             <div className="seg-group" role="group" aria-label="Granularity">
               <button
                 type="button"
@@ -586,6 +624,7 @@ export default function UsageDashboard() {
               : applyRange(daily, range)
           }
           granularity={granularity}
+          metric={metric}
         />
       </section>
 
