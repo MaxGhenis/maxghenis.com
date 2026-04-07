@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 // jsdelivr honors cache-busting via query params; raw.githubusercontent.com
 // does not and serves stale responses for minutes after a push.
@@ -80,7 +80,83 @@ function niceStep125(rawStep: number): number {
   return nice * base;
 }
 
-function StackedBarChart({ daily }: { daily: DailyRow[] }) {
+function fmtFullDate(iso: string): string {
+  const d = new Date(iso);
+  return d.toLocaleDateString("en-US", {
+    weekday: "short",
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    timeZone: "UTC",
+  });
+}
+
+function fmtWeekLabel(iso: string): string {
+  // iso is the start date of the week
+  const d = new Date(iso);
+  return (
+    "Week of " +
+    d.toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      timeZone: "UTC",
+    })
+  );
+}
+
+type Granularity = "day" | "week";
+type RangeChoice = "7" | "30" | "90" | "all";
+
+function applyRange(daily: DailyRow[], range: RangeChoice): DailyRow[] {
+  if (range === "all") return daily;
+  const n = parseInt(range, 10);
+  return daily.slice(-n);
+}
+
+function aggregateWeekly(daily: DailyRow[]): DailyRow[] {
+  // Group by ISO week-Monday start. Each output row's date is the Monday.
+  const groups = new Map<string, DailyRow>();
+  for (const r of daily) {
+    const d = new Date(r.date);
+    const dow = (d.getUTCDay() + 6) % 7; // Mon = 0
+    const monday = new Date(d);
+    monday.setUTCDate(d.getUTCDate() - dow);
+    const key = monday.toISOString().slice(0, 10);
+    let agg = groups.get(key);
+    if (!agg) {
+      agg = {
+        date: key,
+        claude: { tokens: 0, cost: 0, msgs: 0 },
+        codex: { tokens: 0, cost: 0, msgs: 0 },
+        other: { tokens: 0, cost: 0, msgs: 0 },
+      };
+      groups.set(key, agg);
+    }
+    for (const k of ["claude", "codex", "other"] as const) {
+      agg[k].tokens += r[k].tokens;
+      agg[k].cost += r[k].cost;
+      agg[k].msgs += r[k].msgs;
+    }
+  }
+  return Array.from(groups.values()).sort((a, b) =>
+    a.date < b.date ? -1 : 1,
+  );
+}
+
+function StackedBarChart({
+  daily,
+  granularity,
+}: {
+  daily: DailyRow[];
+  granularity: Granularity;
+}) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [hover, setHover] = useState<{
+    index: number;
+    x: number;
+    y: number;
+  } | null>(null);
+
   if (daily.length === 0) return null;
 
   const width = 760;
@@ -100,7 +176,6 @@ function StackedBarChart({ daily }: { daily: DailyRow[] }) {
   const barGap = Math.max(0, barWidth * 0.1);
   const barW = Math.max(1, barWidth - barGap);
 
-  // Nice y-axis: pick step that gives 4-6 ticks, round scale up to a whole step
   const targetTicks = 5;
   const step = niceStep125(dataMax / targetTicks);
   const yMax = Math.ceil(dataMax / step) * step;
@@ -127,87 +202,179 @@ function StackedBarChart({ daily }: { daily: DailyRow[] }) {
     }
   }
 
+  // Convert SVG-space coordinate to a daily-array index
+  const handleMove = (e: React.MouseEvent<SVGSVGElement>) => {
+    const svg = e.currentTarget;
+    const rect = svg.getBoundingClientRect();
+    const xRatio = (e.clientX - rect.left) / rect.width;
+    const svgX = xRatio * width;
+    const idx = Math.floor((svgX - paddingLeft) / barWidth);
+    if (idx < 0 || idx >= daily.length) {
+      setHover(null);
+      return;
+    }
+    const containerRect = containerRef.current?.getBoundingClientRect();
+    const cx = containerRect ? e.clientX - containerRect.left : 0;
+    const cy = containerRect ? e.clientY - containerRect.top : 0;
+    setHover({ index: idx, x: cx, y: cy });
+  };
+
+  const hovered = hover ? daily[hover.index] : null;
+  const hoveredTotal = hovered
+    ? hovered.claude.cost + hovered.codex.cost + hovered.other.cost
+    : 0;
+
   return (
-    <svg
-      viewBox={`0 0 ${width} ${height}`}
-      style={{ width: "100%", height: "auto" }}
-      aria-label="Daily spend stacked bar chart"
-    >
-      {ticks.map((t, i) => (
-        <g key={i}>
-          <line
-            x1={paddingLeft}
-            x2={width - paddingRight}
-            y1={t.y}
-            y2={t.y}
-            stroke="#e5e5e5"
-            strokeWidth={1}
-          />
-          <text
-            x={paddingLeft - 6}
-            y={t.y + 3}
-            fontSize={10}
-            fill="#888"
-            textAnchor="end"
-          >
-            ${Math.round(t.val).toLocaleString()}
-          </text>
-        </g>
-      ))}
-
-      {daily.map((d, i) => {
-        const totalCost = d.claude.cost + d.codex.cost + d.other.cost;
-        const claudeH = (d.claude.cost / yMax) * chartHeight;
-        const codexH = (d.codex.cost / yMax) * chartHeight;
-        const otherH = (d.other.cost / yMax) * chartHeight;
-        const x = paddingLeft + i * barWidth;
-        const baseY = paddingTop + chartHeight;
-        return (
-          <g key={d.date}>
-            <title>{`${d.date}: $${totalCost.toFixed(0)} (Claude $${d.claude.cost.toFixed(0)}, Codex $${d.codex.cost.toFixed(0)})`}</title>
-            {d.claude.cost > 0 && (
-              <rect
-                x={x}
-                y={baseY - claudeH}
-                width={barW}
-                height={claudeH}
-                fill={CLAUDE_COLOR}
-              />
-            )}
-            {d.codex.cost > 0 && (
-              <rect
-                x={x}
-                y={baseY - claudeH - codexH}
-                width={barW}
-                height={codexH}
-                fill={CODEX_COLOR}
-              />
-            )}
-            {d.other.cost > 0 && (
-              <rect
-                x={x}
-                y={baseY - claudeH - codexH - otherH}
-                width={barW}
-                height={otherH}
-                fill={OTHER_COLOR}
-              />
-            )}
+    <div ref={containerRef} className="chart-container">
+      <svg
+        viewBox={`0 0 ${width} ${height}`}
+        style={{ width: "100%", height: "auto", display: "block" }}
+        aria-label="Daily spend stacked bar chart"
+        onMouseMove={handleMove}
+        onMouseLeave={() => setHover(null)}
+      >
+        {ticks.map((t, i) => (
+          <g key={i}>
+            <line
+              x1={paddingLeft}
+              x2={width - paddingRight}
+              y1={t.y}
+              y2={t.y}
+              stroke="#e5e5e5"
+              strokeWidth={1}
+            />
+            <text
+              x={paddingLeft - 6}
+              y={t.y + 3}
+              fontSize={10}
+              fill="#888"
+              textAnchor="end"
+            >
+              ${Math.round(t.val).toLocaleString()}
+            </text>
           </g>
-        );
-      })}
+        ))}
 
-      {monthLabels.map(({ i, label }) => (
-        <text
-          key={i}
-          x={paddingLeft + i * barWidth}
-          y={height - 10}
-          fontSize={11}
-          fill="#555"
+        {daily.map((d, i) => {
+          const claudeH = (d.claude.cost / yMax) * chartHeight;
+          const codexH = (d.codex.cost / yMax) * chartHeight;
+          const otherH = (d.other.cost / yMax) * chartHeight;
+          const x = paddingLeft + i * barWidth;
+          const baseY = paddingTop + chartHeight;
+          const isHovered = hover?.index === i;
+          return (
+            <g key={d.date} opacity={hover && !isHovered ? 0.5 : 1}>
+              {d.claude.cost > 0 && (
+                <rect
+                  x={x}
+                  y={baseY - claudeH}
+                  width={barW}
+                  height={claudeH}
+                  fill={CLAUDE_COLOR}
+                />
+              )}
+              {d.codex.cost > 0 && (
+                <rect
+                  x={x}
+                  y={baseY - claudeH - codexH}
+                  width={barW}
+                  height={codexH}
+                  fill={CODEX_COLOR}
+                />
+              )}
+              {d.other.cost > 0 && (
+                <rect
+                  x={x}
+                  y={baseY - claudeH - codexH - otherH}
+                  width={barW}
+                  height={otherH}
+                  fill={OTHER_COLOR}
+                />
+              )}
+            </g>
+          );
+        })}
+
+        {hover && (
+          <line
+            x1={paddingLeft + hover.index * barWidth + barW / 2}
+            x2={paddingLeft + hover.index * barWidth + barW / 2}
+            y1={paddingTop}
+            y2={paddingTop + chartHeight}
+            stroke="#222"
+            strokeWidth={1}
+            strokeDasharray="2,2"
+            opacity={0.4}
+            pointerEvents="none"
+          />
+        )}
+
+        {monthLabels.map(({ i, label }) => (
+          <text
+            key={i}
+            x={paddingLeft + i * barWidth}
+            y={height - 10}
+            fontSize={11}
+            fill="#555"
+          >
+            {label}
+          </text>
+        ))}
+      </svg>
+
+      {hovered && hover && (
+        <div
+          className="chart-tooltip"
+          style={{
+            left: hover.x + 12,
+            top: Math.max(0, hover.y - 12),
+          }}
         >
-          {label}
-        </text>
-      ))}
-    </svg>
+          <div className="chart-tooltip-date">
+            {granularity === "week"
+              ? fmtWeekLabel(hovered.date)
+              : fmtFullDate(hovered.date)}
+          </div>
+          <div className="chart-tooltip-total">{fmtUSD(hoveredTotal)}</div>
+          {hovered.claude.cost > 0 && (
+            <div className="chart-tooltip-row">
+              <span
+                className="chart-tooltip-swatch"
+                style={{ background: CLAUDE_COLOR }}
+              />
+              Claude {fmtUSD(hovered.claude.cost)}
+              <span className="chart-tooltip-meta">
+                {fmtTokens(hovered.claude.tokens)}
+              </span>
+            </div>
+          )}
+          {hovered.codex.cost > 0 && (
+            <div className="chart-tooltip-row">
+              <span
+                className="chart-tooltip-swatch"
+                style={{ background: CODEX_COLOR }}
+              />
+              Codex {fmtUSD(hovered.codex.cost)}
+              <span className="chart-tooltip-meta">
+                {fmtTokens(hovered.codex.tokens)}
+              </span>
+            </div>
+          )}
+          {hovered.other.cost > 0 && (
+            <div className="chart-tooltip-row">
+              <span
+                className="chart-tooltip-swatch"
+                style={{ background: OTHER_COLOR }}
+              />
+              Other {fmtUSD(hovered.other.cost)}
+              <span className="chart-tooltip-meta">
+                {fmtTokens(hovered.other.tokens)}
+              </span>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
   );
 }
 
@@ -298,6 +465,8 @@ function DonutChart({ window: win, label }: { window: Window; label: string }) {
 export default function UsageDashboard() {
   const [data, setData] = useState<UsageData | null>(null);
   const [err, setErr] = useState<string | null>(null);
+  const [granularity, setGranularity] = useState<Granularity>("day");
+  const [range, setRange] = useState<RangeChoice>("all");
 
   useEffect(() => {
     let cancelled = false;
@@ -363,7 +532,39 @@ export default function UsageDashboard() {
       </section>
 
       <section>
-        <h2>Daily spend</h2>
+        <div className="chart-header">
+          <h2>{granularity === "week" ? "Weekly spend" : "Daily spend"}</h2>
+          <div className="chart-controls">
+            <div className="seg-group" role="group" aria-label="Granularity">
+              <button
+                type="button"
+                className={`seg-btn${granularity === "day" ? " active" : ""}`}
+                onClick={() => setGranularity("day")}
+              >
+                Days
+              </button>
+              <button
+                type="button"
+                className={`seg-btn${granularity === "week" ? " active" : ""}`}
+                onClick={() => setGranularity("week")}
+              >
+                Weeks
+              </button>
+            </div>
+            <div className="seg-group" role="group" aria-label="Date range">
+              {(["7", "30", "90", "all"] as RangeChoice[]).map((r) => (
+                <button
+                  key={r}
+                  type="button"
+                  className={`seg-btn${range === r ? " active" : ""}`}
+                  onClick={() => setRange(r)}
+                >
+                  {r === "all" ? "All" : `${r}d`}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
         <div className="chart-legend">
           <div className="legend-item">
             <span className="legend-swatch" style={{ background: CLAUDE_COLOR }} />
@@ -378,7 +579,14 @@ export default function UsageDashboard() {
             Other
           </div>
         </div>
-        <StackedBarChart daily={daily} />
+        <StackedBarChart
+          daily={
+            granularity === "week"
+              ? aggregateWeekly(applyRange(daily, range))
+              : applyRange(daily, range)
+          }
+          granularity={granularity}
+        />
       </section>
 
       <section>

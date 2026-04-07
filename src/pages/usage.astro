@@ -117,6 +117,90 @@ import ogImage from '../assets/og-usage.png';
 		height: 0.5rem;
 		border-radius: 1px;
 	}
+	:global(.chart-header) {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		margin-bottom: 0.75rem;
+	}
+	:global(.chart-header h2) {
+		margin: 0 !important;
+	}
+	:global(.chart-controls) {
+		display: flex;
+		gap: 0.5rem;
+		flex-wrap: wrap;
+	}
+	:global(.seg-group) {
+		display: inline-flex;
+		border: 1px solid rgb(var(--gray-light, 229 233 240));
+		border-radius: 6px;
+		overflow: hidden;
+	}
+	:global(.seg-btn) {
+		background: transparent;
+		border: none;
+		padding: 0.3rem 0.65rem;
+		font-size: 0.75rem;
+		color: rgb(var(--gray, 96 115 159));
+		cursor: pointer;
+		font-family: inherit;
+		border-right: 1px solid rgb(var(--gray-light, 229 233 240));
+	}
+	:global(.seg-group .seg-btn:last-child) {
+		border-right: none;
+	}
+	:global(.seg-btn:hover) {
+		background: rgb(var(--gray-light, 229 233 240));
+	}
+	:global(.seg-btn.active) {
+		background: rgb(var(--gray-dark, 34 41 57));
+		color: white;
+	}
+	:global(.chart-container) {
+		position: relative;
+	}
+	:global(.chart-tooltip) {
+		position: absolute;
+		background: rgba(20, 20, 24, 0.95);
+		color: white;
+		padding: 0.5rem 0.7rem;
+		border-radius: 6px;
+		font-size: 0.75rem;
+		pointer-events: none;
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+		min-width: 160px;
+		z-index: 10;
+	}
+	:global(.chart-tooltip-date) {
+		font-size: 0.7rem;
+		opacity: 0.7;
+		margin-bottom: 0.15rem;
+	}
+	:global(.chart-tooltip-total) {
+		font-size: 1rem;
+		font-weight: 600;
+		margin-bottom: 0.3rem;
+	}
+	:global(.chart-tooltip-row) {
+		display: flex;
+		align-items: center;
+		gap: 0.4rem;
+		line-height: 1.5;
+	}
+	:global(.chart-tooltip-swatch) {
+		display: inline-block;
+		width: 0.6rem;
+		height: 0.6rem;
+		border-radius: 1px;
+	}
+	:global(.chart-tooltip-meta) {
+		margin-left: auto;
+		opacity: 0.6;
+		font-size: 0.7rem;
+	}
 	:global(.chart-legend) {
 		display: flex;
 		gap: 1rem;
