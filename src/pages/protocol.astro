@@ -4,6 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE } from '../consts';
 import protocolData from '../data/protocol-data.json';
+import ogImage from '../assets/og-protocol.png';
 
 const { summary, supplements, bundles, portfolio, config, profile, schedule } = protocolData;
 
@@ -50,7 +51,7 @@ const statusColors: Record<string, string> = {
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={`Protocol | ${SITE_TITLE}`} description="My quantified health stack: supplements, sleep optimization, and environmental interventions. Evidence-graded with Bayesian QALY analysis." />
+		<BaseHead title={`Protocol | ${SITE_TITLE}`} description="My quantified health stack: supplements, sleep optimization, and environmental interventions. Evidence-graded with Bayesian QALY analysis." image={ogImage} />
 	</head>
 	<body>
 		<Header />
