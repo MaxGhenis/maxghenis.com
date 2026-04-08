@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 
-// jsdelivr honors cache-busting via query params; raw.githubusercontent.com
-// does not and serves stale responses for minutes after a push.
+// raw.githubusercontent.com refreshes within seconds of a push; jsdelivr's
+// CDN cache lags by ~10 min even after manual purge. Use raw with
+// cache:"no-store" to avoid the browser's own HTTP cache.
 const DATA_URL =
-  "https://cdn.jsdelivr.net/gh/MaxGhenis/usage-data@main/usage.json";
+  "https://raw.githubusercontent.com/MaxGhenis/usage-data/main/usage.json";
 
 type Bucket = {
   tokens: number;
