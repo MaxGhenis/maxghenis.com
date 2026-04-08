@@ -1,0 +1,297 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE } from '../consts';
+import UsageDashboard from '../components/UsageDashboard.tsx';
+import ogImage from '../assets/og-usage.png';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title={`Usage | ${SITE_TITLE}`}
+			description="Live Claude Code and Codex CLI token usage across all my projects, updated throughout the day."
+			image={ogImage}
+		/>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<header class="page-header">
+				<h1>Usage</h1>
+				<p class="page-description">Live Claude Code and Codex CLI token usage across all my projects.</p>
+			</header>
+
+			<UsageDashboard client:load />
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	main {
+		max-width: 900px;
+		margin: 0 auto;
+		padding: 2rem 1.5rem 4rem;
+	}
+	.page-header {
+		margin-bottom: 2rem;
+	}
+	.page-header h1 {
+		font-size: 2.25rem;
+		margin: 0 0 0.5rem 0;
+	}
+	.page-description {
+		color: rgb(var(--gray, 96 115 159));
+		font-size: 1rem;
+		margin: 0;
+	}
+	:global(.usage-dashboard section) {
+		margin-top: 2.5rem;
+	}
+	:global(.usage-dashboard h2) {
+		font-size: 1.25rem;
+		margin: 0 0 1rem 0;
+	}
+	:global(.usage-sub) {
+		color: rgb(var(--gray, 96 115 159));
+		font-size: 0.9rem;
+		margin: 0 0 0.5rem 0;
+	}
+	:global(.usage-disclaimer) {
+		color: rgb(var(--gray, 96 115 159));
+		font-size: 0.8rem;
+		line-height: 1.5;
+		margin: 0;
+	}
+	:global(.usage-error) {
+		padding: 1rem;
+		border: 1px solid #fecaca;
+		background: #fef2f2;
+		color: #b91c1c;
+		border-radius: 6px;
+	}
+	:global(.usage-loading) {
+		padding: 2rem 0;
+		color: rgb(var(--gray, 96 115 159));
+	}
+	:global(.donut-row) {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 1.5rem;
+	}
+	@media (max-width: 640px) {
+		:global(.donut-row) {
+			grid-template-columns: 1fr;
+		}
+	}
+	:global(.donut-card) {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+	}
+	:global(.donut-label) {
+		font-size: 0.7rem;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		color: rgb(var(--gray, 96 115 159));
+		margin-bottom: 0.5rem;
+	}
+	:global(.donut-legend) {
+		margin-top: 0.5rem;
+		font-size: 0.75rem;
+		color: rgb(var(--gray-dark, 34 41 57));
+	}
+	:global(.donut-legend-item) {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.35rem;
+	}
+	:global(.donut-legend-swatch) {
+		display: inline-block;
+		width: 0.5rem;
+		height: 0.5rem;
+		border-radius: 1px;
+	}
+	:global(.chart-header) {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		margin-bottom: 0.75rem;
+	}
+	:global(.chart-header h2) {
+		margin: 0 !important;
+	}
+	:global(.chart-controls) {
+		display: flex;
+		gap: 0.5rem;
+		flex-wrap: wrap;
+	}
+	:global(.seg-group) {
+		display: inline-flex;
+		border: 1px solid rgb(var(--gray-light, 229 233 240));
+		border-radius: 6px;
+		overflow: hidden;
+	}
+	:global(.seg-btn) {
+		background: transparent;
+		border: none;
+		padding: 0.3rem 0.65rem;
+		font-size: 0.75rem;
+		color: rgb(var(--gray, 96 115 159));
+		cursor: pointer;
+		font-family: inherit;
+		border-right: 1px solid rgb(var(--gray-light, 229 233 240));
+	}
+	:global(.seg-group .seg-btn:last-child) {
+		border-right: none;
+	}
+	:global(.seg-btn:hover) {
+		background: rgb(var(--gray-light, 229 233 240));
+	}
+	:global(.seg-btn.active) {
+		background: rgb(var(--gray-dark, 34 41 57));
+		color: white;
+	}
+	:global(.chart-container) {
+		position: relative;
+	}
+	:global(.chart-tooltip) {
+		position: absolute;
+		background: rgba(20, 20, 24, 0.95);
+		color: white;
+		padding: 0.5rem 0.7rem;
+		border-radius: 6px;
+		font-size: 0.75rem;
+		pointer-events: none;
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+		min-width: 160px;
+		z-index: 10;
+	}
+	:global(.chart-tooltip-date) {
+		font-size: 0.7rem;
+		opacity: 0.7;
+		margin-bottom: 0.15rem;
+	}
+	:global(.chart-tooltip-total) {
+		font-size: 1rem;
+		font-weight: 600;
+		margin-bottom: 0.3rem;
+	}
+	:global(.chart-tooltip-row) {
+		display: flex;
+		align-items: center;
+		gap: 0.4rem;
+		line-height: 1.5;
+	}
+	:global(.chart-tooltip-swatch) {
+		display: inline-block;
+		width: 0.6rem;
+		height: 0.6rem;
+		border-radius: 1px;
+	}
+	:global(.chart-tooltip-meta) {
+		margin-left: auto;
+		opacity: 0.6;
+		font-size: 0.7rem;
+	}
+	:global(.chart-legend) {
+		display: flex;
+		gap: 1rem;
+		font-size: 0.75rem;
+		color: rgb(var(--gray-dark, 34 41 57));
+		margin-bottom: 0.5rem;
+	}
+	:global(.legend-item) {
+		display: flex;
+		align-items: center;
+		gap: 0.35rem;
+	}
+	:global(.legend-swatch) {
+		display: inline-block;
+		width: 0.75rem;
+		height: 0.75rem;
+		border-radius: 2px;
+	}
+	:global(.usage-table) {
+		width: 100%;
+		border-collapse: collapse;
+		font-size: 0.9rem;
+	}
+	:global(.usage-table thead tr) {
+		border-bottom: 1px solid rgb(var(--gray-light, 229 233 240));
+		color: rgb(var(--gray, 96 115 159));
+	}
+	:global(.usage-table th) {
+		text-align: left;
+		padding: 0.5rem 1rem 0.5rem 0;
+		font-weight: 500;
+	}
+	:global(.usage-table td) {
+		padding: 0.5rem 1rem 0.5rem 0;
+		border-bottom: 1px solid rgb(var(--gray-light, 229 233 240));
+	}
+	:global(.usage-table td.mono) {
+		font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+		font-size: 0.8rem;
+	}
+	:global(.table-wrap) {
+		overflow-x: auto;
+	}
+	:global(.leaderboard-grid) {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 1rem;
+	}
+	@media (max-width: 640px) {
+		:global(.leaderboard-grid) {
+			grid-template-columns: 1fr;
+		}
+	}
+	:global(.leaderboard-card) {
+		display: block;
+		border: 1px solid rgb(var(--gray-light, 229 233 240));
+		border-radius: 8px;
+		padding: 1rem;
+		text-decoration: none;
+		color: inherit;
+		transition: border-color 0.15s;
+	}
+	:global(.leaderboard-card:hover) {
+		border-color: rgb(var(--gray, 96 115 159));
+	}
+	:global(.leaderboard-card-header) {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin-bottom: 0.5rem;
+	}
+	:global(.leaderboard-name) {
+		font-weight: 600;
+	}
+	:global(.leaderboard-users) {
+		font-size: 0.75rem;
+		color: rgb(var(--gray, 96 115 159));
+	}
+	:global(.leaderboard-ranks) {
+		font-size: 0.8rem;
+		color: rgb(var(--gray-dark, 34 41 57));
+	}
+	:global(.leaderboard-ranks > div) {
+		margin-bottom: 0.15rem;
+	}
+	:global(.rank-label) {
+		color: rgb(var(--gray, 96 115 159));
+	}
+	:global(.leaderboard-badge) {
+		margin-top: 0.75rem;
+		max-width: 100%;
+		height: auto;
+	}
+</style>
