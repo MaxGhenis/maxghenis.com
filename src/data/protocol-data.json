@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-18",
+  "generated_at": "2026-04-18",
   "profile": {
     "age": 39,
     "sex": "male",
@@ -12,16 +12,19 @@
     "qaly_discount_rate": 0.0,
     "cost_discount_rate": 0.05,
     "pub_bias_shrinkage": 0.3,
+    "portfolio_qaly_ceiling": 3.0,
     "n_simulations": 50000
   },
   "summary": {
-    "total_items": 40,
-    "total_annual_cost": 3467,
-    "total_days": 2238.8,
-    "total_qaly": 6.1296,
-    "catalog_size": 59,
-    "db_products": 24,
-    "db_ingredients": 75
+    "total_items": 27,
+    "total_annual_cost": 1495,
+    "total_days": 714.0,
+    "total_qaly": 1.9547,
+    "total_raw_qaly": 3.163,
+    "portfolio_qaly_ceiling": 3.0,
+    "catalog_size": 86,
+    "db_products": 32,
+    "db_ingredients": 80
   },
   "supplements": [
     {
@@ -31,17 +34,28 @@
       "category_label": "Prescriptions",
       "status": "taking",
       "hr_observed": 0.88,
-      "hr_corrected": 0.9144,
-      "days": 359.7,
-      "p_benefit": 0.73,
+      "hr_corrected": 0.9028,
+      "pub_bias_shrinkage": 0.2,
+      "study_quality": "rct_standard",
+      "hr_posterior_mean": 0.9664,
+      "hr_posterior_median": 0.9741,
+      "hr_posterior_ci95_low": 0.8357,
+      "hr_posterior_ci95_high": 1.07,
+      "mortality_qaly_mean": 0.2341,
+      "mortality_qaly_median": 0.20685,
+      "days": 320.6,
+      "p_benefit": 0.76,
       "annual_cost": 252,
-      "gross_value": 192681,
+      "effective_annual_cost": 252.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": 171285,
       "qol_annual": 0.02,
       "evidence": "medium",
       "notes": "Anderson 2016 obs HR 0.67. Endothelial RCTs.",
       "sources": [],
       "in_portfolio": true,
-      "cost_per_qaly": 4332,
+      "cost_per_qaly": 4863,
       "db_product": "Tadalafil",
       "brand": null,
       "serving_size": "1 tablet",
@@ -65,17 +79,28 @@
       "category_label": "Prescriptions",
       "status": "taking",
       "hr_observed": 0.93,
-      "hr_corrected": 0.9505,
-      "days": 286.5,
-      "p_benefit": 0.7,
+      "hr_corrected": 0.9368,
+      "pub_bias_shrinkage": 0.1,
+      "study_quality": "rct_preregistered_hard_endpoint",
+      "hr_posterior_mean": 0.9617,
+      "hr_posterior_median": 0.9634,
+      "hr_posterior_ci95_low": 0.835,
+      "hr_posterior_ci95_high": 1.0866,
+      "mortality_qaly_mean": 0.20729,
+      "mortality_qaly_median": 0.24185,
+      "days": 252.2,
+      "p_benefit": 0.71,
       "annual_cost": 171,
-      "gross_value": 154010,
+      "effective_annual_cost": 171.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": 135175,
       "qol_annual": 0.015,
       "evidence": "high",
       "notes": "PCPT RCT n=18882. Hair preservation.",
       "sources": [],
       "in_portfolio": true,
-      "cost_per_qaly": 3690,
+      "cost_per_qaly": 4198,
       "db_product": "Finasteride",
       "brand": null,
       "serving_size": "1 tablet",
@@ -93,42 +118,64 @@
       ]
     },
     {
-      "id": "semaglutide",
-      "name": "GLP-1 RA (semaglutide)",
+      "id": "empagliflozin",
+      "name": "SGLT2i (empagliflozin)",
       "category": "rx_candidate",
       "category_label": "Prescription candidates",
       "status": "considering",
-      "hr_observed": 0.8,
-      "hr_corrected": 0.8554,
-      "days": 408.7,
-      "p_benefit": 0.9,
-      "annual_cost": 6000,
-      "gross_value": 121542,
-      "qol_annual": 0.01,
+      "hr_observed": 0.86,
+      "hr_corrected": 0.8731,
+      "pub_bias_shrinkage": 0.1,
+      "study_quality": "rct_preregistered_hard_endpoint",
+      "hr_posterior_mean": 0.9267,
+      "hr_posterior_median": 0.9311,
+      "hr_posterior_ci95_low": 0.7985,
+      "hr_posterior_ci95_high": 1.0361,
+      "mortality_qaly_mean": 0.56791,
+      "mortality_qaly_median": 0.57058,
+      "days": 231.1,
+      "p_benefit": 0.91,
+      "annual_cost": 3600,
+      "effective_annual_cost": 3600.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": 65288,
+      "qol_annual": 0.002,
       "evidence": "high",
-      "notes": "SELECT trial: HR 0.80 MACE. Weight loss. Expensive, GI effects.",
+      "notes": "EMPA-REG: HR 0.68 CV death (diabetics). Off-label in healthy unclear.",
       "sources": [],
       "in_portfolio": false,
-      "cost_per_qaly": 91392
+      "cost_per_qaly": 96799
     },
     {
-      "id": "statin_5mg",
-      "name": "Statin (rosuvastatin 5mg)",
+      "id": "metformin_500mg",
+      "name": "Metformin 500mg",
       "category": "rx_candidate",
       "category_label": "Prescription candidates",
       "status": "considering",
-      "hr_observed": 0.88,
-      "hr_corrected": 0.9144,
-      "days": 144.8,
-      "p_benefit": 0.87,
-      "annual_cost": 120,
-      "gross_value": 77273,
-      "qol_annual": -0.002,
-      "evidence": "high",
-      "notes": "CTT meta: 21% CVD reduction per mmol/L LDL. LDL already 64.",
+      "hr_observed": 0.9,
+      "hr_corrected": 0.9192,
+      "pub_bias_shrinkage": 0.2,
+      "study_quality": "rct_standard",
+      "hr_posterior_mean": 0.9659,
+      "hr_posterior_median": 0.9717,
+      "hr_posterior_ci95_low": 0.8441,
+      "hr_posterior_ci95_high": 1.0684,
+      "mortality_qaly_mean": 0.23893,
+      "mortality_qaly_median": 0.22948,
+      "days": 87.3,
+      "p_benefit": 0.77,
+      "annual_cost": 48,
+      "effective_annual_cost": 48.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": 46972,
+      "qol_annual": 0.0,
+      "evidence": "medium",
+      "notes": "Bannister 2014: diabetics on metformin outlived controls. TAME pending.",
       "sources": [],
       "in_portfolio": true,
-      "cost_per_qaly": 5142
+      "cost_per_qaly": 3403
     },
     {
       "id": "magnesium_200",
@@ -137,17 +184,28 @@
       "category_label": "Current supplements",
       "status": "taking",
       "hr_observed": 0.9,
-      "hr_corrected": 0.9289,
-      "days": 134.6,
-      "p_benefit": 0.73,
+      "hr_corrected": 0.9192,
+      "pub_bias_shrinkage": 0.2,
+      "study_quality": "rct_standard",
+      "hr_posterior_mean": 0.9702,
+      "hr_posterior_median": 0.977,
+      "hr_posterior_ci95_low": 0.8554,
+      "hr_posterior_ci95_high": 1.0599,
+      "mortality_qaly_mean": 0.20813,
+      "mortality_qaly_median": 0.18441,
+      "days": 81.9,
+      "p_benefit": 0.77,
       "annual_cost": 120,
-      "gross_value": 71664,
-      "qol_annual": 0.005,
+      "effective_annual_cost": 120.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": 42811,
+      "qol_annual": 0.0005,
       "evidence": "medium",
       "notes": "Fang meta. BP RCTs.",
       "sources": [],
       "in_portfolio": true,
-      "cost_per_qaly": 5511,
+      "cost_per_qaly": 9061,
       "db_product": "Magnesium Lysinate Glycinate",
       "brand": "Doctors Best",
       "serving_size": "2 capsules",
@@ -165,129 +223,6 @@
       ]
     },
     {
-      "id": "trazodone_50mg",
-      "name": "Trazodone 50mg",
-      "category": "rx_current",
-      "category_label": "Prescriptions",
-      "status": "taking",
-      "hr_observed": 1.0,
-      "hr_corrected": 1.0,
-      "days": 136.4,
-      "p_benefit": 0.5,
-      "annual_cost": 223,
-      "gross_value": 70945,
-      "qol_annual": 0.01,
-      "evidence": "medium",
-      "notes": "Sleep maintenance. No mortality data.",
-      "sources": [],
-      "in_portfolio": true,
-      "cost_per_qaly": 10075,
-      "db_product": "Trazodone",
-      "brand": null,
-      "serving_size": "1 tablet",
-      "daily_servings": 1.0,
-      "dose_notes": "50mg before bed",
-      "time_of_day": "before_bed",
-      "source_url": null,
-      "package_price": 18.34,
-      "ingredients": [
-        {
-          "ingredient": "Trazodone",
-          "amount": 50.0,
-          "unit": "mg"
-        }
-      ]
-    },
-    {
-      "id": "melatonin_300mcg",
-      "name": "Melatonin 300mcg",
-      "category": "supplement_current",
-      "category_label": "Current supplements",
-      "status": "taking",
-      "hr_observed": 0.97,
-      "hr_corrected": 0.9789,
-      "days": 121.8,
-      "p_benefit": 0.59,
-      "annual_cost": 30,
-      "gross_value": 66205,
-      "qol_annual": 0.008,
-      "evidence": "medium",
-      "notes": "Sleep onset RCTs.",
-      "sources": [],
-      "in_portfolio": true,
-      "cost_per_qaly": 1519,
-      "db_product": "Melatonin",
-      "brand": "Life Extension",
-      "serving_size": "1 tablet",
-      "daily_servings": 1.0,
-      "dose_notes": "1.5mg before bed",
-      "time_of_day": "before_bed",
-      "source_url": "https://www.amazon.com/dp/B00CDAWFN2",
-      "package_price": 7.5,
-      "ingredients": [
-        {
-          "ingredient": "Melatonin",
-          "amount": 1.5,
-          "unit": "mg"
-        }
-      ]
-    },
-    {
-      "id": "ashwagandha_600",
-      "name": "Ashwagandha 600mg",
-      "category": "supplement_candidate",
-      "category_label": "Under evaluation",
-      "status": "watching",
-      "hr_observed": 0.96,
-      "hr_corrected": 0.9718,
-      "days": 122.1,
-      "p_benefit": 0.58,
-      "annual_cost": 60,
-      "gross_value": 65871,
-      "qol_annual": 0.008,
-      "evidence": "medium",
-      "notes": "RCTs: cortisol, anxiety, sleep, testosterone. Rare liver concern.",
-      "sources": [],
-      "in_portfolio": true,
-      "cost_per_qaly": 3030
-    },
-    {
-      "id": "glycine_2g",
-      "name": "Glycine 2g bedtime",
-      "category": "supplement_bought",
-      "category_label": "Recently added",
-      "status": "testing",
-      "hr_observed": 0.965,
-      "hr_corrected": 0.9754,
-      "days": 93.1,
-      "p_benefit": 0.58,
-      "annual_cost": 28,
-      "gross_value": 50511,
-      "qol_annual": 0.006,
-      "evidence": "medium",
-      "notes": "Mouse lifespan +5%. Sleep RCTs.",
-      "sources": [
-        "https://www.amazon.com/dp/B0013OVZJW"
-      ],
-      "in_portfolio": true,
-      "cost_per_qaly": 1855,
-      "db_product": "Glycine 2g",
-      "brand": "NOW Foods",
-      "serving_size": "1 scoop",
-      "daily_servings": 1.0,
-      "dose_notes": "2g before bed",
-      "time_of_day": "before_bed",
-      "source_url": "https://www.amazon.com/dp/B0013OVZJW",
-      "package_price": 17.4,
-      "ingredients": [
-        {
-          "ingredient": "Glycine",
-          "amount": 2000.0,
-          "unit": "mg"
-        }
-      ]
-    },
-    {
       "id": "cocoa_flavanols_500",
       "name": "Cocoa flavanols ~500mg",
       "category": "supplement_current",
@@ -295,124 +230,27 @@
       "status": "taking",
       "hr_observed": 0.9,
       "hr_corrected": 0.9289,
-      "days": 91.3,
-      "p_benefit": 0.73,
-      "annual_cost": 0,
-      "gross_value": 49979,
+      "pub_bias_shrinkage": 0.3,
+      "study_quality": "cohort_large",
+      "hr_posterior_mean": 0.9674,
+      "hr_posterior_median": 0.9723,
+      "hr_posterior_ci95_low": 0.8395,
+      "hr_posterior_ci95_high": 1.0821,
+      "mortality_qaly_mean": 0.22277,
+      "mortality_qaly_median": 0.22416,
+      "days": 93.1,
+      "p_benefit": 0.74,
+      "annual_cost": 520,
+      "effective_annual_cost": 520.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": 42184,
       "qol_annual": 0.001,
       "evidence": "medium",
-      "notes": "COSMOS RCT HR 0.73 CVD. Free via cocoa powder.",
-      "sources": [],
-      "in_portfolio": true,
-      "cost_per_qaly": null
-    },
-    {
-      "id": "empagliflozin",
-      "name": "SGLT2i (empagliflozin)",
-      "category": "rx_candidate",
-      "category_label": "Prescription candidates",
-      "status": "considering",
-      "hr_observed": 0.86,
-      "hr_corrected": 0.8998,
-      "days": 187.9,
-      "p_benefit": 0.85,
-      "annual_cost": 3600,
-      "gross_value": 41769,
-      "qol_annual": 0.002,
-      "evidence": "high",
-      "notes": "EMPA-REG: HR 0.68 CV death (diabetics). Off-label in healthy unclear.",
+      "notes": "COSMOS RCT HR 0.73 CVD. Blueprint Cocoa priced at $41/container with 60 scoops x 5.76g; at ~12g/day this is ~29 days/container, or ~$520/yr.",
       "sources": [],
       "in_portfolio": false,
-      "cost_per_qaly": 118820
-    },
-    {
-      "id": "apigenin_50",
-      "name": "Apigenin 50mg",
-      "category": "supplement_bought",
-      "category_label": "Recently added",
-      "status": "testing",
-      "hr_observed": 0.96,
-      "hr_corrected": 0.9718,
-      "days": 78.1,
-      "p_benefit": 0.6,
-      "annual_cost": 76,
-      "gross_value": 41495,
-      "qol_annual": 0.005,
-      "evidence": "medium",
-      "notes": "CD38 inhibitor. Anxiolytic.",
-      "sources": [
-        "https://www.amazon.com/dp/B09DGTBBSF"
-      ],
-      "in_portfolio": true,
-      "cost_per_qaly": 5999,
-      "db_product": "Apigenin 50mg",
-      "brand": "Double Wood",
-      "serving_size": "1 capsule",
-      "daily_servings": 1.0,
-      "dose_notes": "50mg before bed",
-      "time_of_day": "before_bed",
-      "source_url": "https://www.amazon.com/dp/B09DGTBBSF",
-      "package_price": 24.95,
-      "ingredients": [
-        {
-          "ingredient": "Apigenin",
-          "amount": 50.0,
-          "unit": "mg"
-        }
-      ]
-    },
-    {
-      "id": "creatine_5g",
-      "name": "Creatine 5g",
-      "category": "supplement_current",
-      "category_label": "Current supplements",
-      "status": "taking",
-      "hr_observed": 0.98,
-      "hr_corrected": 0.986,
-      "days": 74.4,
-      "p_benefit": 0.57,
-      "annual_cost": 120,
-      "gross_value": 38700,
-      "qol_annual": 0.005,
-      "evidence": "medium",
-      "notes": "Muscle/cognitive RCTs. No mortality.",
-      "sources": [],
-      "in_portfolio": true,
-      "cost_per_qaly": 9947,
-      "db_product": "Blueprint Creatine",
-      "brand": "Blueprint",
-      "serving_size": "1 scoop",
-      "daily_servings": 1.0,
-      "dose_notes": "5g morning mix",
-      "time_of_day": "morning_mix",
-      "source_url": "https://blueprint.bryanjohnson.com/products/creatine",
-      "package_price": 37.8,
-      "ingredients": [
-        {
-          "ingredient": "Creatine Monohydrate",
-          "amount": 5000.0,
-          "unit": "mg"
-        }
-      ]
-    },
-    {
-      "id": "metformin_500mg",
-      "name": "Metformin 500mg",
-      "category": "rx_candidate",
-      "category_label": "Prescription candidates",
-      "status": "considering",
-      "hr_observed": 0.9,
-      "hr_corrected": 0.9289,
-      "days": 70.6,
-      "p_benefit": 0.73,
-      "annual_cost": 48,
-      "gross_value": 37872,
-      "qol_annual": 0.0,
-      "evidence": "medium",
-      "notes": "Bannister 2014: diabetics on metformin outlived controls. TAME pending.",
-      "sources": [],
-      "in_portfolio": true,
-      "cost_per_qaly": 4201
+      "cost_per_qaly": 34543
     },
     {
       "id": "omega3_clo",
@@ -421,17 +259,28 @@
       "category_label": "Current supplements",
       "status": "taking",
       "hr_observed": 0.92,
-      "hr_corrected": 0.9433,
-      "days": 69.8,
-      "p_benefit": 0.72,
+      "hr_corrected": 0.9355,
+      "pub_bias_shrinkage": 0.2,
+      "study_quality": "meta_analysis_rcts",
+      "hr_posterior_mean": 0.973,
+      "hr_posterior_median": 0.9779,
+      "hr_posterior_ci95_low": 0.8707,
+      "hr_posterior_ci95_high": 1.0592,
+      "mortality_qaly_mean": 0.18474,
+      "mortality_qaly_median": 0.17838,
+      "days": 79.2,
+      "p_benefit": 0.75,
       "annual_cost": 180,
-      "gross_value": 35163,
+      "effective_annual_cost": 180.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": 40332,
       "qol_annual": 0.001,
       "evidence": "medium",
       "notes": "Aung 2018 meta. VITAL.",
       "sources": [],
       "in_portfolio": true,
-      "cost_per_qaly": 15941,
+      "cost_per_qaly": 14046,
       "db_product": "Nordic Naturals Arctic Cod Liver Oil",
       "brand": "Nordic Naturals",
       "serving_size": "1 softgel",
@@ -471,16 +320,27 @@
       "status": "taking",
       "hr_observed": 0.88,
       "hr_corrected": 0.9144,
-      "days": 71.7,
-      "p_benefit": 0.77,
+      "pub_bias_shrinkage": 0.3,
+      "study_quality": "cohort_large",
+      "hr_posterior_mean": 0.971,
+      "hr_posterior_median": 0.9778,
+      "hr_posterior_ci95_low": 0.8636,
+      "hr_posterior_ci95_high": 1.0527,
+      "mortality_qaly_mean": 0.2036,
+      "mortality_qaly_median": 0.17856,
+      "days": 74.4,
+      "p_benefit": 0.78,
       "annual_cost": 300,
-      "gross_value": 34175,
+      "effective_annual_cost": 300.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": 35641,
       "qol_annual": 0.0,
       "evidence": "medium",
       "notes": "Obs HR 0.88. BP + calcification RCTs.",
       "sources": [],
-      "in_portfolio": true,
-      "cost_per_qaly": 25874,
+      "in_portfolio": false,
+      "cost_per_qaly": 24945,
       "db_product": "Kyolic Aged Garlic Extract",
       "brand": "Wakunaga",
       "serving_size": "2 capsules",
@@ -498,23 +358,79 @@
       ]
     },
     {
-      "id": "aspirin_81mg",
-      "name": "Low-dose aspirin 81mg",
+      "id": "statin_5mg",
+      "name": "Statin (rosuvastatin 5mg)",
       "category": "rx_candidate",
       "category_label": "Prescription candidates",
       "status": "considering",
-      "hr_observed": 0.94,
-      "hr_corrected": 0.9576,
-      "days": 55.3,
-      "p_benefit": 0.77,
-      "annual_cost": 15,
-      "gross_value": 30039,
-      "qol_annual": -0.001,
+      "hr_observed": 0.88,
+      "hr_corrected": 0.8913,
+      "pub_bias_shrinkage": 0.1,
+      "study_quality": "rct_preregistered_hard_endpoint",
+      "hr_posterior_mean": 0.9633,
+      "hr_posterior_median": 0.9635,
+      "hr_posterior_ci95_low": 0.8448,
+      "hr_posterior_ci95_high": 1.0842,
+      "mortality_qaly_mean": 0.25199,
+      "mortality_qaly_median": 0.30104,
+      "days": 68.5,
+      "p_benefit": 0.75,
+      "annual_cost": 120,
+      "effective_annual_cost": 120.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": 35485,
+      "qol_annual": -0.002,
       "evidence": "high",
-      "notes": "ASPREE (>70yr): no benefit, more bleeding. USPSTF equivocal at 39.",
+      "notes": "CTT meta: 21% CVD reduction per mmol/L LDL. LDL already 64.",
       "sources": [],
       "in_portfolio": true,
-      "cost_per_qaly": 1676
+      "cost_per_qaly": 10839
+    },
+    {
+      "id": "creatine_5g",
+      "name": "Creatine 5g",
+      "category": "supplement_current",
+      "category_label": "Current supplements",
+      "status": "taking",
+      "hr_observed": 0.98,
+      "hr_corrected": 0.9899,
+      "pub_bias_shrinkage": 0.5,
+      "study_quality": "supplement_industry_rct",
+      "hr_posterior_mean": 0.9983,
+      "hr_posterior_median": 0.9994,
+      "hr_posterior_ci95_low": 0.9637,
+      "hr_posterior_ci95_high": 1.0299,
+      "mortality_qaly_mean": 0.00207,
+      "mortality_qaly_median": 0.00432,
+      "days": 59.3,
+      "p_benefit": 0.57,
+      "annual_cost": 120,
+      "effective_annual_cost": 120.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": 30429,
+      "qol_annual": 0.005,
+      "evidence": "medium",
+      "notes": "Muscle/cognitive RCTs. No mortality.",
+      "sources": [],
+      "in_portfolio": true,
+      "cost_per_qaly": 12482,
+      "db_product": "Blueprint Creatine",
+      "brand": "Blueprint",
+      "serving_size": "1 scoop",
+      "daily_servings": 1.0,
+      "dose_notes": "5g morning mix",
+      "time_of_day": "morning_mix",
+      "source_url": "https://blueprint.bryanjohnson.com/products/creatine",
+      "package_price": 37.8,
+      "ingredients": [
+        {
+          "ingredient": "Creatine Monohydrate",
+          "amount": 5000.0,
+          "unit": "mg"
+        }
+      ]
     },
     {
       "id": "omega3_epa_2g",
@@ -523,19 +439,30 @@
       "category_label": "Recently added",
       "status": "testing",
       "hr_observed": 0.955,
-      "hr_corrected": 0.9683,
-      "days": 54.0,
-      "p_benefit": 0.63,
+      "hr_corrected": 0.9638,
+      "pub_bias_shrinkage": 0.2,
+      "study_quality": "rct_standard",
+      "hr_posterior_mean": 0.9833,
+      "hr_posterior_median": 0.9858,
+      "hr_posterior_ci95_low": 0.8784,
+      "hr_posterior_ci95_high": 1.0838,
+      "mortality_qaly_mean": 0.0964,
+      "mortality_qaly_median": 0.11404,
+      "days": 58.7,
+      "p_benefit": 0.66,
       "annual_cost": 227,
-      "gross_value": 25735,
+      "effective_annual_cost": 227.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": 28284,
       "qol_annual": 0.002,
       "evidence": "medium",
       "notes": "Incremental over CLO. VITAL/REDUCE-IT.",
       "sources": [
         "https://www.amazon.com/dp/B07DX89ZHN"
       ],
-      "in_portfolio": true,
-      "cost_per_qaly": 25948,
+      "in_portfolio": false,
+      "cost_per_qaly": 23896,
       "db_product": "High-EPA Omega-3",
       "brand": "Sports Research",
       "serving_size": "1 softgel",
@@ -563,23 +490,94 @@
       ]
     },
     {
+      "id": "vitamin_d_2000",
+      "name": "Vitamin D 2000 IU",
+      "category": "supplement_current",
+      "category_label": "Current supplements",
+      "status": "taking",
+      "hr_observed": 0.94,
+      "hr_corrected": 0.9517,
+      "pub_bias_shrinkage": 0.2,
+      "study_quality": "rct_standard",
+      "hr_posterior_mean": 0.9794,
+      "hr_posterior_median": 0.9824,
+      "hr_posterior_ci95_low": 0.8978,
+      "hr_posterior_ci95_high": 1.0504,
+      "mortality_qaly_mean": 0.13732,
+      "mortality_qaly_median": 0.14153,
+      "days": 50.2,
+      "p_benefit": 0.74,
+      "annual_cost": 30,
+      "effective_annual_cost": 30.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": 26956,
+      "qol_annual": 0.0,
+      "evidence": "medium",
+      "notes": "VITAL NS. Bolland meta D3 HR 0.97.",
+      "sources": [],
+      "in_portfolio": true,
+      "cost_per_qaly": 3695
+    },
+    {
+      "id": "vitamin_k2",
+      "name": "Vitamin K2 MK-7+MK-4",
+      "category": "supplement_current",
+      "category_label": "Current supplements",
+      "status": "taking",
+      "hr_observed": 0.92,
+      "hr_corrected": 0.9433,
+      "pub_bias_shrinkage": 0.3,
+      "study_quality": "cohort_large",
+      "hr_posterior_mean": 0.9832,
+      "hr_posterior_median": 0.9894,
+      "hr_posterior_ci95_low": 0.8713,
+      "hr_posterior_ci95_high": 1.0782,
+      "mortality_qaly_mean": 0.10223,
+      "mortality_qaly_median": 0.08423,
+      "days": 37.3,
+      "p_benefit": 0.67,
+      "annual_cost": 25,
+      "effective_annual_cost": 25.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": 20024,
+      "qol_annual": 0.0,
+      "evidence": "medium",
+      "notes": "Rotterdam obs. Calcification RCTs.",
+      "sources": [],
+      "in_portfolio": true,
+      "cost_per_qaly": 4135
+    },
+    {
       "id": "prebiotics",
       "name": "Prebiotics combo",
       "category": "supplement_current",
       "category_label": "Current supplements",
       "status": "taking",
       "hr_observed": 0.96,
-      "hr_corrected": 0.9718,
-      "days": 50.6,
-      "p_benefit": 0.61,
+      "hr_corrected": 0.9818,
+      "pub_bias_shrinkage": 0.55,
+      "study_quality": "observational_speculative",
+      "hr_posterior_mean": 0.9968,
+      "hr_posterior_median": 0.9988,
+      "hr_posterior_ci95_low": 0.9499,
+      "hr_posterior_ci95_high": 1.0378,
+      "mortality_qaly_mean": 0.01077,
+      "mortality_qaly_median": 0.00917,
+      "days": 39.0,
+      "p_benefit": 0.59,
       "annual_cost": 180,
-      "gross_value": 24641,
+      "effective_annual_cost": 180.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": 18343,
       "qol_annual": 0.003,
       "evidence": "medium",
       "notes": "Gut health markers.",
       "sources": [],
       "in_portfolio": true,
-      "cost_per_qaly": 21959,
+      "cost_per_qaly": 28424,
       "db_product": "Goddess Agave Inulin",
       "brand": "Goddess",
       "serving_size": "1 tsp",
@@ -597,42 +595,147 @@
       ]
     },
     {
-      "id": "vitamin_d_2000",
-      "name": "Vitamin D 2000 IU",
+      "id": "nac_1200",
+      "name": "NAC 1200mg",
       "category": "supplement_current",
       "category_label": "Current supplements",
       "status": "taking",
-      "hr_observed": 0.94,
-      "hr_corrected": 0.9576,
-      "days": 41.4,
-      "p_benefit": 0.71,
-      "annual_cost": 30,
-      "gross_value": 22148,
-      "qol_annual": 0.0,
+      "hr_observed": 0.93,
+      "hr_corrected": 0.9644,
+      "pub_bias_shrinkage": 0.5,
+      "study_quality": "supplement_industry_rct",
+      "hr_posterior_mean": 0.9888,
+      "hr_posterior_median": 0.993,
+      "hr_posterior_ci95_low": 0.8807,
+      "hr_posterior_ci95_high": 1.0884,
+      "mortality_qaly_mean": 0.05589,
+      "mortality_qaly_median": 0.05496,
+      "days": 32.1,
+      "p_benefit": 0.62,
+      "annual_cost": 40,
+      "effective_annual_cost": 40.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": 16919,
+      "qol_annual": 0.001,
       "evidence": "medium",
-      "notes": "VITAL NS. Bolland meta D3 HR 0.97.",
-      "sources": [],
+      "notes": "Best-supported as a mucolytic in chronic bronchitis/COPD. Much weaker for upper-airway sleep problems, so any sleep benefit is scaled to mucus-heavy phenotypes.",
+      "sources": [
+        "https://pubmed.ncbi.nlm.nih.gov/38555190/",
+        "https://pubmed.ncbi.nlm.nih.gov/28122105/"
+      ],
       "in_portfolio": true,
-      "cost_per_qaly": 4478
+      "cost_per_qaly": 7683,
+      "db_product": "Blueprint NAC+Ginger+Curcumin",
+      "brand": "Blueprint",
+      "serving_size": "3 capsules",
+      "daily_servings": 1.0,
+      "dose_notes": "2 capsules meal 1, 1 capsule meal 2",
+      "time_of_day": "meal_1,meal_2",
+      "source_url": "https://blueprint.bryanjohnson.com/products/nac-ginger-capsules",
+      "package_price": 27.0,
+      "ingredients": [
+        {
+          "ingredient": "Curcumin Extract",
+          "amount": 250.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Ginger Extract (26% gingerols)",
+          "amount": 400.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "N-Acetyl-L-Cysteine (NAC)",
+          "amount": 1200.0,
+          "unit": "mg"
+        }
+      ]
     },
     {
-      "id": "rapamycin_5mg_wk",
-      "name": "Rapamycin 5mg/wk",
+      "id": "lithium_5mg",
+      "name": "Low-dose lithium 5mg",
       "category": "rx_candidate",
       "category_label": "Prescription candidates",
       "status": "considering",
-      "hr_observed": 0.85,
-      "hr_corrected": 0.8925,
-      "days": 58.2,
-      "p_benefit": 0.72,
-      "annual_cost": 600,
-      "gross_value": 21710,
-      "qol_annual": -0.003,
-      "evidence": "medium",
-      "notes": "ITP mice: +26% median lifespan. Mannick 2014. Immunosuppression risk.",
+      "hr_observed": 0.92,
+      "hr_corrected": 0.9632,
+      "pub_bias_shrinkage": 0.55,
+      "study_quality": "observational_speculative",
+      "hr_posterior_mean": 0.9884,
+      "hr_posterior_median": 0.9929,
+      "hr_posterior_ci95_low": 0.868,
+      "hr_posterior_ci95_high": 1.0975,
+      "mortality_qaly_mean": 0.05646,
+      "mortality_qaly_median": 0.05589,
+      "days": 32.3,
+      "p_benefit": 0.62,
+      "annual_cost": 60,
+      "effective_annual_cost": 60.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": 16696,
+      "qol_annual": 0.001,
+      "evidence": "low",
+      "notes": "Ecological: municipal Li \u2192 lower suicide/dementia. No RCTs at low dose.",
       "sources": [],
-      "in_portfolio": false,
-      "cost_per_qaly": 63809
+      "in_portfolio": true,
+      "cost_per_qaly": 11450
+    },
+    {
+      "id": "curcumin_250",
+      "name": "Curcumin 250mg",
+      "category": "supplement_current",
+      "category_label": "Current supplements",
+      "status": "taking",
+      "hr_observed": 0.9,
+      "hr_corrected": 0.9487,
+      "pub_bias_shrinkage": 0.5,
+      "study_quality": "supplement_industry_rct",
+      "hr_posterior_mean": 0.9849,
+      "hr_posterior_median": 0.9907,
+      "hr_posterior_ci95_low": 0.8619,
+      "hr_posterior_ci95_high": 1.0911,
+      "mortality_qaly_mean": 0.0841,
+      "mortality_qaly_median": 0.07275,
+      "days": 30.7,
+      "p_benefit": 0.64,
+      "annual_cost": 40,
+      "effective_annual_cost": 40.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": 16143,
+      "qol_annual": 0.0,
+      "evidence": "low",
+      "notes": "Anti-inflam. Bioavailability issues.",
+      "sources": [],
+      "in_portfolio": true,
+      "cost_per_qaly": 8041,
+      "db_product": "Blueprint NAC+Ginger+Curcumin",
+      "brand": "Blueprint",
+      "serving_size": "3 capsules",
+      "daily_servings": 1.0,
+      "dose_notes": "2 capsules meal 1, 1 capsule meal 2",
+      "time_of_day": "meal_1,meal_2",
+      "source_url": "https://blueprint.bryanjohnson.com/products/nac-ginger-capsules",
+      "package_price": 27.0,
+      "ingredients": [
+        {
+          "ingredient": "Curcumin Extract",
+          "amount": 250.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Ginger Extract (26% gingerols)",
+          "amount": 400.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "N-Acetyl-L-Cysteine (NAC)",
+          "amount": 1200.0,
+          "unit": "mg"
+        }
+      ]
     },
     {
       "id": "astaxanthin_12",
@@ -641,17 +744,28 @@
       "category_label": "Current supplements",
       "status": "taking",
       "hr_observed": 0.95,
-      "hr_corrected": 0.9647,
-      "days": 39.0,
-      "p_benefit": 0.62,
+      "hr_corrected": 0.9772,
+      "pub_bias_shrinkage": 0.55,
+      "study_quality": "observational_speculative",
+      "hr_posterior_mean": 0.9955,
+      "hr_posterior_median": 0.9983,
+      "hr_posterior_ci95_low": 0.9337,
+      "hr_posterior_ci95_high": 1.0488,
+      "mortality_qaly_mean": 0.01775,
+      "mortality_qaly_median": 0.0133,
+      "days": 29.9,
+      "p_benefit": 0.6,
       "annual_cost": 0,
-      "gross_value": 21381,
+      "effective_annual_cost": 60.0,
+      "bundle_cost_share": 60.0,
+      "bundle_id": "blueprint_advanced_antioxidants",
+      "gross_value": 15359,
       "qol_annual": 0.002,
       "evidence": "medium",
       "notes": "CRP/HDL RCTs. Bundled.",
       "sources": [],
       "in_portfolio": true,
-      "cost_per_qaly": null,
+      "cost_per_qaly": 12376,
       "db_product": "Blueprint Advanced Antioxidants",
       "brand": "Blueprint",
       "serving_size": "1 capsule",
@@ -699,130 +813,109 @@
       ]
     },
     {
-      "id": "lithium_5mg",
-      "name": "Low-dose lithium 5mg",
-      "category": "rx_candidate",
-      "category_label": "Prescription candidates",
-      "status": "considering",
-      "hr_observed": 0.92,
-      "hr_corrected": 0.9433,
-      "days": 40.1,
-      "p_benefit": 0.63,
-      "annual_cost": 60,
-      "gross_value": 20920,
-      "qol_annual": 0.001,
-      "evidence": "low",
-      "notes": "Ecological: municipal Li \u2192 lower suicide/dementia. No RCTs at low dose.",
-      "sources": [],
-      "in_portfolio": true,
-      "cost_per_qaly": 9247
-    },
-    {
-      "id": "nac_1200",
-      "name": "NAC 1200mg",
+      "id": "lutein_zeaxanthin",
+      "name": "Lutein+Zeaxanthin",
       "category": "supplement_current",
       "category_label": "Current supplements",
       "status": "taking",
-      "hr_observed": 0.93,
-      "hr_corrected": 0.9505,
-      "days": 39.1,
-      "p_benefit": 0.63,
-      "annual_cost": 40,
-      "gross_value": 20746,
-      "qol_annual": 0.001,
+      "hr_observed": 0.97,
+      "hr_corrected": 0.9864,
+      "pub_bias_shrinkage": 0.55,
+      "study_quality": "observational_speculative",
+      "hr_posterior_mean": 0.9975,
+      "hr_posterior_median": 0.9991,
+      "hr_posterior_ci95_low": 0.9515,
+      "hr_posterior_ci95_high": 1.0393,
+      "mortality_qaly_mean": 0.00524,
+      "mortality_qaly_median": 0.00695,
+      "days": 25.3,
+      "p_benefit": 0.57,
+      "annual_cost": 0,
+      "effective_annual_cost": 60.0,
+      "bundle_cost_share": 60.0,
+      "bundle_id": "blueprint_advanced_antioxidants",
+      "gross_value": 12854,
+      "qol_annual": 0.002,
       "evidence": "medium",
-      "notes": "Critical care RCTs. Glutathione precursor.",
+      "notes": "AREDS2. Eye health. Bundled.",
       "sources": [],
-      "in_portfolio": true,
-      "cost_per_qaly": 6311,
-      "db_product": "Blueprint NAC+Ginger+Curcumin",
+      "in_portfolio": false,
+      "cost_per_qaly": 14609,
+      "db_product": "Blueprint Advanced Antioxidants",
       "brand": "Blueprint",
-      "serving_size": "3 capsules",
+      "serving_size": "1 capsule",
       "daily_servings": 1.0,
-      "dose_notes": "2 capsules meal 1, 1 capsule meal 2",
-      "time_of_day": "meal_1,meal_2",
-      "source_url": "https://blueprint.bryanjohnson.com/products/nac-ginger-capsules",
-      "package_price": 27.0,
+      "dose_notes": "1 capsule with meal 2",
+      "time_of_day": "meal_2",
+      "source_url": "https://blueprint.bryanjohnson.com/products/advanced-antioxidants",
+      "package_price": 49.0,
       "ingredients": [
         {
-          "ingredient": "Curcumin Extract",
-          "amount": 250.0,
+          "ingredient": "Astaxanthin",
+          "amount": 12.0,
           "unit": "mg"
         },
         {
-          "ingredient": "Ginger Extract (26% gingerols)",
-          "amount": 400.0,
+          "ingredient": "Lutein",
+          "amount": 10.0,
           "unit": "mg"
         },
         {
-          "ingredient": "N-Acetyl-L-Cysteine (NAC)",
-          "amount": 1200.0,
+          "ingredient": "Lycopene",
+          "amount": 15.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin K1",
+          "amount": 1.5,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin K2 MK-4",
+          "amount": 5.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin K2 MK-7",
+          "amount": 0.6,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Zeaxanthin",
+          "amount": 2.0,
           "unit": "mg"
         }
       ]
     },
     {
-      "id": "urolithin_a_500",
-      "name": "Urolithin A 500mg",
+      "id": "egcg_400",
+      "name": "EGCG 400mg (green tea)",
       "category": "supplement_candidate",
       "category_label": "Under evaluation",
       "status": "watching",
-      "hr_observed": 0.94,
-      "hr_corrected": 0.9576,
-      "days": 61.2,
-      "p_benefit": 0.62,
-      "annual_cost": 780,
-      "gross_value": 20317,
-      "qol_annual": 0.003,
+      "hr_observed": 0.92,
+      "hr_corrected": 0.9592,
+      "pub_bias_shrinkage": 0.5,
+      "study_quality": "supplement_industry_rct",
+      "hr_posterior_mean": 0.9882,
+      "hr_posterior_median": 0.9929,
+      "hr_posterior_ci95_low": 0.8853,
+      "hr_posterior_ci95_high": 1.0772,
+      "mortality_qaly_mean": 0.0597,
+      "mortality_qaly_median": 0.05369,
+      "days": 21.8,
+      "p_benefit": 0.63,
+      "annual_cost": 60,
+      "effective_annual_cost": 60.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": 10926,
+      "qol_annual": 0.0,
       "evidence": "medium",
-      "notes": "Mitopure. RCTs: improved mitochondrial function. Expensive.",
+      "notes": "Obs meta HR 0.74-0.85. Heavily confounded. Liver risk at high dose.",
       "sources": [],
       "in_portfolio": false,
-      "cost_per_qaly": 78687
-    },
-    {
-      "id": "curcumin_250",
-      "name": "Curcumin 250mg",
-      "category": "supplement_current",
-      "category_label": "Current supplements",
-      "status": "taking",
-      "hr_observed": 0.9,
-      "hr_corrected": 0.9289,
-      "days": 36.8,
-      "p_benefit": 0.66,
-      "annual_cost": 40,
-      "gross_value": 19486,
-      "qol_annual": 0.0,
-      "evidence": "low",
-      "notes": "Anti-inflam. Bioavailability issues.",
-      "sources": [],
-      "in_portfolio": true,
-      "cost_per_qaly": 6709,
-      "db_product": "Blueprint NAC+Ginger+Curcumin",
-      "brand": "Blueprint",
-      "serving_size": "3 capsules",
-      "daily_servings": 1.0,
-      "dose_notes": "2 capsules meal 1, 1 capsule meal 2",
-      "time_of_day": "meal_1,meal_2",
-      "source_url": "https://blueprint.bryanjohnson.com/products/nac-ginger-capsules",
-      "package_price": 27.0,
-      "ingredients": [
-        {
-          "ingredient": "Curcumin Extract",
-          "amount": 250.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Ginger Extract (26% gingerols)",
-          "amount": 400.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "N-Acetyl-L-Cysteine (NAC)",
-          "amount": 1200.0,
-          "unit": "mg"
-        }
-      ]
+      "cost_per_qaly": 16984
     },
     {
       "id": "lions_mane_1g",
@@ -831,19 +924,30 @@
       "category_label": "Recently added",
       "status": "testing",
       "hr_observed": 0.98,
-      "hr_corrected": 0.986,
-      "days": 42.8,
+      "hr_corrected": 0.9899,
+      "pub_bias_shrinkage": 0.5,
+      "study_quality": "supplement_industry_rct",
+      "hr_posterior_mean": 0.9982,
+      "hr_posterior_median": 0.9994,
+      "hr_posterior_ci95_low": 0.9473,
+      "hr_posterior_ci95_high": 1.0465,
+      "mortality_qaly_mean": -0.0021,
+      "mortality_qaly_median": 0.00487,
+      "days": 27.0,
       "p_benefit": 0.55,
       "annual_cost": 287,
-      "gross_value": 18589,
+      "effective_annual_cost": 287.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": 9914,
       "qol_annual": 0.003,
       "evidence": "medium",
       "notes": "NGF stimulation. Small RCTs: cognitive improvement.",
       "sources": [
         "https://www.amazon.com/dp/B00OVF9DVM"
       ],
-      "in_portfolio": true,
-      "cost_per_qaly": 41346,
+      "in_portfolio": false,
+      "cost_per_qaly": 65651,
       "db_product": "Lions Mane 1g",
       "brand": "Host Defense",
       "serving_size": "2 capsules",
@@ -861,23 +965,229 @@
       ]
     },
     {
+      "id": "ubiquinol_50",
+      "name": "Ubiquinol 50mg",
+      "category": "supplement_current",
+      "category_label": "Current supplements",
+      "status": "taking",
+      "hr_observed": 0.96,
+      "hr_corrected": 0.9798,
+      "pub_bias_shrinkage": 0.5,
+      "study_quality": "supplement_industry_rct",
+      "hr_posterior_mean": 0.9939,
+      "hr_posterior_median": 0.9965,
+      "hr_posterior_ci95_low": 0.9134,
+      "hr_posterior_ci95_high": 1.0677,
+      "mortality_qaly_mean": 0.0218,
+      "mortality_qaly_median": 0.02788,
+      "days": 19.7,
+      "p_benefit": 0.59,
+      "annual_cost": 0,
+      "effective_annual_cost": 60.0,
+      "bundle_cost_share": 60.0,
+      "bundle_id": "blueprint_essential_capsules",
+      "gross_value": 9758,
+      "qol_annual": 0.001,
+      "evidence": "medium",
+      "notes": "Q-SYMBIO RCT in HF. Healthy-pop extrapolation.",
+      "sources": [],
+      "in_portfolio": true,
+      "cost_per_qaly": 18814,
+      "db_product": "Blueprint Essential Capsules",
+      "brand": "Blueprint",
+      "serving_size": "2 capsules",
+      "daily_servings": 1.0,
+      "dose_notes": "2 capsules with meal 1",
+      "time_of_day": "meal_1",
+      "source_url": "https://blueprint.bryanjohnson.com/products/essentials-capsules",
+      "package_price": 49.0,
+      "ingredients": [
+        {
+          "ingredient": "Biotin",
+          "amount": 50.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Boron",
+          "amount": 3.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Broccoli Seed Extract",
+          "amount": 200.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Calcium",
+          "amount": 50.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Fisetin",
+          "amount": 100.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Folate",
+          "amount": 200.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Glucoraphanin",
+          "amount": 20.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Iodine",
+          "amount": 200.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Lactobacillus acidophilus",
+          "amount": 4.0,
+          "unit": "billion CFU"
+        },
+        {
+          "ingredient": "Lithium Orotate",
+          "amount": 1.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Luteolin",
+          "amount": 100.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Manganese",
+          "amount": 1.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Nicotinamide Riboside (NR)",
+          "amount": 300.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Selenium",
+          "amount": 28.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Spermidine",
+          "amount": 10.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Ubiquinol (CoQ10)",
+          "amount": 50.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B1 (Thiamine)",
+          "amount": 1.1,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B12",
+          "amount": 125.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Vitamin B2 (Riboflavin)",
+          "amount": 1.4,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B3 (Niacin)",
+          "amount": 15.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B5 (Pantothenic Acid)",
+          "amount": 6.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B6",
+          "amount": 1.4,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin D",
+          "amount": 2000.0,
+          "unit": "IU"
+        },
+        {
+          "ingredient": "Vitamin E",
+          "amount": 67.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Zinc",
+          "amount": 15.0,
+          "unit": "mg"
+        }
+      ]
+    },
+    {
+      "id": "quercetin_500",
+      "name": "Quercetin 500mg",
+      "category": "supplement_candidate",
+      "category_label": "Under evaluation",
+      "status": "watching",
+      "hr_observed": 0.93,
+      "hr_corrected": 0.9644,
+      "pub_bias_shrinkage": 0.5,
+      "study_quality": "supplement_industry_rct",
+      "hr_posterior_mean": 0.9895,
+      "hr_posterior_median": 0.9937,
+      "hr_posterior_ci95_low": 0.8876,
+      "hr_posterior_ci95_high": 1.0796,
+      "mortality_qaly_mean": 0.05235,
+      "mortality_qaly_median": 0.04981,
+      "days": 19.1,
+      "p_benefit": 0.62,
+      "annual_cost": 60,
+      "effective_annual_cost": 60.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": 9457,
+      "qol_annual": 0.0,
+      "evidence": "medium",
+      "notes": "Senolytic. Anti-inflammatory. Animal lifespan.",
+      "sources": [],
+      "in_portfolio": false,
+      "cost_per_qaly": 19363
+    },
+    {
       "id": "collagen_22g",
       "name": "Collagen 22g",
       "category": "supplement_current",
       "category_label": "Current supplements",
       "status": "taking",
       "hr_observed": 0.99,
-      "hr_corrected": 0.993,
-      "days": 44.0,
-      "p_benefit": 0.56,
+      "hr_corrected": 0.995,
+      "pub_bias_shrinkage": 0.5,
+      "study_quality": "supplement_industry_rct",
+      "hr_posterior_mean": 0.9994,
+      "hr_posterior_median": 0.9998,
+      "hr_posterior_ci95_low": 0.9806,
+      "hr_posterior_ci95_high": 1.0174,
+      "mortality_qaly_mean": -0.00159,
+      "mortality_qaly_median": 0.00137,
+      "days": 27.1,
+      "p_benefit": 0.54,
       "annual_cost": 360,
-      "gross_value": 18016,
+      "effective_annual_cost": 360.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": 8781,
       "qol_annual": 0.003,
       "evidence": "medium",
       "notes": "No mortality data. Joint/skin RCTs.",
       "sources": [],
-      "in_portfolio": true,
-      "cost_per_qaly": 50441,
+      "in_portfolio": false,
+      "cost_per_qaly": 81791,
       "db_product": "Blueprint Collagen Peptides",
       "brand": "Blueprint",
       "serving_size": "1 scoop (22g)",
@@ -900,23 +1210,1161 @@
       ]
     },
     {
-      "id": "lutein_zeaxanthin",
-      "name": "Lutein+Zeaxanthin",
+      "id": "ubiquinol_50_unbundled",
+      "name": "Ubiquinol 50mg (unbundled)",
+      "category": "supplement_candidate",
+      "category_label": "Under evaluation",
+      "status": "watching",
+      "hr_observed": 0.96,
+      "hr_corrected": 0.9798,
+      "pub_bias_shrinkage": 0.5,
+      "study_quality": "supplement_industry_rct",
+      "hr_posterior_mean": 0.9939,
+      "hr_posterior_median": 0.9965,
+      "hr_posterior_ci95_low": 0.9134,
+      "hr_posterior_ci95_high": 1.0677,
+      "mortality_qaly_mean": 0.0218,
+      "mortality_qaly_median": 0.02788,
+      "days": 19.7,
+      "p_benefit": 0.59,
+      "annual_cost": 120,
+      "effective_annual_cost": 120.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": 8745,
+      "qol_annual": 0.001,
+      "evidence": "medium",
+      "notes": "Standalone ubiquinol using current Life Extension pricing, modeled at an Amazon-favored effective cost after 5% Prime cash back.",
+      "sources": [
+        "https://www.lifeextension.com/vitamins-supplements/item01425/super-ubiquinol-coq10-with-ppm-pyrroloquinoline-quinone"
+      ],
+      "in_portfolio": false,
+      "cost_per_qaly": 37628
+    },
+    {
+      "id": "ashwagandha_600",
+      "name": "Ashwagandha 600mg",
+      "category": "supplement_candidate",
+      "category_label": "Under evaluation",
+      "status": "watching",
+      "hr_observed": 0.96,
+      "hr_corrected": 0.9798,
+      "pub_bias_shrinkage": 0.5,
+      "study_quality": "supplement_industry_rct",
+      "hr_posterior_mean": 0.9945,
+      "hr_posterior_median": 0.9975,
+      "hr_posterior_ci95_low": 0.9112,
+      "hr_posterior_ci95_high": 1.0708,
+      "mortality_qaly_mean": 0.01462,
+      "mortality_qaly_median": 0.01745,
+      "days": 17.0,
+      "p_benefit": 0.57,
+      "annual_cost": 60,
+      "effective_annual_cost": 60.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": 8322,
+      "qol_annual": 0.001,
+      "evidence": "medium",
+      "notes": "RCTs: cortisol, anxiety, sleep, testosterone. Rare liver concern.",
+      "sources": [],
+      "in_portfolio": false,
+      "cost_per_qaly": 21706
+    },
+    {
+      "id": "zinc_carnosine_75",
+      "name": "Zinc carnosine 75mg",
+      "category": "supplement_bought",
+      "category_label": "Recently added",
+      "status": "testing",
+      "hr_observed": 0.97,
+      "hr_corrected": 0.9849,
+      "pub_bias_shrinkage": 0.5,
+      "study_quality": "supplement_industry_rct",
+      "hr_posterior_mean": 0.9955,
+      "hr_posterior_median": 0.9975,
+      "hr_posterior_ci95_low": 0.9285,
+      "hr_posterior_ci95_high": 1.0572,
+      "mortality_qaly_mean": 0.01279,
+      "mortality_qaly_median": 0.02012,
+      "days": 16.4,
+      "p_benefit": 0.58,
+      "annual_cost": 60,
+      "effective_annual_cost": 60.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": 7956,
+      "qol_annual": 0.001,
+      "evidence": "medium",
+      "notes": "Gut barrier integrity. Already getting zinc 15mg.",
+      "sources": [],
+      "in_portfolio": true,
+      "cost_per_qaly": 22591
+    },
+    {
+      "id": "urolithin_a_500",
+      "name": "Urolithin A 500mg",
+      "category": "supplement_candidate",
+      "category_label": "Under evaluation",
+      "status": "watching",
+      "hr_observed": 0.94,
+      "hr_corrected": 0.9695,
+      "pub_bias_shrinkage": 0.5,
+      "study_quality": "supplement_industry_rct",
+      "hr_posterior_mean": 0.9923,
+      "hr_posterior_median": 0.9954,
+      "hr_posterior_ci95_low": 0.8925,
+      "hr_posterior_ci95_high": 1.0847,
+      "mortality_qaly_mean": 0.02952,
+      "mortality_qaly_median": 0.03623,
+      "days": 38.5,
+      "p_benefit": 0.59,
+      "annual_cost": 780,
+      "effective_annual_cost": 780.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": 7919,
+      "qol_annual": 0.003,
+      "evidence": "medium",
+      "notes": "Mitopure. RCTs: improved mitochondrial function. Expensive.",
+      "sources": [],
+      "in_portfolio": false,
+      "cost_per_qaly": 124918
+    },
+    {
+      "id": "black_seed_oil_1g",
+      "name": "Black seed oil 1g",
+      "category": "supplement_candidate",
+      "category_label": "Under evaluation",
+      "status": "watching",
+      "hr_observed": 0.91,
+      "hr_corrected": 0.9584,
+      "pub_bias_shrinkage": 0.55,
+      "study_quality": "observational_speculative",
+      "hr_posterior_mean": 0.9915,
+      "hr_posterior_median": 0.9959,
+      "hr_posterior_ci95_low": 0.8902,
+      "hr_posterior_ci95_high": 1.0812,
+      "mortality_qaly_mean": 0.03881,
+      "mortality_qaly_median": 0.0324,
+      "days": 14.2,
+      "p_benefit": 0.61,
+      "annual_cost": 60,
+      "effective_annual_cost": 60.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": 6749,
+      "qol_annual": 0.0,
+      "evidence": "low",
+      "notes": "Thymoquinone. Anti-inflammatory. No mortality RCTs.",
+      "sources": [],
+      "in_portfolio": false,
+      "cost_per_qaly": 26115
+    },
+    {
+      "id": "vitamin_c_500_extra",
+      "name": "Vitamin C 500mg (extra)",
+      "category": "supplement_candidate",
+      "category_label": "Under evaluation",
+      "status": "watching",
+      "hr_observed": 0.97,
+      "hr_corrected": 0.9789,
+      "pub_bias_shrinkage": 0.3,
+      "study_quality": "cohort_large",
+      "hr_posterior_mean": 0.9931,
+      "hr_posterior_median": 0.9952,
+      "hr_posterior_ci95_low": 0.9295,
+      "hr_posterior_ci95_high": 1.0502,
+      "mortality_qaly_mean": 0.03239,
+      "mortality_qaly_median": 0.03799,
+      "days": 11.8,
+      "p_benefit": 0.62,
+      "annual_cost": 15,
+      "effective_annual_cost": 15.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": 6226,
+      "qol_annual": 0.0,
+      "evidence": "medium",
+      "notes": "Already getting 250mg from Longevity Mix. Obs meta: modest CVD.",
+      "sources": [],
+      "in_portfolio": true,
+      "cost_per_qaly": 7820
+    },
+    {
+      "id": "melatonin_300mcg",
+      "name": "Melatonin 300mcg",
       "category": "supplement_current",
       "category_label": "Current supplements",
       "status": "taking",
       "hr_observed": 0.97,
-      "hr_corrected": 0.9789,
-      "days": 32.6,
-      "p_benefit": 0.59,
-      "annual_cost": 0,
-      "gross_value": 17871,
-      "qol_annual": 0.002,
+      "hr_corrected": 0.9759,
+      "pub_bias_shrinkage": 0.2,
+      "study_quality": "rct_standard",
+      "hr_posterior_mean": 0.9944,
+      "hr_posterior_median": 0.9973,
+      "hr_posterior_ci95_low": 0.9321,
+      "hr_posterior_ci95_high": 1.0481,
+      "mortality_qaly_mean": 0.02059,
+      "mortality_qaly_median": 0.01665,
+      "days": 11.0,
+      "p_benefit": 0.58,
+      "annual_cost": 30,
+      "effective_annual_cost": 30.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": 5536,
+      "qol_annual": 0.0003,
       "evidence": "medium",
-      "notes": "AREDS2. Eye health. Bundled.",
+      "notes": "Sleep onset RCTs.",
       "sources": [],
       "in_portfolio": true,
-      "cost_per_qaly": null,
+      "cost_per_qaly": 16768,
+      "db_product": "Melatonin",
+      "brand": "Life Extension",
+      "serving_size": "1 tablet",
+      "daily_servings": 1.0,
+      "dose_notes": "1.5mg before bed",
+      "time_of_day": "before_bed",
+      "source_url": "https://www.amazon.com/dp/B00CDAWFN2",
+      "package_price": 7.5,
+      "ingredients": [
+        {
+          "ingredient": "Melatonin",
+          "amount": 1.5,
+          "unit": "mg"
+        }
+      ]
+    },
+    {
+      "id": "nr_300",
+      "name": "NR 300mg",
+      "category": "supplement_current",
+      "category_label": "Current supplements",
+      "status": "taking",
+      "hr_observed": 0.97,
+      "hr_corrected": 0.9849,
+      "pub_bias_shrinkage": 0.5,
+      "study_quality": "supplement_industry_rct",
+      "hr_posterior_mean": 0.997,
+      "hr_posterior_median": 0.9987,
+      "hr_posterior_ci95_low": 0.9413,
+      "hr_posterior_ci95_high": 1.0482,
+      "mortality_qaly_mean": 0.00561,
+      "mortality_qaly_median": 0.01012,
+      "days": 11.3,
+      "p_benefit": 0.57,
+      "annual_cost": 0,
+      "effective_annual_cost": 60.0,
+      "bundle_cost_share": 60.0,
+      "bundle_id": "blueprint_essential_capsules",
+      "gross_value": 5169,
+      "qol_annual": 0.001,
+      "evidence": "medium",
+      "notes": "NAD+ precursor. Bundled.",
+      "sources": [],
+      "in_portfolio": false,
+      "cost_per_qaly": 32772,
+      "db_product": "Blueprint Essential Capsules",
+      "brand": "Blueprint",
+      "serving_size": "2 capsules",
+      "daily_servings": 1.0,
+      "dose_notes": "2 capsules with meal 1",
+      "time_of_day": "meal_1",
+      "source_url": "https://blueprint.bryanjohnson.com/products/essentials-capsules",
+      "package_price": 49.0,
+      "ingredients": [
+        {
+          "ingredient": "Biotin",
+          "amount": 50.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Boron",
+          "amount": 3.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Broccoli Seed Extract",
+          "amount": 200.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Calcium",
+          "amount": 50.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Fisetin",
+          "amount": 100.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Folate",
+          "amount": 200.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Glucoraphanin",
+          "amount": 20.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Iodine",
+          "amount": 200.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Lactobacillus acidophilus",
+          "amount": 4.0,
+          "unit": "billion CFU"
+        },
+        {
+          "ingredient": "Lithium Orotate",
+          "amount": 1.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Luteolin",
+          "amount": 100.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Manganese",
+          "amount": 1.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Nicotinamide Riboside (NR)",
+          "amount": 300.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Selenium",
+          "amount": 28.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Spermidine",
+          "amount": 10.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Ubiquinol (CoQ10)",
+          "amount": 50.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B1 (Thiamine)",
+          "amount": 1.1,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B12",
+          "amount": 125.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Vitamin B2 (Riboflavin)",
+          "amount": 1.4,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B3 (Niacin)",
+          "amount": 15.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B5 (Pantothenic Acid)",
+          "amount": 6.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B6",
+          "amount": 1.4,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin D",
+          "amount": 2000.0,
+          "unit": "IU"
+        },
+        {
+          "ingredient": "Vitamin E",
+          "amount": 67.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Zinc",
+          "amount": 15.0,
+          "unit": "mg"
+        }
+      ]
+    },
+    {
+      "id": "ergothioneine_5",
+      "name": "Ergothioneine 5mg",
+      "category": "supplement_candidate",
+      "category_label": "Under evaluation",
+      "status": "watching",
+      "hr_observed": 0.94,
+      "hr_corrected": 0.9725,
+      "pub_bias_shrinkage": 0.55,
+      "study_quality": "observational_speculative",
+      "hr_posterior_mean": 0.9943,
+      "hr_posterior_median": 0.9974,
+      "hr_posterior_ci95_low": 0.9106,
+      "hr_posterior_ci95_high": 1.0702,
+      "mortality_qaly_mean": 0.02003,
+      "mortality_qaly_median": 0.02062,
+      "days": 16.6,
+      "p_benefit": 0.59,
+      "annual_cost": 240,
+      "effective_annual_cost": 240.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": 5016,
+      "qol_annual": 0.001,
+      "evidence": "medium",
+      "notes": "Longevity vitamin hypothesis. Obs: low ergo \u2192 higher mortality.",
+      "sources": [],
+      "in_portfolio": false,
+      "cost_per_qaly": 89385
+    },
+    {
+      "id": "hiit_2x_week",
+      "name": "HIIT 2x/week",
+      "category": "supplement_candidate",
+      "category_label": "Under evaluation",
+      "status": "watching",
+      "hr_observed": 1.0,
+      "hr_corrected": 1.0,
+      "pub_bias_shrinkage": 0.2,
+      "study_quality": "rct_standard",
+      "hr_posterior_mean": null,
+      "hr_posterior_median": null,
+      "hr_posterior_ci95_low": null,
+      "hr_posterior_ci95_high": null,
+      "mortality_qaly_mean": 0.0,
+      "mortality_qaly_median": 0.0,
+      "days": 9.0,
+      "p_benefit": 0.0,
+      "annual_cost": 0,
+      "effective_annual_cost": 0.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": 4917,
+      "qol_annual": 0.0022,
+      "evidence": "medium",
+      "notes": "Structured interval training twice weekly, assumed to replace easier cardio. Modeled as a somewhat larger CRF stimulus with diminishing marginal return.",
+      "sources": [
+        "https://pubmed.ncbi.nlm.nih.gov/26243014/",
+        "https://pubmed.ncbi.nlm.nih.gov/38599681/",
+        "https://pubmed.ncbi.nlm.nih.gov/40976973/"
+      ],
+      "in_portfolio": true,
+      "cost_per_qaly": null
+    },
+    {
+      "id": "broccoli_seed_200",
+      "name": "Broccoli Seed Ext 200mg",
+      "category": "supplement_current",
+      "category_label": "Current supplements",
+      "status": "taking",
+      "hr_observed": 0.95,
+      "hr_corrected": 0.9772,
+      "pub_bias_shrinkage": 0.55,
+      "study_quality": "observational_speculative",
+      "hr_posterior_mean": 0.9926,
+      "hr_posterior_median": 0.9956,
+      "hr_posterior_ci95_low": 0.893,
+      "hr_posterior_ci95_high": 1.0853,
+      "mortality_qaly_mean": 0.02693,
+      "mortality_qaly_median": 0.0348,
+      "days": 9.8,
+      "p_benefit": 0.59,
+      "annual_cost": 0,
+      "effective_annual_cost": 60.0,
+      "bundle_cost_share": 60.0,
+      "bundle_id": "blueprint_essential_capsules",
+      "gross_value": 4373,
+      "qol_annual": 0.0,
+      "evidence": "medium",
+      "notes": "Sulforaphane. Phase 2 enzyme induction. Bundled.",
+      "sources": [],
+      "in_portfolio": false,
+      "cost_per_qaly": 37630,
+      "db_product": "Blueprint Essential Capsules",
+      "brand": "Blueprint",
+      "serving_size": "2 capsules",
+      "daily_servings": 1.0,
+      "dose_notes": "2 capsules with meal 1",
+      "time_of_day": "meal_1",
+      "source_url": "https://blueprint.bryanjohnson.com/products/essentials-capsules",
+      "package_price": 49.0,
+      "ingredients": [
+        {
+          "ingredient": "Biotin",
+          "amount": 50.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Boron",
+          "amount": 3.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Broccoli Seed Extract",
+          "amount": 200.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Calcium",
+          "amount": 50.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Fisetin",
+          "amount": 100.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Folate",
+          "amount": 200.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Glucoraphanin",
+          "amount": 20.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Iodine",
+          "amount": 200.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Lactobacillus acidophilus",
+          "amount": 4.0,
+          "unit": "billion CFU"
+        },
+        {
+          "ingredient": "Lithium Orotate",
+          "amount": 1.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Luteolin",
+          "amount": 100.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Manganese",
+          "amount": 1.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Nicotinamide Riboside (NR)",
+          "amount": 300.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Selenium",
+          "amount": 28.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Spermidine",
+          "amount": 10.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Ubiquinol (CoQ10)",
+          "amount": 50.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B1 (Thiamine)",
+          "amount": 1.1,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B12",
+          "amount": 125.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Vitamin B2 (Riboflavin)",
+          "amount": 1.4,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B3 (Niacin)",
+          "amount": 15.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B5 (Pantothenic Acid)",
+          "amount": 6.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B6",
+          "amount": 1.4,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin D",
+          "amount": 2000.0,
+          "unit": "IU"
+        },
+        {
+          "ingredient": "Vitamin E",
+          "amount": 67.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Zinc",
+          "amount": 15.0,
+          "unit": "mg"
+        }
+      ]
+    },
+    {
+      "id": "luteolin_100",
+      "name": "Luteolin 100mg",
+      "category": "supplement_current",
+      "category_label": "Current supplements",
+      "status": "taking",
+      "hr_observed": 0.97,
+      "hr_corrected": 0.9864,
+      "pub_bias_shrinkage": 0.55,
+      "study_quality": "observational_speculative",
+      "hr_posterior_mean": 0.9977,
+      "hr_posterior_median": 0.9992,
+      "hr_posterior_ci95_low": 0.9433,
+      "hr_posterior_ci95_high": 1.0488,
+      "mortality_qaly_mean": 0.00108,
+      "mortality_qaly_median": 0.00637,
+      "days": 9.6,
+      "p_benefit": 0.56,
+      "annual_cost": 0,
+      "effective_annual_cost": 60.0,
+      "bundle_cost_share": 60.0,
+      "bundle_id": "blueprint_essential_capsules",
+      "gross_value": 4262,
+      "qol_annual": 0.001,
+      "evidence": "medium",
+      "notes": "Anti-inflammatory. Neuroprotective. Bundled.",
+      "sources": [],
+      "in_portfolio": false,
+      "cost_per_qaly": 38402,
+      "db_product": "Blueprint Essential Capsules",
+      "brand": "Blueprint",
+      "serving_size": "2 capsules",
+      "daily_servings": 1.0,
+      "dose_notes": "2 capsules with meal 1",
+      "time_of_day": "meal_1",
+      "source_url": "https://blueprint.bryanjohnson.com/products/essentials-capsules",
+      "package_price": 49.0,
+      "ingredients": [
+        {
+          "ingredient": "Biotin",
+          "amount": 50.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Boron",
+          "amount": 3.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Broccoli Seed Extract",
+          "amount": 200.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Calcium",
+          "amount": 50.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Fisetin",
+          "amount": 100.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Folate",
+          "amount": 200.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Glucoraphanin",
+          "amount": 20.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Iodine",
+          "amount": 200.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Lactobacillus acidophilus",
+          "amount": 4.0,
+          "unit": "billion CFU"
+        },
+        {
+          "ingredient": "Lithium Orotate",
+          "amount": 1.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Luteolin",
+          "amount": 100.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Manganese",
+          "amount": 1.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Nicotinamide Riboside (NR)",
+          "amount": 300.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Selenium",
+          "amount": 28.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Spermidine",
+          "amount": 10.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Ubiquinol (CoQ10)",
+          "amount": 50.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B1 (Thiamine)",
+          "amount": 1.1,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B12",
+          "amount": 125.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Vitamin B2 (Riboflavin)",
+          "amount": 1.4,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B3 (Niacin)",
+          "amount": 15.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B5 (Pantothenic Acid)",
+          "amount": 6.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B6",
+          "amount": 1.4,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin D",
+          "amount": 2000.0,
+          "unit": "IU"
+        },
+        {
+          "ingredient": "Vitamin E",
+          "amount": 67.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Zinc",
+          "amount": 15.0,
+          "unit": "mg"
+        }
+      ]
+    },
+    {
+      "id": "hiit_3x_week",
+      "name": "HIIT 3x/week",
+      "category": "supplement_candidate",
+      "category_label": "Under evaluation",
+      "status": "watching",
+      "hr_observed": 1.0,
+      "hr_corrected": 1.0,
+      "pub_bias_shrinkage": 0.2,
+      "study_quality": "rct_standard",
+      "hr_posterior_mean": null,
+      "hr_posterior_median": null,
+      "hr_posterior_ci95_low": null,
+      "hr_posterior_ci95_high": null,
+      "mortality_qaly_mean": 0.0,
+      "mortality_qaly_median": 0.0,
+      "days": 7.8,
+      "p_benefit": 0.0,
+      "annual_cost": 0,
+      "effective_annual_cost": 0.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": 4247,
+      "qol_annual": 0.0019,
+      "evidence": "medium",
+      "notes": "Three structured interval sessions weekly, assumed to replace easier cardio. Modeled with extra recovery uncertainty and a small recurring downside because current frequency evidence suggests no clear added benefit over 2x/week in recreational runners.",
+      "sources": [
+        "https://pubmed.ncbi.nlm.nih.gov/26243014/",
+        "https://pubmed.ncbi.nlm.nih.gov/38599681/",
+        "https://pubmed.ncbi.nlm.nih.gov/40976973/"
+      ],
+      "in_portfolio": true,
+      "cost_per_qaly": null
+    },
+    {
+      "id": "ghk_cu",
+      "name": "GHK-Cu peptide (topical)",
+      "category": "supplement_candidate",
+      "category_label": "Under evaluation",
+      "status": "watching",
+      "hr_observed": 0.99,
+      "hr_corrected": 0.9955,
+      "pub_bias_shrinkage": 0.55,
+      "study_quality": "observational_speculative",
+      "hr_posterior_mean": 0.999,
+      "hr_posterior_median": 0.9997,
+      "hr_posterior_ci95_low": 0.9621,
+      "hr_posterior_ci95_high": 1.0355,
+      "mortality_qaly_mean": -0.00491,
+      "mortality_qaly_median": 0.00225,
+      "days": 16.7,
+      "p_benefit": 0.54,
+      "annual_cost": 300,
+      "effective_annual_cost": 300.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": 4071,
+      "qol_annual": 0.002,
+      "evidence": "medium",
+      "notes": "Wound healing, collagen. Skin only.",
+      "sources": [],
+      "in_portfolio": false,
+      "cost_per_qaly": 110861
+    },
+    {
+      "id": "lithium_1mg_orotate",
+      "name": "Lithium 1mg orotate",
+      "category": "supplement_current",
+      "category_label": "Current supplements",
+      "status": "taking",
+      "hr_observed": 0.98,
+      "hr_corrected": 0.9909,
+      "pub_bias_shrinkage": 0.55,
+      "study_quality": "observational_speculative",
+      "hr_posterior_mean": 0.9979,
+      "hr_posterior_median": 0.9991,
+      "hr_posterior_ci95_low": 0.943,
+      "hr_posterior_ci95_high": 1.0498,
+      "mortality_qaly_mean": -0.00166,
+      "mortality_qaly_median": 0.00684,
+      "days": 8.6,
+      "p_benefit": 0.55,
+      "annual_cost": 0,
+      "effective_annual_cost": 60.0,
+      "bundle_cost_share": 60.0,
+      "bundle_id": "blueprint_essential_capsules",
+      "gross_value": 3715,
+      "qol_annual": 0.001,
+      "evidence": "medium",
+      "notes": "Ecological Li data. Neuroprotective. Bundled.",
+      "sources": [],
+      "in_portfolio": false,
+      "cost_per_qaly": 42845,
+      "db_product": "Blueprint Essential Capsules",
+      "brand": "Blueprint",
+      "serving_size": "2 capsules",
+      "daily_servings": 1.0,
+      "dose_notes": "2 capsules with meal 1",
+      "time_of_day": "meal_1",
+      "source_url": "https://blueprint.bryanjohnson.com/products/essentials-capsules",
+      "package_price": 49.0,
+      "ingredients": [
+        {
+          "ingredient": "Biotin",
+          "amount": 50.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Boron",
+          "amount": 3.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Broccoli Seed Extract",
+          "amount": 200.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Calcium",
+          "amount": 50.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Fisetin",
+          "amount": 100.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Folate",
+          "amount": 200.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Glucoraphanin",
+          "amount": 20.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Iodine",
+          "amount": 200.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Lactobacillus acidophilus",
+          "amount": 4.0,
+          "unit": "billion CFU"
+        },
+        {
+          "ingredient": "Lithium Orotate",
+          "amount": 1.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Luteolin",
+          "amount": 100.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Manganese",
+          "amount": 1.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Nicotinamide Riboside (NR)",
+          "amount": 300.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Selenium",
+          "amount": 28.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Spermidine",
+          "amount": 10.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Ubiquinol (CoQ10)",
+          "amount": 50.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B1 (Thiamine)",
+          "amount": 1.1,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B12",
+          "amount": 125.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Vitamin B2 (Riboflavin)",
+          "amount": 1.4,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B3 (Niacin)",
+          "amount": 15.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B5 (Pantothenic Acid)",
+          "amount": 6.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B6",
+          "amount": 1.4,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin D",
+          "amount": 2000.0,
+          "unit": "IU"
+        },
+        {
+          "ingredient": "Vitamin E",
+          "amount": 67.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Zinc",
+          "amount": 15.0,
+          "unit": "mg"
+        }
+      ]
+    },
+    {
+      "id": "tempo_run_1x_week",
+      "name": "Tempo run 1x/week",
+      "category": "supplement_candidate",
+      "category_label": "Under evaluation",
+      "status": "watching",
+      "hr_observed": 1.0,
+      "hr_corrected": 1.0,
+      "pub_bias_shrinkage": 0.2,
+      "study_quality": "rct_standard",
+      "hr_posterior_mean": null,
+      "hr_posterior_median": null,
+      "hr_posterior_ci95_low": null,
+      "hr_posterior_ci95_high": null,
+      "mortality_qaly_mean": 0.0,
+      "mortality_qaly_median": 0.0,
+      "days": 6.5,
+      "p_benefit": 0.0,
+      "annual_cost": 0,
+      "effective_annual_cost": 0.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": 3576,
+      "qol_annual": 0.0016,
+      "evidence": "medium",
+      "notes": "One threshold/tempo-style run weekly, assumed to replace easier cardio. Modeled as intermediate between easy cardio and HIIT for CRF benefit.",
+      "sources": [
+        "https://pubmed.ncbi.nlm.nih.gov/26243014/",
+        "https://pubmed.ncbi.nlm.nih.gov/38599681/"
+      ],
+      "in_portfolio": true,
+      "cost_per_qaly": null
+    },
+    {
+      "id": "cistanche_200",
+      "name": "Cistanche 200mg",
+      "category": "supplement_bought",
+      "category_label": "Recently added",
+      "status": "testing",
+      "hr_observed": 0.95,
+      "hr_corrected": 0.9772,
+      "pub_bias_shrinkage": 0.55,
+      "study_quality": "observational_speculative",
+      "hr_posterior_mean": 0.9967,
+      "hr_posterior_median": 0.9988,
+      "hr_posterior_ci95_low": 0.9204,
+      "hr_posterior_ci95_high": 1.0689,
+      "mortality_qaly_mean": 0.00314,
+      "mortality_qaly_median": 0.00929,
+      "days": 13.5,
+      "p_benefit": 0.56,
+      "annual_cost": 231,
+      "effective_annual_cost": 231.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": 3476,
+      "qol_annual": 0.002,
+      "evidence": "low",
+      "notes": "Testosterone, anti-aging TCM. Very limited human data.",
+      "sources": [
+        "https://www.amazon.com/dp/B08VTFXWQF"
+      ],
+      "in_portfolio": false,
+      "cost_per_qaly": 105746,
+      "db_product": "Cistanche 200mg",
+      "brand": "Nootropics Depot",
+      "serving_size": "1 capsule",
+      "daily_servings": 1.0,
+      "dose_notes": "200mg with meal 1",
+      "time_of_day": "meal_1",
+      "source_url": "https://www.amazon.com/dp/B08VTFXWQF",
+      "package_price": 37.99,
+      "ingredients": [
+        {
+          "ingredient": "Cistanche tubulosa Extract",
+          "amount": 200.0,
+          "unit": "mg"
+        }
+      ]
+    },
+    {
+      "id": "luteolin_100_unbundled",
+      "name": "Luteolin 100mg (unbundled)",
+      "category": "supplement_candidate",
+      "category_label": "Under evaluation",
+      "status": "watching",
+      "hr_observed": 0.97,
+      "hr_corrected": 0.9864,
+      "pub_bias_shrinkage": 0.55,
+      "study_quality": "observational_speculative",
+      "hr_posterior_mean": 0.9977,
+      "hr_posterior_median": 0.9992,
+      "hr_posterior_ci95_low": 0.9433,
+      "hr_posterior_ci95_high": 1.0488,
+      "mortality_qaly_mean": 0.00108,
+      "mortality_qaly_median": 0.00637,
+      "days": 9.6,
+      "p_benefit": 0.56,
+      "annual_cost": 115,
+      "effective_annual_cost": 115.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": 3334,
+      "qol_annual": 0.001,
+      "evidence": "medium",
+      "notes": "Standalone luteolin using current Double Wood pricing, modeled at an Amazon-favored effective cost after 5% Prime cash back.",
+      "sources": [
+        "https://doublewoodsupplements.com/products/luteolin"
+      ],
+      "in_portfolio": false,
+      "cost_per_qaly": 73604
+    },
+    {
+      "id": "lycopene_15",
+      "name": "Lycopene 15mg",
+      "category": "supplement_current",
+      "category_label": "Current supplements",
+      "status": "taking",
+      "hr_observed": 0.95,
+      "hr_corrected": 0.9772,
+      "pub_bias_shrinkage": 0.55,
+      "study_quality": "observational_speculative",
+      "hr_posterior_mean": 0.9941,
+      "hr_posterior_median": 0.9971,
+      "hr_posterior_ci95_low": 0.9079,
+      "hr_posterior_ci95_high": 1.0725,
+      "mortality_qaly_mean": 0.02098,
+      "mortality_qaly_median": 0.02262,
+      "days": 7.7,
+      "p_benefit": 0.59,
+      "annual_cost": 0,
+      "effective_annual_cost": 60.0,
+      "bundle_cost_share": 60.0,
+      "bundle_id": "blueprint_advanced_antioxidants",
+      "gross_value": 3183,
+      "qol_annual": 0.0,
+      "evidence": "medium",
+      "notes": "Song meta obs. Bundled.",
+      "sources": [],
+      "in_portfolio": false,
+      "cost_per_qaly": 48298,
       "db_product": "Blueprint Advanced Antioxidants",
       "brand": "Blueprint",
       "serving_size": "1 capsule",
@@ -964,789 +2412,37 @@
       ]
     },
     {
-      "id": "vitamin_k2",
-      "name": "Vitamin K2 MK-7+MK-4",
-      "category": "supplement_current",
-      "category_label": "Current supplements",
-      "status": "taking",
-      "hr_observed": 0.92,
-      "hr_corrected": 0.9433,
-      "days": 30.6,
-      "p_benefit": 0.65,
-      "annual_cost": 25,
-      "gross_value": 16344,
-      "qol_annual": 0.0,
+      "id": "hiit_1x_week",
+      "name": "HIIT 1x/week",
+      "category": "supplement_candidate",
+      "category_label": "Under evaluation",
+      "status": "watching",
+      "hr_observed": 1.0,
+      "hr_corrected": 1.0,
+      "pub_bias_shrinkage": 0.2,
+      "study_quality": "rct_standard",
+      "hr_posterior_mean": null,
+      "hr_posterior_median": null,
+      "hr_posterior_ci95_low": null,
+      "hr_posterior_ci95_high": null,
+      "mortality_qaly_mean": 0.0,
+      "mortality_qaly_median": 0.0,
+      "days": 5.7,
+      "p_benefit": 0.0,
+      "annual_cost": 0,
+      "effective_annual_cost": 0.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": 3129,
+      "qol_annual": 0.0014,
       "evidence": "medium",
-      "notes": "Rotterdam obs. Calcification RCTs.",
-      "sources": [],
-      "in_portfolio": true,
-      "cost_per_qaly": 5041
-    },
-    {
-      "id": "cistanche_200",
-      "name": "Cistanche 200mg",
-      "category": "supplement_bought",
-      "category_label": "Recently added",
-      "status": "testing",
-      "hr_observed": 0.95,
-      "hr_corrected": 0.9647,
-      "days": 33.8,
-      "p_benefit": 0.58,
-      "annual_cost": 231,
-      "gross_value": 14620,
-      "qol_annual": 0.002,
-      "evidence": "low",
-      "notes": "Testosterone, anti-aging TCM. Very limited human data.",
+      "notes": "Structured interval training once weekly, assumed to replace an easier cardio session rather than add volume. Modeled through modest CRF/VO2max utility, not a direct mortality claim.",
       "sources": [
-        "https://www.amazon.com/dp/B08VTFXWQF"
+        "https://pubmed.ncbi.nlm.nih.gov/26243014/",
+        "https://pubmed.ncbi.nlm.nih.gov/38599681/"
       ],
       "in_portfolio": true,
-      "cost_per_qaly": 42121,
-      "db_product": "Cistanche 200mg",
-      "brand": "Nootropics Depot",
-      "serving_size": "1 capsule",
-      "daily_servings": 1.0,
-      "dose_notes": "200mg with meal 1",
-      "time_of_day": "meal_1",
-      "source_url": "https://www.amazon.com/dp/B08VTFXWQF",
-      "package_price": 37.99,
-      "ingredients": [
-        {
-          "ingredient": "Cistanche tubulosa Extract",
-          "amount": 200.0,
-          "unit": "mg"
-        }
-      ]
-    },
-    {
-      "id": "egcg_400",
-      "name": "EGCG 400mg (green tea)",
-      "category": "supplement_candidate",
-      "category_label": "Under evaluation",
-      "status": "watching",
-      "hr_observed": 0.92,
-      "hr_corrected": 0.9433,
-      "days": 28.5,
-      "p_benefit": 0.65,
-      "annual_cost": 60,
-      "gross_value": 14580,
-      "qol_annual": 0.0,
-      "evidence": "medium",
-      "notes": "Obs meta HR 0.74-0.85. Heavily confounded. Liver risk at high dose.",
-      "sources": [],
-      "in_portfolio": true,
-      "cost_per_qaly": 13006
-    },
-    {
-      "id": "ubiquinol_50",
-      "name": "Ubiquinol 50mg",
-      "category": "supplement_current",
-      "category_label": "Current supplements",
-      "status": "taking",
-      "hr_observed": 0.96,
-      "hr_corrected": 0.9718,
-      "days": 24.0,
-      "p_benefit": 0.6,
-      "annual_cost": 0,
-      "gross_value": 13164,
-      "qol_annual": 0.001,
-      "evidence": "medium",
-      "notes": "Q-SYMBIO RCT in HF. Healthy-pop extrapolation.",
-      "sources": [],
-      "in_portfolio": true,
-      "cost_per_qaly": null,
-      "db_product": "Blueprint Essential Capsules",
-      "brand": "Blueprint",
-      "serving_size": "2 capsules",
-      "daily_servings": 1.0,
-      "dose_notes": "2 capsules with meal 1",
-      "time_of_day": "meal_1",
-      "source_url": "https://blueprint.bryanjohnson.com/products/essentials-capsules",
-      "package_price": 49.0,
-      "ingredients": [
-        {
-          "ingredient": "Biotin",
-          "amount": 50.0,
-          "unit": "mcg"
-        },
-        {
-          "ingredient": "Boron",
-          "amount": 3.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Broccoli Seed Extract",
-          "amount": 200.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Calcium",
-          "amount": 50.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Fisetin",
-          "amount": 100.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Folate",
-          "amount": 200.0,
-          "unit": "mcg"
-        },
-        {
-          "ingredient": "Glucoraphanin",
-          "amount": 20.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Iodine",
-          "amount": 200.0,
-          "unit": "mcg"
-        },
-        {
-          "ingredient": "Lactobacillus acidophilus",
-          "amount": 4.0,
-          "unit": "billion CFU"
-        },
-        {
-          "ingredient": "Lithium Orotate",
-          "amount": 1.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Luteolin",
-          "amount": 100.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Manganese",
-          "amount": 1.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Nicotinamide Riboside (NR)",
-          "amount": 300.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Selenium",
-          "amount": 28.0,
-          "unit": "mcg"
-        },
-        {
-          "ingredient": "Spermidine",
-          "amount": 10.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Ubiquinol (CoQ10)",
-          "amount": 50.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Vitamin B1 (Thiamine)",
-          "amount": 1.1,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Vitamin B12",
-          "amount": 125.0,
-          "unit": "mcg"
-        },
-        {
-          "ingredient": "Vitamin B2 (Riboflavin)",
-          "amount": 1.4,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Vitamin B3 (Niacin)",
-          "amount": 15.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Vitamin B5 (Pantothenic Acid)",
-          "amount": 6.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Vitamin B6",
-          "amount": 1.4,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Vitamin D",
-          "amount": 2000.0,
-          "unit": "IU"
-        },
-        {
-          "ingredient": "Vitamin E",
-          "amount": 67.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Zinc",
-          "amount": 15.0,
-          "unit": "mg"
-        }
-      ]
-    },
-    {
-      "id": "black_seed_oil_1g",
-      "name": "Black seed oil 1g",
-      "category": "supplement_candidate",
-      "category_label": "Under evaluation",
-      "status": "watching",
-      "hr_observed": 0.91,
-      "hr_corrected": 0.9361,
-      "days": 24.5,
-      "p_benefit": 0.64,
-      "annual_cost": 60,
-      "gross_value": 12416,
-      "qol_annual": 0.0,
-      "evidence": "low",
-      "notes": "Thymoquinone. Anti-inflammatory. No mortality RCTs.",
-      "sources": [],
-      "in_portfolio": true,
-      "cost_per_qaly": 15099
-    },
-    {
-      "id": "quercetin_500",
-      "name": "Quercetin 500mg",
-      "category": "supplement_candidate",
-      "category_label": "Under evaluation",
-      "status": "watching",
-      "hr_observed": 0.93,
-      "hr_corrected": 0.9505,
-      "days": 22.9,
-      "p_benefit": 0.63,
-      "annual_cost": 60,
-      "gross_value": 11515,
-      "qol_annual": 0.0,
-      "evidence": "medium",
-      "notes": "Senolytic. Anti-inflammatory. Animal lifespan.",
-      "sources": [],
-      "in_portfolio": true,
-      "cost_per_qaly": 16185
-    },
-    {
-      "id": "ergothioneine_5",
-      "name": "Ergothioneine 5mg",
-      "category": "supplement_candidate",
-      "category_label": "Under evaluation",
-      "status": "watching",
-      "hr_observed": 0.94,
-      "hr_corrected": 0.9576,
-      "days": 28.4,
-      "p_benefit": 0.62,
-      "annual_cost": 240,
-      "gross_value": 11478,
-      "qol_annual": 0.001,
-      "evidence": "medium",
-      "notes": "Longevity vitamin hypothesis. Obs: low ergo \u2192 higher mortality.",
-      "sources": [],
-      "in_portfolio": false,
-      "cost_per_qaly": 52200
-    },
-    {
-      "id": "nr_300",
-      "name": "NR 300mg",
-      "category": "supplement_current",
-      "category_label": "Current supplements",
-      "status": "taking",
-      "hr_observed": 0.97,
-      "hr_corrected": 0.9789,
-      "days": 19.5,
-      "p_benefit": 0.59,
-      "annual_cost": 0,
-      "gross_value": 10668,
-      "qol_annual": 0.001,
-      "evidence": "medium",
-      "notes": "NAD+ precursor. Bundled.",
-      "sources": [],
-      "in_portfolio": true,
-      "cost_per_qaly": null,
-      "db_product": "Blueprint Essential Capsules",
-      "brand": "Blueprint",
-      "serving_size": "2 capsules",
-      "daily_servings": 1.0,
-      "dose_notes": "2 capsules with meal 1",
-      "time_of_day": "meal_1",
-      "source_url": "https://blueprint.bryanjohnson.com/products/essentials-capsules",
-      "package_price": 49.0,
-      "ingredients": [
-        {
-          "ingredient": "Biotin",
-          "amount": 50.0,
-          "unit": "mcg"
-        },
-        {
-          "ingredient": "Boron",
-          "amount": 3.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Broccoli Seed Extract",
-          "amount": 200.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Calcium",
-          "amount": 50.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Fisetin",
-          "amount": 100.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Folate",
-          "amount": 200.0,
-          "unit": "mcg"
-        },
-        {
-          "ingredient": "Glucoraphanin",
-          "amount": 20.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Iodine",
-          "amount": 200.0,
-          "unit": "mcg"
-        },
-        {
-          "ingredient": "Lactobacillus acidophilus",
-          "amount": 4.0,
-          "unit": "billion CFU"
-        },
-        {
-          "ingredient": "Lithium Orotate",
-          "amount": 1.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Luteolin",
-          "amount": 100.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Manganese",
-          "amount": 1.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Nicotinamide Riboside (NR)",
-          "amount": 300.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Selenium",
-          "amount": 28.0,
-          "unit": "mcg"
-        },
-        {
-          "ingredient": "Spermidine",
-          "amount": 10.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Ubiquinol (CoQ10)",
-          "amount": 50.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Vitamin B1 (Thiamine)",
-          "amount": 1.1,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Vitamin B12",
-          "amount": 125.0,
-          "unit": "mcg"
-        },
-        {
-          "ingredient": "Vitamin B2 (Riboflavin)",
-          "amount": 1.4,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Vitamin B3 (Niacin)",
-          "amount": 15.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Vitamin B5 (Pantothenic Acid)",
-          "amount": 6.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Vitamin B6",
-          "amount": 1.4,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Vitamin D",
-          "amount": 2000.0,
-          "unit": "IU"
-        },
-        {
-          "ingredient": "Vitamin E",
-          "amount": 67.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Zinc",
-          "amount": 15.0,
-          "unit": "mg"
-        }
-      ]
-    },
-    {
-      "id": "zinc_carnosine_75",
-      "name": "Zinc carnosine 75mg",
-      "category": "supplement_candidate",
-      "category_label": "Under evaluation",
-      "status": "watching",
-      "hr_observed": 0.97,
-      "hr_corrected": 0.9789,
-      "days": 20.7,
-      "p_benefit": 0.59,
-      "annual_cost": 60,
-      "gross_value": 10297,
-      "qol_annual": 0.001,
-      "evidence": "medium",
-      "notes": "Gut barrier integrity. Already getting zinc 15mg.",
-      "sources": [],
-      "in_portfolio": true,
-      "cost_per_qaly": 17916
-    },
-    {
-      "id": "ghk_cu",
-      "name": "GHK-Cu peptide (topical)",
-      "category": "supplement_candidate",
-      "category_label": "Under evaluation",
-      "status": "watching",
-      "hr_observed": 0.99,
-      "hr_corrected": 0.993,
-      "days": 26.9,
-      "p_benefit": 0.53,
-      "annual_cost": 300,
-      "gross_value": 9679,
-      "qol_annual": 0.002,
-      "evidence": "medium",
-      "notes": "Wound healing, collagen. Skin only.",
-      "sources": [],
-      "in_portfolio": false,
-      "cost_per_qaly": 68693
-    },
-    {
-      "id": "luteolin_100",
-      "name": "Luteolin 100mg",
-      "category": "supplement_current",
-      "category_label": "Current supplements",
-      "status": "taking",
-      "hr_observed": 0.97,
-      "hr_corrected": 0.9789,
-      "days": 16.8,
-      "p_benefit": 0.57,
-      "annual_cost": 0,
-      "gross_value": 9173,
-      "qol_annual": 0.001,
-      "evidence": "medium",
-      "notes": "Anti-inflammatory. Neuroprotective. Bundled.",
-      "sources": [],
-      "in_portfolio": true,
-      "cost_per_qaly": null,
-      "db_product": "Blueprint Essential Capsules",
-      "brand": "Blueprint",
-      "serving_size": "2 capsules",
-      "daily_servings": 1.0,
-      "dose_notes": "2 capsules with meal 1",
-      "time_of_day": "meal_1",
-      "source_url": "https://blueprint.bryanjohnson.com/products/essentials-capsules",
-      "package_price": 49.0,
-      "ingredients": [
-        {
-          "ingredient": "Biotin",
-          "amount": 50.0,
-          "unit": "mcg"
-        },
-        {
-          "ingredient": "Boron",
-          "amount": 3.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Broccoli Seed Extract",
-          "amount": 200.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Calcium",
-          "amount": 50.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Fisetin",
-          "amount": 100.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Folate",
-          "amount": 200.0,
-          "unit": "mcg"
-        },
-        {
-          "ingredient": "Glucoraphanin",
-          "amount": 20.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Iodine",
-          "amount": 200.0,
-          "unit": "mcg"
-        },
-        {
-          "ingredient": "Lactobacillus acidophilus",
-          "amount": 4.0,
-          "unit": "billion CFU"
-        },
-        {
-          "ingredient": "Lithium Orotate",
-          "amount": 1.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Luteolin",
-          "amount": 100.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Manganese",
-          "amount": 1.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Nicotinamide Riboside (NR)",
-          "amount": 300.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Selenium",
-          "amount": 28.0,
-          "unit": "mcg"
-        },
-        {
-          "ingredient": "Spermidine",
-          "amount": 10.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Ubiquinol (CoQ10)",
-          "amount": 50.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Vitamin B1 (Thiamine)",
-          "amount": 1.1,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Vitamin B12",
-          "amount": 125.0,
-          "unit": "mcg"
-        },
-        {
-          "ingredient": "Vitamin B2 (Riboflavin)",
-          "amount": 1.4,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Vitamin B3 (Niacin)",
-          "amount": 15.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Vitamin B5 (Pantothenic Acid)",
-          "amount": 6.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Vitamin B6",
-          "amount": 1.4,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Vitamin D",
-          "amount": 2000.0,
-          "unit": "IU"
-        },
-        {
-          "ingredient": "Vitamin E",
-          "amount": 67.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Zinc",
-          "amount": 15.0,
-          "unit": "mg"
-        }
-      ]
-    },
-    {
-      "id": "lithium_1mg_orotate",
-      "name": "Lithium 1mg orotate",
-      "category": "supplement_current",
-      "category_label": "Current supplements",
-      "status": "taking",
-      "hr_observed": 0.98,
-      "hr_corrected": 0.986,
-      "days": 15.3,
-      "p_benefit": 0.56,
-      "annual_cost": 0,
-      "gross_value": 8402,
-      "qol_annual": 0.001,
-      "evidence": "medium",
-      "notes": "Ecological Li data. Neuroprotective. Bundled.",
-      "sources": [],
-      "in_portfolio": true,
-      "cost_per_qaly": null,
-      "db_product": "Blueprint Essential Capsules",
-      "brand": "Blueprint",
-      "serving_size": "2 capsules",
-      "daily_servings": 1.0,
-      "dose_notes": "2 capsules with meal 1",
-      "time_of_day": "meal_1",
-      "source_url": "https://blueprint.bryanjohnson.com/products/essentials-capsules",
-      "package_price": 49.0,
-      "ingredients": [
-        {
-          "ingredient": "Biotin",
-          "amount": 50.0,
-          "unit": "mcg"
-        },
-        {
-          "ingredient": "Boron",
-          "amount": 3.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Broccoli Seed Extract",
-          "amount": 200.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Calcium",
-          "amount": 50.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Fisetin",
-          "amount": 100.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Folate",
-          "amount": 200.0,
-          "unit": "mcg"
-        },
-        {
-          "ingredient": "Glucoraphanin",
-          "amount": 20.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Iodine",
-          "amount": 200.0,
-          "unit": "mcg"
-        },
-        {
-          "ingredient": "Lactobacillus acidophilus",
-          "amount": 4.0,
-          "unit": "billion CFU"
-        },
-        {
-          "ingredient": "Lithium Orotate",
-          "amount": 1.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Luteolin",
-          "amount": 100.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Manganese",
-          "amount": 1.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Nicotinamide Riboside (NR)",
-          "amount": 300.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Selenium",
-          "amount": 28.0,
-          "unit": "mcg"
-        },
-        {
-          "ingredient": "Spermidine",
-          "amount": 10.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Ubiquinol (CoQ10)",
-          "amount": 50.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Vitamin B1 (Thiamine)",
-          "amount": 1.1,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Vitamin B12",
-          "amount": 125.0,
-          "unit": "mcg"
-        },
-        {
-          "ingredient": "Vitamin B2 (Riboflavin)",
-          "amount": 1.4,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Vitamin B3 (Niacin)",
-          "amount": 15.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Vitamin B5 (Pantothenic Acid)",
-          "amount": 6.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Vitamin B6",
-          "amount": 1.4,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Vitamin D",
-          "amount": 2000.0,
-          "unit": "IU"
-        },
-        {
-          "ingredient": "Vitamin E",
-          "amount": 67.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Zinc",
-          "amount": 15.0,
-          "unit": "mg"
-        }
-      ]
+      "cost_per_qaly": null
     },
     {
       "id": "hyaluronic_acid_120",
@@ -1755,17 +2451,28 @@
       "category_label": "Current supplements",
       "status": "taking",
       "hr_observed": 0.99,
-      "hr_corrected": 0.993,
-      "days": 13.3,
+      "hr_corrected": 0.9955,
+      "pub_bias_shrinkage": 0.55,
+      "study_quality": "observational_speculative",
+      "hr_posterior_mean": 0.9992,
+      "hr_posterior_median": 0.9998,
+      "hr_posterior_ci95_low": 0.9696,
+      "hr_posterior_ci95_high": 1.0283,
+      "mortality_qaly_mean": -0.00403,
+      "mortality_qaly_median": 0.00176,
+      "days": 7.8,
       "p_benefit": 0.54,
       "annual_cost": 0,
-      "gross_value": 7283,
+      "effective_annual_cost": 80.0,
+      "bundle_cost_share": 80.0,
+      "bundle_id": "blueprint_longevity_mix",
+      "gross_value": 2902,
       "qol_annual": 0.001,
       "evidence": "medium",
       "notes": "Already 120mg in Longevity Mix. Joint/skin. No mortality.",
       "sources": [],
       "in_portfolio": true,
-      "cost_per_qaly": null,
+      "cost_per_qaly": 63512,
       "db_product": "Blueprint Longevity Mix",
       "brand": "Blueprint",
       "serving_size": "1 scoop (14.8g)",
@@ -1833,31 +2540,554 @@
       ]
     },
     {
+      "id": "zone2_cardio_2x_week",
+      "name": "Zone 2 cardio 2x/week",
+      "category": "supplement_candidate",
+      "category_label": "Under evaluation",
+      "status": "watching",
+      "hr_observed": 1.0,
+      "hr_corrected": 1.0,
+      "pub_bias_shrinkage": 0.2,
+      "study_quality": "rct_standard",
+      "hr_posterior_mean": null,
+      "hr_posterior_median": null,
+      "hr_posterior_ci95_low": null,
+      "hr_posterior_ci95_high": null,
+      "mortality_qaly_mean": 0.0,
+      "mortality_qaly_median": 0.0,
+      "days": 4.1,
+      "p_benefit": 0.0,
+      "annual_cost": 0,
+      "effective_annual_cost": 0.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": 2235,
+      "qol_annual": 0.001,
+      "evidence": "medium",
+      "notes": "Two structured low-to-moderate intensity cardio sessions weekly, assumed to replace unstructured easier running. Modeled as a small CRF and recovery-positive intervention.",
+      "sources": [
+        "https://pubmed.ncbi.nlm.nih.gov/38599681/"
+      ],
+      "in_portfolio": true,
+      "cost_per_qaly": null
+    },
+    {
+      "id": "pqq_20",
+      "name": "PQQ 20mg",
+      "category": "supplement_candidate",
+      "category_label": "Under evaluation",
+      "status": "watching",
+      "hr_observed": 0.97,
+      "hr_corrected": 0.9864,
+      "pub_bias_shrinkage": 0.55,
+      "study_quality": "observational_speculative",
+      "hr_posterior_mean": 0.9978,
+      "hr_posterior_median": 0.9992,
+      "hr_posterior_ci95_low": 0.9465,
+      "hr_posterior_ci95_high": 1.0457,
+      "mortality_qaly_mean": 0.00104,
+      "mortality_qaly_median": 0.00586,
+      "days": 9.6,
+      "p_benefit": 0.56,
+      "annual_cost": 180,
+      "effective_annual_cost": 180.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": 2229,
+      "qol_annual": 0.001,
+      "evidence": "medium",
+      "notes": "Mitochondrial biogenesis. Small RCTs. Expensive.",
+      "sources": [],
+      "in_portfolio": false,
+      "cost_per_qaly": 115379
+    },
+    {
+      "id": "alpha_lipoic_acid_300",
+      "name": "Alpha-lipoic acid 300mg",
+      "category": "supplement_candidate",
+      "category_label": "Under evaluation",
+      "status": "watching",
+      "hr_observed": 0.96,
+      "hr_corrected": 0.9818,
+      "pub_bias_shrinkage": 0.55,
+      "study_quality": "observational_speculative",
+      "hr_posterior_mean": 0.9955,
+      "hr_posterior_median": 0.998,
+      "hr_posterior_ci95_low": 0.9282,
+      "hr_posterior_ci95_high": 1.0562,
+      "mortality_qaly_mean": 0.01446,
+      "mortality_qaly_median": 0.01571,
+      "days": 5.3,
+      "p_benefit": 0.58,
+      "annual_cost": 60,
+      "effective_annual_cost": 60.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": 1880,
+      "qol_annual": 0.0,
+      "evidence": "medium",
+      "notes": "Antioxidant. RCTs for diabetic neuropathy.",
+      "sources": [],
+      "in_portfolio": false,
+      "cost_per_qaly": 70040
+    },
+    {
+      "id": "spermidine_10",
+      "name": "Spermidine 10mg",
+      "category": "supplement_current",
+      "category_label": "Current supplements",
+      "status": "taking",
+      "hr_observed": 0.95,
+      "hr_corrected": 0.9772,
+      "pub_bias_shrinkage": 0.55,
+      "study_quality": "observational_speculative",
+      "hr_posterior_mean": 0.995,
+      "hr_posterior_median": 0.9977,
+      "hr_posterior_ci95_low": 0.9118,
+      "hr_posterior_ci95_high": 1.0716,
+      "mortality_qaly_mean": 0.0144,
+      "mortality_qaly_median": 0.01799,
+      "days": 5.3,
+      "p_benefit": 0.58,
+      "annual_cost": 0,
+      "effective_annual_cost": 60.0,
+      "bundle_cost_share": 60.0,
+      "bundle_id": "blueprint_essential_capsules",
+      "gross_value": 1867,
+      "qol_annual": 0.0,
+      "evidence": "medium",
+      "notes": "Madeo obs HR 0.70. Animal.",
+      "sources": [],
+      "in_portfolio": false,
+      "cost_per_qaly": 70360,
+      "db_product": "Blueprint Essential Capsules",
+      "brand": "Blueprint",
+      "serving_size": "2 capsules",
+      "daily_servings": 1.0,
+      "dose_notes": "2 capsules with meal 1",
+      "time_of_day": "meal_1",
+      "source_url": "https://blueprint.bryanjohnson.com/products/essentials-capsules",
+      "package_price": 49.0,
+      "ingredients": [
+        {
+          "ingredient": "Biotin",
+          "amount": 50.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Boron",
+          "amount": 3.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Broccoli Seed Extract",
+          "amount": 200.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Calcium",
+          "amount": 50.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Fisetin",
+          "amount": 100.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Folate",
+          "amount": 200.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Glucoraphanin",
+          "amount": 20.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Iodine",
+          "amount": 200.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Lactobacillus acidophilus",
+          "amount": 4.0,
+          "unit": "billion CFU"
+        },
+        {
+          "ingredient": "Lithium Orotate",
+          "amount": 1.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Luteolin",
+          "amount": 100.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Manganese",
+          "amount": 1.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Nicotinamide Riboside (NR)",
+          "amount": 300.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Selenium",
+          "amount": 28.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Spermidine",
+          "amount": 10.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Ubiquinol (CoQ10)",
+          "amount": 50.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B1 (Thiamine)",
+          "amount": 1.1,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B12",
+          "amount": 125.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Vitamin B2 (Riboflavin)",
+          "amount": 1.4,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B3 (Niacin)",
+          "amount": 15.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B5 (Pantothenic Acid)",
+          "amount": 6.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B6",
+          "amount": 1.4,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin D",
+          "amount": 2000.0,
+          "unit": "IU"
+        },
+        {
+          "ingredient": "Vitamin E",
+          "amount": 67.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Zinc",
+          "amount": 15.0,
+          "unit": "mg"
+        }
+      ]
+    },
+    {
+      "id": "apigenin_50",
+      "name": "Apigenin 50mg",
+      "category": "supplement_bought",
+      "category_label": "Recently added",
+      "status": "testing",
+      "hr_observed": 0.96,
+      "hr_corrected": 0.9798,
+      "pub_bias_shrinkage": 0.5,
+      "study_quality": "supplement_industry_rct",
+      "hr_posterior_mean": 0.9971,
+      "hr_posterior_median": 0.999,
+      "hr_posterior_ci95_low": 0.945,
+      "hr_posterior_ci95_high": 1.0442,
+      "mortality_qaly_mean": 0.00686,
+      "mortality_qaly_median": 0.00784,
+      "days": 5.3,
+      "p_benefit": 0.58,
+      "annual_cost": 76,
+      "effective_annual_cost": 76.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": 1608,
+      "qol_annual": 0.0003,
+      "evidence": "medium",
+      "notes": "CD38 inhibitor. Anxiolytic.",
+      "sources": [
+        "https://www.amazon.com/dp/B09DGTBBSF"
+      ],
+      "in_portfolio": false,
+      "cost_per_qaly": 88769,
+      "db_product": "Apigenin 50mg",
+      "brand": "Double Wood",
+      "serving_size": "1 capsule",
+      "daily_servings": 1.0,
+      "dose_notes": "50mg before bed",
+      "time_of_day": "before_bed",
+      "source_url": "https://www.amazon.com/dp/B09DGTBBSF",
+      "package_price": 24.95,
+      "ingredients": [
+        {
+          "ingredient": "Apigenin",
+          "amount": 50.0,
+          "unit": "mg"
+        }
+      ]
+    },
+    {
+      "id": "nmn_500",
+      "name": "NMN 500mg",
+      "category": "supplement_candidate",
+      "category_label": "Under evaluation",
+      "status": "watching",
+      "hr_observed": 0.96,
+      "hr_corrected": 0.9798,
+      "pub_bias_shrinkage": 0.5,
+      "study_quality": "supplement_industry_rct",
+      "hr_posterior_mean": 0.9959,
+      "hr_posterior_median": 0.9982,
+      "hr_posterior_ci95_low": 0.9289,
+      "hr_posterior_ci95_high": 1.057,
+      "mortality_qaly_mean": 0.01108,
+      "mortality_qaly_median": 0.01418,
+      "days": 13.3,
+      "p_benefit": 0.58,
+      "annual_cost": 360,
+      "effective_annual_cost": 360.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": 1199,
+      "qol_annual": 0.001,
+      "evidence": "medium",
+      "notes": "NAD+ precursor (alt to NR). Already getting NR 300mg. Expensive.",
+      "sources": [],
+      "in_portfolio": false,
+      "cost_per_qaly": 167044
+    },
+    {
+      "id": "glycine_2g",
+      "name": "Glycine 2g bedtime",
+      "category": "supplement_bought",
+      "category_label": "Recently added",
+      "status": "testing",
+      "hr_observed": 1.0,
+      "hr_corrected": 1.0,
+      "pub_bias_shrinkage": 0.5,
+      "study_quality": "supplement_industry_rct",
+      "hr_posterior_mean": null,
+      "hr_posterior_median": null,
+      "hr_posterior_ci95_low": null,
+      "hr_posterior_ci95_high": null,
+      "mortality_qaly_mean": 0.0,
+      "mortality_qaly_median": 0.0,
+      "days": 2.3,
+      "p_benefit": 0.0,
+      "annual_cost": 28,
+      "effective_annual_cost": 28.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": 809,
+      "qol_annual": 0.0002,
+      "evidence": "medium",
+      "notes": "Sleep/QOL helper only. Human evidence supports modest next-day fatigue and sleep-quality improvement, not a mortality claim.",
+      "sources": [
+        "https://pubmed.ncbi.nlm.nih.gov/22529837/",
+        "https://www.amazon.com/dp/B0013OVZJW"
+      ],
+      "in_portfolio": false,
+      "cost_per_qaly": 73758,
+      "db_product": "Glycine 2g",
+      "brand": "NOW Foods",
+      "serving_size": "1 scoop",
+      "daily_servings": 1.0,
+      "dose_notes": "2g before bed",
+      "time_of_day": "before_bed",
+      "source_url": "https://www.amazon.com/dp/B0013OVZJW",
+      "package_price": 17.4,
+      "ingredients": [
+        {
+          "ingredient": "Glycine",
+          "amount": 2000.0,
+          "unit": "mg"
+        }
+      ]
+    },
+    {
+      "id": "probiotic_daily",
+      "name": "Daily probiotics",
+      "category": "supplement_candidate",
+      "category_label": "Under evaluation",
+      "status": "watching",
+      "hr_observed": 1.0,
+      "hr_corrected": 1.0,
+      "pub_bias_shrinkage": 0.5,
+      "study_quality": "supplement_industry_rct",
+      "hr_posterior_mean": null,
+      "hr_posterior_median": null,
+      "hr_posterior_ci95_low": null,
+      "hr_posterior_ci95_high": null,
+      "mortality_qaly_mean": 0.0,
+      "mortality_qaly_median": 0.0,
+      "days": 9.2,
+      "p_benefit": 0.0,
+      "annual_cost": 258,
+      "effective_annual_cost": 258.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": 704,
+      "qol_annual": 0.001,
+      "evidence": "medium",
+      "notes": "Modeled as a low-evidence GI-support intervention, not a hard-endpoint longevity lever. Annual cost uses Sports Research Probiotic 60 Billion at the current official subscribe-and-save price.",
+      "sources": [
+        "https://preview.sportsresearch.com/products/daily-probiotics",
+        "https://pubmed.ncbi.nlm.nih.gov/24230488/",
+        "https://pubmed.ncbi.nlm.nih.gov/41233756/"
+      ],
+      "in_portfolio": false,
+      "cost_per_qaly": 172171
+    },
+    {
+      "id": "strength_maintenance",
+      "name": "Strength maintenance",
+      "category": "supplement_candidate",
+      "category_label": "Under evaluation",
+      "status": "watching",
+      "hr_observed": 1.0,
+      "hr_corrected": 1.0,
+      "pub_bias_shrinkage": 0.2,
+      "study_quality": "rct_standard",
+      "hr_posterior_mean": null,
+      "hr_posterior_median": null,
+      "hr_posterior_ci95_low": null,
+      "hr_posterior_ci95_high": null,
+      "mortality_qaly_mean": 0.0,
+      "mortality_qaly_median": 0.0,
+      "days": 1.2,
+      "p_benefit": 0.0,
+      "annual_cost": 0,
+      "effective_annual_cost": 0.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": 671,
+      "qol_annual": 0.0003,
+      "evidence": "medium",
+      "notes": "Structured maintenance lifting. Kept near flat because you already do strength work daily.",
+      "sources": [
+        "https://pubmed.ncbi.nlm.nih.gov/38599681/"
+      ],
+      "in_portfolio": true,
+      "cost_per_qaly": null
+    },
+    {
+      "id": "head_elevation_nightly",
+      "name": "Head elevation nightly",
+      "category": "sleep_current",
+      "category_label": "Current sleep interventions",
+      "status": "taking",
+      "hr_observed": 1.0,
+      "hr_corrected": 1.0,
+      "pub_bias_shrinkage": 0.55,
+      "study_quality": "observational_speculative",
+      "hr_posterior_mean": null,
+      "hr_posterior_median": null,
+      "hr_posterior_ci95_low": null,
+      "hr_posterior_ci95_high": null,
+      "mortality_qaly_mean": 0.0,
+      "mortality_qaly_median": 0.0,
+      "days": 1.2,
+      "p_benefit": 0.0,
+      "annual_cost": 0,
+      "effective_annual_cost": 0.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": 641,
+      "qol_annual": 0.0001,
+      "evidence": "medium",
+      "notes": "Behavioral airway aid. Most plausible in positional or upper-airway-predominant sleep-disordered breathing.",
+      "sources": [
+        "https://pubmed.ncbi.nlm.nih.gov/39347559/"
+      ],
+      "in_portfolio": true,
+      "cost_per_qaly": null
+    },
+    {
+      "id": "sulforaphane_20_extra",
+      "name": "Sulforaphane 20mg (extra)",
+      "category": "supplement_candidate",
+      "category_label": "Under evaluation",
+      "status": "watching",
+      "hr_observed": 0.94,
+      "hr_corrected": 0.9816,
+      "pub_bias_shrinkage": 0.7,
+      "study_quality": "animal_or_mechanistic",
+      "hr_posterior_mean": 0.9936,
+      "hr_posterior_median": 0.9962,
+      "hr_posterior_ci95_low": 0.8949,
+      "hr_posterior_ci95_high": 1.0872,
+      "mortality_qaly_mean": 0.01823,
+      "mortality_qaly_median": 0.02983,
+      "days": 6.7,
+      "p_benefit": 0.58,
+      "annual_cost": 180,
+      "effective_annual_cost": 180.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": 605,
+      "qol_annual": 0.0,
+      "evidence": "medium",
+      "notes": "NRF2 activator. Incremental over Broccoli Seed Ext.",
+      "sources": [],
+      "in_portfolio": false,
+      "cost_per_qaly": 166785
+    },
+    {
       "id": "taurine_500_topup",
       "name": "Taurine 500mg top-up",
       "category": "supplement_bought",
       "category_label": "Recently added",
       "status": "testing",
-      "hr_observed": 0.985,
-      "hr_corrected": 0.9895,
-      "days": 13.1,
-      "p_benefit": 0.55,
-      "annual_cost": 4,
-      "gross_value": 7125,
-      "qol_annual": 0.001,
+      "hr_observed": 1.0,
+      "hr_corrected": 1.0,
+      "pub_bias_shrinkage": 0.5,
+      "study_quality": "supplement_industry_rct",
+      "hr_posterior_mean": null,
+      "hr_posterior_median": null,
+      "hr_posterior_ci95_low": null,
+      "hr_posterior_ci95_high": null,
+      "mortality_qaly_mean": 0.0,
+      "mortality_qaly_median": 0.0,
+      "days": 1.2,
+      "p_benefit": 0.0,
+      "annual_cost": 4.4,
+      "effective_annual_cost": 4.4,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": 566,
+      "qol_annual": 0.0001,
       "evidence": "medium",
-      "notes": "Incremental over 1500mg in Longevity Mix.",
+      "notes": "Tiny marginal top-up over 1500mg already in Longevity Mix. Most human signals are at 1-3g+ or in non-lean phenotypes.",
       "sources": [
+        "https://pubmed.ncbi.nlm.nih.gov/34039357/",
+        "https://pubmed.ncbi.nlm.nih.gov/39796489/",
         "https://www.amazon.com/dp/B00ENSLW7A"
       ],
       "in_portfolio": true,
-      "cost_per_qaly": 1877,
+      "cost_per_qaly": 23181,
       "db_product": "Taurine 500mg",
       "brand": "BulkSupplements",
-      "serving_size": "1 capsule",
+      "serving_size": "2g powder",
       "daily_servings": 0.25,
-      "dose_notes": "500mg before bed",
-      "time_of_day": "before_bed",
+      "dose_notes": "500mg top-up before bed",
+      "time_of_day": "bedtime",
       "source_url": "https://www.amazon.com/dp/B00ENSLW7A",
       "package_price": 23.97,
       "ingredients": [
@@ -1869,490 +3099,34 @@
       ]
     },
     {
-      "id": "broccoli_seed_200",
-      "name": "Broccoli Seed Ext 200mg",
-      "category": "supplement_current",
-      "category_label": "Current supplements",
-      "status": "taking",
-      "hr_observed": 0.95,
-      "hr_corrected": 0.9647,
-      "days": 11.9,
-      "p_benefit": 0.6,
-      "annual_cost": 0,
-      "gross_value": 6492,
-      "qol_annual": 0.0,
-      "evidence": "medium",
-      "notes": "Sulforaphane. Phase 2 enzyme induction. Bundled.",
-      "sources": [],
-      "in_portfolio": true,
-      "cost_per_qaly": null,
-      "db_product": "Blueprint Essential Capsules",
-      "brand": "Blueprint",
-      "serving_size": "2 capsules",
-      "daily_servings": 1.0,
-      "dose_notes": "2 capsules with meal 1",
-      "time_of_day": "meal_1",
-      "source_url": "https://blueprint.bryanjohnson.com/products/essentials-capsules",
-      "package_price": 49.0,
-      "ingredients": [
-        {
-          "ingredient": "Biotin",
-          "amount": 50.0,
-          "unit": "mcg"
-        },
-        {
-          "ingredient": "Boron",
-          "amount": 3.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Broccoli Seed Extract",
-          "amount": 200.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Calcium",
-          "amount": 50.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Fisetin",
-          "amount": 100.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Folate",
-          "amount": 200.0,
-          "unit": "mcg"
-        },
-        {
-          "ingredient": "Glucoraphanin",
-          "amount": 20.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Iodine",
-          "amount": 200.0,
-          "unit": "mcg"
-        },
-        {
-          "ingredient": "Lactobacillus acidophilus",
-          "amount": 4.0,
-          "unit": "billion CFU"
-        },
-        {
-          "ingredient": "Lithium Orotate",
-          "amount": 1.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Luteolin",
-          "amount": 100.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Manganese",
-          "amount": 1.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Nicotinamide Riboside (NR)",
-          "amount": 300.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Selenium",
-          "amount": 28.0,
-          "unit": "mcg"
-        },
-        {
-          "ingredient": "Spermidine",
-          "amount": 10.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Ubiquinol (CoQ10)",
-          "amount": 50.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Vitamin B1 (Thiamine)",
-          "amount": 1.1,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Vitamin B12",
-          "amount": 125.0,
-          "unit": "mcg"
-        },
-        {
-          "ingredient": "Vitamin B2 (Riboflavin)",
-          "amount": 1.4,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Vitamin B3 (Niacin)",
-          "amount": 15.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Vitamin B5 (Pantothenic Acid)",
-          "amount": 6.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Vitamin B6",
-          "amount": 1.4,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Vitamin D",
-          "amount": 2000.0,
-          "unit": "IU"
-        },
-        {
-          "ingredient": "Vitamin E",
-          "amount": 67.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Zinc",
-          "amount": 15.0,
-          "unit": "mg"
-        }
-      ]
-    },
-    {
-      "id": "sulforaphane_20_extra",
-      "name": "Sulforaphane 20mg (extra)",
-      "category": "supplement_candidate",
-      "category_label": "Under evaluation",
-      "status": "watching",
-      "hr_observed": 0.94,
-      "hr_corrected": 0.9576,
-      "days": 17.3,
-      "p_benefit": 0.62,
-      "annual_cost": 180,
-      "gross_value": 6454,
-      "qol_annual": 0.0,
-      "evidence": "medium",
-      "notes": "NRF2 activator. Incremental over Broccoli Seed Ext.",
-      "sources": [],
-      "in_portfolio": false,
-      "cost_per_qaly": 64058
-    },
-    {
-      "id": "pqq_20",
-      "name": "PQQ 20mg",
+      "id": "tmg_1g",
+      "name": "TMG/Betaine 1g",
       "category": "supplement_candidate",
       "category_label": "Under evaluation",
       "status": "watching",
       "hr_observed": 0.97,
-      "hr_corrected": 0.9789,
-      "days": 16.6,
+      "hr_corrected": 0.9864,
+      "pub_bias_shrinkage": 0.55,
+      "study_quality": "observational_speculative",
+      "hr_posterior_mean": 0.9975,
+      "hr_posterior_median": 0.9991,
+      "hr_posterior_ci95_low": 0.9515,
+      "hr_posterior_ci95_high": 1.0393,
+      "mortality_qaly_mean": 0.00524,
+      "mortality_qaly_median": 0.00695,
+      "days": 1.9,
       "p_benefit": 0.57,
-      "annual_cost": 180,
-      "gross_value": 6059,
-      "qol_annual": 0.001,
-      "evidence": "medium",
-      "notes": "Mitochondrial biogenesis. Small RCTs. Expensive.",
-      "sources": [],
-      "in_portfolio": false,
-      "cost_per_qaly": 66801
-    },
-    {
-      "id": "nmn_500",
-      "name": "NMN 500mg",
-      "category": "supplement_candidate",
-      "category_label": "Under evaluation",
-      "status": "watching",
-      "hr_observed": 0.96,
-      "hr_corrected": 0.9718,
-      "days": 22.2,
-      "p_benefit": 0.6,
-      "annual_cost": 360,
-      "gross_value": 6052,
-      "qol_annual": 0.001,
-      "evidence": "medium",
-      "notes": "NAD+ precursor (alt to NR). Already getting NR 300mg. Expensive.",
-      "sources": [],
-      "in_portfolio": false,
-      "cost_per_qaly": 100224
-    },
-    {
-      "id": "spermidine_10",
-      "name": "Spermidine 10mg",
-      "category": "supplement_current",
-      "category_label": "Current supplements",
-      "status": "taking",
-      "hr_observed": 0.95,
-      "hr_corrected": 0.9647,
-      "days": 9.5,
-      "p_benefit": 0.6,
-      "annual_cost": 0,
-      "gross_value": 5196,
+      "annual_cost": 30,
+      "effective_annual_cost": 30.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": 542,
       "qol_annual": 0.0,
       "evidence": "medium",
-      "notes": "Madeo obs HR 0.70. Animal.",
-      "sources": [],
-      "in_portfolio": true,
-      "cost_per_qaly": null,
-      "db_product": "Blueprint Essential Capsules",
-      "brand": "Blueprint",
-      "serving_size": "2 capsules",
-      "daily_servings": 1.0,
-      "dose_notes": "2 capsules with meal 1",
-      "time_of_day": "meal_1",
-      "source_url": "https://blueprint.bryanjohnson.com/products/essentials-capsules",
-      "package_price": 49.0,
-      "ingredients": [
-        {
-          "ingredient": "Biotin",
-          "amount": 50.0,
-          "unit": "mcg"
-        },
-        {
-          "ingredient": "Boron",
-          "amount": 3.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Broccoli Seed Extract",
-          "amount": 200.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Calcium",
-          "amount": 50.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Fisetin",
-          "amount": 100.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Folate",
-          "amount": 200.0,
-          "unit": "mcg"
-        },
-        {
-          "ingredient": "Glucoraphanin",
-          "amount": 20.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Iodine",
-          "amount": 200.0,
-          "unit": "mcg"
-        },
-        {
-          "ingredient": "Lactobacillus acidophilus",
-          "amount": 4.0,
-          "unit": "billion CFU"
-        },
-        {
-          "ingredient": "Lithium Orotate",
-          "amount": 1.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Luteolin",
-          "amount": 100.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Manganese",
-          "amount": 1.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Nicotinamide Riboside (NR)",
-          "amount": 300.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Selenium",
-          "amount": 28.0,
-          "unit": "mcg"
-        },
-        {
-          "ingredient": "Spermidine",
-          "amount": 10.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Ubiquinol (CoQ10)",
-          "amount": 50.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Vitamin B1 (Thiamine)",
-          "amount": 1.1,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Vitamin B12",
-          "amount": 125.0,
-          "unit": "mcg"
-        },
-        {
-          "ingredient": "Vitamin B2 (Riboflavin)",
-          "amount": 1.4,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Vitamin B3 (Niacin)",
-          "amount": 15.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Vitamin B5 (Pantothenic Acid)",
-          "amount": 6.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Vitamin B6",
-          "amount": 1.4,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Vitamin D",
-          "amount": 2000.0,
-          "unit": "IU"
-        },
-        {
-          "ingredient": "Vitamin E",
-          "amount": 67.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Zinc",
-          "amount": 15.0,
-          "unit": "mg"
-        }
-      ]
-    },
-    {
-      "id": "vitamin_c_500_extra",
-      "name": "Vitamin C 500mg (extra)",
-      "category": "supplement_candidate",
-      "category_label": "Under evaluation",
-      "status": "watching",
-      "hr_observed": 0.97,
-      "hr_corrected": 0.9789,
-      "days": 9.9,
-      "p_benefit": 0.61,
-      "annual_cost": 15,
-      "gross_value": 5163,
-      "qol_annual": 0.0,
-      "evidence": "medium",
-      "notes": "Already getting 250mg from Longevity Mix. Obs meta: modest CVD.",
+      "notes": "Methyl donor. Homocysteine reduction. Often paired with NR/NMN.",
       "sources": [],
       "in_portfolio": false,
-      "cost_per_qaly": 9354
-    },
-    {
-      "id": "lycopene_15",
-      "name": "Lycopene 15mg",
-      "category": "supplement_current",
-      "category_label": "Current supplements",
-      "status": "taking",
-      "hr_observed": 0.95,
-      "hr_corrected": 0.9647,
-      "days": 9.3,
-      "p_benefit": 0.6,
-      "annual_cost": 0,
-      "gross_value": 5085,
-      "qol_annual": 0.0,
-      "evidence": "medium",
-      "notes": "Song meta obs. Bundled.",
-      "sources": [],
-      "in_portfolio": true,
-      "cost_per_qaly": null,
-      "db_product": "Blueprint Advanced Antioxidants",
-      "brand": "Blueprint",
-      "serving_size": "1 capsule",
-      "daily_servings": 1.0,
-      "dose_notes": "1 capsule with meal 2",
-      "time_of_day": "meal_2",
-      "source_url": "https://blueprint.bryanjohnson.com/products/advanced-antioxidants",
-      "package_price": 49.0,
-      "ingredients": [
-        {
-          "ingredient": "Astaxanthin",
-          "amount": 12.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Lutein",
-          "amount": 10.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Lycopene",
-          "amount": 15.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Vitamin K1",
-          "amount": 1.5,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Vitamin K2 MK-4",
-          "amount": 5.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Vitamin K2 MK-7",
-          "amount": 0.6,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Zeaxanthin",
-          "amount": 2.0,
-          "unit": "mg"
-        }
-      ]
-    },
-    {
-      "id": "17a_estradiol",
-      "name": "17\u03b1-estradiol (topical)",
-      "category": "rx_candidate",
-      "category_label": "Prescription candidates",
-      "status": "considering",
-      "hr_observed": 0.88,
-      "hr_corrected": 0.9144,
-      "days": 17.2,
-      "p_benefit": 0.67,
-      "annual_cost": 360,
-      "gross_value": 3322,
-      "qol_annual": -0.002,
-      "evidence": "low",
-      "notes": "ITP mice: +19% median lifespan (males only). No human data.",
-      "sources": [],
-      "in_portfolio": false,
-      "cost_per_qaly": 129409
-    },
-    {
-      "id": "alpha_lipoic_acid_300",
-      "name": "Alpha-lipoic acid 300mg",
-      "category": "supplement_candidate",
-      "category_label": "Under evaluation",
-      "status": "watching",
-      "hr_observed": 0.96,
-      "hr_corrected": 0.9718,
-      "days": 7.5,
-      "p_benefit": 0.6,
-      "annual_cost": 60,
-      "gross_value": 3118,
-      "qol_annual": 0.0,
-      "evidence": "medium",
-      "notes": "Antioxidant. RCTs for diabetic neuropathy.",
-      "sources": [],
-      "in_portfolio": false,
-      "cost_per_qaly": 49053
+      "cost_per_qaly": 96598
     },
     {
       "id": "ginger_400",
@@ -2361,17 +3135,28 @@
       "category_label": "Current supplements",
       "status": "taking",
       "hr_observed": 0.96,
-      "hr_corrected": 0.9718,
-      "days": 4.2,
-      "p_benefit": 0.58,
+      "hr_corrected": 0.9878,
+      "pub_bias_shrinkage": 0.7,
+      "study_quality": "animal_or_mechanistic",
+      "hr_posterior_mean": 0.9967,
+      "hr_posterior_median": 0.9988,
+      "hr_posterior_ci95_low": 0.9225,
+      "hr_posterior_ci95_high": 1.0663,
+      "mortality_qaly_mean": 0.00383,
+      "mortality_qaly_median": 0.00943,
+      "days": 1.4,
+      "p_benefit": 0.56,
       "annual_cost": 0,
-      "gross_value": 2303,
+      "effective_annual_cost": 25.0,
+      "bundle_cost_share": 25.0,
+      "bundle_id": "blueprint_nac_ginger_curcumin",
+      "gross_value": 344,
       "qol_annual": 0.0,
       "evidence": "medium",
       "notes": "Bundled. Anti-nausea.",
       "sources": [],
       "in_portfolio": false,
-      "cost_per_qaly": null,
+      "cost_per_qaly": 110248,
       "db_product": "Blueprint NAC+Ginger+Curcumin",
       "brand": "Blueprint",
       "serving_size": "3 capsules",
@@ -2399,177 +3184,36 @@
       ]
     },
     {
-      "id": "boron_3",
-      "name": "Boron 3mg",
-      "category": "supplement_current",
-      "category_label": "Current supplements",
-      "status": "taking",
-      "hr_observed": 0.97,
-      "hr_corrected": 0.9789,
-      "days": 3.4,
-      "p_benefit": 0.59,
-      "annual_cost": 0,
-      "gross_value": 1871,
-      "qol_annual": 0.0,
-      "evidence": "medium",
-      "notes": "Prostate/bone obs. Bundled.",
-      "sources": [],
-      "in_portfolio": false,
-      "cost_per_qaly": null,
-      "db_product": "Blueprint Essential Capsules",
-      "brand": "Blueprint",
-      "serving_size": "2 capsules",
-      "daily_servings": 1.0,
-      "dose_notes": "2 capsules with meal 1",
-      "time_of_day": "meal_1",
-      "source_url": "https://blueprint.bryanjohnson.com/products/essentials-capsules",
-      "package_price": 49.0,
-      "ingredients": [
-        {
-          "ingredient": "Biotin",
-          "amount": 50.0,
-          "unit": "mcg"
-        },
-        {
-          "ingredient": "Boron",
-          "amount": 3.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Broccoli Seed Extract",
-          "amount": 200.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Calcium",
-          "amount": 50.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Fisetin",
-          "amount": 100.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Folate",
-          "amount": 200.0,
-          "unit": "mcg"
-        },
-        {
-          "ingredient": "Glucoraphanin",
-          "amount": 20.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Iodine",
-          "amount": 200.0,
-          "unit": "mcg"
-        },
-        {
-          "ingredient": "Lactobacillus acidophilus",
-          "amount": 4.0,
-          "unit": "billion CFU"
-        },
-        {
-          "ingredient": "Lithium Orotate",
-          "amount": 1.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Luteolin",
-          "amount": 100.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Manganese",
-          "amount": 1.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Nicotinamide Riboside (NR)",
-          "amount": 300.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Selenium",
-          "amount": 28.0,
-          "unit": "mcg"
-        },
-        {
-          "ingredient": "Spermidine",
-          "amount": 10.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Ubiquinol (CoQ10)",
-          "amount": 50.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Vitamin B1 (Thiamine)",
-          "amount": 1.1,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Vitamin B12",
-          "amount": 125.0,
-          "unit": "mcg"
-        },
-        {
-          "ingredient": "Vitamin B2 (Riboflavin)",
-          "amount": 1.4,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Vitamin B3 (Niacin)",
-          "amount": 15.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Vitamin B5 (Pantothenic Acid)",
-          "amount": 6.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Vitamin B6",
-          "amount": 1.4,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Vitamin D",
-          "amount": 2000.0,
-          "unit": "IU"
-        },
-        {
-          "ingredient": "Vitamin E",
-          "amount": 67.0,
-          "unit": "mg"
-        },
-        {
-          "ingredient": "Zinc",
-          "amount": 15.0,
-          "unit": "mg"
-        }
-      ]
-    },
-    {
-      "id": "tmg_1g",
-      "name": "TMG/Betaine 1g",
+      "id": "nr_300_unbundled",
+      "name": "NR 300mg (unbundled)",
       "category": "supplement_candidate",
       "category_label": "Under evaluation",
       "status": "watching",
       "hr_observed": 0.97,
-      "hr_corrected": 0.9789,
-      "days": 3.4,
-      "p_benefit": 0.59,
-      "annual_cost": 30,
-      "gross_value": 1365,
-      "qol_annual": 0.0,
+      "hr_corrected": 0.9849,
+      "pub_bias_shrinkage": 0.5,
+      "study_quality": "supplement_industry_rct",
+      "hr_posterior_mean": 0.997,
+      "hr_posterior_median": 0.9987,
+      "hr_posterior_ci95_low": 0.9413,
+      "hr_posterior_ci95_high": 1.0482,
+      "mortality_qaly_mean": 0.00561,
+      "mortality_qaly_median": 0.01012,
+      "days": 11.3,
+      "p_benefit": 0.57,
+      "annual_cost": 396,
+      "effective_annual_cost": 396.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": -504,
+      "qol_annual": 0.001,
       "evidence": "medium",
-      "notes": "Methyl donor. Homocysteine reduction. Often paired with NR/NMN.",
-      "sources": [],
+      "notes": "Standalone NR option using current official Tru Niagen 300mg 180-count subscription pricing.",
+      "sources": [
+        "https://www.truniagen.com/products/tru-niagen-300mg"
+      ],
       "in_portfolio": false,
-      "cost_per_qaly": 54125
+      "cost_per_qaly": 216295
     },
     {
       "id": "fisetin_100",
@@ -2578,17 +3222,28 @@
       "category_label": "Current supplements",
       "status": "taking",
       "hr_observed": 0.97,
-      "hr_corrected": 0.9789,
-      "days": 2.1,
-      "p_benefit": 0.57,
+      "hr_corrected": 0.9849,
+      "pub_bias_shrinkage": 0.5,
+      "study_quality": "supplement_industry_rct",
+      "hr_posterior_mean": 0.9975,
+      "hr_posterior_median": 0.9991,
+      "hr_posterior_ci95_low": 0.943,
+      "hr_posterior_ci95_high": 1.0484,
+      "mortality_qaly_mean": 0.0025,
+      "mortality_qaly_median": 0.0069,
+      "days": 0.9,
+      "p_benefit": 0.56,
       "annual_cost": 0,
-      "gross_value": 1173,
+      "effective_annual_cost": 60.0,
+      "bundle_cost_share": 60.0,
+      "bundle_id": "blueprint_essential_capsules",
+      "gross_value": -513,
       "qol_annual": 0.0,
       "evidence": "medium",
       "notes": "Senolytic. Animal. Bundled.",
       "sources": [],
       "in_portfolio": false,
-      "cost_per_qaly": null,
+      "cost_per_qaly": 404934,
       "db_product": "Blueprint Essential Capsules",
       "brand": "Blueprint",
       "serving_size": "2 capsules",
@@ -2726,42 +3381,555 @@
       ]
     },
     {
+      "id": "boron_3",
+      "name": "Boron 3mg",
+      "category": "supplement_current",
+      "category_label": "Current supplements",
+      "status": "taking",
+      "hr_observed": 0.97,
+      "hr_corrected": 0.9864,
+      "pub_bias_shrinkage": 0.55,
+      "study_quality": "observational_speculative",
+      "hr_posterior_mean": 0.9979,
+      "hr_posterior_median": 0.9993,
+      "hr_posterior_ci95_low": 0.9523,
+      "hr_posterior_ci95_high": 1.0403,
+      "mortality_qaly_mean": 0.00182,
+      "mortality_qaly_median": 0.00563,
+      "days": 0.7,
+      "p_benefit": 0.56,
+      "annual_cost": 0,
+      "effective_annual_cost": 60.0,
+      "bundle_cost_share": 60.0,
+      "bundle_id": "blueprint_essential_capsules",
+      "gross_value": -648,
+      "qol_annual": 0.0,
+      "evidence": "medium",
+      "notes": "Prostate/bone obs. Bundled.",
+      "sources": [],
+      "in_portfolio": false,
+      "cost_per_qaly": 555125,
+      "db_product": "Blueprint Essential Capsules",
+      "brand": "Blueprint",
+      "serving_size": "2 capsules",
+      "daily_servings": 1.0,
+      "dose_notes": "2 capsules with meal 1",
+      "time_of_day": "meal_1",
+      "source_url": "https://blueprint.bryanjohnson.com/products/essentials-capsules",
+      "package_price": 49.0,
+      "ingredients": [
+        {
+          "ingredient": "Biotin",
+          "amount": 50.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Boron",
+          "amount": 3.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Broccoli Seed Extract",
+          "amount": 200.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Calcium",
+          "amount": 50.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Fisetin",
+          "amount": 100.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Folate",
+          "amount": 200.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Glucoraphanin",
+          "amount": 20.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Iodine",
+          "amount": 200.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Lactobacillus acidophilus",
+          "amount": 4.0,
+          "unit": "billion CFU"
+        },
+        {
+          "ingredient": "Lithium Orotate",
+          "amount": 1.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Luteolin",
+          "amount": 100.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Manganese",
+          "amount": 1.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Nicotinamide Riboside (NR)",
+          "amount": 300.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Selenium",
+          "amount": 28.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Spermidine",
+          "amount": 10.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Ubiquinol (CoQ10)",
+          "amount": 50.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B1 (Thiamine)",
+          "amount": 1.1,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B12",
+          "amount": 125.0,
+          "unit": "mcg"
+        },
+        {
+          "ingredient": "Vitamin B2 (Riboflavin)",
+          "amount": 1.4,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B3 (Niacin)",
+          "amount": 15.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B5 (Pantothenic Acid)",
+          "amount": 6.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin B6",
+          "amount": 1.4,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Vitamin D",
+          "amount": 2000.0,
+          "unit": "IU"
+        },
+        {
+          "ingredient": "Vitamin E",
+          "amount": 67.0,
+          "unit": "mg"
+        },
+        {
+          "ingredient": "Zinc",
+          "amount": 15.0,
+          "unit": "mg"
+        }
+      ]
+    },
+    {
+      "id": "nasacort_nightly",
+      "name": "Nasacort nightly",
+      "category": "sleep_current",
+      "category_label": "Current sleep interventions",
+      "status": "taking",
+      "hr_observed": 1.0,
+      "hr_corrected": 1.0,
+      "pub_bias_shrinkage": 0.2,
+      "study_quality": "rct_standard",
+      "hr_posterior_mean": null,
+      "hr_posterior_median": null,
+      "hr_posterior_ci95_low": null,
+      "hr_posterior_ci95_high": null,
+      "mortality_qaly_mean": 0.0,
+      "mortality_qaly_median": 0.0,
+      "days": 2.5,
+      "p_benefit": 0.0,
+      "annual_cost": 120,
+      "effective_annual_cost": 120.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": -676,
+      "qol_annual": 0.0002,
+      "evidence": "medium",
+      "notes": "Best-supported for congestion-mediated sleep disturbance and as an adjunct in nasal-obstruction OSA phenotypes. Main benefit is upper-airway, not general prevention.",
+      "sources": [
+        "https://pubmed.ncbi.nlm.nih.gov/9042068/",
+        "https://pubmed.ncbi.nlm.nih.gov/30154874/",
+        "https://pubmed.ncbi.nlm.nih.gov/15124166/"
+      ],
+      "in_portfolio": false,
+      "cost_per_qaly": 300298
+    },
+    {
       "id": "pterostilbene_50",
       "name": "Pterostilbene 50mg",
       "category": "supplement_candidate",
       "category_label": "Under evaluation",
       "status": "watching",
       "hr_observed": 0.96,
-      "hr_corrected": 0.9718,
-      "days": 3.5,
-      "p_benefit": 0.58,
+      "hr_corrected": 0.9818,
+      "pub_bias_shrinkage": 0.55,
+      "study_quality": "observational_speculative",
+      "hr_posterior_mean": 0.9967,
+      "hr_posterior_median": 0.9988,
+      "hr_posterior_ci95_low": 0.9287,
+      "hr_posterior_ci95_high": 1.0603,
+      "mortality_qaly_mean": 0.00522,
+      "mortality_qaly_median": 0.00948,
+      "days": 1.9,
+      "p_benefit": 0.57,
       "annual_cost": 120,
-      "gross_value": -97,
+      "effective_annual_cost": 120.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": -981,
       "qol_annual": 0.0,
       "evidence": "medium",
       "notes": "Resveratrol analog. AMPK/SIRT1. Animal only.",
       "sources": [],
       "in_portfolio": false,
-      "cost_per_qaly": 210043
+      "cost_per_qaly": 387857
     },
     {
-      "id": "acarbose_50mg",
-      "name": "Acarbose 50mg",
+      "id": "humidifier_nightly",
+      "name": "Humidifier nightly",
+      "category": "sleep_candidate",
+      "category_label": "Sleep intervention candidates",
+      "status": "considering",
+      "hr_observed": 1.0,
+      "hr_corrected": 1.0,
+      "pub_bias_shrinkage": 0.3,
+      "study_quality": null,
+      "hr_posterior_mean": null,
+      "hr_posterior_median": null,
+      "hr_posterior_ci95_low": null,
+      "hr_posterior_ci95_high": null,
+      "mortality_qaly_mean": 0.0,
+      "mortality_qaly_median": 0.0,
+      "days": 0.5,
+      "p_benefit": 0.0,
+      "annual_cost": 80,
+      "effective_annual_cost": 80.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": -1097,
+      "qol_annual": 5e-05,
+      "evidence": "medium",
+      "notes": "Modeled as a small dryness / nasal-comfort intervention, not a meaningful standalone OSA treatment. Best case is low ambient humidity or waking with dry irritated nasal passages.",
+      "sources": [
+        "https://www.aaaai.org/tools-for-the-public/conditions-library/allergies/humidifiers-and-indoor-allergies",
+        "https://www.epa.gov/mold/mold-course-chapter-2",
+        "https://pubmed.ncbi.nlm.nih.gov/3348500/"
+      ],
+      "in_portfolio": false,
+      "cost_per_qaly": 1067728
+    },
+    {
+      "id": "fisetin_100_unbundled",
+      "name": "Fisetin 100mg (unbundled)",
+      "category": "supplement_candidate",
+      "category_label": "Under evaluation",
+      "status": "watching",
+      "hr_observed": 0.97,
+      "hr_corrected": 0.9849,
+      "pub_bias_shrinkage": 0.5,
+      "study_quality": "supplement_industry_rct",
+      "hr_posterior_mean": 0.9975,
+      "hr_posterior_median": 0.9991,
+      "hr_posterior_ci95_low": 0.943,
+      "hr_posterior_ci95_high": 1.0484,
+      "mortality_qaly_mean": 0.0025,
+      "mortality_qaly_median": 0.0069,
+      "days": 0.9,
+      "p_benefit": 0.56,
+      "annual_cost": 133,
+      "effective_annual_cost": 133.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": -1745,
+      "qol_annual": 0.0,
+      "evidence": "medium",
+      "notes": "Standalone fisetin using current Double Wood pricing, modeled at an Amazon-favored effective cost after 5% Prime cash back.",
+      "sources": [
+        "https://doublewoodsupplements.com/products/fisetin"
+      ],
+      "in_portfolio": false,
+      "cost_per_qaly": 897604
+    },
+    {
+      "id": "nasal_strips_nightly",
+      "name": "Nasal strips nightly",
+      "category": "sleep_current",
+      "category_label": "Current sleep interventions",
+      "status": "taking",
+      "hr_observed": 1.0,
+      "hr_corrected": 1.0,
+      "pub_bias_shrinkage": 0.3,
+      "study_quality": null,
+      "hr_posterior_mean": null,
+      "hr_posterior_median": null,
+      "hr_posterior_ci95_low": null,
+      "hr_posterior_ci95_high": null,
+      "mortality_qaly_mean": 0.0,
+      "mortality_qaly_median": 0.0,
+      "days": 1.2,
+      "p_benefit": 0.0,
+      "annual_cost": 180,
+      "effective_annual_cost": 180.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": -2397,
+      "qol_annual": 0.0001,
+      "evidence": "medium",
+      "notes": "Primarily a subjective nasal-congestion and snoring aid. Helps when the problem is upper-airway narrowing, but usually not a large standalone OSA treatment.",
+      "sources": [
+        "https://pubmed.ncbi.nlm.nih.gov/30154874/"
+      ],
+      "in_portfolio": false,
+      "cost_per_qaly": 948311
+    },
+    {
+      "id": "doxepin_3mg",
+      "name": "Doxepin 3mg",
+      "category": "sleep_candidate",
+      "category_label": "Sleep intervention candidates",
+      "status": "considering",
+      "hr_observed": 1.0,
+      "hr_corrected": 1.0,
+      "pub_bias_shrinkage": 0.2,
+      "study_quality": "rct_standard",
+      "hr_posterior_mean": null,
+      "hr_posterior_median": null,
+      "hr_posterior_ci95_low": null,
+      "hr_posterior_ci95_high": null,
+      "mortality_qaly_mean": -0.01346,
+      "mortality_qaly_median": -0.01341,
+      "days": -2.6,
+      "p_benefit": 0.0,
+      "annual_cost": 60,
+      "effective_annual_cost": 60.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": -2422,
+      "qol_annual": 0.0002,
+      "evidence": "medium",
+      "notes": "Low-dose doxepin is guideline-supported for sleep-maintenance insomnia. Respiratory caution exists in severe sleep apnea, but it is not clearly contraindicated in mild OSA.",
+      "sources": [
+        "https://aasm.org/resources/pdf/pharmacologictreatmentofinsomnia.pdf",
+        "https://www.accessdata.fda.gov/drugsatfda_docs/label/2010/022036lbl.pdf"
+      ],
+      "in_portfolio": false,
+      "cost_per_qaly": null
+    },
+    {
+      "id": "rapamycin_5mg_wk",
+      "name": "Rapamycin 5mg/wk",
+      "category": "rx_candidate",
+      "category_label": "Prescription candidates",
+      "status": "considering",
+      "hr_observed": 0.85,
+      "hr_corrected": 0.9524,
+      "pub_bias_shrinkage": 0.7,
+      "study_quality": "animal_or_mechanistic",
+      "hr_posterior_mean": 0.9776,
+      "hr_posterior_median": 0.9816,
+      "hr_posterior_ci95_low": 0.7931,
+      "hr_posterior_ci95_high": 1.1638,
+      "mortality_qaly_mean": 0.1266,
+      "mortality_qaly_median": 0.1469,
+      "days": 11.0,
+      "p_benefit": 0.63,
+      "annual_cost": 600,
+      "effective_annual_cost": 600.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": -4114,
+      "qol_annual": -0.003,
+      "evidence": "medium",
+      "notes": "ITP mice: +26% median lifespan. Mannick 2014. Immunosuppression risk.",
+      "sources": [],
+      "in_portfolio": false,
+      "cost_per_qaly": 336244
+    },
+    {
+      "id": "aspirin_81mg",
+      "name": "Low-dose aspirin 81mg",
+      "category": "rx_candidate",
+      "category_label": "Prescription candidates",
+      "status": "considering",
+      "hr_observed": 0.94,
+      "hr_corrected": 0.9458,
+      "pub_bias_shrinkage": 0.1,
+      "study_quality": "rct_preregistered_hard_endpoint",
+      "hr_posterior_mean": 0.9943,
+      "hr_posterior_median": 0.9957,
+      "hr_posterior_ci95_low": 0.9452,
+      "hr_posterior_ci95_high": 1.0395,
+      "mortality_qaly_mean": 0.01043,
+      "mortality_qaly_median": 0.01989,
+      "days": -7.9,
+      "p_benefit": 0.57,
+      "annual_cost": 15,
+      "effective_annual_cost": 15.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": -4579,
+      "qol_annual": -0.001,
+      "evidence": "medium",
+      "notes": "ASPREE (>70yr): no benefit, more bleeding. USPSTF equivocal at 39.",
+      "sources": [],
+      "in_portfolio": false,
+      "cost_per_qaly": null
+    },
+    {
+      "id": "mouth_tape_nightly",
+      "name": "Mouth tape nightly",
+      "category": "sleep_candidate",
+      "category_label": "Sleep intervention candidates",
+      "status": "considering",
+      "hr_observed": 1.0,
+      "hr_corrected": 1.0,
+      "pub_bias_shrinkage": 0.3,
+      "study_quality": null,
+      "hr_posterior_mean": null,
+      "hr_posterior_median": null,
+      "hr_posterior_ci95_low": null,
+      "hr_posterior_ci95_high": null,
+      "mortality_qaly_mean": -0.00694,
+      "mortality_qaly_median": -0.0069,
+      "days": -1.8,
+      "p_benefit": 0.0,
+      "annual_cost": 220,
+      "effective_annual_cost": 220.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": -4696,
+      "qol_annual": 8e-05,
+      "evidence": "medium",
+      "notes": "Modeled as a phenotype-specific mouth-breathing intervention, not a generic OSA fix. The evidence suggests some benefit in mild OSA or snoring when habitual open-mouth breathing is part of the problem, but the literature is still thin.",
+      "sources": [
+        "https://pubmed.ncbi.nlm.nih.gov/25450408/",
+        "https://pubmed.ncbi.nlm.nih.gov/38780959/",
+        "https://pubmed.ncbi.nlm.nih.gov/39662104/",
+        "https://pubmed.ncbi.nlm.nih.gov/25766699/"
+      ],
+      "in_portfolio": false,
+      "cost_per_qaly": null
+    },
+    {
+      "id": "apap_nightly",
+      "name": "APAP nightly",
+      "category": "sleep_candidate",
+      "category_label": "Sleep intervention candidates",
+      "status": "considering",
+      "hr_observed": 1.0,
+      "hr_corrected": 1.0,
+      "pub_bias_shrinkage": 0.3,
+      "study_quality": null,
+      "hr_posterior_mean": null,
+      "hr_posterior_median": null,
+      "hr_posterior_ci95_low": null,
+      "hr_posterior_ci95_high": null,
+      "mortality_qaly_mean": 0.0,
+      "mortality_qaly_median": 0.0,
+      "days": 2.5,
+      "p_benefit": 0.0,
+      "annual_cost": 400,
+      "effective_annual_cost": 400.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": -5402,
+      "qol_annual": 0.0002,
+      "evidence": "medium",
+      "notes": "Modeled as the strongest pre-diagnosis airway intervention candidate. No direct mortality term; benefit comes through sleep-burden and sleep-mortality relief.",
+      "sources": [
+        "https://aasm.org/wp-content/uploads/2019/11/Treatment-OSA-with-PAP-Patient-Guide.pdf",
+        "https://pubmed.ncbi.nlm.nih.gov/30736887/"
+      ],
+      "in_portfolio": false,
+      "cost_per_qaly": 1000995
+    },
+    {
+      "id": "17a_estradiol",
+      "name": "17\u03b1-estradiol (topical)",
       "category": "rx_candidate",
       "category_label": "Prescription candidates",
       "status": "considering",
       "hr_observed": 0.88,
-      "hr_corrected": 0.9144,
-      "days": -9.8,
-      "p_benefit": 0.69,
-      "annual_cost": 120,
-      "gross_value": -7415,
-      "qol_annual": -0.005,
-      "evidence": "medium",
-      "notes": "ITP mice: +22% median lifespan (males). GI side effects.",
+      "hr_corrected": 0.9624,
+      "pub_bias_shrinkage": 0.7,
+      "study_quality": "animal_or_mechanistic",
+      "hr_posterior_mean": 0.9876,
+      "hr_posterior_median": 0.9923,
+      "hr_posterior_ci95_low": 0.855,
+      "hr_posterior_ci95_high": 1.1094,
+      "mortality_qaly_mean": 0.06018,
+      "mortality_qaly_median": 0.06072,
+      "days": -1.5,
+      "p_benefit": 0.61,
+      "annual_cost": 360,
+      "effective_annual_cost": 360.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": -6884,
+      "qol_annual": -0.002,
+      "evidence": "low",
+      "notes": "ITP mice: +19% median lifespan (males only). No human data.",
       "sources": [],
       "in_portfolio": false,
       "cost_per_qaly": null
+    },
+    {
+      "id": "oral_appliance_custom",
+      "name": "Custom oral appliance",
+      "category": "sleep_candidate",
+      "category_label": "Sleep intervention candidates",
+      "status": "considering",
+      "hr_observed": 1.0,
+      "hr_corrected": 1.0,
+      "pub_bias_shrinkage": 0.3,
+      "study_quality": null,
+      "hr_posterior_mean": null,
+      "hr_posterior_median": null,
+      "hr_posterior_ci95_low": null,
+      "hr_posterior_ci95_high": null,
+      "mortality_qaly_mean": 0.0,
+      "mortality_qaly_median": 0.0,
+      "days": 2.5,
+      "p_benefit": 0.0,
+      "annual_cost": 500,
+      "effective_annual_cost": 500.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": -7089,
+      "qol_annual": 0.0002,
+      "evidence": "medium",
+      "notes": "Custom mandibular advancement device, annualized over replacement and follow-up. Typically less effective than PAP but often easier to tolerate.",
+      "sources": [
+        "https://aasm.org/aasm-and-aadsm-issue-new-joint-clinical-practice-guideline-for-oral-appliance-therapy/",
+        "https://pubmed.ncbi.nlm.nih.gov/26094920/"
+      ],
+      "in_portfolio": false,
+      "cost_per_qaly": 1251244
     },
     {
       "id": "berberine_500",
@@ -2770,15 +3938,400 @@
       "category_label": "Under evaluation",
       "status": "watching",
       "hr_observed": 0.88,
-      "hr_corrected": 0.9144,
-      "days": -10.0,
-      "p_benefit": 0.69,
+      "hr_corrected": 0.9381,
+      "pub_bias_shrinkage": 0.5,
+      "study_quality": "supplement_industry_rct",
+      "hr_posterior_mean": 0.9822,
+      "hr_posterior_median": 0.9889,
+      "hr_posterior_ci95_low": 0.8574,
+      "hr_posterior_ci95_high": 1.0866,
+      "mortality_qaly_mean": 0.10722,
+      "mortality_qaly_median": 0.08771,
+      "days": -7.8,
+      "p_benefit": 0.67,
       "annual_cost": 180,
-      "gross_value": -8518,
+      "effective_annual_cost": 180.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": -7289,
       "qol_annual": -0.004,
       "evidence": "low",
       "notes": "Metformin-like. RCTs in diabetes. GI side effects.",
       "sources": [],
+      "in_portfolio": false,
+      "cost_per_qaly": null
+    },
+    {
+      "id": "trazodone_50mg",
+      "name": "Trazodone 50mg",
+      "category": "rx_current",
+      "category_label": "Prescriptions",
+      "status": "taking",
+      "hr_observed": 1.0,
+      "hr_corrected": 1.0,
+      "pub_bias_shrinkage": 0.2,
+      "study_quality": "rct_standard",
+      "hr_posterior_mean": null,
+      "hr_posterior_median": null,
+      "hr_posterior_ci95_low": null,
+      "hr_posterior_ci95_high": null,
+      "mortality_qaly_mean": -0.04595,
+      "mortality_qaly_median": -0.04596,
+      "days": -10.9,
+      "p_benefit": 0.0,
+      "annual_cost": 223,
+      "effective_annual_cost": 223.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": -9751,
+      "qol_annual": 0.0005,
+      "evidence": "medium",
+      "notes": "Sleep maintenance. No mortality data.",
+      "sources": [],
+      "in_portfolio": false,
+      "cost_per_qaly": null,
+      "db_product": "Trazodone",
+      "brand": null,
+      "serving_size": "1 tablet",
+      "daily_servings": 1.0,
+      "dose_notes": "50mg before bed",
+      "time_of_day": "before_bed",
+      "source_url": null,
+      "package_price": 18.34,
+      "ingredients": [
+        {
+          "ingredient": "Trazodone",
+          "amount": 50.0,
+          "unit": "mg"
+        }
+      ]
+    },
+    {
+      "id": "acarbose_50mg",
+      "name": "Acarbose 50mg",
+      "category": "rx_candidate",
+      "category_label": "Prescription candidates",
+      "status": "considering",
+      "hr_observed": 0.88,
+      "hr_corrected": 0.9624,
+      "pub_bias_shrinkage": 0.7,
+      "study_quality": "animal_or_mechanistic",
+      "hr_posterior_mean": 0.9851,
+      "hr_posterior_median": 0.9882,
+      "hr_posterior_ci95_low": 0.8412,
+      "hr_posterior_ci95_high": 1.126,
+      "mortality_qaly_mean": 0.07392,
+      "mortality_qaly_median": 0.09361,
+      "days": -31.6,
+      "p_benefit": 0.62,
+      "annual_cost": 120,
+      "effective_annual_cost": 120.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": -19347,
+      "qol_annual": -0.005,
+      "evidence": "medium",
+      "notes": "ITP mice: +22% median lifespan (males). GI side effects.",
+      "sources": [],
+      "in_portfolio": false,
+      "cost_per_qaly": null
+    },
+    {
+      "id": "bpc157_cycle",
+      "name": "BPC-157 cycle",
+      "category": "supplement_candidate",
+      "category_label": "Under evaluation",
+      "status": "watching",
+      "hr_observed": 1.0,
+      "hr_corrected": 1.0,
+      "pub_bias_shrinkage": 0.3,
+      "study_quality": null,
+      "hr_posterior_mean": null,
+      "hr_posterior_median": null,
+      "hr_posterior_ci95_low": null,
+      "hr_posterior_ci95_high": null,
+      "mortality_qaly_mean": -0.01531,
+      "mortality_qaly_median": -0.01532,
+      "days": -5.6,
+      "p_benefit": 0.0,
+      "annual_cost": 1200,
+      "effective_annual_cost": 1200.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": -23303,
+      "qol_annual": 5e-05,
+      "evidence": "medium",
+      "notes": "Modeled for a generic annual cycle in an otherwise uninjured user. Human efficacy evidence is extremely thin and product-quality uncertainty is real.",
+      "sources": [
+        "https://pubmed.ncbi.nlm.nih.gov/40756949/",
+        "https://www.fda.gov/drugs/human-drug-compounding/understanding-risks-compounded-drugs"
+      ],
+      "in_portfolio": false,
+      "cost_per_qaly": null
+    },
+    {
+      "id": "tb500_cycle",
+      "name": "TB-500 cycle",
+      "category": "supplement_candidate",
+      "category_label": "Under evaluation",
+      "status": "watching",
+      "hr_observed": 1.0,
+      "hr_corrected": 1.0,
+      "pub_bias_shrinkage": 0.3,
+      "study_quality": null,
+      "hr_posterior_mean": null,
+      "hr_posterior_median": null,
+      "hr_posterior_ci95_low": null,
+      "hr_posterior_ci95_high": null,
+      "mortality_qaly_mean": -0.01723,
+      "mortality_qaly_median": -0.01723,
+      "days": -6.3,
+      "p_benefit": 0.0,
+      "annual_cost": 1500,
+      "effective_annual_cost": 1500.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": -28754,
+      "qol_annual": 3e-05,
+      "evidence": "medium",
+      "notes": "Treated as an even weaker evidence base than BPC-157 for a general healthy user.",
+      "sources": [
+        "https://www.fda.gov/drugs/human-drug-compounding/understanding-risks-compounded-drugs"
+      ],
+      "in_portfolio": false,
+      "cost_per_qaly": null
+    },
+    {
+      "id": "hbot_60sessions",
+      "name": "HBOT 60-session course",
+      "category": "supplement_candidate",
+      "category_label": "Under evaluation",
+      "status": "watching",
+      "hr_observed": 1.0,
+      "hr_corrected": 1.0,
+      "pub_bias_shrinkage": 0.3,
+      "study_quality": null,
+      "hr_posterior_mean": null,
+      "hr_posterior_median": null,
+      "hr_posterior_ci95_low": null,
+      "hr_posterior_ci95_high": null,
+      "mortality_qaly_mean": -0.00216,
+      "mortality_qaly_median": 0.0,
+      "days": -0.6,
+      "p_benefit": 0.0,
+      "annual_cost": 1800,
+      "effective_annual_cost": 1800.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": -30711,
+      "qol_annual": 0.0002,
+      "evidence": "medium",
+      "notes": "Cost annualized from a clinic course. Healthy-aging evidence remains early and mostly surrogate-driven.",
+      "sources": [
+        "https://pubmed.ncbi.nlm.nih.gov/35649312/",
+        "https://www.fda.gov/medical-devices/letters-health-care-providers/follow-instructions-safe-use-hyperbaric-oxygen-therapy-devices-letter-health-care-providers",
+        "https://www.uhms.org/pl/resources/featured-resources/hbo-indications.html"
+      ],
+      "in_portfolio": false,
+      "cost_per_qaly": null
+    },
+    {
+      "id": "traditional_sauna_4x_week",
+      "name": "Traditional dry sauna 4x/week",
+      "category": "supplement_candidate",
+      "category_label": "Under evaluation",
+      "status": "watching",
+      "hr_observed": 1.0,
+      "hr_corrected": 1.0,
+      "pub_bias_shrinkage": 0.3,
+      "study_quality": null,
+      "hr_posterior_mean": null,
+      "hr_posterior_median": null,
+      "hr_posterior_ci95_low": null,
+      "hr_posterior_ci95_high": null,
+      "mortality_qaly_mean": 0.0,
+      "mortality_qaly_median": 0.0,
+      "days": 3.2,
+      "p_benefit": 0.0,
+      "annual_cost": 2178,
+      "effective_annual_cost": 2178.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": -35006,
+      "qol_annual": 0.0008,
+      "evidence": "medium",
+      "notes": "Modeled as a modest Finnish-style dry sauna intervention, not a direct mortality claim. Effect assumes roughly 175-194F traditional dry sauna; cost uses current MINT DC club pricing as a local paid-access proxy.",
+      "sources": [
+        "https://pubmed.ncbi.nlm.nih.gov/25705824/",
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC9394774/"
+      ],
+      "in_portfolio": false,
+      "cost_per_qaly": 4197875
+    },
+    {
+      "id": "infrared_sauna_4x_week",
+      "name": "Infrared sauna 4x/week",
+      "category": "supplement_candidate",
+      "category_label": "Under evaluation",
+      "status": "watching",
+      "hr_observed": 1.0,
+      "hr_corrected": 1.0,
+      "pub_bias_shrinkage": 0.3,
+      "study_quality": null,
+      "hr_posterior_mean": null,
+      "hr_posterior_median": null,
+      "hr_posterior_ci95_low": null,
+      "hr_posterior_ci95_high": null,
+      "mortality_qaly_mean": 0.0,
+      "mortality_qaly_median": 0.0,
+      "days": 0.6,
+      "p_benefit": 0.0,
+      "annual_cost": 3588,
+      "effective_annual_cost": 3588.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": -60208,
+      "qol_annual": 0.00035,
+      "evidence": "medium",
+      "notes": "Infrared sauna is modeled separately from Finnish dry sauna because the evidence is weaker and less directly transportable. Cost uses current Pure Sweat Georgetown unlimited pricing for 4x/week access.",
+      "sources": [
+        "https://pubmed.ncbi.nlm.nih.gov/41049507/",
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC9394774/"
+      ],
+      "in_portfolio": false,
+      "cost_per_qaly": 35138254
+    },
+    {
+      "id": "lemborexant_5mg",
+      "name": "Lemborexant 5mg",
+      "category": "sleep_candidate",
+      "category_label": "Sleep intervention candidates",
+      "status": "considering",
+      "hr_observed": 1.0,
+      "hr_corrected": 1.0,
+      "pub_bias_shrinkage": 0.1,
+      "study_quality": "rct_preregistered_hard_endpoint",
+      "hr_posterior_mean": null,
+      "hr_posterior_median": null,
+      "hr_posterior_ci95_low": null,
+      "hr_posterior_ci95_high": null,
+      "mortality_qaly_mean": -0.01076,
+      "mortality_qaly_median": -0.01073,
+      "days": -1.5,
+      "p_benefit": 0.0,
+      "annual_cost": 4350,
+      "effective_annual_cost": 4350.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": -74215,
+      "qol_annual": 0.0002,
+      "evidence": "medium",
+      "notes": "Dual orexin receptor antagonist with direct respiratory-safety data in mild through severe OSA. Modeled as slightly more efficacious than daridorexant for maintenance insomnia, but with a bit more next-day drag.",
+      "sources": [
+        "https://pubmed.ncbi.nlm.nih.gov/32585700/",
+        "https://pubmed.ncbi.nlm.nih.gov/32187781/",
+        "https://pubmed.ncbi.nlm.nih.gov/37677076/",
+        "https://pubmed.ncbi.nlm.nih.gov/40848323/"
+      ],
+      "in_portfolio": false,
+      "cost_per_qaly": null
+    },
+    {
+      "id": "semaglutide",
+      "name": "GLP-1 RA (semaglutide)",
+      "category": "rx_candidate",
+      "category_label": "Prescription candidates",
+      "status": "considering",
+      "hr_observed": 0.8,
+      "hr_corrected": 0.8181,
+      "pub_bias_shrinkage": 0.1,
+      "study_quality": "rct_preregistered_hard_endpoint",
+      "hr_posterior_mean": 0.9804,
+      "hr_posterior_median": 0.9796,
+      "hr_posterior_ci95_low": 0.825,
+      "hr_posterior_ci95_high": 1.1441,
+      "mortality_qaly_mean": -0.05705,
+      "mortality_qaly_median": 0.00722,
+      "days": 26.1,
+      "p_benefit": 0.51,
+      "annual_cost": 6000,
+      "effective_annual_cost": 6000.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": -87197,
+      "qol_annual": 0.004,
+      "evidence": "high",
+      "notes": "SELECT trial: HR 0.80 MACE in overweight/obesity with established CVD. Strong transport shrinkage applied for lean, low-risk profiles plus GI/gallbladder harms.",
+      "sources": [],
+      "in_portfolio": false,
+      "cost_per_qaly": 1420531
+    },
+    {
+      "id": "suvorexant_10mg",
+      "name": "Suvorexant 10mg",
+      "category": "sleep_candidate",
+      "category_label": "Sleep intervention candidates",
+      "status": "considering",
+      "hr_observed": 1.0,
+      "hr_corrected": 1.0,
+      "pub_bias_shrinkage": 0.2,
+      "study_quality": "rct_standard",
+      "hr_posterior_mean": null,
+      "hr_posterior_median": null,
+      "hr_posterior_ci95_low": null,
+      "hr_posterior_ci95_high": null,
+      "mortality_qaly_mean": -0.01725,
+      "mortality_qaly_median": -0.01724,
+      "days": -4.5,
+      "p_benefit": 0.0,
+      "annual_cost": 5686,
+      "effective_annual_cost": 5686.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": -98397,
+      "qol_annual": 0.0002,
+      "evidence": "medium",
+      "notes": "Dual orexin receptor antagonist with clear insomnia efficacy, but the label keeps more respiratory caution in OSA than daridorexant or lemborexant. Modeled as a middling trazodone alternative for mild OSA.",
+      "sources": [
+        "https://pubmed.ncbi.nlm.nih.gov/27397664/",
+        "https://pubmed.ncbi.nlm.nih.gov/26194728/",
+        "https://pubmed.ncbi.nlm.nih.gov/39543812/",
+        "https://www.drugs.com/pro/belsomra.html"
+      ],
+      "in_portfolio": false,
+      "cost_per_qaly": null
+    },
+    {
+      "id": "daridorexant_25mg",
+      "name": "Daridorexant 25mg",
+      "category": "sleep_candidate",
+      "category_label": "Sleep intervention candidates",
+      "status": "considering",
+      "hr_observed": 1.0,
+      "hr_corrected": 1.0,
+      "pub_bias_shrinkage": 0.1,
+      "study_quality": "rct_preregistered_hard_endpoint",
+      "hr_posterior_mean": null,
+      "hr_posterior_median": null,
+      "hr_posterior_ci95_low": null,
+      "hr_posterior_ci95_high": null,
+      "mortality_qaly_mean": -0.00848,
+      "mortality_qaly_median": -0.00843,
+      "days": -0.6,
+      "p_benefit": 0.0,
+      "annual_cost": 6156,
+      "effective_annual_cost": 6156.0,
+      "bundle_cost_share": 0.0,
+      "bundle_id": null,
+      "gross_value": -104238,
+      "qol_annual": 0.0002,
+      "evidence": "medium",
+      "notes": "Dual orexin receptor antagonist with direct mild-to-moderate OSA respiratory-safety data. Modeled as a cleaner maintenance-insomnia option than trazodone, but very expensive.",
+      "sources": [
+        "https://pubmed.ncbi.nlm.nih.gov/35065036/",
+        "https://pubmed.ncbi.nlm.nih.gov/33305817/",
+        "https://pubmed.ncbi.nlm.nih.gov/39543812/"
+      ],
       "in_portfolio": false,
       "cost_per_qaly": null
     }
@@ -2932,6 +4485,25 @@
       }
     ],
     "meal_1": [
+      {
+        "name": "Blueprint Cocoa",
+        "brand": "Blueprint",
+        "type": "supplement",
+        "serving_size": "1 scoop (5.76g)",
+        "dose_notes": "12g blended into nutty pudding premix",
+        "package_price": 41.0,
+        "servings_per_package": 28.8,
+        "daily_servings": 2.08,
+        "annual_cost": 520.0,
+        "source_url": "https://blueprint.bryanjohnson.com/collections/powders",
+        "ingredients": [
+          {
+            "ingredient": "Cocoa powder",
+            "amount": 12.0,
+            "unit": "g"
+          }
+        ]
+      },
       {
         "name": "Blueprint Collagen Peptides",
         "brand": "Blueprint",
@@ -3144,6 +4716,44 @@
         ]
       },
       {
+        "name": "Double Wood Fisetin 100mg",
+        "brand": "Double Wood",
+        "type": "supplement",
+        "serving_size": "1 capsule",
+        "dose_notes": "100mg with meal 1",
+        "package_price": 21.8,
+        "servings_per_package": 60,
+        "daily_servings": 1.0,
+        "annual_cost": 133.0,
+        "source_url": "https://doublewoodsupplements.com/products/fisetin",
+        "ingredients": [
+          {
+            "ingredient": "Fisetin",
+            "amount": 100.0,
+            "unit": "mg"
+          }
+        ]
+      },
+      {
+        "name": "Double Wood Luteolin 100mg",
+        "brand": "Double Wood",
+        "type": "supplement",
+        "serving_size": "1 capsule",
+        "dose_notes": "100mg with meal 1",
+        "package_price": 18.95,
+        "servings_per_package": 60,
+        "daily_servings": 1.0,
+        "annual_cost": 115.0,
+        "source_url": "https://doublewoodsupplements.com/products/luteolin",
+        "ingredients": [
+          {
+            "ingredient": "Luteolin",
+            "amount": 100.0,
+            "unit": "mg"
+          }
+        ]
+      },
+      {
         "name": "Finasteride",
         "brand": null,
         "type": "prescription",
@@ -3177,6 +4787,25 @@
           {
             "ingredient": "Aged Garlic Extract",
             "amount": 600.0,
+            "unit": "mg"
+          }
+        ]
+      },
+      {
+        "name": "Life Extension Ubiquinol 50mg",
+        "brand": "Life Extension",
+        "type": "supplement",
+        "serving_size": "1 softgel",
+        "dose_notes": "50mg with meal 1",
+        "package_price": 32.77,
+        "servings_per_package": 100,
+        "daily_servings": 1.0,
+        "annual_cost": 120.0,
+        "source_url": "https://www.lifeextension.com/vitamins-supplements/item01425/super-ubiquinol-coq10-with-ppm-pyrroloquinoline-quinone",
+        "ingredients": [
+          {
+            "ingredient": "Ubiquinol (CoQ10)",
+            "amount": 50.0,
             "unit": "mg"
           }
         ]
@@ -3231,6 +4860,25 @@
             "ingredient": "Vitamin A",
             "amount": 63.0,
             "unit": "mcg RAE"
+          }
+        ]
+      },
+      {
+        "name": "Tru Niagen 300mg",
+        "brand": "Tru Niagen",
+        "type": "supplement",
+        "serving_size": "1 capsule",
+        "dose_notes": "300mg with meal 1",
+        "package_price": 195.2,
+        "servings_per_package": 180,
+        "daily_servings": 1.0,
+        "annual_cost": 396.0,
+        "source_url": "https://www.truniagen.com/products/tru-niagen-300mg",
+        "ingredients": [
+          {
+            "ingredient": "Nicotinamide Riboside (NR)",
+            "amount": 300.0,
+            "unit": "mg"
           }
         ]
       },
@@ -3532,25 +5180,6 @@
         ]
       },
       {
-        "name": "Taurine 500mg",
-        "brand": "BulkSupplements",
-        "type": "supplement",
-        "serving_size": "1 capsule",
-        "dose_notes": "500mg before bed",
-        "package_price": 23.97,
-        "servings_per_package": 500,
-        "daily_servings": 0.25,
-        "annual_cost": 4.0,
-        "source_url": "https://www.amazon.com/dp/B00ENSLW7A",
-        "ingredients": [
-          {
-            "ingredient": "Taurine",
-            "amount": 500.0,
-            "unit": "mg"
-          }
-        ]
-      },
-      {
         "name": "Trazodone",
         "brand": null,
         "type": "prescription",
@@ -3589,7 +5218,26 @@
       ],
       "n_selected": 3,
       "n_total": 3,
-      "net_value": 94128,
+      "net_value": 52621,
+      "worth_it": true
+    },
+    {
+      "id": "blueprint_nac_ginger_curcumin",
+      "name": "Blueprint NAC+Ginger+Curcumin",
+      "annual_cost": 324,
+      "monthly_cost": 27,
+      "items": [
+        "nac_1200",
+        "ginger_400",
+        "curcumin_250"
+      ],
+      "selected_items": [
+        "nac_1200",
+        "curcumin_250"
+      ],
+      "n_selected": 2,
+      "n_total": 3,
+      "net_value": 20102,
       "worth_it": true
     },
     {
@@ -3610,16 +5258,11 @@
       ],
       "selected_items": [
         "vitamin_d_2000",
-        "nr_300",
-        "lithium_1mg_orotate",
-        "spermidine_10",
-        "luteolin_100",
-        "broccoli_seed_200",
         "ubiquinol_50"
       ],
-      "n_selected": 7,
+      "n_selected": 2,
       "n_total": 9,
-      "net_value": 51723,
+      "net_value": 13195,
       "worth_it": true
     },
     {
@@ -3635,32 +5278,11 @@
       ],
       "selected_items": [
         "vitamin_k2",
-        "lutein_zeaxanthin",
-        "astaxanthin_12",
-        "lycopene_15"
-      ],
-      "n_selected": 4,
-      "n_total": 4,
-      "net_value": 37162,
-      "worth_it": true
-    },
-    {
-      "id": "blueprint_nac_ginger_curcumin",
-      "name": "Blueprint NAC+Ginger+Curcumin",
-      "annual_cost": 324,
-      "monthly_cost": 27,
-      "items": [
-        "nac_1200",
-        "ginger_400",
-        "curcumin_250"
-      ],
-      "selected_items": [
-        "nac_1200",
-        "curcumin_250"
+        "astaxanthin_12"
       ],
       "n_selected": 2,
-      "n_total": 3,
-      "net_value": 27273,
+      "n_total": 4,
+      "net_value": 11863,
       "worth_it": true
     }
   ],
@@ -3668,322 +5290,436 @@
     {
       "step": 1,
       "name": "tadalafil_2.5mg",
-      "marginal_days": 359.7,
-      "marginal_net_value": 186867,
+      "marginal_days": 278.0,
+      "marginal_net_value": 147934,
       "total_annual_cost": 252,
-      "diminishing_returns": 1.0
+      "total_qaly": 0.761,
+      "total_raw_qaly": 0.8778,
+      "ceiling_retention": 0.867,
+      "interaction_penalty_qaly": 0.0
     },
     {
       "step": 2,
       "name": "finasteride_1.25mg",
-      "marginal_days": 272.2,
-      "marginal_net_value": 142220,
+      "marginal_days": 168.1,
+      "marginal_net_value": 89153,
       "total_annual_cost": 423,
-      "diminishing_returns": 0.95
+      "total_qaly": 1.2213,
+      "total_raw_qaly": 1.5681,
+      "ceiling_retention": 0.779,
+      "interaction_penalty_qaly": 0.0
     },
     {
       "step": 3,
-      "name": "statin_5mg",
-      "marginal_days": 130.7,
-      "marginal_net_value": 66779,
-      "total_annual_cost": 543,
-      "diminishing_returns": 0.9
+      "name": "metformin_500mg",
+      "marginal_days": 49.7,
+      "marginal_net_value": 26420,
+      "total_annual_cost": 471,
+      "total_qaly": 1.3574,
+      "total_raw_qaly": 1.8071,
+      "ceiling_retention": 0.751,
+      "interaction_penalty_qaly": 0.0
     },
     {
       "step": 4,
-      "name": "magnesium_200",
-      "marginal_days": 115.4,
-      "marginal_net_value": 54384,
-      "total_annual_cost": 663,
-      "diminishing_returns": 0.86
+      "name": "creatine_5g",
+      "marginal_days": 31.6,
+      "marginal_net_value": 15272,
+      "total_annual_cost": 591,
+      "total_qaly": 1.4439,
+      "total_raw_qaly": 1.9693,
+      "ceiling_retention": 0.733,
+      "interaction_penalty_qaly": 0.0
     },
     {
       "step": 5,
-      "name": "melatonin_300mcg",
-      "marginal_days": 99.2,
-      "marginal_net_value": 49137,
-      "total_annual_cost": 693,
-      "diminishing_returns": 0.81
+      "name": "magnesium_200",
+      "marginal_days": 29.0,
+      "marginal_net_value": 13831,
+      "total_annual_cost": 711,
+      "total_qaly": 1.5232,
+      "total_raw_qaly": 2.1263,
+      "ceiling_retention": 0.716,
+      "interaction_penalty_qaly": -0.0673
     },
     {
       "step": 6,
-      "name": "ashwagandha_600",
-      "marginal_days": 97.7,
-      "marginal_net_value": 47107,
-      "total_annual_cost": 753,
-      "diminishing_returns": 0.8
+      "name": "vitamin_d_2000",
+      "marginal_days": 24.1,
+      "marginal_net_value": 12707,
+      "total_annual_cost": 741,
+      "total_qaly": 1.5893,
+      "total_raw_qaly": 2.2636,
+      "ceiling_retention": 0.702,
+      "interaction_penalty_qaly": -0.0673
     },
     {
       "step": 7,
-      "name": "trazodone_50mg",
-      "marginal_days": 109.1,
-      "marginal_net_value": 46847,
-      "total_annual_cost": 976,
-      "diminishing_returns": 0.8
+      "name": "vitamin_k2",
+      "marginal_days": 17.3,
+      "marginal_net_value": 9030,
+      "total_annual_cost": 766,
+      "total_qaly": 1.6366,
+      "total_raw_qaly": 2.3658,
+      "ceiling_retention": 0.692,
+      "interaction_penalty_qaly": -0.0673
     },
     {
       "step": 8,
-      "name": "cocoa_flavanols_500",
-      "marginal_days": 73.0,
-      "marginal_net_value": 35984,
-      "total_annual_cost": 976,
-      "diminishing_returns": 0.8
+      "name": "nac_1200",
+      "marginal_days": 14.4,
+      "marginal_net_value": 7204,
+      "total_annual_cost": 806,
+      "total_qaly": 1.676,
+      "total_raw_qaly": 2.4538,
+      "ceiling_retention": 0.683,
+      "interaction_penalty_qaly": -0.0673
     },
     {
       "step": 9,
-      "name": "glycine_2g",
-      "marginal_days": 74.5,
-      "marginal_net_value": 35667,
-      "total_annual_cost": 1004,
-      "diminishing_returns": 0.8
+      "name": "lithium_5mg",
+      "marginal_days": 14.1,
+      "marginal_net_value": 6688,
+      "total_annual_cost": 866,
+      "total_qaly": 1.7145,
+      "total_raw_qaly": 2.5424,
+      "ceiling_retention": 0.674,
+      "interaction_penalty_qaly": -0.0673
     },
     {
       "step": 10,
-      "name": "apigenin_50",
-      "marginal_days": 62.5,
-      "marginal_net_value": 27183,
-      "total_annual_cost": 1080,
-      "diminishing_returns": 0.8
+      "name": "curcumin_250",
+      "marginal_days": 13.0,
+      "marginal_net_value": 6431,
+      "total_annual_cost": 906,
+      "total_qaly": 1.75,
+      "total_raw_qaly": 2.6264,
+      "ceiling_retention": 0.666,
+      "interaction_penalty_qaly": -0.0673
     },
     {
       "step": 11,
-      "name": "metformin_500mg",
-      "marginal_days": 56.5,
-      "marginal_net_value": 25028,
-      "total_annual_cost": 1128,
-      "diminishing_returns": 0.8
+      "name": "omega3_clo",
+      "marginal_days": 16.2,
+      "marginal_net_value": 5829,
+      "total_annual_cost": 1086,
+      "total_qaly": 1.7944,
+      "total_raw_qaly": 2.7349,
+      "ceiling_retention": 0.656,
+      "interaction_penalty_qaly": -0.1757
     },
     {
       "step": 12,
-      "name": "creatine_5g",
-      "marginal_days": 59.5,
-      "marginal_net_value": 23780,
-      "total_annual_cost": 1248,
-      "diminishing_returns": 0.8
+      "name": "prebiotics",
+      "marginal_days": 15.4,
+      "marginal_net_value": 5403,
+      "total_annual_cost": 1266,
+      "total_qaly": 1.8366,
+      "total_raw_qaly": 2.8418,
+      "ceiling_retention": 0.646,
+      "interaction_penalty_qaly": -0.1757
     },
     {
       "step": 13,
-      "name": "aspirin_81mg",
-      "marginal_days": 44.3,
-      "marginal_net_value": 19634,
-      "total_annual_cost": 1263,
-      "diminishing_returns": 0.8
+      "name": "ubiquinol_50",
+      "marginal_days": 7.6,
+      "marginal_net_value": 3127,
+      "total_annual_cost": 1266,
+      "total_qaly": 1.8573,
+      "total_raw_qaly": 2.8957,
+      "ceiling_retention": 0.641,
+      "interaction_penalty_qaly": -0.1757
     },
     {
       "step": 14,
-      "name": "omega3_clo",
-      "marginal_days": 55.8,
-      "marginal_net_value": 19367,
-      "total_annual_cost": 1443,
-      "diminishing_returns": 0.8
+      "name": "statin_5mg",
+      "marginal_days": 9.0,
+      "marginal_net_value": 2914,
+      "total_annual_cost": 1386,
+      "total_qaly": 1.882,
+      "total_raw_qaly": 2.9613,
+      "ceiling_retention": 0.636,
+      "interaction_penalty_qaly": -0.2976
     },
     {
       "step": 15,
-      "name": "garlic_1200",
-      "marginal_days": 57.3,
-      "marginal_net_value": 15403,
-      "total_annual_cost": 1743,
-      "diminishing_returns": 0.8
+      "name": "hiit_2x_week",
+      "marginal_days": 3.3,
+      "marginal_net_value": 1825,
+      "total_annual_cost": 1386,
+      "total_qaly": 1.8912,
+      "total_raw_qaly": 2.9859,
+      "ceiling_retention": 0.633,
+      "interaction_penalty_qaly": -0.2976
     },
     {
       "step": 16,
-      "name": "astaxanthin_12",
-      "marginal_days": 31.2,
-      "marginal_net_value": 13105,
-      "total_annual_cost": 1743,
-      "diminishing_returns": 0.8
+      "name": "hiit_3x_week",
+      "marginal_days": 2.9,
+      "marginal_net_value": 1564,
+      "total_annual_cost": 1386,
+      "total_qaly": 1.899,
+      "total_raw_qaly": 3.0071,
+      "ceiling_retention": 0.631,
+      "interaction_penalty_qaly": -0.2976
     },
     {
       "step": 17,
-      "name": "vitamin_d_2000",
-      "marginal_days": 33.1,
-      "marginal_net_value": 12924,
-      "total_annual_cost": 1773,
-      "diminishing_returns": 0.8
+      "name": "astaxanthin_12",
+      "marginal_days": 4.4,
+      "marginal_net_value": 1377,
+      "total_annual_cost": 1386,
+      "total_qaly": 1.9109,
+      "total_raw_qaly": 3.0399,
+      "ceiling_retention": 0.629,
+      "interaction_penalty_qaly": -0.3468
     },
     {
       "step": 18,
-      "name": "nac_1200",
-      "marginal_days": 31.3,
-      "marginal_net_value": 11538,
-      "total_annual_cost": 1813,
-      "diminishing_returns": 0.8
+      "name": "tempo_run_1x_week",
+      "marginal_days": 2.4,
+      "marginal_net_value": 1294,
+      "total_annual_cost": 1386,
+      "total_qaly": 1.9174,
+      "total_raw_qaly": 3.0578,
+      "ceiling_retention": 0.627,
+      "interaction_penalty_qaly": -0.3468
     },
     {
       "step": 19,
-      "name": "lithium_5mg",
-      "marginal_days": 32.0,
-      "marginal_net_value": 11147,
-      "total_annual_cost": 1873,
-      "diminishing_returns": 0.8
+      "name": "hiit_1x_week",
+      "marginal_days": 2.1,
+      "marginal_net_value": 1126,
+      "total_annual_cost": 1386,
+      "total_qaly": 1.923,
+      "total_raw_qaly": 3.0734,
+      "ceiling_retention": 0.626,
+      "interaction_penalty_qaly": -0.3468
     },
     {
       "step": 20,
-      "name": "prebiotics",
-      "marginal_days": 40.4,
-      "marginal_net_value": 10944,
-      "total_annual_cost": 2053,
-      "diminishing_returns": 0.8
+      "name": "zinc_carnosine_75",
+      "marginal_days": 3.5,
+      "marginal_net_value": 910,
+      "total_annual_cost": 1446,
+      "total_qaly": 1.9327,
+      "total_raw_qaly": 3.1003,
+      "ceiling_retention": 0.623,
+      "interaction_penalty_qaly": -0.3647
     },
     {
       "step": 21,
-      "name": "omega3_epa_2g",
-      "marginal_days": 43.2,
-      "marginal_net_value": 10577,
-      "total_annual_cost": 2280,
-      "diminishing_returns": 0.8
+      "name": "zone2_cardio_2x_week",
+      "marginal_days": 1.4,
+      "marginal_net_value": 794,
+      "total_annual_cost": 1446,
+      "total_qaly": 1.9366,
+      "total_raw_qaly": 3.1115,
+      "ceiling_retention": 0.622,
+      "interaction_penalty_qaly": -0.3647
     },
     {
       "step": 22,
-      "name": "curcumin_250",
-      "marginal_days": 29.5,
-      "marginal_net_value": 10530,
-      "total_annual_cost": 2320,
-      "diminishing_returns": 0.8
+      "name": "melatonin_300mcg",
+      "marginal_days": 2.1,
+      "marginal_net_value": 668,
+      "total_annual_cost": 1476,
+      "total_qaly": 1.9425,
+      "total_raw_qaly": 3.1281,
+      "ceiling_retention": 0.621,
+      "interaction_penalty_qaly": -0.3783
     },
     {
       "step": 23,
-      "name": "lutein_zeaxanthin",
-      "marginal_days": 26.1,
-      "marginal_net_value": 10297,
-      "total_annual_cost": 2320,
-      "diminishing_returns": 0.8
+      "name": "strength_maintenance",
+      "marginal_days": 0.4,
+      "marginal_net_value": 236,
+      "total_annual_cost": 1476,
+      "total_qaly": 1.9437,
+      "total_raw_qaly": 3.1315,
+      "ceiling_retention": 0.621,
+      "interaction_penalty_qaly": -0.3783
     },
     {
       "step": 24,
-      "name": "vitamin_k2",
-      "marginal_days": 24.5,
-      "marginal_net_value": 8413,
-      "total_annual_cost": 2345,
-      "diminishing_returns": 0.8
+      "name": "vitamin_c_500_extra",
+      "marginal_days": 0.8,
+      "marginal_net_value": 202,
+      "total_annual_cost": 1491,
+      "total_qaly": 1.946,
+      "total_raw_qaly": 3.1379,
+      "ceiling_retention": 0.62,
+      "interaction_penalty_qaly": -0.4042
     },
     {
       "step": 25,
-      "name": "ubiquinol_50",
-      "marginal_days": 19.2,
-      "marginal_net_value": 6532,
-      "total_annual_cost": 2345,
-      "diminishing_returns": 0.8
+      "name": "hyaluronic_acid_120",
+      "marginal_days": 2.7,
+      "marginal_net_value": 138,
+      "total_annual_cost": 1491,
+      "total_qaly": 1.9534,
+      "total_raw_qaly": 3.1592,
+      "ceiling_retention": 0.618,
+      "interaction_penalty_qaly": -0.4042
     },
     {
       "step": 26,
-      "name": "egcg_400",
-      "marginal_days": 22.8,
-      "marginal_net_value": 6075,
-      "total_annual_cost": 2405,
-      "diminishing_returns": 0.8
+      "name": "head_elevation_nightly",
+      "marginal_days": 0.2,
+      "marginal_net_value": 123,
+      "total_annual_cost": 1491,
+      "total_qaly": 1.954,
+      "total_raw_qaly": 3.161,
+      "ceiling_retention": 0.618,
+      "interaction_penalty_qaly": -0.4057
     },
     {
       "step": 27,
-      "name": "nr_300",
-      "marginal_days": 15.6,
-      "marginal_net_value": 4534,
-      "total_annual_cost": 2405,
-      "diminishing_returns": 0.8
-    },
-    {
-      "step": 28,
-      "name": "black_seed_oil_1g",
-      "marginal_days": 19.6,
-      "marginal_net_value": 4344,
-      "total_annual_cost": 2465,
-      "diminishing_returns": 0.8
-    },
-    {
-      "step": 29,
-      "name": "quercetin_500",
-      "marginal_days": 18.3,
-      "marginal_net_value": 3623,
-      "total_annual_cost": 2525,
-      "diminishing_returns": 0.8
-    },
-    {
-      "step": 30,
-      "name": "luteolin_100",
-      "marginal_days": 13.4,
-      "marginal_net_value": 3339,
-      "total_annual_cost": 2525,
-      "diminishing_returns": 0.8
-    },
-    {
-      "step": 31,
-      "name": "lions_mane_1g",
-      "marginal_days": 34.2,
-      "marginal_net_value": 3267,
-      "total_annual_cost": 2812,
-      "diminishing_returns": 0.8
-    },
-    {
-      "step": 32,
-      "name": "lithium_1mg_orotate",
-      "marginal_days": 12.3,
-      "marginal_net_value": 2721,
-      "total_annual_cost": 2812,
-      "diminishing_returns": 0.8
-    },
-    {
-      "step": 33,
-      "name": "zinc_carnosine_75",
-      "marginal_days": 16.5,
-      "marginal_net_value": 2648,
-      "total_annual_cost": 2872,
-      "diminishing_returns": 0.8
-    },
-    {
-      "step": 34,
-      "name": "hyaluronic_acid_120",
-      "marginal_days": 10.6,
-      "marginal_net_value": 1827,
-      "total_annual_cost": 2872,
-      "diminishing_returns": 0.8
-    },
-    {
-      "step": 35,
       "name": "taurine_500_topup",
-      "marginal_days": 10.5,
-      "marginal_net_value": 1594,
-      "total_annual_cost": 2876,
-      "diminishing_returns": 0.8
+      "marginal_days": 0.3,
+      "marginal_net_value": 71,
+      "total_annual_cost": 1495,
+      "total_qaly": 1.9547,
+      "total_raw_qaly": 3.163,
+      "ceiling_retention": 0.618,
+      "interaction_penalty_qaly": -0.4068
+    }
+  ],
+  "wtp_frontier": [
+    {
+      "wtp": 50000,
+      "n_items": 19,
+      "total_qaly": 1.8159,
+      "total_raw_qaly": 2.7889,
+      "total_days": 663.3,
+      "total_annual_cost": 981,
+      "selected_ids": [
+        "tadalafil_2.5mg",
+        "finasteride_1.25mg",
+        "metformin_500mg",
+        "vitamin_d_2000",
+        "vitamin_k2",
+        "creatine_5g",
+        "magnesium_200",
+        "nac_1200",
+        "curcumin_250",
+        "lithium_5mg",
+        "hiit_2x_week",
+        "hiit_3x_week",
+        "tempo_run_1x_week",
+        "hiit_1x_week",
+        "zone2_cardio_2x_week",
+        "strength_maintenance",
+        "ubiquinol_50",
+        "head_elevation_nightly",
+        "vitamin_c_500_extra"
+      ]
     },
     {
-      "step": 36,
-      "name": "cistanche_200",
-      "marginal_days": 27.1,
-      "marginal_net_value": 1576,
-      "total_annual_cost": 3107,
-      "diminishing_returns": 0.8
+      "wtp": 100000,
+      "n_items": 23,
+      "total_qaly": 1.8994,
+      "total_raw_qaly": 3.0083,
+      "total_days": 693.8,
+      "total_annual_cost": 1315,
+      "selected_ids": [
+        "tadalafil_2.5mg",
+        "finasteride_1.25mg",
+        "metformin_500mg",
+        "vitamin_d_2000",
+        "creatine_5g",
+        "magnesium_200",
+        "vitamin_k2",
+        "nac_1200",
+        "curcumin_250",
+        "lithium_5mg",
+        "statin_5mg",
+        "prebiotics",
+        "ubiquinol_50",
+        "hiit_2x_week",
+        "hiit_3x_week",
+        "tempo_run_1x_week",
+        "hiit_1x_week",
+        "zone2_cardio_2x_week",
+        "vitamin_c_500_extra",
+        "strength_maintenance",
+        "melatonin_300mcg",
+        "head_elevation_nightly",
+        "taurine_500_topup"
+      ]
     },
     {
-      "step": 37,
-      "name": "broccoli_seed_200",
-      "marginal_days": 9.5,
-      "marginal_net_value": 1194,
-      "total_annual_cost": 3107,
-      "diminishing_returns": 0.8
+      "wtp": 150000,
+      "n_items": 26,
+      "total_qaly": 1.9473,
+      "total_raw_qaly": 3.1418,
+      "total_days": 711.3,
+      "total_annual_cost": 1615,
+      "selected_ids": [
+        "tadalafil_2.5mg",
+        "finasteride_1.25mg",
+        "metformin_500mg",
+        "creatine_5g",
+        "vitamin_d_2000",
+        "magnesium_200",
+        "vitamin_k2",
+        "nac_1200",
+        "curcumin_250",
+        "lithium_5mg",
+        "statin_5mg",
+        "prebiotics",
+        "ubiquinol_50",
+        "omega3_clo",
+        "hiit_2x_week",
+        "hiit_3x_week",
+        "tempo_run_1x_week",
+        "hiit_1x_week",
+        "astaxanthin_12",
+        "zone2_cardio_2x_week",
+        "zinc_carnosine_75",
+        "melatonin_300mcg",
+        "strength_maintenance",
+        "head_elevation_nightly",
+        "vitamin_c_500_extra",
+        "taurine_500_topup"
+      ]
     },
     {
-      "step": 38,
-      "name": "collagen_22g",
-      "marginal_days": 35.2,
-      "marginal_net_value": 873,
-      "total_annual_cost": 3467,
-      "diminishing_returns": 0.8
-    },
-    {
-      "step": 39,
-      "name": "spermidine_10",
-      "marginal_days": 7.6,
-      "marginal_net_value": 157,
-      "total_annual_cost": 3467,
-      "diminishing_returns": 0.8
-    },
-    {
-      "step": 40,
-      "name": "lycopene_15",
-      "marginal_days": 7.4,
-      "marginal_net_value": 68,
-      "total_annual_cost": 3467,
-      "diminishing_returns": 0.8
+      "wtp": 200000,
+      "n_items": 27,
+      "total_qaly": 1.9547,
+      "total_raw_qaly": 3.163,
+      "total_days": 714.0,
+      "total_annual_cost": 1695,
+      "selected_ids": [
+        "tadalafil_2.5mg",
+        "finasteride_1.25mg",
+        "metformin_500mg",
+        "creatine_5g",
+        "magnesium_200",
+        "vitamin_d_2000",
+        "vitamin_k2",
+        "nac_1200",
+        "lithium_5mg",
+        "curcumin_250",
+        "omega3_clo",
+        "prebiotics",
+        "ubiquinol_50",
+        "statin_5mg",
+        "hiit_2x_week",
+        "hiit_3x_week",
+        "astaxanthin_12",
+        "tempo_run_1x_week",
+        "hiit_1x_week",
+        "zinc_carnosine_75",
+        "zone2_cardio_2x_week",
+        "melatonin_300mcg",
+        "strength_maintenance",
+        "vitamin_c_500_extra",
+        "hyaluronic_acid_120",
+        "head_elevation_nightly",
+        "taurine_500_topup"
+      ]
     }
   ]
 }

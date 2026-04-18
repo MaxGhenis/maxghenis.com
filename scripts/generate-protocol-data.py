@@ -14,6 +14,7 @@ Data sources:
 import json
 import sqlite3
 import sys
+from dataclasses import replace
 from datetime import date
 from pathlib import Path
 
@@ -28,26 +29,99 @@ from optiqal import (
     BUNDLES,
 )
 
-OUTPUT = Path.home() / "maxghenis.com" / "src" / "data" / "protocol-data.json"
+def _resolve_output_path() -> Path:
+    """Return the active protocol-data.json location.
+
+    Prefers the directory where the Astro source currently lives; falls back
+    to ``~/maxghenis.com/src/data/protocol-data.json``.
+    """
+    candidates = [
+        Path.home() / "maxghenis.com" / "src" / "data" / "protocol-data.json",
+        Path.home() / "worktrees" / "maxghenis-com-master" / "src" / "data" / "protocol-data.json",
+    ]
+    for candidate in candidates:
+        if candidate.parent.exists():
+            return candidate
+    raise FileNotFoundError(
+        "Could not locate an existing src/data directory for protocol-data.json."
+    )
+
+
+OUTPUT = _resolve_output_path()
 HEALTH_DB = Path.home() / "clawd" / "data" / "health.db"
 
-# Max's profile
+PROFILE = Profile(
+    age=39,
+    sex="male",
+    bmi_category="normal",
+    smoking_status="never",
+    has_diabetes=False,
+    has_hypertension=False,
+    activity_level="light",
+)
+
+# Primary analysis at Max's personal WTP ($200K/QALY).
 config = AnalysisConfig(
-    profile=Profile(
-        age=39,
-        sex="male",
-        bmi_category="normal",
-        smoking_status="never",
-        has_diabetes=False,
-        has_hypertension=False,
-        activity_level="light",
-    ),
+    profile=PROFILE,
     n_simulations=50_000,
     random_state=42,
 )
 
 print("Running Optiqal analysis...")
 result = analyze(config)
+
+# WTP sensitivity panel. For each alternative willingness-to-pay threshold we
+# rerun the greedy portfolio on the same item simulations — this is much
+# cheaper than re-running Monte Carlo because the per-item QALY draws don't
+# depend on WTP. The frontier shows which items survive at a stricter bar.
+WTP_FRONTIER_LEVELS = (50_000, 100_000, 150_000, 200_000)
+
+
+def run_wtp_frontier(item_results, wtp_levels):
+    """Run greedy portfolio across multiple WTP levels, reusing item sims."""
+    from optiqal.combination import find_optimal_portfolio_with_costs
+    from optiqal.stack_interactions import build_stack_interaction_penalty_fn
+
+    single_qalys = {r["id"]: r["total_qaly"] for r in item_results}
+    annual_costs = {r["id"]: r.get("effective_annual_cost", r["annual_cost"]) for r in item_results}
+    cost_values = {r["id"]: r["total_cost"] for r in item_results}
+
+    penalty_fn = build_stack_interaction_penalty_fn(
+        catalog_entries=CATALOG,
+        profile=config.profile,
+        qaly_discount_rate=config.qaly_discount_rate,
+        item_qalys=single_qalys,
+    )
+
+    frontier = []
+    for wtp in wtp_levels:
+        portfolio = find_optimal_portfolio_with_costs(
+            single_qalys=single_qalys,
+            annual_costs=annual_costs,
+            cost_values=cost_values,
+            wtp=wtp,
+            horizon_years=config.horizon_years,
+            stack_interaction_penalty_fn=penalty_fn,
+            portfolio_qaly_ceiling=config.portfolio_qaly_ceiling,
+        )
+        last = portfolio[-1] if portfolio else None
+        frontier.append({
+            "wtp": wtp,
+            "n_items": len(last["selected_interventions"]) if last else 0,
+            "total_qaly": round(last["total_qaly"], 4) if last else 0,
+            "total_raw_qaly": round(last.get("total_raw_qaly", 0), 4) if last else 0,
+            "total_days": round(last["total_qaly"] * 365.25, 1) if last else 0,
+            "total_annual_cost": round(last["total_annual_cost"]) if last else 0,
+            "selected_ids": list(last["selected_interventions"]) if last else [],
+        })
+    return frontier
+
+
+print("Running WTP sensitivity frontier...")
+wtp_frontier = run_wtp_frontier(result.item_results, WTP_FRONTIER_LEVELS)
+for row in wtp_frontier:
+    print(f"  WTP=${row['wtp']:>7,}: {row['n_items']:>2} items, "
+          f"{row['total_qaly']:.2f} QALY, ${row['total_annual_cost']}/yr")
 
 
 # --- Health DB: products, ingredients, timing ---
@@ -108,6 +182,8 @@ CATEGORY_LABELS = {
     "supplement_current": "Current supplements",
     "supplement_bought": "Recently added",
     "supplement_candidate": "Under evaluation",
+    "sleep_current": "Current sleep interventions",
+    "sleep_candidate": "Sleep intervention candidates",
 }
 
 # Status labels
@@ -117,6 +193,8 @@ STATUS_LABELS = {
     "supplement_current": "taking",
     "supplement_bought": "testing",
     "supplement_candidate": "watching",
+    "sleep_current": "taking",
+    "sleep_candidate": "considering",
 }
 
 # Map Optiqal catalog IDs to health DB product names
@@ -184,6 +262,7 @@ def enrich_with_db(supplement_entry):
 supplements = []
 for r in result.item_results:
     entry = CATALOG[r["id"]]
+    posterior_ci = r.get("hr_posterior_ci95")
     s = {
         "id": r["id"],
         "name": entry.name,
@@ -191,10 +270,30 @@ for r in result.item_results:
         "category_label": CATEGORY_LABELS[entry.category],
         "status": STATUS_LABELS[entry.category],
         "hr_observed": entry.hr_observed,
+        # Publication-bias-only correction (kept for continuity; do not use to
+        # compare items — the sim actually applies the posterior HR below.)
         "hr_corrected": round(r["hr_corrected"], 4),
+        "pub_bias_shrinkage": round(r.get("pub_bias_shrinkage", 0.30), 3),
+        "study_quality": r.get("study_quality"),
+        # Posterior HR = what the simulator applies after pub-bias + Bayesian
+        # confounding + profile transport + evidence shrinkage. This is the
+        # HR users should compare items on.
+        "hr_posterior_mean": round(r["hr_posterior_mean"], 4) if r.get("hr_posterior_mean") is not None else None,
+        "hr_posterior_median": round(r["hr_posterior_median"], 4) if r.get("hr_posterior_median") is not None else None,
+        "hr_posterior_ci95_low": round(posterior_ci[0], 4) if posterior_ci else None,
+        "hr_posterior_ci95_high": round(posterior_ci[1], 4) if posterior_ci else None,
+        # Mortality-arm QALY mean vs median. Surfacing both lets readers see
+        # the Jensen corridor: mean is the decision metric (used in $/QALY
+        # and ICER), median is a convexity-invariant diagnostic that shouldn't
+        # drive ranking but flags interventions with heavy-tail harm exposure.
+        "mortality_qaly_mean": round(r["mortality_qaly_mean"], 5) if r.get("mortality_qaly_mean") is not None else None,
+        "mortality_qaly_median": round(r["mortality_qaly_median"], 5) if r.get("mortality_qaly_median") is not None else None,
         "days": round(r["days"], 1),
         "p_benefit": round(r["p_benefit"], 2),
         "annual_cost": entry.annual_cost,
+        "effective_annual_cost": round(r.get("effective_annual_cost", entry.annual_cost), 2),
+        "bundle_cost_share": round(r.get("bundle_cost_share", 0.0), 2),
+        "bundle_id": r.get("bundle_id"),
         "gross_value": round(r["gross_value"]),
         "qol_annual": entry.qol_annual,
         "evidence": evidence_confidence(entry),
@@ -247,21 +346,34 @@ for b in result.bundle_recommendations:
 # Portfolio steps
 portfolio = []
 for step in result.portfolio:
+    total_raw = step.get("total_raw_qaly")
+    total_qaly = step.get("total_qaly")
+    saturation = (
+        round(total_qaly / total_raw, 3)
+        if total_raw and total_raw > 0 and total_qaly is not None
+        else None
+    )
     portfolio.append({
         "step": step["step"],
         "name": step["added_intervention"],
         "marginal_days": round(step["marginal_qaly"] * 365.25, 1),
         "marginal_net_value": round(step["marginal_net_value"]),
         "total_annual_cost": round(step["total_annual_cost"]),
-        "diminishing_returns": round(step["diminishing_returns_factor"], 2),
+        "total_qaly": round(total_qaly, 4) if total_qaly is not None else None,
+        "total_raw_qaly": round(total_raw, 4) if total_raw is not None else None,
+        "ceiling_retention": saturation,
+        "interaction_penalty_qaly": round(step.get("interaction_penalty_qaly", 0.0), 4),
     })
 
 # Summary
+last_step = result.portfolio[-1] if result.portfolio else None
 summary = {
     "total_items": len(result.selected_ids),
     "total_annual_cost": round(result.total_annual_cost),
     "total_days": round(result.total_days, 1),
     "total_qaly": round(result.total_qaly, 4),
+    "total_raw_qaly": round(last_step["total_raw_qaly"], 4) if last_step else None,
+    "portfolio_qaly_ceiling": config.portfolio_qaly_ceiling,
     "catalog_size": len(CATALOG),
     "db_products": len(db_products),
     "db_ingredients": sum(len(v) for v in db_ingredients.values()),
@@ -281,6 +393,7 @@ data = {
         "qaly_discount_rate": config.qaly_discount_rate,
         "cost_discount_rate": config.cost_discount_rate,
         "pub_bias_shrinkage": config.pub_bias_shrinkage,
+        "portfolio_qaly_ceiling": config.portfolio_qaly_ceiling,
         "n_simulations": config.n_simulations,
     },
     "summary": summary,
@@ -288,6 +401,7 @@ data = {
     "schedule": schedule,
     "bundles": bundles,
     "portfolio": portfolio,
+    "wtp_frontier": wtp_frontier,
 }
 
 OUTPUT.write_text(json.dumps(data, indent=2))

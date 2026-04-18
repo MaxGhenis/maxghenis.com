@@ -80,7 +80,7 @@ const statusColors: Record<string, string> = {
 					</div>
 					<div class="stat-card">
 						<div class="stat-value">+{Math.round(summary.total_days / 365.25 * 10) / 10}yr</div>
-						<div class="stat-label">Expected gain</div>
+						<div class="stat-label">Expected QALY gain</div>
 					</div>
 					<div class="stat-card">
 						<div class="stat-value">2</div>
@@ -93,15 +93,50 @@ const statusColors: Record<string, string> = {
 			<section>
 				<h2>Philosophy</h2>
 				<p>I treat health optimization as a portfolio problem under uncertainty. Each intervention has an expected benefit (measured in <a href="https://en.wikipedia.org/wiki/Quality-adjusted_life_year">QALYs</a>), a cost, and uncertainty about whether the observed effect is causal or confounded.</p>
-				<p>The framework: estimate each intervention's hazard ratio from literature, shrink it 30% toward null to correct for publication bias, apply a Bayesian confounding prior to discount observational evidence, simulate 50,000 Monte Carlo samples through CDC life tables, then greedily select the highest expected-value stack under a budget.</p>
-				<p>Key parameters: willingness-to-pay of $200K per QALY, 40-year horizon, diminishing returns (each additional item gets 95% of the prior item's benefit, floor at 80%), and a complexity penalty beyond 3 items (0.0005 QALYs/yr per extra item). This penalizes sprawling regimens while still allowing justified expansion.</p>
+				<p>The framework: estimate each intervention's hazard ratio from literature, shrink it toward null by a <strong>tiered publication-bias correction</strong> (10% for preregistered RCTs with hard endpoints, 20&ndash;30% for standard RCTs and cohorts, 50% for supplement-industry RCTs, 70% for animal-only evidence), apply a Bayesian causal-fraction prior calibrated against observed RCT-vs-observational discrepancies, simulate 50,000 Monte Carlo samples through CDC life tables, and report the <strong>posterior hazard ratio</strong> the simulator actually applies &mdash; not the publication-bias-only HR.</p>
+				<p>Mechanism-cluster diminishing returns prevent correlated supplements from stacking additively. Anti-inflammatory polyphenols (curcumin, quercetin, apigenin, EGCG, luteolin, cocoa flavanols) share a cluster with within-cluster retention dropping fast past the first item; NAD+ precursors (NR, NMN) are tightened further; antioxidants, mitochondrial-support, and senolytics each have their own steep retention schedules. A portfolio-level QALY ceiling of {summary.portfolio_qaly_ceiling ?? 3.0} applies a concave saturation to the raw additive total so the stack can't claim multi-QALY gains that exceed primary-prevention CEA literature.</p>
+				<p>Key parameters: willingness-to-pay of $200K per QALY (with a sensitivity panel at $50K/$100K/$150K below), 40-year horizon, 5% cost discount, 0% QALY discount. Bundled products (Blueprint Essentials, Advanced Antioxidants, Longevity Mix) now carry an allocated per-ingredient cost so bundled items no longer free-ride on $/QALY.</p>
 				<p>I am not a doctor. I have no medical training. This is <em>expected value reasoning applied to personal health decisions</em>, not clinical guidance. Most of these effect sizes are small, uncertain, and could be entirely confounded.</p>
 			</section>
+
+			<!-- WTP sensitivity frontier -->
+			{protocolData.wtp_frontier && protocolData.wtp_frontier.length > 0 && (
+				<section>
+					<h2>Willingness-to-pay sensitivity</h2>
+					<p>The same item simulations rerun at four cost-effectiveness thresholds. At $50K/QALY &mdash; the bar common in public healthcare systems &mdash; only the highest-conviction items survive. My personal WTP is $200K, higher than standard clinical CEA because the marginal dollar on health beats the marginal dollar on most other spending for me; but the frontier is what to look at for the robust core.</p>
+					<div class="table-wrapper">
+						<table>
+							<thead>
+								<tr>
+									<th class="num">WTP ($/QALY)</th>
+									<th class="num">Items</th>
+									<th class="num">QALY (saturated)</th>
+									<th class="num">QALY (raw)</th>
+									<th class="num">Days</th>
+									<th class="num">$/yr</th>
+								</tr>
+							</thead>
+							<tbody>
+								{protocolData.wtp_frontier.map(row => (
+									<tr>
+										<td class="num">${row.wtp.toLocaleString()}</td>
+										<td class="num">{row.n_items}</td>
+										<td class="num">{row.total_qaly.toFixed(2)}</td>
+										<td class="num">{row.total_raw_qaly.toFixed(2)}</td>
+										<td class="num">+{row.total_days.toFixed(0)}</td>
+										<td class="num">${row.total_annual_cost.toLocaleString()}</td>
+									</tr>
+								))}
+							</tbody>
+						</table>
+					</div>
+				</section>
+			)}
 
 			<!-- Core stack -->
 			<section>
 				<h2>Core stack</h2>
-				<p>The top {coreStack.length} highest-conviction items I take daily, ranked by expected value.</p>
+				<p>The top {coreStack.length} highest-conviction items I take daily, ranked by expected value. The <strong>posterior HR</strong> column is what the simulator actually applies after publication-bias and Bayesian confounding shrinkage &mdash; much weaker than the raw literature HR and the right column for comparing items.</p>
 				<div class="table-wrapper">
 					<table>
 						<thead>
@@ -109,6 +144,7 @@ const statusColors: Record<string, string> = {
 								<th>Item</th>
 								<th>Status</th>
 								<th>Evidence</th>
+								<th class="num">Posterior HR</th>
 								<th class="num">E[days]</th>
 								<th class="num">P(+)</th>
 								<th class="num">$/yr</th>
@@ -122,15 +158,27 @@ const statusColors: Record<string, string> = {
 										<strong>{s.name}</strong>
 										<details class="evidence-details">
 											<summary>Details</summary>
-											<p>HR observed: {s.hr_observed} &rarr; corrected: {s.hr_corrected}<br/>{s.notes}{s.sources?.length > 0 && <><br/><a href={s.sources[0]}>Product link</a></>}</p>
+											<p>
+												HR observed: {s.hr_observed}<br/>
+												Pub-bias corrected ({Math.round((s.pub_bias_shrinkage ?? 0.3) * 100)}% shrinkage{s.study_quality ? `, tier: ${s.study_quality.replace(/_/g, ' ')}` : ''}): {s.hr_corrected}<br/>
+												{s.hr_posterior_median !== null && s.hr_posterior_median !== undefined && (
+													<>Posterior (sim-applied) HR: <strong>{s.hr_posterior_median.toFixed(3)}</strong> (95% CI {s.hr_posterior_ci95_low?.toFixed(3)}&ndash;{s.hr_posterior_ci95_high?.toFixed(3)})<br/></>
+												)}
+												{s.bundle_id && s.bundle_cost_share > 0 && (
+													<>Bundle allocation: ${s.bundle_cost_share}/yr from {s.bundle_id.replace(/_/g, ' ')}<br/></>
+												)}
+												{s.notes}
+												{s.sources?.length > 0 && <><br/><a href={s.sources[0]}>Product link</a></>}
+											</p>
 										</details>
 									</td>
 									<td><span class="status-pill" style={`background: ${statusColors[s.status]}20; color: ${statusColors[s.status]}`}>{s.status}</span></td>
 									<td><span class={`evidence-badge evidence-${s.evidence}`}>{s.evidence}</span></td>
+									<td class="num">{s.hr_posterior_median != null ? s.hr_posterior_median.toFixed(3) : '\u2014'}</td>
 									<td class="num">+{s.days.toFixed(0)}</td>
 									<td class="num">{Math.round(s.p_benefit * 100)}%</td>
-									<td class="num">{s.annual_cost === 0 ? 'bundled' : `$${s.annual_cost}`}</td>
-									<td class="num">{s.cost_per_qaly ? `$${s.cost_per_qaly.toLocaleString()}` : 'bundled'}</td>
+									<td class="num">{(s.effective_annual_cost ?? s.annual_cost) === 0 ? 'bundled' : `$${Math.round(s.effective_annual_cost ?? s.annual_cost)}`}</td>
+									<td class="num">{s.cost_per_qaly ? `$${s.cost_per_qaly.toLocaleString()}` : '\u2014'}</td>
 								</tr>
 							))}
 						</tbody>
@@ -367,13 +415,19 @@ const statusColors: Record<string, string> = {
 													{s.in_portfolio && <span class="in-portfolio-mark" title="In optimized portfolio"> *</span>}
 													<details class="evidence-details">
 														<summary>Details</summary>
-														<p>HR: {s.hr_observed} &rarr; {s.hr_corrected} | QoL: {s.qol_annual > 0 ? '+' : ''}{s.qol_annual}/yr<br/>{s.notes}{s.sources?.length > 0 && <><br/><a href={s.sources[0]}>Product link</a></>}</p>
+														<p>
+														HR obs: {s.hr_observed} &rarr; pub-bias: {s.hr_corrected}
+														{s.hr_posterior_median != null && <> &rarr; posterior: <strong>{s.hr_posterior_median.toFixed(3)}</strong></>}
+														{s.study_quality && <> | tier: {s.study_quality.replace(/_/g, ' ')}</>}
+														 | QoL: {s.qol_annual > 0 ? '+' : ''}{s.qol_annual}/yr
+														<br/>{s.notes}{s.sources?.length > 0 && <><br/><a href={s.sources[0]}>Product link</a></>}
+													</p>
 													</details>
 												</td>
 												<td><span class={`evidence-badge evidence-${s.evidence}`}>{s.evidence}</span></td>
 												<td class="num">+{s.days.toFixed(0)}</td>
 												<td class="num">{Math.round(s.p_benefit * 100)}%</td>
-												<td class="num">{s.annual_cost === 0 ? 'bundled' : `$${s.annual_cost}`}</td>
+												<td class="num">{(s.effective_annual_cost ?? s.annual_cost) === 0 ? 'bundled' : `$${Math.round(s.effective_annual_cost ?? s.annual_cost)}`}</td>
 												<td class="num">${s.gross_value.toLocaleString()}</td>
 											</tr>
 										))}
@@ -438,7 +492,7 @@ const statusColors: Record<string, string> = {
 									<th class="num">+days</th>
 									<th class="num">Marginal $</th>
 									<th class="num">Cumulative $/yr</th>
-									<th class="num">DR factor</th>
+									<th class="num">Ceiling retention</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -449,7 +503,7 @@ const statusColors: Record<string, string> = {
 										<td class="num">+{p.marginal_days.toFixed(0)}</td>
 										<td class="num">${p.marginal_net_value.toLocaleString()}</td>
 										<td class="num">${p.total_annual_cost.toLocaleString()}</td>
-										<td class="num">{p.diminishing_returns < 1 ? p.diminishing_returns.toFixed(2) : '1.00'}</td>
+										<td class="num">{p.ceiling_retention != null && p.ceiling_retention < 1 ? p.ceiling_retention.toFixed(2) : '1.00'}</td>
 									</tr>
 								))}
 							</tbody>
@@ -477,7 +531,7 @@ const statusColors: Record<string, string> = {
 										<tr>
 											<td>{s.name}</td>
 											<td class="num">+{s.days.toFixed(0)}</td>
-											<td class="num">{s.annual_cost === 0 ? 'bundled' : `$${s.annual_cost}`}</td>
+											<td class="num">{(s.effective_annual_cost ?? s.annual_cost) === 0 ? 'bundled' : `$${Math.round(s.effective_annual_cost ?? s.annual_cost)}`}</td>
 											<td class="num">${s.gross_value.toLocaleString()}</td>
 											<td class="excluded-reason">{s.gross_value < 0 ? 'Negative expected value' : 'Marginal value below threshold after DR'}</td>
 										</tr>
@@ -553,15 +607,17 @@ const statusColors: Record<string, string> = {
 				<h2>Methodology</h2>
 				<p>This page is generated from the <a href="https://github.com/maxghenis/optiqal-ai">Optiqal</a> Python package. The data pipeline:</p>
 				<ol>
-					<li>Literature hazard ratios are entered into a structured catalog with uncertainty estimates and confounding priors</li>
-					<li>Each HR is shrunk 30% toward null (publication bias correction)</li>
-					<li>A Beta-distributed confounding prior discounts the causal fraction (e.g., Beta(2,4) means ~33% of the observed effect is believed causal)</li>
-					<li>50,000 Monte Carlo simulations propagate uncertainty through CDC life tables for a {profile.age}-year-old {profile.sex}</li>
+					<li>Literature hazard ratios are entered into a structured catalog with uncertainty estimates, study-quality tiers, and confounding priors</li>
+					<li>Each HR is shrunk toward null by a <strong>tiered</strong> publication-bias correction: 10% for preregistered RCTs with hard endpoints, 20&ndash;30% for standard RCTs and cohorts, 50% for supplement-industry RCTs, 70% for animal-only evidence</li>
+					<li>A Beta-distributed confounding prior discounts the causal fraction (e.g., Beta(2.5, 4) means ~38% of the observed effect is believed causal for medical interventions, calibrated against observed RCT-vs-observational gaps)</li>
+					<li>{config.n_simulations.toLocaleString()} Monte Carlo simulations propagate uncertainty through CDC life tables for a {profile.age}-year-old {profile.sex}. The resulting <strong>posterior hazard ratio</strong> (what the simulator actually applies) is reported alongside the literature HR so readers can see the shrinkage that matters</li>
+					<li>Mechanism clusters (anti-inflammatory polyphenols, NAD+ precursors, antioxidants, mitochondrial-support, senolytics, neurotrophics, methylation-donors) apply within-cluster diminishing-returns schedules so correlated supplements don't stack additively</li>
 					<li>Expected days gained = mean QALY gain &times; 365.25</li>
-					<li>Greedy portfolio optimizer selects items by marginal net value until returns go negative</li>
+					<li>Greedy portfolio optimizer selects items by marginal net value; a portfolio-level QALY ceiling ({summary.portfolio_qaly_ceiling ?? 3.0}) applies a concave saturation to the additive total, bounded by primary-prevention CEA literature</li>
+					<li>Bundled products carry an allocated per-ingredient cost share so bundled items contribute to $/QALY accounting</li>
 				</ol>
 				<p>Evidence confidence labels: <span class="evidence-badge evidence-high">high</span> = strong causal prior + tight uncertainty; <span class="evidence-badge evidence-medium">medium</span> = moderate evidence or wider uncertainty; <span class="evidence-badge evidence-low">low</span> = weak causal evidence, speculative.</p>
-				<p>Profile: {profile.age}yo {profile.sex}, BMI {profile.bmi_category}, {profile.smoking_status} smoker. WTP ${config.wtp.toLocaleString()}/QALY, {config.horizon_years}-year horizon, {config.n_simulations.toLocaleString()} simulations.</p>
+				<p>Profile: {profile.age}yo {profile.sex}, BMI {profile.bmi_category}, {profile.smoking_status} smoker. WTP ${config.wtp.toLocaleString()}/QALY, {config.horizon_years}-year horizon, {config.n_simulations.toLocaleString()} simulations. Saturated QALY total: {summary.total_qaly} (raw additive: {summary.total_raw_qaly}).</p>
 			</section>
 		</main>
 		<Footer />
