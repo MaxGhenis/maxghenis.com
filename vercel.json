@@ -10,6 +10,8 @@
     { "source": "/value-forecasting/:path*", "destination": "https://maxghenis.github.io/value-forecasting/:path*" },
     { "source": "/yankee-stadium-beer-price-controls", "destination": "https://maxghenis.github.io/yankee-stadium-beer-price-controls/" },
     { "source": "/yankee-stadium-beer-price-controls/:path*", "destination": "https://maxghenis.github.io/yankee-stadium-beer-price-controls/:path*" },
+    { "source": "/whatnut", "destination": "https://whatnut-three.vercel.app/whatnut/" },
+    { "source": "/whatnut/:path*", "destination": "https://whatnut-three.vercel.app/whatnut/:path*" },
     { "source": "/whatnut-paper", "destination": "https://maxghenis.github.io/whatnut/" },
     { "source": "/whatnut-paper/:path*", "destination": "https://maxghenis.github.io/whatnut/:path*" }
   ],
