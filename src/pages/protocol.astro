@@ -244,60 +244,44 @@ const statusColors: Record<string, string> = {
 
 					<details>
 						<summary class="category-summary">Recipe</summary>
-						<p><strong>Blended base:</strong>
+						<p>Optimized per <a href="https://github.com/maxghenis/whatnut">whatnut</a> (nut mix by Bayesian QALY — walnut primary for ALA, hazelnut for creamy texture, almond as #2 QALY diversifier; macadamia dropped given lowest QALY and 67% P(+) confidence). Toggle between single serving, typical 4&times; blender batch, or 11&times; jar-fill batch (11 servings is what remains in the gallon jar after you scoop 4 servings' worth of protein straight into the blender from a fresh 15-serving Blueprint Metabolic Protein bag).</p>
+						<p><strong>Dry mix:</strong>
 							<span class="np-toggle">
 								<button class="np-toggle-btn active" data-servings="1">x1</button>
-								<button class="np-toggle-btn" data-servings="4">x4</button>
+								<button class="np-toggle-btn" data-servings="4">x4 blender</button>
+								<button class="np-toggle-btn" data-servings="11">x11 jar</button>
 							</span>
 						</p>
 						<ul class="np-recipe">
-							<li><span class="np-qty" data-x1="60 ml" data-x4="1 cup">60 ml</span> pomegranate juice</li>
-							<li><span class="np-qty" data-x1="50&ndash;100 ml" data-x4="1 cup">50&ndash;100 ml</span> nut milk</li>
-							<li><span class="np-qty" data-x1="3 tbsp" data-x4="&frac34; cup">3 tbsp</span> ground macadamia nuts</li>
-							<li><span class="np-qty" data-x1="2 tsp" data-x4="2 tbsp + 2 tsp">2 tsp</span> ground walnuts</li>
-							<li><span class="np-qty" data-x1="1 tsp" data-x4="1 tbsp + 1 tsp">1 tsp</span> ground flaxseed</li>
-							<li><span class="np-qty" data-x1="&frac14;" data-x4="1">&frac14;</span> Brazil nut</li>
-							<li><span class="np-qty" data-x1="&frac14; cup berries + 3 cherries" data-x4="1 cup berries + 12 cherries">&frac14; cup berries + 3 cherries</span></li>
-							<li><span class="np-qty" data-x1="1 tsp" data-x4="1 tbsp + 1 tsp">1 tsp</span> sunflower lecithin</li>
-							<li><span class="np-qty" data-x1="&frac12; tsp" data-x4="2 tsp">&frac12; tsp</span> ceylon cinnamon</li>
-							<li>Blueprint Cocoa (12g per serving, all in premix)</li>
-							<li><span class="np-qty" data-x1="1 scoop (22g)" data-x4="4 scoops (88g)">1 scoop (22g)</span> Collagen</li>
-							<li><span class="np-qty" data-x1="2 scoops" data-x4="8 scoops">2 scoops</span> Blueprint Metabolic Protein (73g, 30g protein)</li>
+							<li><span class="np-qty" data-x1="2 scoops (73g)" data-x4="8 scoops (292g)" data-x11="22 scoops (rest of bag)">2 scoops (73g)</span> Blueprint Metabolic Protein</li>
+							<li><span class="np-qty" data-x1="2 tbsp (12g)" data-x4="&frac12; cup (48g)" data-x11="1&frac38; cup (132g)">2 tbsp (12g)</span> Blueprint Cocoa</li>
+							<li><span class="np-qty" data-x1="4 tbsp (~16 halves)" data-x4="1 cup" data-x11="2&frac34; cup">4 tbsp (~16 halves)</span> walnut halves (whole blanched)</li>
+							<li><span class="np-qty" data-x1="2 tbsp (~16-18 nuts)" data-x4="&frac12; cup" data-x11="1&frac38; cup">2 tbsp (~16-18 nuts)</span> hazelnuts (whole blanched)</li>
+							<li><span class="np-qty" data-x1="1 tbsp (~7-8 nuts)" data-x4="&frac14; cup" data-x11="&frac23; cup + 1 tbsp">1 tbsp (~7-8 nuts)</span> almonds (whole blanched)</li>
+							<li><span class="np-qty" data-x1="2 tbsp" data-x4="&frac12; cup" data-x11="1&frac38; cup">2 tbsp</span> hemp hearts (ground)</li>
+							<li><span class="np-qty" data-x1="10g" data-x4="40g" data-x11="110g">10g</span> collagen peptides</li>
+							<li><span class="np-qty" data-x1="1 tbsp" data-x4="&frac14; cup" data-x11="&frac23; cup + 1 tbsp">1 tbsp</span> flaxseed (ground)</li>
+							<li><span class="np-qty" data-x1="&frac12; tsp" data-x4="2 tsp" data-x11="~2 tbsp">&frac12; tsp</span> Ceylon cinnamon</li>
+							<li><span class="np-qty" data-x1="&frac14; tsp" data-x4="1 tsp" data-x11="~1 tbsp">&frac14; tsp</span> sumac (NY Shuk)</li>
 						</ul>
-						<p><strong>Toppings (per serving):</strong></p>
+						<p><strong>Fresh per serving (added at blend time, not in jar):</strong></p>
+						<ul class="np-recipe">
+							<li><span class="np-qty" data-x1="60 ml" data-x4="1 cup" data-x11="per batch">60 ml</span> pomegranate juice</li>
+							<li><span class="np-qty" data-x1="50&ndash;100 ml" data-x4="1 cup" data-x11="per batch">50&ndash;100 ml</span> nut milk</li>
+							<li><span class="np-qty" data-x1="&frac14;" data-x4="1" data-x11="per batch">&frac14;</span> Brazil nut (selenium)</li>
+							<li><span class="np-qty" data-x1="&frac14; cup berries + 3 cherries" data-x4="1 cup berries + 12 cherries" data-x11="per batch">&frac14; cup berries + 3 cherries</span> (Wyman's triple berry blend + frozen cherries)</li>
+							<li><span class="np-qty" data-x1="1 cube" data-x4="4 cubes" data-x11="per batch">1 cube</span> Dorot frozen ginger</li>
+						</ul>
+						<p><strong>Toppings (per serving, after blending):</strong></p>
 						<ul>
-							<li>1 tbsp EVOO</li>
-							<li>Blueprint Blueberry Nut Mix</li>
-							<li>2 tbsp chia seeds</li>
-							<li>1/4 cup berries</li>
+							<li>1 tbsp high-polyphenol EVOO &mdash; stirred in after blend to preserve polyphenols</li>
+							<li>1 tbsp raw cacao nibs &mdash; for crunch + non-dutched flavanols</li>
+							<li>1 tbsp chia seeds</li>
+							<li>&frac14; cup wild blueberries (frozen winter, fresh summer)</li>
+							<li>Blueprint Blueberry Nut Mix (optional)</li>
 						</ul>
-					</details>
-
-					<details>
-						<summary class="category-summary">Bulk dry mix (12 servings in 1-gallon mason jar)</summary>
-						<p>Workflow: open a fresh bag of protein, scoop 8 scoops (4 servings) straight into the blender, then dump the remaining 22 scoops into the jar with 12 servings of everything else. Each jar scoop has slightly less protein (~1.83 vs 2 scoops), but it evens out across all 16 servings per bag. Scoop ~1&frac14; cups per serving (or ~5 cups for 4 servings).</p>
-						<div class="table-wrapper">
-							<table>
-								<thead>
-									<tr>
-										<th>Ingredient</th>
-										<th class="num">Per serving</th>
-										<th class="num">&times;12 (full jar)</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr><td>Ground macadamia nuts</td><td class="num">3 tbsp</td><td class="num">2&frac14; cups</td></tr>
-									<tr><td>Blueprint Metabolic Protein</td><td class="num">~1.83 scoops</td><td class="num">rest of bag (22 scoops)</td></tr>
-									<tr><td>Collagen protein</td><td class="num">1 scoop (22g)</td><td class="num">2&frac34; cups</td></tr>
-									<tr><td>Blueprint Cocoa</td><td class="num">~2 tbsp</td><td class="num">1&frac12; cups</td></tr>
-									<tr><td>Ground walnuts</td><td class="num">2 tsp</td><td class="num">&frac12; cup</td></tr>
-									<tr><td>Ground flax seeds</td><td class="num">1 tsp</td><td class="num">&frac14; cup</td></tr>
-									<tr><td>Sunflower lecithin</td><td class="num">1 tsp</td><td class="num">&frac14; cup</td></tr>
-									<tr><td>Ceylon cinnamon</td><td class="num">&frac12; tsp</td><td class="num">2 tbsp</td></tr>
-								</tbody>
-							</table>
-						</div>
-						<p><strong>Mixing order:</strong> finest powders first (cinnamon, cocoa, lecithin, flax), then proteins (pea/metabolic, collagen), then coarsest (ground nuts). Shake hard to combine; shake before each scoop.</p>
+						<p><strong>Workflow:</strong> Open a new Blueprint Metabolic Protein bag (15 servings). Measure 4 servings' worth of protein (8 scoops) plus 4 servings of everything else straight into the Vitamix for today's batch. Pour the remaining 11 scoops of protein plus 11 servings of all the dry ingredients into the gallon jar; shake hard to combine; shake again before each future scoop. Blend whole nuts fresh in the Vitamix for 20-30 sec on high; longer blending degrades walnut/hazelnut oils.</p>
+						<p><strong>Mixing order when filling the jar:</strong> finest powders first (cinnamon, sumac, cocoa, flax, hemp), then proteins (Metabolic Protein, collagen), then whole nuts (walnut, hazelnut, almond) on top. Shake hard; shake before each scoop.</p>
 					</details>
 				</div>
 
