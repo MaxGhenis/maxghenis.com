@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/whatnut",
+      "destination": "https://whatnut-three.vercel.app/whatnut/"
+    },
+    {
+      "source": "/whatnut/:path*",
+      "destination": "https://whatnut-three.vercel.app/whatnut/:path*"
+    }
+  ]
+}
