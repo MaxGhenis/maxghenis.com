@@ -55,6 +55,12 @@ Madoff's claim implies a 1:1 ratio for the wealthy. The data and estimates give 
 
 In the $30M–$190M range that is in the data, the nonpayer share falls from 31.9% (all households) to 17.4% (top 100,000 by wealth) to 0% (top 1,000).
 
+Household-level scatter, log-log:
+
+![Scatter of federal income+payroll tax vs household net worth, PolicyEngine Enhanced CPS 2026](./madoff-scatter.png)
+
+Each dot is a household record; area is proportional to the record's weight. Households paying ≤ $0 are plotted at a floor below the positive range. The gray floor thins out above ~$30M in net worth and is empty above ~$100M.
+
 ## Other estimates of what the wealthiest pay
 
 The rate you get for the top of the distribution depends on the denominator:
@@ -65,8 +71,6 @@ The rate you get for the top of the distribution depends on the denominator:
 
 None of these studies — including ProPublica's follow-ups in the [Secret IRS Files series](https://www.propublica.org/series/the-secret-irs-files) — report the share of centibillionaire person-years with $0 federal income tax, because per-person year-by-year data isn't public. The question Madoff's claim depends on is structurally harder to answer than the rate question.
 
-## What the claim should be
+## Rate vs. frequency
 
-The rate measures (3.4% / 8.2% / 24–38%) show the richest pay lower rates than the population once unrealized gains are in the denominator. That's defensible across all three methodologies.
-
-The frequency measure — "just as likely to be nonpayers as top 1% payers" — uses income-tax filing brackets. On that measure, top-100 ratio (nonpayer : top-1%-payer) is ~1:10, not 1:1. The claim mixes the rate argument with frequency framing, and the frequency framing is off by about an order of magnitude.
+The rate measures (3.4% / 8.2% / 24–38%) and the frequency framing Madoff used ("just as likely to be in the 40% of nonpayers as the top 1% of payers") answer different questions about the same group. On the rate side, all three methodologies put the richest below the population average once unrealized gains are in the denominator. On the frequency side — where the denominator is year-by-year filing status — the top-100 ratio (nonpayer : top-1%-payer) estimated above is ~1:10, and the 40%-of-nonpayers population average is a different group dominated by retirees, students, and low-income filers.

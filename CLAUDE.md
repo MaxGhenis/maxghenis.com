@@ -25,6 +25,14 @@ This applies to blog post titles, section headings, page titles, and body text.
 
 **No paywalled sources**: All links should be freely accessible. Use official announcements, free surveys, or archive.is links instead of paywalled articles.
 
+**Direct tone, numbers over adjectives**: Cut phrases that describe the argument instead of making it ("It's a great rhetorical move", "The point that survives…", "precision matters because…", "what's interesting is…"). Don't use adjectives or adverbs unless there's a number in the same sentence/paragraph backing them. Prefer ratios and tables to qualitative descriptions. Flag estimates from Claude explicitly ("I asked Claude to estimate") vs. figures from published data.
+
+**Neutral conclusions**: Present rate/frequency comparisons without editorializing on which side "wins" or calling a claim "off by an order of magnitude." Let the numbers end the post.
+
+## Deploy workflow
+
+Push directly to `master` — no PR or branch required for regular post updates. CI + Vercel handle the deploy.
+
 ## Structure
 
 - `src/content/blog/` - Blog posts (markdown with frontmatter)
