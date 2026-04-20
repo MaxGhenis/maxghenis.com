@@ -1,7 +1,7 @@
 # Max Ghenis - Full Content
 
 > This file contains the full text of all blog posts from maxghenis.com, formatted for LLM consumption.
-> Generated: 2026-04-20T15:29:32.868Z
+> Generated: 2026-04-20T17:24:10.324Z
 > See also: /llms.txt for a curated overview
 
 ---
@@ -56,22 +56,30 @@ The data doesn't support this.
 
 The "40 percent of nonpayers" are households with $0 federal income tax liability. The top 1 percent of payers (TY2022) starts at $663,164 in adjusted gross income, per [IRS data via Tax Foundation](https://taxfoundation.org/data/all/federal/latest-federal-income-tax-data-2025/). When a centibillionaire sells stock, exercises options, or receives dividends, they clear that threshold by three to four orders of magnitude.
 
-## What ProPublica actually documented
+## Per-person data disclosed by ProPublica
 
-[ProPublica's 2021 investigation](https://www.propublica.org/article/the-secret-irs-files-trove-of-never-before-seen-records-reveal-how-the-wealthiest-avoid-income-tax) covered 2014–2018 for the top 25 billionaires. Per-person figures for the four people Madoff named:
+Year-by-year federal income tax for the people [ProPublica](https://www.propublica.org/article/the-secret-irs-files-trove-of-never-before-seen-records-reveal-how-the-wealthiest-avoid-income-tax) named with dollar figures:
 
-- **Jeff Bezos** paid $0 in 2007 and 2011, $973 million over 2014–2018. Since 2020 he has sold $8–10 billion of Amazon stock per year.
-- **Elon Musk** paid $0 in 2018 and [$11 billion](https://www.cnn.com/2021/12/29/investing/elon-musk-tesla-stock-sales/index.html) in 2021 when he exercised expiring Tesla options.
-- **Mark Zuckerberg**: no zero-tax years in the leak. His 10b5-1 sales produce hundreds of millions in taxable gains per year.
-- **Larry Ellison**: no zero-tax years in the leak. Oracle's dividend produces taxable income each year.
+| Person | Documented $0 years | Non-$0 tax disclosed | Source period |
+|---|---|---|---|
+| Warren Buffett | 0 | $23.7M total | 2014–2018 |
+| Jeff Bezos | 2007, 2011 | $973M total | 2014–2018 (+ 2007, 2011) |
+| Michael Bloomberg | unspecified "several" | $292M total; $70.7M in 2018 | 2014–2018 |
+| Elon Musk | 2018 | $455M total (2014–2018); $11B in 2021 | 2014–2018, 2021 |
+| Mark Zuckerberg | 0 in the leak | hundreds of millions/yr via 10b5-1 | 2014–2018 |
+| Larry Ellison | 0 in the leak | Oracle dividend every year | 2014–2018 |
+| Carl Icahn | 2016, 2017 | not disclosed (AGI $544M, $0 tax via interest expense) | 2014–2018 |
+| George Soros | 2016, 2017, 2018 | $0 entire disclosed window (fund losses) | 2014–2018 |
 
-Two of the four have documented zero years; two have none. In the years with zero liability, income was offset by losses, interest expense, or charitable deductions — not persistent non-filing.
+Six $0 years across ~40 person-years of disclosed data = **~15%**. Four of the eight had at least one $0 year; four had none.
 
-ProPublica also disclosed $0 years for Carl Icahn (2016, 2017 — interest-expense offsets) and George Soros (2016–2018 — fund losses). Both had nine- and ten-figure taxable years in other periods.
+**Extrapolation to the top 100 wealthiest over the past decade: I asked Claude to estimate.** Starting from the 15% disclosed-person-year rate and weighting the less-famous half of the Forbes 400 more heavily (more Icahn/Soros-style loss or deduction years than the Bezos/Zuckerberg-style stock-selling pattern), my estimate is a **~5–10%** per-year zero rate.
 
-**Person-year zero rate — a rough estimate.** I asked Claude to estimate what share of person-years would show $0 federal income tax for the top 100 wealthiest over the past decade. Starting from the ProPublica disclosures (roughly 10–20 documented zero years across 25 people × 12 disclosed years ≈ 5% of person-years), then weighting the less-famous half of the Forbes 400 more heavily (more Icahn/Soros-style loss or deduction years), the estimate comes in around **5–10%**.
+For context:
+- Random US household in a given year: ~40% pay $0 federal income tax ([Tax Policy Center](https://taxpolicycenter.org/briefing-book/who-doesnt-pay-federal-income-taxes)), ~1% in top 1% of payers (by definition). Ratio nonpayer : top-1%-payer = **40 : 1**.
+- Top 100 wealthiest in a given year: ~5–10% estimated $0 rate, ~80–90% estimated top-1%-of-payers rate (Claude estimates, grounded in the disclosed data above). Ratio ≈ **1 : 10**.
 
-The baseline that Madoff's "40% of nonpayers" describes is a different population: retirees, students, and low earners who owe nothing year after year. The wealthy zero years are episodic — a wealthy person with a 10% per-year probability of a zero tax year is not in the same group as a retired household that owes $0 every year.
+Madoff's claim implies a 1:1 ratio for the wealthy. The data and estimates give something closer to 1:10 — inverted from what "just as likely" implies.
 
 ## What the microdata says
 
@@ -86,9 +94,9 @@ The baseline that Madoff's "40% of nonpayers" describes is a different populatio
 | Top 1,000,000 | 135 | $13.4M – $190.3M | 4.3% | 7.1% |
 | All US households | 6,876 | — | 1.0% | 31.9% |
 
-"Records" is the number of underlying microdata households contributing to each weighted group. The top 100 and top 1,000 are both drawn from the same 2 records, and Enhanced CPS net worth caps at $190.3M, so Bezos- and Musk-scale wealth isn't represented.
+"Records" is the number of underlying microdata households contributing to each weighted group. The top 100 and top 1,000 both come from the same 2 records. Net worth in Enhanced CPS is imputed from the [Survey of Consumer Finances](https://www.federalreserve.gov/econres/scfindex.htm), which by design excludes Forbes 400-style respondents and truncates wealth at around $190M in the file. The Forbes 400 uses direct estimates of billionaire wealth and isn't integrated into the SCF or into PE's microdata. So this test covers the wealth range the microdata can see ($30M–$190M), not actual centibillionaires.
 
-Within the $30M–$190M range the microdata can see, 17.4% of the wealthiest 100,000 households pay ≤ $0 in federal income+payroll tax, vs. 31.9% of all US households. Moving further up the wealth ladder, the nonpayer share drops to 0% for the top 1,000.
+In the $30M–$190M range that is in the data, the nonpayer share falls from 31.9% (all households) to 17.4% (top 100,000 by wealth) to 0% (top 1,000).
 
 ## Other estimates of what the wealthiest pay
 
@@ -102,7 +110,9 @@ None of these studies — including ProPublica's follow-ups in the [Secret IRS F
 
 ## What the claim should be
 
-Taxes paid as a share of wealth accumulation for the richest Americans are lower than for most of the country: 3.4% (ProPublica), 8.2% (OMB/CEA), or 24–38% (Saez-Zucman-Splinter), depending on the denominator. "Just as likely to be nonpayers as top 1% payers" uses income-tax filing brackets as the denominator. By that measure, the ~5–10% estimated person-year zero rate for the top 100 wealthiest is about 1/10 the 40% population-wide rate, and the ~80–90% implied top-1%-payer rate for the same group (my estimate, since the rest of the time they realize enough income to clear $213K in federal tax) is roughly 10× the 1% population rate. The ratio isn't 1:1.
+The rate measures (3.4% / 8.2% / 24–38%) show the richest pay lower rates than the population once unrealized gains are in the denominator. That's defensible across all three methodologies.
+
+The frequency measure — "just as likely to be nonpayers as top 1% payers" — uses income-tax filing brackets. On that measure, top-100 ratio (nonpayer : top-1%-payer) is ~1:10, not 1:1. The claim mixes the rate argument with frequency framing, and the frequency framing is off by about an order of magnitude.
 
 ---
 
