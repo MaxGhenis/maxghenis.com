@@ -1,7 +1,7 @@
 # Max Ghenis - Full Content
 
 > This file contains the full text of all blog posts from maxghenis.com, formatted for LLM consumption.
-> Generated: 2026-04-20T14:20:11.982Z
+> Generated: 2026-04-20T14:24:00.916Z
 > See also: /llms.txt for a curated overview
 
 ---
@@ -11,8 +11,8 @@
 1. [Billionaires aren't 'just as likely' to be nonpayers as top taxpayers](/blog/madoff-billionaire-nonpayers/)
 2. [I built a MyST-to-Quarto converter (and why you might need one)](/blog/mystquarto/)
 3. [One year of Claude Code](/blog/my-claude-code-config/)
-4. [Interactive replication of GiveWell''s cost-effectiveness analysis](/blog/givewell-cea/)
-5. [Why you can''t make double eye contact](/blog/double-eye-contact/)
+4. [Why you can''t make double eye contact](/blog/double-eye-contact/)
+5. [Interactive replication of GiveWell''s cost-effectiveness analysis](/blog/givewell-cea/)
 6. [OpenMessage: How I built a macOS Google Messages client to give Claude my texts](/blog/openmessage/)
 7. [Where US immigrants come from, and where ICE focuses enforcement](/blog/bad-bunny-immigration-enforcement/)
 8. [I used Claude Code to recertify for SNAP](/blog/snap-recertification-claude-code/)
@@ -82,11 +82,19 @@ Two of the four have documented zero years; two have none.
 
 Within the $30M–$190M range the data can see, 17.4% of the wealthiest 100,000 households pay ≤ $0 in federal income+payroll tax, compared to 31.9% of all US households. Moving further up the wealth ladder, the nonpayer share drops to 0% for the top 1,000.
 
+## Other estimates of what the wealthiest pay
+
+The rate you get for the top of the distribution depends on the denominator. Three measures are in active use:
+
+- **Taxes paid / reported AGI.** This is what IRS "top 1%" statistics report. For the Forbes 400, the [ProPublica interactive table](https://projects.propublica.org/americas-highest-incomes-and-taxes-revealed/) lists individual rates averaged 2013–2018; most are in the 17–24% range, below the top bracket but not near zero.
+- **Taxes paid / (AGI + untaxed corporate profits).** [Saez, Yagan, Zucman et al. (NBER w34170, 2025)](https://www.nber.org/papers/w34170) put the top 0.0002%'s total federal rate at about 24% for 2018–2020, vs. roughly 30% population-wide. [Splinter's reanalysis](https://www.davidsplinter.com/BillionaireTaxRate.pdf) adjusts for multi-return Forbes families and different corporate-tax imputation and gets 38%.
+- **Taxes paid / comprehensive income including unrealized capital gains.** The [OMB/CEA 2021 analysis](https://www.whitehouse.gov/cea/written-materials/2021/09/23/what-is-the-average-federal-individual-income-tax-rate-on-the-wealthiest-americans/) put the top 400 at 8.2% by this measure. ProPublica's 3.4% "true tax rate" is a similar comprehensive measure, dividing tax paid by the change in net worth over the period.
+
+The point that survives across all three measures is that the wealthiest face low rates relative to their economic gains once unrealized appreciation is in the denominator. None of these studies, including ProPublica's own follow-ups in the [Secret IRS Files series](https://www.propublica.org/series/the-secret-irs-files), show centibillionaires clustering among the 40% of households with zero federal income tax liability. The individual case studies ProPublica published — Thiel's Roth IRA, the top 400 earners table, "Ten Ways Billionaires Avoid Taxes" — all describe aggressive deferral and shifting, not persistent non-filing or zero-liability years.
+
 ## What the claim should be
 
-ProPublica's method divides taxes paid by the change in net worth over the period, not by reported income. Their 2014–2018 analysis of the top 25 billionaires found a "true tax rate" of 3.4% by that measure — taxes paid / (end-period wealth − start-period wealth). That's the finding that's intact. Buy-borrow-die lets centibillionaires fund consumption from loans against appreciating stock while deferring the realization event indefinitely, so taxes as a share of wealth accumulation are far below the share a salaried worker pays.
-
-The accurate version of Madoff's point: taxes paid as a share of wealth accumulation for the richest Americans are lower than for most of the country. "Just as likely to be nonpayers as top 1% payers" uses income-tax filing brackets as the denominator, which is a different measurement, and that's the part the data doesn't back up.
+The accurate version of Madoff's point: taxes paid as a share of wealth accumulation for the richest Americans are lower than for most of the country — 3.4% (ProPublica), 8.2% (OMB/CEA), or 24–38% (Saez-Zucman-Splinter), depending on the denominator. "Just as likely to be nonpayers as top 1% payers" uses income-tax filing brackets as the denominator, which is a different measurement, and that's the part the data doesn't back up.
 
 ---
 
@@ -531,6 +539,48 @@ The repo is at [github.com/MaxGhenis/.claude](https://github.com/MaxGhenis/.clau
 
 ---
 
+## Why you can''t make double eye contact
+
+**URL:** https://maxghenis.com/blog/double-eye-contact/
+**Published:** Feb 10 2026
+**Description:** Your eyes can only converge on a single point. Up close, that means you have to pick one of the other person''s eyes to look at.
+
+import EyeConvergence from '../../../components/EyeConvergence.tsx';
+
+Have you ever noticed that when you're face-to-face with someone, you can't actually look at both of their eyes at the same time? You're always picking one — left or right — and subtly switching between them.
+
+This isn't a limitation of attention or focus. It's geometry.
+
+## One convergence point
+
+Your two eyes always rotate as a pair to aim at the same target. This is called [**vergence**](https://pmc.ncbi.nlm.nih.gov/articles/PMC5122972/), and it means they converge on a single point in space at any given moment.
+
+When someone is close to you, their two eyes occupy noticeably different positions in your visual field. The angular separation between them is large enough that you can't fit both into the single point your eyes converge on. So you pick one.
+
+## Try it yourself
+
+Toggle between looking at each eye, and slide the distance to see how angular separation changes.
+
+<EyeConvergence client:load />
+
+When the face is close, the angular separation between their eyes is large — well beyond your [fovea](https://pmc.ncbi.nlm.nih.gov/articles/PMC12330045/) (the high-resolution center of your vision, [~1.5mm across](https://pmc.ncbi.nlm.nih.gov/articles/PMC12330045/) or roughly 5° of visual angle). You're clearly choosing one eye.
+
+As the face moves farther away, both eyes fall into a tighter angular range. Eventually they're so close together in your visual field that it _feels_ like you're looking at both — even though you're still converging on a single point.
+
+## Why it doesn't matter at a distance
+
+Human interpupillary distance [averages about 63mm](https://pmc.ncbi.nlm.nih.gov/articles/PMC3520592/). At 1 meter away, that subtends roughly 3.6°. At 3 meters, it's about 1.2° — easily within your fovea's ~5° span. This is why you barely notice the effect in normal conversation but absolutely feel it during an intimate close-up.
+
+## What about Magic Eye?
+
+If you've viewed a [Magic Eye stereogram](https://en.wikipedia.org/wiki/Magic_Eye), you know it's possible to diverge your eyes — point them more parallel than the object distance would normally call for — while still focusing on a near surface. Could you use this trick to aim each eye at a different target?
+
+No. Even in Magic Eye viewing, both eyes are still aimed at a single convergence point — it's just a virtual one behind the page rather than on the surface. You've moved _where_ your eyes converge, but you haven't split that point in two. To make double eye contact, you'd need each eye aimed at a completely independent target, and that's not something the [vergence system](https://www.ncbi.nlm.nih.gov/books/NBK11070/) supports — it always drives both eyes toward the same point in space.
+
+I never would have built an interactive visualization to explore a random curiosity like this before. But with [Claude Code](https://claude.ai/claude-code), describing what I wanted and getting a working widget took a couple hours — so why not? The idle question gets a better answer when you can play with it yourself.
+
+---
+
 ## Interactive replication of GiveWell''s cost-effectiveness analysis
 
 **URL:** https://maxghenis.com/blog/givewell-cea/
@@ -748,48 +798,6 @@ I replicated the *structure* of GiveWell's models but not their full analytical 
 For donation decisions, use [GiveWell's published estimates](https://www.givewell.org/how-we-work/our-criteria/cost-effectiveness/cost-effectiveness-models).
 
 Source code: [github.com/MaxGhenis/givewell-cea](https://github.com/MaxGhenis/givewell-cea)
-
----
-
-## Why you can''t make double eye contact
-
-**URL:** https://maxghenis.com/blog/double-eye-contact/
-**Published:** Feb 10 2026
-**Description:** Your eyes can only converge on a single point. Up close, that means you have to pick one of the other person''s eyes to look at.
-
-import EyeConvergence from '../../../components/EyeConvergence.tsx';
-
-Have you ever noticed that when you're face-to-face with someone, you can't actually look at both of their eyes at the same time? You're always picking one — left or right — and subtly switching between them.
-
-This isn't a limitation of attention or focus. It's geometry.
-
-## One convergence point
-
-Your two eyes always rotate as a pair to aim at the same target. This is called [**vergence**](https://pmc.ncbi.nlm.nih.gov/articles/PMC5122972/), and it means they converge on a single point in space at any given moment.
-
-When someone is close to you, their two eyes occupy noticeably different positions in your visual field. The angular separation between them is large enough that you can't fit both into the single point your eyes converge on. So you pick one.
-
-## Try it yourself
-
-Toggle between looking at each eye, and slide the distance to see how angular separation changes.
-
-<EyeConvergence client:load />
-
-When the face is close, the angular separation between their eyes is large — well beyond your [fovea](https://pmc.ncbi.nlm.nih.gov/articles/PMC12330045/) (the high-resolution center of your vision, [~1.5mm across](https://pmc.ncbi.nlm.nih.gov/articles/PMC12330045/) or roughly 5° of visual angle). You're clearly choosing one eye.
-
-As the face moves farther away, both eyes fall into a tighter angular range. Eventually they're so close together in your visual field that it _feels_ like you're looking at both — even though you're still converging on a single point.
-
-## Why it doesn't matter at a distance
-
-Human interpupillary distance [averages about 63mm](https://pmc.ncbi.nlm.nih.gov/articles/PMC3520592/). At 1 meter away, that subtends roughly 3.6°. At 3 meters, it's about 1.2° — easily within your fovea's ~5° span. This is why you barely notice the effect in normal conversation but absolutely feel it during an intimate close-up.
-
-## What about Magic Eye?
-
-If you've viewed a [Magic Eye stereogram](https://en.wikipedia.org/wiki/Magic_Eye), you know it's possible to diverge your eyes — point them more parallel than the object distance would normally call for — while still focusing on a near surface. Could you use this trick to aim each eye at a different target?
-
-No. Even in Magic Eye viewing, both eyes are still aimed at a single convergence point — it's just a virtual one behind the page rather than on the surface. You've moved _where_ your eyes converge, but you haven't split that point in two. To make double eye contact, you'd need each eye aimed at a completely independent target, and that's not something the [vergence system](https://www.ncbi.nlm.nih.gov/books/NBK11070/) supports — it always drives both eyes toward the same point in space.
-
-I never would have built an interactive visualization to explore a random curiosity like this before. But with [Claude Code](https://claude.ai/claude-code), describing what I wanted and getting a working widget took a couple hours — so why not? The idle question gets a better answer when you can play with it yourself.
 
 ---
 

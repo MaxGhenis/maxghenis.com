@@ -39,8 +39,16 @@ Two of the four have documented zero years; two have none.
 
 Within the $30M–$190M range the data can see, 17.4% of the wealthiest 100,000 households pay ≤ $0 in federal income+payroll tax, compared to 31.9% of all US households. Moving further up the wealth ladder, the nonpayer share drops to 0% for the top 1,000.
 
+## Other estimates of what the wealthiest pay
+
+The rate you get for the top of the distribution depends on the denominator. Three measures are in active use:
+
+- **Taxes paid / reported AGI.** This is what IRS "top 1%" statistics report. For the Forbes 400, the [ProPublica interactive table](https://projects.propublica.org/americas-highest-incomes-and-taxes-revealed/) lists individual rates averaged 2013–2018; most are in the 17–24% range, below the top bracket but not near zero.
+- **Taxes paid / (AGI + untaxed corporate profits).** [Saez, Yagan, Zucman et al. (NBER w34170, 2025)](https://www.nber.org/papers/w34170) put the top 0.0002%'s total federal rate at about 24% for 2018–2020, vs. roughly 30% population-wide. [Splinter's reanalysis](https://www.davidsplinter.com/BillionaireTaxRate.pdf) adjusts for multi-return Forbes families and different corporate-tax imputation and gets 38%.
+- **Taxes paid / comprehensive income including unrealized capital gains.** The [OMB/CEA 2021 analysis](https://www.whitehouse.gov/cea/written-materials/2021/09/23/what-is-the-average-federal-individual-income-tax-rate-on-the-wealthiest-americans/) put the top 400 at 8.2% by this measure. ProPublica's 3.4% "true tax rate" is a similar comprehensive measure, dividing tax paid by the change in net worth over the period.
+
+The point that survives across all three measures is that the wealthiest face low rates relative to their economic gains once unrealized appreciation is in the denominator. None of these studies, including ProPublica's own follow-ups in the [Secret IRS Files series](https://www.propublica.org/series/the-secret-irs-files), show centibillionaires clustering among the 40% of households with zero federal income tax liability. The individual case studies ProPublica published — Thiel's Roth IRA, the top 400 earners table, "Ten Ways Billionaires Avoid Taxes" — all describe aggressive deferral and shifting, not persistent non-filing or zero-liability years.
+
 ## What the claim should be
 
-ProPublica's method divides taxes paid by the change in net worth over the period, not by reported income. Their 2014–2018 analysis of the top 25 billionaires found a "true tax rate" of 3.4% by that measure — taxes paid / (end-period wealth − start-period wealth). That's the finding that's intact. Buy-borrow-die lets centibillionaires fund consumption from loans against appreciating stock while deferring the realization event indefinitely, so taxes as a share of wealth accumulation are far below the share a salaried worker pays.
-
-The accurate version of Madoff's point: taxes paid as a share of wealth accumulation for the richest Americans are lower than for most of the country. "Just as likely to be nonpayers as top 1% payers" uses income-tax filing brackets as the denominator, which is a different measurement, and that's the part the data doesn't back up.
+The accurate version of Madoff's point: taxes paid as a share of wealth accumulation for the richest Americans are lower than for most of the country — 3.4% (ProPublica), 8.2% (OMB/CEA), or 24–38% (Saez-Zucman-Splinter), depending on the denominator. "Just as likely to be nonpayers as top 1% payers" uses income-tax filing brackets as the denominator, which is a different measurement, and that's the part the data doesn't back up.
