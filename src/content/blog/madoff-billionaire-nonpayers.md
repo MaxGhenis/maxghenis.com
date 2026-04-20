@@ -2,6 +2,7 @@
 title: "Billionaires aren't 'just as likely' to be nonpayers as top taxpayers"
 description: "Ray Madoff's memorable line on The Ezra Klein Show overstates what ProPublica actually found."
 pubDate: 'Apr 20 2026'
+heroImage: './madoff-billionaire-nonpayers.png'
 ---
 
 On this week's [Ezra Klein Show](https://www.nytimes.com/2026/04/17/opinion/ezra-klein-podcast-ray-madoff.html), Boston College tax law professor Ray Madoff landed a memorable line:
