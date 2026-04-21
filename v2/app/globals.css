@@ -1,0 +1,97 @@
+@import "tailwindcss";
+@import "@fontsource/ibm-plex-sans/400.css";
+@import "@fontsource/ibm-plex-sans/500.css";
+@import "@fontsource/ibm-plex-sans/600.css";
+@import "@fontsource/ibm-plex-sans/700.css";
+@import "@fontsource/ibm-plex-sans/400-italic.css";
+@import "@fontsource/ibm-plex-mono/400.css";
+@import "@fontsource/ibm-plex-mono/500.css";
+@import "./tokens.css";
+
+@theme inline {
+  --color-surface: var(--mg-surface);
+  --color-surface-raised: var(--mg-surface-raised);
+  --color-ink: var(--mg-text);
+  --color-ink-soft: var(--mg-text-soft);
+  --color-ink-muted: var(--mg-text-muted);
+  --color-ink-faint: var(--mg-text-faint);
+  --color-klein: var(--mg-klein);
+  --color-rule: var(--mg-rule);
+  --font-sans: var(--mg-font-sans);
+  --font-mono: var(--mg-font-mono);
+}
+
+html {
+  background: var(--mg-surface);
+  color: var(--mg-text);
+  font-family: var(--mg-font-sans);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  margin: 0;
+  font-feature-settings: "ss02", "cv02", "cv11";
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--mg-font-sans);
+  font-weight: 600;
+  color: var(--mg-text);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin: 0 0 var(--mg-space-4);
+}
+
+h1 {
+  font-size: var(--mg-size-4xl);
+  letter-spacing: -0.035em;
+  font-weight: 700;
+}
+h2 { font-size: var(--mg-size-2xl); letter-spacing: -0.025em; }
+h3 { font-size: var(--mg-size-xl); letter-spacing: -0.02em; }
+h4 { font-size: var(--mg-size-lg); }
+
+p {
+  margin: 0 0 var(--mg-space-4);
+  color: var(--mg-text-soft);
+}
+
+a {
+  color: var(--mg-klein);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--mg-duration) var(--mg-ease);
+}
+a:hover { border-bottom-color: var(--mg-klein); }
+
+code, pre, kbd, samp {
+  font-family: var(--mg-font-mono);
+  font-size: 0.92em;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--mg-rule);
+  margin: var(--mg-space-8) 0;
+}
+
+::selection {
+  background: var(--mg-klein);
+  color: var(--mg-bone);
+}
+
+.section-number {
+  font-family: var(--mg-font-mono);
+  font-size: var(--mg-size-xs);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: var(--mg-text-muted);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: var(--mg-space-2);
+}

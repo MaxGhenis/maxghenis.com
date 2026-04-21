@@ -1,0 +1,46 @@
+export const metadata = {
+  title: "One year of Claude Code",
+  description: "A year ago, Anthropic launched Claude Code. I've since consumed 10 billion tokens, mass-tweeted about it, and mass-customized it. Here's my setup and what I've learned.",
+  pubDate: "2026-02-25",
+};
+
+<div className="telemetry mb-3">February 25, 2026</div>
+
+# One year of Claude Code
+
+A year ago, Anthropic launched Claude Code. I've since consumed 10 billion tokens, mass-tweeted about it, and mass-customized it. Here's my setup and what I've learned.
+
+---
+
+Anthropic launched Claude Code on February 24, 2025. I [tweeted about it](https://x.com/MaxGhenis) three times on day one. A year later, it's my primary development environment, and I've mass-customized the `~/.claude` directory that powers it.
+
+### A year in numbers
+
+| Stat | Value |
+|------|-------|
+| Tokens consumed | 10.2 billion |
+| Messages sent | 520,000+ |
+| Sessions | 2,346 |
+| Tweets about Claude Code | ~33 |
+| Peak API spend (Aug 2025) | \$5,861/month |
+| Biggest single day (Feb 7, 2026) | \$505 equivalent |
+
+I started on the API, paying per-token. August 2025 hit \$5,861. On July 20, 2025, I switched to the Max plan (\$200/month, unlimited usage) and added a second subscription on a personal account in February 2026. The \$200 plan replaced a \$6K/month habit.
+
+My IDE journey followed a similar arc of simplification. I went from VS Code to VS Code + TerminalGrid (a custom extension for running multiple Claude Code sessions) to iTerm2 + tmux. Each migration stripped away a layer of complexity. The tmux setup I use now is three small config changes — the TerminalGrid extension was hundreds of lines of TypeScript solving the same problem worse.
+
+I recently audited my `~/.claude` directory and [made it public](https://github.com/MaxGhenis/.claude). Here's the full setup.
+
+## How it started
+
+I went to `git init` my `~/.claude` directory and discovered it was already a git repo. One of my installed plugins had initialized its own repo there, and my personal config files were sitting alongside it, untracked. The `.git` directory pointed to the plugin's remote. My files were just along for the ride.
+
+So the first step was cleaning house. I removed the plugin's git history, initialized a fresh repo, and started deciding what to track.
+
+## The audit
+
+Before making anything public, I went through every file. The `~/.claude` directory accumulates a lot: conversation transcripts, clipboard images, debug logs, session state, plugin caches. Most of that is ephemeral or sensitive and belongs in `.gitignore`.
+
+What's left after exclusions is surprisingly small: a `CLAUDE.md` global instructions file, a `settings.json`, five hook scripts, a handful of slash commands, a few local plugins, and a pair of shell scripts for secrets management.
+
+While auditing, I also noticed that 36 GB of stale repo clones had accumulated in my home directory from multi-agent work. PolicyEngine US alone had 10 separate clones for different PRs, each a full copy of a large repo. That's not in `~/.claude`, but the audit prompted me to clean it up.

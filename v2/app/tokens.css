@@ -1,0 +1,107 @@
+/* Design tokens. Single source of truth. Exported to satellites as
+   /chrome/v1.css via public/chrome/. Every variable is --mg- prefixed so
+   downstream projects can adopt the palette without colliding with
+   internal variables. */
+
+:root {
+  color-scheme: light dark;
+
+  /* Core palette */
+  --mg-bone: #fbfaf6;
+  --mg-bone-soft: #f5f3ec;
+  --mg-ink: #0f172a;
+  --mg-ink-soft: #1e293b;
+  --mg-ink-muted: #64748b;
+  --mg-ink-faint: #94a3b8;
+  --mg-rule: rgba(15, 23, 42, 0.12);
+  --mg-rule-soft: rgba(15, 23, 42, 0.06);
+
+  /* The single accent. International Klein Blue. Reserved for state
+     and numeric emphasis — never decorative. */
+  --mg-klein: #002fa7;
+  --mg-klein-soft: #002fa720;
+  --mg-klein-glow: #002fa712;
+
+  /* Surface semantics */
+  --mg-surface: var(--mg-bone);
+  --mg-surface-raised: #ffffff;
+  --mg-text: var(--mg-ink);
+  --mg-text-soft: var(--mg-ink-soft);
+  --mg-text-muted: var(--mg-ink-muted);
+  --mg-text-faint: var(--mg-ink-faint);
+  --mg-accent: var(--mg-klein);
+
+  /* Type families */
+  --mg-font-sans: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+  --mg-font-mono: "IBM Plex Mono", ui-monospace, "Courier New", monospace;
+
+  /* Type scale — tight, editorial, not "web product" */
+  --mg-size-xs: 0.75rem;
+  --mg-size-sm: 0.875rem;
+  --mg-size-base: 1rem;
+  --mg-size-lg: 1.125rem;
+  --mg-size-xl: 1.375rem;
+  --mg-size-2xl: 1.75rem;
+  --mg-size-3xl: 2.25rem;
+  --mg-size-4xl: 3rem;
+  --mg-size-5xl: 4rem;
+
+  /* Rhythm */
+  --mg-space-1: 0.25rem;
+  --mg-space-2: 0.5rem;
+  --mg-space-3: 0.75rem;
+  --mg-space-4: 1rem;
+  --mg-space-6: 1.5rem;
+  --mg-space-8: 2rem;
+  --mg-space-12: 3rem;
+  --mg-space-16: 4rem;
+  --mg-space-24: 6rem;
+
+  /* Motion — crisp, not bouncy. One ease curve. */
+  --mg-ease: cubic-bezier(0.2, 0, 0, 1);
+  --mg-duration: 180ms;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --mg-surface: #0a1020;
+    --mg-surface-raised: #0f172a;
+    --mg-text: #f1f5f9;
+    --mg-text-soft: #cbd5e1;
+    --mg-text-muted: #94a3b8;
+    --mg-text-faint: #64748b;
+    --mg-rule: rgba(241, 245, 249, 0.12);
+    --mg-rule-soft: rgba(241, 245, 249, 0.06);
+    --mg-klein: #4d6eff;
+    --mg-klein-soft: #4d6eff20;
+    --mg-klein-glow: #4d6eff18;
+  }
+}
+
+/* Tabular figures are a first-class signal on this site. Every
+   container with class "tabular" forces lining + tabular numerals. */
+.tabular,
+.tabular * {
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+/* The "telemetry" line — monospace metadata that appears under titles
+   and in footers. Uppercase-ish without being shouty. */
+.telemetry {
+  font-family: var(--mg-font-mono);
+  font-size: var(--mg-size-xs);
+  letter-spacing: 0.04em;
+  color: var(--mg-text-muted);
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+/* Thin horizontal rule — the site uses these instead of card shadows. */
+.rule {
+  border: 0;
+  border-top: 1px solid var(--mg-rule);
+  margin: 0;
+}
+.rule-strong {
+  border-top: 1px solid var(--mg-ink);
+}
