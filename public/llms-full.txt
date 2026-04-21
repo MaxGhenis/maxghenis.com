@@ -1,7 +1,7 @@
 # Max Ghenis - Full Content
 
 > This file contains the full text of all blog posts from maxghenis.com, formatted for LLM consumption.
-> Generated: 2026-04-21T02:37:51.176Z
+> Generated: 2026-04-21T11:30:50.579Z
 > See also: /llms.txt for a curated overview
 
 ---
@@ -54,7 +54,25 @@ On this week's [Ezra Klein Show](https://www.nytimes.com/2026/04/17/opinion/ezra
 
 Madoff's claim is about federal income tax (the measure the "40% of nonpayers" statistic describes). Everything below uses that same denominator.
 
-The top 1% by AGI starts at $663,164 for TY2022 ([IRS via Tax Foundation](https://taxfoundation.org/data/all/federal/latest-federal-income-tax-data-2025/)). The top 1% by federal income tax paid has a higher threshold — household-level it's $185,608 in PolicyEngine's 2026 microdata (below). When a centibillionaire sells stock, exercises options, or receives dividends, they clear either threshold by three to four orders of magnitude.
+The top 1% by AGI starts at $663,164 for TY2022 ([IRS via Tax Foundation](https://taxfoundation.org/data/all/federal/latest-federal-income-tax-data-2025/)). The top 1% by federal income tax paid has a higher threshold — household-level it's $185,608 in PolicyEngine's 2026 microdata (below).
+
+## The dividend-driven tax floor
+
+For the specific people Madoff named, the question isn't whether they *could* be nonpayers in theory. It's whether their documented income flows leave room to. Recent dividend initiations at their companies provide unavoidable taxable income. Verified figures:
+
+| Person | Stake | Annual dividend income | Federal income tax on dividends (≈ 23.8%) |
+|---|---|---|---|
+| Larry Ellison | 1.16B Oracle shares (40%+) at [$2.00/share](https://www.marketbeat.com/stocks/NYSE/ORCL/dividend/) | **~$2.3B** | ~$552M |
+| Steve Ballmer | 333M Microsoft shares at ~$3.24/share | **~$1.08B** ([247wallst](https://247wallst.com/investing/2025/06/11/steve-ballmer-makes-1-billion-a-year-in-microsoft-dividends/)) | ~$257M |
+| Mark Zuckerberg | ~350M Meta shares at $2.10/share (initiated 2024) | **~$735M** ([Bloomberg](https://www.bloomberg.com/news/articles/2024-02-02/zuckerberg-to-get-700-million-a-year-from-meta-s-new-dividend)) | ~$175M |
+| Sergey Brin | 730M Alphabet shares at $0.80/share (initiated 2024) | **~$584M** | ~$139M |
+| Larry Page | 389M Alphabet shares at $0.80/share | **~$311M** ([CNBC](https://www.cnbc.com/2024/04/25/alphabet-issues-first-ever-dividend-70-billion-buyback.html)) | ~$74M |
+
+Every one of these five is mechanically locked into a federal income tax bill in the **tens to hundreds of millions** every year, from dividends alone, before any stock sale or compensation. The top-1%-of-payers threshold ($186K) is cleared by a factor of 400–3,000x. None of them can land in the "$1 – $186K" middle bin from these flows.
+
+For the three centibillionaires whose companies don't pay a dividend — Bezos (Amazon), Musk (Tesla), and pre-2024 Page/Brin (Alphabet) — the tax floor instead comes from discretionary sales. Bezos has sold $8–10B of Amazon annually since 2020, generating roughly $2B/year in federal tax. Musk exercised expiring Tesla options in 2021 and paid [$11B](https://www.cnn.com/2021/12/29/investing/elon-musk-tesla-stock-sales/index.html). In years with no such realization event, these three can in principle land at $0 — which ProPublica documented for Bezos in 2007 and 2011, and for Musk in 2018.
+
+So the centibillionaire distribution in a given year is close to binary: either hundreds of millions in federal income tax (dividend-paying stake or active sales) or $0 (pure buy-borrow-die year). The $1–$186K middle is essentially empty at this wealth scale.
 
 ## Per-person data disclosed by ProPublica
 
@@ -119,7 +137,13 @@ None of these studies — including ProPublica's follow-ups in the [Secret IRS F
 
 Two of the three rate methodologies (ProPublica 3.4%, OMB/CEA 8.2%, Saez-Zucman 24%) put the richest below the 30% population average; Splinter's 38% recalculation is above. The rate story is more contested than a single headline number suggests.
 
-The frequency framing — "just as likely to be in the 40% of nonpayers as the top 1% of payers" — is a different question. On the frequency side: the 43.9% population-wide income-tax nonpayer share is dominated by retirees, students, and low-earning filers with refundable credits, and a random household's ratio of (nonpayer year : top-1%-payer year) is ~40:1. For the top 100 wealthiest, the estimated zero-year rate is 5–15% and the top-1%-payer rate in most disclosed years is high — directionally the reverse of Madoff's "just as likely."
+The frequency framing — "just as likely to be in the 40% of nonpayers as the top 1% of payers" — is a different question. For the US population, the ratio (nonpayer year : top-1%-payer year) is ~44:1 in 2026. For the ~14 US centibillionaires Madoff named examples from, combining the dividend-driven tax floor above with ProPublica's ~10% documented zero-year rate gives a distribution roughly like:
+
+- ~85–90% in the top 1% of payers
+- ~10–15% nonpayers
+- ~0% in the $1–$186K middle (no realization pattern at $100B+ net worth produces tax in that narrow band)
+
+The ratio is inverted from the population: roughly 1:8 in favor of top-1%-of-payers, not Madoff's implied 1:1.
 
 ---
 
