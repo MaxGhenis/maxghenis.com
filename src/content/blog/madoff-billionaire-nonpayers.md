@@ -96,12 +96,8 @@ Two of the three rate methodologies (ProPublica 3.4%, OMB/CEA 8.2%, Saez-Zucman 
 
 The frequency framing — "just as likely to be in the 40% of nonpayers as the top 1% of payers" — is a different question. For the US population, the ratio (nonpayer year : top-1%-payer year) is ~44:1 in 2026.
 
-I asked Codex (5 runs) and a Claude Code team (5 teammates, independent of each other, working only from the evidence summary without seeing this post) to estimate the centibillionaire distribution. The 10 runs averaged:
+I asked Codex and a 5-teammate Claude Code team to estimate the centibillionaire distribution, each working independently from the evidence summary. The 10 runs averaged **86% top 1% of payers, 2% middle, 12% nonpayer**.
 
-- **Top 1% of payers**: 86%
-- **Middle ($1–$186K)**: 2%
-- **Nonpayer ($0)**: 12%
+The middle bin is small but not zero. ProPublica documented Elon Musk paying $68,000 in 2015 and $65,000 in 2017 — specific years where realization was small enough to land in the $1–$186K band rather than at $0 or in the top 1%. That's the narrow profile the middle captures: no dividends, no major sales, modest residual taxable income after interest-expense offsets.
 
-The middle bin is small but not zero. ProPublica documented Elon Musk paying $68,000 in 2015 and $65,000 in 2017 — specific years where realization was small enough to land in the $1–$186K band rather than cleanly at $0 or clearly in the top 1%. That's the narrow profile the middle bin captures: no dividends, no major sales, modest residual taxable interest or K-1 income after interest-expense offsets.
-
-The centibillionaire ratio (nonpayer year : top-1%-payer year) is **~1:7**, not Madoff's implied 1:1.
+The centibillionaire ratio, nonpayer year to top-1%-payer year, is **~1:7** — not Madoff's implied 1:1.
