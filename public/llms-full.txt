@@ -1,7 +1,7 @@
 # Max Ghenis - Full Content
 
 > This file contains the full text of all blog posts from maxghenis.com, formatted for LLM consumption.
-> Generated: 2026-04-21T11:30:50.579Z
+> Generated: 2026-04-21T11:33:47.575Z
 > See also: /llms.txt for a curated overview
 
 ---
@@ -137,13 +137,11 @@ None of these studies — including ProPublica's follow-ups in the [Secret IRS F
 
 Two of the three rate methodologies (ProPublica 3.4%, OMB/CEA 8.2%, Saez-Zucman 24%) put the richest below the 30% population average; Splinter's 38% recalculation is above. The rate story is more contested than a single headline number suggests.
 
-The frequency framing — "just as likely to be in the 40% of nonpayers as the top 1% of payers" — is a different question. For the US population, the ratio (nonpayer year : top-1%-payer year) is ~44:1 in 2026. For the ~14 US centibillionaires Madoff named examples from, combining the dividend-driven tax floor above with ProPublica's ~10% documented zero-year rate gives a distribution roughly like:
+The frequency framing — "just as likely to be in the 40% of nonpayers as the top 1% of payers" — is a different question. For the US population, the ratio (nonpayer year : top-1%-payer year) is ~44:1 in 2026.
 
-- ~85–90% in the top 1% of payers
-- ~10–15% nonpayers
-- ~0% in the $1–$186K middle (no realization pattern at $100B+ net worth produces tax in that narrow band)
+I asked two models to estimate the centibillionaire distribution, given the evidence above. Codex (87%/1%/12%) and a Claude Code subagent (75%/15%/10%) both put nonpayers around 10–15% and top-1%-payers above 75%. My own point estimate is **87% top-1% of payers, 1% middle, 12% nonpayer** — matching Codex. The middle bin rounds to zero because the realization patterns that produce federal income tax in the $1–$186K range don't occur at $100B+ net worth: any single dividend or stock sale clears $186K by hundreds of thousands of times over (see table above).
 
-The ratio is inverted from the population: roughly 1:8 in favor of top-1%-of-payers, not Madoff's implied 1:1.
+The centibillionaire ratio (nonpayer year : top-1%-payer year) is **~1:7**, not Madoff's implied 1:1.
 
 ---
 
