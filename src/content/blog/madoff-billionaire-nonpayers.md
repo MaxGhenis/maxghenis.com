@@ -56,11 +56,11 @@ Net worth in Enhanced CPS is imputed from the [Survey of Consumer Finances](http
 
 Within that range, the top-100,000 row is notable: 50.5% pay $0 federal income tax, higher than the 43.9% population baseline. These are wealth-holders whose wealth is concentrated in housing, retirement accounts, or unrealized stock gains, with little realized annual income. This is the wealth profile that comes closest to matching Madoff's framing — but it's an order of magnitude less wealthy than Forbes 400 territory, and the share of nonpayers drops toward zero as you move further up the wealth ladder in the file.
 
-Household-level scatter, log-log:
+Binned by net worth:
 
-![Scatter of federal income tax vs household net worth, PolicyEngine Enhanced CPS 2026](./madoff-scatter.png)
+![Share paying $0 and share in top 1% by net worth bin, PolicyEngine Enhanced CPS 2026](./madoff-scatter.png)
 
-Each dot is a household record; area is proportional to the record's weight. Households paying $0 are plotted at a floor below the positive range. The gray floor thins above ~$30M in net worth and is empty above ~$100M in this file.
+Sample size per bin is printed below each point. The $100M+ bin is based on only 3 records, so the 100% / 0% point there reflects the sparse top of the file, not a robust estimate.
 
 ## Other estimates of what the wealthiest pay
 
