@@ -96,6 +96,12 @@ Two of the three rate methodologies (ProPublica 3.4%, OMB/CEA 8.2%, Saez-Zucman 
 
 The frequency framing — "just as likely to be in the 40% of nonpayers as the top 1% of payers" — is a different question. For the US population, the ratio (nonpayer year : top-1%-payer year) is ~44:1 in 2026.
 
-I asked two models to estimate the centibillionaire distribution, given the evidence above. Codex (87%/1%/12%) and a Claude Code subagent (75%/15%/10%) both put nonpayers around 10–15% and top-1%-payers above 75%. My own point estimate is **87% top-1% of payers, 1% middle, 12% nonpayer** — matching Codex. The middle bin rounds to zero because the realization patterns that produce federal income tax in the $1–$186K range don't occur at $100B+ net worth: any single dividend or stock sale clears $186K by hundreds of thousands of times over (see table above).
+I asked Codex (5 runs) and a Claude Code team (5 teammates, independent of each other, working only from the evidence summary without seeing this post) to estimate the centibillionaire distribution. The 10 runs averaged:
+
+- **Top 1% of payers**: 86%
+- **Middle ($1–$186K)**: 2%
+- **Nonpayer ($0)**: 12%
+
+The middle bin is small but not zero. ProPublica documented Elon Musk paying $68,000 in 2015 and $65,000 in 2017 — specific years where realization was small enough to land in the $1–$186K band rather than cleanly at $0 or clearly in the top 1%. That's the narrow profile the middle bin captures: no dividends, no major sales, modest residual taxable interest or K-1 income after interest-expense offsets.
 
 The centibillionaire ratio (nonpayer year : top-1%-payer year) is **~1:7**, not Madoff's implied 1:1.
