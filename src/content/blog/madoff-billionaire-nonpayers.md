@@ -11,7 +11,7 @@ On this week's [Ezra Klein Show](https://www.nytimes.com/2026/04/17/opinion/ezra
 
 Madoff's claim is about federal income tax (the measure the "40% of nonpayers" statistic describes). Everything below uses that same denominator.
 
-The top 1% by AGI starts at $663,164 for TY2022 ([IRS via Tax Foundation](https://taxfoundation.org/data/all/federal/latest-federal-income-tax-data-2025/)). The top 1% by federal income tax paid has a higher threshold — household-level it's $185,608 in PolicyEngine's 2026 microdata (below).
+The top 1% of payers by federal income tax paid has a threshold of $185,608 at the household level in PolicyEngine's 2026 microdata (below). For reference, the top 1% of filers paid 40.4% of all federal income taxes in TY2022 per [IRS SOI](https://www.irs.gov/statistics/soi-tax-stats-individual-statistical-tables-by-tax-rate-and-income-percentile).
 
 ## The dividend-driven tax floor
 
