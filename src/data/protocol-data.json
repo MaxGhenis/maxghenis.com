@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-28",
+  "generated_at": "2026-04-29",
   "profile": {
     "age": 39,
     "sex": "male",
@@ -229,15 +229,15 @@
       "db_product_active": true,
       "brand": "Blueprint",
       "serving_size": "1 scoop (5.76g)",
-      "daily_servings": 1.04,
-      "dose_notes": "6g blended into nutty pudding premix",
+      "daily_servings": 1.0,
+      "dose_notes": "1 scoop (5.76g) blended into nutty pudding premix",
       "time_of_day": "meal_1",
       "source_url": "https://blueprint.bryanjohnson.com/collections/powders",
       "package_price": 41.0,
       "ingredients": [
         {
           "ingredient": "Cocoa powder",
-          "amount": 6.0,
+          "amount": 5.76,
           "unit": "g"
         }
       ]
@@ -2254,16 +2254,16 @@
       "db_product": "Blueprint Collagen Peptides",
       "db_product_active": true,
       "brand": "Blueprint",
-      "serving_size": "1 scoop (22g)",
+      "serving_size": "1 scoop (22.3g)",
       "daily_servings": 1.0,
-      "dose_notes": "22g blended into nutty pudding premix",
+      "dose_notes": "1 scoop (22.3g) blended into nutty pudding premix",
       "time_of_day": "meal_1",
       "source_url": "https://blueprint.bryanjohnson.com/products/collagen",
       "package_price": 45.0,
       "ingredients": [
         {
           "ingredient": "Collagen peptides",
-          "amount": 22.0,
+          "amount": 22.3,
           "unit": "g"
         }
       ]
@@ -4859,16 +4859,16 @@
         "brand": "Blueprint",
         "type": "supplement",
         "serving_size": "1 scoop (5.76g)",
-        "dose_notes": "6g blended into nutty pudding premix",
+        "dose_notes": "1 scoop (5.76g) blended into nutty pudding premix",
         "package_price": 41.0,
-        "servings_per_package": 57.6,
-        "daily_servings": 1.04,
-        "annual_cost": 260.0,
+        "servings_per_package": 60,
+        "daily_servings": 1.0,
+        "annual_cost": 249.0,
         "source_url": "https://blueprint.bryanjohnson.com/collections/powders",
         "ingredients": [
           {
             "ingredient": "Cocoa powder",
-            "amount": 6.0,
+            "amount": 5.76,
             "unit": "g"
           }
         ]
@@ -4877,8 +4877,8 @@
         "name": "Blueprint Collagen Peptides",
         "brand": "Blueprint",
         "type": "supplement",
-        "serving_size": "1 scoop (22g)",
-        "dose_notes": "22g blended into nutty pudding premix",
+        "serving_size": "1 scoop (22.3g)",
+        "dose_notes": "1 scoop (22.3g) blended into nutty pudding premix",
         "package_price": 45.0,
         "servings_per_package": 30,
         "daily_servings": 1.0,
@@ -4887,7 +4887,7 @@
         "ingredients": [
           {
             "ingredient": "Collagen peptides",
-            "amount": 22.0,
+            "amount": 22.3,
             "unit": "g"
           }
         ]
