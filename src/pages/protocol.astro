@@ -8,6 +8,25 @@ import protocolGroundUp from '../data/protocol-ground-up.json';
 import ogImage from '../assets/og-protocol.png';
 
 const { summary, supplements, bundles, portfolio, config, profile, schedule } = protocolData;
+type GroundUpAction = {
+	cost_per_qaly?: number | null;
+	delta_cost: number;
+	delta_qaly: number;
+};
+type OptimizerResult = {
+	add_names?: string[];
+	drop_names?: string[];
+	delta_qaly: number;
+	delta_days: number;
+	p_positive_delta: number;
+	delta_cost: number;
+};
+type ScheduleItem = {
+	name: string;
+	source_url?: string | null;
+	dose_notes: string;
+	annual_cost: number;
+};
 const groundUpSummary = protocolGroundUp.summary;
 const referenceCaseModel = protocolGroundUp.reference_case.current_protocol_model;
 const groundUpTopActions = protocolGroundUp.state_marginal_decisions.slice(0, 6);
@@ -16,14 +35,14 @@ const groundUpOptimizers = protocolGroundUp.protocol_optimizers;
 const optimizerRows = [
 	{ label: '$200K/QALY net benefit', result: groundUpOptimizers?.net_benefit },
 	{ label: 'QALY only', result: groundUpOptimizers?.qaly },
-].filter(row => row.result);
+].filter(row => row.result) as { label: string; result: OptimizerResult }[];
 const pct = (value: number) => `${(value * 100).toFixed(value * 100 % 1 === 0 ? 0 : 1)}%`;
-const formatGroundUpActionCost = (item) => {
+const formatGroundUpActionCost = (item: GroundUpAction) => {
 	if (item.cost_per_qaly) return `$${item.cost_per_qaly.toLocaleString()}`;
 	if (item.delta_cost <= 0 && item.delta_qaly > 0) return 'dominant';
 	return '—';
 };
-const summarizeOptimizerActions = (result) => {
+const summarizeOptimizerActions = (result: OptimizerResult) => {
 	const adds = result.add_names?.length ? `Add ${result.add_names.join(', ')}` : '';
 	const drops = result.drop_names?.length ? `Drop ${result.drop_names.join(', ')}` : '';
 	return [adds, drops].filter(Boolean).join('; ') || 'No changes';
@@ -31,16 +50,8 @@ const summarizeOptimizerActions = (result) => {
 const utilityLineageSummary = groundUpSummary.items_needing_utility_lineage === 0
 	? `All ${groundUpSummary.n_items} items now have explicit utility lineage or no direct-QOL overlay; ${groundUpSummary.items_using_fallback_utility_lineage} items still use disability-weight fallback lineage.`
 	: `${groundUpSummary.items_needing_utility_lineage} items still need explicit EQ-5D/SF-6D/HUI or mapped utility lineage, while ${groundUpSummary.items_using_fallback_utility_lineage} items currently use disability-weight fallback lineage.`;
-
-// Schedule slot display names
-const scheduleSlots = [
-	{ key: 'morning_mix', label: 'Morning mix' },
-	{ key: 'meal_1', label: 'Nutty pudding + pill batch 1' },
-	{ key: 'meal_2', label: 'Second meal + pill batch 2' },
-	{ key: 'before_bed', label: 'Before bed' },
-	{ key: 'bedtime', label: 'Bedtime / overnight' },
-	{ key: 'anytime', label: 'Anytime / services' },
-];
+const bedtimeSchedule = (schedule.bedtime || []) as ScheduleItem[];
+const anytimeSchedule = (schedule.anytime || []) as ScheduleItem[];
 
 // Group supplements by category
 const categories = [
@@ -462,7 +473,7 @@ const statusColors: Record<string, string> = {
 					</div>
 				</div>
 
-				{(schedule.bedtime || []).length > 0 && (
+				{bedtimeSchedule.length > 0 && (
 					<div class="time-block">
 						<h3>Bedtime / overnight</h3>
 						<div class="table-wrapper">
@@ -475,7 +486,7 @@ const statusColors: Record<string, string> = {
 									</tr>
 								</thead>
 								<tbody>
-									{(schedule.bedtime || []).map(item => (
+									{bedtimeSchedule.map(item => (
 										<tr>
 											<td>{item.source_url ? <a href={item.source_url}>{item.name}</a> : item.name}</td>
 											<td class="schedule-dose">{item.dose_notes}</td>
@@ -488,7 +499,7 @@ const statusColors: Record<string, string> = {
 					</div>
 				)}
 
-				{(schedule.anytime || []).length > 0 && (
+				{anytimeSchedule.length > 0 && (
 					<div class="time-block">
 						<h3>Anytime / services</h3>
 						<div class="table-wrapper">
@@ -501,7 +512,7 @@ const statusColors: Record<string, string> = {
 									</tr>
 								</thead>
 								<tbody>
-									{(schedule.anytime || []).map(item => (
+									{anytimeSchedule.map(item => (
 										<tr>
 											<td>{item.source_url ? <a href={item.source_url}>{item.name}</a> : item.name}</td>
 											<td class="schedule-dose">{item.dose_notes}</td>
