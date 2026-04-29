@@ -130,17 +130,20 @@ def load_health_db():
     """Load supplement products and ingredients from health DB."""
     if not HEALTH_DB.exists():
         print(f"Warning: health DB not found at {HEALTH_DB}, skipping DB enrichment")
-        return {}, {}
+        return {}, {}, {}, {}
 
     conn = sqlite3.connect(HEALTH_DB)
     conn.row_factory = sqlite3.Row
 
-    # Products keyed by name
+    # Products keyed by name. Active products are the current schedule;
+    # inactive products can still price candidate/unbundled catalog entries.
+    all_products = {}
     products = {}
-    for row in conn.execute(
-        "SELECT * FROM supplement_products WHERE active = 1"
-    ):
-        products[row["name"]] = dict(row)
+    for row in conn.execute("SELECT * FROM supplement_products"):
+        product = dict(row)
+        all_products[row["name"]] = product
+        if product.get("active") == 1:
+            products[row["name"]] = product
 
     # Ingredients grouped by product
     ingredients = {}
@@ -156,12 +159,23 @@ def load_health_db():
             "unit": row["unit"],
         })
 
+    catalog_product_map = {
+        row["catalog_id"]: row["product_name"]
+        for row in conn.execute(
+            "SELECT catalog_id, product_name FROM catalog_product_mappings ORDER BY catalog_id"
+        )
+    }
+
     conn.close()
-    print(f"Loaded {len(products)} products, {sum(len(v) for v in ingredients.values())} ingredients from health DB")
-    return products, ingredients
+    print(
+        f"Loaded {len(products)} active products ({len(all_products)} total), "
+        f"{sum(len(v) for v in ingredients.values())} "
+        f"ingredients, {len(catalog_product_map)} catalog mappings from health DB"
+    )
+    return products, all_products, ingredients, catalog_product_map
 
 
-db_products, db_ingredients = load_health_db()
+db_products, db_all_products, db_ingredients, db_catalog_product_map = load_health_db()
 
 
 # Evidence confidence heuristic based on confounding priors and log_sd
@@ -211,13 +225,16 @@ CATALOG_TO_DB = {
     "magnesium_200": "Magnesium Lysinate Glycinate",
     "melatonin_300mcg": "Melatonin",
     "collagen_22g": "Blueprint Collagen Peptides",
-    "vitamin_d_2000": "Vitamin D 2000 IU",
-    "vitamin_k2": "Vitamin K2",
+    "vitamin_d_2000": "Blueprint Essential Capsules",
+    "vitamin_k2": "Blueprint Advanced Antioxidants",
     "prebiotics": "Goddess Agave Inulin",
+    "probiotic_daily": "Sports Research Daily Probiotics",
     "cocoa_flavanols_500": None,  # part of nutty pudding recipe, not a product
     "lions_mane_1g": "Lions Mane 1g",
     "cistanche_200": "Cistanche 200mg",
+    "zinc_carnosine_75": "Zinc Carnosine 75mg",
     "apigenin_50": "Apigenin 50mg",
+    "ashwagandha_600": "Ashwagandha KSM-66 600mg",
     "glycine_2g": "Glycine 2g",
     "omega3_epa_2g": "High-EPA Omega-3",
     "taurine_500_topup": "Taurine 500mg",
@@ -240,12 +257,13 @@ CATALOG_TO_DB = {
 def enrich_with_db(supplement_entry):
     """Enrich an Optiqal supplement entry with health DB product data."""
     catalog_id = supplement_entry["id"]
-    db_name = CATALOG_TO_DB.get(catalog_id)
-    if not db_name or db_name not in db_products:
+    db_name = db_catalog_product_map.get(catalog_id) or CATALOG_TO_DB.get(catalog_id)
+    if not db_name or db_name not in db_all_products:
         return
 
-    product = db_products[db_name]
+    product = db_all_products[db_name]
     supplement_entry["db_product"] = db_name
+    supplement_entry["db_product_active"] = product.get("active") == 1
     supplement_entry["brand"] = product.get("brand")
     supplement_entry["serving_size"] = product.get("serving_size")
     supplement_entry["daily_servings"] = product.get("daily_servings")
@@ -306,7 +324,14 @@ for r in result.item_results:
     supplements.append(s)
 
 # Build daily schedule from DB products
-schedule = {"morning_mix": [], "meal_1": [], "meal_2": [], "before_bed": []}
+schedule = {
+    "morning_mix": [],
+    "meal_1": [],
+    "meal_2": [],
+    "before_bed": [],
+    "bedtime": [],
+    "anytime": [],
+}
 for name, product in sorted(db_products.items()):
     times = (product.get("time_of_day") or "").split(",")
     for t in times:
@@ -376,6 +401,7 @@ summary = {
     "portfolio_qaly_ceiling": config.portfolio_qaly_ceiling,
     "catalog_size": len(CATALOG),
     "db_products": len(db_products),
+    "db_products_total": len(db_all_products),
     "db_ingredients": sum(len(v) for v in db_ingredients.values()),
 }
 

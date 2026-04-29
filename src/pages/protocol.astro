@@ -4,9 +4,33 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE } from '../consts';
 import protocolData from '../data/protocol-data.json';
+import protocolGroundUp from '../data/protocol-ground-up.json';
 import ogImage from '../assets/og-protocol.png';
 
 const { summary, supplements, bundles, portfolio, config, profile, schedule } = protocolData;
+const groundUpSummary = protocolGroundUp.summary;
+const referenceCaseModel = protocolGroundUp.reference_case.current_protocol_model;
+const groundUpTopActions = protocolGroundUp.state_marginal_decisions.slice(0, 6);
+const groundUpCurrentState = protocolGroundUp.current_state;
+const groundUpOptimizers = protocolGroundUp.protocol_optimizers;
+const optimizerRows = [
+	{ label: '$200K/QALY net benefit', result: groundUpOptimizers?.net_benefit },
+	{ label: 'QALY only', result: groundUpOptimizers?.qaly },
+].filter(row => row.result);
+const pct = (value: number) => `${(value * 100).toFixed(value * 100 % 1 === 0 ? 0 : 1)}%`;
+const formatGroundUpActionCost = (item) => {
+	if (item.cost_per_qaly) return `$${item.cost_per_qaly.toLocaleString()}`;
+	if (item.delta_cost <= 0 && item.delta_qaly > 0) return 'dominant';
+	return '—';
+};
+const summarizeOptimizerActions = (result) => {
+	const adds = result.add_names?.length ? `Add ${result.add_names.join(', ')}` : '';
+	const drops = result.drop_names?.length ? `Drop ${result.drop_names.join(', ')}` : '';
+	return [adds, drops].filter(Boolean).join('; ') || 'No changes';
+};
+const utilityLineageSummary = groundUpSummary.items_needing_utility_lineage === 0
+	? `All ${groundUpSummary.n_items} items now have explicit utility lineage or no direct-QOL overlay; ${groundUpSummary.items_using_fallback_utility_lineage} items still use disability-weight fallback lineage.`
+	: `${groundUpSummary.items_needing_utility_lineage} items still need explicit EQ-5D/SF-6D/HUI or mapped utility lineage, while ${groundUpSummary.items_using_fallback_utility_lineage} items currently use disability-weight fallback lineage.`;
 
 // Schedule slot display names
 const scheduleSlots = [
@@ -14,6 +38,8 @@ const scheduleSlots = [
 	{ key: 'meal_1', label: 'Nutty pudding + pill batch 1' },
 	{ key: 'meal_2', label: 'Second meal + pill batch 2' },
 	{ key: 'before_bed', label: 'Before bed' },
+	{ key: 'bedtime', label: 'Bedtime / overnight' },
+	{ key: 'anytime', label: 'Anytime / services' },
 ];
 
 // Group supplements by category
@@ -83,8 +109,8 @@ const statusColors: Record<string, string> = {
 						<div class="stat-label">Expected QALY gain</div>
 					</div>
 					<div class="stat-card">
-						<div class="stat-value">2</div>
-						<div class="stat-label">Sleep devices</div>
+						<div class="stat-value">+{Math.round(groundUpSummary.total_stack_days)}d</div>
+						<div class="stat-label">Ground-up audit</div>
 					</div>
 				</div>
 			</section>
@@ -95,9 +121,71 @@ const statusColors: Record<string, string> = {
 				<p>I treat health optimization as a portfolio problem under uncertainty. Each intervention has an expected benefit (measured in <a href="https://en.wikipedia.org/wiki/Quality-adjusted_life_year">QALYs</a>), a cost, and uncertainty about whether the observed effect is causal or confounded.</p>
 				<p>The framework: estimate each intervention's hazard ratio from literature, shrink it toward null by a <strong>tiered publication-bias correction</strong> (10% for preregistered RCTs with hard endpoints, 20&ndash;30% for standard RCTs and cohorts, 50% for supplement-industry RCTs, 70% for animal-only evidence), apply a Bayesian causal-fraction prior calibrated against observed RCT-vs-observational discrepancies, simulate 50,000 Monte Carlo samples through CDC life tables, and report the <strong>posterior hazard ratio</strong> the simulator actually applies &mdash; not the publication-bias-only HR.</p>
 				<p>Mechanism-cluster diminishing returns prevent correlated supplements from stacking additively. Anti-inflammatory polyphenols (curcumin, quercetin, apigenin, EGCG, luteolin, cocoa flavanols) share a cluster with within-cluster retention dropping fast past the first item; NAD+ precursors (NR, NMN) are tightened further; antioxidants, mitochondrial-support, and senolytics each have their own steep retention schedules. A portfolio-level QALY ceiling of {summary.portfolio_qaly_ceiling ?? 3.0} applies a concave saturation to the raw additive total so the stack can't claim multi-QALY gains that exceed primary-prevention CEA literature.</p>
-				<p>Key parameters: willingness-to-pay of $200K per QALY (with a sensitivity panel at $50K/$100K/$150K below), 40-year horizon, 5% cost discount, 0% QALY discount. Bundled products (Blueprint Essentials, Advanced Antioxidants, Longevity Mix) now carry an allocated per-ingredient cost so bundled items no longer free-ride on $/QALY.</p>
+				<p>Key parameters: willingness-to-pay of $200K per QALY (with a sensitivity panel at $50K/$100K/$150K below), 40-year horizon, {pct(config.cost_discount_rate)} cost discount, {pct(config.qaly_discount_rate)} QALY discount. Bundled products (Blueprint Essentials, Advanced Antioxidants, Longevity Mix) now carry an allocated per-ingredient cost so bundled items no longer free-ride on $/QALY.</p>
 				<p>I am not a doctor. I have no medical training. This is <em>expected value reasoning applied to personal health decisions</em>, not clinical guidance. Most of these effect sizes are small, uncertain, and could be entirely confounded.</p>
 			</section>
+
+			<section>
+				<h2>Reference-case ground-up audit</h2>
+				<p>This newer audit uses the US Second Panel-style 3% health and cost discounting path and item-by-item assumptions from the live protocol inventory. It is <strong>not yet a formal reference-case CUA</strong>: {utilityLineageSummary}</p>
+				<p><strong>Ground-up full-state total:</strong> {groundUpSummary.total_stack_qaly.toFixed(4)} QALY ({groundUpSummary.total_stack_days.toFixed(1)} days). Additive standalone value {groundUpCurrentState.additive_qaly.toFixed(4)} QALY, shared stack adjustment {groundUpCurrentState.stack_interaction_qaly.toFixed(4)} QALY. Alignment: {referenceCaseModel.reference_case_alignment.replace(/_/g, ' ')}.</p>
+				{optimizerRows.length > 0 && (
+						<div class="table-wrapper">
+							<table>
+								<thead>
+									<tr>
+										<th>Constrained optimizer</th>
+										<th class="num">ΔQALY</th>
+										<th class="num">Days</th>
+										<th class="num">P(+)</th>
+										<th class="num">Δcost</th>
+										<th>Actions</th>
+									</tr>
+								</thead>
+								<tbody>
+									{optimizerRows.map(({ label, result }) => (
+										<tr>
+											<td>{label}</td>
+											<td class="num">{result.delta_qaly.toFixed(4)}</td>
+											<td class="num">{result.delta_days.toFixed(1)}</td>
+											<td class="num">{pct(result.p_positive_delta)}</td>
+											<td class="num">${Math.round(result.delta_cost).toLocaleString()}</td>
+											<td>{summarizeOptimizerActions(result)}</td>
+										</tr>
+									))}
+								</tbody>
+							</table>
+						</div>
+					)}
+					<div class="table-wrapper">
+						<table>
+							<thead>
+								<tr>
+									<th>Action</th>
+									<th>Item</th>
+									<th>Type</th>
+									<th class="num">ΔQALY</th>
+									<th class="num">Days</th>
+									<th class="num">P(+)</th>
+									<th class="num">$/QALY</th>
+								</tr>
+							</thead>
+							<tbody>
+								{groundUpTopActions.map(item => (
+									<tr>
+										<td>{item.action}</td>
+										<td>{item.name}</td>
+										<td>{item.display_category}</td>
+										<td class="num">{item.delta_qaly.toFixed(4)}</td>
+										<td class="num">{item.delta_days.toFixed(1)}</td>
+										<td class="num">{pct(item.p_positive)}</td>
+										<td class="num">{formatGroundUpActionCost(item)}</td>
+									</tr>
+								))}
+							</tbody>
+						</table>
+					</div>
+				</section>
 
 			<!-- WTP sensitivity frontier -->
 			{protocolData.wtp_frontier && protocolData.wtp_frontier.length > 0 && (
@@ -154,11 +242,11 @@ const statusColors: Record<string, string> = {
 						<tbody>
 							{coreStack.map(s => (
 								<tr>
-									<td>
-										<strong>{s.name}</strong>
-										<details class="evidence-details">
-											<summary>Details</summary>
-											<p>
+										<td>
+											<strong>{s.name}</strong>
+											<details class="evidence-details">
+												<summary>Details</summary>
+												<p>
 												HR observed: {s.hr_observed}<br/>
 												Pub-bias corrected ({Math.round((s.pub_bias_shrinkage ?? 0.3) * 100)}% shrinkage{s.study_quality ? `, tier: ${s.study_quality.replace(/_/g, ' ')}` : ''}): {s.hr_corrected}<br/>
 												{s.hr_posterior_median !== null && s.hr_posterior_median !== undefined && (
@@ -220,7 +308,7 @@ const statusColors: Record<string, string> = {
 				<!-- Nutty pudding + pill batch 1 -->
 				<div class="time-block">
 					<h3>Nutty pudding + pill batch 1</h3>
-					<p>Based on <a href="https://www.reddit.com/r/blueprint_/comments/1jlu0dv/whats_the_latest_nutty_pudding_recipe/">Bryan Johnson's recipe</a>. My modifications: double the cocoa powder (extra flavanols) and blend in collagen. I blend 4 servings at a time and refrigerate.</p>
+					<p>Optimized from <a href="https://www.reddit.com/r/blueprint_/comments/1jlu0dv/whats_the_latest_nutty_pudding_recipe/">Bryan Johnson's recipe</a> for QALY/$ and adherence. The current version keeps pomegranate juice for taste, uses ground macadamias and walnuts in the powder jar, blends hazelnuts and blanched almonds whole, and keeps Blueprint fruit mix out by default. I blend 4 servings at a time and refrigerate.</p>
 					<div class="table-wrapper">
 						<table class="schedule-table">
 							<thead>
@@ -243,61 +331,60 @@ const statusColors: Record<string, string> = {
 					</div>
 
 					<details>
-						<summary class="category-summary">Recipe</summary>
-						<p><strong>Blended base:</strong>
-							<span class="np-toggle">
-								<button class="np-toggle-btn active" data-servings="1">x1</button>
-								<button class="np-toggle-btn" data-servings="4">x4</button>
-							</span>
-						</p>
-						<ul class="np-recipe">
-							<li><span class="np-qty" data-x1="60 ml" data-x4="1 cup">60 ml</span> pomegranate juice</li>
-							<li><span class="np-qty" data-x1="50&ndash;100 ml" data-x4="1 cup">50&ndash;100 ml</span> nut milk</li>
-							<li><span class="np-qty" data-x1="3 tbsp" data-x4="&frac34; cup">3 tbsp</span> ground macadamia nuts</li>
-							<li><span class="np-qty" data-x1="2 tsp" data-x4="2 tbsp + 2 tsp">2 tsp</span> ground walnuts</li>
-							<li><span class="np-qty" data-x1="1 tsp" data-x4="1 tbsp + 1 tsp">1 tsp</span> ground flaxseed</li>
-							<li><span class="np-qty" data-x1="&frac14;" data-x4="1">&frac14;</span> Brazil nut</li>
-							<li><span class="np-qty" data-x1="&frac14; cup berries + 3 cherries" data-x4="1 cup berries + 12 cherries">&frac14; cup berries + 3 cherries</span></li>
-							<li><span class="np-qty" data-x1="1 tsp" data-x4="1 tbsp + 1 tsp">1 tsp</span> sunflower lecithin</li>
-							<li><span class="np-qty" data-x1="&frac12; tsp" data-x4="2 tsp">&frac12; tsp</span> ceylon cinnamon</li>
-							<li>Blueprint Cocoa (12g per serving, all in premix)</li>
-							<li><span class="np-qty" data-x1="1 scoop (22g)" data-x4="4 scoops (88g)">1 scoop (22g)</span> Collagen</li>
-							<li><span class="np-qty" data-x1="2 scoops" data-x4="8 scoops">2 scoops</span> Blueprint Metabolic Protein (73g, 30g protein)</li>
-						</ul>
-						<p><strong>Toppings (per serving):</strong></p>
-						<ul>
-							<li>1 tbsp EVOO</li>
-							<li>Blueprint Blueberry Nut Mix</li>
-							<li>2 tbsp chia seeds</li>
-							<li>1/4 cup berries</li>
-						</ul>
+						<summary class="category-summary">Recipe: 1 serving and 4-serving batch</summary>
+						<p>For each 4-serving batch, blend the liquid/fruit/nuts with 4 servings from the powder jar, then portion into containers and add toppings per serving.</p>
+						<div class="table-wrapper">
+							<table>
+								<thead>
+									<tr>
+										<th>Ingredient</th>
+										<th class="num">1 serving</th>
+										<th class="num">4 servings</th>
+										<th>Where</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr><td>Pomegranate juice</td><td class="num">60 ml</td><td class="num">1 cup</td><td>Blender</td></tr>
+									<tr><td>Unsweetened nut milk</td><td class="num">50&ndash;100 ml</td><td class="num">200&ndash;400 ml</td><td>Blender; add water to texture</td></tr>
+									<tr><td>Frozen berries + cherries</td><td class="num">&frac12; cup</td><td class="num">2 cups</td><td>Blender</td></tr>
+									<tr><td>Whole hazelnuts</td><td class="num">&frac12; tbsp</td><td class="num">2 tbsp</td><td>Blender</td></tr>
+									<tr><td>Whole blanched almonds</td><td class="num">&frac12; tbsp</td><td class="num">2 tbsp</td><td>Blender</td></tr>
+									<tr><td>Powder jar mix</td><td class="num">1 serving</td><td class="num">4 servings</td><td>Blend after liquids/fruit/nuts</td></tr>
+									<tr><td>EVOO</td><td class="num">1 tbsp</td><td class="num">&frac14; cup</td><td>Topping</td></tr>
+									<tr><td>Chia seeds</td><td class="num">2 tbsp</td><td class="num">&frac12; cup</td><td>Topping, preferably soaked</td></tr>
+									<tr><td>Berries</td><td class="num">&frac12; cup</td><td class="num">2 cups</td><td>Topping</td></tr>
+								</tbody>
+							</table>
+						</div>
 					</details>
 
 					<details>
-						<summary class="category-summary">Bulk dry mix (12 servings in 1-gallon mason jar)</summary>
-						<p>Workflow: open a fresh bag of protein, scoop 8 scoops (4 servings) straight into the blender, then dump the remaining 22 scoops into the jar with 12 servings of everything else. Each jar scoop has slightly less protein (~1.83 vs 2 scoops), but it evens out across all 16 servings per bag. Scoop ~1&frac14; cups per serving (or ~5 cups for 4 servings).</p>
+						<summary class="category-summary">Powder jar mix</summary>
+						<p>Use the 15-serving column for the 1-gallon jar if you want the maximum practical fill. Use 14 servings if you want more shake room. Keep hazelnuts, almonds, berries, EVOO, chia, and liquids out of the jar.</p>
 						<div class="table-wrapper">
 							<table>
 								<thead>
 									<tr>
 										<th>Ingredient</th>
 										<th class="num">Per serving</th>
-										<th class="num">&times;12 (full jar)</th>
+										<th class="num">&times;4 batch</th>
+										<th class="num">&times;15 jar</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr><td>Ground macadamia nuts</td><td class="num">3 tbsp</td><td class="num">2&frac14; cups</td></tr>
-									<tr><td>Blueprint Metabolic Protein</td><td class="num">~1.83 scoops</td><td class="num">rest of bag (22 scoops)</td></tr>
-									<tr><td>Collagen protein</td><td class="num">1 scoop (22g)</td><td class="num">2&frac34; cups</td></tr>
-									<tr><td>Blueprint Cocoa</td><td class="num">~2 tbsp</td><td class="num">1&frac12; cups</td></tr>
-									<tr><td>Ground walnuts</td><td class="num">2 tsp</td><td class="num">&frac12; cup</td></tr>
-									<tr><td>Ground flax seeds</td><td class="num">1 tsp</td><td class="num">&frac14; cup</td></tr>
-									<tr><td>Sunflower lecithin</td><td class="num">1 tsp</td><td class="num">&frac14; cup</td></tr>
-									<tr><td>Ceylon cinnamon</td><td class="num">&frac12; tsp</td><td class="num">2 tbsp</td></tr>
+									<tr><td>Blueprint Metabolic Protein</td><td class="num">1&frac12; scoops (55g)</td><td class="num">6 scoops (219g)</td><td class="num">22&frac12; scoops (821g)</td></tr>
+									<tr><td>Collagen</td><td class="num">1 scoop (22g)</td><td class="num">4 scoops (88g)</td><td class="num">15 scoops (330g; ~3&frac12; cups)</td></tr>
+									<tr><td>Ground macadamias</td><td class="num">1 tbsp</td><td class="num">&frac14; cup</td><td class="num">15 tbsp (~1 cup)</td></tr>
+									<tr><td>Ground walnuts</td><td class="num">1 tbsp</td><td class="num">&frac14; cup</td><td class="num">15 tbsp (~1 cup)</td></tr>
+									<tr><td>Ground flax seeds</td><td class="num">1 tbsp</td><td class="num">&frac14; cup</td><td class="num">15 tbsp (~1 cup)</td></tr>
+									<tr><td>Blueprint Cocoa</td><td class="num">6g</td><td class="num">24g</td><td class="num">90g</td></tr>
+									<tr><td>Sunflower lecithin</td><td class="num">1 tsp</td><td class="num">1 tbsp + 1 tsp</td><td class="num">5 tbsp</td></tr>
+									<tr><td>Ceylon cinnamon</td><td class="num">&frac12; tsp</td><td class="num">2 tsp</td><td class="num">2 tbsp + 1&frac12; tsp</td></tr>
+									<tr><td>Optional sumac</td><td class="num">&frac14; tsp</td><td class="num">1 tsp</td><td class="num">1 tbsp + &frac34; tsp</td></tr>
 								</tbody>
 							</table>
 						</div>
-						<p><strong>Mixing order:</strong> finest powders first (cinnamon, cocoa, lecithin, flax), then proteins (pea/metabolic, collagen), then coarsest (ground nuts). Shake hard to combine; shake before each scoop.</p>
+						<p><strong>Mixing order:</strong> finest powders first (sumac if using, cinnamon, cocoa, lecithin, flax), then protein and collagen, then ground macadamias and walnuts. Shake hard to combine; shake before each scoop. Store the jar cold if keeping ground nuts or flax for more than a few days.</p>
 					</details>
 				</div>
 
@@ -374,6 +461,58 @@ const statusColors: Record<string, string> = {
 						</table>
 					</div>
 				</div>
+
+				{(schedule.bedtime || []).length > 0 && (
+					<div class="time-block">
+						<h3>Bedtime / overnight</h3>
+						<div class="table-wrapper">
+							<table class="schedule-table">
+								<thead>
+									<tr>
+										<th>Item</th>
+										<th>Dose</th>
+										<th class="num">$/yr</th>
+									</tr>
+								</thead>
+								<tbody>
+									{(schedule.bedtime || []).map(item => (
+										<tr>
+											<td>{item.source_url ? <a href={item.source_url}>{item.name}</a> : item.name}</td>
+											<td class="schedule-dose">{item.dose_notes}</td>
+											<td class="num">{item.annual_cost > 0 ? `$${item.annual_cost}` : <em>bundled</em>}</td>
+										</tr>
+									))}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				)}
+
+				{(schedule.anytime || []).length > 0 && (
+					<div class="time-block">
+						<h3>Anytime / services</h3>
+						<div class="table-wrapper">
+							<table class="schedule-table">
+								<thead>
+									<tr>
+										<th>Item</th>
+										<th>Dose</th>
+										<th class="num">$/yr</th>
+									</tr>
+								</thead>
+								<tbody>
+									{(schedule.anytime || []).map(item => (
+										<tr>
+											<td>{item.source_url ? <a href={item.source_url}>{item.name}</a> : item.name}</td>
+											<td class="schedule-dose">{item.dose_notes}</td>
+											<td class="num">{item.annual_cost > 0 ? `$${item.annual_cost}` : <em>bundled</em>}</td>
+										</tr>
+									))}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				)}
 			</section>
 
 			<!-- Exercise -->
@@ -617,7 +756,7 @@ const statusColors: Record<string, string> = {
 					<li>Bundled products carry an allocated per-ingredient cost share so bundled items contribute to $/QALY accounting</li>
 				</ol>
 				<p>Evidence confidence labels: <span class="evidence-badge evidence-high">high</span> = strong causal prior + tight uncertainty; <span class="evidence-badge evidence-medium">medium</span> = moderate evidence or wider uncertainty; <span class="evidence-badge evidence-low">low</span> = weak causal evidence, speculative.</p>
-				<p>Profile: {profile.age}yo {profile.sex}, BMI {profile.bmi_category}, {profile.smoking_status} smoker. WTP ${config.wtp.toLocaleString()}/QALY, {config.horizon_years}-year horizon, {config.n_simulations.toLocaleString()} simulations. Saturated QALY total: {summary.total_qaly} (raw additive: {summary.total_raw_qaly}).</p>
+				<p>Profile: {profile.age}yo {profile.sex}, BMI {profile.bmi_category}, {profile.smoking_status} smoker. WTP ${config.wtp.toLocaleString()}/QALY, {config.horizon_years}-year horizon, {pct(config.qaly_discount_rate)} QALY discount, {pct(config.cost_discount_rate)} cost discount, {config.n_simulations.toLocaleString()} simulations. Saturated QALY total: {summary.total_qaly} (raw additive: {summary.total_raw_qaly}). Ground-up audit total: {groundUpSummary.total_stack_qaly} QALY ({groundUpSummary.total_stack_days} days).</p>
 			</section>
 		</main>
 		<Footer />
