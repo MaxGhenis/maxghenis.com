@@ -2,6 +2,7 @@
 title: 'Can Talkie-1930 do arithmetic?'
 description: 'I tested Talkie-1930 on GSM8K and the easier EleutherAI/OpenAI arithmetic suite, then packaged an lm-eval-harness runner so the runs are reproducible.'
 pubDate: 'Apr 30 2026'
+heroImage: './og-blog.png'
 draft: true
 ---
 
