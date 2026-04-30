@@ -27,6 +27,87 @@ type ScheduleItem = {
 	dose_notes: string;
 	annual_cost: number;
 };
+type RecipeRow = {
+	ingredient: string;
+	amount: string;
+	where: string;
+};
+type RecipeView = {
+	id: string;
+	label: string;
+	title: string;
+	description: string;
+	rows: RecipeRow[];
+};
+const nuttyPuddingViews: RecipeView[] = [
+	{
+		id: 'one',
+		label: '1 serving',
+		title: '1 serving',
+		description: 'Single serving with blender items, powder mix, and toppings.',
+		rows: [
+			{ ingredient: 'Pomegranate juice', amount: '60 ml', where: 'Blender' },
+			{ ingredient: 'Unsweetened nut milk', amount: '50-100 ml', where: 'Blender; add water to texture' },
+			{ ingredient: 'Frozen berries + cherries', amount: '1/2 cup', where: 'Blender' },
+			{ ingredient: 'Whole hazelnuts', amount: '1/2 tbsp', where: 'Blender' },
+			{ ingredient: 'Whole blanched almonds', amount: '1/2 tbsp', where: 'Blender' },
+			{ ingredient: 'Blueprint Metabolic Protein', amount: '1.5 scoops (55g; ~1/2 cup)', where: 'Powder jar' },
+			{ ingredient: 'Collagen', amount: '1 scoop (22.3g; ~1/4 cup)', where: 'Powder jar' },
+			{ ingredient: 'Ground macadamias', amount: '1 tbsp', where: 'Powder jar' },
+			{ ingredient: 'Ground walnuts', amount: '1 tbsp', where: 'Powder jar' },
+			{ ingredient: 'Ground flax seeds', amount: '1 tbsp', where: 'Powder jar' },
+			{ ingredient: 'Blueprint Cocoa', amount: '1 scoop (5.76g; ~1 tbsp)', where: 'Powder jar' },
+			{ ingredient: 'Sunflower lecithin', amount: '1 tsp', where: 'Powder jar' },
+			{ ingredient: 'Ceylon cinnamon', amount: '1/2 tsp', where: 'Powder jar' },
+			{ ingredient: 'Optional sumac', amount: '1/4 tsp', where: 'Powder jar' },
+			{ ingredient: 'EVOO', amount: '1 tbsp', where: 'Topping' },
+			{ ingredient: 'Chia seeds', amount: '2 tbsp', where: 'Topping, preferably soaked' },
+			{ ingredient: 'Berries', amount: '1/2 cup', where: 'Topping' },
+		],
+	},
+	{
+		id: 'four',
+		label: '4 servings',
+		title: '4-serving batch',
+		description: 'Blender batch I make at once, then portion into containers and add toppings per serving.',
+		rows: [
+			{ ingredient: 'Pomegranate juice', amount: '1 cup', where: 'Blender' },
+			{ ingredient: 'Unsweetened nut milk', amount: '200-400 ml', where: 'Blender; add water to texture' },
+			{ ingredient: 'Frozen berries + cherries', amount: '2 cups', where: 'Blender' },
+			{ ingredient: 'Whole hazelnuts', amount: '2 tbsp', where: 'Blender' },
+			{ ingredient: 'Whole blanched almonds', amount: '2 tbsp', where: 'Blender' },
+			{ ingredient: 'Blueprint Metabolic Protein', amount: '6 scoops (219g; ~2 cups)', where: 'Powder jar' },
+			{ ingredient: 'Collagen', amount: '4 scoops (89g; ~1 cup)', where: 'Powder jar' },
+			{ ingredient: 'Ground macadamias', amount: '1/4 cup', where: 'Powder jar' },
+			{ ingredient: 'Ground walnuts', amount: '1/4 cup', where: 'Powder jar' },
+			{ ingredient: 'Ground flax seeds', amount: '1/4 cup', where: 'Powder jar' },
+			{ ingredient: 'Blueprint Cocoa', amount: '4 scoops (23g; ~1/4 cup)', where: 'Powder jar' },
+			{ ingredient: 'Sunflower lecithin', amount: '1 tbsp + 1 tsp', where: 'Powder jar' },
+			{ ingredient: 'Ceylon cinnamon', amount: '2 tsp', where: 'Powder jar' },
+			{ ingredient: 'Optional sumac', amount: '1 tsp', where: 'Powder jar' },
+			{ ingredient: 'EVOO', amount: '1/4 cup', where: 'Topping' },
+			{ ingredient: 'Chia seeds', amount: '1/2 cup', where: 'Topping, preferably soaked' },
+			{ ingredient: 'Berries', amount: '2 cups', where: 'Topping' },
+		],
+	},
+	{
+		id: 'jar',
+		label: '14 jar',
+		title: '14-serving powder jar',
+		description: 'Dry jar only. Keep hazelnuts, almonds, berries, EVOO, chia, and liquids out of the jar.',
+		rows: [
+			{ ingredient: 'Blueprint Metabolic Protein', amount: '21 scoops (767g; ~7 cups)', where: 'Jar' },
+			{ ingredient: 'Collagen', amount: '14 scoops (312g; ~3 1/4 cups)', where: 'Jar' },
+			{ ingredient: 'Ground macadamias', amount: '14 tbsp (~7/8 cup)', where: 'Jar' },
+			{ ingredient: 'Ground walnuts', amount: '14 tbsp (~7/8 cup)', where: 'Jar' },
+			{ ingredient: 'Ground flax seeds', amount: '14 tbsp (~7/8 cup)', where: 'Jar' },
+			{ ingredient: 'Blueprint Cocoa', amount: '14 scoops (81g; ~7/8 cup)', where: 'Jar' },
+			{ ingredient: 'Sunflower lecithin', amount: '4 tbsp + 2 tsp', where: 'Jar' },
+			{ ingredient: 'Ceylon cinnamon', amount: '2 tbsp + 1 tsp', where: 'Jar' },
+			{ ingredient: 'Optional sumac', amount: '1 tbsp + 1/2 tsp', where: 'Jar' },
+		],
+	},
+];
 const groundUpSummary = protocolGroundUp.summary;
 const referenceCaseModel = protocolGroundUp.reference_case.current_protocol_model;
 const groundUpTopActions = protocolGroundUp.state_marginal_decisions.slice(0, 6);
@@ -285,10 +366,10 @@ const statusColors: Record<string, string> = {
 				</div>
 			</section>
 
-			<!-- Daily schedule -->
-			<section>
-				<h2>Daily schedule</h2>
-				<p>How the stack breaks down by time of day. Generated from a private health database I maintain on GitHub. Bundles contain multiple catalog items.</p>
+				<!-- Supplement schedule -->
+				<section>
+					<h2>Supplement schedule</h2>
+					<p>Dose timing for supplements, prescriptions, and services. Food recipes are separated below so the stack stays distinct from meal prep.</p>
 
 				<!-- Morning mix -->
 				<div class="time-block">
@@ -316,12 +397,12 @@ const statusColors: Record<string, string> = {
 					</div>
 				</div>
 
-				<!-- Nutty pudding + pill batch 1 -->
-				<div class="time-block">
-					<h3>Nutty pudding + pill batch 1</h3>
-					<p>Optimized from <a href="https://www.reddit.com/r/blueprint_/comments/1jlu0dv/whats_the_latest_nutty_pudding_recipe/">Bryan Johnson's recipe</a> for QALY/$ and adherence. The current version keeps pomegranate juice for taste, uses ground macadamias and walnuts in the powder jar, blends hazelnuts and blanched almonds whole, and keeps Blueprint fruit mix out by default. I blend 4 servings at a time and refrigerate.</p>
-					<div class="table-wrapper">
-						<table class="schedule-table">
+					<!-- Meal 1 supplements -->
+					<div class="time-block">
+						<h3>Meal 1 supplements</h3>
+						<p>Products taken with the first meal. The nutty pudding recipe itself is in the meal recipes section.</p>
+						<div class="table-wrapper">
+							<table class="schedule-table">
 							<thead>
 								<tr>
 									<th>Item</th>
@@ -337,74 +418,17 @@ const statusColors: Record<string, string> = {
 										<td class="num">{item.annual_cost > 0 ? `$${item.annual_cost}` : <em>bundled</em>}</td>
 									</tr>
 								))}
-							</tbody>
-						</table>
+								</tbody>
+							</table>
+						</div>
 					</div>
 
-					<details>
-						<summary class="category-summary">Recipe: 1 serving and 4-serving batch</summary>
-						<p>For each 4-serving batch, blend the liquid/fruit/nuts with 4 servings from the powder jar, then portion into containers and add toppings per serving.</p>
+					<!-- Meal 2 supplements -->
+					<div class="time-block">
+						<h3>Meal 2 supplements</h3>
+						<p>Products taken with the second meal, whether that meal is super veggie or something else.</p>
 						<div class="table-wrapper">
-							<table>
-								<thead>
-									<tr>
-										<th>Ingredient</th>
-										<th class="num">1 serving</th>
-										<th class="num">4 servings</th>
-										<th>Where</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr><td>Pomegranate juice</td><td class="num">60 ml</td><td class="num">1 cup</td><td>Blender</td></tr>
-									<tr><td>Unsweetened nut milk</td><td class="num">50&ndash;100 ml</td><td class="num">200&ndash;400 ml</td><td>Blender; add water to texture</td></tr>
-									<tr><td>Frozen berries + cherries</td><td class="num">&frac12; cup</td><td class="num">2 cups</td><td>Blender</td></tr>
-									<tr><td>Whole hazelnuts</td><td class="num">&frac12; tbsp</td><td class="num">2 tbsp</td><td>Blender</td></tr>
-									<tr><td>Whole blanched almonds</td><td class="num">&frac12; tbsp</td><td class="num">2 tbsp</td><td>Blender</td></tr>
-									<tr><td>Powder jar mix</td><td class="num">1 serving</td><td class="num">4 servings</td><td>Blend after liquids/fruit/nuts</td></tr>
-									<tr><td>EVOO</td><td class="num">1 tbsp</td><td class="num">&frac14; cup</td><td>Topping</td></tr>
-									<tr><td>Chia seeds</td><td class="num">2 tbsp</td><td class="num">&frac12; cup</td><td>Topping, preferably soaked</td></tr>
-									<tr><td>Berries</td><td class="num">&frac12; cup</td><td class="num">2 cups</td><td>Topping</td></tr>
-								</tbody>
-							</table>
-						</div>
-					</details>
-
-					<details>
-						<summary class="category-summary">Powder jar mix</summary>
-						<p>Use the 14-serving column for a comfortable 1-gallon jar fill with some shake room. Keep hazelnuts, almonds, berries, EVOO, chia, and liquids out of the jar. Label weights: protein 2 scoops = 73g, collagen 1 scoop = 22.3g, cocoa 1 scoop = 5.76g. Cup estimates are approximate: protein scoop ~1/3 cup, collagen scoop ~1/4 cup, cocoa scoop ~1 tbsp.</p>
-						<div class="table-wrapper">
-							<table>
-								<thead>
-									<tr>
-										<th>Ingredient</th>
-										<th class="num">Per serving</th>
-										<th class="num">&times;4 batch</th>
-										<th class="num">&times;14 jar</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr><td>Blueprint Metabolic Protein</td><td class="num">1&frac12; scoops (55g; ~&frac12; cup)</td><td class="num">6 scoops (219g; ~2 cups)</td><td class="num">21 scoops (767g; ~7 cups)</td></tr>
-									<tr><td>Collagen</td><td class="num">1 scoop (22.3g; ~&frac14; cup)</td><td class="num">4 scoops (89g; ~1 cup)</td><td class="num">14 scoops (312g; ~3&frac14; cups)</td></tr>
-									<tr><td>Ground macadamias</td><td class="num">1 tbsp</td><td class="num">&frac14; cup</td><td class="num">14 tbsp (&frac78; cup)</td></tr>
-									<tr><td>Ground walnuts</td><td class="num">1 tbsp</td><td class="num">&frac14; cup</td><td class="num">14 tbsp (&frac78; cup)</td></tr>
-									<tr><td>Ground flax seeds</td><td class="num">1 tbsp</td><td class="num">&frac14; cup</td><td class="num">14 tbsp (&frac78; cup)</td></tr>
-									<tr><td>Blueprint Cocoa</td><td class="num">1 scoop (5.76g; ~1 tbsp)</td><td class="num">4 scoops (23g; ~&frac14; cup)</td><td class="num">14 scoops (81g; ~&frac78; cup)</td></tr>
-									<tr><td>Sunflower lecithin</td><td class="num">1 tsp</td><td class="num">1 tbsp + 1 tsp</td><td class="num">4 tbsp + 2 tsp</td></tr>
-									<tr><td>Ceylon cinnamon</td><td class="num">&frac12; tsp</td><td class="num">2 tsp</td><td class="num">2 tbsp + 1 tsp</td></tr>
-									<tr><td>Optional sumac</td><td class="num">&frac14; tsp</td><td class="num">1 tsp</td><td class="num">1 tbsp + &frac12; tsp</td></tr>
-								</tbody>
-							</table>
-						</div>
-						<p><strong>Mixing order:</strong> finest powders first (sumac if using, cinnamon, cocoa, lecithin, flax), then protein and collagen, then ground macadamias and walnuts. Shake hard to combine; shake before each scoop. Store the jar cold if keeping ground nuts or flax for more than a few days.</p>
-					</details>
-				</div>
-
-				<!-- Second meal + pill batch 2 -->
-				<div class="time-block">
-					<h3>Second meal + pill batch 2</h3>
-					<p><a href="https://blueprint.bryanjohnson.com">Blueprint super veggie</a> about half of days, otherwise pills with any meal.</p>
-					<div class="table-wrapper">
-						<table class="schedule-table">
+							<table class="schedule-table">
 							<thead>
 								<tr>
 									<th>Item</th>
@@ -420,27 +444,10 @@ const statusColors: Record<string, string> = {
 										<td class="num">{item.annual_cost > 0 ? `$${item.annual_cost}` : <em>bundled</em>}</td>
 									</tr>
 								))}
-							</tbody>
-						</table>
+								</tbody>
+							</table>
+						</div>
 					</div>
-
-					<details>
-						<summary class="category-summary">Super veggie recipe</summary>
-						<p>Blueprint base recipe plus avocado, shallots, cabbage, crispy onions, and crispy garlic.</p>
-						<ul>
-							<li>Steamed broccoli, cauliflower, shiitake mushrooms</li>
-							<li><a href="https://www.amazon.com/dp/B08BNPW71P">Black beluga lentils</a></li>
-							<li><strong>Dressing:</strong> garlic, ginger, lime, cumin, apple cider vinegar</li>
-							<li>Hemp seeds</li>
-							<li>1 avocado</li>
-							<li>Chopped shallots, cabbage</li>
-							<li><a href="https://www.amazon.com/Fresh-Gourmet-Crispy-Onions-Ounce/dp/B00HHFWEPU">Crispy onions</a> + <a href="https://www.amazon.com/Fresh-Gourmet-Crispy-Lightly-Seasoned/dp/B07P5JHC6B">crispy garlic</a> (not healthy, just tasty)</li>
-							<li>Hummus</li>
-							<li><a href="https://www.amazon.com/CLEVELAND-KRAUT-Classic-Kimchi-16/dp/B098PVNV18/">Cleveland Kitchen kimchi</a></li>
-							<li>EVOO on top</li>
-						</ul>
-					</details>
-				</div>
 
 				<!-- Sweet treat -->
 				<div class="time-block">
@@ -524,11 +531,91 @@ const statusColors: Record<string, string> = {
 						</div>
 					</div>
 				)}
-			</section>
+				</section>
 
-			<!-- Exercise -->
-			<section>
-				<h2>Exercise</h2>
+				<!-- Meal recipes -->
+				<section>
+					<h2>Meal recipes</h2>
+					<p>Food prep kept separate from the supplement stack. Nutty pudding amounts use the toggle for one serving, one 4-serving blender batch, or the 14-serving powder jar.</p>
+
+					<div class="recipe-block">
+						<h3>Nutty pudding</h3>
+						<p>Optimized from <a href="https://www.reddit.com/r/blueprint_/comments/1jlu0dv/whats_the_latest_nutty_pudding_recipe/">Bryan Johnson's recipe</a> for QALY/$ and adherence. Keeps pomegranate juice for taste, uses ground macadamias and walnuts in the powder jar, blends hazelnuts and blanched almonds whole, and keeps Blueprint fruit mix out by default.</p>
+						<div class="np-tabs" role="tablist" aria-label="Nutty pudding scale">
+							{nuttyPuddingViews.map((view, index) => (
+								<button
+									type="button"
+									class="np-tab"
+									id={`np-tab-${view.id}`}
+									data-np-tab={view.id}
+									role="tab"
+									aria-selected={index === 0 ? 'true' : 'false'}
+									aria-controls={`np-panel-${view.id}`}
+								>
+									{view.label}
+								</button>
+							))}
+						</div>
+
+						{nuttyPuddingViews.map((view, index) => (
+							<div
+								class="np-panel"
+								id={`np-panel-${view.id}`}
+								data-np-panel={view.id}
+								role="tabpanel"
+								aria-labelledby={`np-tab-${view.id}`}
+								hidden={index !== 0}
+							>
+								<div class="np-panel-header">
+									<h4>{view.title}</h4>
+									<p>{view.description}</p>
+								</div>
+								<div class="table-wrapper">
+									<table>
+										<thead>
+											<tr>
+												<th>Ingredient</th>
+												<th class="num">Amount</th>
+												<th>Where</th>
+											</tr>
+										</thead>
+										<tbody>
+											{view.rows.map(row => (
+												<tr>
+													<td>{row.ingredient}</td>
+													<td class="num">{row.amount}</td>
+													<td>{row.where}</td>
+												</tr>
+											))}
+										</tbody>
+									</table>
+								</div>
+							</div>
+						))}
+						<p class="recipe-note"><strong>Mixing order:</strong> finest powders first (sumac if using, cinnamon, cocoa, lecithin, flax), then protein and collagen, then ground macadamias and walnuts. Shake hard to combine; shake before each scoop. Store the jar cold if keeping ground nuts or flax for more than a few days.</p>
+					</div>
+
+					<div class="recipe-block">
+						<h3>Super veggie</h3>
+						<p>Blueprint base recipe plus avocado, shallots, cabbage, crispy onions, and crispy garlic.</p>
+						<ul>
+							<li>Steamed broccoli, cauliflower, shiitake mushrooms</li>
+							<li><a href="https://www.amazon.com/dp/B08BNPW71P">Black beluga lentils</a></li>
+							<li><strong>Dressing:</strong> garlic, ginger, lime, cumin, apple cider vinegar</li>
+							<li>Hemp seeds</li>
+							<li>1 avocado</li>
+							<li>Chopped shallots, cabbage</li>
+							<li><a href="https://www.amazon.com/Fresh-Gourmet-Crispy-Onions-Ounce/dp/B00HHFWEPU">Crispy onions</a> + <a href="https://www.amazon.com/Fresh-Gourmet-Crispy-Lightly-Seasoned/dp/B07P5JHC6B">crispy garlic</a> (not healthy, just tasty)</li>
+							<li>Hummus</li>
+							<li><a href="https://www.amazon.com/CLEVELAND-KRAUT-Classic-Kimchi-16/dp/B098PVNV18/">Cleveland Kitchen kimchi</a></li>
+							<li>EVOO on top</li>
+						</ul>
+					</div>
+				</section>
+
+				<!-- Exercise -->
+				<section>
+					<h2>Exercise</h2>
 				<p>Daily morning workout, typically strength and cardio combined, following <a href="https://youtu.be/sYyVi-H-ozI?si=lq0qPorXlv9kCNW6">Bryan Johnson's workout protocol</a>. Consistency matters more than intensity &mdash; the goal is a sustainable daily habit, not periodic heroic sessions.</p>
 			</section>
 
@@ -1097,55 +1184,91 @@ const statusColors: Record<string, string> = {
 		}
 	}
 
-	/* NP recipe toggle */
-	.np-toggle {
-		display: inline-flex;
-		gap: 0;
-		margin-left: 0.5rem;
-		border: 1px solid rgba(15, 23, 42, 0.15);
-		border-radius: 4px;
-		overflow: hidden;
-		vertical-align: middle;
-	}
+		/* Meal recipes */
+		.recipe-block {
+			margin-top: 1.5rem;
+			padding-top: 1.25rem;
+			border-top: 1px solid rgba(15, 23, 42, 0.08);
+		}
 
-	.np-toggle-btn {
-		background: transparent;
-		border: none;
-		padding: 0.125rem 0.625rem;
-		font-size: 0.8125rem;
-		font-weight: 600;
-		cursor: pointer;
-		color: var(--ink-muted);
-		transition: all 0.15s ease;
-	}
+		.recipe-block h3 {
+			margin-top: 0;
+		}
 
-	.np-toggle-btn.active {
-		background: var(--ink);
-		color: #fff;
-	}
+		.recipe-note {
+			font-size: 0.875rem;
+			color: var(--ink-muted);
+		}
 
-	.np-toggle-btn:not(.active):hover {
-		background: rgba(15, 23, 42, 0.05);
-	}
+		.np-tabs {
+			display: inline-flex;
+			gap: 0;
+			margin: 0.25rem 0 1rem;
+			border: 1px solid rgba(15, 23, 42, 0.15);
+			border-radius: 6px;
+			overflow: hidden;
+		}
 
-	.np-qty {
-		font-weight: 600;
-		color: var(--ink);
-	}
-</style>
+		.np-tab {
+			background: transparent;
+			border: none;
+			padding: 0.45rem 0.8rem;
+			min-width: 5.5rem;
+			font-size: 0.875rem;
+			font-weight: 600;
+			cursor: pointer;
+			color: var(--ink-muted);
+			transition: background 0.15s ease, color 0.15s ease;
+		}
 
-<script>
-	document.querySelectorAll<HTMLButtonElement>('.np-toggle-btn').forEach(btn => {
-		btn.addEventListener('click', () => {
-			const servings = btn.dataset.servings;
-			document.querySelectorAll('.np-toggle-btn').forEach(b => b.classList.remove('active'));
-			btn.classList.add('active');
-			document.querySelectorAll<HTMLElement>('.np-qty').forEach(qty => {
-				const key = `x${servings}`;
-				if (qty.dataset[key]) {
-					qty.innerHTML = qty.dataset[key] as string;
-				}
+		.np-tab + .np-tab {
+			border-left: 1px solid rgba(15, 23, 42, 0.12);
+		}
+
+		.np-tab[aria-selected='true'] {
+			background: var(--ink);
+			color: #fff;
+		}
+
+		.np-tab[aria-selected='false']:hover {
+			background: rgba(15, 23, 42, 0.05);
+		}
+
+		.np-panel[hidden] {
+			display: none;
+		}
+
+		.np-panel-header {
+			margin-bottom: 0.75rem;
+		}
+
+		.np-panel-header h4 {
+			font-size: 1rem;
+			margin: 0 0 0.25rem;
+		}
+
+		.np-panel-header p {
+			font-size: 0.875rem;
+			margin: 0;
+			color: var(--ink-muted);
+		}
+	</style>
+
+	<script>
+		const npTabs = document.querySelectorAll<HTMLButtonElement>('[data-np-tab]');
+		const npPanels = document.querySelectorAll<HTMLElement>('[data-np-panel]');
+
+		npTabs.forEach(tab => {
+			tab.addEventListener('click', () => {
+				const target = tab.dataset.npTab;
+
+				npTabs.forEach(button => {
+					button.setAttribute('aria-selected', button === tab ? 'true' : 'false');
+				});
+
+				npPanels.forEach(panel => {
+					panel.hidden = panel.dataset.npPanel !== target;
+				});
 			});
 		});
-	});
-</script>
+	</script>
