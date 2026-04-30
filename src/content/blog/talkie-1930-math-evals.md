@@ -2,8 +2,7 @@
 title: 'Can Talkie-1930 do arithmetic?'
 description: 'I tested Talkie-1930 on GSM8K and the easier EleutherAI/OpenAI arithmetic suite, then packaged an lm-eval-harness runner so the runs are reproducible.'
 pubDate: 'Apr 30 2026'
-heroImage: './og-blog.png'
-draft: true
+heroImage: './talkie-1930-math-evals.png'
 ---
 
 [Talkie](https://talkie-lm.com/introducing-talkie) is a 13B language model trained only on text available before 1931. Its launch post includes a "Numeracy" panel showing talkie-1930 reaching about 62% average accuracy at peak training compute, slightly above the modern-web twin's roughly 57%. But the plot doesn't specify which tasks the average covers, which prompts were used, or how answers were scored.

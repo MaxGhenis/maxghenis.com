@@ -1,44 +1,109 @@
 # Max Ghenis - Full Content
 
 > This file contains the full text of all blog posts from maxghenis.com, formatted for LLM consumption.
-> Generated: 2026-04-22T02:31:55.384Z
+> Generated: 2026-04-30T11:16:33.066Z
 > See also: /llms.txt for a curated overview
 
 ---
 
 ## Table of Contents
 
-1. [Billionaires aren't 'just as likely' to be nonpayers as top taxpayers](/blog/madoff-billionaire-nonpayers/)
-2. [I built a MyST-to-Quarto converter (and why you might need one)](/blog/mystquarto/)
-3. [One year of Claude Code](/blog/my-claude-code-config/)
-4. [Interactive replication of GiveWell''s cost-effectiveness analysis](/blog/givewell-cea/)
-5. [Why you can''t make double eye contact](/blog/double-eye-contact/)
-6. [OpenMessage: How I built a macOS Google Messages client to give Claude my texts](/blog/openmessage/)
-7. [Where US immigrants come from, and where ICE focuses enforcement](/blog/bad-bunny-immigration-enforcement/)
-8. [I used Claude Code to recertify for SNAP](/blog/snap-recertification-claude-code/)
-9. [Scrollywood: Smooth scroll video recording for the web](/blog/scrollywood/)
-10. [The adolescence of policy simulation: On Amodei and economic disruption](/blog/amodei-adolescence-policyengine/)
-11. [opencollective-py: Manage OpenCollective from your terminal or Claude Code](/blog/opencollective-py/)
-12. [From IDE to AI orchestration: The end of code-first development](/blog/ide-to-ai-orchestration/)
-13. [TerminalGrid: Turn VS Code into a Claude Code superterminal](/blog/terminalgrid/)
-14. [RAMBar: A macOS menu bar RAM monitor for developers](/blog/rambar/)
-15. [How to Use MDX for Interactive Posts](/blog/using-mdx/)
-16. [VAT thresholds, revenues, and the role of counterfactuals](/blog/vat-thresholds/)
-17. [AI models favor Cuomo over Mamdani on NYC housing production](/blog/ai-models-nyc-housing/)
-18. [My 2024 in code: Personal projects and AI tools](/blog/my-2024-in-code/)
-19. [Why I'm a neoliberal](/blog/why-im-a-neoliberal/)
-20. [In appointing their newest member, the Ventura City Council only pretended to care about housing](/blog/in-appointing-their-newest-member-the-ventura-city/)
-21. [If you earned more in 2019 than 2018, don't file your 2019 taxes yet! Otherwise, file ASAP!](/blog/if-you-earned-more-in-2019-than-2018-dont-file-you/)
-22. [Why I’ve taken the Giving What We Can pledge](/blog/why-ive-taken-the-giving-what-we-can-pledge/)
-23. [Ventura County must end its unsheltered homelessness](/blog/ventura-county-must-end-its-unsheltered-homelessne/)
-24. [Warren’s wealth tax would raise less than she claims — even using her economists’ own assumptions](/blog/warrens-wealth-tax-would-raise-less-than-she-claim/)
-25. [Andrew Yang's troubling Tucker Carlson interview](/blog/andrew-yangs-troubling-tucker-carlson-interview/)
-26. [Quantile regression, from linear models to trees to deep learning](/blog/quantile-regression-from-linear-models-to-trees-to/)
-27. [We should replace the Child Tax Credit with a universal child benefit](/blog/we-should-replace-the-child-tax-credit-with-a-univ/)
-28. [The case for a wonky basic income plan](/blog/the-case-for-a-wonky-basic-income-plan/)
-29. [Reddit featured a misleading headline on education secretary nominee Betsy DeVos](/blog/reddit-featured-a-misleading-headline-on-education/)
-30. [Uber's tipping settlement will reduce earnings of African-American drivers](/blog/ubers-tipping-settlement-will-reduce-earnings-of-a/)
-31. [If we can afford our current welfare system, we can afford basic income](/blog/if-we-can-afford-our-current-welfare-system-we-can/)
+1. [Will Waymo make DC streets safer?](/blog/waymo-dc-safety-markets/)
+2. [Billionaires aren't 'just as likely' to be nonpayers as top taxpayers](/blog/madoff-billionaire-nonpayers/)
+3. [I built a MyST-to-Quarto converter (and why you might need one)](/blog/mystquarto/)
+4. [One year of Claude Code](/blog/my-claude-code-config/)
+5. [Interactive replication of GiveWell''s cost-effectiveness analysis](/blog/givewell-cea/)
+6. [Why you can''t make double eye contact](/blog/double-eye-contact/)
+7. [OpenMessage: How I built a macOS Google Messages client to give Claude my texts](/blog/openmessage/)
+8. [Where US immigrants come from, and where ICE focuses enforcement](/blog/bad-bunny-immigration-enforcement/)
+9. [I used Claude Code to recertify for SNAP](/blog/snap-recertification-claude-code/)
+10. [Scrollywood: Smooth scroll video recording for the web](/blog/scrollywood/)
+11. [The adolescence of policy simulation: On Amodei and economic disruption](/blog/amodei-adolescence-policyengine/)
+12. [opencollective-py: Manage OpenCollective from your terminal or Claude Code](/blog/opencollective-py/)
+13. [From IDE to AI orchestration: The end of code-first development](/blog/ide-to-ai-orchestration/)
+14. [TerminalGrid: Turn VS Code into a Claude Code superterminal](/blog/terminalgrid/)
+15. [RAMBar: A macOS menu bar RAM monitor for developers](/blog/rambar/)
+16. [How to Use MDX for Interactive Posts](/blog/using-mdx/)
+17. [VAT thresholds, revenues, and the role of counterfactuals](/blog/vat-thresholds/)
+18. [AI models favor Cuomo over Mamdani on NYC housing production](/blog/ai-models-nyc-housing/)
+19. [My 2024 in code: Personal projects and AI tools](/blog/my-2024-in-code/)
+20. [Why I'm a neoliberal](/blog/why-im-a-neoliberal/)
+21. [In appointing their newest member, the Ventura City Council only pretended to care about housing](/blog/in-appointing-their-newest-member-the-ventura-city/)
+22. [If you earned more in 2019 than 2018, don't file your 2019 taxes yet! Otherwise, file ASAP!](/blog/if-you-earned-more-in-2019-than-2018-dont-file-you/)
+23. [Why I’ve taken the Giving What We Can pledge](/blog/why-ive-taken-the-giving-what-we-can-pledge/)
+24. [Ventura County must end its unsheltered homelessness](/blog/ventura-county-must-end-its-unsheltered-homelessne/)
+25. [Warren’s wealth tax would raise less than she claims — even using her economists’ own assumptions](/blog/warrens-wealth-tax-would-raise-less-than-she-claim/)
+26. [Andrew Yang's troubling Tucker Carlson interview](/blog/andrew-yangs-troubling-tucker-carlson-interview/)
+27. [Quantile regression, from linear models to trees to deep learning](/blog/quantile-regression-from-linear-models-to-trees-to/)
+28. [We should replace the Child Tax Credit with a universal child benefit](/blog/we-should-replace-the-child-tax-credit-with-a-univ/)
+29. [The case for a wonky basic income plan](/blog/the-case-for-a-wonky-basic-income-plan/)
+30. [Reddit featured a misleading headline on education secretary nominee Betsy DeVos](/blog/reddit-featured-a-misleading-headline-on-education/)
+31. [Uber's tipping settlement will reduce earnings of African-American drivers](/blog/ubers-tipping-settlement-will-reduce-earnings-of-a/)
+32. [If we can afford our current welfare system, we can afford basic income](/blog/if-we-can-afford-our-current-welfare-system-we-can/)
+
+---
+
+## Will Waymo make DC streets safer?
+
+**URL:** https://maxghenis.com/blog/waymo-dc-safety-markets/
+**Published:** Apr 25 2026
+**Description:** I created paired Manifold markets on DC traffic fatalities and serious injuries in 2027, conditional on whether Waymo serves the public before then.
+
+Waymo wants to launch in Washington, DC. The policy question I care about is not just whether it gets permission. It is whether DC streets get safer.
+
+Waymo [announced](https://waymo.com/blog/2025/03/next-stop-for-waymo-one-washingtondc/) that it aimed to bring Waymo One to DC in 2026, while also saying it still needed regulations to operate without a human behind the wheel. DC politics then became the binding constraint. Axios reported this month that Councilmember Charles Allen was introducing [legislation to allow robotaxis](https://www.axios.com/local/washington-dc/2026/04/24/dc-bill-robotaxis-waymo-charles-allen), while a delayed DDOT robotaxi study was [expected this summer](https://www.axios.com/local/washington-dc/2026/04/16/robotaxi-study-waymo-ddot).
+
+There is already a Manifold market on the political trigger: [Waymo serves the general public in Washington, D.C. before 2027](https://manifold.markets/Bayesian/waymo-serves-the-general-public-in). That is useful, but it stops one step too early. If it resolves YES, we learn Waymo launched. We still do not learn whether that was good for public safety.
+
+So I created paired markets for the outcome that matters more:
+
+- If Waymo serves DC before 2027, how safe are DC streets in 2027?
+- If Waymo does not serve DC before 2027, how safe are DC streets in 2027?
+
+The gap between those forecasts is the market's implied estimate of Waymo's aggregate safety effect.
+
+## Why not forecast Waymo crashes?
+
+My first instinct was to ask something like "How many Waymo crashes will there be in DC?" That is the wrong metric.
+
+If Waymo is not legally permitted, Waymo crashes mechanically fall toward zero. That would mostly measure exposure, not safety. A city with no robotaxis has no robotaxi crashes, but that does not mean banning robotaxis made the city safer.
+
+The right question is citywide: total traffic fatalities or serious traffic-crash injuries in DC in 2027. Those can go up or down in either world. They also capture the actual policy tradeoff: whether Waymo replaces riskier human-driven miles, induces extra trips, interacts badly with pedestrians and cyclists, or stays too small to matter.
+
+DC already tracks these outcomes through its [Vision Zero dashboard](https://dcvisionzero.github.io/Crash-Injury-Dashboard/) and crash datasets. The dashboard covers traffic fatalities and major injuries, says DDOT uses the data for safety engineering, and, as of this writing, was updated on April 23, 2026 with crash records through April 21.
+
+Recent data are noisy. DC had roughly 50 traffic fatalities in both 2023 and 2024, fell into the low 20s in 2025, and was back at 14 fatalities year-to-date by late April 2026. Serious injuries have trended down more steadily, from the mid-300s in 2023-2024 to about 300 in 2025.
+
+## The markets
+
+I made four Manifold markets:
+
+| Outcome | If Waymo serves DC before 2027 | If Waymo does not serve DC before 2027 |
+| --- | ---: | ---: |
+| 2027 DC traffic fatalities | [41](https://manifold.markets/MaxGhenis/if-waymo-serves-dc-before-2027-how) | [42](https://manifold.markets/MaxGhenis/if-waymo-does-not-serve-dc-before-2) |
+| 2027 DC serious traffic-crash injuries | [280](https://manifold.markets/MaxGhenis/if-waymo-serves-dc-before-2027-how-hUglCRuRq8) | [285](https://manifold.markets/MaxGhenis/if-waymo-does-not-serve-dc-before-2-t8StNlcEEy) |
+
+Those numbers are my seed estimates from April 25, 2026, not final claims. Markets move.
+
+Disclosure: I created and hold positions in the four conditional markets and traded the trigger market toward my estimate.
+
+My current prices imply a modest expected safety benefit: about one fewer traffic fatality and five fewer serious injuries in 2027 if Waymo serves DC before 2027. That is not because I think autonomous vehicles cannot matter. It is because the outcome is citywide and the first-year exposure is likely small. Even if Waymo is safer per mile than human driving, it takes a lot of substituted miles to visibly move aggregate DC fatality counts.
+
+## What would move the forecast?
+
+I would move the Waymo-launch markets lower on fatalities and injuries if DC authorized a broad rollout earlier than expected, if Waymo announced a large service area, or if evidence from other cities showed large substitution away from human-driven ridehail miles.
+
+I would move them higher if DC limited service to a tiny geofence, required slow expansion, saw operational problems around pedestrians or emergency vehicles, or if early adoption looked like mostly induced trips rather than substituted trips.
+
+I would move both launch and no-launch markets together if the baseline DC traffic-safety trend changed. The biggest uncertainty is not Waymo. It is where DC's underlying safety trend is headed after the unusually low fatality count in 2025 and the sharper 2026 year-to-date pace.
+
+## Market design notes
+
+The key design choice is pairing the launch and no-launch worlds on the same citywide outcomes. That makes the disagreement concrete. If you think Waymo would make DC more dangerous, buy up the launch-conditional fatality and injury markets relative to the no-launch markets. If you think Waymo would make DC safer, push them down.
+
+I also separated market rules from seed rationale. The descriptions define resolution: which official sources count, what year to measure, and when to resolve N/A based on the trigger market. My rationale for the seed prices belongs in comments, not in the resolution criteria. The market should not bake my argument into the rules.
+
+This is the part I eventually want [farness](https://farness.ai/) to support: when a public decision has measurable outcomes, turn the forecast into a set of linked markets. But the general-purpose tooling deserves its own post. Here the point is narrower: if the DC Waymo debate is really about safety, the safety claim should be explicit and tradeable.
 
 ---
 
