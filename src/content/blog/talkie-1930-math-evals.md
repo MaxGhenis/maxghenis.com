@@ -43,7 +43,6 @@ This is much easier than GSM8K, and closer to a base-LM benchmark. I ran all 2,0
 | --- | ---: | ---: | ---: |
 | Single-digit 3 ops | 11.5% | 16.3% | 3.4% |
 | 2-digit addition | 91.6% | 75.7% | 14.0% |
-| 2-digit multiplication | 26.2% | 30.8% | 3.1% |
 | 2-digit subtraction | 51.0% | 49.8% | 11.5% |
 | 3-digit addition | 74.7% | 88.3% | 0.6% |
 | 3-digit subtraction | 47.2% | 48.7% | 1.7% |
@@ -51,6 +50,7 @@ This is much easier than GSM8K, and closer to a base-LM benchmark. I ran all 2,0
 | 4-digit subtraction | 36.1% | 30.7% | 0.1% |
 | 5-digit addition | 31.4% | 24.4% | 0.0% |
 | 5-digit subtraction | 28.2% | 30.1% | 0.0% |
+| 2-digit multiplication | 26.2% | 30.8% | 3.1% |
 | **Overall** | **42.7%** | **42.2%** | **3.4%** |
 
 The 1930 models aren't just refusing. They often put high probability on the right answer, especially for addition (91.6% base on 2-digit, 74.7% base and 88.3% instruct on 3-digit). The pattern breaks on multi-operation expressions, subtraction, multiplication, and larger digits.
@@ -124,4 +124,4 @@ Talkie-1930 fails as a general math reasoner, but it can do arithmetic in narrow
 
 For anything downstream, the arithmetic suite is a better calibration check than GSM8K alone. GSM8K tells us the instruction-tuned model can't reliably solve generated word problems. The arithmetic suite tells us the base model still encodes elementary calculation patterns. The same instruction-tuned model scores 4.9% strict / 7.2% flexible on full 5-shot GSM8K and 42.2% on the arithmetic suite, so elicitation and scoring can dominate the headline number.
 
-The launch post's roughly 62% Numeracy figure averages over unspecified tasks. The public arithmetic suite shows an 11.5%-91.6% spread on the 1930 base model.
+The launch post's roughly 62% Numeracy figure averages over unspecified tasks. The public arithmetic suite shows an 11.5%–91.6% spread on the 1930 base model.
