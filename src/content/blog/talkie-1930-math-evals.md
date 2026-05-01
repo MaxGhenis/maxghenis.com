@@ -9,26 +9,22 @@ heroImage: './talkie-1930-math-evals.png'
 
 I wanted a smaller, inspectable check: can Talkie-1930 do arithmetic at all?
 
-The answer depends on the evaluation. As a generator, it gets 0 of 70 GSM8K attempts right across three prompt styles. As a log-likelihood model on simpler arithmetic completions, it averages 42.8% — ranging from 91.4% on 2-digit addition to 13.0% on 3-operation expressions.
+The answer depends on the evaluation. In full `lm-evaluation-harness` runs, the instruction-tuned model scores 0.0% under the strict GSM8K final-answer parser and 4.3% under the flexible parser in zero-shot. With the standard 5-shot GSM8K prompt, it rises to 4.9% strict and 7.2% flexible. On the easier EleutherAI/OpenAI arithmetic suite, the 1930 base model averages 42.7%, the 1930 instruction model averages 42.2%, and the modern-web base model averages 3.4%.
 
-## GSM8K: Basically no
+## GSM8K: Mostly no
 
-I first tried [GSM8K](https://huggingface.co/datasets/openai/gsm8k), the grade-school math word-problem dataset. I used the instruction-tuned Talkie-1930 model and parsed the final numeric answer.
+I first tried [GSM8K](https://huggingface.co/datasets/openai/gsm8k), the grade-school math word-problem dataset. I used the instruction-tuned Talkie-1930 model, the Talkie instruction chat template, and greedy decoding (`do_sample: false`, `temperature: 0.0`).
 
-| Prompt style | N | Parsed | Correct |
+| Run | N | Strict match | Flexible extract |
 | --- | ---: | ---: | ---: |
-| Direct answer | 50 | 32 | 0 |
-| Zero-shot reasoning | 10 | 9 | 0 |
-| 4-shot reasoning | 10 | 10 | 0 |
+| Zero-shot | 1,319 | 0.0% | 4.3% |
+| 5-shot | 1,319 | 4.9% | 7.2% |
 
-These were custom stochastic probes, not standard lm-eval GSM8K runs: the
-custom runner sampled with `temperature=0.18` and `top_k=20`, used the prompts
-named in the table, and used a simple numeric parser for the Parsed column.
-Zero correct out of 70 attempts. The model usually produced a number, just the wrong one. In the few-shot run it imitated the solution format without doing the arithmetic underneath.
+The strict score requires the GSM8K-style final answer marker (`#### number`). The flexible score extracts a number-like string from the model response. Flexible extraction is more forgiving when a model doesn't follow the GSM8K answer format, but it is still only 7.2% at 5-shot.
 
-I treat these GSM8K numbers as generation probes, not the final benchmark. The repo now includes an `lm-evaluation-harness` path that runs GSM8K with greedy decoding (`do_sample: false`, `temperature: 0.0`); a one-question smoke test runs end to end (the model got it wrong), but I haven't rerun the full table through the harness yet.
+Before running the full harness job, I also ran smaller custom probes: direct answer, zero-shot reasoning, and 4-shot reasoning prompts. Those got 0 of 70 attempts right. I now treat those as audit probes rather than headline benchmark results; the full harness runs above are the reproducible numbers.
 
-That doesn't mean the model has no numeracy. GSM8K requires reading a word problem, tracking quantities, choosing operations, and formatting an answer. For Talkie, generation and instruction-following are themselves part of the bottleneck.
+GSM8K requires reading a word problem, tracking quantities, choosing operations, and formatting an answer. For Talkie, generation and instruction-following are themselves part of the bottleneck.
 
 ## Easier arithmetic: Sometimes yes
 
@@ -41,31 +37,31 @@ Answer:
 
 the model is correct if the exact target completion, like ` 143`, is the greedy continuation under teacher forcing.
 
-This is much easier than GSM8K, and closer to a base-LM benchmark. I sampled 500 examples from each of the 10 arithmetic tasks with seed 1930, using a custom logger that matches the harness task format and saves token-level traces.
+This is much easier than GSM8K, and closer to a base-LM benchmark. I ran all 2,000 validation examples from each of the 10 arithmetic tasks.
 
 | Task | 1930 base | 1930 instruct | Modern-web base |
 | --- | ---: | ---: | ---: |
-| Single-digit 3 ops | 13.0% | 15.8% | 3.6% |
-| 2-digit addition | 91.4% | 74.4% | 16.2% |
-| 2-digit subtraction | 53.6% | 51.6% | 12.8% |
-| 3-digit addition | 73.2% | 90.2% | 0.2% |
-| 3-digit subtraction | 42.4% | 43.6% | 1.2% |
-| 4-digit addition | 33.8% | 31.2% | 0.0% |
-| 4-digit subtraction | 36.8% | 33.0% | 0.0% |
-| 5-digit addition | 32.2% | 23.4% | 0.0% |
-| 5-digit subtraction | 27.8% | 30.8% | 0.0% |
-| 2-digit multiplication | 24.0% | 29.6% | 4.0% |
-| **Overall** | **42.8%** | **42.4%** | **3.8%** |
+| Single-digit 3 ops | 11.5% | 16.3% | 3.4% |
+| 2-digit addition | 91.6% | 75.7% | 14.0% |
+| 2-digit multiplication | 26.2% | 30.8% | 3.1% |
+| 2-digit subtraction | 51.0% | 49.8% | 11.5% |
+| 3-digit addition | 74.7% | 88.3% | 0.6% |
+| 3-digit subtraction | 47.2% | 48.7% | 1.7% |
+| 4-digit addition | 29.5% | 27.7% | 0.0% |
+| 4-digit subtraction | 36.1% | 30.7% | 0.1% |
+| 5-digit addition | 31.4% | 24.4% | 0.0% |
+| 5-digit subtraction | 28.2% | 30.1% | 0.0% |
+| **Overall** | **42.7%** | **42.2%** | **3.4%** |
 
-The 1930 models aren't just refusing. They often put high probability on the right answer, especially for addition (91.4% base on 2-digit, 73.2% on 3-digit). The pattern breaks on multi-operation expressions, subtraction, multiplication, and larger digits.
+The 1930 models aren't just refusing. They often put high probability on the right answer, especially for addition (91.6% base on 2-digit, 74.7% base and 88.3% instruct on 3-digit). The pattern breaks on multi-operation expressions, subtraction, multiplication, and larger digits.
 
-The modern-web base scores 3.8% overall. In many errors it copied an operand instead of computing the result: for "98 plus 45" it preferred ` 98`; for "95 times 45" it preferred ` 95`. I don't read this as evidence that pre-1931 text makes a model more numerate than modern web text. More likely, I'm not reproducing the Talkie authors' exact benchmark setup, or this completion format interacts badly with the modern-web checkpoint.
+The modern-web base scores 3.4% overall. In many errors it copied an operand instead of computing the result: for "98 plus 45" it preferred ` 98`; for "95 times 45" it preferred ` 95`. I don't read this as evidence that pre-1931 text makes a model more numerate than modern web text. More likely, I'm not reproducing the Talkie authors' exact benchmark setup, or this completion format interacts badly with the modern-web checkpoint.
 
 ## The metric is strict
 
 The arithmetic score is format-strict. If the target is digits and the model prefers a word-form answer, the metric counts it wrong. On some two-digit additions the instruction-tuned model preferred tokens like `Forty` before the digit target. That's a legitimate miss under the benchmark, but a different kind of miss than computing the wrong number.
 
-That's why I logged token-level outputs, not just aggregate scores. A single accuracy number hides the difference between "wrong operation," "copied an operand," "right value in the wrong format," and "format-following failure."
+That's why I kept the raw outputs, not just aggregate scores. A single accuracy number hides the difference between "wrong operation," "copied an operand," "right value in the wrong format," and "format-following failure."
 
 ## Reproducibility
 
@@ -75,49 +71,48 @@ I packaged the evaluator as [a small repo](https://github.com/MaxGhenis/talkie-e
 - the Hugging Face model revisions,
 - the arithmetic and GSM8K dataset revisions,
 - the Modal image Python and pip packages,
-- the sample seed, with row-level outputs written to JSON.
+- the sample seed for custom sampled probes, with row-level outputs written to JSON.
 
-The benchmark-style arithmetic run is:
+The full arithmetic harness run is:
 
 ```bash
 uv run talkie-evals harness \
   --model-names talkie-1930-13b-base,talkie-1930-13b-it,talkie-web-13b-base \
   --tasks arithmetic \
-  --sample-size 500
+  --sample-size 0 \
+  --output results/lm_eval_full_arithmetic_all_models.json
 ```
 
-The custom arithmetic audit run that produced the table above is:
-
-```bash
-uv run talkie-evals arithmetic \
-  --model-names talkie-1930-13b-base,talkie-1930-13b-it,talkie-web-13b-base \
-  --sample-size 500 \
-  --log-examples 25
-```
-
-The harness GSM8K command is:
+The full zero-shot GSM8K harness run is:
 
 ```bash
 uv run talkie-evals harness \
   --model-names talkie-1930-13b-it \
   --tasks gsm8k \
-  --sample-size 50 \
+  --sample-size 0 \
   --num-fewshot 0 \
-  --talkie-chat-template
+  --talkie-chat-template \
+  --output results/lm_eval_full_gsm8k_zero_shot_chat.json
 ```
 
-The earlier custom GSM8K direct-answer probe was:
+The full 5-shot GSM8K harness run is:
 
 ```bash
-uv run talkie-evals gsm8k \
-  --model-name talkie-1930-13b-it \
-  --sample-size 50 \
-  --condition-names zero_shot_direct
+uv run talkie-evals harness \
+  --model-names talkie-1930-13b-it \
+  --tasks gsm8k \
+  --sample-size 0 \
+  --talkie-chat-template \
+  --output results/lm_eval_full_gsm8k_5shot_chat.json
 ```
 
-The full raw result JSONs behind the tables are compressed in the repo. These
-are the original custom-run artifacts; the current package code adds more
-explicit provenance for new runs than these early files contain.
+The full raw result JSONs behind the tables are compressed in the repo:
+
+- [Full arithmetic harness run](https://github.com/MaxGhenis/talkie-evals/blob/main/results/raw/lm_eval_full_arithmetic_all_models.json.gz)
+- [Full GSM8K zero-shot harness run](https://github.com/MaxGhenis/talkie-evals/blob/main/results/raw/lm_eval_full_gsm8k_zero_shot_chat.json.gz)
+- [Full GSM8K 5-shot harness run](https://github.com/MaxGhenis/talkie-evals/blob/main/results/raw/lm_eval_full_gsm8k_5shot_chat.json.gz)
+
+The repo also keeps the earlier custom probe outputs:
 
 - [Arithmetic audit run](https://github.com/MaxGhenis/talkie-evals/blob/main/results/raw/arithmetic_eval_talkie-1930-13b-base_talkie-1930-13b-it_talkie-web-13b-base_20260429_214800.json.gz)
 - [GSM8K direct-answer probe](https://github.com/MaxGhenis/talkie-evals/blob/main/results/raw/gsm8k_eval_talkie-1930-13b-it_zero_shot_direct_20260429_170239.json.gz)
@@ -125,8 +120,8 @@ explicit provenance for new runs than these early files contain.
 
 ## Takeaway
 
-Talkie-1930 fails as a general math reasoner, but it can do arithmetic in narrow regimes — addition more than multiplication, two digits more than five.
+Talkie-1930 fails as a general math reasoner, but it can do arithmetic in narrow regimes: addition more than multiplication, two digits more than five.
 
-For anything downstream, the arithmetic suite is a better calibration check than GSM8K alone. GSM8K tells us the instruction-tuned model can't reliably solve generated word problems. The arithmetic suite tells us the base model still encodes elementary calculation patterns. The same instruction-tuned model scores 0/70 on GSM8K and 42.4% on the arithmetic suite — so elicitation and scoring can dominate the headline number.
+For anything downstream, the arithmetic suite is a better calibration check than GSM8K alone. GSM8K tells us the instruction-tuned model can't reliably solve generated word problems. The arithmetic suite tells us the base model still encodes elementary calculation patterns. The same instruction-tuned model scores 4.9% strict / 7.2% flexible on full 5-shot GSM8K and 42.2% on the arithmetic suite, so elicitation and scoring can dominate the headline number.
 
-The launch post's roughly 62% Numeracy figure averages over unspecified tasks. The public arithmetic suite shows a 13.0%–91.4% spread on the 1930 base.
+The launch post's roughly 62% Numeracy figure averages over unspecified tasks. The public arithmetic suite shows an 11.5%-91.6% spread on the 1930 base model.
