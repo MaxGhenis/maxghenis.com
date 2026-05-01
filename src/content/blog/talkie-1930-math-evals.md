@@ -13,7 +13,7 @@ The answer depends on the evaluation. In full `lm-evaluation-harness` runs, the 
 
 ## GSM8K: Mostly no
 
-I first tried [GSM8K](https://huggingface.co/datasets/openai/gsm8k), the grade-school math word-problem dataset. I used the instruction-tuned Talkie-1930 model, the Talkie instruction chat template, and greedy decoding (`do_sample: false`, `temperature: 0.0`).
+I first tried [GSM8K](https://huggingface.co/datasets/openai/gsm8k), the grade-school math word-problem dataset OpenAI released in [Cobbe et al. (2021)](https://arxiv.org/abs/2110.14168). For context, GPT-4 hit [92.0%](https://cdn.openai.com/papers/gpt-4.pdf) on GSM8K at its March 2023 release, and [Claude 3 Opus reported 95.0%](https://www.anthropic.com/news/claude-3-family) in March 2024. I used the instruction-tuned Talkie-1930 model, the Talkie instruction chat template, and greedy decoding (`do_sample: false`, `temperature: 0.0`).
 
 | Run | N | Strict match | Flexible extract |
 | --- | ---: | ---: | ---: |
@@ -22,13 +22,27 @@ I first tried [GSM8K](https://huggingface.co/datasets/openai/gsm8k), the grade-s
 
 The strict score requires the GSM8K-style final answer marker (`#### number`). The flexible score extracts a number-like string from the model response. Flexible extraction is more forgiving when a model doesn't follow the GSM8K answer format, but it is still only 7.2% at 5-shot.
 
+A representative correct 5-shot response:
+
+> **Q:** A robe takes 2 bolts of blue fiber and half that much white fiber. How many bolts in total does it take?
+>
+> **Talkie:** It takes 3 bolts in total because 2+1/2 = `<<2+1/2=3>>`3 bolts. `#### 3` ✓
+
+A typical miss:
+
+> **Q:** Janet's ducks lay 16 eggs per day. She eats three for breakfast every morning and bakes muffins for her friends every day with four. She sells the remainder at the farmers' market daily for $2 per fresh duck egg. How much in dollars does she make every day at the farmers' market?
+>
+> **Talkie:** Janet makes $2 x 16 = `<<32>>`32 per day at the farmers' market. `#### 32` (gold: 18)
+
+The model imitates the GSM8K answer format but skips the operations the problem actually requires.
+
 Before running the full harness job, I also ran smaller custom probes: direct answer, zero-shot reasoning, and 4-shot reasoning prompts. Those got 0 of 70 attempts right. I now treat those as audit probes rather than headline benchmark results; the full harness runs above are the reproducible numbers.
 
 GSM8K requires reading a word problem, tracking quantities, choosing operations, and formatting an answer. For Talkie, generation and instruction-following are themselves part of the bottleneck.
 
 ## Easier arithmetic: Sometimes yes
 
-I then used the [EleutherAI arithmetic dataset](https://huggingface.co/datasets/EleutherAI/arithmetic), which comes from the OpenAI GPT-3 arithmetic tests. The current [lm-evaluation-harness task definitions](https://github.com/EleutherAI/lm-evaluation-harness/tree/main/lm_eval/tasks/arithmetic) score these as log-likelihood tasks: given a context like:
+I then used the [EleutherAI arithmetic dataset](https://huggingface.co/datasets/EleutherAI/arithmetic), which comes from the OpenAI GPT-3 arithmetic tests in [Brown et al. (2020)](https://arxiv.org/abs/2005.14165). For context, GPT-3 175B in that paper (Table 3.9, few-shot) already hit 100% on 2-digit addition, 98.9% on 2-digit subtraction, and 80.4% on 3-digit addition; multiplication and 4–5-digit operations were weaker (29.2% on 2-digit multiplication, 9.3% on 5-digit addition). The current [lm-evaluation-harness task definitions](https://github.com/EleutherAI/lm-evaluation-harness/tree/main/lm_eval/tasks/arithmetic) score these as log-likelihood tasks: given a context like:
 
 ```text
 Question: What is 98 plus 45?
@@ -53,13 +67,13 @@ This is much easier than GSM8K, and closer to a base-LM benchmark. I ran all 2,0
 | 2-digit multiplication | 26.2% | 30.8% | 3.1% |
 | **Overall** | **42.7%** | **42.2%** | **3.4%** |
 
-The 1930 models aren't just refusing. They often put high probability on the right answer, especially for addition (91.6% base on 2-digit, 74.7% base and 88.3% instruct on 3-digit). The pattern breaks on multi-operation expressions, subtraction, multiplication, and larger digits.
+The 1930 models aren't just refusing. They often put high probability on the right answer, especially for addition (91.6% base on 2-digit, 74.7% base and 88.3% instruct on 3-digit). For "What is 98 plus 45?" the 1930 base preferred the correct ` 143`. The pattern breaks on multi-operation expressions, subtraction, multiplication, and larger digits.
 
-The modern-web base scores 3.4% overall. In many errors it copied an operand instead of computing the result: for "98 plus 45" it preferred ` 98`; for "95 times 45" it preferred ` 95`. I don't read this as evidence that pre-1931 text makes a model more numerate than modern web text. More likely, I'm not reproducing the Talkie authors' exact benchmark setup, or this completion format interacts badly with the modern-web checkpoint.
+The modern-web base scores 3.4% overall. In many errors it copied an operand instead of computing the result: for "What is 98 plus 45?" it preferred ` 98` over ` 143`; for "What is 92 times 7?" it preferred ` 92` over ` 644`. In a 500-row custom audit, 70% of its 2-digit addition rows and 25% of its 2-digit multiplication rows were exact operand copies. I don't read this as evidence that pre-1931 text makes a model more numerate than modern web text. More likely, I'm not reproducing the Talkie authors' exact benchmark setup, or this completion format interacts badly with the modern-web checkpoint.
 
 ## The metric is strict
 
-The arithmetic score is format-strict. If the target is digits and the model prefers a word-form answer, the metric counts it wrong. On some two-digit additions the instruction-tuned model preferred tokens like `Forty` before the digit target. That's a legitimate miss under the benchmark, but a different kind of miss than computing the wrong number.
+The arithmetic score is format-strict. If the target is digits and the model prefers a word-form answer, the metric counts it wrong. On "What is 70 plus 15?" the instruction-tuned model gave ` Eighty` higher probability (logprob -0.29) than the leading space of the digit target ` 85` (-1.67). That's a legitimate miss under the benchmark, but a different kind of miss than computing the wrong number.
 
 That's why I kept the raw outputs, not just aggregate scores. A single accuracy number hides the difference between "wrong operation," "copied an operand," "right value in the wrong format," and "format-following failure."
 
