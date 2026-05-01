@@ -1,0 +1,32 @@
+---
+const src = "https://talkie-evals-browser.vercel.app/";
+const allowedOrigin = "https://talkie-evals-browser.vercel.app";
+---
+
+<div
+  style="width: 100%; border-radius: 4px; overflow: hidden; border: 1px solid #c9b88a; box-shadow: 0 1px 3px rgba(0,0,0,0.06);"
+>
+  <iframe
+    id="talkie-evals-iframe"
+    src={src}
+    width="100%"
+    height="900"
+    style="border: none; display: block; min-height: 600px;"
+    title="Talkie-1930 examination booklet"
+    loading="lazy"
+  ></iframe>
+</div>
+
+<script is:inline define:vars={{ allowedOrigin }}>
+  (function () {
+    const iframe = document.getElementById("talkie-evals-iframe");
+    if (!iframe) return;
+    window.addEventListener("message", function (e) {
+      if (e.origin !== allowedOrigin) return;
+      const data = e.data;
+      if (!data || data.source !== "talkie-evals-browser") return;
+      const h = Math.max(600, Math.min(2400, Number(data.height) || 0));
+      if (h) iframe.style.height = h + "px";
+    });
+  })();
+</script>
