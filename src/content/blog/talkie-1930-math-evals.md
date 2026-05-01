@@ -112,6 +112,12 @@ uv run talkie-evals gsm8k \
   --condition-names zero_shot_direct
 ```
 
+The full raw result JSONs behind the tables are compressed in the repo:
+
+- [Arithmetic audit run](https://github.com/MaxGhenis/talkie-evals/blob/main/results/raw/arithmetic_eval_talkie-1930-13b-base_talkie-1930-13b-it_talkie-web-13b-base_20260429_214800.json.gz)
+- [GSM8K direct-answer probe](https://github.com/MaxGhenis/talkie-evals/blob/main/results/raw/gsm8k_eval_talkie-1930-13b-it_zero_shot_direct_20260429_170239.json.gz)
+- [GSM8K reasoning probes](https://github.com/MaxGhenis/talkie-evals/blob/main/results/raw/gsm8k_eval_talkie-1930-13b-it_cot_20260429_170728.json.gz)
+
 ## Takeaway
 
 Talkie-1930 fails as a general math reasoner, but it can do arithmetic in narrow regimes — addition more than multiplication, two digits more than five.
