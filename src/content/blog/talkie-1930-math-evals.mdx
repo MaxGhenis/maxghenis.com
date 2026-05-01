@@ -5,6 +5,8 @@ pubDate: 'Apr 30 2026'
 heroImage: './talkie-1930-math-evals.png'
 ---
 
+import CrosspostAware from '../../components/CrosspostAware.astro';
+
 [Talkie](https://talkie-lm.com/introducing-talkie) is a 13B language model trained only on text available before 1931. Its launch post includes a "Numeracy" panel showing talkie-1930 reaching about 62% average accuracy at peak training compute, slightly above the modern-web twin's roughly 57%. But the plot doesn't specify which tasks the average covers, which prompts were used, or how answers were scored.
 
 I wanted a smaller, inspectable check: can Talkie-1930 do arithmetic at all?
@@ -76,6 +78,28 @@ The modern-web base scores 3.4% overall. In many errors it copied an operand ins
 The arithmetic score is format-strict. If the target is digits and the model prefers a word-form answer, the metric counts it wrong. On "What is 70 plus 15?" the instruction-tuned model gave ` Eighty` higher probability (logprob -0.29) than the leading space of the digit target ` 85` (-1.67). That's a legitimate miss under the benchmark, but a different kind of miss than computing the wrong number.
 
 That's why I kept the raw outputs, not just aggregate scores. A single accuracy number hides the difference between "wrong operation," "copied an operand," "right value in the wrong format," and "format-following failure."
+
+## Browse the responses
+
+You can step through every Talkie response below — all 1,319 GSM8K questions across both runs and all 15,000 arithmetic rows across the three models. Filter by run, metric, and grade for GSM8K, or by candidate (1930 base, 1930 instruct, modern-web base) and subject for arithmetic.
+
+<CrosspostAware>
+  <div slot="interactive" style="width: 100%; border-radius: 4px; overflow: hidden; border: 1px solid #c9b88a; box-shadow: 0 1px 3px rgba(0,0,0,0.06);">
+    <iframe
+      src="https://talkie-evals-browser.vercel.app/"
+      width="100%"
+      height="780"
+      style="border: none; display: block;"
+      title="Talkie-1930 examination booklet"
+      loading="lazy"
+    />
+  </div>
+  <Fragment slot="static">
+    *[Browse all 16,319 evaluation responses in the examination booklet on the full post](https://maxghenis.com/blog/talkie-1930-math-evals/)*
+  </Fragment>
+</CrosspostAware>
+
+The standalone version: [talkie-evals-browser.vercel.app](https://talkie-evals-browser.vercel.app/).
 
 ## Reproducibility
 
