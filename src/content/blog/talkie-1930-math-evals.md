@@ -21,6 +21,9 @@ I first tried [GSM8K](https://huggingface.co/datasets/openai/gsm8k), the grade-s
 | Zero-shot reasoning | 10 | 9 | 0 |
 | 4-shot reasoning | 10 | 10 | 0 |
 
+These were custom stochastic probes, not standard lm-eval GSM8K runs: the
+custom runner sampled with `temperature=0.18` and `top_k=20`, used the prompts
+named in the table, and used a simple numeric parser for the Parsed column.
 Zero correct out of 70 attempts. The model usually produced a number, just the wrong one. In the few-shot run it imitated the solution format without doing the arithmetic underneath.
 
 I treat these GSM8K numbers as generation probes, not the final benchmark. The repo now includes an `lm-evaluation-harness` path that runs GSM8K with greedy decoding (`do_sample: false`, `temperature: 0.0`); a one-question smoke test runs end to end (the model got it wrong), but I haven't rerun the full table through the harness yet.
@@ -112,7 +115,9 @@ uv run talkie-evals gsm8k \
   --condition-names zero_shot_direct
 ```
 
-The full raw result JSONs behind the tables are compressed in the repo:
+The full raw result JSONs behind the tables are compressed in the repo. These
+are the original custom-run artifacts; the current package code adds more
+explicit provenance for new runs than these early files contain.
 
 - [Arithmetic audit run](https://github.com/MaxGhenis/talkie-evals/blob/main/results/raw/arithmetic_eval_talkie-1930-13b-base_talkie-1930-13b-it_talkie-web-13b-base_20260429_214800.json.gz)
 - [GSM8K direct-answer probe](https://github.com/MaxGhenis/talkie-evals/blob/main/results/raw/gsm8k_eval_talkie-1930-13b-it_zero_shot_direct_20260429_170239.json.gz)
