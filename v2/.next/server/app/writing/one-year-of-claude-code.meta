@@ -1,0 +1,17 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/writing/layout,_N_T_/writing/(posts)/layout,_N_T_/writing/(posts)/one-year-of-claude-code/layout,_N_T_/writing/(posts)/one-year-of-claude-code/page,_N_T_/writing/one-year-of-claude-code"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/writing/!KHBvc3RzKQ/one-year-of-claude-code/__PAGE__",
+    "/writing/!KHBvc3RzKQ/one-year-of-claude-code",
+    "/writing/!KHBvc3RzKQ",
+    "/writing",
+    "/_index",
+    "/_head"
+  ]
+}

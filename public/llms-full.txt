@@ -1,45 +1,226 @@
 # Max Ghenis - Full Content
 
 > This file contains the full text of all blog posts from maxghenis.com, formatted for LLM consumption.
-> Generated: 2026-04-30T11:16:33.066Z
+> Generated: 2026-05-06T01:50:24.917Z
 > See also: /llms.txt for a curated overview
 
 ---
 
 ## Table of Contents
 
-1. [Will Waymo make DC streets safer?](/blog/waymo-dc-safety-markets/)
-2. [Billionaires aren't 'just as likely' to be nonpayers as top taxpayers](/blog/madoff-billionaire-nonpayers/)
-3. [I built a MyST-to-Quarto converter (and why you might need one)](/blog/mystquarto/)
-4. [One year of Claude Code](/blog/my-claude-code-config/)
-5. [Interactive replication of GiveWell''s cost-effectiveness analysis](/blog/givewell-cea/)
-6. [Why you can''t make double eye contact](/blog/double-eye-contact/)
-7. [OpenMessage: How I built a macOS Google Messages client to give Claude my texts](/blog/openmessage/)
-8. [Where US immigrants come from, and where ICE focuses enforcement](/blog/bad-bunny-immigration-enforcement/)
-9. [I used Claude Code to recertify for SNAP](/blog/snap-recertification-claude-code/)
-10. [Scrollywood: Smooth scroll video recording for the web](/blog/scrollywood/)
-11. [The adolescence of policy simulation: On Amodei and economic disruption](/blog/amodei-adolescence-policyengine/)
-12. [opencollective-py: Manage OpenCollective from your terminal or Claude Code](/blog/opencollective-py/)
-13. [From IDE to AI orchestration: The end of code-first development](/blog/ide-to-ai-orchestration/)
-14. [TerminalGrid: Turn VS Code into a Claude Code superterminal](/blog/terminalgrid/)
-15. [RAMBar: A macOS menu bar RAM monitor for developers](/blog/rambar/)
-16. [How to Use MDX for Interactive Posts](/blog/using-mdx/)
-17. [VAT thresholds, revenues, and the role of counterfactuals](/blog/vat-thresholds/)
-18. [AI models favor Cuomo over Mamdani on NYC housing production](/blog/ai-models-nyc-housing/)
-19. [My 2024 in code: Personal projects and AI tools](/blog/my-2024-in-code/)
-20. [Why I'm a neoliberal](/blog/why-im-a-neoliberal/)
-21. [In appointing their newest member, the Ventura City Council only pretended to care about housing](/blog/in-appointing-their-newest-member-the-ventura-city/)
-22. [If you earned more in 2019 than 2018, don't file your 2019 taxes yet! Otherwise, file ASAP!](/blog/if-you-earned-more-in-2019-than-2018-dont-file-you/)
-23. [Why I’ve taken the Giving What We Can pledge](/blog/why-ive-taken-the-giving-what-we-can-pledge/)
-24. [Ventura County must end its unsheltered homelessness](/blog/ventura-county-must-end-its-unsheltered-homelessne/)
-25. [Warren’s wealth tax would raise less than she claims — even using her economists’ own assumptions](/blog/warrens-wealth-tax-would-raise-less-than-she-claim/)
-26. [Andrew Yang's troubling Tucker Carlson interview](/blog/andrew-yangs-troubling-tucker-carlson-interview/)
-27. [Quantile regression, from linear models to trees to deep learning](/blog/quantile-regression-from-linear-models-to-trees-to/)
-28. [We should replace the Child Tax Credit with a universal child benefit](/blog/we-should-replace-the-child-tax-credit-with-a-univ/)
-29. [The case for a wonky basic income plan](/blog/the-case-for-a-wonky-basic-income-plan/)
-30. [Reddit featured a misleading headline on education secretary nominee Betsy DeVos](/blog/reddit-featured-a-misleading-headline-on-education/)
-31. [Uber's tipping settlement will reduce earnings of African-American drivers](/blog/ubers-tipping-settlement-will-reduce-earnings-of-a/)
-32. [If we can afford our current welfare system, we can afford basic income](/blog/if-we-can-afford-our-current-welfare-system-we-can/)
+1. [Can Talkie-1930 do arithmetic?](/blog/talkie-1930-math-evals/)
+2. [Will Waymo make DC streets safer?](/blog/waymo-dc-safety-markets/)
+3. [Billionaires aren't 'just as likely' to be nonpayers as top taxpayers](/blog/madoff-billionaire-nonpayers/)
+4. [I built a MyST-to-Quarto converter (and why you might need one)](/blog/mystquarto/)
+5. [One year of Claude Code](/blog/my-claude-code-config/)
+6. [Interactive replication of GiveWell''s cost-effectiveness analysis](/blog/givewell-cea/)
+7. [Why you can''t make double eye contact](/blog/double-eye-contact/)
+8. [OpenMessage: How I built a macOS Google Messages client to give Claude my texts](/blog/openmessage/)
+9. [Where US immigrants come from, and where ICE focuses enforcement](/blog/bad-bunny-immigration-enforcement/)
+10. [I used Claude Code to recertify for SNAP](/blog/snap-recertification-claude-code/)
+11. [Scrollywood: Smooth scroll video recording for the web](/blog/scrollywood/)
+12. [The adolescence of policy simulation: On Amodei and economic disruption](/blog/amodei-adolescence-policyengine/)
+13. [opencollective-py: Manage OpenCollective from your terminal or Claude Code](/blog/opencollective-py/)
+14. [From IDE to AI orchestration: The end of code-first development](/blog/ide-to-ai-orchestration/)
+15. [TerminalGrid: Turn VS Code into a Claude Code superterminal](/blog/terminalgrid/)
+16. [RAMBar: A macOS menu bar RAM monitor for developers](/blog/rambar/)
+17. [How to Use MDX for Interactive Posts](/blog/using-mdx/)
+18. [VAT thresholds, revenues, and the role of counterfactuals](/blog/vat-thresholds/)
+19. [AI models favor Cuomo over Mamdani on NYC housing production](/blog/ai-models-nyc-housing/)
+20. [My 2024 in code: Personal projects and AI tools](/blog/my-2024-in-code/)
+21. [Why I'm a neoliberal](/blog/why-im-a-neoliberal/)
+22. [In appointing their newest member, the Ventura City Council only pretended to care about housing](/blog/in-appointing-their-newest-member-the-ventura-city/)
+23. [If you earned more in 2019 than 2018, don't file your 2019 taxes yet! Otherwise, file ASAP!](/blog/if-you-earned-more-in-2019-than-2018-dont-file-you/)
+24. [Why I’ve taken the Giving What We Can pledge](/blog/why-ive-taken-the-giving-what-we-can-pledge/)
+25. [Ventura County must end its unsheltered homelessness](/blog/ventura-county-must-end-its-unsheltered-homelessne/)
+26. [Warren’s wealth tax would raise less than she claims — even using her economists’ own assumptions](/blog/warrens-wealth-tax-would-raise-less-than-she-claim/)
+27. [Andrew Yang's troubling Tucker Carlson interview](/blog/andrew-yangs-troubling-tucker-carlson-interview/)
+28. [Quantile regression, from linear models to trees to deep learning](/blog/quantile-regression-from-linear-models-to-trees-to/)
+29. [We should replace the Child Tax Credit with a universal child benefit](/blog/we-should-replace-the-child-tax-credit-with-a-univ/)
+30. [The case for a wonky basic income plan](/blog/the-case-for-a-wonky-basic-income-plan/)
+31. [Reddit featured a misleading headline on education secretary nominee Betsy DeVos](/blog/reddit-featured-a-misleading-headline-on-education/)
+32. [Uber's tipping settlement will reduce earnings of African-American drivers](/blog/ubers-tipping-settlement-will-reduce-earnings-of-a/)
+33. [If we can afford our current welfare system, we can afford basic income](/blog/if-we-can-afford-our-current-welfare-system-we-can/)
+
+---
+
+## Can Talkie-1930 do arithmetic?
+
+**URL:** https://maxghenis.com/blog/talkie-1930-math-evals/
+**Published:** Apr 30 2026
+**Description:** I tested Talkie-1930 on GSM8K and the easier EleutherAI/OpenAI arithmetic suite, then packaged an lm-eval-harness runner so the runs are reproducible.
+
+import CrosspostAware from '../../components/CrosspostAware.astro';
+import TalkieEvalsEmbed from '../../components/TalkieEvalsEmbed.astro';
+
+[Talkie](https://talkie-lm.com/introducing-talkie) is a 13B language model trained only on text available before 1931. Its launch post includes a "Numeracy" panel showing talkie-1930 reaching about 62% average accuracy at peak training compute, slightly above the modern-web twin's roughly 57%. But the plot doesn't specify which tasks the average covers, which prompts were used, or how answers were scored.
+
+I wanted a smaller, inspectable check: can Talkie-1930 do arithmetic at all?
+
+The answer depends on the evaluation. In full `lm-evaluation-harness` runs, the instruction-tuned model scores 0.0% under the strict GSM8K final-answer parser and 4.3% under the flexible parser in zero-shot. With the standard 5-shot GSM8K prompt, it rises to 4.9% strict and 7.2% flexible. On the easier EleutherAI/OpenAI arithmetic suite, the 1930 base model averages 42.7%, the 1930 instruction model averages 42.2%, and the modern-web base model averages 3.4%.
+
+## GSM8K: Mostly no
+
+I first tried [GSM8K](https://huggingface.co/datasets/openai/gsm8k), the grade-school math word-problem dataset OpenAI released in [Cobbe et al. (2021)](https://arxiv.org/abs/2110.14168). For context, the same-size [LLaMA 13B reports 17.8%](https://arxiv.org/abs/2302.13971) (Touvron et al. 2023, Table 7); GPT-4 hit [92.0%](https://cdn.openai.com/papers/gpt-4.pdf) at its March 2023 release; [Claude 3 Opus reported 95.0%](https://www.anthropic.com/news/claude-3-family) in March 2024. I used the instruction-tuned Talkie-1930 model, the Talkie instruction chat template, and greedy decoding (`do_sample: false`, `temperature: 0.0`).
+
+| Run | N | Strict match | Flexible extract |
+| --- | ---: | ---: | ---: |
+| Zero-shot | 1,319 | 0.0% | 4.3% |
+| 5-shot | 1,319 | 4.9% | 7.2% |
+
+The strict score requires the GSM8K-style final answer marker (`#### number`). The flexible score extracts a number-like string from the model response. Flexible extraction is more forgiving when a model doesn't follow the GSM8K answer format, but it is still only 7.2% at 5-shot.
+
+A representative correct 5-shot response:
+
+> **Q:** A robe takes 2 bolts of blue fiber and half that much white fiber. How many bolts in total does it take?
+>
+> **Talkie:** It takes 3 bolts in total because 2+1/2 = `<<2+1/2=3>>`3 bolts. `#### 3` ✓
+
+A typical miss:
+
+> **Q:** Janet's ducks lay 16 eggs per day. She eats three for breakfast every morning and bakes muffins for her friends every day with four. She sells the remainder at the farmers' market daily for $2 per fresh duck egg. How much in dollars does she make every day at the farmers' market?
+>
+> **Talkie:** Janet makes $2 x 16 = `<<32>>`32 per day at the farmers' market. `#### 32` (gold: 18)
+
+The model imitates the GSM8K answer format but skips the operations the problem actually requires.
+
+Before running the full harness job, I also ran smaller custom probes: direct answer, zero-shot reasoning, and 4-shot reasoning prompts. Those got 0 of 70 attempts right. I now treat those as audit probes rather than headline benchmark results; the full harness runs above are the reproducible numbers.
+
+GSM8K requires reading a word problem, tracking quantities, choosing operations, and formatting an answer. For Talkie, generation and instruction-following are themselves part of the bottleneck.
+
+## Easier arithmetic: Sometimes yes
+
+I then used the [EleutherAI arithmetic dataset](https://huggingface.co/datasets/EleutherAI/arithmetic), which comes from the OpenAI GPT-3 arithmetic tests in [Brown et al. (2020)](https://arxiv.org/abs/2005.14165). For context, GPT-3 175B in that paper (Table 3.9, few-shot) already hit 100% on 2-digit addition, 98.9% on 2-digit subtraction, and 80.4% on 3-digit addition; multiplication and 4–5-digit operations were weaker (29.2% on 2-digit multiplication, 9.3% on 5-digit addition). The current [lm-evaluation-harness task definitions](https://github.com/EleutherAI/lm-evaluation-harness/tree/main/lm_eval/tasks/arithmetic) score these as log-likelihood tasks: given a context like:
+
+```text
+Question: What is 98 plus 45?
+Answer:
+```
+
+the model is correct if the exact target completion, like ` 143`, is the greedy continuation under teacher forcing.
+
+This is much easier than GSM8K, and closer to a base-LM benchmark. I ran all 2,000 validation examples from each of the 10 arithmetic tasks.
+
+| Task | 1930 base | 1930 instruct | Modern-web base |
+| --- | ---: | ---: | ---: |
+| Single-digit 3 ops | 11.5% | 16.3% | 3.4% |
+| 2-digit addition | 91.6% | 75.7% | 14.0% |
+| 2-digit subtraction | 51.0% | 49.8% | 11.5% |
+| 3-digit addition | 74.7% | 88.3% | 0.6% |
+| 3-digit subtraction | 47.2% | 48.7% | 1.7% |
+| 4-digit addition | 29.5% | 27.7% | 0.0% |
+| 4-digit subtraction | 36.1% | 30.7% | 0.1% |
+| 5-digit addition | 31.4% | 24.4% | 0.0% |
+| 5-digit subtraction | 28.2% | 30.1% | 0.0% |
+| 2-digit multiplication | 26.2% | 30.8% | 3.1% |
+| **Overall** | **42.7%** | **42.2%** | **3.4%** |
+
+The 1930 models aren't just refusing. They often pick the right answer as their top continuation, especially for addition (91.6% base on 2-digit, 74.7% base and 88.3% instruct on 3-digit). For "What is 98 plus 45?" the 1930 base preferred the correct ` 143`. When the base model is correct on 2-digit addition, its median probability on the full target sequence is 51.6% — winning the argmax, not asserting confidently. The pattern breaks on multi-operation expressions, subtraction, multiplication, and larger digits.
+
+The modern-web base scores 3.4% overall. In many errors it copied an operand instead of computing the result: for "What is 98 plus 45?" it preferred ` 98` over ` 143`; for "What is 92 times 7?" it preferred ` 92` over ` 644`. In a 500-row custom audit, 70% of its 2-digit addition rows and 25% of its 2-digit multiplication rows were exact operand copies. I don't read this as evidence that pre-1931 text makes a model more numerate than modern web text. More likely, I'm not reproducing the Talkie authors' exact benchmark setup, or this completion format interacts badly with the modern-web checkpoint.
+
+## Compared to same-size GPT-3
+
+The arithmetic suite first appears in [Brown et al. (2020)](https://arxiv.org/abs/2005.14165). The natural same-size baseline is GPT-3 13B; GPT-3 175B is the headline. Few-shot accuracies from Appendix H, Table H.1:
+
+| Task | GPT-3 13B | GPT-3 175B | Talkie-1930 13B base |
+| --- | ---: | ---: | ---: |
+| Single-digit 3 ops | 9.95% | 21.3% | 11.5% |
+| 2-digit addition | 55.5% | 100.0% | 91.6% |
+| 2-digit subtraction | 52.4% | 98.9% | 51.0% |
+| 3-digit addition | 8.4% | 80.4% | 74.7% |
+| 3-digit subtraction | 9.2% | 94.2% | 47.2% |
+| 4-digit addition | 0.4% | 25.5% | 29.5% |
+| 4-digit subtraction | 0.4% | 26.8% | 36.1% |
+| 5-digit addition | 0.05% | 9.3% | 31.4% |
+| 5-digit subtraction | 0.0% | 9.9% | 28.2% |
+| 2-digit multiplication | 7.05% | 29.2% | 26.2% |
+
+Talkie-1930 13B base trails GPT-3 13B on 2-digit subtraction (51.0% vs 52.4%) and is essentially tied on single-digit composite (11.5% vs 9.95%). On the other eight tasks it scores higher than GPT-3 13B. On 4-digit and 5-digit add/subtract it also scores higher than GPT-3 175B, despite being 13× smaller.
+
+A 13B model trained only on pre-1931 text matches or exceeds GPT-3 175B on most rote arithmetic completions. It also scores 4.9% strict on GSM8K word problems, against 17.8% for same-size LLaMA 13B. The capability gap with modern frontier models lives in instruction-following, chain-of-thought, and word-problem framing — not in the underlying numeric pattern matching.
+
+## The metric is strict
+
+The arithmetic score is format-strict. If the target is digits and the model prefers a word-form answer, the metric counts it wrong. On "What is 70 plus 15?" the instruction-tuned model gave ` Eighty` higher probability (logprob -0.29) than the leading space of the digit target ` 85` (-1.67). That's a legitimate miss under the benchmark, but a different kind of miss than computing the wrong number.
+
+That's why I kept the raw outputs, not just aggregate scores. A single accuracy number hides the difference between "wrong operation," "copied an operand," "right value in the wrong format," and "format-following failure."
+
+## Browse the responses
+
+You can step through every Talkie response below — all 1,319 GSM8K questions across both runs and all 15,000 arithmetic rows across the three models. Filter by run, metric, and grade for GSM8K, or by candidate (1930 base, 1930 instruct, modern-web base) and subject for arithmetic.
+
+<CrosspostAware>
+  <TalkieEvalsEmbed slot="interactive" />
+  <Fragment slot="static">
+    *[Browse all 16,319 evaluation responses in the examination booklet on the full post](https://maxghenis.com/blog/talkie-1930-math-evals/)*
+  </Fragment>
+</CrosspostAware>
+
+The standalone version: [talkie-evals-browser.vercel.app](https://talkie-evals-browser.vercel.app/).
+
+## Reproducibility
+
+I packaged the evaluator as [a small repo](https://github.com/MaxGhenis/talkie-evals) using Modal for CUDA. It includes an `lm-evaluation-harness` adapter for benchmark-style runs and custom audit commands that log row-level arithmetic traces. The package pins:
+
+- the Talkie Python package commit,
+- the Hugging Face model revisions,
+- the arithmetic and GSM8K dataset revisions,
+- the Modal image Python and pip packages,
+- the sample seed for custom sampled probes, with row-level outputs written to JSON.
+
+The full arithmetic harness run is:
+
+```bash
+uv run talkie-evals harness \
+  --model-names talkie-1930-13b-base,talkie-1930-13b-it,talkie-web-13b-base \
+  --tasks arithmetic \
+  --sample-size 0 \
+  --output results/lm_eval_full_arithmetic_all_models.json
+```
+
+The full zero-shot GSM8K harness run is:
+
+```bash
+uv run talkie-evals harness \
+  --model-names talkie-1930-13b-it \
+  --tasks gsm8k \
+  --sample-size 0 \
+  --num-fewshot 0 \
+  --talkie-chat-template \
+  --output results/lm_eval_full_gsm8k_zero_shot_chat.json
+```
+
+The full 5-shot GSM8K harness run is:
+
+```bash
+uv run talkie-evals harness \
+  --model-names talkie-1930-13b-it \
+  --tasks gsm8k \
+  --sample-size 0 \
+  --talkie-chat-template \
+  --output results/lm_eval_full_gsm8k_5shot_chat.json
+```
+
+The full raw result JSONs behind the tables are compressed in the repo:
+
+- [Full arithmetic harness run](https://github.com/MaxGhenis/talkie-evals/blob/main/results/raw/lm_eval_full_arithmetic_all_models.json.gz)
+- [Full GSM8K zero-shot harness run](https://github.com/MaxGhenis/talkie-evals/blob/main/results/raw/lm_eval_full_gsm8k_zero_shot_chat.json.gz)
+- [Full GSM8K 5-shot harness run](https://github.com/MaxGhenis/talkie-evals/blob/main/results/raw/lm_eval_full_gsm8k_5shot_chat.json.gz)
+
+The repo also keeps the earlier custom probe outputs:
+
+- [Arithmetic audit run](https://github.com/MaxGhenis/talkie-evals/blob/main/results/raw/arithmetic_eval_talkie-1930-13b-base_talkie-1930-13b-it_talkie-web-13b-base_20260429_214800.json.gz)
+- [GSM8K direct-answer probe](https://github.com/MaxGhenis/talkie-evals/blob/main/results/raw/gsm8k_eval_talkie-1930-13b-it_zero_shot_direct_20260429_170239.json.gz)
+- [GSM8K reasoning probes](https://github.com/MaxGhenis/talkie-evals/blob/main/results/raw/gsm8k_eval_talkie-1930-13b-it_cot_20260429_170728.json.gz)
+
+## Takeaway
+
+Talkie-1930's capability profile is split along an unusual seam. On rote arithmetic completion, the 13B base matches or exceeds GPT-3 175B (the 2020 frontier) on most tasks while running at 13× fewer parameters. On grade-school word problems, the 13B instruction-tuned model scores 4.9% strict on 5-shot GSM8K, against 17.8% for same-size LLaMA 13B and 92.0%+ for any 2024-vintage frontier model. Same model. Two benchmarks. Different eras of capability.
+
+The arithmetic suite is a better calibration check than GSM8K alone. GSM8K tells us the instruction-tuned model can't reliably solve generated word problems. The arithmetic suite tells us the base model still encodes elementary calculation patterns at GPT-3-175B level. The same instruction-tuned model scores 4.9% strict / 7.2% flexible on full 5-shot GSM8K and 42.2% on the arithmetic suite — elicitation and scoring can dominate the headline number.
+
+The launch post's roughly 62% Numeracy figure averages over unspecified tasks. The public arithmetic suite shows an 11.5%–91.6% spread on the 1930 base model.
 
 ---
 

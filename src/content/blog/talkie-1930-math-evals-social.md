@@ -16,7 +16,7 @@ Repo: https://github.com/MaxGhenis/talkie-evals
 Talkie-1930 is a 13B language model trained only on pre-1931 text. I tested its math.
 
 On rote arithmetic, it matches or exceeds GPT-3 175B (13× larger).
-On GSM8K word problems, it's 4× worse than same-size LLaMA 13B.
+On 5-shot GSM8K word problems, it scores 4.9% — same-size LLaMA 13B scores 17.8%.
 
 Same model. Two benchmarks. Different eras of capability.
 

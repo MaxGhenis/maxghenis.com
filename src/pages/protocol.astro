@@ -347,6 +347,12 @@ const statusColors: Record<string, string> = {
 												{s.bundle_id && s.bundle_cost_share > 0 && (
 													<>Bundle allocation: ${s.bundle_cost_share}/yr from {s.bundle_id.replace(/_/g, ' ')}<br/></>
 												)}
+												{s.ci_low != null && s.ci_high != null && (
+													<>QALY days 95% CI: {s.ci_low.toFixed(0)} to {s.ci_high.toFixed(0)}<br/></>
+												)}
+												{s.qol_effects?.length > 0 && (
+													<>QoL components: {s.qol_effects.map((e) => `${e.label}: ${e.mean_days >= 0 ? '+' : ''}${e.mean_days.toFixed(1)}d`).join('; ')}<br/></>
+												)}
 												{s.notes}
 												{s.sources?.length > 0 && <><br/><a href={s.sources[0]}>Product link</a></>}
 											</p>
@@ -657,6 +663,8 @@ const statusColors: Record<string, string> = {
 														{s.hr_posterior_median != null && <> &rarr; posterior: <strong>{s.hr_posterior_median.toFixed(3)}</strong></>}
 														{s.study_quality && <> | tier: {s.study_quality.replace(/_/g, ' ')}</>}
 														 | QoL: {s.qol_annual > 0 ? '+' : ''}{s.qol_annual}/yr
+														{s.ci_low != null && s.ci_high != null && <> | 95% days CI: {s.ci_low.toFixed(0)} to {s.ci_high.toFixed(0)}</>}
+														{s.qol_effects?.length > 0 && <><br/>QoL components: {s.qol_effects.map((e) => `${e.label}: ${e.mean_days >= 0 ? '+' : ''}${e.mean_days.toFixed(1)}d`).join('; ')}</>}
 														<br/>{s.notes}{s.sources?.length > 0 && <><br/><a href={s.sources[0]}>Product link</a></>}
 													</p>
 													</details>

@@ -1,0 +1,11 @@
+{
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/data/page": "/data",
+  "/favicon.ico/route": "/favicon.ico",
+  "/models/page": "/models",
+  "/page": "/",
+  "/tools/page": "/tools",
+  "/writing/(posts)/one-year-of-claude-code/page": "/writing/one-year-of-claude-code",
+  "/writing/page": "/writing"
+}

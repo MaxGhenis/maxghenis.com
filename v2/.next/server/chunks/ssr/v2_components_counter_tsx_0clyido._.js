@@ -1,0 +1,3 @@
+module.exports=[97915,a=>{"use strict";var b=a.i(64868),c=a.i(72282);a.s(["Counter",0,function({to:a,duration:d=1600,format:e=a=>a.toLocaleString("en-US"),delay:f=0}){let[g,h]=(0,c.useState)(0),i=(0,c.useRef)(!1);return(0,c.useEffect)(()=>{if(i.current)return;i.current=!0;let b=0,c=performance.now()+f,e=f=>{let g=f-c;if(g<0){b=requestAnimationFrame(e);return}let i=Math.min(1,g/d);h(Math.round((1-Math.pow(1-i,3))*a)),i<1&&(b=requestAnimationFrame(e))};return b=requestAnimationFrame(e),()=>cancelAnimationFrame(b)},[a,d,f]),(0,b.jsx)("span",{className:"tabular",children:e(g)})}])}];
+
+//# sourceMappingURL=v2_components_counter_tsx_0clyido._.js.map
