@@ -70,7 +70,7 @@ This is much easier than GSM8K, and closer to a base-LM benchmark. I ran all 2,0
 | 2-digit multiplication | 26.2% | 30.8% | 3.1% |
 | **Overall** | **42.7%** | **42.2%** | **3.4%** |
 
-The 1930 models aren't just refusing. They often put high probability on the right answer, especially for addition (91.6% base on 2-digit, 74.7% base and 88.3% instruct on 3-digit). For "What is 98 plus 45?" the 1930 base preferred the correct ` 143`. The pattern breaks on multi-operation expressions, subtraction, multiplication, and larger digits.
+The 1930 models aren't just refusing. They often pick the right answer as their top continuation, especially for addition (91.6% base on 2-digit, 74.7% base and 88.3% instruct on 3-digit). For "What is 98 plus 45?" the 1930 base preferred the correct ` 143`. When the base model is correct on 2-digit addition, its median probability on the full target sequence is 51.6% — winning the argmax, not asserting confidently. The pattern breaks on multi-operation expressions, subtraction, multiplication, and larger digits.
 
 The modern-web base scores 3.4% overall. In many errors it copied an operand instead of computing the result: for "What is 98 plus 45?" it preferred ` 98` over ` 143`; for "What is 92 times 7?" it preferred ` 92` over ` 644`. In a 500-row custom audit, 70% of its 2-digit addition rows and 25% of its 2-digit multiplication rows were exact operand copies. I don't read this as evidence that pre-1931 text makes a model more numerate than modern web text. More likely, I'm not reproducing the Talkie authors' exact benchmark setup, or this completion format interacts badly with the modern-web checkpoint.
 
