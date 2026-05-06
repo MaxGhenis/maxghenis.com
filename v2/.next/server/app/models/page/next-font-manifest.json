@@ -1,8 +1,0 @@
-{
-  "pages": {},
-  "app": {
-    "[project]/v2/app/models/page": []
-  },
-  "appUsingSizeAdjust": true,
-  "pagesUsingSizeAdjust": false
-}
