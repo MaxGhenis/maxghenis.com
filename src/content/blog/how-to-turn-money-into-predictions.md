@@ -40,19 +40,35 @@ Each major platform supports liquidity provision through a different mechanism.
 
 [Kalshi](https://kalshi.com/) offers a [limit order](https://help.kalshi.com/trading/order-types/limit-orders) liquidity model. Organizations place standing limit orders at prices they're willing to trade at; orders execute when the market crosses those prices. Limit orders avoid trading fees, allow precise price targeting, and accumulate into market liquidity over time. Qualified market makers can join a formal [market maker program](https://help.kalshi.com/en/articles/13823819-market-maker-program) with additional benefits. The CFTC approval and Fed validation make this the right platform for institutional-grade questions where regulatory clarity matters.
 
+[Hypermind](https://corp.hypermind.com/) has run institutional prediction markets since 2000, with clients including the US intelligence community and the [Johns Hopkins Center for Health Security](https://predict.hypermind.com/hypermind/media/pdf/futuribles-prediction-markets.pdf). Sponsors fund custom markets and panels of selected forecasters on bespoke questions, with the platform providing aggregation and reporting infrastructure. Less suitable for one-off retail experiments, more suitable for sustained corporate or government use.
+
 ## Funding mechanism 2: Sponsor a tournament
 
 [Metaculus](https://www.metaculus.com/) is a forecasting platform aggregating predictions across thousands of binary and numerical questions, scored on accuracy. Organizations [sponsor dedicated tournaments](https://www.metaculus.com/tournaments/) — a slate of related questions with a prize pool that pays out to the best forecasters.
 
 The [Federation of American Scientists](https://fas.org/publication/fas-and-metaculus-are-using-forecasting-to-support-better-climate-policy/) funded a $5,000 [Climate Tipping Points tournament](https://www.metaculus.com/tournament/climate/) covering 43 questions about climate policy and outcomes, including conditional questions. The tournament structure lets a funder set the agenda — what questions matter, what counts as resolution, what horizons to ask about — without taking on market-maker risk.
 
+The [Forecasting Research Institute](https://forecastingresearch.org/) (Philip Tetlock's research arm, distinct from Good Judgment Inc) runs research-oriented tournaments like the [Existential Risk Persuasion Tournament](https://forecastingresearch.org/xpt) (80 domain experts, 89 superforecasters, thousands of forecasts on long-horizon catastrophic risks). Sponsoring FRI is closer to funding a research program than buying a forecast.
+
 Tournaments work well for questions where you want a calibrated probability today, not a tradeable instrument over time. They also support reasoning prizes for the best-argued forecasts, not just the most accurate ones, which matters when you're trying to surface analytical talent rather than just numerical answers.
 
-## Funding mechanism 3: Buy custom superforecasts
+## Funding mechanism 3: Buy custom human forecasts
 
 [Good Judgment](https://goodjudgment.com/) sells [custom forecasting from professional superforecasters](https://goodjudgment.com/services/custom-superforecasts/) — individuals identified by [Philip Tetlock's Good Judgment Project](https://goodjudgment.com/resources/the-superforecasters-track-record/) as [consistently outperforming domain experts and intelligence analysts](https://en.wikipedia.org/wiki/The_Good_Judgment_Project) (the project beat intelligence-community analysts with classified access by 25-30% in the IARPA ACE tournament). Services include question development, daily forecast updates, written analysis, and follow-up question support. Organizations can keep forecasts private or release them publicly.
 
 This is the most concierge option. You write a question, a small team of trained forecasters works on it, you get back a probability with explanation. No liquidity to manage, no market to monitor. Cost is higher per question and the methodology is opaque relative to a public market.
+
+## Funding mechanism 4: Buy AI-generated forecasts
+
+A new category emerged in 2024-2026. [FutureSearch](https://futuresearch.ai/) ([publicly launched in early 2026](https://futuresearch.ai/company/)) runs LLM-based research agents that gather evidence, weigh base rates, and produce calibrated probability forecasts with reasoning. Pricing is [per-operation](https://futuresearch.ai/pricing/) — deep-research agents at 1-11¢, forecasters at 20-90¢ per researcher per row — orders of magnitude cheaper than human superforecasters per question, with the obvious tradeoff that the depth of domain expertise is whatever the model has internalized plus what its retrieval finds.
+
+The category builds on published research: Halawi et al. (2024) ["Approaching Human-Level Forecasting with Language Models"](https://arxiv.org/abs/2402.18563) (NeurIPS) showed retrieval-augmented LLM systems approaching competitive-forecaster accuracy; the Center for AI Safety's [forecasting bot](https://safe.ai/blog/forecasting) demonstrated superhuman accuracy on competitive platforms; [ForecastBench](https://openreview.net/forum?id=lfPkGWXLLf) (Karger et al., ICLR 2025) finds frontier LLMs already surpass the median public forecaster, with projected superforecaster parity in 2026.
+
+The cost structure inverts the human-forecasting category. Where Good Judgment's value is depth on a few high-stakes questions, AI forecasting's value is breadth — hundreds or thousands of calibrated probabilities a day. Use AI forecasting when you want coverage; use human superforecasters when you want depth and defensibility on a question where the audience expects a human accountable for the call.
+
+## Funding mechanism 5: Run your own prediction market
+
+For internal questions an organization doesn't want public — product launch dates, project completion probabilities, internal strategic questions — private prediction markets aggregate dispersed information already inside the organization. [Eli Lilly used internal markets in 2003](https://en.wikipedia.org/wiki/Prediction_market#Business) to forecast which drug candidates would advance through clinical trials; Google, Microsoft, and Ford have run variants. The corporate-prediction-market vendor landscape has consolidated — [Cultivate Labs](https://www.cultivatelabs.com/posts/why-we-stopped-supporting-prediction-markets) (formerly Inkling Markets) dropped market mechanics in 2022 in favor of opinion pools, citing user confusion — but [Hypermind's Prescience platform](https://corp.hypermind.com/) still offers managed private markets for corporate and government clients. Less useful for buying forecasts from outside the organization; more useful for aggregating dispersed information already inside it.
 
 ## The sponsorship thesis, and why it matters
 
@@ -70,8 +86,11 @@ Different mechanisms suit different goals:
 
 - **Want to test the waters cheaply?** [Buy mana on Manifold](https://manifold.markets/checkout) and seed a market that matters to you. Total commitment can be under $1,000. The mana you lose to traders moving the price is the cost of a deeper, better-calibrated market on a question you care about.
 - **Want a probability anchored to your priorities?** [Sponsor a Metaculus tournament](https://www.metaculus.com/tournaments/). $5,000–$50,000 buys a slate of questions with a real prize pool and visible forecasters.
-- **Want a single high-stakes forecast with reasoning?** Engage [Good Judgment](https://goodjudgment.com/services/custom-superforecasts/). Highest cost per question, deepest analysis.
+- **Want a single high-stakes forecast with human reasoning?** Engage [Good Judgment](https://goodjudgment.com/services/custom-superforecasts/). Highest cost per question, deepest analysis, accountable human author.
+- **Want broad coverage across many questions cheaply?** Use [FutureSearch](https://futuresearch.ai/) or a similar AI-forecasting service. Per-query pricing in pennies, hundreds of forecasts a day, calibrated but synthetic.
 - **Want regulated, real-money markets on macro questions?** Place [limit orders on Kalshi](https://help.kalshi.com/trading/order-types/limit-orders). Fee-free, precise pricing, supports the most institutionally credible platform.
+- **Want an institutional sustained-engagement platform?** [Hypermind](https://corp.hypermind.com/) for custom corporate panels (25+ years of track record) or for running a private internal market with a defined trader population.
+- **Want a research tournament on long-horizon questions?** Fund the [Forecasting Research Institute](https://forecastingresearch.org/) directly — closer to research-program sponsorship than to buying a forecast.
 - **Want to move the field?** Sponsor markets that solve a real liquidity hole — BLS-anchored contracts, AI capability benchmarks, conditional policy-outcome markets. The [Fradkin / Jabarian / Koh model](https://empiricrafting.substack.com/p/we-need-well-capitalized-prediction) is the right starting point.
 
 The hard part is no longer figuring out the mechanism. The mechanisms exist, the platforms work, the regulatory path is clearer than at any point in the past decade. The remaining question is whether organizations that benefit from better forecasts will fund them. So far, mostly, they haven't. That's the gap.
