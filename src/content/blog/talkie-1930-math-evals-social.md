@@ -2,6 +2,7 @@
 title: 'Talkie-1930 math evals social posts'
 description: 'Social media posts for the Talkie-1930 arithmetic evaluation post'
 pubDate: 'Apr 30 2026'
+heroImage: './talkie-1930-math-evals.png'
 draft: true
 ---
 
