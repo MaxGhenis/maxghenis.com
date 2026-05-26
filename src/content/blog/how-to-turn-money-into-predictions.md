@@ -2,6 +2,7 @@
 title: 'How to turn money into predictions'
 description: 'A menu of mechanisms for organizations that want to fund forecasts on policy, economic, and AI outcomes.'
 pubDate: 'May 26 2026'
+heroImage: './images/how-to-turn-money-into-predictions.png'
 ---
 
 Organizations that fund policy research, economic analysis, or AI deployment want predictions about future outcomes — which tax provisions will pass, what inflation will run, how labor markets will absorb a new model class. The [Federation of American Scientists is sponsoring forecasting tournaments](https://fas.org/publication/fas-and-metaculus-are-using-forecasting-to-support-better-climate-policy/) to inform climate policy; the [Forecasting Research Institute ran its Existential Risk Persuasion Tournament](https://forecastingresearch.org/xpt) with 80 domain experts and 89 superforecasters on AI and other catastrophic risks; [FiscalNote announced a major expansion](https://fiscalnote.com/newsroom/fiscalnote-announces-major-expansion-into-political-prediction-markets) into prediction-market infrastructure for its policy-intelligence customer base in February 2026; and AI researchers are now [benchmarking LLM forecasting against expert and crowd panels](https://www.forecastbench.org/paper.html). Quality varies sharply across markets — some are deep, actively traded, and accurate; others sit thinly populated and stay mispriced for weeks. Funders can improve the quality on the questions that matter to them.
