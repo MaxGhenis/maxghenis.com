@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 // raw.githubusercontent.com refreshes within seconds of a push; jsdelivr's
 // CDN cache lags by ~10 min even after manual purge. Use raw with
@@ -12,32 +12,38 @@ type Bucket = {
   msgs: number;
   prompts: number;
 };
-type DailyRow = {
-  date: string;
+type ClientSet = { claude: Bucket; codex: Bucket; other: Bucket };
+type DailyRow = { date: string; human: ClientSet; automated: ClientSet };
+type Window = {
   claude: Bucket;
   codex: Bucket;
   other: Bucket;
+  total: Bucket;
 };
-type Window = { claude: Bucket; codex: Bucket; other: Bucket; total: Bucket };
+type OriginWindows = { human: Window; automated: Window; all: Window };
+type ModelBucket = { tokens: number; cost: number };
 type ModelRow = {
   client: string;
   model: string;
-  tokens: number;
-  cost: number;
-  share: number;
+  priceSource: string;
+  human: ModelBucket;
+  automated: ModelBucket;
+  all: ModelBucket;
 };
 type Leaderboard = {
   url: string;
   rank?: { week?: number; month?: number; allTime?: number };
   users?: number;
+  asOf?: string;
   embedSvg?: string;
 };
 type UsageData = {
   generatedAt: string;
   dateRange: { start: string; end: string };
   daily: DailyRow[];
-  summary: { week: Window; month: Window; lifetime: Window };
+  summary: { week: OriginWindows; month: OriginWindows; lifetime: OriginWindows };
   byModel: ModelRow[];
+  pricing?: { note: string };
   leaderboards: {
     tokscale?: Leaderboard;
     straude?: Leaderboard;
@@ -98,7 +104,6 @@ function fmtFullDate(iso: string): string {
 }
 
 function fmtWeekLabel(iso: string): string {
-  // iso is the start date of the week
   const d = new Date(iso);
   return (
     "Week of " +
@@ -113,6 +118,7 @@ function fmtWeekLabel(iso: string): string {
 type Granularity = "day" | "week";
 type RangeChoice = "7" | "30" | "90" | "all";
 type Metric = "cost" | "tokens" | "prompts" | "msgs";
+type Origin = "all" | "human" | "automated";
 
 const METRIC_KEYS: Record<Metric, keyof Bucket> = {
   cost: "cost",
@@ -140,14 +146,43 @@ const METRIC_LABELS: Record<Metric, string> = {
   msgs: "Records",
 };
 
-function applyRange(daily: DailyRow[], range: RangeChoice): DailyRow[] {
+const ORIGIN_LABELS: Record<Origin, string> = {
+  all: "All",
+  human: "Human",
+  automated: "Automated",
+};
+
+// A daily row reduced to a single origin view: {date, claude, codex, other}.
+type FlatRow = { date: string } & ClientSet;
+
+function addBucket(a: Bucket, b: Bucket): Bucket {
+  return {
+    tokens: a.tokens + b.tokens,
+    cost: a.cost + b.cost,
+    msgs: a.msgs + b.msgs,
+    prompts: a.prompts + b.prompts,
+  };
+}
+
+function flattenForOrigin(r: DailyRow, origin: Origin): FlatRow {
+  if (origin === "human") return { date: r.date, ...r.human };
+  if (origin === "automated") return { date: r.date, ...r.automated };
+  return {
+    date: r.date,
+    claude: addBucket(r.human.claude, r.automated.claude),
+    codex: addBucket(r.human.codex, r.automated.codex),
+    other: addBucket(r.human.other, r.automated.other),
+  };
+}
+
+function applyRange(daily: FlatRow[], range: RangeChoice): FlatRow[] {
   if (range === "all") return daily;
   const n = parseInt(range, 10);
   return daily.slice(-n);
 }
 
-function aggregateWeekly(daily: DailyRow[]): DailyRow[] {
-  const groups = new Map<string, DailyRow>();
+function aggregateWeekly(daily: FlatRow[]): FlatRow[] {
+  const groups = new Map<string, FlatRow>();
   for (const r of daily) {
     const d = new Date(r.date);
     const dow = (d.getUTCDay() + 6) % 7;
@@ -165,15 +200,10 @@ function aggregateWeekly(daily: DailyRow[]): DailyRow[] {
       groups.set(key, agg);
     }
     for (const k of ["claude", "codex", "other"] as const) {
-      agg[k].tokens += r[k].tokens;
-      agg[k].cost += r[k].cost;
-      agg[k].msgs += r[k].msgs;
-      agg[k].prompts += r[k].prompts ?? 0;
+      agg[k] = addBucket(agg[k], r[k]);
     }
   }
-  return Array.from(groups.values()).sort((a, b) =>
-    a.date < b.date ? -1 : 1,
-  );
+  return Array.from(groups.values()).sort((a, b) => (a.date < b.date ? -1 : 1));
 }
 
 function StackedBarChart({
@@ -181,7 +211,7 @@ function StackedBarChart({
   granularity,
   metric,
 }: {
-  daily: DailyRow[];
+  daily: FlatRow[];
   granularity: Granularity;
   metric: Metric;
 }) {
@@ -197,7 +227,7 @@ function StackedBarChart({
   const k = METRIC_KEYS[metric];
   const width = 760;
   const height = 240;
-  const paddingLeft = metric === "tokens" ? 60 : 60;
+  const paddingLeft = 60;
   const paddingRight = 10;
   const paddingTop = 10;
   const paddingBottom = 30;
@@ -238,7 +268,6 @@ function StackedBarChart({
     }
   }
 
-  // Convert SVG-space coordinate to a daily-array index
   const handleMove = (e: React.MouseEvent<SVGSVGElement>) => {
     const svg = e.currentTarget;
     const rect = svg.getBoundingClientRect();
@@ -265,7 +294,7 @@ function StackedBarChart({
       <svg
         viewBox={`0 0 ${width} ${height}`}
         style={{ width: "100%", height: "auto", display: "block" }}
-        aria-label="Daily spend stacked bar chart"
+        aria-label="Daily usage stacked bar chart"
         onMouseMove={handleMove}
         onMouseLeave={() => setHover(null)}
       >
@@ -384,7 +413,6 @@ function StackedBarChart({
                   : OTHER_COLOR;
             const name =
               cli === "claude" ? "Claude" : cli === "codex" ? "Codex" : "Other";
-            // Show secondary metrics in the meta column
             const meta =
               metric === "cost"
                 ? fmtTokens(hovered[cli].tokens)
@@ -465,15 +493,9 @@ function DonutChart({ window: win, label }: { window: Window; label: string }) {
           fontWeight={600}
           fill="#222"
         >
-          {fmtUSD(total)}
+          {fmtUSD(win.total.cost)}
         </text>
-        <text
-          x={cx}
-          y={cy + 12}
-          textAnchor="middle"
-          fontSize={10}
-          fill="#888"
-        >
+        <text x={cx} y={cy + 12} textAnchor="middle" fontSize={10} fill="#888">
           {fmtTokens(win.total.tokens)} toks
         </text>
       </svg>
@@ -498,6 +520,7 @@ export default function UsageDashboard() {
   const [granularity, setGranularity] = useState<Granularity>("day");
   const [range, setRange] = useState<RangeChoice>("all");
   const [metric, setMetric] = useState<Metric>("cost");
+  const [origin, setOrigin] = useState<Origin>("all");
 
   useEffect(() => {
     let cancelled = false;
@@ -522,6 +545,11 @@ export default function UsageDashboard() {
     };
   }, []);
 
+  const flatDaily = useMemo<FlatRow[]>(
+    () => (data ? data.daily.map((r) => flattenForOrigin(r, origin)) : []),
+    [data, origin],
+  );
+
   if (err) {
     return <div className="usage-error">Failed to load usage data: {err}</div>;
   }
@@ -529,23 +557,39 @@ export default function UsageDashboard() {
     return <div className="usage-loading">Loading usage data…</div>;
   }
 
-  const { summary, daily, byModel, leaderboards, generatedAt } = data;
+  const { summary, byModel, leaderboards, generatedAt } = data;
+
+  // by-model rows for the selected origin
+  const modelRows = byModel
+    .map((m) => ({ ...m, sel: m[origin] }))
+    .filter((m) => m.sel.cost > 0)
+    .sort((a, b) => b.sel.cost - a.sel.cost);
+  const modelTotalCost = modelRows.reduce((s, m) => s + m.sel.cost, 0) || 1;
+
+  const chartDaily =
+    granularity === "week"
+      ? aggregateWeekly(applyRange(flatDaily, range))
+      : applyRange(flatDaily, range);
+
+  const tk = leaderboards.tokscale;
 
   return (
     <div className="usage-dashboard">
       <p className="usage-sub">
-        Live token usage across Claude Code and Codex CLI. Auto-refreshes every
-        5 minutes. Last updated {fmtRelTime(generatedAt)}.
+        Live token usage across Claude Code and Codex, indexed from local
+        session files by{" "}
+        <a href="https://logpile.ai" target="_blank" rel="noopener">
+          Logpile
+        </a>
+        . Auto-refreshes every 5 minutes. Last updated {fmtRelTime(generatedAt)}.
       </p>
       <p className="usage-disclaimer">
-        All dollar figures are computed at public API list prices. Actual
-        out-of-pocket is a fraction of these numbers because most usage flows
-        through ChatGPT Pro and Claude Max flat subscriptions. Token volume is
-        real. Aggregates are generated from local JSONL session files via{" "}
-        <a href="https://tokscale.ai" target="_blank" rel="noopener">
-          Tokscale
-        </a>{" "}
-        and committed to{" "}
+        Dollar figures are list-price estimates computed from raw per-model
+        token counts at public API rates. Actual out-of-pocket is a fraction of
+        these numbers because most usage flows through Claude Max and ChatGPT
+        Pro flat subscriptions. <strong>Human</strong> = sessions I started or
+        delegated; <strong>Automated</strong> = pipelines, evals, and background
+        agents. Token volume is real. Source committed to{" "}
         <a
           href="https://github.com/MaxGhenis/usage-data"
           target="_blank"
@@ -556,10 +600,32 @@ export default function UsageDashboard() {
         . No message content, file paths, or project names are published.
       </p>
 
+      <div className="chart-controls" style={{ marginTop: "1.25rem" }}>
+        <div className="seg-group" role="group" aria-label="Origin">
+          {(["all", "human", "automated"] as Origin[]).map((o) => (
+            <button
+              key={o}
+              type="button"
+              className={`seg-btn${origin === o ? " active" : ""}`}
+              onClick={() => setOrigin(o)}
+              title={
+                o === "human"
+                  ? "Sessions I started or delegated"
+                  : o === "automated"
+                    ? "Pipelines, evals, and background agents"
+                    : "Everything"
+              }
+            >
+              {ORIGIN_LABELS[o]}
+            </button>
+          ))}
+        </div>
+      </div>
+
       <section className="donut-row">
-        <DonutChart window={summary.week} label="Last 7 days" />
-        <DonutChart window={summary.month} label="Last 30 days" />
-        <DonutChart window={summary.lifetime} label="Lifetime" />
+        <DonutChart window={summary.week[origin]} label="Last 7 days" />
+        <DonutChart window={summary.month[origin]} label="Last 30 days" />
+        <DonutChart window={summary.lifetime[origin]} label="Lifetime" />
       </section>
 
       <section>
@@ -567,6 +633,7 @@ export default function UsageDashboard() {
           <h2>
             {granularity === "week" ? "Weekly " : "Daily "}
             {METRIC_LABELS[metric].toLowerCase()}
+            {origin !== "all" ? ` · ${ORIGIN_LABELS[origin].toLowerCase()}` : ""}
           </h2>
           <div className="chart-controls">
             <div className="seg-group" role="group" aria-label="Metric">
@@ -580,7 +647,7 @@ export default function UsageDashboard() {
                     m === "prompts"
                       ? "Real user-typed prompts"
                       : m === "msgs"
-                        ? "All message records (assistant + tool results + user)"
+                        ? "Message records (user + assistant)"
                         : undefined
                   }
                 >
@@ -633,17 +700,9 @@ export default function UsageDashboard() {
             <span className="legend-swatch" style={{ background: CODEX_COLOR }} />
             Codex CLI
           </div>
-          <div className="legend-item">
-            <span className="legend-swatch" style={{ background: OTHER_COLOR }} />
-            Other
-          </div>
         </div>
         <StackedBarChart
-          daily={
-            granularity === "week"
-              ? aggregateWeekly(applyRange(daily, range))
-              : applyRange(daily, range)
-          }
+          daily={chartDaily}
           granularity={granularity}
           metric={metric}
         />
@@ -663,17 +722,17 @@ export default function UsageDashboard() {
               </tr>
             </thead>
             <tbody>
-              {byModel
-                .filter((m) => m.cost > 0)
-                .map((m) => (
-                  <tr key={`${m.client}:${m.model}`}>
-                    <td style={{ textTransform: "capitalize" }}>{m.client}</td>
-                    <td className="mono">{m.model}</td>
-                    <td style={{ textAlign: "right" }}>{fmtTokens(m.tokens)}</td>
-                    <td style={{ textAlign: "right" }}>{fmtUSD(m.cost)}</td>
-                    <td style={{ textAlign: "right" }}>{(m.share * 100).toFixed(1)}%</td>
-                  </tr>
-                ))}
+              {modelRows.map((m) => (
+                <tr key={`${m.client}:${m.model}`}>
+                  <td style={{ textTransform: "capitalize" }}>{m.client}</td>
+                  <td className="mono">{m.model}</td>
+                  <td style={{ textAlign: "right" }}>{fmtTokens(m.sel.tokens)}</td>
+                  <td style={{ textAlign: "right" }}>{fmtUSD(m.sel.cost)}</td>
+                  <td style={{ textAlign: "right" }}>
+                    {((m.sel.cost / modelTotalCost) * 100).toFixed(1)}%
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
@@ -682,36 +741,35 @@ export default function UsageDashboard() {
       <section>
         <h2>Public leaderboards</h2>
         <div className="leaderboard-grid">
-          {leaderboards.tokscale && (
-            <a
-              href={leaderboards.tokscale.url}
-              target="_blank"
-              rel="noopener"
-              className="leaderboard-card"
-            >
+          {tk && (
+            <a href={tk.url} target="_blank" rel="noopener" className="leaderboard-card">
               <div className="leaderboard-card-header">
                 <div className="leaderboard-name">Tokscale</div>
-                <div className="leaderboard-users">
-                  {leaderboards.tokscale.users} users
-                </div>
+                {tk.users != null && (
+                  <div className="leaderboard-users">
+                    {tk.users.toLocaleString()} users
+                  </div>
+                )}
               </div>
               <div className="leaderboard-ranks">
-                {leaderboards.tokscale.rank?.week != null && (
+                {tk.rank?.week != null && (
                   <div>
-                    <span className="rank-label">This week:</span> #
-                    {leaderboards.tokscale.rank.week}
+                    <span className="rank-label">This week:</span> #{tk.rank.week}
                   </div>
                 )}
-                {leaderboards.tokscale.rank?.month != null && (
+                {tk.rank?.month != null && (
                   <div>
-                    <span className="rank-label">This month:</span> #
-                    {leaderboards.tokscale.rank.month}
+                    <span className="rank-label">This month:</span> #{tk.rank.month}
                   </div>
                 )}
-                {leaderboards.tokscale.rank?.allTime != null && (
+                {tk.rank?.allTime != null && (
                   <div>
-                    <span className="rank-label">All-time:</span> #
-                    {leaderboards.tokscale.rank.allTime}
+                    <span className="rank-label">All-time:</span> #{tk.rank.allTime}
+                  </div>
+                )}
+                {tk.asOf && (
+                  <div className="rank-label" style={{ fontSize: "0.7rem" }}>
+                    as of {tk.asOf}
                   </div>
                 )}
               </div>
@@ -726,17 +784,6 @@ export default function UsageDashboard() {
             >
               <div className="leaderboard-card-header">
                 <div className="leaderboard-name">Straude</div>
-                <div className="leaderboard-users">
-                  {leaderboards.straude.users} users
-                </div>
-              </div>
-              <div className="leaderboard-ranks">
-                {leaderboards.straude.rank?.week != null && (
-                  <div>
-                    <span className="rank-label">This week:</span> #
-                    {leaderboards.straude.rank.week}
-                  </div>
-                )}
               </div>
               {leaderboards.straude.embedSvg && (
                 <img
