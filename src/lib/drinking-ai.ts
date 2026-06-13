@@ -76,6 +76,74 @@ export const QUERY_SCOPES: QueryScope[] = [
 export const DEFAULT_SCOPE_ID = 'onsite';
 export const WATER_PER_QUERY_ML = ALTMAN_ML_PER_QUERY;
 
+/* ──────────────────────────────────────────────────────────────────────────
+   Workload intensity. The per-query figures above are MEDIAN SINGLE PROMPTS.
+   Reasoning models emit far more tokens, and agents chain many calls per task,
+   so the honest unit shifts from "query" to "task". Water scales ~linearly with
+   tokens, so a token multiplier is roughly a water multiplier.
+   ────────────────────────────────────────────────────────────────────────── */
+
+export interface WorkloadTier {
+  id: string;
+  /** Pill label. */
+  label: string;
+  /** Plural unit for the headline number ("agentic tasks"). */
+  unit: string;
+  /** Short plural for the per-day line ("agentic tasks a day"). */
+  daily: string;
+  /** Singular for the "water per X" detail. */
+  unitSingular: string;
+  /** Multiplier on a median query's water. */
+  multiple: number;
+  detail: string;
+  sourceLabel: string;
+  sourceUrl: string;
+  /** True when the multiplier is a Claude mid-range estimate, not a single measurement. */
+  estimate?: boolean;
+}
+
+export const WORKLOAD_TIERS: WorkloadTier[] = [
+  {
+    id: 'query',
+    label: 'Single query',
+    unit: 'average ChatGPT queries',
+    daily: 'queries',
+    unitSingular: 'query',
+    multiple: 1,
+    detail:
+      'A median single text prompt — the basis for OpenAI’s and Google’s published per-query figures.',
+    sourceLabel: 'Google, 2025',
+    sourceUrl: 'https://arxiv.org/abs/2508.15734',
+  },
+  {
+    id: 'reasoning',
+    label: 'Reasoning response',
+    unit: 'reasoning responses',
+    daily: 'reasoning responses',
+    unitSingular: 'reasoning response',
+    multiple: 10,
+    detail:
+      'Extended-thinking models emit far more tokens. Measured multipliers run ~2.5x (Epoch) to ~7x (GPT-5 routing) and up to ~50x for long, high-effort reasoning; ~10x is a mid-range estimate.',
+    sourceLabel: 'Jegham et al. 2025',
+    sourceUrl: 'https://arxiv.org/abs/2505.09598',
+    estimate: true,
+  },
+  {
+    id: 'agentic',
+    label: 'Agentic task',
+    unit: 'agentic tasks',
+    daily: 'agentic tasks',
+    unitSingular: 'agentic task',
+    multiple: 15,
+    detail:
+      'Agents chain many model calls per task. Anthropic measured its multi-agent systems at about 15x the tokens of a chat; long autonomous coding runs go higher.',
+    sourceLabel: 'Anthropic, 2025',
+    sourceUrl: 'https://www.anthropic.com/engineering/multi-agent-research-system',
+  },
+];
+
+export const DEFAULT_WORKLOAD_ID = 'query';
+
 /** Google's median Gemini Apps text prompt (2025), cross-check for the on-site scope. */
 export const GOOGLE_WATER_PER_PROMPT_ML = 0.26;
 
@@ -326,6 +394,19 @@ export const AI_BENCHMARK_SOURCE: DrinkSource = {
   url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC12827721/',
 };
 
+/**
+ * 2026 projection. No source publishes a 2026 AI-water figure, so this is a
+ * Claude extrapolation: de Vries-Gao's water is mechanically AI-power ×
+ * constant intensity, so 2026 scales with AI-power growth. Published rates
+ * for 2025→2026 span ~1.3x (IEA accelerated servers) to ~2.45x (de Vries-Gao's
+ * own 2024→2025 pace); 1.5x is a central estimate that assumes the buildout
+ * decelerates. A UN University study independently implies ~0.9T L AI water in
+ * 2025, near de Vries-Gao's high end, supporting this band.
+ */
+export const AI_POWER_GROWTH_2025_TO_2026 = 1.5;
+export const AI_2026_MIN_LITERS = AI_2025_MIN_LITERS * AI_POWER_GROWTH_2025_TO_2026;
+export const AI_2026_MAX_LITERS = AI_2025_MAX_LITERS * AI_POWER_GROWTH_2025_TO_2026;
+
 /* ── Annual US drink volumes ── */
 
 /** NIAAA Surveillance Report 122, US 2023 volumes (gallons). */
@@ -494,6 +575,8 @@ export const AGGREGATE_TOTAL_LITERS = AGGREGATE_CATEGORIES.reduce(
 );
 export const AGGREGATE_TOTAL_MULTIPLE_MIN = AGGREGATE_TOTAL_LITERS / AI_2025_MAX_LITERS;
 export const AGGREGATE_TOTAL_MULTIPLE_MAX = AGGREGATE_TOTAL_LITERS / AI_2025_MIN_LITERS;
+export const AGGREGATE_TOTAL_MULTIPLE_2026_MIN = AGGREGATE_TOTAL_LITERS / AI_2026_MAX_LITERS;
+export const AGGREGATE_TOTAL_MULTIPLE_2026_MAX = AGGREGATE_TOTAL_LITERS / AI_2026_MIN_LITERS;
 
 /* ── Formatting ── */
 

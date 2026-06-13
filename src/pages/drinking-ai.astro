@@ -6,15 +6,23 @@ import { SITE_TITLE } from '../consts';
 import {
   AGGREGATE_CATEGORIES,
   AGGREGATE_TOTAL_LITERS,
+  AGGREGATE_TOTAL_MULTIPLE_2026_MAX,
+  AGGREGATE_TOTAL_MULTIPLE_2026_MIN,
   AGGREGATE_TOTAL_MULTIPLE_MAX,
   AGGREGATE_TOTAL_MULTIPLE_MIN,
   AI_2025_MAX_LITERS,
   AI_2025_MIN_LITERS,
+  AI_2026_MAX_LITERS,
+  AI_2026_MIN_LITERS,
   AI_BENCHMARK_SOURCE,
+  AI_POWER_GROWTH_2025_TO_2026,
   DEFAULT_SCOPE_ID,
+  DEFAULT_WORKLOAD_ID,
   QUERIES_PER_DAY,
   QUERY_SCOPES,
   SCOPED_DRINKS,
+  WORKLOAD_TIERS,
+  dailyUseLabel,
   formatLiters,
   formatMultipleRange,
   roundToSigFigs,
@@ -24,17 +32,23 @@ const QUERIES_PER_DROP = 1000;
 const chartMaxLiters = Math.max(...AGGREGATE_CATEGORIES.map((c) => c.totalWaterLiters));
 
 const clientDrinks = SCOPED_DRINKS.map((d) => {
-  const byScope = Object.fromEntries(
-    QUERY_SCOPES.map((s) => [
-      s.id,
-      {
-        queries: roundToSigFigs(d.queriesByScope[s.id]),
-        drops: Math.max(1, Math.round(d.queriesByScope[s.id] / QUERIES_PER_DROP)),
-        usage: d.usageByScope[s.id],
-      },
-    ]),
-  );
-  const allQueries = QUERY_SCOPES.map((s) => d.queriesByScope[s.id]);
+  // One cell per (scope × workload) combination — both axes multiply the
+  // water-per-unit, so a count is waterLiters / (scopeMl × workloadMultiple).
+  const byCombo: Record<string, { count: number; drops: number; usage: string }> = {};
+  for (const s of QUERY_SCOPES) {
+    for (const w of WORKLOAD_TIERS) {
+      const perUnitMl = s.perQueryMl * w.multiple;
+      const raw = (d.waterLiters * 1000) / perUnitMl;
+      byCombo[`${s.id}:${w.id}`] = {
+        count: roundToSigFigs(raw),
+        drops: Math.max(1, Math.round(raw / QUERIES_PER_DROP)),
+        usage: dailyUseLabel(raw),
+      };
+    }
+  }
+  // Default range: across accounting scopes at the default workload, so the unit
+  // stays consistent (the client recomputes it when the workload changes).
+  const defScopeCounts = QUERY_SCOPES.map((s) => byCombo[`${s.id}:${DEFAULT_WORKLOAD_ID}`].count);
   return {
     id: d.id,
     name: d.name,
@@ -44,9 +58,9 @@ const clientDrinks = SCOPED_DRINKS.map((d) => {
     scopeNote: d.scopeNote,
     sources: d.sources,
     flagged: d.flagged ?? false,
-    byScope,
-    rangeLow: roundToSigFigs(Math.min(...allQueries)),
-    rangeHigh: roundToSigFigs(Math.max(...allQueries)),
+    byCombo,
+    rangeLow: Math.min(...defScopeCounts),
+    rangeHigh: Math.max(...defScopeCounts),
   };
 });
 
@@ -60,9 +74,32 @@ const clientScopes = QUERY_SCOPES.map((s) => ({
   sourceUrl: s.sourceUrl,
 }));
 
+const clientWorkloads = WORKLOAD_TIERS.map((w) => ({
+  id: w.id,
+  label: w.label,
+  unit: w.unit,
+  daily: w.daily,
+  unitSingular: w.unitSingular,
+  multiple: w.multiple,
+  detail: w.detail,
+  sourceLabel: w.sourceLabel,
+  sourceUrl: w.sourceUrl,
+  estimate: w.estimate ?? false,
+}));
+
 const defaultDrink = clientDrinks[0];
 const defaultScope = clientScopes.find((s) => s.id === DEFAULT_SCOPE_ID) ?? clientScopes[0];
-const defaultCell = defaultDrink.byScope[defaultScope.id];
+const defaultWorkload = clientWorkloads.find((w) => w.id === DEFAULT_WORKLOAD_ID) ?? clientWorkloads[0];
+const defaultCell = defaultDrink.byCombo[`${defaultScope.id}:${defaultWorkload.id}`];
+const defaultPerUnitMl = defaultScope.perQueryMl * defaultWorkload.multiple;
+
+// Beer at the on-site scope, in each workload unit — for the "shift to agents" strip.
+const heroBeer = clientDrinks.find((d) => d.id === 'beer') ?? clientDrinks[0];
+const beerUnits = WORKLOAD_TIERS.map((w) => ({
+  label: w.unit,
+  multiple: w.multiple,
+  count: heroBeer.byCombo[`onsite:${w.id}`].count,
+}));
 
 const sourceCards = [
   {
@@ -106,6 +143,30 @@ const sourceCards = [
     title: 'LBNL 2024 data-center report',
     detail: 'US data centers consumed 17.4 billion gallons on-site in 2023, plus ~211 billion gallons via electricity.',
     url: 'https://eta-publications.lbl.gov/sites/default/files/2024-12/lbnl-2024-united-states-data-center-energy-usage-report_1.pdf',
+  },
+  {
+    group: 'Workload & growth',
+    title: 'Anthropic engineering',
+    detail: 'Multi-agent systems used about 15x the tokens of a chat interaction; single agents about 4x.',
+    url: 'https://www.anthropic.com/engineering/multi-agent-research-system',
+  },
+  {
+    group: 'Workload & growth',
+    title: 'Epoch AI',
+    detail: 'A typical query is ~0.3 Wh; reasoning models emit ~2.5x the tokens; AI data-center power was ~30 GW in late 2025.',
+    url: 'https://epoch.ai/gradient-updates/how-much-energy-does-chatgpt-use',
+  },
+  {
+    group: 'Workload & growth',
+    title: 'IEA — Energy and AI',
+    detail: 'Data-center electricity 415 TWh (2024) to ~945 TWh by 2030; accelerated servers grow ~30% a year.',
+    url: 'https://www.iea.org/reports/energy-and-ai',
+  },
+  {
+    group: 'Workload & growth',
+    title: 'UN University (UNU-INWEH)',
+    detail: 'All data centers used ~4.5 trillion L of water in 2024/25 (AI ~20% of it), heading toward 9.3 trillion by 2030.',
+    url: 'https://unu.edu/inweh/news/environmental-cost-of-AIs-Enrgy-use-carbon-water-and-land-footprints',
   },
   {
     group: 'Drink footprints',
@@ -187,7 +248,7 @@ const sourceCards = [
   },
 ];
 
-const sourceGroups = ['AI water', 'Drink footprints', 'US volumes', 'Context'];
+const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US volumes', 'Context'];
 ---
 
 <!doctype html>
@@ -210,9 +271,9 @@ const sourceGroups = ['AI water', 'Drink footprints', 'US volumes', 'Context'];
 				<p class="lede">
 					Growing, brewing, and packaging one beer takes about as much water as
 					<strong>331,000</strong> ChatGPT queries — using AI's own most-cited water figure.
-					Pick a drink to convert its footprint into queries, widen the accounting scope to
-					see how the number holds up, then watch whole US drink categories dwarf everything
-					AI drank in 2025.
+					Pick a drink, widen the accounting scope, or switch from single queries to
+					agentic tasks to stress-test the number, then watch whole US drink categories
+					dwarf everything AI drank in 2025 — and what it is on track to drink in 2026.
 				</p>
 			</section>
 
@@ -234,7 +295,7 @@ const sourceGroups = ['AI water', 'Drink footprints', 'US volumes', 'Context'];
 				</div>
 
 				<div class="scope-control">
-					<span class="scope-label">Water counted per query</span>
+					<span class="scope-label">Water counted per unit</span>
 					<div class="scope-pills" role="group" aria-label="AI water-accounting scope">
 						{clientScopes.map((scope) => (
 							<button
@@ -250,17 +311,34 @@ const sourceGroups = ['AI water', 'Drink footprints', 'US volumes', 'Context'];
 					</div>
 				</div>
 
+				<div class="scope-control workload-control">
+					<span class="scope-label">Counting by</span>
+					<div class="scope-pills" role="group" aria-label="AI workload unit">
+						{clientWorkloads.map((workload) => (
+							<button
+								type="button"
+								class={`scope-pill${workload.id === defaultWorkload.id ? ' is-active' : ''}`}
+								aria-pressed={workload.id === defaultWorkload.id ? 'true' : 'false'}
+								data-workload={workload.id}
+							>
+								<span class="scope-pill-label">{workload.label}</span>
+								<span class="scope-pill-ml">{workload.multiple}×</span>
+							</button>
+						))}
+					</div>
+				</div>
+
 				<div class="result-grid">
 					<section class="result-panel" aria-live="polite">
 						<div class="result-label">One <span data-result-name>{defaultDrink.name.toLowerCase()}</span> ≈</div>
-						<div class="result-number" data-result-number>{defaultCell.queries.toLocaleString()}</div>
-						<div class="result-unit">average ChatGPT queries</div>
+						<div class="result-number" data-result-number>{defaultCell.count.toLocaleString()}</div>
+						<div class="result-unit" data-result-unit>{defaultWorkload.unit}</div>
 						<p class="result-usage">
-							Enough water for {QUERIES_PER_DAY} questions a day for
+							Enough water for {QUERIES_PER_DAY} <span data-result-daily>{defaultWorkload.daily}</span> a day for
 							<strong data-result-usage>{defaultCell.usage}</strong>.
 						</p>
 						<p class="result-range">
-							Across all three scopes: <span data-result-range>{defaultDrink.rangeLow.toLocaleString()}–{defaultDrink.rangeHigh.toLocaleString()}</span> queries.
+							Across accounting scopes: <span data-result-range>{defaultDrink.rangeLow.toLocaleString()}–{defaultDrink.rangeHigh.toLocaleString()}</span> <span data-result-range-unit>{defaultWorkload.daily}</span>.
 						</p>
 					</section>
 
@@ -279,22 +357,21 @@ const sourceGroups = ['AI water', 'Drink footprints', 'US volumes', 'Context'];
 							<p class="detail-source" data-result-sources set:html={defaultDrink.sources.map((s) => `<a href="${s.url}" target="_blank" rel="noopener">${s.label}</a>`).join(' · ') || 'No external source needed'} />
 						</div>
 						<div class="detail-item ai-baseline">
-							<div class="detail-label">AI water per query</div>
+							<div class="detail-label">AI water per <span data-unit-singular>{defaultWorkload.unitSingular}</span></div>
 							<div class="detail-value">
-								<span data-scope-ml>{defaultScope.perQueryMl < 1 ? defaultScope.perQueryMl.toFixed(2) : defaultScope.perQueryMl}</span> mL
+								<span data-perunit-ml>{defaultPerUnitMl < 1 ? defaultPerUnitMl.toFixed(2) : defaultPerUnitMl}</span> mL
 								<span class="scope-boundary" data-scope-boundary>{defaultScope.boundary}</span>
 							</div>
 							<p data-scope-detail>{defaultScope.detail}</p>
-							<p class="detail-source">
-								<a href={defaultScope.sourceUrl} data-scope-source target="_blank" rel="noopener">{defaultScope.sourceLabel}</a>
-							</p>
+							<p class="detail-note workload-detail" data-workload-detail hidden>{defaultWorkload.detail}</p>
+							<p class="detail-source" data-ai-sources set:html={`<a href="${defaultScope.sourceUrl}" target="_blank" rel="noopener">${defaultScope.sourceLabel}</a>`} />
 						</div>
 					</aside>
 				</div>
 
 				<div class="dot-field-card">
 					<div class="dot-field-header">
-						<span class="dot-legend"><span class="dot-swatch" aria-hidden="true"></span>1 drop = {QUERIES_PER_DROP.toLocaleString()} queries</span>
+						<span class="dot-legend"><span class="dot-swatch" aria-hidden="true"></span>1 drop = {QUERIES_PER_DROP.toLocaleString()} <span data-dot-unit>{defaultWorkload.daily}</span></span>
 						<span class="dot-count"><strong data-dot-count>{defaultCell.drops.toLocaleString()}</strong> drops</span>
 					</div>
 					<div class="dot-field" data-dot-field aria-hidden="true"></div>
@@ -332,6 +409,22 @@ const sourceGroups = ['AI water', 'Drink footprints', 'US volumes', 'Context'];
 						<p class="chart-meta">Solid: low estimate. Faded: high estimate. World total, all AI systems, consumption.</p>
 					</div>
 
+					<div class="chart-row is-ai">
+						<div class="chart-head">
+							<span class="chart-name">All global AI <span class="chart-year">2026, projected</span> <span class="flag-tag">extrapolation</span></span>
+							<span class="chart-value">{formatLiters(AI_2026_MIN_LITERS)} – {formatLiters(AI_2026_MAX_LITERS)}</span>
+						</div>
+						<div class="chart-track">
+							<div
+								class="chart-bar ai-bar is-projected"
+								style={`--w: ${(AI_2026_MAX_LITERS / chartMaxLiters) * 100}%`}
+							>
+								<div class="ai-bar-min" style={`width: ${(AI_2026_MIN_LITERS / AI_2026_MAX_LITERS) * 100}%`}></div>
+							</div>
+						</div>
+						<p class="chart-meta">Claude estimate: 2025 scaled by {AI_POWER_GROWTH_2025_TO_2026}× AI-power growth (published rates span 1.3–2.45×). Still a sliver of the chart.</p>
+					</div>
+
 					{AGGREGATE_CATEGORIES.map((category) => (
 						<div class="chart-row">
 							<div class="chart-head">
@@ -364,10 +457,60 @@ const sourceGroups = ['AI water', 'Drink footprints', 'US volumes', 'Context'];
 
 				<p class="chart-total">
 					The eight categories sum to {formatLiters(AGGREGATE_TOTAL_LITERS)} a year —
-					{formatMultipleRange(AGGREGATE_TOTAL_MULTIPLE_MIN, AGGREGATE_TOTAL_MULTIPLE_MAX)} the AI range.
+					{formatMultipleRange(AGGREGATE_TOTAL_MULTIPLE_MIN, AGGREGATE_TOTAL_MULTIPLE_MAX)} the 2025 AI range,
+					or {formatMultipleRange(AGGREGATE_TOTAL_MULTIPLE_2026_MIN, AGGREGATE_TOTAL_MULTIPLE_2026_MAX)} the projected 2026 range.
 					The AI estimate covers the world; the drink totals cover the US only, so world
 					drink totals would sit further right.
 				</p>
+			</section>
+
+			<section class="horizon animate-fade-in-up delay-300" aria-labelledby="horizon-heading">
+				<div class="section-heading">
+					<div>
+						<span class="section-kicker">Where this is heading</span>
+						<h2 id="horizon-heading">2026, and the shift from queries to agents</h2>
+					</div>
+				</div>
+				<div class="horizon-grid">
+					<div class="horizon-column">
+						<h3>Extrapolating to 2026</h3>
+						<p>
+							No one publishes a 2026 AI-water figure, so this is a Claude estimate. The
+							Patterns model is mechanically AI power × a fixed water intensity, and AI
+							power grew 2.45× from 2024 to 2025. Published rates for 2025→2026 run from
+							<a href="https://www.iea.org/reports/energy-and-ai" target="_blank" rel="noopener">~1.3× (IEA accelerated servers)</a>
+							up to that 2.45× pace; scaling the 2025 range by a central {AI_POWER_GROWTH_2025_TO_2026}×
+							gives roughly {formatLiters(AI_2026_MIN_LITERS)} to {formatLiters(AI_2026_MAX_LITERS)} for 2026.
+							A <a href="https://unu.edu/inweh/news/environmental-cost-of-AIs-Enrgy-use-carbon-water-and-land-footprints" target="_blank" rel="noopener">UN University study</a>
+							independently implies about 0.9 trillion L of AI water in 2025, near the same band.
+							Even on the most aggressive growth, the drink categories still outweigh AI by tens of times.
+						</p>
+					</div>
+					<div class="horizon-column">
+						<h3>A query is becoming a task</h3>
+						<p>
+							The 0.32 mL figure is a <em>median single prompt</em>. Reasoning models emit
+							far more tokens, and agents chain many calls per task, so the honest unit is
+							shifting. Holding the on-site scope fixed, one beer is:
+						</p>
+						<div class="unit-strip">
+							{beerUnits.map((u) => (
+								<div class="unit-row">
+									<span class="unit-count">{u.count.toLocaleString()}</span>
+									<span class="unit-name">{u.label}{u.multiple > 1 ? ` · ${u.multiple}× a query` : ''}</span>
+								</div>
+							))}
+						</div>
+						<p class="horizon-caveat">
+							Multipliers from
+							<a href="https://epoch.ai/gradient-updates/how-much-energy-does-chatgpt-use" target="_blank" rel="noopener">Epoch</a>,
+							<a href="https://arxiv.org/abs/2505.09598" target="_blank" rel="noopener">Jegham et al.</a>, and
+							<a href="https://www.anthropic.com/engineering/multi-agent-research-system" target="_blank" rel="noopener">Anthropic</a>
+							(multi-agent ≈ 15× a chat's tokens). Per-task water rises, but so does what each
+							task does — a beer still covers tens of thousands of even the heaviest ones.
+						</p>
+					</div>
+				</div>
 			</section>
 
 			<section class="methodology animate-fade-in-up delay-300" aria-labelledby="methodology-heading">
@@ -470,34 +613,45 @@ const sourceGroups = ['AI water', 'Drink footprints', 'US volumes', 'Context'];
 		</main>
 		<Footer />
 
-		<script define:vars={{ clientDrinks, clientScopes, defaultScopeId: defaultScope.id }}>
+		<script define:vars={{ clientDrinks, clientScopes, clientWorkloads, defaultScopeId: defaultScope.id, defaultWorkloadId: defaultWorkload.id }}>
 			const drinkMap = Object.fromEntries(clientDrinks.map((drink) => [drink.id, drink]));
 			const scopeMap = Object.fromEntries(clientScopes.map((scope) => [scope.id, scope]));
+			const workloadMap = Object.fromEntries(clientWorkloads.map((w) => [w.id, w]));
 			const drinkButtons = Array.from(document.querySelectorAll('.drink-button'));
-			const scopePills = Array.from(document.querySelectorAll('.scope-pill'));
+			const scopePills = Array.from(document.querySelectorAll('[data-scope]'));
+			const workloadPills = Array.from(document.querySelectorAll('[data-workload]'));
 
 			const nameEl = document.querySelector('[data-result-name]');
 			const numberEl = document.querySelector('[data-result-number]');
+			const unitEl = document.querySelector('[data-result-unit]');
+			const dailyEl = document.querySelector('[data-result-daily]');
 			const usageEl = document.querySelector('[data-result-usage]');
 			const rangeEl = document.querySelector('[data-result-range]');
+			const rangeUnitEl = document.querySelector('[data-result-range-unit]');
 			const waterEl = document.querySelector('[data-result-water]');
 			const derivationEl = document.querySelector('[data-result-derivation]');
 			const noteEl = document.querySelector('[data-result-note]');
 			const sourcesEl = document.querySelector('[data-result-sources]');
 			const flagEl = document.querySelector('[data-result-flag]');
-			const scopeMlEl = document.querySelector('[data-scope-ml]');
+			const unitSingularEl = document.querySelector('[data-unit-singular]');
+			const perUnitMlEl = document.querySelector('[data-perunit-ml]');
 			const scopeBoundaryEl = document.querySelector('[data-scope-boundary]');
 			const scopeDetailEl = document.querySelector('[data-scope-detail]');
-			const scopeSourceEl = document.querySelector('[data-scope-source]');
+			const workloadDetailEl = document.querySelector('[data-workload-detail]');
+			const aiSourcesEl = document.querySelector('[data-ai-sources]');
 			const dotFieldEl = document.querySelector('[data-dot-field]');
 			const dotCountEl = document.querySelector('[data-dot-count]');
+			const dotUnitEl = document.querySelector('[data-dot-unit]');
 
 			const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-			const fmtMl = (ml) => (ml < 1 ? ml.toFixed(2) : String(ml));
+			const fmtMl = (ml) => (ml < 1 ? ml.toFixed(2) : String(Math.round(ml * 100) / 100));
+			const link = (label, url) => `<a href="${url}" target="_blank" rel="noopener">${label}</a>`;
 
 			let currentDrinkId = clientDrinks[0].id;
 			let currentScopeId = defaultScopeId;
-			let currentQueries = drinkMap[currentDrinkId].byScope[currentScopeId].queries;
+			let currentWorkloadId = defaultWorkloadId;
+			const cellFor = (d, s, w) => drinkMap[d].byCombo[`${s}:${w}`];
+			let currentCount = cellFor(currentDrinkId, currentScopeId, currentWorkloadId).count;
 			let numberFrame = null;
 			let numberTimeout = null;
 
@@ -542,33 +696,44 @@ const sourceGroups = ['AI water', 'Drink footprints', 'US volumes', 'Context'];
 			function render() {
 				const drink = drinkMap[currentDrinkId];
 				const scope = scopeMap[currentScopeId];
-				const cell = drink.byScope[currentScopeId];
+				const workload = workloadMap[currentWorkloadId];
+				const cell = cellFor(currentDrinkId, currentScopeId, currentWorkloadId);
 
 				nameEl.textContent = drink.name.toLowerCase();
-				animateNumber(currentQueries, cell.queries);
-				currentQueries = cell.queries;
+				animateNumber(currentCount, cell.count);
+				currentCount = cell.count;
+				unitEl.textContent = workload.unit;
+				dailyEl.textContent = workload.daily;
 				usageEl.textContent = cell.usage;
-				rangeEl.textContent = `${drink.rangeLow.toLocaleString()}–${drink.rangeHigh.toLocaleString()}`;
+
+				// Range across accounting scopes at the current workload — unit stays consistent.
+				const scopeCounts = clientScopes.map((s) => cellFor(currentDrinkId, s.id, currentWorkloadId).count);
+				rangeEl.textContent = `${Math.min(...scopeCounts).toLocaleString()}–${Math.max(...scopeCounts).toLocaleString()}`;
+				rangeUnitEl.textContent = workload.daily;
 
 				waterEl.textContent = `${drink.waterLiters.toFixed(1)} liters`;
 				derivationEl.textContent = drink.derivation;
 				noteEl.textContent = drink.scopeNote;
-				if (drink.sources.length) {
-					sourcesEl.innerHTML = drink.sources
-						.map((s) => `<a href="${s.url}" target="_blank" rel="noopener">${s.label}</a>`)
-						.join(' · ');
-				} else {
-					sourcesEl.textContent = 'No external source needed';
-				}
+				sourcesEl.innerHTML = drink.sources.length
+					? drink.sources.map((s) => link(s.label, s.url)).join(' · ')
+					: 'No external source needed';
 				flagEl.hidden = !drink.flagged;
 
-				scopeMlEl.textContent = fmtMl(scope.perQueryMl);
+				unitSingularEl.textContent = workload.unitSingular;
+				perUnitMlEl.textContent = fmtMl(scope.perQueryMl * workload.multiple);
 				scopeBoundaryEl.textContent = scope.boundary;
 				scopeDetailEl.textContent = scope.detail;
-				scopeSourceEl.textContent = scope.sourceLabel;
-				scopeSourceEl.setAttribute('href', scope.sourceUrl);
+				if (workload.multiple > 1) {
+					workloadDetailEl.textContent = workload.detail;
+					workloadDetailEl.hidden = false;
+					aiSourcesEl.innerHTML = `${link(scope.sourceLabel, scope.sourceUrl)} · ${link(workload.sourceLabel, workload.sourceUrl)}`;
+				} else {
+					workloadDetailEl.hidden = true;
+					aiSourcesEl.innerHTML = link(scope.sourceLabel, scope.sourceUrl);
+				}
 
 				renderDots(cell.drops);
+				dotUnitEl.textContent = workload.daily;
 
 				drinkButtons.forEach((button) => {
 					const isActive = button.dataset.drink === currentDrinkId;
@@ -577,6 +742,11 @@ const sourceGroups = ['AI water', 'Drink footprints', 'US volumes', 'Context'];
 				});
 				scopePills.forEach((pill) => {
 					const isActive = pill.dataset.scope === currentScopeId;
+					pill.classList.toggle('is-active', isActive);
+					pill.setAttribute('aria-pressed', String(isActive));
+				});
+				workloadPills.forEach((pill) => {
+					const isActive = pill.dataset.workload === currentWorkloadId;
 					pill.classList.toggle('is-active', isActive);
 					pill.setAttribute('aria-pressed', String(isActive));
 				});
@@ -594,8 +764,14 @@ const sourceGroups = ['AI water', 'Drink footprints', 'US volumes', 'Context'];
 					render();
 				});
 			});
+			workloadPills.forEach((pill) => {
+				pill.addEventListener('click', () => {
+					currentWorkloadId = pill.dataset.workload;
+					render();
+				});
+			});
 
-			renderDots(drinkMap[currentDrinkId].byScope[currentScopeId].drops);
+			renderDots(cellFor(currentDrinkId, currentScopeId, currentWorkloadId).drops);
 
 			// Bars start collapsed only when JS runs; they grow on first scroll into view.
 			const chart = document.querySelector('[data-chart]');
@@ -1157,6 +1333,105 @@ const sourceGroups = ['AI water', 'Drink footprints', 'US volumes', 'Context'];
 		color: var(--ink-soft);
 	}
 
+	/* ─── Workload control + projected bar ─── */
+
+	.workload-control {
+		margin-top: -0.6rem;
+	}
+
+	.chart-bar.is-projected {
+		background:
+			repeating-linear-gradient(
+				135deg,
+				rgba(6, 182, 212, 0.5) 0,
+				rgba(6, 182, 212, 0.5) 6px,
+				rgba(6, 182, 212, 0.18) 6px,
+				rgba(6, 182, 212, 0.18) 12px
+			);
+	}
+
+	.chart-bar.is-projected .ai-bar-min {
+		background: repeating-linear-gradient(
+			135deg,
+			var(--water) 0,
+			var(--water) 6px,
+			rgba(8, 145, 178, 0.55) 6px,
+			rgba(8, 145, 178, 0.55) 12px
+		);
+	}
+
+	/* ─── Horizon (2026 + agentic) ─── */
+
+	.horizon {
+		padding-top: 3.6rem;
+	}
+
+	.horizon-grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 1.4rem;
+	}
+
+	.horizon-column {
+		padding: 1.4rem 1.5rem;
+		border-top: 3px solid;
+		border-image: linear-gradient(90deg, var(--amber), var(--water)) 1;
+		background: var(--glass);
+		border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+		backdrop-filter: blur(8px);
+		-webkit-backdrop-filter: blur(8px);
+	}
+
+	.horizon-column h3 {
+		font-size: 1.08rem;
+		margin-bottom: 0.5rem;
+	}
+
+	.horizon-column p {
+		margin: 0;
+		font-size: 0.94rem;
+		line-height: 1.65;
+		color: var(--ink-soft);
+	}
+
+	.unit-strip {
+		display: grid;
+		gap: 0.5rem;
+		margin: 1rem 0;
+	}
+
+	.unit-row {
+		display: flex;
+		align-items: baseline;
+		gap: 0.7rem;
+		padding: 0.55rem 0.85rem;
+		border-radius: var(--radius-lg);
+		background: var(--water-subtle);
+	}
+
+	.unit-count {
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 1.3rem;
+		font-weight: 700;
+		color: var(--water-deep);
+		font-variant-numeric: tabular-nums;
+		min-width: 5.5rem;
+	}
+
+	.unit-name {
+		font-size: 0.9rem;
+		color: var(--ink-soft);
+	}
+
+	.horizon-caveat {
+		font-size: 0.86rem !important;
+		color: var(--ink-muted) !important;
+	}
+
+	.workload-detail {
+		margin-top: 0.5rem !important;
+	}
+
 	/* ─── Sources ─── */
 
 	.source-group {
@@ -1231,7 +1506,8 @@ const sourceGroups = ['AI water', 'Drink footprints', 'US volumes', 'Context'];
 
 	@media (max-width: 900px) {
 		.result-grid,
-		.methodology-grid {
+		.methodology-grid,
+		.horizon-grid {
 			grid-template-columns: 1fr;
 		}
 

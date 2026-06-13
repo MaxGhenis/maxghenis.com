@@ -4,15 +4,21 @@ import {
   AGGREGATE_TOTAL_LITERS,
   AGGREGATE_TOTAL_MULTIPLE_MAX,
   AGGREGATE_TOTAL_MULTIPLE_MIN,
+  AGGREGATE_TOTAL_MULTIPLE_2026_MAX,
+  AGGREGATE_TOTAL_MULTIPLE_2026_MIN,
   AI_2025_MAX_LITERS,
   AI_2025_MIN_LITERS,
+  AI_2026_MAX_LITERS,
+  AI_2026_MIN_LITERS,
   ALTMAN_ML_PER_QUERY,
   DEFAULT_SCOPE_ID,
+  DEFAULT_WORKLOAD_ID,
   GOOGLE_WATER_PER_PROMPT_ML,
   IMPLIED_POPULATION,
   QUERY_SCOPES,
   SCOPED_DRINKS,
   WATER_PER_QUERY_ML,
+  WORKLOAD_TIERS,
   dailyUseLabel,
   formatCompact,
   formatMultipleRange,
@@ -56,6 +62,55 @@ describe('per-query scopes', () => {
 
   it('every scope links a working https source', () => {
     for (const s of QUERY_SCOPES) expect(s.sourceUrl).toMatch(/^https:\/\//);
+  });
+});
+
+describe('workload tiers', () => {
+  it('exposes query, reasoning, and agentic tiers', () => {
+    expect(WORKLOAD_TIERS.map((w) => w.id)).toEqual(['query', 'reasoning', 'agentic']);
+    expect(WORKLOAD_TIERS[0].multiple).toBe(1);
+    expect(WORKLOAD_TIERS[1].multiple).toBe(10);
+    expect(WORKLOAD_TIERS[2].multiple).toBe(15);
+  });
+
+  it('default workload is a single query', () => {
+    expect(DEFAULT_WORKLOAD_ID).toBe('query');
+  });
+
+  it('flags the reasoning multiplier as an estimate, not the agentic one', () => {
+    const byId = Object.fromEntries(WORKLOAD_TIERS.map((w) => [w.id, w]));
+    expect(byId.reasoning.estimate).toBe(true);
+    expect(byId.agentic.estimate).toBeUndefined();
+  });
+
+  it('every workload links a working https source', () => {
+    for (const w of WORKLOAD_TIERS) expect(w.sourceUrl).toMatch(/^https:\/\//);
+  });
+
+  it('a beer is ~33,000 reasoning responses or ~22,000 agentic tasks (on-site)', () => {
+    const beer = SCOPED_DRINKS.find((d) => d.id === 'beer');
+    if (!beer) throw new Error('missing beer');
+    const q = beer.queriesByScope.onsite;
+    expect(roundToSigFigs(q / 10)).toBe(33_100);
+    expect(roundToSigFigs(q / 15)).toBe(22_100);
+  });
+});
+
+describe('2026 projection', () => {
+  it('scales the 2025 range by the published-rate central multiplier of 1.5x', () => {
+    expect(AI_2026_MIN_LITERS).toBeCloseTo(468.75e9, -6);
+    expect(AI_2026_MAX_LITERS).toBeCloseTo(1146.9e9, -6);
+  });
+
+  it('drinks still outweigh projected 2026 AI by about 66-161x', () => {
+    expect(AGGREGATE_TOTAL_MULTIPLE_2026_MIN).toBeCloseTo(65.9, 0);
+    expect(AGGREGATE_TOTAL_MULTIPLE_2026_MAX).toBeCloseTo(161.3, 0);
+  });
+
+  it('the comparison holds even on the most aggressive AI-growth assumption (2.45x)', () => {
+    const total = 75.6e12;
+    const ai2026High = AI_2025_MAX_LITERS * 2.45;
+    expect(total / ai2026High).toBeGreaterThan(35);
   });
 });
 
