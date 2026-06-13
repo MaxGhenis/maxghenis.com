@@ -6,9 +6,12 @@ import {
   AGGREGATE_TOTAL_MULTIPLE_MIN,
   AI_2025_MAX_LITERS,
   AI_2025_MIN_LITERS,
-  DRINKS_WITH_QUERIES,
+  ALTMAN_ML_PER_QUERY,
+  DEFAULT_SCOPE_ID,
   GOOGLE_WATER_PER_PROMPT_ML,
   IMPLIED_POPULATION,
+  QUERY_SCOPES,
+  SCOPED_DRINKS,
   WATER_PER_QUERY_ML,
   dailyUseLabel,
   formatCompact,
@@ -17,7 +20,7 @@ import {
 } from './drinking-ai';
 
 function drink(id: string) {
-  const found = DRINKS_WITH_QUERIES.find((d) => d.id === id);
+  const found = SCOPED_DRINKS.find((d) => d.id === id);
   if (!found) throw new Error(`missing drink ${id}`);
   return found;
 }
@@ -28,56 +31,107 @@ function category(id: string) {
   return found;
 }
 
-describe('per-query baseline', () => {
-  it('converts 0.000085 gallons to about 0.32 mL', () => {
-    expect(WATER_PER_QUERY_ML).toBeCloseTo(0.3218, 3);
+describe('per-query scopes', () => {
+  it('on-site scope converts 0.000085 gallons to about 0.32 mL', () => {
+    expect(ALTMAN_ML_PER_QUERY).toBeCloseTo(0.3218, 3);
+    expect(WATER_PER_QUERY_ML).toBe(ALTMAN_ML_PER_QUERY);
   });
 
-  it('lands within 25% of Google\'s published Gemini median', () => {
-    const ratio = WATER_PER_QUERY_ML / GOOGLE_WATER_PER_PROMPT_ML;
+  it('on-site lands within 25% of Google\'s published Gemini median', () => {
+    const ratio = ALTMAN_ML_PER_QUERY / GOOGLE_WATER_PER_PROMPT_ML;
     expect(ratio).toBeGreaterThan(1);
     expect(ratio).toBeLessThan(1.25);
   });
+
+  it('exposes three scopes spanning two orders of magnitude', () => {
+    expect(QUERY_SCOPES.map((s) => s.id)).toEqual(['onsite', 'operational', 'lifecycle']);
+    expect(QUERY_SCOPES[0].perQueryMl).toBeCloseTo(0.322, 2);
+    expect(QUERY_SCOPES[1].perQueryMl).toBe(2.0);
+    expect(QUERY_SCOPES[2].perQueryMl).toBe(45);
+  });
+
+  it('default scope is the on-site figure', () => {
+    expect(DEFAULT_SCOPE_ID).toBe('onsite');
+  });
+
+  it('every scope links a working https source', () => {
+    for (const s of QUERY_SCOPES) expect(s.sourceUrl).toMatch(/^https:\/\//);
+  });
 });
 
-describe('per-drink query equivalents', () => {
+describe('per-drink query equivalents (on-site scope)', () => {
   const expected: Record<string, number> = {
     beer: 331_000,
-    wine: 442_000,
-    cocktail: 56_000,
+    wine: 396_000,
+    cocktail: 55_900,
+    coffee: 412_000,
+    tea: 82_600,
     soda: 373_000,
-    'orange-juice': 626_000,
-    'bottled-water': 1_534,
+    'orange-juice': 784_000,
+    milk: 773_000,
+    'bottled-water': 1_530,
     'tap-water': 1_100,
   };
 
   for (const [id, queries] of Object.entries(expected)) {
     it(`${id} is about ${queries.toLocaleString()} queries`, () => {
-      expect(drink(id).queries).toBeGreaterThan(queries * 0.99);
-      expect(drink(id).queries).toBeLessThan(queries * 1.01);
+      expect(roundToSigFigs(drink(id).queriesByScope.onsite)).toBe(queries);
     });
   }
 
-  it('every drink except tap water links a source', () => {
-    for (const d of DRINKS_WITH_QUERIES) {
-      if (d.id === 'tap-water') expect(d.sourceUrl).toBeUndefined();
-      else expect(d.sourceUrl).toMatch(/^https:\/\//);
+  it('orange juice and milk outrank beer per serving', () => {
+    const onsite = SCOPED_DRINKS.map((d) => d.queriesByScope.onsite);
+    expect(Math.max(...onsite)).toBe(drink('orange-juice').queriesByScope.onsite);
+    expect(drink('orange-juice').queriesByScope.onsite).toBeGreaterThan(drink('beer').queriesByScope.onsite);
+    expect(drink('milk').queriesByScope.onsite).toBeGreaterThan(drink('beer').queriesByScope.onsite);
+  });
+
+  it('every drink except tap water links at least one source', () => {
+    for (const d of SCOPED_DRINKS) {
+      if (d.id === 'tap-water') expect(d.sources).toHaveLength(0);
+      else expect(d.sources.length).toBeGreaterThanOrEqual(1);
+      for (const s of d.sources) expect(s.url).toMatch(/^https:\/\//);
+    }
+  });
+
+  it('flags the cocktail figure as non-peer-reviewed', () => {
+    expect(drink('cocktail').flagged).toBe(true);
+    expect(drink('beer').flagged).toBeUndefined();
+  });
+});
+
+describe('scope scaling', () => {
+  it('a beer ranges from ~2,400 to ~331,000 queries across scopes', () => {
+    expect(roundToSigFigs(drink('beer').queriesByScope.onsite)).toBe(331_000);
+    expect(roundToSigFigs(drink('beer').queriesByScope.operational)).toBe(53_300);
+    expect(roundToSigFigs(drink('beer').queriesByScope.lifecycle)).toBe(2_370);
+  });
+
+  it('the comparison survives the largest per-query figure: a beer still beats thousands of queries', () => {
+    expect(drink('beer').queriesByScope.lifecycle).toBeGreaterThan(2_000);
+  });
+
+  it('on-site always yields more query-equivalents than lifecycle', () => {
+    for (const d of SCOPED_DRINKS) {
+      expect(d.queriesByScope.onsite).toBeGreaterThan(d.queriesByScope.lifecycle);
     }
   });
 });
 
 describe('time-equivalence framing at 30 queries/day', () => {
   it('beer covers about 30 years', () => {
-    expect(drink('beer').usageLabel).toBe('30 years');
+    expect(drink('beer').usageByScope.onsite).toBe('30 years');
   });
-  it('orange juice covers about 57 years', () => {
-    expect(drink('orange-juice').usageLabel).toBe('57 years');
+  it('orange juice covers about 72 years', () => {
+    expect(drink('orange-juice').usageByScope.onsite).toBe('72 years');
   });
   it('tap water covers about 37 days', () => {
-    expect(drink('tap-water').usageLabel).toBe('37 days');
+    expect(drink('tap-water').usageByScope.onsite).toBe('37 days');
   });
-  it('pluralizes a single day', () => {
+  it('drops to hours for tiny counts', () => {
     expect(dailyUseLabel(30)).toBe('1 day');
+    expect(dailyUseLabel(60)).toBe('2 days');
+    expect(dailyUseLabel(15)).toBe('12 hours');
   });
 });
 
@@ -93,10 +147,13 @@ describe('aggregate categories vs 2025 AI', () => {
   });
 
   const expectedTrillions: Record<string, number> = {
+    coffee: 25.0,
+    milk: 20.0,
     soda: 15.3,
     beer: 7.0,
-    wine: 3.2,
-    'orange-juice': 2.3,
+    'orange-juice': 3.0,
+    wine: 2.9,
+    tea: 2.3,
     'bottled-water': 0.088,
   };
 
@@ -106,24 +163,24 @@ describe('aggregate categories vs 2025 AI', () => {
     });
   }
 
-  it('soda is 20-49x the AI range', () => {
-    expect(category('soda').multipleMin).toBeCloseTo(20.1, 1);
-    expect(category('soda').multipleMax).toBeCloseTo(49.1, 1);
+  it('coffee and milk are the two largest categories', () => {
+    expect(AGGREGATE_CATEGORIES[0].id).toBe('coffee');
+    expect(AGGREGATE_CATEGORIES[1].id).toBe('milk');
   });
 
-  it('beer is 9-22x the AI range', () => {
-    expect(category('beer').multipleMin).toBeCloseTo(9.2, 1);
-    expect(category('beer').multipleMax).toBeCloseTo(22.4, 1);
+  it('coffee is 33-80x the AI range', () => {
+    expect(category('coffee').multipleMin).toBeCloseTo(32.7, 1);
+    expect(category('coffee').multipleMax).toBeCloseTo(80.0, 1);
   });
 
   it('bottled water stays below the AI range', () => {
     expect(category('bottled-water').multipleMax).toBeLessThan(0.3);
   });
 
-  it('the five categories sum to about 27.9 trillion liters, 37-89x AI', () => {
-    expect(AGGREGATE_TOTAL_LITERS / 1e12).toBeCloseTo(27.9, 1);
-    expect(AGGREGATE_TOTAL_MULTIPLE_MIN).toBeCloseTo(36.5, 1);
-    expect(AGGREGATE_TOTAL_MULTIPLE_MAX).toBeCloseTo(89.4, 1);
+  it('the categories sum to about 75.6 trillion liters, 99-242x AI', () => {
+    expect(AGGREGATE_TOTAL_LITERS / 1e12).toBeCloseTo(75.6, 0);
+    expect(AGGREGATE_TOTAL_MULTIPLE_MIN).toBeCloseTo(98.9, 0);
+    expect(AGGREGATE_TOTAL_MULTIPLE_MAX).toBeCloseTo(241.9, 0);
   });
 
   it('every category links at least one source', () => {
@@ -131,6 +188,11 @@ describe('aggregate categories vs 2025 AI', () => {
       expect(c.sources.length).toBeGreaterThanOrEqual(1);
       for (const s of c.sources) expect(s.url).toMatch(/^https:\/\//);
     }
+  });
+
+  it('flags tea as the softest figure', () => {
+    expect(category('tea').flagged).toBe(true);
+    expect(category('milk').flagged).toBeUndefined();
   });
 
   it('categories are sorted by total, largest first', () => {
@@ -159,7 +221,7 @@ describe('formatting', () => {
 
   it('formats multiple ranges with sensible precision', () => {
     expect(formatMultipleRange(9.165, 22.42)).toBe('9.2–22x');
-    expect(formatMultipleRange(20.07, 49.1)).toBe('20–49x');
+    expect(formatMultipleRange(32.7, 80.0)).toBe('33–80x');
     expect(formatMultipleRange(0.116, 0.283)).toBe('0.1–0.3x');
   });
 });
