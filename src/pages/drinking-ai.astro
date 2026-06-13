@@ -3,316 +3,105 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE } from '../consts';
+import {
+  AGGREGATE_CATEGORIES,
+  AGGREGATE_TOTAL_LITERS,
+  AGGREGATE_TOTAL_MULTIPLE_MAX,
+  AGGREGATE_TOTAL_MULTIPLE_MIN,
+  AI_2025_MAX_LITERS,
+  AI_2025_MIN_LITERS,
+  DRINKS_WITH_QUERIES,
+  QUERIES_PER_DAY,
+  WATER_PER_QUERY_ML,
+  formatLiters,
+  formatMultipleRange,
+  roundToSigFigs,
+} from '../lib/drinking-ai';
 
-const waterPerQueryGallons = 0.000085;
-const litersPerGallon = 3.785411784;
-const waterPerQueryMl = waterPerQueryGallons * litersPerGallon * 1000;
-const aiWaterFootprint2025MinLiters = 312.5e9;
-const aiWaterFootprint2025MaxLiters = 764.6e9;
+const QUERIES_PER_DROP = 1000;
+const defaultDrink = DRINKS_WITH_QUERIES[0];
+const chartMaxLiters = Math.max(...AGGREGATE_CATEGORIES.map((c) => c.totalWaterLiters));
 
-const decimalFormatter = new Intl.NumberFormat('en-US', { maximumFractionDigits: 1 });
-
-function formatCompactValue(value: number) {
-	if (value >= 1e12) return `${decimalFormatter.format(value / 1e12)} trillion`;
-	if (value >= 1e9) return `${decimalFormatter.format(value / 1e9)} billion`;
-	if (value >= 1e6) return `${decimalFormatter.format(value / 1e6)} million`;
-	return decimalFormatter.format(value);
-}
-
-function formatLiters(value: number) {
-	return `${formatCompactValue(value)} liters`;
-}
-
-function formatGallons(value: number) {
-	return `${formatCompactValue(value)} gallons`;
-}
-
-const drinks = [
-	{
-		id: 'beer',
-		name: 'Beer',
-		serving: '12 oz / 355 mL bottle or pint',
-		waterLiters: 75 * (355 / 250),
-		formula: '75 L per 250 mL glass scaled to a 355 mL serving',
-		sourceLabel: 'Hoekstra 2008: beer uses 75 liters per 250 mL glass',
-		sourceUrl: 'https://www.waterfootprint.org/resources/Hoekstra-2008-WaterfootprintFood.pdf',
-		note: 'Compared with the same amount of tap water, the result barely changes.',
-	},
-	{
-		id: 'wine',
-		name: 'Wine',
-		serving: '5 oz / 148 mL pour',
-		waterLiters: 120 * (148 / 125),
-		formula: '120 L per 125 mL glass scaled to a 148 mL serving',
-		sourceLabel: 'Hoekstra 2008: wine uses 120 liters per 125 mL glass',
-		sourceUrl: 'https://www.waterfootprint.org/resources/Hoekstra-2008-WaterfootprintFood.pdf',
-		note: 'Compared with the same amount of tap water, the result barely changes.',
-	},
-	{
-		id: 'cocktail',
-		name: 'Cocktail',
-		serving: 'One standard mixed drink',
-		waterLiters: 18,
-		formula: '18 L per serving',
-		sourceLabel: 'spiritsEUROPE 2020: one serving of spirit drink uses 18 liters of water on average',
-		sourceUrl: 'https://spirits.eu/upload/files/publications/CP.MI-165-2020-%20Farm2Glass%20Brochure%20-%2014%20May%202020.pdf',
-		note: 'This remains the weakest drink source on the page: a public industry estimate rather than a government table.',
-	},
-	{
-		id: 'orange-juice',
-		name: 'Orange Juice',
-		serving: '8 oz / 237 mL glass',
-		waterLiters: 170 * (237 / 200),
-		formula: '170 L per 200 mL glass scaled to a 237 mL serving',
-		sourceLabel: 'Water Footprint Network Report 16: orange juice uses 170 liters per 200 mL glass',
-		sourceUrl: 'https://www.waterfootprint.org/resources/Report16Vol1.pdf',
-		note: 'This uses orange juice specifically, because that is the cleanest USDA national juice category I could match later in the aggregate section.',
-	},
-	{
-		id: 'soda',
-		name: 'Soda',
-		serving: '12 oz / 355 mL can',
-		waterLiters: 169 * (355 / 500),
-		formula: 'Conservative low end of 169 L per 0.5 L PET bottle, scaled to a 355 mL can',
-		sourceLabel: 'Water Footprint Network Report 39: soda runs 169 to 309 liters per 0.5 L bottle; this page uses the low end',
-		sourceUrl: 'https://www.waterfootprint.org/resources/Report39-WaterFootprintCarbonatedBeverage.pdf',
-		note: 'This is intentionally conservative. Sugar source and production route can push the footprint much higher.',
-	},
-	{
-		id: 'bottled-water',
-		name: 'Bottled Water',
-		serving: '12 oz / 355 mL bottle',
-		waterLiters: 1.39 * 0.355,
-		formula: '1.39 L of water used per 1 L bottled water, scaled to a 355 mL serving',
-		sourceLabel: 'IBWA 2024 benchmarking: bottled water facilities used 1.39 liters of water per liter bottled',
-		sourceUrl: 'https://bottledwater.org/wp-content/uploads/2024/08/IBWA-Benchmarking-Executive-Summary_May-2024.pdf',
-		note: 'This is a facility process-water ratio, including the product water itself.',
-	},
-	{
-		id: 'tap-water',
-		name: 'Tap Water',
-		serving: '12 oz / 355 mL glass',
-		waterLiters: 0.355,
-		formula: 'The water in the glass itself: 355 mL = 0.355 L',
-		sourceLabel: 'No external source needed: this is just the water in the glass',
-		note: 'This is the direct water in the glass, not a treatment or distribution lifecycle estimate.',
-	},
-];
-
-const drinksWithQueries = drinks.map((drink) => ({
-	...drink,
-	queryEquivalent: (drink.waterLiters * 1000) / waterPerQueryMl,
+const clientDrinks = DRINKS_WITH_QUERIES.map((d) => ({
+  id: d.id,
+  name: d.name,
+  serving: d.serving,
+  queries: roundToSigFigs(d.queries),
+  drops: Math.max(1, Math.round(d.queries / QUERIES_PER_DROP)),
+  usageLabel: d.usageLabel,
+  waterLiters: d.waterLiters,
+  formula: d.formula,
+  scopeNote: d.scopeNote,
+  sourceLabel: d.sourceLabel,
+  sourceUrl: d.sourceUrl ?? null,
 }));
-
-const maxDrinkWaterLiters = Math.max(...drinksWithQueries.map((drink) => drink.waterLiters));
-
-const beerGallons = 6_170_858_000;
-const wineGallons = 887_990_000;
-const orangeJuiceGallons = 707_900_000;
-const bottledWaterGallons = 16_800_000_000;
-const bottledWaterPerCapitaGallons = 47.5;
-const sodaPerCapitaGallons = 33.9;
-const beverageMarketPopulation = bottledWaterGallons / bottledWaterPerCapitaGallons;
-const sodaGallons = beverageMarketPopulation * sodaPerCapitaGallons;
-
-const aggregateCategories = [
-	{
-		id: 'aggregate-beer',
-		name: 'Beer',
-		year: '2023',
-		totalWaterLiters: beerGallons * litersPerGallon * 300,
-		volumeSummary: `Latest public total: ${formatGallons(beerGallons)} in 2023.`,
-		footprintSummary: 'Footprint basis: 300 liters of water per liter of beer.',
-		note: 'Uses the same beer-footprint source as the drink calculator.',
-		sources: [
-			{
-				label: 'NIAAA 2023 U.S. volume table',
-				url: 'https://www.niaaa.nih.gov/sites/default/files/surveillance-report122.Per-Capita-Consumption.pdf',
-			},
-			{
-				label: 'Hoekstra 2008',
-				url: 'https://www.waterfootprint.org/resources/Hoekstra-2008-WaterfootprintFood.pdf',
-			},
-		],
-	},
-	{
-		id: 'aggregate-wine',
-		name: 'Wine',
-		year: '2023',
-		totalWaterLiters: wineGallons * litersPerGallon * 960,
-		volumeSummary: `Latest public total: ${formatGallons(wineGallons)} in 2023.`,
-		footprintSummary: 'Footprint basis: 960 liters of water per liter of wine.',
-		note: 'Again, this uses the same per-glass footprint shown in the calculator.',
-		sources: [
-			{
-				label: 'NIAAA 2023 U.S. volume table',
-				url: 'https://www.niaaa.nih.gov/sites/default/files/surveillance-report122.Per-Capita-Consumption.pdf',
-			},
-			{
-				label: 'Hoekstra 2008',
-				url: 'https://www.waterfootprint.org/resources/Hoekstra-2008-WaterfootprintFood.pdf',
-			},
-		],
-	},
-	{
-		id: 'aggregate-orange-juice',
-		name: 'Orange Juice',
-		year: '2022',
-		totalWaterLiters: orangeJuiceGallons * litersPerGallon * 850,
-		volumeSummary: `Latest clean USDA total: ${formatGallons(orangeJuiceGallons)} in 2022.`,
-		footprintSummary: 'Footprint basis: 850 liters of water per liter of orange juice.',
-		note: 'USDA gives a clean orange-juice total, but not a comparably clean all-juice total that matches this footprint basis.',
-		sources: [
-			{
-				label: 'USDA ERS orange juice CSV',
-				url: 'https://ers.usda.gov/media/5349/fruit-juices.csv?v=60123',
-			},
-			{
-				label: 'Water Footprint Network Report 16',
-				url: 'https://www.waterfootprint.org/resources/Report16Vol1.pdf',
-			},
-		],
-	},
-	{
-		id: 'aggregate-soda',
-		name: 'Soda',
-		year: '2025',
-		totalWaterLiters: sodaGallons * litersPerGallon * (169 / 0.5),
-		volumeSummary: `Derived 2025 total: about ${formatGallons(sodaGallons)} from BMC preliminary bottled-water volume and carbonated-soft-drink per-capita use.`,
-		footprintSummary: 'Conservative footprint basis: 169 liters per 0.5 L bottle, or 338 liters per liter.',
-		note: 'This is a floor estimate for a hypothetical sugar-containing PET-bottle soda; the same report gives 309 liters per 0.5 L bottle at the high end.',
-		sources: [
-			{
-				label: 'IBWA 2026 progress report',
-				url: 'https://bottledwater.org/wp-content/uploads/2026/01/2025-Progress-Report_FINAL.pdf',
-			},
-			{
-				label: 'Water Footprint Network Report 39',
-				url: 'https://www.waterfootprint.org/resources/Report39-WaterFootprintCarbonatedBeverage.pdf',
-			},
-		],
-	},
-	{
-		id: 'aggregate-bottled-water',
-		name: 'Bottled Water',
-		year: '2025',
-		totalWaterLiters: bottledWaterGallons * litersPerGallon * 1.39,
-		volumeSummary: `Latest public preliminary total: ${formatGallons(bottledWaterGallons)} in 2025.`,
-		footprintSummary: 'Facility basis: 1.39 liters of water used per liter bottled.',
-		note: 'This is the one category here that stays below the low end of the 2025 AI range.',
-		sources: [
-			{
-				label: 'IBWA 2026 progress report',
-				url: 'https://bottledwater.org/wp-content/uploads/2026/01/2025-Progress-Report_FINAL.pdf',
-			},
-			{
-				label: 'IBWA 2024 benchmarking',
-				url: 'https://bottledwater.org/wp-content/uploads/2024/08/IBWA-Benchmarking-Executive-Summary_May-2024.pdf',
-			},
-		],
-	},
-].map((category) => ({
-	...category,
-	isTotal: false,
-	multipleOfAiLow: category.totalWaterLiters / aiWaterFootprint2025MaxLiters,
-	multipleOfAiHigh: category.totalWaterLiters / aiWaterFootprint2025MinLiters,
-}));
-
-const aggregateTotalWaterLiters = aggregateCategories.reduce(
-	(total, category) => total + category.totalWaterLiters,
-	0,
-);
-
-const aggregateEntries = [
-	...aggregateCategories,
-	{
-		id: 'aggregate-all',
-		name: 'All tracked categories',
-		year: 'Mixed latest public years',
-		totalWaterLiters: aggregateTotalWaterLiters,
-		multipleOfAiLow: aggregateTotalWaterLiters / aiWaterFootprint2025MaxLiters,
-		multipleOfAiHigh: aggregateTotalWaterLiters / aiWaterFootprint2025MinLiters,
-		volumeSummary:
-			'Sums beer, wine, orange juice, soda, and bottled water from the cards above.',
-		footprintSummary:
-			'Uses the latest public total I could find for each category rather than forcing everything into one weaker source year.',
-		note:
-			'Tap water and cocktails stay in the calculator only, because I did not find equally clean national drinking-only tap-water or mixed-drink totals on the same footing.',
-		isTotal: true,
-		sources: [],
-	},
-];
-
-const maxAggregateMultiple = Math.max(
-	...aggregateEntries.map((entry) => entry.multipleOfAiHigh),
-);
 
 const sourceCards = [
-	{
-		title: 'OpenAI / Sam Altman',
-		detail: 'June 10, 2025. Public average ChatGPT query: 0.34 Wh and 0.000085 gallons of water.',
-		url: 'https://blog.samaltman.com/the-gentle-singularity',
-	},
-	{
-		title: 'Google Cloud 2025',
-		detail: 'A useful cross-check: Google estimates a median Gemini Apps text prompt at 0.24 Wh and 0.26 mL of water, close to OpenAI\'s 0.322 mL ChatGPT average.',
-		url: 'https://cloud.google.com/blog/products/infrastructure/measuring-the-environmental-impact-of-ai-inference/',
-	},
-	{
-		title: 'OpenAI GPT-5 launch',
-		detail: 'August 7, 2025. Useful for product routing context, but it does not publish a GPT-5-only water figure.',
-		url: 'https://openai.com/index/introducing-gpt-5/',
-	},
-	{
-		title: 'Hoekstra 2008',
-		detail: 'Beer: 75 liters per 250 mL glass. Wine: 120 liters per 125 mL glass.',
-		url: 'https://www.waterfootprint.org/resources/Hoekstra-2008-WaterfootprintFood.pdf',
-	},
-	{
-		title: 'Water Footprint Network Report 16',
-		detail: 'Orange juice: 170 liters per 200 mL glass. Apple juice: 190 liters per 200 mL glass.',
-		url: 'https://www.waterfootprint.org/resources/Report16Vol1.pdf',
-	},
-	{
-		title: 'Water Footprint Network Report 39',
-		detail: 'Hypothetical sugar-containing carbonated beverage: 169 to 309 liters per 0.5 L PET bottle; 99.7-99.8% is supply-chain water footprint.',
-		url: 'https://www.waterfootprint.org/resources/Report39-WaterFootprintCarbonatedBeverage.pdf',
-	},
-	{
-		title: 'Water Footprint Network definitions',
-		detail: 'Water footprints combine green, blue, and grey components, so they are volume comparisons rather than local scarcity-impact estimates.',
-		url: 'https://www.waterfootprint.org/water-footprint-2/what-is-a-water-footprint/',
-	},
-	{
-		title: 'spiritsEUROPE 2020',
-		detail: 'One serving of spirit drink uses about 18 liters of water on average.',
-		url: 'https://spirits.eu/upload/files/publications/CP.MI-165-2020-%20Farm2Glass%20Brochure%20-%2014%20May%202020.pdf',
-	},
-	{
-		title: 'IBWA 2024 benchmarking',
-		detail: 'Bottled water facilities used 1.39 liters of water per liter bottled in 2022.',
-		url: 'https://bottledwater.org/wp-content/uploads/2024/08/IBWA-Benchmarking-Executive-Summary_May-2024.pdf',
-	},
-	{
-		title: 'NIAAA Surveillance Report 122',
-		detail: 'U.S. beer, wine, and spirits volumes in 2023.',
-		url: 'https://www.niaaa.nih.gov/sites/default/files/surveillance-report122.Per-Capita-Consumption.pdf',
-	},
-	{
-		title: 'USDA ERS fruit-juices CSV',
-		detail: 'Latest clean public orange-juice total: 707.9 million gallons in 2022.',
-		url: 'https://ers.usda.gov/media/5349/fruit-juices.csv?v=60123',
-	},
-	{
-		title: 'IBWA 2026 progress report',
-		detail: 'Preliminary 2025 bottled water volume: 16.8 billion gallons. Per-capita use: 47.5 gallons for bottled water and 33.9 gallons for carbonated soft drinks.',
-		url: 'https://bottledwater.org/wp-content/uploads/2026/01/2025-Progress-Report_FINAL.pdf',
-	},
-	{
-		title: 'Patterns 2026',
-		detail: 'Freshest published AI-wide benchmark I found: AI systems alone could reach 312.5 to 764.6 billion liters of water in 2025.',
-		url: 'https://www.sciencedirect.com/science/article/pii/S2666389925002788',
-	},
+  {
+    title: 'OpenAI / Sam Altman',
+    detail: 'Average ChatGPT query: 0.34 Wh and 0.000085 gallons (0.32 mL) of water. June 10, 2025.',
+    url: 'https://blog.samaltman.com/the-gentle-singularity',
+  },
+  {
+    title: 'Google Cloud',
+    detail: 'Median Gemini Apps text prompt: 0.24 Wh and 0.26 mL of water. 2025.',
+    url: 'https://cloud.google.com/blog/products/infrastructure/measuring-the-environmental-impact-of-ai-inference/',
+  },
+  {
+    title: 'de Vries-Gao, Patterns',
+    detail: 'Modeled global AI water footprint for 2025: 312.5–764.6 billion liters. 2026.',
+    url: 'https://doi.org/10.1016/j.patter.2025.101430',
+  },
+  {
+    title: 'Hoekstra 2008',
+    detail: 'Beer: 75 L per 250 mL glass. Wine: 120 L per 125 mL glass.',
+    url: 'https://www.waterfootprint.org/resources/Hoekstra-2008-WaterfootprintFood.pdf',
+  },
+  {
+    title: 'Water Footprint Network Report 16',
+    detail: 'Orange juice: 170 L per 200 mL glass.',
+    url: 'https://www.waterfootprint.org/resources/Report16Vol1.pdf',
+  },
+  {
+    title: 'Water Footprint Network Report 39',
+    detail: 'Sugar-containing carbonated beverage: 169–309 L per 0.5 L bottle; 99.7–99.8% of it in the supply chain.',
+    url: 'https://www.waterfootprint.org/resources/Report39-WaterFootprintCarbonatedBeverage.pdf',
+  },
+  {
+    title: 'Water Footprint Network definitions',
+    detail: 'Water footprints sum green, blue, and grey water — volume comparisons, not local scarcity impacts.',
+    url: 'https://www.waterfootprint.org/water-footprint-2/what-is-a-water-footprint/',
+  },
+  {
+    title: 'spiritsEUROPE 2020',
+    detail: 'One serving of spirit drink: about 18 L of water.',
+    url: 'https://spirits.eu/upload/files/publications/CP.MI-165-2020-%20Farm2Glass%20Brochure%20-%2014%20May%202020.pdf',
+  },
+  {
+    title: 'IBWA 2024 benchmarking',
+    detail: 'Bottled water facilities: 1.39 L of water per liter bottled in 2022.',
+    url: 'https://bottledwater.org/wp-content/uploads/2024/08/IBWA-Benchmarking-Executive-Summary_May-2024.pdf',
+  },
+  {
+    title: 'NIAAA Surveillance Report 122',
+    detail: 'US beer, wine, and spirits volumes for 2023.',
+    url: 'https://www.niaaa.nih.gov/sites/default/files/surveillance-report122.Per-Capita-Consumption.pdf',
+  },
+  {
+    title: 'USDA ERS fruit-juices table',
+    detail: 'US orange juice: 707.9 million gallons in 2022.',
+    url: 'https://ers.usda.gov/media/5349/fruit-juices.csv?v=60123',
+  },
+  {
+    title: 'IBWA 2026 progress report',
+    detail: 'Preliminary 2025: 16.8 billion gallons of bottled water; per-capita 47.5 gal bottled water, 33.9 gal carbonated soft drinks.',
+    url: 'https://bottledwater.org/wp-content/uploads/2026/01/2025-Progress-Report_FINAL.pdf',
+  },
+  {
+    title: 'Andy Masley',
+    detail: '"Using ChatGPT is not bad for the environment" — the post that prompted this page.',
+    url: 'https://andymasley.substack.com/p/individual-ai-use-is-not-bad-for',
+  },
 ];
 ---
 
@@ -321,7 +110,7 @@ const sourceCards = [
 	<head>
 		<BaseHead
 			title={`Drinking AI | ${SITE_TITLE}`}
-			description="A calculator and aggregate view comparing beer, wine, juice, soda, bottled water, and tap water with average ChatGPT turns and a fresh 2025 AI water estimate."
+			description="One beer's water footprint equals about 331,000 ChatGPT queries. Drinks converted into AI queries, and US drink categories compared with all of 2025's AI water use."
 			image="/og/drinking-ai.png"
 		/>
 	</head>
@@ -329,37 +118,23 @@ const sourceCards = [
 		<Header />
 		<main class="drinking-ai-page">
 			<div class="page-atmosphere" aria-hidden="true"></div>
+
 			<section class="poster">
-				<div class="poster-copy">
-					<h1 class="poster-title">Drinking AI</h1>
-					<p class="lede">
-						How many average ChatGPT turns does a drink "use" in water terms? This page now
-						covers alcohol, juice, soda, bottled water, and tap water, then zooms out to show
-						how whole U.S. drink categories compare with the freshest published 2025 AI water estimate I could find.
-					</p>
-				</div>
-				<div class="poster-aside">
-					<div class="aside-glow" aria-hidden="true"></div>
-					<div class="aside-label">AI baseline</div>
-					<div class="aside-value">0.322<span class="aside-unit">mL</span></div>
-					<p>Average ChatGPT query water use from OpenAI's June 10, 2025 public estimate.</p>
-				</div>
+				<span class="section-kicker">Water arithmetic</span>
+				<h1 class="poster-title">Drinking AI</h1>
+				<p class="lede">
+					Growing, brewing, and packaging one beer takes about as much water as
+					<strong>331,000</strong> ChatGPT queries. Pick a drink below to convert its water
+					footprint into queries — then see how whole US drink categories compare with
+					everything AI drank in 2025.
+				</p>
 			</section>
 
 			<section class="workspace animate-fade-in-up delay-100" aria-labelledby="calculator-heading">
-				<div class="workspace-header">
-					<div>
-						<span class="section-kicker">Calculator</span>
-						<h2 id="calculator-heading">Choose a drink</h2>
-					</div>
-					<p class="workspace-note">
-						Most drink numbers use full water footprints. Bottled and tap water are different:
-						they use process water or the water in the glass itself.
-					</p>
-				</div>
+				<h2 id="calculator-heading" class="sr-only">One drink in ChatGPT queries</h2>
 
 				<div class="controls" role="group" aria-label="Drink selector">
-					{drinksWithQueries.map((drink, index) => (
+					{clientDrinks.map((drink, index) => (
 						<button
 							type="button"
 							class={`drink-button${index === 0 ? ' is-active' : ''}`}
@@ -373,62 +148,53 @@ const sourceCards = [
 				</div>
 
 				<div class="result-grid">
-					<section id="result-panel" class="result-panel" tabindex="0" aria-live="polite">
-						<div class="result-meter">
-							<div class="meter-copy">
-								<div class="result-label">Equivalent average ChatGPT turns</div>
-								<div class="result-number" data-result-number>
-									{Math.round(drinksWithQueries[0].queryEquivalent).toLocaleString()}
-								</div>
-								<p class="result-summary" data-result-summary>
-									One {drinksWithQueries[0].serving.toLowerCase()} of {drinksWithQueries[0].name.toLowerCase()} is
-									about {Math.round(drinksWithQueries[0].queryEquivalent).toLocaleString()} average ChatGPT turns.
-								</p>
-							</div>
-							<div class="meter-visual" aria-hidden="true">
-								<div class="meter-context">Relative footprint within this set of drinks</div>
-								<div class="meter-track">
-									<div class="meter-fill" data-meter-fill><div class="meter-wave" aria-hidden="true"></div></div>
-								</div>
-								<div class="meter-scale">
-									<span>Lower</span>
-									<span>Higher</span>
-								</div>
-							</div>
-						</div>
+					<section class="result-panel" aria-live="polite">
+						<div class="result-label">One <span data-result-name>{defaultDrink.name.toLowerCase()}</span> ≈</div>
+						<div class="result-number" data-result-number>{roundToSigFigs(defaultDrink.queries).toLocaleString()}</div>
+						<div class="result-unit">average ChatGPT queries</div>
+						<p class="result-usage">
+							Enough water for {QUERIES_PER_DAY} questions a day for
+							<strong data-result-usage>{defaultDrink.usageLabel}</strong>.
+						</p>
 					</section>
 
 					<aside class="detail-rail">
 						<div class="detail-item">
-							<div class="detail-label">Drink water footprint</div>
-							<div class="detail-value" data-result-water>
-								{drinksWithQueries[0].waterLiters.toFixed(1)} liters
-							</div>
-							<p data-result-formula>{drinksWithQueries[0].formula}</p>
+							<div class="detail-label">Water footprint</div>
+							<div class="detail-value" data-result-water>{defaultDrink.waterLiters.toFixed(1)} liters</div>
+							<p data-result-formula>{defaultDrink.formula}</p>
 						</div>
 						<div class="detail-item">
-							<div class="detail-label">Context</div>
-							<div class="detail-value">Read the caveat</div>
-							<p data-result-note>{drinksWithQueries[0].note}</p>
-						</div>
-						<div class="detail-item">
-							<div class="detail-label">Source</div>
-							<div class="detail-value" data-result-source-title>
-								{drinksWithQueries[0].sourceLabel}
-							</div>
-							<p>
+							<div class="detail-label">What's counted</div>
+							<p class="detail-note" data-result-note>{defaultDrink.scopeNote}</p>
+							<p class="detail-source">
 								<a
-									href={drinksWithQueries[0].sourceUrl}
+									href={defaultDrink.sourceUrl}
 									data-result-source-link
 									target="_blank"
 									rel="noopener"
-								>
-									Open source
-								</a>
-								<span class="is-hidden" data-result-source-text>No external source needed.</span>
+								>{defaultDrink.sourceLabel}</a>
+								<span class="is-hidden" data-result-source-text>{defaultDrink.sourceLabel}</span>
+							</p>
+						</div>
+						<div class="detail-item ai-baseline">
+							<div class="detail-label">AI baseline</div>
+							<div class="detail-value">{WATER_PER_QUERY_ML.toFixed(2)} mL per query</div>
+							<p>
+								<a href="https://blog.samaltman.com/the-gentle-singularity" target="_blank" rel="noopener">OpenAI's published average</a>;
+								<a href="https://cloud.google.com/blog/products/infrastructure/measuring-the-environmental-impact-of-ai-inference/" target="_blank" rel="noopener">Google's Gemini median</a>
+								is 0.26 mL.
 							</p>
 						</div>
 					</aside>
+				</div>
+
+				<div class="dot-field-card">
+					<div class="dot-field-header">
+						<span class="dot-legend"><span class="dot-swatch" aria-hidden="true"></span>1 drop = {QUERIES_PER_DROP.toLocaleString()} queries</span>
+						<span class="dot-count"><strong data-dot-count>{defaultDrink.queries >= QUERIES_PER_DROP ? Math.round(defaultDrink.queries / QUERIES_PER_DROP).toLocaleString() : '1'}</strong> drops</span>
+					</div>
+					<div class="dot-field" data-dot-field aria-hidden="true"></div>
 				</div>
 			</section>
 
@@ -436,144 +202,135 @@ const sourceCards = [
 				<div class="section-heading">
 					<div>
 						<span class="section-kicker">Aggregate view</span>
-						<h2 id="aggregate-heading">How whole drink categories compare with 2025 AI</h2>
+						<h2 id="aggregate-heading">A year of US drinks vs a year of global AI</h2>
 					</div>
 					<p class="workspace-note">
-						I dropped the old 2023 data-center baseline. This section now uses a January 9, 2026
-						Patterns paper estimating that AI systems alone could reach 312.5 to 764.6 billion liters
-						of water globally in 2025.
+						A 2026 <a href="https://doi.org/10.1016/j.patter.2025.101430" target="_blank" rel="noopener">Patterns paper</a>
+						models the water footprint of all AI systems worldwide at
+						{formatLiters(AI_2025_MIN_LITERS)} to {formatLiters(AI_2025_MAX_LITERS)} in 2025.
+						The bars share one linear scale.
 					</p>
 				</div>
 
-				<div class="aggregate-benchmark">
-					<div class="aggregate-benchmark-card">
-						<div class="detail-label">Fresh 2025 AI benchmark</div>
-						<div class="aggregate-benchmark-value">
-							{formatLiters(aiWaterFootprint2025MinLiters)} to {formatLiters(aiWaterFootprint2025MaxLiters)}
+				<div class="chart" data-chart role="img" aria-label={`Annual water footprints on one scale: global AI ${formatLiters(AI_2025_MIN_LITERS)} to ${formatLiters(AI_2025_MAX_LITERS)}; ${AGGREGATE_CATEGORIES.map((c) => `US ${c.name.toLowerCase()} ${formatLiters(c.totalWaterLiters)} (${formatMultipleRange(c.multipleMin, c.multipleMax)} AI)`).join('; ')}.`}>
+					<div class="chart-row is-ai">
+						<div class="chart-head">
+							<span class="chart-name">All global AI <span class="chart-year">2025, modeled</span></span>
+							<span class="chart-value">{formatLiters(AI_2025_MIN_LITERS)} – {formatLiters(AI_2025_MAX_LITERS)}</span>
 						</div>
-						<p>Estimated total water footprint of AI systems alone in 2025.</p>
-					</div>
-					<div class="aggregate-benchmark-copy">
-						<p>
-							This is fresher and more AI-specific than the old 2023 all-data-center benchmark.
-							It is still a modeled estimate built from company data-center disclosures rather
-							than a directly reported AI water total.
-						</p>
-						<p>
-							The tradeoff is geography: the AI benchmark is global, while the drink-category
-							totals below are U.S. totals. I am using it for scale, not pretending it is a
-							perfect apples-to-apples national comparison.
-						</p>
-						<p class="aggregate-benchmark-links">
-							<a
-								href="https://www.sciencedirect.com/science/article/pii/S2666389925002788"
-								target="_blank"
-								rel="noopener"
+						<div class="chart-track">
+							<div
+								class="chart-bar ai-bar"
+								style={`--w: ${(AI_2025_MAX_LITERS / chartMaxLiters) * 100}%`}
 							>
-								Open Patterns paper
-							</a>
-							<a
-								href="https://doi.org/10.1016/j.patter.2025.101430"
-								target="_blank"
-								rel="noopener"
-							>
-								Open DOI
-							</a>
-						</p>
+								<div class="ai-bar-min" style={`width: ${(AI_2025_MIN_LITERS / AI_2025_MAX_LITERS) * 100}%`}></div>
+							</div>
+						</div>
+						<p class="chart-meta">Solid: low estimate. Faded: high estimate. World total, all AI systems.</p>
 					</div>
-				</div>
 
-				<div class="aggregate-grid">
-					{aggregateEntries.map((entry) => (
-						<article class={`aggregate-card${entry.isTotal ? ' is-total' : ''}`}>
-							<div class="aggregate-topline">
-								<span class="aggregate-year">{entry.year}</span>
-								<h3>{entry.name}</h3>
+					{AGGREGATE_CATEGORIES.map((category) => (
+						<div class="chart-row">
+							<div class="chart-head">
+								<span class="chart-name">
+									US {category.name.toLowerCase()} <span class="chart-year">{category.year}</span>
+								</span>
+								<span class="chart-value">
+									{formatLiters(category.totalWaterLiters)}
+									<span class="chart-multiple">{formatMultipleRange(category.multipleMin, category.multipleMax)} AI</span>
+								</span>
 							</div>
-							<div class="aggregate-multiple">
-								{decimalFormatter.format(entry.multipleOfAiLow)}-{decimalFormatter.format(entry.multipleOfAiHigh)}x
-							</div>
-							<p class="aggregate-summary">
-								About {decimalFormatter.format(entry.multipleOfAiLow)} to {decimalFormatter.format(entry.multipleOfAiHigh)}
-								times 2025 AI's estimated total water footprint.
-							</p>
-							<div class="aggregate-bar" aria-hidden="true">
+							<div class="chart-track">
 								<div
-									class="aggregate-bar-fill"
-									style={`width: ${Math.max(8, (entry.multipleOfAiHigh / maxAggregateMultiple) * 100)}%`}
+									class="chart-bar"
+									style={`--w: ${(category.totalWaterLiters / chartMaxLiters) * 100}%`}
 								></div>
 							</div>
-							<div class="aggregate-water">{formatLiters(entry.totalWaterLiters)} per year</div>
-							<p class="aggregate-meta">{entry.volumeSummary}</p>
-							<p class="aggregate-meta">{entry.footprintSummary}</p>
-							<p class="aggregate-meta">{entry.note}</p>
-							{entry.sources.length > 0 && (
-								<div class="aggregate-sources">
-									{entry.sources.map((source) => (
-										<a href={source.url} target="_blank" rel="noopener">
-											{source.label}
-										</a>
-									))}
-								</div>
-							)}
-						</article>
+							<p class="chart-meta">
+								{category.volumeNote} · {category.footprintNote} ·{' '}
+								{category.sources.map((source, i) => (
+									<>
+										<a href={source.url} target="_blank" rel="noopener">{source.label}</a>{i < category.sources.length - 1 ? ', ' : ''}
+									</>
+								))}
+							</p>
+						</div>
 					))}
 				</div>
+
+				<p class="chart-total">
+					The five categories sum to {formatLiters(AGGREGATE_TOTAL_LITERS)} a year —
+					{formatMultipleRange(AGGREGATE_TOTAL_MULTIPLE_MIN, AGGREGATE_TOTAL_MULTIPLE_MAX)} the AI range.
+					The AI estimate covers the world; the drink totals cover the US only, so world
+					drink totals would sit further right.
+				</p>
 			</section>
 
-			<section class="methodology animate-fade-in-up delay-300">
+			<section class="methodology animate-fade-in-up delay-300" aria-labelledby="methodology-heading">
 				<div class="section-heading">
-					<span class="section-kicker">Methodology</span>
-					<h2>What is clean here, and what is not</h2>
+					<div>
+						<span class="section-kicker">Methodology</span>
+						<h2 id="methodology-heading">What's measured, and what isn't</h2>
+					</div>
 				</div>
 				<div class="methodology-grid">
 					<div class="methodology-column">
+						<h3>The per-query figure</h3>
 						<p>
-							The drink calculator still uses average ChatGPT turns, not GPT-5-only responses,
-							because OpenAI has not published a GPT-5-only water-per-response figure. ChatGPT
-							routes requests across model variants and tool paths, so the product-wide average
-							is the cleanest public number.
-						</p>
-						<p>
-							That benchmark comes from Sam Altman's June 10, 2025 post, which says an average
-							ChatGPT query uses about 0.34 watt-hours and 0.000085 gallons of water. Converted,
-							that is about 0.322 milliliters per average turn.
-						</p>
-						<p>
-							Google's 2025 Gemini Apps measurement is a useful sanity check on the order of
-							magnitude: it reports 0.24 watt-hours and 0.26 milliliters of water for a median
-							text prompt. I do not substitute it for ChatGPT, but it makes the "fractions of a
-							milliliter per prompt" scale less dependent on one company blog post.
+							<a href="https://blog.samaltman.com/the-gentle-singularity" target="_blank" rel="noopener">Sam Altman's June 10, 2025 post</a>
+							puts an average ChatGPT query at 0.34 watt-hours and 0.000085 gallons of water —
+							0.32 mL. That is a product-wide average across model variants and tool paths;
+							OpenAI publishes no per-model figure.
+							<a href="https://cloud.google.com/blog/products/infrastructure/measuring-the-environmental-impact-of-ai-inference/" target="_blank" rel="noopener">Google's 2025 measurement</a>
+							of a median Gemini Apps text prompt — 0.24 watt-hours, 0.26 mL — lands within
+							25% of it.
 						</p>
 					</div>
 					<div class="methodology-column">
+						<h3>The AI annual figure</h3>
 						<p>
-							For aggregate drink categories, I use the latest public total I could find for
-							each category rather than pretending everything is available in one clean year.
-							That means beer and wine are 2023, orange juice is 2022, and soda and bottled
-							water use preliminary 2025 data.
+							<a href="https://doi.org/10.1016/j.patter.2025.101430" target="_blank" rel="noopener">de Vries-Gao (Patterns, 2026)</a>
+							models AI systems worldwide at 312.5–764.6 billion liters in 2025, built up from
+							company data-center disclosures rather than a directly reported total. It covers
+							the whole world; the drink bars cover the US only.
 						</p>
+					</div>
+					<div class="methodology-column">
+						<h3>Drink footprints</h3>
 						<p>
-							Andy Masley helped frame the question, but the page now points directly to
-							government, NGO, first-party industry documents, and the newest peer-reviewed AI
-							water estimate I could find. Soda is deliberately conservative, bottled water uses
-							a facility ratio rather than a farm footprint, and cocktails remain the weakest
-							source on the page.
+							Beer, wine, juice, and soda use full
+							<a href="https://www.waterfootprint.org/water-footprint-2/what-is-a-water-footprint/" target="_blank" rel="noopener">green, blue, and grey water footprints</a> —
+							for soda, 99.7–99.8% of the footprint sits in the crop supply chain, and this page
+							uses the low end of the published 169–309 L range. Bottled water uses a facility
+							ratio (1.39 L per L) and tap water counts only the 355 mL in the glass, so those
+							two rows understate relative to the crop-based ones. Footprints compare volumes,
+							not local scarcity impacts.
 						</p>
+					</div>
+					<div class="methodology-column">
+						<h3>US volumes</h3>
 						<p>
-							The main caveat is scope. Beer, wine, juice, and soda use full green, blue, and
-							grey water-footprint accounting. Bottled water uses a facility water-use ratio.
-							Tap water is only the water in the glass. The chart is a scale comparison, not a
-							claim that every liter has the same local scarcity impact.
+							Each category uses its latest public total: beer and wine from
+							<a href="https://www.niaaa.nih.gov/sites/default/files/surveillance-report122.Per-Capita-Consumption.pdf" target="_blank" rel="noopener">NIAAA (2023)</a>,
+							orange juice from
+							<a href="https://ers.usda.gov/media/5349/fruit-juices.csv?v=60123" target="_blank" rel="noopener">USDA ERS (2022)</a>,
+							bottled water and soda from
+							<a href="https://bottledwater.org/wp-content/uploads/2026/01/2025-Progress-Report_FINAL.pdf" target="_blank" rel="noopener">IBWA's preliminary 2025 report</a>.
+							IBWA publishes soda only per capita, so its total comes from the population
+							implied by IBWA's own bottled-water pair (16.8B gallons ÷ 47.5 gal per person).
+							<a href="https://andymasley.substack.com/p/individual-ai-use-is-not-bad-for" target="_blank" rel="noopener">Andy Masley's post</a>
+							prompted the question.
 						</p>
 					</div>
 				</div>
 			</section>
 
-			<section class="sources animate-fade-in-up delay-300">
+			<section class="sources animate-fade-in-up delay-300" aria-labelledby="sources-heading">
 				<div class="section-heading">
-					<span class="section-kicker">Sources</span>
-					<h2>All linked</h2>
+					<div>
+						<span class="section-kicker">Sources</span>
+						<h2 id="sources-heading">All linked</h2>
+					</div>
 				</div>
 				<div class="source-list">
 					{sourceCards.map((source) => (
@@ -587,54 +344,88 @@ const sourceCards = [
 		</main>
 		<Footer />
 
-		<script define:vars={{ drinksWithQueries, maxDrinkWaterLiters }}>
-			const drinkMap = Object.fromEntries(drinksWithQueries.map((drink) => [drink.id, drink]));
+		<script define:vars={{ clientDrinks }}>
+			const drinkMap = Object.fromEntries(clientDrinks.map((drink) => [drink.id, drink]));
 			const buttons = Array.from(document.querySelectorAll('.drink-button'));
+			const nameEl = document.querySelector('[data-result-name]');
 			const numberEl = document.querySelector('[data-result-number]');
-			const summaryEl = document.querySelector('[data-result-summary]');
+			const usageEl = document.querySelector('[data-result-usage]');
 			const waterEl = document.querySelector('[data-result-water]');
 			const formulaEl = document.querySelector('[data-result-formula]');
 			const noteEl = document.querySelector('[data-result-note]');
-			const sourceTitleEl = document.querySelector('[data-result-source-title]');
 			const sourceLinkEl = document.querySelector('[data-result-source-link]');
 			const sourceTextEl = document.querySelector('[data-result-source-text]');
-			const meterFillEl = document.querySelector('[data-meter-fill]');
+			const dotFieldEl = document.querySelector('[data-dot-field]');
+			const dotCountEl = document.querySelector('[data-dot-count]');
+
+			const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+			let currentQueries = drinkMap['beer'].queries;
+			let numberFrame = null;
+			let numberTimeout = null;
+
+			function animateNumber(from, to) {
+				if (numberFrame) cancelAnimationFrame(numberFrame);
+				if (numberTimeout) clearTimeout(numberTimeout);
+				const setFinal = () => {
+					numberEl.textContent = to.toLocaleString();
+				};
+				if (reduceMotion || document.hidden || from === to) {
+					setFinal();
+					return;
+				}
+				const duration = 500;
+				const start = performance.now();
+				function tick(now) {
+					const t = Math.min(1, (now - start) / duration);
+					const eased = 1 - Math.pow(1 - t, 3);
+					numberEl.textContent = Math.round(from + (to - from) * eased).toLocaleString();
+					if (t < 1) numberFrame = requestAnimationFrame(tick);
+				}
+				numberFrame = requestAnimationFrame(tick);
+				// rAF pauses in hidden tabs; this guarantees the final value regardless.
+				numberTimeout = setTimeout(setFinal, duration + 100);
+			}
+
+			function renderDots(drops) {
+				dotFieldEl.replaceChildren();
+				const fragment = document.createDocumentFragment();
+				const perDotDelay = reduceMotion ? 0 : Math.min(900 / drops, 4);
+				for (let i = 0; i < drops; i++) {
+					const dot = document.createElement('span');
+					dot.className = 'dot';
+					if (perDotDelay > 0) dot.style.animationDelay = `${(i * perDotDelay).toFixed(1)}ms`;
+					else dot.style.animation = 'none';
+					fragment.appendChild(dot);
+				}
+				dotFieldEl.appendChild(fragment);
+				dotCountEl.textContent = drops.toLocaleString();
+			}
 
 			function updateDrink(drinkId) {
 				const drink = drinkMap[drinkId];
-				if (
-					!drink ||
-					!numberEl ||
-					!summaryEl ||
-					!waterEl ||
-					!formulaEl ||
-					!noteEl ||
-					!sourceTitleEl ||
-					!sourceLinkEl ||
-					!sourceTextEl ||
-					!meterFillEl
-				) {
-					return;
-				}
+				if (!drink) return;
 
-				numberEl.textContent = Math.round(drink.queryEquivalent).toLocaleString();
-				summaryEl.textContent = `One ${drink.serving.toLowerCase()} of ${drink.name.toLowerCase()} is about ${Math.round(drink.queryEquivalent).toLocaleString()} average ChatGPT turns.`;
+				nameEl.textContent = drink.name.toLowerCase();
+				animateNumber(currentQueries, drink.queries);
+				currentQueries = drink.queries;
+				usageEl.textContent = drink.usageLabel;
 				waterEl.textContent = `${drink.waterLiters.toFixed(1)} liters`;
 				formulaEl.textContent = drink.formula;
-				noteEl.textContent = drink.note;
-				sourceTitleEl.textContent = drink.sourceLabel;
+				noteEl.textContent = drink.scopeNote;
 
 				if (drink.sourceUrl) {
 					sourceLinkEl.classList.remove('is-hidden');
 					sourceLinkEl.setAttribute('href', drink.sourceUrl);
+					sourceLinkEl.textContent = drink.sourceLabel;
 					sourceTextEl.classList.add('is-hidden');
 				} else {
 					sourceLinkEl.classList.add('is-hidden');
 					sourceLinkEl.removeAttribute('href');
+					sourceTextEl.textContent = drink.sourceLabel;
 					sourceTextEl.classList.remove('is-hidden');
 				}
 
-				meterFillEl.style.width = `${Math.max(12, (drink.waterLiters / maxDrinkWaterLiters) * 100)}%`;
+				renderDots(drink.drops);
 
 				buttons.forEach((button) => {
 					const isActive = button.dataset.drink === drinkId;
@@ -647,74 +438,69 @@ const sourceCards = [
 				button.addEventListener('click', () => updateDrink(button.dataset.drink));
 			});
 
-			updateDrink('beer');
+			renderDots(drinkMap['beer'].drops);
+
+			// Bars start collapsed only when JS runs; they grow on first scroll into view.
+			const chart = document.querySelector('[data-chart]');
+			if (chart && !reduceMotion && !document.hidden && 'IntersectionObserver' in window) {
+				const bars = Array.from(chart.querySelectorAll('.chart-bar'));
+				bars.forEach((bar) => {
+					bar.style.width = '0%';
+				});
+				const release = () => {
+					bars.forEach((bar) => {
+						bar.style.width = '';
+					});
+					observer.disconnect();
+					clearTimeout(releaseTimeout);
+				};
+				const observer = new IntersectionObserver(
+					(entries) => {
+						if (entries.some((entry) => entry.isIntersecting)) release();
+					},
+					{ threshold: 0.25 },
+				);
+				observer.observe(chart);
+				// Safety: never leave the chart collapsed (hidden tabs, odd viewports).
+				const releaseTimeout = setTimeout(release, 4000);
+			}
 		</script>
 	</body>
 </html>
 
 <style>
 	/* ══════════════════════════════════════════════
-	   DRINKING AI — "Liquid Data" Design System
-	   Water-themed visual language with depth,
-	   animated liquid effects, and editorial clarity
+	   DRINKING AI — editorial data poster
+	   Cyan = AI queries. Amber = drinks.
 	   ══════════════════════════════════════════════ */
 
-	/* Page-scoped water palette */
 	.drinking-ai-page {
 		--water: #0891b2;
 		--water-bright: #06b6d4;
 		--water-deep: #164e63;
 		--water-glow: rgba(8, 145, 178, 0.18);
-		--water-subtle: rgba(8, 145, 178, 0.06);
+		--water-subtle: rgba(8, 145, 178, 0.07);
 		--glass: rgba(255, 255, 255, 0.72);
-		--glass-border: rgba(15, 23, 42, 0.06);
-		--glass-hover: rgba(255, 255, 255, 0.88);
+		--glass-border: rgba(15, 23, 42, 0.07);
 		position: relative;
 	}
 
-	/* Atmospheric background layer — subtle caustic light */
 	.page-atmosphere {
 		position: fixed;
 		inset: 0;
 		pointer-events: none;
 		z-index: 0;
 		background:
-			radial-gradient(ellipse 800px 600px at 20% 10%, rgba(8, 145, 178, 0.04), transparent 70%),
-			radial-gradient(ellipse 600px 400px at 80% 60%, rgba(245, 158, 11, 0.03), transparent 70%),
-			radial-gradient(ellipse 500px 500px at 50% 90%, rgba(8, 145, 178, 0.03), transparent 60%);
-		animation: caustic-drift 20s ease-in-out infinite alternate;
+			radial-gradient(ellipse 800px 600px at 18% 8%, rgba(8, 145, 178, 0.05), transparent 70%),
+			radial-gradient(ellipse 600px 400px at 85% 55%, rgba(245, 158, 11, 0.04), transparent 70%);
 	}
 
-	@keyframes caustic-drift {
-		0% { opacity: 1; }
-		50% { opacity: 0.6; }
-		100% { opacity: 1; }
-	}
-
-	/* Sections float above the atmosphere */
 	.poster, .workspace, .aggregate-section, .methodology, .sources {
 		position: relative;
 		z-index: 1;
 	}
 
-	/* ─── HERO / POSTER ─── */
-
-	.poster {
-		display: grid;
-		grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.8fr);
-		gap: 2.5rem;
-		align-items: end;
-		padding: 3.5rem 0 4.5rem;
-		border-bottom: 2px solid transparent;
-		border-image: linear-gradient(90deg, var(--water-glow), rgba(245, 158, 11, 0.12), transparent) 1;
-	}
-
-	.eyebrow,
-	.section-kicker,
-	.aside-label,
-	.result-label,
-	.detail-label,
-	.aggregate-year {
+	.section-kicker, .result-label, .detail-label, .chart-year, .dot-legend {
 		font-size: 0.72rem;
 		font-weight: 700;
 		letter-spacing: 0.14em;
@@ -722,9 +508,16 @@ const sourceCards = [
 		color: var(--water);
 	}
 
+	/* ─── Poster ─── */
+
+	.poster {
+		padding: 3rem 0 1rem;
+		max-width: 52rem;
+	}
+
 	.poster-title {
-		font-size: clamp(3.6rem, 8vw, 7rem);
-		margin-bottom: 1.25rem;
+		font-size: clamp(3.4rem, 8vw, 6.5rem);
+		margin: 0.4rem 0 1.1rem;
 		letter-spacing: -0.04em;
 		background: linear-gradient(135deg, var(--ink) 0%, var(--water-deep) 60%, var(--water) 100%);
 		-webkit-background-clip: text;
@@ -733,18 +526,76 @@ const sourceCards = [
 	}
 
 	.lede {
-		max-width: 44rem;
-		font-size: 1.15rem;
-		line-height: 1.75;
+		font-size: 1.18rem;
+		line-height: 1.7;
 		color: var(--ink-soft);
+		max-width: 44rem;
 	}
 
-	/* Shared card treatment — deep glassmorphism */
-	.poster-aside,
-	.aggregate-benchmark-card,
-	.aggregate-card,
+	/* ─── Calculator ─── */
+
+	.workspace {
+		padding-top: 1.5rem;
+	}
+
+	.controls {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.55rem;
+		margin-bottom: 1.4rem;
+	}
+
+	.drink-button {
+		display: grid;
+		gap: 0.1rem;
+		padding: 0.7rem 1.05rem;
+		border: 1.5px solid var(--glass-border);
+		border-radius: var(--radius-lg);
+		background: var(--glass);
+		color: var(--ink-soft);
+		cursor: pointer;
+		text-align: left;
+		font: inherit;
+		transition:
+			transform 180ms var(--ease-out),
+			border-color 180ms var(--ease-out),
+			background 180ms var(--ease-out),
+			box-shadow 180ms var(--ease-out);
+	}
+
+	.drink-button:hover {
+		transform: translateY(-2px);
+		border-color: rgba(217, 119, 6, 0.3);
+		box-shadow: 0 4px 12px rgba(217, 119, 6, 0.08);
+	}
+
+	.drink-button.is-active {
+		border-color: var(--amber-dark);
+		background: var(--amber-glow);
+		box-shadow: 0 4px 14px rgba(217, 119, 6, 0.14);
+	}
+
+	.drink-name {
+		font-weight: 700;
+		color: var(--ink);
+		font-size: 0.98rem;
+	}
+
+	.drink-serving {
+		font-size: 0.8rem;
+		color: var(--ink-muted);
+	}
+
+	.result-grid {
+		display: grid;
+		grid-template-columns: minmax(0, 1.45fr) minmax(270px, 0.75fr);
+		gap: 1.25rem;
+		align-items: stretch;
+	}
+
 	.result-panel,
 	.detail-item,
+	.dot-field-card,
 	.source-item {
 		border: 1px solid var(--glass-border);
 		border-radius: var(--radius-xl);
@@ -757,440 +608,281 @@ const sourceCards = [
 			inset 0 1px 0 rgba(255, 255, 255, 0.5);
 	}
 
-	/* Aside card — glowing AI baseline */
-	.poster-aside {
-		position: relative;
-		padding: 1.75rem;
-		overflow: hidden;
+	.result-panel {
+		padding: 2.2rem 2.4rem;
+		display: grid;
+		align-content: center;
+		gap: 0.3rem;
 		background:
-			linear-gradient(160deg, rgba(8, 145, 178, 0.06) 0%, rgba(245, 158, 11, 0.04) 50%, rgba(255, 255, 255, 0.8) 100%);
-		border-color: rgba(8, 145, 178, 0.15);
-		box-shadow:
-			0 4px 20px rgba(8, 145, 178, 0.08),
-			0 1px 3px rgba(15, 23, 42, 0.04),
-			inset 0 1px 0 rgba(255, 255, 255, 0.6);
+			linear-gradient(160deg, rgba(8, 145, 178, 0.05) 0%, rgba(255, 255, 255, 0.78) 55%);
 	}
 
-	.aside-glow {
-		position: absolute;
-		top: -40px;
-		right: -40px;
-		width: 120px;
-		height: 120px;
-		border-radius: 50%;
-		background: radial-gradient(circle, rgba(8, 145, 178, 0.15), transparent 70%);
-		animation: glow-pulse 4s ease-in-out infinite;
-	}
-
-	@keyframes glow-pulse {
-		0%, 100% { transform: scale(1); opacity: 0.8; }
-		50% { transform: scale(1.3); opacity: 0.4; }
-	}
-
-	.aside-value,
-	.aggregate-benchmark-value,
-	.aggregate-multiple,
 	.result-number {
 		font-family: 'JetBrains Mono', monospace;
-	}
-
-	.aside-value {
-		font-size: clamp(2.4rem, 5vw, 3.6rem);
-		line-height: 1;
-		color: var(--water-deep);
-		margin: 0.5rem 0 0.85rem;
+		font-size: clamp(3.2rem, 10vw, 6.4rem);
+		line-height: 0.95;
 		font-weight: 700;
+		letter-spacing: -0.03em;
+		font-variant-numeric: tabular-nums;
+		background: linear-gradient(135deg, var(--ink) 25%, var(--water-deep) 75%, var(--water) 100%);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
 	}
 
-	.aside-unit {
-		font-size: 0.5em;
-		font-weight: 400;
-		color: var(--water);
-		margin-left: 0.15em;
-		vertical-align: 0.15em;
+	.result-unit {
+		font-size: 1.05rem;
+		font-weight: 600;
+		color: var(--water-deep);
+		letter-spacing: 0.01em;
 	}
 
-	/* ─── CALCULATOR / WORKSPACE ─── */
-
-	.workspace,
-	.aggregate-section,
-	.methodology,
-	.sources {
-		padding-top: 4.5rem;
+	.result-usage {
+		margin: 0.8rem 0 0;
+		font-size: 1rem;
+		color: var(--ink-soft);
 	}
 
-	.workspace-header,
+	.result-usage strong {
+		color: var(--amber-dark);
+	}
+
+	.detail-rail {
+		display: grid;
+		gap: 0.8rem;
+		align-content: stretch;
+	}
+
+	.detail-item {
+		padding: 1.05rem 1.25rem;
+	}
+
+	.detail-value {
+		margin: 0.35rem 0 0.4rem;
+		font-size: 1.15rem;
+		font-weight: 700;
+		color: var(--ink);
+		font-variant-numeric: tabular-nums;
+	}
+
+	.detail-item p {
+		margin: 0;
+		font-size: 0.88rem;
+		line-height: 1.55;
+		color: var(--ink-muted);
+	}
+
+	.detail-note {
+		margin-top: 0.35rem !important;
+	}
+
+	.detail-source {
+		margin-top: 0.45rem !important;
+		font-weight: 600;
+	}
+
+	.ai-baseline {
+		background:
+			linear-gradient(160deg, rgba(8, 145, 178, 0.07) 0%, rgba(255, 255, 255, 0.8) 70%);
+		border-color: rgba(8, 145, 178, 0.18);
+	}
+
+	/* ─── Dot field ─── */
+
+	.dot-field-card {
+		margin-top: 1.25rem;
+		padding: 1.3rem 1.5rem 1.5rem;
+	}
+
+	.dot-field-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+		gap: 1rem;
+		margin-bottom: 0.9rem;
+	}
+
+	.dot-swatch {
+		display: inline-block;
+		width: 9px;
+		height: 9px;
+		border-radius: 50% 50% 50% 0;
+		transform: rotate(-45deg);
+		background: radial-gradient(circle at 35% 30%, var(--water-bright), var(--water-deep));
+		margin-right: 0.45rem;
+		vertical-align: 1px;
+	}
+
+	.dot-count {
+		font-size: 0.95rem;
+		color: var(--ink-muted);
+	}
+
+	.dot-count strong {
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 1.15rem;
+		color: var(--water-deep);
+		font-variant-numeric: tabular-nums;
+	}
+
+	.dot-field {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 3px;
+		min-height: 12px;
+	}
+
+	.dot-field :global(.dot) {
+		width: 9px;
+		height: 9px;
+		border-radius: 50% 50% 50% 0;
+		transform: rotate(-45deg);
+		background: radial-gradient(circle at 35% 30%, var(--water-bright), var(--water-deep));
+		animation: dot-in 240ms var(--ease-out) both;
+	}
+
+	@keyframes dot-in {
+		from {
+			opacity: 0;
+			transform: rotate(-45deg) scale(0.3);
+		}
+		to {
+			opacity: 1;
+			transform: rotate(-45deg) scale(1);
+		}
+	}
+
+	/* ─── Sections ─── */
+
+	.workspace, .aggregate-section, .methodology, .sources {
+		padding-top: 3.6rem;
+	}
+
+	.workspace {
+		padding-top: 1.5rem;
+	}
+
 	.section-heading {
 		display: flex;
 		justify-content: space-between;
 		align-items: end;
 		gap: 2rem;
-		margin-bottom: 2rem;
+		margin-bottom: 1.8rem;
 	}
 
 	.workspace-note {
-		max-width: 31rem;
+		max-width: 30rem;
 		font-size: 0.95rem;
 		color: var(--ink-muted);
+		margin: 0;
 	}
 
-	/* Drink selector buttons */
-	.controls {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.6rem;
-		margin-bottom: 2rem;
-	}
+	/* ─── Aggregate chart ─── */
 
-	.drink-button {
+	.chart {
 		display: grid;
-		gap: 0.15rem;
-		min-width: 11.5rem;
-		padding: 0.85rem 1.1rem;
-		border: 1.5px solid var(--glass-border);
-		border-radius: var(--radius-lg);
-		background: var(--glass);
-		color: var(--ink-soft);
-		cursor: pointer;
-		text-align: left;
-		position: relative;
-		overflow: hidden;
-		transition:
-			transform 200ms var(--ease-out),
-			border-color 200ms var(--ease-out),
-			background 200ms var(--ease-out),
-			box-shadow 200ms var(--ease-out);
+		gap: 1.45rem;
 	}
 
-	.drink-button::before {
-		content: '';
-		position: absolute;
-		inset: 0;
-		border-radius: inherit;
-		background: linear-gradient(135deg, var(--water-glow) 0%, rgba(245, 158, 11, 0.08) 100%);
-		opacity: 0;
-		transition: opacity 200ms var(--ease-out);
-	}
-
-	.drink-button:hover {
-		transform: translateY(-2px);
-		border-color: rgba(8, 145, 178, 0.2);
-		box-shadow:
-			0 4px 12px rgba(8, 145, 178, 0.08),
-			0 1px 3px rgba(15, 23, 42, 0.04);
-	}
-
-	.drink-button:hover::before {
-		opacity: 0.5;
-	}
-
-	.drink-button.is-active {
-		transform: translateY(-2px);
-		border-color: rgba(8, 145, 178, 0.35);
-		background: rgba(8, 145, 178, 0.06);
-		box-shadow:
-			0 4px 16px rgba(8, 145, 178, 0.12),
-			0 1px 3px rgba(15, 23, 42, 0.04),
-			inset 0 1px 0 rgba(255, 255, 255, 0.5);
-	}
-
-	.drink-button.is-active::before {
-		opacity: 1;
-	}
-
-	.drink-name {
-		font-weight: 700;
-		color: var(--ink);
-		position: relative;
-	}
-
-	.drink-serving {
-		font-size: 0.88rem;
-		color: var(--ink-muted);
-		position: relative;
-	}
-
-	/* ─── RESULT PANEL ─── */
-
-	.result-grid {
+	.chart-row {
 		display: grid;
-		grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.8fr);
-		gap: 1.5rem;
+		gap: 0.4rem;
 	}
 
-	.result-panel {
-		padding: 2rem;
-	}
-
-	.result-meter {
-		display: grid;
-		gap: 2rem;
-	}
-
-	.result-number {
-		font-size: clamp(3.2rem, 9vw, 6rem);
-		line-height: 0.95;
-		margin: 0.5rem 0 0.75rem;
-		font-weight: 700;
-		letter-spacing: -0.03em;
-		background: linear-gradient(135deg, var(--ink) 30%, var(--amber-dark) 100%);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-clip: text;
-	}
-
-	.result-summary {
-		max-width: 34rem;
-		font-size: 1.05rem;
-		color: var(--ink-soft);
-	}
-
-	/* ─── LIQUID METER ─── */
-
-	.meter-visual {
-		display: grid;
-		gap: 0.6rem;
-	}
-
-	.meter-context {
-		font-size: 0.85rem;
-		color: var(--ink-muted);
-		letter-spacing: 0.02em;
-	}
-
-	.meter-track,
-	.aggregate-bar {
-		height: 1.25rem;
-		border-radius: var(--radius-full);
-		background: linear-gradient(180deg, rgba(15, 23, 42, 0.06) 0%, rgba(15, 23, 42, 0.1) 100%);
-		overflow: hidden;
-		box-shadow: inset 0 1px 3px rgba(15, 23, 42, 0.08);
-	}
-
-	.meter-fill,
-	.aggregate-bar-fill {
-		height: 100%;
-		width: 0;
-		border-radius: var(--radius-full);
-		background: linear-gradient(90deg, var(--water-bright) 0%, var(--amber) 60%, var(--amber-dark) 100%);
-		transition: width 500ms var(--ease-out);
-		position: relative;
-		overflow: hidden;
-		box-shadow: 0 0 12px rgba(8, 145, 178, 0.2);
-	}
-
-	/* Animated wave inside the meter fill */
-	.meter-wave {
-		position: absolute;
-		top: -4px;
-		left: -100%;
-		width: 300%;
-		height: calc(100% + 8px);
-		background:
-			repeating-linear-gradient(
-				90deg,
-				transparent 0%,
-				rgba(255, 255, 255, 0.25) 25%,
-				transparent 50%
-			);
-		animation: wave-flow 3s linear infinite;
-	}
-
-	@keyframes wave-flow {
-		0% { transform: translateX(0); }
-		100% { transform: translateX(33.33%); }
-	}
-
-	.meter-scale {
+	.chart-head {
 		display: flex;
 		justify-content: space-between;
-		font-size: 0.82rem;
-		color: var(--ink-muted);
-		letter-spacing: 0.02em;
+		align-items: baseline;
+		gap: 1rem;
+		flex-wrap: wrap;
 	}
 
-	/* ─── DETAIL RAIL ─── */
-
-	.detail-rail {
-		display: grid;
-		gap: 0.85rem;
-	}
-
-	.detail-item,
-	.aggregate-card,
-	.aggregate-benchmark-card {
-		padding: 1.2rem 1.35rem;
-	}
-
-	.detail-item {
-		transition: border-color 200ms var(--ease-out);
-	}
-
-	.detail-item:hover {
-		border-color: rgba(8, 145, 178, 0.15);
-	}
-
-	.detail-value,
-	.aggregate-water {
-		margin: 0.4rem 0 0.5rem;
-		font-size: 1.2rem;
+	.chart-name {
 		font-weight: 700;
 		color: var(--ink);
+		font-size: 1.02rem;
 	}
 
-	.detail-item p,
-	.aggregate-card p {
-		margin: 0;
-		font-size: 0.93rem;
-		line-height: 1.6;
-	}
-
-	/* ─── AGGREGATE SECTION ─── */
-
-	.aggregate-benchmark {
-		display: grid;
-		grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.2fr);
-		gap: 1.5rem;
-		margin-bottom: 2rem;
-	}
-
-	.aggregate-benchmark-card {
-		background:
-			linear-gradient(160deg, rgba(8, 145, 178, 0.06) 0%, rgba(245, 158, 11, 0.04) 50%, rgba(255, 255, 255, 0.8) 100%);
-		border-color: rgba(8, 145, 178, 0.12);
-	}
-
-	.aggregate-benchmark-value {
-		font-size: clamp(1.8rem, 3.5vw, 2.6rem);
-		line-height: 1.1;
-		margin: 0.5rem 0 0.85rem;
-		color: var(--water-deep);
-		font-weight: 600;
-	}
-
-	.aggregate-benchmark-copy {
-		display: grid;
-		gap: 0.8rem;
-		align-content: center;
-	}
-
-	.aggregate-benchmark-links {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.75rem;
-	}
-
-	.aggregate-benchmark-links a {
-		padding: 0.35rem 0.85rem;
-		border-radius: var(--radius-full);
-		background: var(--water-subtle);
-		color: var(--water-deep);
-		font-size: 0.88rem;
-		font-weight: 600;
-		transition: all 200ms var(--ease-out);
-	}
-
-	.aggregate-benchmark-links a:hover {
-		background: var(--water-glow);
-		color: var(--water);
-	}
-
-	/* Aggregate grid — cards with visual weight */
-	.aggregate-grid,
-	.source-list {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-		gap: 1.25rem;
-	}
-
-	.aggregate-card {
-		display: grid;
-		gap: 0.7rem;
-		align-content: start;
-		transition:
-			transform 200ms var(--ease-out),
-			box-shadow 200ms var(--ease-out);
-	}
-
-	.aggregate-card:hover {
-		transform: translateY(-2px);
-		box-shadow:
-			0 8px 24px rgba(15, 23, 42, 0.06),
-			0 2px 6px rgba(15, 23, 42, 0.03);
-	}
-
-	.aggregate-card.is-total {
-		background:
-			linear-gradient(160deg, rgba(8, 145, 178, 0.05) 0%, rgba(217, 119, 6, 0.06) 50%, rgba(255, 255, 255, 0.9) 100%);
-		border-color: rgba(8, 145, 178, 0.15);
-		box-shadow:
-			0 4px 16px rgba(8, 145, 178, 0.06),
-			0 1px 3px rgba(15, 23, 42, 0.04),
-			inset 0 1px 0 rgba(255, 255, 255, 0.5);
-	}
-
-	.aggregate-topline {
-		display: grid;
-		gap: 0.3rem;
-	}
-
-	.aggregate-topline h3 {
-		font-size: 1.15rem;
-	}
-
-	.aggregate-multiple {
-		font-size: clamp(2rem, 5vw, 3rem);
-		line-height: 1;
-		font-weight: 700;
-		letter-spacing: -0.02em;
-		background: linear-gradient(135deg, var(--water-deep) 0%, var(--amber-dark) 100%);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-clip: text;
-	}
-
-	.aggregate-summary,
-	.aggregate-meta {
+	.chart-year {
+		margin-left: 0.5rem;
+		font-size: 0.68rem;
 		color: var(--ink-muted);
-		font-size: 0.92rem;
 	}
 
-	.aggregate-bar {
-		height: 0.75rem;
-	}
-
-	.aggregate-bar-fill {
-		box-shadow: 0 0 8px rgba(8, 145, 178, 0.15);
-	}
-
-	.aggregate-sources {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.4rem 0.65rem;
-	}
-
-	.aggregate-sources a {
+	.chart-value {
+		font-family: 'JetBrains Mono', monospace;
 		font-size: 0.88rem;
-		padding: 0.2rem 0.55rem;
+		color: var(--ink-soft);
+		font-variant-numeric: tabular-nums;
+	}
+
+	.chart-multiple {
+		display: inline-block;
+		margin-left: 0.6rem;
+		padding: 0.1rem 0.55rem;
 		border-radius: var(--radius-full);
-		background: var(--water-subtle);
-		transition: all 200ms var(--ease-out);
+		background: var(--amber-glow);
+		color: var(--amber-dark);
+		font-weight: 700;
+		font-size: 0.8rem;
 	}
 
-	.aggregate-sources a:hover {
-		background: var(--water-glow);
+	.chart-track {
+		height: 1.05rem;
+		border-radius: var(--radius-full);
+		background: linear-gradient(180deg, rgba(15, 23, 42, 0.05) 0%, rgba(15, 23, 42, 0.09) 100%);
+		overflow: hidden;
+		box-shadow: inset 0 1px 3px rgba(15, 23, 42, 0.07);
 	}
 
-	/* ─── METHODOLOGY ─── */
+	.chart-bar {
+		height: 100%;
+		width: var(--w);
+		min-width: 2px;
+		border-radius: 0 var(--radius-full) var(--radius-full) 0;
+		background: linear-gradient(90deg, var(--amber) 0%, var(--amber-dark) 100%);
+		transition: width 900ms var(--ease-out);
+		position: relative;
+	}
+
+	.ai-bar {
+		background: linear-gradient(90deg, var(--water-bright) 0%, rgba(6, 182, 212, 0.35) 100%);
+	}
+
+	.ai-bar-min {
+		position: absolute;
+		inset: 0 auto 0 0;
+		background: var(--water);
+		border-radius: 0 var(--radius-full) var(--radius-full) 0;
+	}
+
+	.chart-row.is-ai .chart-name {
+		color: var(--water-deep);
+	}
+
+	.chart-meta {
+		margin: 0.1rem 0 0;
+		font-size: 0.84rem;
+		color: var(--ink-muted);
+	}
+
+	.chart-total {
+		margin: 1.8rem 0 0;
+		font-size: 1.02rem;
+		color: var(--ink-soft);
+		max-width: 46rem;
+	}
+
+	/* ─── Methodology ─── */
 
 	.methodology-grid {
 		display: grid;
 		grid-template-columns: repeat(2, minmax(0, 1fr));
-		gap: 1.5rem;
+		gap: 1.4rem;
 	}
 
 	.methodology-column {
-		padding: 1.5rem 1.6rem;
+		padding: 1.4rem 1.5rem;
 		border-top: 3px solid;
 		border-image: linear-gradient(90deg, var(--water), var(--amber)) 1;
 		background: var(--glass);
@@ -1199,39 +891,54 @@ const sourceCards = [
 		-webkit-backdrop-filter: blur(8px);
 	}
 
-	/* ─── SOURCES ─── */
+	.methodology-column h3 {
+		font-size: 1.08rem;
+		margin-bottom: 0.5rem;
+	}
+
+	.methodology-column p {
+		margin: 0;
+		font-size: 0.94rem;
+		line-height: 1.65;
+		color: var(--ink-soft);
+	}
+
+	/* ─── Sources ─── */
+
+	.source-list {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: 1.1rem;
+	}
 
 	.source-item {
-		padding: 1.3rem 1.4rem;
+		padding: 1.15rem 1.3rem;
 		color: inherit;
 		text-decoration: none;
 		transition:
-			transform 200ms var(--ease-out),
-			border-color 200ms var(--ease-out),
-			box-shadow 200ms var(--ease-out);
+			transform 180ms var(--ease-out),
+			border-color 180ms var(--ease-out),
+			box-shadow 180ms var(--ease-out);
 	}
 
 	.source-item:hover {
 		transform: translateY(-3px);
-		border-color: rgba(8, 145, 178, 0.2);
-		box-shadow:
-			0 8px 24px rgba(8, 145, 178, 0.06),
-			0 2px 6px rgba(15, 23, 42, 0.03);
+		border-color: rgba(8, 145, 178, 0.22);
+		box-shadow: 0 8px 24px rgba(8, 145, 178, 0.07);
+	}
+
+	.source-item h3 {
+		font-size: 1.05rem;
+		margin-bottom: 0.35rem;
 	}
 
 	.source-item:hover h3 {
 		color: var(--water-deep);
 	}
 
-	.source-item h3 {
-		font-size: 1.1rem;
-		margin-bottom: 0.4rem;
-		transition: color 200ms var(--ease-out);
-	}
-
 	.source-item p {
 		margin: 0;
-		font-size: 0.92rem;
+		font-size: 0.89rem;
 		color: var(--ink-muted);
 	}
 
@@ -1239,76 +946,56 @@ const sourceCards = [
 		display: none;
 	}
 
-	/* ─── SCROLL ENTRANCE ANIMATIONS ─── */
+	/* ─── Motion safety ─── */
 
-	.poster,
-	.workspace,
-	.aggregate-section,
-	.methodology,
-	.sources {
-		animation: section-enter 0.8s var(--ease-out) both;
-	}
-	.workspace { animation-delay: 0.1s; }
-	.aggregate-section { animation-delay: 0.15s; }
-	.methodology { animation-delay: 0.2s; }
-	.sources { animation-delay: 0.25s; }
-
-	@keyframes section-enter {
-		from {
-			opacity: 0;
-			transform: translateY(24px);
+	@media (prefers-reduced-motion: reduce) {
+		.chart-bar,
+		.drink-button,
+		.source-item {
+			transition: none;
 		}
-		to {
-			opacity: 1;
-			transform: translateY(0);
+		.dot-field :global(.dot) {
+			animation: none;
 		}
 	}
 
-	/* ─── RESPONSIVE ─── */
+	/* ─── Responsive ─── */
 
 	@media (max-width: 900px) {
-		.poster,
 		.result-grid,
-		.methodology-grid,
-		.workspace-header,
-		.section-heading,
-		.aggregate-benchmark {
+		.methodology-grid {
 			grid-template-columns: 1fr;
+		}
+
+		.section-heading {
 			flex-direction: column;
 			align-items: start;
+			gap: 0.6rem;
 		}
 
 		.poster {
-			padding-top: 2rem;
-			gap: 2rem;
-		}
-
-		.drink-button {
-			min-width: 0;
-			flex: 1 1 10rem;
+			padding-top: 1.5rem;
 		}
 	}
 
 	@media (max-width: 640px) {
-		.result-panel,
-		.detail-item,
-		.source-item,
-		.poster-aside,
-		.aggregate-card,
-		.aggregate-benchmark-card {
-			padding: 1.1rem;
-		}
-
 		.controls {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		.result-panel {
+			padding: 1.5rem 1.4rem;
+		}
+
+		.chart-head {
 			flex-direction: column;
+			align-items: start;
+			gap: 0.15rem;
 		}
 
-		.poster-title {
-			font-size: clamp(2.8rem, 10vw, 4rem);
-		}
-
-		.result-number {
-			font-size: clamp(2.4rem, 12vw, 3.6rem);
+		.chart-multiple {
+			margin-left: 0.4rem;
 		}
 	}
 </style>
