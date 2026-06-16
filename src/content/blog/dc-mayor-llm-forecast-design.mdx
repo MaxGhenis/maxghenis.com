@@ -1,0 +1,133 @@
+---
+title: 'How I would use AI models to forecast McDuffie vs. George outcomes'
+description: 'A programmable design for comparing D.C. mayoral candidates across GDP, bike lanes, traffic fatalities, and housing permits.'
+pubDate: 'Jun 16 2026'
+---
+
+import DCMayorForecastExplorer from '../../components/DCMayorForecastExplorer.tsx';
+
+In June 2025, I asked frontier AI models to forecast New York City housing production under Andrew Cuomo and Zohran Mamdani. That exercise produced a number, but it had two limits: it covered one outcome and relied on a manually assembled prompt.
+
+For the 2026 D.C. mayoral race between Kenyan McDuffie and Janeese Lewis George, I want the next version to look more like an election study. The unit is not "which candidate sounds better?" It is a grid of conditional forecasts:
+
+> If George wins by 1 point, what does the model expect for D.C. GDP, bike lanes, traffic fatalities, and housing permits by the end of the term? What if she wins by 20? What if McDuffie wins by 1 or 20?
+
+The code lives in `analysis/dc-mayor-2026/`. It has a primary-source manifest, a baseline fetcher, a prompt generator, and a JSON schema for model responses.
+
+## Outcome surfaces
+
+I am restricting outcome metrics to primary government sources:
+
+| Outcome | Source | Unit | Forecast target |
+|---|---|---:|---|
+| D.C. real GDP | [Bureau of Economic Analysis GDP by state](https://www.bea.gov/data/gdp/gdp-state) | Millions of chained 2017 dollars | 2030:Q4 |
+| Bike lanes | [DC Open Data / DDOT Bicycle Lanes](https://opendata.dc.gov/datasets/DCGIS::bicycle-lanes/explore) | Route miles and lane-miles | End of 2030 stock |
+| Traffic fatalities | [DC Open Data / DDOT Crashes in DC](https://opendata.dc.gov/datasets/DCGIS::crashes-in-dc/about) | Fatal persons per calendar year | Calendar year 2030 |
+| Housing permits | [Census Building Permits Survey](https://www.census.gov/construction/bps/statemonthly.html) | New privately owned units authorized | Calendar year 2030 |
+
+I am calling the fourth one housing permits rather than housing starts. Census publishes local building permit data for D.C., but the national housing starts release does not provide true D.C.-level starts. Permits are the closest primary-source city-level construction series.
+
+The mayoral term matters for the horizon: under [D.C. Code § 1-204.21](https://code.dccouncil.gov/us/dc/council/code/sections/1-204.21), the mayor's four-year term begins at noon on January 2 of the year after election. For this race, that means January 2, 2027 through January 2, 2031.
+
+## Prompt grid
+
+The design uses George's margin over McDuffie as the running variable:
+
+| Scenario | Winner | George margin |
+|---|---|---:|
+| McDuffie wins by 20 | McDuffie | -20 |
+| McDuffie wins by 10 | McDuffie | -10 |
+| McDuffie wins by 1 | McDuffie | -1 |
+| George wins by 1 | George | +1 |
+| George wins by 10 | George | +10 |
+| George wins by 20 | George | +20 |
+
+With four metrics, this makes 24 prompt cells per model. If I run six models, that is 144 conditional forecasts before repeats, masking, or temperature variation.
+
+For visualization I flip the axis to McDuffie's margin over George, running from `McD -20` to `McD +20`. On that chart, negative values mean George wins, positive values mean McDuffie wins, and zero is the cutoff. The plotting script draws separate lines on each side of zero rather than connecting the close George win to the close McDuffie win.
+
+<DCMayorForecastExplorer client:load />
+
+This first interactive chart uses a single Codex draft response set to make the plotting and reporting surface concrete. It should be replaced or augmented with a multi-model ensemble before drawing strong conclusions.
+
+## The estimands
+
+The close-election comparison is:
+
+`E[Y | George wins by 1] - E[Y | McDuffie wins by 1]`
+
+That is the AI-forecast analog of a regression-discontinuity estimand. It asks what changes when the winner flips while the electorate is nearly tied.
+
+The 20-point comparison is different:
+
+`E[Y | George wins by 20] - E[Y | McDuffie wins by 20]`
+
+That contrast includes the candidate difference, but also the mandate, coalition strength, turnout, outside federal response, council alignment, and whatever city mood produced a landslide. It should not be described as a clean causal effect of the winner.
+
+The slope within each winner also matters. If models expect George by 20 to produce more bike lanes than George by 1, that is not a George-versus-McDuffie estimate. It is a mandate estimate.
+
+## Candidate information
+
+The prompt generator can include candidate platforms as mechanism evidence. McDuffie's official platform emphasizes public safety, affordability, economic development, child care, and government accountability through his [campaign platform](https://kenyanmcduffie.com/platform). George's campaign publishes separate plans for [housing](https://janeesefordc.com/platform/homes-for-all/) and [transportation](https://janeesefordc.com/platform/reliable-transportation-for-all/), including affordability, tenant protections, public services, safe streets, transit, and bike lanes.
+
+Candidate sources can inform mechanisms. They do not replace the government outcome sources.
+
+## Model response format
+
+Each model returns quantiles, not one number:
+
+```json
+{
+  "metric_id": "traffic_fatalities",
+  "scenario_id": "george_wins_by_1",
+  "candidate": "Janeese Lewis George",
+  "george_margin_points": 1,
+  "forecast_target": "calendar-year 2030 fatalities",
+  "unit": "fatal persons per calendar year",
+  "p05": 18,
+  "p25": 23,
+  "p50": 28,
+  "p75": 35,
+  "p95": 45,
+  "main_mechanisms": [],
+  "uncertainty_notes": [],
+  "primary_sources_used": []
+}
+```
+
+Those numbers are illustrative placeholders. The harness validates actual responses against `schemas/model-response.schema.json`.
+
+## What the post would report
+
+The post should report:
+
+- Baseline government data for each outcome.
+- Median forecasts by candidate, margin, metric, and model.
+- Margin plots from McD -20 to McD +20, with the cutoff marked at zero.
+- Close-election differences: George +1 minus McDuffie -1.
+- Mandate gradients: George +20 minus George +1, and McDuffie -20 minus McDuffie -1.
+- Model effects: whether OpenAI, Anthropic, Google, or other systems systematically differ.
+- Masking effects: whether forecasts change when candidate names are replaced by Candidate A and Candidate B.
+
+The conclusion should avoid saying an AI model "proved" one candidate would produce more growth or fewer deaths. It can say the models' conditional forecasts imply a given difference under the close-election design, with wider-margin scenarios separated from the causal estimate.
+
+## How to run it
+
+```bash
+uv venv --python 3.13
+uv pip install -r analysis/dc-mayor-2026/requirements.txt
+.venv/bin/python analysis/dc-mayor-2026/scripts/fetch_baselines.py
+.venv/bin/python analysis/dc-mayor-2026/scripts/generate_prompts.py
+.venv/bin/python analysis/dc-mayor-2026/scripts/aggregate_responses.py
+```
+
+That produces:
+
+- `analysis/dc-mayor-2026/outputs/baselines.json`
+- `analysis/dc-mayor-2026/outputs/baselines.md`
+- `analysis/dc-mayor-2026/prompts/base-context.md`
+- `analysis/dc-mayor-2026/prompts/forecast-cells.jsonl`
+- `analysis/dc-mayor-2026/outputs/model-summary.md` after model responses are saved
+- `analysis/dc-mayor-2026/outputs/plots/*-mcduffie-margin.svg` after model responses are saved
+
+The remaining step is to run the prompt cells through models and aggregate their JSON responses.

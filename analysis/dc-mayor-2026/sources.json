@@ -1,0 +1,79 @@
+{
+  "race": {
+    "name": "2026 District of Columbia mayoral election",
+    "primary_date": "2026-06-16",
+    "term_start": "2027-01-02T12:00:00-05:00",
+    "term_end": "2031-01-02T12:00:00-05:00",
+    "sources": [
+      {
+        "name": "D.C. Board of Elections 2026 primary calendar",
+        "url": "https://dcboe.org/getmedia/3a7e75bc-4a1b-4aa6-9fc3-f30163beb2b5/2026-Primary-Election-Calendar-Version-08072025.pdf"
+      },
+      {
+        "name": "D.C. Code, mayor term begins noon January 2",
+        "url": "https://code.dccouncil.gov/us/dc/council/code/sections/1-204.21"
+      }
+    ]
+  },
+  "candidates": [
+    {
+      "id": "mcduffie",
+      "name": "Kenyan McDuffie",
+      "campaign_url": "https://kenyanmcduffie.com/",
+      "platform_url": "https://kenyanmcduffie.com/platform",
+      "summary_for_prompts": "McDuffie frames his platform around public safety, affordability, economic development, child care, and government accountability."
+    },
+    {
+      "id": "george",
+      "name": "Janeese Lewis George",
+      "campaign_url": "https://janeesefordc.com/",
+      "housing_platform_url": "https://janeesefordc.com/platform/homes-for-all/",
+      "transportation_platform_url": "https://janeesefordc.com/platform/reliable-transportation-for-all/",
+      "summary_for_prompts": "George frames her platform around affordability, tenant protections, public services, safe streets, transit, bike lanes, and a larger housing production target."
+    }
+  ],
+  "metrics": [
+    {
+      "id": "dc_real_gdp",
+      "label": "D.C. real GDP",
+      "primary_source": "Bureau of Economic Analysis GDP by state",
+      "source_url": "https://www.bea.gov/data/gdp/gdp-state",
+      "download_url": "https://apps.bea.gov/regional/zip/SQGDP.zip",
+      "unit": "millions of chained 2017 dollars",
+      "series_definition": "SQGDP1, GeoFIPS 11000, LineCode 1, real GDP",
+      "forecast_target": "2030:Q4 level"
+    },
+    {
+      "id": "bike_lane_miles",
+      "label": "Bike lane miles",
+      "primary_source": "DC Open Data / District Department of Transportation Bicycle Lanes",
+      "source_url": "https://opendata.dc.gov/datasets/DCGIS::bicycle-lanes/explore",
+      "endpoint_url": "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Transportation_Bikes_Trails_WebMercator/MapServer/2",
+      "unit": "miles",
+      "series_definition": "Route miles are sum(LENGTH) / 1609.344. Lane-miles multiply segment length by TOTALBIKELANES.",
+      "forecast_target": "stock at end of 2030"
+    },
+    {
+      "id": "traffic_fatalities",
+      "label": "Traffic fatalities",
+      "primary_source": "DC Open Data / District Department of Transportation Crashes in DC",
+      "source_url": "https://opendata.dc.gov/datasets/DCGIS::crashes-in-dc/about",
+      "endpoint_url": "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Public_Safety_WebMercator/MapServer/24",
+      "unit": "fatal persons per calendar year",
+      "series_definition": "Sum FATAL_BICYCLIST, FATAL_DRIVER, FATAL_PEDESTRIAN, FATALPASSENGER, and FATALOTHER by report year.",
+      "forecast_target": "calendar-year 2030 fatalities"
+    },
+    {
+      "id": "housing_permits",
+      "label": "Housing permits",
+      "requested_label": "Housing starts",
+      "primary_source": "U.S. Census Bureau Building Permits Survey",
+      "source_url": "https://www.census.gov/construction/bps/statemonthly.html",
+      "annual_url_template": "https://www.census.gov/construction/bps/xls/stateannual_{year}99.xls",
+      "unit": "new privately owned housing units authorized by building permits",
+      "series_definition": "District of Columbia row, Total column in state annual and monthly BPS workbooks.",
+      "forecast_target": "calendar-year 2030 authorizations",
+      "limitation": "The Census starts release does not publish D.C.-level housing starts. This harness uses D.C.-level permit authorizations as the primary-source proxy."
+    }
+  ]
+}

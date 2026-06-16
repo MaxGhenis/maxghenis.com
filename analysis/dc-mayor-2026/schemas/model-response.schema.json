@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "D.C. mayor forecast model response",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "metric_id",
+    "scenario_id",
+    "candidate",
+    "george_margin_points",
+    "forecast_target",
+    "unit",
+    "p05",
+    "p25",
+    "p50",
+    "p75",
+    "p95",
+    "main_mechanisms",
+    "uncertainty_notes",
+    "primary_sources_used"
+  ],
+  "properties": {
+    "metric_id": {
+      "type": "string",
+      "enum": [
+        "dc_real_gdp",
+        "bike_lane_miles",
+        "traffic_fatalities",
+        "housing_permits"
+      ]
+    },
+    "scenario_id": {
+      "type": "string"
+    },
+    "candidate": {
+      "type": "string",
+      "enum": [
+        "Kenyan McDuffie",
+        "Janeese Lewis George"
+      ]
+    },
+    "george_margin_points": {
+      "type": "number"
+    },
+    "forecast_target": {
+      "type": "string"
+    },
+    "unit": {
+      "type": "string"
+    },
+    "p05": {
+      "type": "number"
+    },
+    "p25": {
+      "type": "number"
+    },
+    "p50": {
+      "type": "number"
+    },
+    "p75": {
+      "type": "number"
+    },
+    "p95": {
+      "type": "number"
+    },
+    "main_mechanisms": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 6,
+      "items": {
+        "type": "string"
+      }
+    },
+    "uncertainty_notes": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 5,
+      "items": {
+        "type": "string"
+      }
+    },
+    "primary_sources_used": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "format": "uri"
+      }
+    },
+    "near_cutoff_interpretation": {
+      "type": "string"
+    },
+    "model": {
+      "type": "string"
+    },
+    "run_id": {
+      "type": "string"
+    },
+    "prompt_variant": {
+      "type": "string",
+      "enum": [
+        "named",
+        "masked"
+      ]
+    },
+    "created_at": {
+      "type": "string"
+    }
+  }
+}

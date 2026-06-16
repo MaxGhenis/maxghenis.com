@@ -1,109 +1,462 @@
 # Max Ghenis - Full Content
 
 > This file contains the full text of all blog posts from maxghenis.com, formatted for LLM consumption.
-> Generated: 2026-04-30T11:16:33.066Z
+> Generated: 2026-06-16T16:45:25.643Z
 > See also: /llms.txt for a curated overview
 
 ---
 
 ## Table of Contents
 
-1. [Will Waymo make DC streets safer?](/blog/waymo-dc-safety-markets/)
-2. [Billionaires aren't 'just as likely' to be nonpayers as top taxpayers](/blog/madoff-billionaire-nonpayers/)
-3. [I built a MyST-to-Quarto converter (and why you might need one)](/blog/mystquarto/)
-4. [One year of Claude Code](/blog/my-claude-code-config/)
-5. [Interactive replication of GiveWell''s cost-effectiveness analysis](/blog/givewell-cea/)
-6. [Why you can''t make double eye contact](/blog/double-eye-contact/)
-7. [OpenMessage: How I built a macOS Google Messages client to give Claude my texts](/blog/openmessage/)
-8. [Where US immigrants come from, and where ICE focuses enforcement](/blog/bad-bunny-immigration-enforcement/)
-9. [I used Claude Code to recertify for SNAP](/blog/snap-recertification-claude-code/)
-10. [Scrollywood: Smooth scroll video recording for the web](/blog/scrollywood/)
-11. [The adolescence of policy simulation: On Amodei and economic disruption](/blog/amodei-adolescence-policyengine/)
-12. [opencollective-py: Manage OpenCollective from your terminal or Claude Code](/blog/opencollective-py/)
-13. [From IDE to AI orchestration: The end of code-first development](/blog/ide-to-ai-orchestration/)
-14. [TerminalGrid: Turn VS Code into a Claude Code superterminal](/blog/terminalgrid/)
-15. [RAMBar: A macOS menu bar RAM monitor for developers](/blog/rambar/)
-16. [How to Use MDX for Interactive Posts](/blog/using-mdx/)
-17. [VAT thresholds, revenues, and the role of counterfactuals](/blog/vat-thresholds/)
-18. [AI models favor Cuomo over Mamdani on NYC housing production](/blog/ai-models-nyc-housing/)
-19. [My 2024 in code: Personal projects and AI tools](/blog/my-2024-in-code/)
-20. [Why I'm a neoliberal](/blog/why-im-a-neoliberal/)
-21. [In appointing their newest member, the Ventura City Council only pretended to care about housing](/blog/in-appointing-their-newest-member-the-ventura-city/)
-22. [If you earned more in 2019 than 2018, don't file your 2019 taxes yet! Otherwise, file ASAP!](/blog/if-you-earned-more-in-2019-than-2018-dont-file-you/)
-23. [Why I’ve taken the Giving What We Can pledge](/blog/why-ive-taken-the-giving-what-we-can-pledge/)
-24. [Ventura County must end its unsheltered homelessness](/blog/ventura-county-must-end-its-unsheltered-homelessne/)
-25. [Warren’s wealth tax would raise less than she claims — even using her economists’ own assumptions](/blog/warrens-wealth-tax-would-raise-less-than-she-claim/)
-26. [Andrew Yang's troubling Tucker Carlson interview](/blog/andrew-yangs-troubling-tucker-carlson-interview/)
-27. [Quantile regression, from linear models to trees to deep learning](/blog/quantile-regression-from-linear-models-to-trees-to/)
-28. [We should replace the Child Tax Credit with a universal child benefit](/blog/we-should-replace-the-child-tax-credit-with-a-univ/)
-29. [The case for a wonky basic income plan](/blog/the-case-for-a-wonky-basic-income-plan/)
-30. [Reddit featured a misleading headline on education secretary nominee Betsy DeVos](/blog/reddit-featured-a-misleading-headline-on-education/)
-31. [Uber's tipping settlement will reduce earnings of African-American drivers](/blog/ubers-tipping-settlement-will-reduce-earnings-of-a/)
-32. [If we can afford our current welfare system, we can afford basic income](/blog/if-we-can-afford-our-current-welfare-system-we-can/)
+1. [How I would use AI models to forecast McDuffie vs. George outcomes](/blog/dc-mayor-llm-forecast-design/)
+2. [How to turn money into predictions](/blog/how-to-turn-money-into-predictions/)
+3. [Can Talkie-1930 do arithmetic?](/blog/talkie-1930-math-evals/)
+4. [Billionaires aren't 'just as likely' to be nonpayers as top taxpayers](/blog/madoff-billionaire-nonpayers/)
+5. [I built a MyST-to-Quarto converter (and why you might need one)](/blog/mystquarto/)
+6. [One year of Claude Code](/blog/my-claude-code-config/)
+7. [Interactive replication of GiveWell''s cost-effectiveness analysis](/blog/givewell-cea/)
+8. [Why you can''t make double eye contact](/blog/double-eye-contact/)
+9. [OpenMessage: How I built a macOS Google Messages client to give Claude my texts](/blog/openmessage/)
+10. [Where US immigrants come from, and where ICE focuses enforcement](/blog/bad-bunny-immigration-enforcement/)
+11. [I used Claude Code to recertify for SNAP](/blog/snap-recertification-claude-code/)
+12. [Scrollywood: Smooth scroll video recording for the web](/blog/scrollywood/)
+13. [The adolescence of policy simulation: On Amodei and economic disruption](/blog/amodei-adolescence-policyengine/)
+14. [opencollective-py: Manage OpenCollective from your terminal or Claude Code](/blog/opencollective-py/)
+15. [From IDE to AI orchestration: The end of code-first development](/blog/ide-to-ai-orchestration/)
+16. [TerminalGrid: Turn VS Code into a Claude Code superterminal](/blog/terminalgrid/)
+17. [RAMBar: A macOS menu bar RAM monitor for developers](/blog/rambar/)
+18. [How to Use MDX for Interactive Posts](/blog/using-mdx/)
+19. [VAT thresholds, revenues, and the role of counterfactuals](/blog/vat-thresholds/)
+20. [AI models favor Cuomo over Mamdani on NYC housing production](/blog/ai-models-nyc-housing/)
+21. [My 2024 in code: Personal projects and AI tools](/blog/my-2024-in-code/)
+22. [Why I'm a neoliberal](/blog/why-im-a-neoliberal/)
+23. [In appointing their newest member, the Ventura City Council only pretended to care about housing](/blog/in-appointing-their-newest-member-the-ventura-city/)
+24. [If you earned more in 2019 than 2018, don't file your 2019 taxes yet! Otherwise, file ASAP!](/blog/if-you-earned-more-in-2019-than-2018-dont-file-you/)
+25. [Why I’ve taken the Giving What We Can pledge](/blog/why-ive-taken-the-giving-what-we-can-pledge/)
+26. [Ventura County must end its unsheltered homelessness](/blog/ventura-county-must-end-its-unsheltered-homelessne/)
+27. [Warren’s wealth tax would raise less than she claims — even using her economists’ own assumptions](/blog/warrens-wealth-tax-would-raise-less-than-she-claim/)
+28. [Andrew Yang's troubling Tucker Carlson interview](/blog/andrew-yangs-troubling-tucker-carlson-interview/)
+29. [Quantile regression, from linear models to trees to deep learning](/blog/quantile-regression-from-linear-models-to-trees-to/)
+30. [We should replace the Child Tax Credit with a universal child benefit](/blog/we-should-replace-the-child-tax-credit-with-a-univ/)
+31. [The case for a wonky basic income plan](/blog/the-case-for-a-wonky-basic-income-plan/)
+32. [Reddit featured a misleading headline on education secretary nominee Betsy DeVos](/blog/reddit-featured-a-misleading-headline-on-education/)
+33. [Uber's tipping settlement will reduce earnings of African-American drivers](/blog/ubers-tipping-settlement-will-reduce-earnings-of-a/)
+34. [If we can afford our current welfare system, we can afford basic income](/blog/if-we-can-afford-our-current-welfare-system-we-can/)
 
 ---
 
-## Will Waymo make DC streets safer?
+## How I would use AI models to forecast McDuffie vs. George outcomes
 
-**URL:** https://maxghenis.com/blog/waymo-dc-safety-markets/
-**Published:** Apr 25 2026
-**Description:** I created paired Manifold markets on DC traffic fatalities and serious injuries in 2027, conditional on whether Waymo serves the public before then.
+**URL:** https://maxghenis.com/blog/dc-mayor-llm-forecast-design/
+**Published:** Jun 16 2026
+**Description:** A programmable design for comparing D.C. mayoral candidates across GDP, bike lanes, traffic fatalities, and housing permits.
 
-Waymo wants to launch in Washington, DC. The policy question I care about is not just whether it gets permission. It is whether DC streets get safer.
+import DCMayorForecastExplorer from '../../components/DCMayorForecastExplorer.tsx';
 
-Waymo [announced](https://waymo.com/blog/2025/03/next-stop-for-waymo-one-washingtondc/) that it aimed to bring Waymo One to DC in 2026, while also saying it still needed regulations to operate without a human behind the wheel. DC politics then became the binding constraint. Axios reported this month that Councilmember Charles Allen was introducing [legislation to allow robotaxis](https://www.axios.com/local/washington-dc/2026/04/24/dc-bill-robotaxis-waymo-charles-allen), while a delayed DDOT robotaxi study was [expected this summer](https://www.axios.com/local/washington-dc/2026/04/16/robotaxi-study-waymo-ddot).
+In June 2025, I asked frontier AI models to forecast New York City housing production under Andrew Cuomo and Zohran Mamdani. That exercise produced a number, but it had two limits: it covered one outcome and relied on a manually assembled prompt.
 
-There is already a Manifold market on the political trigger: [Waymo serves the general public in Washington, D.C. before 2027](https://manifold.markets/Bayesian/waymo-serves-the-general-public-in). That is useful, but it stops one step too early. If it resolves YES, we learn Waymo launched. We still do not learn whether that was good for public safety.
+For the 2026 D.C. mayoral race between Kenyan McDuffie and Janeese Lewis George, I want the next version to look more like an election study. The unit is not "which candidate sounds better?" It is a grid of conditional forecasts:
 
-So I created paired markets for the outcome that matters more:
+> If George wins by 1 point, what does the model expect for D.C. GDP, bike lanes, traffic fatalities, and housing permits by the end of the term? What if she wins by 20? What if McDuffie wins by 1 or 20?
 
-- If Waymo serves DC before 2027, how safe are DC streets in 2027?
-- If Waymo does not serve DC before 2027, how safe are DC streets in 2027?
+The code lives in `analysis/dc-mayor-2026/`. It has a primary-source manifest, a baseline fetcher, a prompt generator, and a JSON schema for model responses.
 
-The gap between those forecasts is the market's implied estimate of Waymo's aggregate safety effect.
+## Outcome surfaces
 
-## Why not forecast Waymo crashes?
+I am restricting outcome metrics to primary government sources:
 
-My first instinct was to ask something like "How many Waymo crashes will there be in DC?" That is the wrong metric.
+| Outcome | Source | Unit | Forecast target |
+|---|---|---:|---|
+| D.C. real GDP | [Bureau of Economic Analysis GDP by state](https://www.bea.gov/data/gdp/gdp-state) | Millions of chained 2017 dollars | 2030:Q4 |
+| Bike lanes | [DC Open Data / DDOT Bicycle Lanes](https://opendata.dc.gov/datasets/DCGIS::bicycle-lanes/explore) | Route miles and lane-miles | End of 2030 stock |
+| Traffic fatalities | [DC Open Data / DDOT Crashes in DC](https://opendata.dc.gov/datasets/DCGIS::crashes-in-dc/about) | Fatal persons per calendar year | Calendar year 2030 |
+| Housing permits | [Census Building Permits Survey](https://www.census.gov/construction/bps/statemonthly.html) | New privately owned units authorized | Calendar year 2030 |
 
-If Waymo is not legally permitted, Waymo crashes mechanically fall toward zero. That would mostly measure exposure, not safety. A city with no robotaxis has no robotaxi crashes, but that does not mean banning robotaxis made the city safer.
+I am calling the fourth one housing permits rather than housing starts. Census publishes local building permit data for D.C., but the national housing starts release does not provide true D.C.-level starts. Permits are the closest primary-source city-level construction series.
 
-The right question is citywide: total traffic fatalities or serious traffic-crash injuries in DC in 2027. Those can go up or down in either world. They also capture the actual policy tradeoff: whether Waymo replaces riskier human-driven miles, induces extra trips, interacts badly with pedestrians and cyclists, or stays too small to matter.
+The mayoral term matters for the horizon: under [D.C. Code § 1-204.21](https://code.dccouncil.gov/us/dc/council/code/sections/1-204.21), the mayor's four-year term begins at noon on January 2 of the year after election. For this race, that means January 2, 2027 through January 2, 2031.
 
-DC already tracks these outcomes through its [Vision Zero dashboard](https://dcvisionzero.github.io/Crash-Injury-Dashboard/) and crash datasets. The dashboard covers traffic fatalities and major injuries, says DDOT uses the data for safety engineering, and, as of this writing, was updated on April 23, 2026 with crash records through April 21.
+## Prompt grid
 
-Recent data are noisy. DC had roughly 50 traffic fatalities in both 2023 and 2024, fell into the low 20s in 2025, and was back at 14 fatalities year-to-date by late April 2026. Serious injuries have trended down more steadily, from the mid-300s in 2023-2024 to about 300 in 2025.
+The design uses George's margin over McDuffie as the running variable:
 
-## The markets
+| Scenario | Winner | George margin |
+|---|---|---:|
+| McDuffie wins by 20 | McDuffie | -20 |
+| McDuffie wins by 10 | McDuffie | -10 |
+| McDuffie wins by 1 | McDuffie | -1 |
+| George wins by 1 | George | +1 |
+| George wins by 10 | George | +10 |
+| George wins by 20 | George | +20 |
 
-I made four Manifold markets:
+With four metrics, this makes 24 prompt cells per model. If I run six models, that is 144 conditional forecasts before repeats, masking, or temperature variation.
 
-| Outcome | If Waymo serves DC before 2027 | If Waymo does not serve DC before 2027 |
-| --- | ---: | ---: |
-| 2027 DC traffic fatalities | [41](https://manifold.markets/MaxGhenis/if-waymo-serves-dc-before-2027-how) | [42](https://manifold.markets/MaxGhenis/if-waymo-does-not-serve-dc-before-2) |
-| 2027 DC serious traffic-crash injuries | [280](https://manifold.markets/MaxGhenis/if-waymo-serves-dc-before-2027-how-hUglCRuRq8) | [285](https://manifold.markets/MaxGhenis/if-waymo-does-not-serve-dc-before-2-t8StNlcEEy) |
+For visualization I flip the axis to McDuffie's margin over George, running from `McD -20` to `McD +20`. On that chart, negative values mean George wins, positive values mean McDuffie wins, and zero is the cutoff. The plotting script draws separate lines on each side of zero rather than connecting the close George win to the close McDuffie win.
 
-Those numbers are my seed estimates from April 25, 2026, not final claims. Markets move.
+<DCMayorForecastExplorer client:load />
 
-Disclosure: I created and hold positions in the four conditional markets and traded the trigger market toward my estimate.
+This first interactive chart uses a single Codex draft response set to make the plotting and reporting surface concrete. It should be replaced or augmented with a multi-model ensemble before drawing strong conclusions.
 
-My current prices imply a modest expected safety benefit: about one fewer traffic fatality and five fewer serious injuries in 2027 if Waymo serves DC before 2027. That is not because I think autonomous vehicles cannot matter. It is because the outcome is citywide and the first-year exposure is likely small. Even if Waymo is safer per mile than human driving, it takes a lot of substituted miles to visibly move aggregate DC fatality counts.
+## The estimands
 
-## What would move the forecast?
+The close-election comparison is:
 
-I would move the Waymo-launch markets lower on fatalities and injuries if DC authorized a broad rollout earlier than expected, if Waymo announced a large service area, or if evidence from other cities showed large substitution away from human-driven ridehail miles.
+`E[Y | George wins by 1] - E[Y | McDuffie wins by 1]`
 
-I would move them higher if DC limited service to a tiny geofence, required slow expansion, saw operational problems around pedestrians or emergency vehicles, or if early adoption looked like mostly induced trips rather than substituted trips.
+That is the AI-forecast analog of a regression-discontinuity estimand. It asks what changes when the winner flips while the electorate is nearly tied.
 
-I would move both launch and no-launch markets together if the baseline DC traffic-safety trend changed. The biggest uncertainty is not Waymo. It is where DC's underlying safety trend is headed after the unusually low fatality count in 2025 and the sharper 2026 year-to-date pace.
+The 20-point comparison is different:
 
-## Market design notes
+`E[Y | George wins by 20] - E[Y | McDuffie wins by 20]`
 
-The key design choice is pairing the launch and no-launch worlds on the same citywide outcomes. That makes the disagreement concrete. If you think Waymo would make DC more dangerous, buy up the launch-conditional fatality and injury markets relative to the no-launch markets. If you think Waymo would make DC safer, push them down.
+That contrast includes the candidate difference, but also the mandate, coalition strength, turnout, outside federal response, council alignment, and whatever city mood produced a landslide. It should not be described as a clean causal effect of the winner.
 
-I also separated market rules from seed rationale. The descriptions define resolution: which official sources count, what year to measure, and when to resolve N/A based on the trigger market. My rationale for the seed prices belongs in comments, not in the resolution criteria. The market should not bake my argument into the rules.
+The slope within each winner also matters. If models expect George by 20 to produce more bike lanes than George by 1, that is not a George-versus-McDuffie estimate. It is a mandate estimate.
 
-This is the part I eventually want [farness](https://farness.ai/) to support: when a public decision has measurable outcomes, turn the forecast into a set of linked markets. But the general-purpose tooling deserves its own post. Here the point is narrower: if the DC Waymo debate is really about safety, the safety claim should be explicit and tradeable.
+## Candidate information
+
+The prompt generator can include candidate platforms as mechanism evidence. McDuffie's official platform emphasizes public safety, affordability, economic development, child care, and government accountability through his [campaign platform](https://kenyanmcduffie.com/platform). George's campaign publishes separate plans for [housing](https://janeesefordc.com/platform/homes-for-all/) and [transportation](https://janeesefordc.com/platform/reliable-transportation-for-all/), including affordability, tenant protections, public services, safe streets, transit, and bike lanes.
+
+Candidate sources can inform mechanisms. They do not replace the government outcome sources.
+
+## Model response format
+
+Each model returns quantiles, not one number:
+
+```json
+{
+  "metric_id": "traffic_fatalities",
+  "scenario_id": "george_wins_by_1",
+  "candidate": "Janeese Lewis George",
+  "george_margin_points": 1,
+  "forecast_target": "calendar-year 2030 fatalities",
+  "unit": "fatal persons per calendar year",
+  "p05": 18,
+  "p25": 23,
+  "p50": 28,
+  "p75": 35,
+  "p95": 45,
+  "main_mechanisms": [],
+  "uncertainty_notes": [],
+  "primary_sources_used": []
+}
+```
+
+Those numbers are illustrative placeholders. The harness validates actual responses against `schemas/model-response.schema.json`.
+
+## What the post would report
+
+The post should report:
+
+- Baseline government data for each outcome.
+- Median forecasts by candidate, margin, metric, and model.
+- Margin plots from McD -20 to McD +20, with the cutoff marked at zero.
+- Close-election differences: George +1 minus McDuffie -1.
+- Mandate gradients: George +20 minus George +1, and McDuffie -20 minus McDuffie -1.
+- Model effects: whether OpenAI, Anthropic, Google, or other systems systematically differ.
+- Masking effects: whether forecasts change when candidate names are replaced by Candidate A and Candidate B.
+
+The conclusion should avoid saying an AI model "proved" one candidate would produce more growth or fewer deaths. It can say the models' conditional forecasts imply a given difference under the close-election design, with wider-margin scenarios separated from the causal estimate.
+
+## How to run it
+
+```bash
+uv venv --python 3.13
+uv pip install -r analysis/dc-mayor-2026/requirements.txt
+.venv/bin/python analysis/dc-mayor-2026/scripts/fetch_baselines.py
+.venv/bin/python analysis/dc-mayor-2026/scripts/generate_prompts.py
+.venv/bin/python analysis/dc-mayor-2026/scripts/aggregate_responses.py
+```
+
+That produces:
+
+- `analysis/dc-mayor-2026/outputs/baselines.json`
+- `analysis/dc-mayor-2026/outputs/baselines.md`
+- `analysis/dc-mayor-2026/prompts/base-context.md`
+- `analysis/dc-mayor-2026/prompts/forecast-cells.jsonl`
+- `analysis/dc-mayor-2026/outputs/model-summary.md` after model responses are saved
+- `analysis/dc-mayor-2026/outputs/plots/*-mcduffie-margin.svg` after model responses are saved
+
+The remaining step is to run the prompt cells through models and aggregate their JSON responses.
+
+---
+
+## How to turn money into predictions
+
+**URL:** https://maxghenis.com/blog/how-to-turn-money-into-predictions/
+**Published:** May 26 2026
+**Description:** A menu of mechanisms for organizations that want to fund forecasts on policy, economic, and AI outcomes.
+
+Organizations that fund policy research, economic analysis, or AI deployment want predictions about future outcomes — which tax provisions will pass, what inflation will run, how labor markets will absorb a new model class. The [Federation of American Scientists is sponsoring forecasting tournaments](https://fas.org/publication/fas-and-metaculus-are-using-forecasting-to-support-better-climate-policy/) to inform climate policy; the [Forecasting Research Institute ran its Existential Risk Persuasion Tournament](https://forecastingresearch.org/xpt) with 80 domain experts and 89 superforecasters on AI and other catastrophic risks; [FiscalNote announced a major expansion](https://fiscalnote.com/newsroom/fiscalnote-announces-major-expansion-into-political-prediction-markets) into prediction-market infrastructure for its policy-intelligence customer base in February 2026; and AI researchers are now [benchmarking LLM forecasting against expert and crowd panels](https://www.forecastbench.org/paper.html). Quality varies sharply across markets — some are deep, actively traded, and accurate; others sit thinly populated and stay mispriced for weeks. Funders can improve the quality on the questions that matter to them.
+
+This post lays out the available mechanisms. I drafted an earlier version in 2024 and circulated it with a small group of researchers and funders. The landscape has changed enough since then — prediction markets [crossed $44 billion in notional volume in 2025](https://www.theblock.co/post/383733/prediction-markets-kalshi-polymarket-duopoly-2025), Kalshi got [Federal Reserve research validation](https://www.federalreserve.gov/econres/feds/files/2026010pap.pdf), and a [serious proposal](https://empiricrafting.substack.com/p/we-need-well-capitalized-prediction) for sponsorship-funded markets on AI labor impacts hit the literature — that an updated public version is overdue.
+
+## Two structural problems
+
+Two problems make most prediction markets shallower than they should be.
+
+**The liquidity problem.** Markets need both informed traders ("smart money") and less informed traders willing to absorb their bets ("dumb money"). Andrew Gelman puts it cleanly in [Prediction markets and the need for "dumb money" as well as "smart money"](https://statmodeling.stat.columbia.edu/2024/10/25/prediction-markets-and-the-need-for-dumb-money-as-well-as-smart-money/): "Markets become efficient when making them efficient is profitable." Without enough total volume, smart traders can't profitably correct a mispriced market, so prices stay wrong.
+
+A Manifold market asking ["Will there be any tax on unrealized capital gains in the USA before EOY2028?"](https://manifold.markets/Gen/will-there-be-any-tax-on-unrealized) sat at 22% probability for nearly two weeks after Trump's 2024 election victory, with 27 traders. The election outcome obviously cut the probability substantially, but no one was paid enough to move the price.
+
+A parallel Manifold market on ["Will a raise to the top capital gains tax rate be enacted in 2025?"](https://manifold.markets/jack/will-the-top-capital-gains-tax-rate) behaved differently. Manifold staff made it sweepstakes-eligible at creation, so the market traded in real money (Manifold's then-experimental real-cash mode, [shut down in March 2025](https://news.manifold.markets/p/focusing-on-mana-bringing-sweepstakes)). It held 20-21% until election results, then dropped to 6%. The mana version attracted 18 trades and 4,093 mana; the sweepstakes version had 9 traders and 334 sweepcash. The cash version attracted enough attention to update on election news; the play-money version did not. Money matters here mostly as an attention allocator, not as a calibration mechanism — [Servan-Schreiber et al. (2004)](https://users.nber.org/~jwolfers/Papers/DoesMoneyMatter.pdf) found play-money and real-money NFL prediction markets equally accurate when both had engaged trader bases.
+
+**The zero-sum challenge.** Unlike equities, where investors collectively benefit from economic growth, prediction markets are zero-sum or negative-sum after fees. Every winner needs a loser. Zvi Mowshowitz lists the consequences in ["Subsidizing Prediction Markets"](https://www.lesswrong.com/posts/AeKS2m6uLM8RYfvND/subsidizing-prediction-markets): no natural long-term investors, higher perceived risk, and limited professional capital deployment. Funders willing to take an expected loss on a market are the substitute for that missing long-horizon capital.
+
+## Where prediction markets are in 2026
+
+**Volume.** Total notional [exceeded $44 billion in 2025](https://www.theblock.co/post/383733/prediction-markets-kalshi-polymarket-duopoly-2025), with monthly peaks around $13 billion during the US election period. The market is concentrated in [Kalshi](https://kalshi.com/) (a [CFTC-designated contract market](https://www.cftc.gov/PressRoom/PressReleases/8302-20)) and [Polymarket](https://polymarket.com/) (crypto-native, recently [returned to the US](https://www.coindesk.com/policy/2025/09/03/u-s-cftc-gives-go-ahead-for-polymarket-s-new-exchange-qcx) via a $112 million acquisition of CFTC-licensed exchange QCX).
+
+**Regulatory legitimacy.** Kalshi went from a startup with questionable contract approvals to the subject of a [Federal Reserve working paper](https://www.federalreserve.gov/econres/feds/files/2026010pap.pdf) (Diercks, Katz, and Wright, 2026) that finds Kalshi's prices on inflation, jobs, GDP, and FOMC decisions "outperform surveys and interest-rate futures" as macro forecasting tools. The paper explicitly recommends Kalshi as a real-time benchmark for researchers and policymakers. That is the most credible institutional validation prediction markets have ever received.
+
+**A sponsorship thesis.** Andrey Fradkin, Brian Jabarian, and Andrew Koh published ["We need well-capitalized prediction markets"](https://empiricrafting.substack.com/p/we-need-well-capitalized-prediction) arguing that the right model is sponsorship — AI labs, Big Tech firms, and philanthropies seed liquidity in markets on labor outcomes, AI capability benchmarks, and other questions where they have decision-relevant interest. Sponsorship covers the expected loss in exchange for better information for everyone. I'll come back to this in the last section.
+
+## Funding mechanism 1: Subsidize public markets
+
+Each major platform supports liquidity provision through a different mechanism.
+
+[Manifold Markets](https://manifold.markets/) runs on play money called mana. The platform briefly offered sweepstakes trading in real cash but [shut that program down in March 2025](https://news.manifold.markets/p/focusing-on-mana-bringing-sweepstakes) and returned to a pure play-money model. Despite the play-money currency, Manifold's [aggregate calibration](https://manifold.markets/calibration) is strong — predictions land within roughly four percentage points of realized frequencies — and Manifold's own analysis finds calibration improves with trader count up to roughly 10-20 traders per market, after which it plateaus. The implication for funders: subsidizing a market that's stuck below the plateau directly buys better predictions. Organizations can [purchase mana with dollars](https://manifold.markets/checkout) and [add it to specific markets as liquidity](https://docs.manifold.markets/faq#how-do-i-subsidise-a-market); the deeper book attracts more traders and tightens the spread. The subsidizer expects to lose mana — the more the market price moves, the less you recover — but the lost mana is the cost of a better-priced market, not a tax on the platform. Manifold's code is also [MIT-licensed](https://github.com/manifoldmarkets/manifold), which makes it the friendliest platform for organizations that want to run programmatic experiments at low cost.
+
+[Polymarket](https://polymarket.com/) uses a [Liquidity Mining & Rewards program](https://docs.polymarket.com/market-makers/liquidity-rewards). Market makers earn rewards for providing consistent quotes; traders earn fee rebates proportional to trading activity; community bounties incentivize market promotion. Organizations can participate through these mechanisms rather than as standalone subsidizers. After a [2022 CFTC settlement](https://www.cftc.gov/PressRoom/PressReleases/8478-22) that barred US users for nearly four years, Polymarket regained US access in December 2025 via the QCX acquisition above, and runs [hundreds of macro markets](https://polymarket.com/dashboards/macro) globally.
+
+[Kalshi](https://kalshi.com/) offers a [limit order](https://help.kalshi.com/trading/order-types/limit-orders) liquidity model. Organizations place standing limit orders at prices they're willing to trade at; orders execute when the market crosses those prices. Limit orders avoid trading fees, allow precise price targeting, and accumulate into market liquidity over time. Qualified market makers can join a formal [market maker program](https://help.kalshi.com/en/articles/13823819-market-maker-program) with additional benefits. The CFTC approval and Fed validation make this the right platform for institutional-grade questions where regulatory clarity matters.
+
+[Hypermind](https://corp.hypermind.com/) has run institutional prediction markets since 2000, with clients including the US intelligence community and the [Johns Hopkins Center for Health Security](https://predict.hypermind.com/hypermind/media/pdf/futuribles-prediction-markets.pdf). Sponsors fund custom markets and panels of selected forecasters on bespoke questions, with the platform providing aggregation and reporting infrastructure. Less suitable for one-off retail experiments, more suitable for sustained corporate or government use.
+
+## Funding mechanism 2: Sponsor a tournament
+
+[Metaculus](https://www.metaculus.com/) is a forecasting platform aggregating predictions across thousands of binary and numerical questions, scored on accuracy. Organizations [sponsor dedicated tournaments](https://www.metaculus.com/tournaments/) — a slate of related questions with a prize pool that pays out to the best forecasters.
+
+The [Federation of American Scientists](https://fas.org/publication/fas-and-metaculus-are-using-forecasting-to-support-better-climate-policy/) funded a $5,000 [Climate Tipping Points tournament](https://www.metaculus.com/tournament/climate/) covering 43 questions about climate policy and outcomes, including conditional questions. The tournament structure lets a funder set the agenda — what questions matter, what counts as resolution, what horizons to ask about — without taking on market-maker risk.
+
+The [Forecasting Research Institute](https://forecastingresearch.org/) (Philip Tetlock's research arm, distinct from Good Judgment Inc) runs research-oriented tournaments like the [Existential Risk Persuasion Tournament](https://forecastingresearch.org/xpt) (80 domain experts, 89 superforecasters, thousands of forecasts on long-horizon catastrophic risks). Sponsoring FRI is closer to funding a research program than buying a forecast.
+
+Tournaments work well for questions where you want a calibrated probability today, not a tradeable instrument over time. They also support reasoning prizes for the best-argued forecasts, not just the most accurate ones, which matters when you're trying to surface analytical talent rather than just numerical answers.
+
+## Funding mechanism 3: Buy custom human forecasts
+
+[Good Judgment](https://goodjudgment.com/) sells [custom forecasting from professional superforecasters](https://goodjudgment.com/services/custom-superforecasts/) — individuals identified by [Philip Tetlock's Good Judgment Project](https://goodjudgment.com/resources/the-superforecasters-track-record/) as [consistently outperforming domain experts and intelligence analysts](https://en.wikipedia.org/wiki/The_Good_Judgment_Project) (the project beat intelligence-community analysts with classified access by 25-30% in the IARPA ACE tournament). Services include question development, daily forecast updates, written analysis, and follow-up question support. Organizations can keep forecasts private or release them publicly.
+
+This is the most concierge option. You write a question, a small team of trained forecasters works on it, you get back a probability with explanation. No liquidity to manage, no market to monitor. Cost is higher per question and the methodology is opaque relative to a public market.
+
+## Funding mechanism 4: Buy AI-generated forecasts
+
+A new category emerged in 2024-2026. [FutureSearch](https://futuresearch.ai/) ([publicly launched in early 2026](https://futuresearch.ai/company/)) runs LLM-based research agents that gather evidence, weigh base rates, and produce calibrated probability forecasts with reasoning. Pricing is [per-operation](https://futuresearch.ai/pricing/) — deep-research agents at 1-11¢, forecasters at 20-90¢ per researcher per row — orders of magnitude cheaper than human superforecasters per question, with the obvious tradeoff that the depth of domain expertise is whatever the model has internalized plus what its retrieval finds.
+
+The category builds on published research: Halawi et al. (2024) ["Approaching Human-Level Forecasting with Language Models"](https://arxiv.org/abs/2402.18563) (NeurIPS) showed retrieval-augmented LLM systems approaching competitive-forecaster accuracy; the Center for AI Safety's [forecasting bot](https://safe.ai/blog/forecasting) reported superhuman accuracy on certain competitive platforms; [ForecastBench](https://www.forecastbench.org/paper.html) (Karger et al., ICLR 2025) — a dynamic, continuously-updated benchmark — finds frontier LLMs roughly match the general-public crowd in Brier score but still trail elite superforecasters by a wide margin (LLM Brier ≈ 0.135–0.159 vs. superforecaster Brier ≈ 0.02). The ForecastBench team's linear extrapolation [projects superforecaster parity around late 2026](https://forecastingresearch.substack.com/p/ai-llm-forecasting-model-forecastbench-benchmark), with a 95% confidence interval from December 2025 to January 2028.
+
+The cost structure inverts the human-forecasting category. Where Good Judgment's value is depth on a few high-stakes questions, AI forecasting's value is breadth — hundreds or thousands of calibrated probabilities a day. Use AI forecasting when you want coverage; use human superforecasters when you want depth and defensibility on a question where the audience expects a human accountable for the call.
+
+The trajectory matters more than the snapshot. Per-query costs are falling and accuracy is rising; within a few years, the marginal cost of a calibrated probability on most public questions drops sharply, even if the gap to elite superforecasters takes longer to close than the ForecastBench point estimate suggests. What remains expensive — and where real returns on investment will sit — is *optimizing* the agents: which tools they call, which substrates they query, how their calibration is benchmarked, how they update under new information. Cheap commodity forecasts and frontier-quality forecasts will look very different, and the work to produce the latter still needs to be incentivized.
+
+## Funding mechanism 5: Run your own prediction market
+
+For internal questions an organization doesn't want public — product launch dates, project completion probabilities, internal strategic questions — private prediction markets aggregate dispersed information already inside the organization. [Eli Lilly used internal markets in 2003](https://en.wikipedia.org/wiki/Prediction_market#Business) to forecast which drug candidates would advance through clinical trials; Google, Microsoft, and Ford have run variants. The corporate-prediction-market vendor landscape has consolidated — [Cultivate Labs](https://www.cultivatelabs.com/posts/why-we-stopped-supporting-prediction-markets) (formerly Inkling Markets) dropped market mechanics in 2022 in favor of opinion pools, citing user confusion — but [Hypermind's Prescience platform](https://corp.hypermind.com/) still offers managed private markets for corporate and government clients.
+
+## The sponsorship thesis, and why it matters
+
+The [Fradkin / Jabarian / Koh proposal](https://empiricrafting.substack.com/p/we-need-well-capitalized-prediction) is worth treating as its own category. They argue that the chicken-and-egg problem in prediction markets — no liquidity, no traders; no traders, no liquidity — can be solved by sponsorship capital from organizations that have real decision-relevant interest in the questions. Their canonical example is AI labor impacts: a major AI lab, a federal agency, or a philanthropy seeds liquidity on markets tied to [Bureau of Labor Statistics](https://www.bls.gov/) data series — occupation-level employment, wages, labor-force participation at 1-, 2-, and 5-year horizons.
+
+The contract design they advocate has four properties: verifiability (objective resolution against published government data), stability (consistent measurement over time), robustness to gaming (large underlying quantities that one trader can't move), and attention (sufficient interest to draw informed traders). BLS data hits all four. So do many other government statistics — [BEA NIPA tables](https://www.bea.gov/itable/national-gdp-and-personal-income), [Census ACS variables](https://www.census.gov/programs-surveys/acs), [IRS Statistics of Income](https://www.irs.gov/statistics).
+
+The model generalizes. Any organization that benefits from better forecasting on a specific question can sponsor a market on it without expecting trading profit. The sponsorship pays for information that improves everyone's decisions — including the sponsor's. Conditional markets (outcome Y given policy state X) are particularly underprovided today and particularly valuable for policy analysis. Sponsorship is the cleanest mechanism to bring them into existence.
+
+The sponsorship lane connects to a structural question: who pays for the public good of calibrated forecasts? In 2024 the answer was mostly "individual hobbyist traders subsidizing inefficient markets." In 2026 the answer is starting to be "institutions with skin in the question, sponsoring markets that produce information they want." That shift is what makes 2026 different from 2024.
+
+## Where to start
+
+Different mechanisms suit different goals:
+
+- **Want to test the waters cheaply?** [Buy mana on Manifold](https://manifold.markets/checkout) and seed a market that matters to you. Total commitment can be under $1,000. The mana you lose to traders moving the price is the cost of a deeper, better-calibrated market on a question you care about.
+- **Want a probability anchored to your priorities?** [Sponsor a Metaculus tournament](https://www.metaculus.com/tournaments/). $5,000–$50,000 buys a slate of questions with a real prize pool and visible forecasters.
+- **Want a single high-stakes forecast with human reasoning?** Engage [Good Judgment](https://goodjudgment.com/services/custom-superforecasts/). Highest cost per question, deepest analysis, accountable human author.
+- **Want broad coverage across many questions cheaply?** Use [FutureSearch](https://futuresearch.ai/) or a similar AI-forecasting service. Per-query pricing in pennies, hundreds of forecasts a day, calibrated but synthetic.
+- **Want regulated, real-money markets on macro questions?** Place [limit orders on Kalshi](https://help.kalshi.com/trading/order-types/limit-orders). Fee-free, precise pricing, supports the most institutionally credible platform.
+- **Want an institutional sustained-engagement platform?** [Hypermind](https://corp.hypermind.com/) for custom corporate panels (25+ years of track record) or for running a private internal market with a defined trader population.
+- **Want a research tournament on long-horizon questions?** Fund the [Forecasting Research Institute](https://forecastingresearch.org/) directly — closer to research-program sponsorship than to buying a forecast.
+- **Want to move the field?** Sponsor markets that solve a real liquidity hole — BLS-anchored contracts, AI capability benchmarks, conditional policy-outcome markets. The [Fradkin / Jabarian / Koh model](https://empiricrafting.substack.com/p/we-need-well-capitalized-prediction) is the right starting point.
+
+The hard part is no longer figuring out the mechanism. The mechanisms exist, the platforms work, the regulatory path is clearer than at any point in the past decade. The opportunity is institutional: adding prediction markets to the portfolio of truth-seeking tools organizations already use — alongside surveys, expert panels, internal modeling, and traditional forecasts — and developing the craft of writing forecastable questions. A well-formed question is conditional, scoreable, and decision-relevant ("will 2028 child poverty under reform X exceed Y%?"); a poorly-formed one is none of those. Prediction markets are a new epistemic technology. Organizations that build the discipline to use them well will reason more clearly about the future.
+
+---
+
+## Can Talkie-1930 do arithmetic?
+
+**URL:** https://maxghenis.com/blog/talkie-1930-math-evals/
+**Published:** Apr 30 2026
+**Description:** I tested Talkie-1930 on GSM8K and the easier EleutherAI/OpenAI arithmetic suite, then packaged an lm-eval-harness runner so the runs are reproducible.
+
+import CrosspostAware from '../../components/CrosspostAware.astro';
+import TalkieEvalsEmbed from '../../components/TalkieEvalsEmbed.astro';
+
+[Talkie](https://talkie-lm.com/introducing-talkie) is a 13B language model trained only on text available before 1931. Its launch post includes a "Numeracy" panel showing talkie-1930 reaching about 62% average accuracy at peak training compute, slightly above the modern-web twin's roughly 57%. But the plot doesn't specify which tasks the average covers, which prompts were used, or how answers were scored.
+
+I wanted a smaller, inspectable check: can Talkie-1930 do arithmetic at all?
+
+The answer depends on the evaluation. In full `lm-evaluation-harness` runs, the instruction-tuned model scores 0.0% under the strict GSM8K final-answer parser and 4.3% under the flexible parser in zero-shot. With the standard 5-shot GSM8K prompt, it rises to 4.9% strict and 7.2% flexible. On the easier EleutherAI/OpenAI arithmetic suite, the 1930 base model averages 42.7%, the 1930 instruction model averages 42.2%, and the modern-web base model averages 3.4%.
+
+## GSM8K: Mostly no
+
+I first tried [GSM8K](https://huggingface.co/datasets/openai/gsm8k), the grade-school math word-problem dataset OpenAI released in [Cobbe et al. (2021)](https://arxiv.org/abs/2110.14168). For context, the same-size [LLaMA 13B reports 17.8%](https://arxiv.org/abs/2302.13971) (Touvron et al. 2023, Table 7); GPT-4 hit [92.0%](https://cdn.openai.com/papers/gpt-4.pdf) at its March 2023 release; [Claude 3 Opus reported 95.0%](https://www.anthropic.com/news/claude-3-family) in March 2024. I used the instruction-tuned Talkie-1930 model, the Talkie instruction chat template, and greedy decoding (`do_sample: false`, `temperature: 0.0`).
+
+| Run | N | Strict match | Flexible extract |
+| --- | ---: | ---: | ---: |
+| Zero-shot | 1,319 | 0.0% | 4.3% |
+| 5-shot | 1,319 | 4.9% | 7.2% |
+
+The strict score requires the GSM8K-style final answer marker (`#### number`). The flexible score extracts a number-like string from the model response. Flexible extraction is more forgiving when a model doesn't follow the GSM8K answer format, but it is still only 7.2% at 5-shot.
+
+A representative correct 5-shot response:
+
+> **Q:** A robe takes 2 bolts of blue fiber and half that much white fiber. How many bolts in total does it take?
+>
+> **Talkie:** It takes 3 bolts in total because 2+1/2 = `<<2+1/2=3>>`3 bolts. `#### 3` ✓
+
+A typical miss:
+
+> **Q:** Janet's ducks lay 16 eggs per day. She eats three for breakfast every morning and bakes muffins for her friends every day with four. She sells the remainder at the farmers' market daily for $2 per fresh duck egg. How much in dollars does she make every day at the farmers' market?
+>
+> **Talkie:** Janet makes $2 x 16 = `<<32>>`32 per day at the farmers' market. `#### 32` (gold: 18)
+
+The model imitates the GSM8K answer format but skips the operations the problem actually requires.
+
+Before running the full harness job, I also ran smaller custom probes: direct answer, zero-shot reasoning, and 4-shot reasoning prompts. Those got 0 of 70 attempts right. I now treat those as audit probes rather than headline benchmark results; the full harness runs above are the reproducible numbers.
+
+GSM8K requires reading a word problem, tracking quantities, choosing operations, and formatting an answer. For Talkie, generation and instruction-following are themselves part of the bottleneck.
+
+## Easier arithmetic: Sometimes yes
+
+I then used the [EleutherAI arithmetic dataset](https://huggingface.co/datasets/EleutherAI/arithmetic), which comes from the OpenAI GPT-3 arithmetic tests in [Brown et al. (2020)](https://arxiv.org/abs/2005.14165). For context, GPT-3 175B in that paper (Table 3.9, few-shot) already hit 100% on 2-digit addition, 98.9% on 2-digit subtraction, and 80.4% on 3-digit addition; multiplication and 4–5-digit operations were weaker (29.2% on 2-digit multiplication, 9.3% on 5-digit addition). The current [lm-evaluation-harness task definitions](https://github.com/EleutherAI/lm-evaluation-harness/tree/main/lm_eval/tasks/arithmetic) score these as log-likelihood tasks: given a context like:
+
+```text
+Question: What is 98 plus 45?
+Answer:
+```
+
+the model is correct if the exact target completion, like ` 143`, is the greedy continuation under teacher forcing.
+
+This is much easier than GSM8K, and closer to a base-LM benchmark. I ran all 2,000 validation examples from each of the 10 arithmetic tasks.
+
+| Task | 1930 base | 1930 instruct | Modern-web base |
+| --- | ---: | ---: | ---: |
+| Single-digit 3 ops | 11.5% | 16.3% | 3.4% |
+| 2-digit addition | 91.6% | 75.7% | 14.0% |
+| 2-digit subtraction | 51.0% | 49.8% | 11.5% |
+| 3-digit addition | 74.7% | 88.3% | 0.6% |
+| 3-digit subtraction | 47.2% | 48.7% | 1.7% |
+| 4-digit addition | 29.5% | 27.7% | 0.0% |
+| 4-digit subtraction | 36.1% | 30.7% | 0.1% |
+| 5-digit addition | 31.4% | 24.4% | 0.0% |
+| 5-digit subtraction | 28.2% | 30.1% | 0.0% |
+| 2-digit multiplication | 26.2% | 30.8% | 3.1% |
+| **Overall** | **42.7%** | **42.2%** | **3.4%** |
+
+The 1930 models aren't just refusing. They often pick the right answer as their top continuation, especially for addition (91.6% base on 2-digit, 74.7% base and 88.3% instruct on 3-digit). For "What is 98 plus 45?" the 1930 base preferred the correct ` 143`. When the base model is correct on 2-digit addition, its median probability on the full target sequence is 51.6% — winning the argmax, not asserting confidently. The pattern breaks on multi-operation expressions, subtraction, multiplication, and larger digits.
+
+The modern-web base scores 3.4% overall. In many errors it copied an operand instead of computing the result: for "What is 98 plus 45?" it preferred ` 98` over ` 143`; for "What is 92 times 7?" it preferred ` 92` over ` 644`. In a 500-row custom audit, 70% of its 2-digit addition rows and 25% of its 2-digit multiplication rows were exact operand copies. I don't read this as evidence that pre-1931 text makes a model more numerate than modern web text. More likely, I'm not reproducing the Talkie authors' exact benchmark setup, or this completion format interacts badly with the modern-web checkpoint.
+
+## Compared to same-size GPT-3
+
+The arithmetic suite first appears in [Brown et al. (2020)](https://arxiv.org/abs/2005.14165). The natural same-size baseline is GPT-3 13B; GPT-3 175B is the headline. Few-shot accuracies from Appendix H, Table H.1:
+
+| Task | GPT-3 13B | GPT-3 175B | Talkie-1930 13B base |
+| --- | ---: | ---: | ---: |
+| Single-digit 3 ops | 9.95% | 21.3% | 11.5% |
+| 2-digit addition | 55.5% | 100.0% | 91.6% |
+| 2-digit subtraction | 52.4% | 98.9% | 51.0% |
+| 3-digit addition | 8.4% | 80.4% | 74.7% |
+| 3-digit subtraction | 9.2% | 94.2% | 47.2% |
+| 4-digit addition | 0.4% | 25.5% | 29.5% |
+| 4-digit subtraction | 0.4% | 26.8% | 36.1% |
+| 5-digit addition | 0.05% | 9.3% | 31.4% |
+| 5-digit subtraction | 0.0% | 9.9% | 28.2% |
+| 2-digit multiplication | 7.05% | 29.2% | 26.2% |
+
+Talkie-1930 13B base trails GPT-3 13B on 2-digit subtraction (51.0% vs 52.4%) and is essentially tied on single-digit composite (11.5% vs 9.95%). On the other eight tasks it scores higher than GPT-3 13B. On 4-digit and 5-digit add/subtract it also scores higher than GPT-3 175B, despite being 13× smaller.
+
+A 13B model trained only on pre-1931 text matches or exceeds GPT-3 175B on most rote arithmetic completions. It also scores 4.9% strict on GSM8K word problems, against 17.8% for same-size LLaMA 13B. The capability gap with modern frontier models lives in instruction-following, chain-of-thought, and word-problem framing — not in the underlying numeric pattern matching.
+
+## The metric is strict
+
+The arithmetic score is format-strict. If the target is digits and the model prefers a word-form answer, the metric counts it wrong. On "What is 70 plus 15?" the instruction-tuned model gave ` Eighty` higher probability (logprob -0.29) than the leading space of the digit target ` 85` (-1.67). That's a legitimate miss under the benchmark, but a different kind of miss than computing the wrong number.
+
+That's why I kept the raw outputs, not just aggregate scores. A single accuracy number hides the difference between "wrong operation," "copied an operand," "right value in the wrong format," and "format-following failure."
+
+## Browse the responses
+
+You can step through every Talkie response below — all 1,319 GSM8K questions across both runs and all 15,000 arithmetic rows across the three models. Filter by run, metric, and grade for GSM8K, or by candidate (1930 base, 1930 instruct, modern-web base) and subject for arithmetic.
+
+<CrosspostAware>
+  <TalkieEvalsEmbed slot="interactive" />
+  <Fragment slot="static">
+    *[Browse all 16,319 evaluation responses in the examination booklet on the full post](https://maxghenis.com/blog/talkie-1930-math-evals/)*
+  </Fragment>
+</CrosspostAware>
+
+The standalone version: [talkie-evals-browser.vercel.app](https://talkie-evals-browser.vercel.app/).
+
+## Reproducibility
+
+I packaged the evaluator as [a small repo](https://github.com/MaxGhenis/talkie-evals) using Modal for CUDA. It includes an `lm-evaluation-harness` adapter for benchmark-style runs and custom audit commands that log row-level arithmetic traces. The package pins:
+
+- the Talkie Python package commit,
+- the Hugging Face model revisions,
+- the arithmetic and GSM8K dataset revisions,
+- the Modal image Python and pip packages,
+- the sample seed for custom sampled probes, with row-level outputs written to JSON.
+
+The full arithmetic harness run is:
+
+```bash
+uv run talkie-evals harness \
+  --model-names talkie-1930-13b-base,talkie-1930-13b-it,talkie-web-13b-base \
+  --tasks arithmetic \
+  --sample-size 0 \
+  --output results/lm_eval_full_arithmetic_all_models.json
+```
+
+The full zero-shot GSM8K harness run is:
+
+```bash
+uv run talkie-evals harness \
+  --model-names talkie-1930-13b-it \
+  --tasks gsm8k \
+  --sample-size 0 \
+  --num-fewshot 0 \
+  --talkie-chat-template \
+  --output results/lm_eval_full_gsm8k_zero_shot_chat.json
+```
+
+The full 5-shot GSM8K harness run is:
+
+```bash
+uv run talkie-evals harness \
+  --model-names talkie-1930-13b-it \
+  --tasks gsm8k \
+  --sample-size 0 \
+  --talkie-chat-template \
+  --output results/lm_eval_full_gsm8k_5shot_chat.json
+```
+
+The full raw result JSONs behind the tables are compressed in the repo:
+
+- [Full arithmetic harness run](https://github.com/MaxGhenis/talkie-evals/blob/main/results/raw/lm_eval_full_arithmetic_all_models.json.gz)
+- [Full GSM8K zero-shot harness run](https://github.com/MaxGhenis/talkie-evals/blob/main/results/raw/lm_eval_full_gsm8k_zero_shot_chat.json.gz)
+- [Full GSM8K 5-shot harness run](https://github.com/MaxGhenis/talkie-evals/blob/main/results/raw/lm_eval_full_gsm8k_5shot_chat.json.gz)
+
+The repo also keeps the earlier custom probe outputs:
+
+- [Arithmetic audit run](https://github.com/MaxGhenis/talkie-evals/blob/main/results/raw/arithmetic_eval_talkie-1930-13b-base_talkie-1930-13b-it_talkie-web-13b-base_20260429_214800.json.gz)
+- [GSM8K direct-answer probe](https://github.com/MaxGhenis/talkie-evals/blob/main/results/raw/gsm8k_eval_talkie-1930-13b-it_zero_shot_direct_20260429_170239.json.gz)
+- [GSM8K reasoning probes](https://github.com/MaxGhenis/talkie-evals/blob/main/results/raw/gsm8k_eval_talkie-1930-13b-it_cot_20260429_170728.json.gz)
+
+## Takeaway
+
+Talkie-1930's capability profile is split along an unusual seam. On rote arithmetic completion, the 13B base matches or exceeds GPT-3 175B (the 2020 frontier) on most tasks while running at 13× fewer parameters. On grade-school word problems, the 13B instruction-tuned model scores 4.9% strict on 5-shot GSM8K, against 17.8% for same-size LLaMA 13B and 92.0%+ for any 2024-vintage frontier model. Same model. Two benchmarks. Different eras of capability.
+
+The arithmetic suite is a better calibration check than GSM8K alone. GSM8K tells us the instruction-tuned model can't reliably solve generated word problems. The arithmetic suite tells us the base model still encodes elementary calculation patterns at GPT-3-175B level. The same instruction-tuned model scores 4.9% strict / 7.2% flexible on full 5-shot GSM8K and 42.2% on the arithmetic suite — elicitation and scoring can dominate the headline number.
+
+The launch post's roughly 62% Numeracy figure averages over unspecified tasks. The public arithmetic suite shows an 11.5%–91.6% spread on the 1930 base model.
 
 ---
 
