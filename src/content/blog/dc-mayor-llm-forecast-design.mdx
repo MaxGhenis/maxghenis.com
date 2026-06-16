@@ -49,16 +49,16 @@ For visualization I flip the axis to McDuffie's margin over George, running from
 
 <DCMayorForecastExplorer client:load />
 
-This first interactive chart uses real Codex subagent JSON responses, not hand-entered placeholder forecasts. It is still a workshop pass: one Codex subagent generated each metric's six cells, so `n=1` per point and there is no cross-model ensemble yet.
+This interactive chart uses real Codex subagent responses, not hand-entered placeholder forecasts. There are 12 Codex subagents in the current pass: four original full-surface agents, one per metric, and eight additional close-cutoff agents. The close cells now have `n=9` paired responses per metric: the eight close-cutoff agents plus the original full-surface response for that metric. The outer `±10` and `±20` cells still have `n=1`, so those lines remain a workshop surface rather than an ensemble.
 
-The close-election forecast discontinuity from this first run is:
+The chart reports cell medians. The cell-median close-election discontinuity is:
 
 | Outcome | George close win minus McDuffie close win | Interpretation |
 |---|---:|---|
-| D.C. real GDP | -$600 million | Slightly lower under a close George win |
-| Bike lane route miles | +11 | Higher under a close George win |
-| Traffic fatalities | -3 | Lower under a close George win |
-| Housing permits | +350 | Higher under a close George win |
+| D.C. real GDP | -$900 million | Slightly lower under a close George win |
+| Bike lane route miles | +14 | Higher under a close George win |
+| Traffic fatalities | -4 | Lower under a close George win |
+| Housing permits | +800 | Higher under a close George win |
 
 ## The estimands
 
@@ -76,7 +76,36 @@ That contrast includes the candidate difference, but also the mandate, coalition
 
 The slope within each winner also matters. If models expect George by 20 to produce more bike lanes than George by 1, that is not a George-versus-McDuffie estimate. It is a mandate estimate.
 
-## What would make it a real RD
+## The agent-implied RD
+
+The cleaner RD object is a paired within-agent difference:
+
+```text
+tau_i = forecast_i(George wins by 1) - forecast_i(McDuffie wins by 1)
+```
+
+Then I summarize the distribution of `tau_i` across agent runs. This is the real RD implied by the agents' beliefs: the running variable is the prompted election margin, the treatment switches at zero, and the estimand is the discontinuity in the model's conditional forecast. It is still not a realized election RD because no one has observed the 2030 outcomes.
+
+The paired agent-implied RD from the current Codex pass is:
+
+| Outcome | Paired runs | p25 | p50 | p75 | Runs favoring George |
+|---|---:|---:|---:|---:|---:|
+| D.C. real GDP | 9 | -$800 million | -$600 million | -$500 million | 0 of 9 |
+| Bike lane route miles | 9 | +12 | +13 | +16 | 9 of 9 |
+| Traffic fatalities | 9 | -4 | -4 | -3 | 9 of 9 |
+| Housing permits | 9 | +600 | +800 | +900 | 9 of 9 |
+
+The distinction matters. The chart's discontinuity is a difference of cell medians; the table above is a median of paired within-run differences. If the project becomes more formal, I would make every call independent at the scenario level and randomize prompt order. The practical default would be one call per `(model, draw, margin, label condition)` that asks for all outcomes together, because that preserves cross-outcome covariance. A stricter but costlier version would use one call per `(model, draw, margin, metric, label condition)`.
+
+I would keep the baseline data and prior trend in every prompt. Without the [BEA GDP history](https://www.bea.gov/data/gdp/gdp-state), [DDOT bicycle-lane stock](https://opendata.dc.gov/datasets/DCGIS::bicycle-lanes/explore), [DDOT crash-fatality history](https://opendata.dc.gov/datasets/DCGIS::crashes-in-dc/about), and [Census permit trend](https://www.census.gov/construction/bps/statemonthly.html), the model is mostly supplying political intuition rather than a forecast anchored to a measurable series.
+
+## Has anyone done this?
+
+Pieces of this exist. [Silicon sampling](https://arxiv.org/abs/2209.06899) uses language models as simulated survey respondents. Researchers have also studied synthetic public-opinion responses, including warnings about treating them as replacements for human survey data in [Political Analysis](https://www.cambridge.org/core/journals/political-analysis/article/synthetic-replacements-for-human-survey-data-the-perils-of-large-language-models/B92267DC26195C7F36E63EA04A47D2FE). Election-specific work exists too: an MIT group repeatedly queried models during the 2024 election and described the project as more than 12,000 prompts across 12 models in [MIT CSAIL's writeup](https://www.csail.mit.edu/news/peering-inside-political-ai-how-llms-responded-2024-election).
+
+I have not found a standard design that takes a prompted election margin as the running variable and reports the discontinuity in model-implied policy outcomes. So I would present this as related to silicon sampling, election-model auditing, and RD thinking, not as an established causal-inference method.
+
+## What would make it a realized RD
 
 A [real election RD](https://github.com/rdpackages/rdrobust) needs observed elections and observed post-election outcomes. For the 2026 D.C. mayoral race, I cannot identify a real RD effect today because there is only one election and no 2030 outcomes yet. Even after the term, one race would be a case study, not an RD.
 
@@ -124,9 +153,17 @@ Each model returns quantiles, not one number:
   "p50": 28,
   "p75": 35,
   "p95": 45,
-  "main_mechanisms": [],
-  "uncertainty_notes": [],
-  "primary_sources_used": []
+  "main_mechanisms": [
+    "George's safe-streets platform could reduce severe crashes.",
+    "Annual traffic fatalities remain noisy low-count outcomes."
+  ],
+  "uncertainty_notes": [
+    "Implementation speed and random crash variation dominate the range."
+  ],
+  "primary_sources_used": [
+    "https://opendata.dc.gov/datasets/DCGIS::crashes-in-dc/about",
+    "https://janeesefordc.com/platform/reliable-transportation-for-all/"
+  ]
 }
 ```
 
@@ -139,10 +176,12 @@ A full version should report:
 - Baseline government data for each outcome.
 - Median forecasts by candidate, margin, metric, and model.
 - Margin plots from McD -20 to McD +20, with the cutoff marked at zero.
-- Close-election differences: George +1 minus McDuffie -1.
+- Cell-median close-election differences: George +1 minus McDuffie -1.
+- Paired agent-implied RD differences: within-run George +1 minus McDuffie -1.
 - Mandate gradients: George +20 minus George +1, and McDuffie -20 minus McDuffie -1.
 - Model effects: whether OpenAI, Anthropic, Google, or other systems systematically differ.
 - Masking effects: whether forecasts change when candidate names are replaced by Candidate A and Candidate B.
+- Prompt-order effects: whether randomized independent scenario calls change the implied discontinuity.
 
 The conclusion should avoid saying an AI model "proved" one candidate would produce more growth or fewer deaths. It can say the models' conditional forecasts imply a given difference under the close-election design, with wider-margin scenarios separated from the causal estimate.
 
@@ -164,8 +203,10 @@ That produces:
 - `analysis/dc-mayor-2026/prompts/base-context.md`
 - `analysis/dc-mayor-2026/prompts/forecast-cells.jsonl`
 - `analysis/dc-mayor-2026/responses/codex-subagents-2026-06-16.jsonl`
+- `analysis/dc-mayor-2026/responses/codex-agent-rd-close-2026-06-16.compact.json`
 - `analysis/dc-mayor-2026/outputs/model-summary.md` after model responses are saved
+- `analysis/dc-mayor-2026/outputs/agent-rd-summary.md` after close-margin responses are saved
 - `analysis/dc-mayor-2026/outputs/plots/*-mcduffie-margin.svg` after model responses are saved
 - `src/data/dc-mayor-forecast-series.json` for the interactive chart
 
-The remaining step is to replace this `n=1` Codex-subagent pass with repeated runs across frontier models, including masked and unmasked candidate labels.
+The remaining step is to replace this Codex-only workshop pass with repeated runs across frontier models, independent scenario-level calls, and masked and unmasked candidate labels.

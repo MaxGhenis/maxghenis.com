@@ -192,6 +192,11 @@ export default function DCMayorForecastExplorer() {
     ),
   ).join(", ");
   const minCellN = Math.min(...FORECASTS.map((row) => row.n));
+  const closeCellN = Math.min(
+    ...FORECASTS.filter((row) => Math.abs(row.mcduffieMargin) === 1).map(
+      (row) => row.n,
+    ),
+  );
   const favors =
     metric.lowerIsBetter
       ? rd < 0
@@ -211,6 +216,7 @@ export default function DCMayorForecastExplorer() {
             <p>
               Validated JSON responses, plotted as McDuffie's margin over George.
               Negative margins are George wins; positive margins are McDuffie wins.
+              Close cells have a denser agent sample than the outer margins.
             </p>
           </div>
           <label className="dc-forecast__toggle">
@@ -416,16 +422,17 @@ export default function DCMayorForecastExplorer() {
             <small>
               p25-p75: {formatValue(metric, hover.p25)} to {formatValue(metric, hover.p75)}
             </small>
+            <small>Cell n: {hover.n}</small>
           </aside>
         </div>
 
         <div className="dc-forecast__summary">
           <div>
-            <span>Forecast discontinuity</span>
+            <span>Cell-median discontinuity</span>
             <strong>{formatDiff(metric, rd)}</strong>
             <small>
               George by 1 forecast minus McDuffie by 1 forecast. Lower is better only
-              for fatalities. Favors {favors} in this run.
+              for fatalities. Favors {favors} in the cell medians.
             </small>
           </div>
           <div>
@@ -444,7 +451,7 @@ export default function DCMayorForecastExplorer() {
           <span>Baseline: {metric.baseline}</span>
           <span>Target: {metric.target}</span>
           <span>
-            Model set: {modelSet}; n={minCellN} per point
+            Model set: {modelSet}; close n={closeCellN}; outer n={minCellN}
           </span>
         </div>
       </section>

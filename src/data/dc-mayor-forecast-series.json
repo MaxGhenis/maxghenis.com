@@ -34,12 +34,12 @@
     "mcduffieMargin": -1,
     "georgeMargin": 1,
     "candidate": "Janeese Lewis George",
-    "n": 1,
-    "p05": 116.0,
-    "p25": 128.0,
-    "p50": 141.0,
-    "p75": 156.0,
-    "p95": 176.0
+    "n": 9,
+    "p05": 120.0,
+    "p25": 134.0,
+    "p50": 146.0,
+    "p75": 160.0,
+    "p95": 178.0
   },
   {
     "metricId": "bike_lane_miles",
@@ -48,10 +48,10 @@
     "mcduffieMargin": 1,
     "georgeMargin": -1,
     "candidate": "Kenyan McDuffie",
-    "n": 1,
-    "p05": 112.0,
-    "p25": 121.0,
-    "p50": 130.0,
+    "n": 9,
+    "p05": 116.0,
+    "p25": 124.0,
+    "p50": 132.0,
     "p75": 142.0,
     "p95": 161.0
   },
@@ -118,12 +118,12 @@
     "mcduffieMargin": -1,
     "georgeMargin": 1,
     "candidate": "Janeese Lewis George",
-    "n": 1,
-    "p05": 133500.0,
-    "p25": 147000.0,
-    "p50": 157200.0,
-    "p75": 168700.0,
-    "p95": 184200.0
+    "n": 9,
+    "p05": 133800.0,
+    "p25": 146000.0,
+    "p50": 152700.0,
+    "p75": 160900.0,
+    "p95": 173500.0
   },
   {
     "metricId": "dc_real_gdp",
@@ -132,12 +132,12 @@
     "mcduffieMargin": 1,
     "georgeMargin": -1,
     "candidate": "Kenyan McDuffie",
-    "n": 1,
-    "p05": 134000.0,
-    "p25": 147500.0,
-    "p50": 157800.0,
-    "p75": 169000.0,
-    "p95": 184500.0
+    "n": 9,
+    "p05": 134500.0,
+    "p25": 146500.0,
+    "p50": 153600.0,
+    "p75": 161500.0,
+    "p95": 174000.0
   },
   {
     "metricId": "dc_real_gdp",
@@ -202,12 +202,12 @@
     "mcduffieMargin": -1,
     "georgeMargin": 1,
     "candidate": "Janeese Lewis George",
-    "n": 1,
-    "p05": 850.0,
-    "p25": 1850.0,
-    "p50": 3350.0,
-    "p75": 5200.0,
-    "p95": 8100.0
+    "n": 9,
+    "p05": 1000.0,
+    "p25": 2600.0,
+    "p50": 4300.0,
+    "p75": 6500.0,
+    "p95": 9500.0
   },
   {
     "metricId": "housing_permits",
@@ -216,12 +216,12 @@
     "mcduffieMargin": 1,
     "georgeMargin": -1,
     "candidate": "Kenyan McDuffie",
-    "n": 1,
-    "p05": 800.0,
-    "p25": 1700.0,
-    "p50": 3000.0,
-    "p75": 4700.0,
-    "p95": 7200.0
+    "n": 9,
+    "p05": 850.0,
+    "p25": 2100.0,
+    "p50": 3500.0,
+    "p75": 5400.0,
+    "p95": 8200.0
   },
   {
     "metricId": "housing_permits",
@@ -286,11 +286,11 @@
     "mcduffieMargin": -1,
     "georgeMargin": 1,
     "candidate": "Janeese Lewis George",
-    "n": 1,
-    "p05": 15.0,
-    "p25": 23.0,
-    "p50": 31.0,
-    "p75": 41.0,
+    "n": 9,
+    "p05": 12.0,
+    "p25": 21.0,
+    "p50": 28.0,
+    "p75": 39.0,
     "p95": 55.0
   },
   {
@@ -300,11 +300,11 @@
     "mcduffieMargin": 1,
     "georgeMargin": -1,
     "candidate": "Kenyan McDuffie",
-    "n": 1,
-    "p05": 16.0,
-    "p25": 25.0,
-    "p50": 34.0,
-    "p75": 44.0,
+    "n": 9,
+    "p05": 15.0,
+    "p25": 24.0,
+    "p50": 32.0,
+    "p75": 43.0,
     "p95": 59.0
   },
   {

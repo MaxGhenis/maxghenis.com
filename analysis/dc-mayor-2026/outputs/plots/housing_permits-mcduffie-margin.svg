@@ -19,15 +19,15 @@
 <line x1="946.0" y1="58" x2="946.0" y2="474" stroke="#e5e7eb" />
 <text x="946.0" y="498" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#374151">+20</text>
 <line x1="82" y1="474.0" x2="946" y2="474.0" stroke="#e5e7eb" />
-<text x="72" y="478.0" text-anchor="end" font-family="Arial, sans-serif" font-size="11" fill="#374151">112</text>
+<text x="72" y="478.0" text-anchor="end" font-family="Arial, sans-serif" font-size="11" fill="#374151">158</text>
 <line x1="82" y1="370.0" x2="946" y2="370.0" stroke="#e5e7eb" />
-<text x="72" y="374.0" text-anchor="end" font-family="Arial, sans-serif" font-size="11" fill="#374151">2,606</text>
+<text x="72" y="374.0" text-anchor="end" font-family="Arial, sans-serif" font-size="11" fill="#374151">2,666.50</text>
 <line x1="82" y1="266.0" x2="946" y2="266.0" stroke="#e5e7eb" />
-<text x="72" y="270.0" text-anchor="end" font-family="Arial, sans-serif" font-size="11" fill="#374151">5,100</text>
+<text x="72" y="270.0" text-anchor="end" font-family="Arial, sans-serif" font-size="11" fill="#374151">5,175</text>
 <line x1="82" y1="162.0" x2="946" y2="162.0" stroke="#e5e7eb" />
-<text x="72" y="166.0" text-anchor="end" font-family="Arial, sans-serif" font-size="11" fill="#374151">7,594</text>
+<text x="72" y="166.0" text-anchor="end" font-family="Arial, sans-serif" font-size="11" fill="#374151">7,683.50</text>
 <line x1="82" y1="58.0" x2="946" y2="58.0" stroke="#e5e7eb" />
-<text x="72" y="62.0" text-anchor="end" font-family="Arial, sans-serif" font-size="11" fill="#374151">10,088</text>
+<text x="72" y="62.0" text-anchor="end" font-family="Arial, sans-serif" font-size="11" fill="#374151">10,192</text>
 <line x1="82" y1="474" x2="946" y2="474" stroke="#111827" />
 <line x1="82" y1="58" x2="82" y2="474" stroke="#111827" />
 <text x="514.0" y="532" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#111827">McDuffie margin over George, percentage points</text>
@@ -35,18 +35,18 @@
 <text x="521.0" y="466" font-family="Arial, sans-serif" font-size="11" fill="#64748b">cutoff</text>
 <line x1="90" y1="522" x2="114" y2="522" stroke="#2563eb" stroke-width="2.5" />
 <text x="120" y="526" font-family="Arial, sans-serif" font-size="11" fill="#374151">codex-subagent (named)</text>
-<polyline points="82.0,307.7 298.0,324.4 492.4,339.0" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" />
-<polyline points="535.6,353.6 730.0,347.3 946.0,341.1" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" />
-<line x1="82.0" y1="380.7" x2="82.0" y2="216.0" stroke="#2563eb" stroke-width="1.6" opacity="0.45" />
-<circle cx="82.0" cy="307.7" r="4.2" fill="#ffffff" stroke="#2563eb" stroke-width="2" />
-<line x1="298.0" y1="391.1" x2="298.0" y2="241.0" stroke="#2563eb" stroke-width="1.6" opacity="0.45" />
-<circle cx="298.0" cy="324.4" r="4.2" fill="#ffffff" stroke="#2563eb" stroke-width="2" />
-<line x1="492.4" y1="401.5" x2="492.4" y2="261.8" stroke="#2563eb" stroke-width="1.6" opacity="0.45" />
-<circle cx="492.4" cy="339.0" r="4.2" fill="#ffffff" stroke="#2563eb" stroke-width="2" />
-<line x1="535.6" y1="407.8" x2="535.6" y2="282.7" stroke="#2563eb" stroke-width="1.6" opacity="0.45" />
-<circle cx="535.6" cy="353.6" r="4.2" fill="#ffffff" stroke="#2563eb" stroke-width="2" />
-<line x1="730.0" y1="403.6" x2="730.0" y2="274.3" stroke="#2563eb" stroke-width="1.6" opacity="0.45" />
-<circle cx="730.0" cy="347.3" r="4.2" fill="#ffffff" stroke="#2563eb" stroke-width="2" />
-<line x1="946.0" y1="399.4" x2="946.0" y2="266.0" stroke="#2563eb" stroke-width="1.6" opacity="0.45" />
-<circle cx="946.0" cy="341.1" r="4.2" fill="#ffffff" stroke="#2563eb" stroke-width="2" />
+<polyline points="82.0,310.6 298.0,327.2 492.4,302.3" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" />
+<polyline points="535.6,335.4 730.0,350.0 946.0,343.7" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" />
+<line x1="82.0" y1="383.1" x2="82.0" y2="219.4" stroke="#2563eb" stroke-width="1.6" opacity="0.45" />
+<circle cx="82.0" cy="310.6" r="4.2" fill="#ffffff" stroke="#2563eb" stroke-width="2" />
+<line x1="298.0" y1="393.5" x2="298.0" y2="244.2" stroke="#2563eb" stroke-width="1.6" opacity="0.45" />
+<circle cx="298.0" cy="327.2" r="4.2" fill="#ffffff" stroke="#2563eb" stroke-width="2" />
+<line x1="492.4" y1="372.8" x2="492.4" y2="211.1" stroke="#2563eb" stroke-width="1.6" opacity="0.45" />
+<circle cx="492.4" cy="302.3" r="4.2" fill="#ffffff" stroke="#2563eb" stroke-width="2" />
+<line x1="535.6" y1="393.5" x2="535.6" y2="256.7" stroke="#2563eb" stroke-width="1.6" opacity="0.45" />
+<circle cx="535.6" cy="335.4" r="4.2" fill="#ffffff" stroke="#2563eb" stroke-width="2" />
+<line x1="730.0" y1="405.9" x2="730.0" y2="277.4" stroke="#2563eb" stroke-width="1.6" opacity="0.45" />
+<circle cx="730.0" cy="350.0" r="4.2" fill="#ffffff" stroke="#2563eb" stroke-width="2" />
+<line x1="946.0" y1="401.8" x2="946.0" y2="269.1" stroke="#2563eb" stroke-width="1.6" opacity="0.45" />
+<circle cx="946.0" cy="343.7" r="4.2" fill="#ffffff" stroke="#2563eb" stroke-width="2" />
 </svg>

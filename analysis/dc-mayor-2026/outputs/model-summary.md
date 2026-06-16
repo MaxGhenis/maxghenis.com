@@ -4,7 +4,7 @@ The RD column is `George close win` minus `McDuffie close win`. In the plot-read
 
 | Metric | Model | Prompt variant | George close p50 | McDuffie close p50 | RD p50 | George landslide vs close | McDuffie landslide vs close | Wide-margin contrast |
 |---|---|---|---:|---:|---:|---:|---:|---:|
-| Bike lane route miles | codex-subagent | named | 141 | 130 | +11 | +17 | -7 | +35 |
-| D.C. real GDP | codex-subagent | named | 157,200 | 157,800 | -600 | +800 | +1,200 | -1,000 |
-| Housing permits | codex-subagent | named | 3,350 | 3,000 | +350 | +750 | +300 | +800 |
-| Traffic fatalities | codex-subagent | named | 31 | 34 | -3 | -4 | +2 | -9 |
+| Bike lane route miles | codex-subagent | named | 146 | 132 | +14 | +12 | -9 | +35 |
+| D.C. real GDP | codex-subagent | named | 152,700 | 153,600 | -900 | +5,300 | +5,400 | -1,000 |
+| Housing permits | codex-subagent | named | 4,300 | 3,500 | +800 | -200 | -200 | +800 |
+| Traffic fatalities | codex-subagent | named | 28 | 32 | -4 | -1 | +4 | -9 |

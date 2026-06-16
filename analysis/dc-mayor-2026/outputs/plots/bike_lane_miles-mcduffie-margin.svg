@@ -35,16 +35,16 @@
 <text x="521.0" y="466" font-family="Arial, sans-serif" font-size="11" fill="#64748b">cutoff</text>
 <line x1="90" y1="522" x2="114" y2="522" stroke="#2563eb" stroke-width="2.5" />
 <text x="120" y="526" font-family="Arial, sans-serif" font-size="11" fill="#374151">codex-subagent (named)</text>
-<polyline points="82.0,262.2 298.0,292.7 492.4,327.0" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" />
-<polyline points="535.6,369.0 730.0,384.3 946.0,395.7" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" />
+<polyline points="82.0,262.2 298.0,292.7 492.4,308.0" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" />
+<polyline points="535.6,361.4 730.0,384.3 946.0,395.7" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" />
 <line x1="82.0" y1="334.7" x2="82.0" y2="185.9" stroke="#2563eb" stroke-width="1.6" opacity="0.45" />
 <circle cx="82.0" cy="262.2" r="4.2" fill="#ffffff" stroke="#2563eb" stroke-width="2" />
 <line x1="298.0" y1="353.7" x2="298.0" y2="224.0" stroke="#2563eb" stroke-width="1.6" opacity="0.45" />
 <circle cx="298.0" cy="292.7" r="4.2" fill="#ffffff" stroke="#2563eb" stroke-width="2" />
-<line x1="492.4" y1="376.6" x2="492.4" y2="269.8" stroke="#2563eb" stroke-width="1.6" opacity="0.45" />
-<circle cx="492.4" cy="327.0" r="4.2" fill="#ffffff" stroke="#2563eb" stroke-width="2" />
-<line x1="535.6" y1="403.3" x2="535.6" y2="323.2" stroke="#2563eb" stroke-width="1.6" opacity="0.45" />
-<circle cx="535.6" cy="369.0" r="4.2" fill="#ffffff" stroke="#2563eb" stroke-width="2" />
+<line x1="492.4" y1="353.7" x2="492.4" y2="254.6" stroke="#2563eb" stroke-width="1.6" opacity="0.45" />
+<circle cx="492.4" cy="308.0" r="4.2" fill="#ffffff" stroke="#2563eb" stroke-width="2" />
+<line x1="535.6" y1="391.9" x2="535.6" y2="323.2" stroke="#2563eb" stroke-width="1.6" opacity="0.45" />
+<circle cx="535.6" cy="361.4" r="4.2" fill="#ffffff" stroke="#2563eb" stroke-width="2" />
 <line x1="730.0" y1="414.8" x2="730.0" y2="346.1" stroke="#2563eb" stroke-width="1.6" opacity="0.45" />
 <circle cx="730.0" cy="384.3" r="4.2" fill="#ffffff" stroke="#2563eb" stroke-width="2" />
 <line x1="946.0" y1="422.4" x2="946.0" y2="361.4" stroke="#2563eb" stroke-width="1.6" opacity="0.45" />

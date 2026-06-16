@@ -33,6 +33,12 @@ The wider margins are still useful because they ask models to separate:
 - mandate or coalition strength among winners
 - correlated political environment that changes with the spread
 
+The paired agent-implied RD is computed within run:
+
+`forecast_i(George wins by 1) - forecast_i(McDuffie wins by 1)`
+
+That differs from subtracting the two aggregated cell medians. The paired estimate preserves the model draw as the unit of analysis.
+
 ## Run
 
 From the repo root:
@@ -66,18 +72,26 @@ By default, the aggregator reads `analysis/dc-mayor-2026/responses/*.jsonl` and 
 
 - `outputs/model-summary.json`
 - `outputs/model-summary.md`
+- `outputs/agent-rd-pairs.json`
+- `outputs/agent-rd-pairs.csv`
+- `outputs/agent-rd-summary.json`
+- `outputs/agent-rd-summary.md`
 - `outputs/forecast-series.json`
 - `outputs/forecast-series.csv`
 - `outputs/plots/*-mcduffie-margin.svg`
 - `../../src/data/dc-mayor-forecast-series.json`
 
-The summary reports the close-election RD contrast as `George close win` minus `McDuffie close win`. The plot-ready series flips the prompt margin into McDuffie's margin over George, so the chart runs from `McD -20` to `McD +20`; negative values are George wins and positive values are McDuffie wins. The SVG plots split the line at zero rather than connecting across the discontinuity.
+The model summary reports the cell-median close-election contrast as `George close win` minus `McDuffie close win`. The agent RD summary reports paired within-run close-election differences. The plot-ready series flips the prompt margin into McDuffie's margin over George, so the chart runs from `McD -20` to `McD +20`; negative values are George wins and positive values are McDuffie wins. The SVG plots split the line at zero rather than connecting across the discontinuity.
+
+The aggregator also reads `responses/*.compact.json` files. Those store repeated close-cutoff agent outputs compactly as paired quantile arrays, then expand them into schema-compatible records during aggregation.
 
 Recommended sampling plan:
 
-- 6 scenarios x 4 metrics = 24 prompt cells per model
+- 6 scenarios x 4 metrics = 24 scenario-metric cells per model
 - 3-5 frontier models
 - 2 temperatures per model if cost allows
 - one blinded run with candidate names masked as Candidate A/B, then one unmasked run
+- randomized prompt order
+- independent scenario-level calls, ideally one call per margin that asks for all outcomes together
 
 Use the masked and unmasked split to estimate how much responses rely on ideology or name recognition rather than the stated platforms and baseline data.

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Aggregate model forecast JSONL files into RD-style summary tables."""
+"""Aggregate model forecast files into RD-style summary tables."""
 
 from __future__ import annotations
 
@@ -19,6 +19,7 @@ SOURCES = ROOT / "sources.json"
 PLOTS = OUTPUTS / "plots"
 
 QUANTILES = ["p05", "p25", "p50", "p75", "p95"]
+LOWER_IS_BETTER = {"traffic_fatalities"}
 REQUIRED_FIELDS = [
     "metric_id",
     "scenario_id",
@@ -31,6 +32,48 @@ REQUIRED_FIELDS = [
     "uncertainty_notes",
     "primary_sources_used",
 ]
+
+COMPACT_SOURCES = {
+    "mcduffie": ["https://kenyanmcduffie.com/platform"],
+    "george": [
+        "https://janeesefordc.com/platform/homes-for-all/",
+        "https://janeesefordc.com/platform/reliable-transportation-for-all/",
+    ],
+}
+
+COMPACT_MECHANISMS = {
+    "dc_real_gdp": [
+        "Candidate platforms may affect business confidence, investment, and labor access.",
+        "Federal-sector and regional macro conditions dominate the forecast range.",
+    ],
+    "bike_lane_miles": [
+        "The route-mile stock baseline anchors expected network growth.",
+        "Candidate transportation priorities affect DDOT emphasis and delivery pace.",
+    ],
+    "traffic_fatalities": [
+        "Recent crash-fatality history anchors the forecast.",
+        "Street design, enforcement, and travel behavior affect severe-crash risk.",
+    ],
+    "housing_permits": [
+        "The Census permit trend anchors the forecast.",
+        "Housing production goals, financing conditions, zoning, and agency capacity shape authorizations.",
+    ],
+}
+
+COMPACT_UNCERTAINTY = {
+    "dc_real_gdp": [
+        "Local mayoral effects are small relative to federal budget and macroeconomic shocks."
+    ],
+    "bike_lane_miles": [
+        "Project delivery, funding, and corridor-level politics can move route-mile stock."
+    ],
+    "traffic_fatalities": [
+        "Annual fatalities are low-count outcomes with substantial year-to-year noise."
+    ],
+    "housing_permits": [
+        "Annual permits are lumpy because a few multifamily projects can dominate the count."
+    ],
+}
 
 
 def read_jsonl(path: Path) -> list[dict[str, Any]]:
@@ -46,6 +89,49 @@ def read_jsonl(path: Path) -> list[dict[str, Any]]:
             validate_record(record, path, line_number)
             record["_source_file"] = path.name
             record["_line_number"] = line_number
+            record["_model"] = record.get("model") or path.stem
+            record["_prompt_variant"] = record.get("prompt_variant", "named")
+            records.append(record)
+    return records
+
+
+def read_compact_close_rd(path: Path) -> list[dict[str, Any]]:
+    compact = json.loads(path.read_text(encoding="utf-8"))
+    metrics = metric_lookup()
+    records = []
+    for row_number, row in enumerate(compact["records"], start=1):
+        metric = metrics[row["metric_id"]]
+        for key, margin, candidate_id, candidate in [
+            ("mcduffie_wins_by_1", -1, "mcduffie", "Kenyan McDuffie"),
+            ("george_wins_by_1", 1, "george", "Janeese Lewis George"),
+        ]:
+            values = row[key]
+            record = {
+                "metric_id": row["metric_id"],
+                "scenario_id": key,
+                "candidate": candidate,
+                "george_margin_points": margin,
+                "forecast_target": metric["forecast_target"],
+                "unit": metric["unit"],
+                **dict(zip(QUANTILES, values, strict=True)),
+                "main_mechanisms": COMPACT_MECHANISMS[row["metric_id"]],
+                "uncertainty_notes": COMPACT_UNCERTAINTY[row["metric_id"]],
+                "primary_sources_used": [
+                    metric["source_url"],
+                    *COMPACT_SOURCES[candidate_id],
+                ],
+                "near_cutoff_interpretation": (
+                    "This close-margin cell is part of the paired agent-implied "
+                    "RD contrast at the winner cutoff."
+                ),
+                "model": compact.get("model", "codex-subagent"),
+                "run_id": row["run_id"],
+                "prompt_variant": compact.get("prompt_variant", "named"),
+                "created_at": compact.get("created_at", "2026-06-16"),
+            }
+            validate_record(record, path, row_number)
+            record["_source_file"] = path.name
+            record["_line_number"] = row_number
             record["_model"] = record.get("model") or path.stem
             record["_prompt_variant"] = record.get("prompt_variant", "named")
             records.append(record)
@@ -79,7 +165,13 @@ def validate_record(record: dict[str, Any], path: Path, line_number: int) -> Non
 def response_paths(args: list[str]) -> list[Path]:
     if args:
         return [Path(arg) for arg in args]
-    return sorted(RESPONSES.glob("*.jsonl"))
+    return sorted([*RESPONSES.glob("*.jsonl"), *RESPONSES.glob("*.compact.json")])
+
+
+def read_response_path(path: Path) -> list[dict[str, Any]]:
+    if path.name.endswith(".compact.json"):
+        return read_compact_close_rd(path)
+    return read_jsonl(path)
 
 
 def metric_lookup() -> dict[str, dict[str, str]]:
@@ -100,6 +192,19 @@ def fmt_diff(value: float | None) -> str:
         return ""
     prefix = "+" if value > 0 else ""
     return prefix + fmt_value(value)
+
+
+def percentile(values: list[float], p: float) -> float | None:
+    if not values:
+        return None
+    ordered = sorted(values)
+    if len(ordered) == 1:
+        return ordered[0]
+    position = (len(ordered) - 1) * p
+    lower_index = int(position)
+    upper_index = min(lower_index + 1, len(ordered) - 1)
+    weight = position - lower_index
+    return ordered[lower_index] * (1 - weight) + ordered[upper_index] * weight
 
 
 def cell_medians(records: list[dict[str, Any]]) -> dict[tuple[str, str, str, int], float]:
@@ -215,7 +320,7 @@ def write_series(rows: list[dict[str, Any]]) -> None:
     with (OUTPUTS / "forecast-series.csv").open(
         "w", encoding="utf-8", newline=""
     ) as f:
-        writer = DictWriter(f, fieldnames=fields)
+        writer = DictWriter(f, fieldnames=fields, lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
 
@@ -250,6 +355,132 @@ def write_markdown(rows: list[dict[str, Any]]) -> None:
             + " |"
         )
     (OUTPUTS / "model-summary.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def paired_rd_rows(records: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    grouped = defaultdict(dict)
+    for record in records:
+        margin = int(record["george_margin_points"])
+        if margin not in {-1, 1}:
+            continue
+        run_id = record.get("run_id")
+        if not run_id:
+            continue
+        key = (
+            record["_model"],
+            record["_prompt_variant"],
+            run_id,
+            record["metric_id"],
+        )
+        grouped[key][margin] = float(record["p50"])
+
+    rows = []
+    for (model, prompt_variant, run_id, metric_id), margins in sorted(grouped.items()):
+        if -1 not in margins or 1 not in margins:
+            continue
+        rows.append(
+            {
+                "model": model,
+                "prompt_variant": prompt_variant,
+                "run_id": run_id,
+                "metric_id": metric_id,
+                "mcduffie_close_p50": margins[-1],
+                "george_close_p50": margins[1],
+                "paired_rd_p50": margins[1] - margins[-1],
+            }
+        )
+    return rows
+
+
+def write_agent_rd_summary(records: list[dict[str, Any]]) -> None:
+    metrics = metric_lookup()
+    pair_rows = paired_rd_rows(records)
+    by_metric = defaultdict(list)
+    for row in pair_rows:
+        by_metric[(row["model"], row["prompt_variant"], row["metric_id"])].append(
+            row
+        )
+
+    summary_rows = []
+    for (model, prompt_variant, metric_id), rows in sorted(by_metric.items()):
+        values = [row["paired_rd_p50"] for row in rows]
+        favors_george = [
+            value < 0 if metric_id in LOWER_IS_BETTER else value > 0
+            for value in values
+        ]
+        summary_rows.append(
+            {
+                "model": model,
+                "prompt_variant": prompt_variant,
+                "metric_id": metric_id,
+                "metric_label": metrics[metric_id]["label"],
+                "unit": metrics[metric_id]["unit"],
+                "n": len(values),
+                "paired_rd_p25": percentile(values, 0.25),
+                "paired_rd_p50": percentile(values, 0.5),
+                "paired_rd_p75": percentile(values, 0.75),
+                "paired_rd_min": min(values),
+                "paired_rd_max": max(values),
+                "runs_favoring_george": sum(favors_george),
+                "runs_favoring_mcduffie": len(favors_george) - sum(favors_george),
+                "lower_is_better": metric_id in LOWER_IS_BETTER,
+            }
+        )
+
+    (OUTPUTS / "agent-rd-pairs.json").write_text(
+        json.dumps(pair_rows, indent=2) + "\n", encoding="utf-8"
+    )
+    (OUTPUTS / "agent-rd-summary.json").write_text(
+        json.dumps(summary_rows, indent=2) + "\n", encoding="utf-8"
+    )
+
+    with (OUTPUTS / "agent-rd-pairs.csv").open(
+        "w", encoding="utf-8", newline=""
+    ) as f:
+        writer = DictWriter(
+            f,
+            fieldnames=[
+                "model",
+                "prompt_variant",
+                "run_id",
+                "metric_id",
+                "mcduffie_close_p50",
+                "george_close_p50",
+                "paired_rd_p50",
+            ],
+            lineterminator="\n",
+        )
+        writer.writeheader()
+        writer.writerows(pair_rows)
+
+    lines = [
+        "# Agent-implied close-election RD summary",
+        "",
+        "Rows summarize paired within-run differences: `George wins by 1` minus `McDuffie wins by 1`.",
+        "",
+        "| Metric | Model | Prompt variant | Paired runs | p25 | p50 | p75 | Runs favoring George |",
+        "|---|---|---|---:|---:|---:|---:|---:|",
+    ]
+    for row in summary_rows:
+        lines.append(
+            "| "
+            + " | ".join(
+                [
+                    row["metric_label"],
+                    row["model"],
+                    row["prompt_variant"],
+                    str(row["n"]),
+                    fmt_diff(row["paired_rd_p25"]),
+                    fmt_diff(row["paired_rd_p50"]),
+                    fmt_diff(row["paired_rd_p75"]),
+                    f"{row['runs_favoring_george']} of {row['n']}",
+                ]
+            )
+            + " |"
+        )
+    (OUTPUTS / "agent-rd-summary.md").write_text(
+        "\n".join(lines) + "\n", encoding="utf-8"
+    )
 
 
 def scale(value: float, old_min: float, old_max: float, new_min: float, new_max: float) -> float:
@@ -421,7 +652,7 @@ def main() -> None:
 
     records = []
     for path in paths:
-        records.extend(read_jsonl(path))
+        records.extend(read_response_path(path))
 
     rows = summarize(records)
     series_rows = build_series(records)
@@ -431,9 +662,11 @@ def main() -> None:
     )
     write_series(series_rows)
     write_markdown(rows)
+    write_agent_rd_summary(records)
     write_plots(series_rows)
     print(f"Wrote {len(rows)} summary rows to {OUTPUTS / 'model-summary.md'}")
     print(f"Wrote {len(series_rows)} plot-series rows to {OUTPUTS / 'forecast-series.csv'}")
+    print(f"Wrote paired RD summary to {OUTPUTS / 'agent-rd-summary.md'}")
     print(f"Wrote metric SVG plots to {PLOTS}")
 
 
