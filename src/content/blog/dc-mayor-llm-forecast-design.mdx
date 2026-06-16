@@ -13,7 +13,7 @@ For the 2026 D.C. mayoral race between Kenyan McDuffie and Janeese Lewis George,
 
 > If George wins by 1 point, what does the model expect for D.C. GDP, bike lanes, traffic fatalities, and housing permits by the end of the term? What if she wins by 20? What if McDuffie wins by 1 or 20?
 
-The code lives in `analysis/dc-mayor-2026/`. It has a primary-source manifest, a baseline fetcher, a prompt generator, and a JSON schema for model responses.
+The experiment code lives in [MaxGhenis/dc-mayor-llm-forecast](https://github.com/MaxGhenis/dc-mayor-llm-forecast). It has a primary-source manifest, a baseline fetcher, a prompt generator, and a JSON schema for model responses. This site stores only the exported chart data used by the interactive component.
 
 ## Outcome surfaces
 
@@ -188,25 +188,29 @@ The conclusion should avoid saying an AI model "proved" one candidate would prod
 ## How to run it
 
 ```bash
+git clone https://github.com/MaxGhenis/dc-mayor-llm-forecast.git
+cd dc-mayor-llm-forecast
 uv venv --python 3.13
-uv pip install -r analysis/dc-mayor-2026/requirements.txt
-.venv/bin/python analysis/dc-mayor-2026/scripts/fetch_baselines.py
-.venv/bin/python analysis/dc-mayor-2026/scripts/generate_prompts.py
-.venv/bin/python analysis/dc-mayor-2026/scripts/aggregate_responses.py
-.venv/bin/python analysis/dc-mayor-2026/scripts/export_site_data.py
+uv pip install -r requirements.txt
+.venv/bin/python scripts/fetch_baselines.py
+.venv/bin/python scripts/generate_prompts.py
+.venv/bin/python scripts/aggregate_responses.py
+.venv/bin/python scripts/export_site_data.py
 ```
 
 That produces:
 
-- `analysis/dc-mayor-2026/outputs/baselines.json`
-- `analysis/dc-mayor-2026/outputs/baselines.md`
-- `analysis/dc-mayor-2026/prompts/base-context.md`
-- `analysis/dc-mayor-2026/prompts/forecast-cells.jsonl`
-- `analysis/dc-mayor-2026/responses/codex-subagents-2026-06-16.jsonl`
-- `analysis/dc-mayor-2026/responses/codex-agent-rd-close-2026-06-16.compact.json`
-- `analysis/dc-mayor-2026/outputs/model-summary.md` after model responses are saved
-- `analysis/dc-mayor-2026/outputs/agent-rd-summary.md` after close-margin responses are saved
-- `analysis/dc-mayor-2026/outputs/plots/*-mcduffie-margin.svg` after model responses are saved
-- `src/data/dc-mayor-forecast-series.json` for the interactive chart
+- `outputs/baselines.json`
+- `outputs/baselines.md`
+- `prompts/base-context.md`
+- `prompts/forecast-cells.jsonl`
+- `responses/codex-subagents-2026-06-16.jsonl`
+- `responses/codex-agent-rd-close-2026-06-16.compact.json`
+- `outputs/model-summary.md` after model responses are saved
+- `outputs/agent-rd-summary.md` after close-margin responses are saved
+- `outputs/plots/*-mcduffie-margin.svg` after model responses are saved
+- `outputs/dc-mayor-forecast-series.site.json` for the interactive chart
+
+In this blog repo, that exported chart data is checked in at `src/data/dc-mayor-forecast-series.json`.
 
 The remaining step is to replace this Codex-only workshop pass with repeated runs across frontier models, independent scenario-level calls, and masked and unmasked candidate labels.
