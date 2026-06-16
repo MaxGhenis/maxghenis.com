@@ -1,7 +1,7 @@
 # Max Ghenis - Full Content
 
 > This file contains the full text of all blog posts from maxghenis.com, formatted for LLM consumption.
-> Generated: 2026-06-16T16:45:25.643Z
+> Generated: 2026-06-16T16:49:09.204Z
 > See also: /llms.txt for a curated overview
 
 ---
