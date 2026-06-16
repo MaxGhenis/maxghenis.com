@@ -421,10 +421,10 @@ export default function DCMayorForecastExplorer() {
 
         <div className="dc-forecast__summary">
           <div>
-            <span>Close-election RD</span>
+            <span>Forecast discontinuity</span>
             <strong>{formatDiff(metric, rd)}</strong>
             <small>
-              George close win minus McDuffie close win. Lower is better only
+              George by 1 forecast minus McDuffie by 1 forecast. Lower is better only
               for fatalities. Favors {favors} in this run.
             </small>
           </div>

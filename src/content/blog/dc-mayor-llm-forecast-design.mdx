@@ -7,7 +7,7 @@ heroImage: './dc-mayor-llm-forecast-design.png'
 
 import DCMayorForecastExplorer from '../../components/DCMayorForecastExplorer.tsx';
 
-In June 2025, I asked frontier AI models to forecast New York City housing production under Andrew Cuomo and Zohran Mamdani. That exercise produced a number, but it had two limits: it covered one outcome and relied on a manually assembled prompt.
+In June 2025, I [asked frontier AI models to forecast New York City housing production under Andrew Cuomo and Zohran Mamdani](/blog/ai-models-nyc-housing/). That exercise produced a number, but it had two limits: it covered one outcome and relied on a manually assembled prompt.
 
 For the 2026 D.C. mayoral race between Kenyan McDuffie and Janeese Lewis George, I want the next version to look more like an election study. The unit is not "which candidate sounds better?" It is a grid of conditional forecasts:
 
@@ -26,7 +26,7 @@ I am restricting outcome metrics to primary government sources:
 | Traffic fatalities | [DC Open Data / DDOT Crashes in DC](https://opendata.dc.gov/datasets/DCGIS::crashes-in-dc/about) | Fatal persons per calendar year | Calendar year 2030 |
 | Housing permits | [Census Building Permits Survey](https://www.census.gov/construction/bps/statemonthly.html) | New privately owned units authorized | Calendar year 2030 |
 
-I am calling the fourth one housing permits rather than housing starts. Census publishes local building permit data for D.C., but the national housing starts release does not provide true D.C.-level starts. Permits are the closest primary-source city-level construction series.
+I am calling the fourth one housing permits rather than housing starts. The [Census Building Permits Survey](https://www.census.gov/construction/bps/statemonthly.html) publishes local permit data for D.C., but the [Census New Residential Construction release](https://www.census.gov/construction/nrc/) reports starts at the national and regional level rather than as a true D.C.-level starts series. Permits are the closest primary-source city-level construction series.
 
 The mayoral term matters for the horizon: under [D.C. Code § 1-204.21](https://code.dccouncil.gov/us/dc/council/code/sections/1-204.21), the mayor's four-year term begins at noon on January 2 of the year after election. For this race, that means January 2, 2027 through January 2, 2031.
 
@@ -51,7 +51,7 @@ For visualization I flip the axis to McDuffie's margin over George, running from
 
 This first interactive chart uses real Codex subagent JSON responses, not hand-entered placeholder forecasts. It is still a workshop pass: one Codex subagent generated each metric's six cells, so `n=1` per point and there is no cross-model ensemble yet.
 
-The close-election RD surface from this first run is:
+The close-election forecast discontinuity from this first run is:
 
 | Outcome | George close win minus McDuffie close win | Interpretation |
 |---|---:|---|
@@ -66,7 +66,7 @@ The close-election comparison is:
 
 `E[Y | George wins by 1] - E[Y | McDuffie wins by 1]`
 
-That is the AI-forecast analog of a regression-discontinuity estimand. It asks what changes when the winner flips while the electorate is nearly tied.
+That is the AI-forecast analog of a regression-discontinuity estimand. It asks what the model expects to change when the winner flips while the electorate is nearly tied. It is not a realized causal estimate.
 
 The 20-point comparison is different:
 
@@ -75,6 +75,31 @@ The 20-point comparison is different:
 That contrast includes the candidate difference, but also the mandate, coalition strength, turnout, outside federal response, council alignment, and whatever city mood produced a landslide. It should not be described as a clean causal effect of the winner.
 
 The slope within each winner also matters. If models expect George by 20 to produce more bike lanes than George by 1, that is not a George-versus-McDuffie estimate. It is a mandate estimate.
+
+## What would make it a real RD
+
+A [real election RD](https://github.com/rdpackages/rdrobust) needs observed elections and observed post-election outcomes. For the 2026 D.C. mayoral race, I cannot identify a real RD effect today because there is only one election and no 2030 outcomes yet. Even after the term, one race would be a case study, not an RD.
+
+The real RD version would be a historical panel:
+
+| Element | Real-RD version |
+|---|---|
+| Unit | City-election-year |
+| Running variable | Winner's two-candidate vote margin |
+| Cutoff | Zero margin |
+| Treatment | The candidate type that barely wins rather than barely loses |
+| Outcomes | Post-term GDP, bike-lane stock, traffic fatalities, and housing permits from government sources |
+| Estimator | [Local-polynomial RD](https://github.com/rdpackages/rdrobust) on each side of zero, with [bandwidth sensitivity](https://search.r-project.org/CRAN/refmans/rdrobust/html/rdbwselect.html) |
+
+The hard part is treatment definition. "George versus McDuffie" is not repeated across cities, so a real RD cannot estimate those two people directly. It could estimate something like progressive/urbanist candidate versus moderate/business candidate, but that requires a transparent candidate-classification rule. Without that classification, the honest realized design is narrower: estimate the effect of barely electing candidate class A over candidate class B in historical mayoral races, then compare the model-forecast discontinuity for McDuffie/George to that historical pattern.
+
+The basic specification would be:
+
+```text
+Y_{city, term_end} = alpha + tau * winner_type + f(margin) + epsilon
+```
+
+estimated only among close races, with separate slopes on each side of zero. I would report [bandwidth sensitivity](https://search.r-project.org/CRAN/refmans/rdrobust/html/rdbwselect.html), pre-election covariate balance, and a [density check around the cutoff](https://github.com/rdpackages/rddensity) before treating `tau` as causal.
 
 ## Candidate information
 
