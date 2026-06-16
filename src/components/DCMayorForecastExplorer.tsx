@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import forecastData from "../data/dc-mayor-forecast-series.json";
 
 type MetricId =
   | "dc_real_gdp"
@@ -17,7 +18,12 @@ type Metric = {
 
 type ForecastPoint = {
   metricId: MetricId;
+  model: string;
+  promptVariant: string;
   mcduffieMargin: number;
+  georgeMargin: number;
+  candidate: string;
+  n: number;
   p05: number;
   p25: number;
   p50: number;
@@ -57,35 +63,7 @@ const METRICS: Metric[] = [
   },
 ];
 
-const FORECASTS: ForecastPoint[] = [
-  { metricId: "dc_real_gdp", mcduffieMargin: -20, p05: 134500, p25: 143500, p50: 149000, p75: 154500, p95: 164000 },
-  { metricId: "dc_real_gdp", mcduffieMargin: -10, p05: 134000, p25: 142700, p50: 148200, p75: 153600, p95: 163000 },
-  { metricId: "dc_real_gdp", mcduffieMargin: -1, p05: 133500, p25: 142100, p50: 147300, p75: 152700, p95: 162000 },
-  { metricId: "dc_real_gdp", mcduffieMargin: 1, p05: 133800, p25: 142600, p50: 147700, p75: 153200, p95: 162700 },
-  { metricId: "dc_real_gdp", mcduffieMargin: 10, p05: 134600, p25: 143500, p50: 148800, p75: 154500, p95: 164000 },
-  { metricId: "dc_real_gdp", mcduffieMargin: 20, p05: 135200, p25: 144500, p50: 149700, p75: 155600, p95: 165500 },
-
-  { metricId: "bike_lane_miles", mcduffieMargin: -20, p05: 132, p25: 151, p50: 165, p75: 184, p95: 215 },
-  { metricId: "bike_lane_miles", mcduffieMargin: -10, p05: 126, p25: 143, p50: 155, p75: 171, p95: 200 },
-  { metricId: "bike_lane_miles", mcduffieMargin: -1, p05: 118, p25: 134, p50: 145, p75: 160, p95: 187 },
-  { metricId: "bike_lane_miles", mcduffieMargin: 1, p05: 112, p25: 121, p50: 128, p75: 141, p95: 166 },
-  { metricId: "bike_lane_miles", mcduffieMargin: 10, p05: 110, p25: 118, p50: 124, p75: 136, p95: 160 },
-  { metricId: "bike_lane_miles", mcduffieMargin: 20, p05: 108, p25: 115, p50: 120, p75: 132, p95: 154 },
-
-  { metricId: "traffic_fatalities", mcduffieMargin: -20, p05: 15, p25: 22, p50: 28, p75: 36, p95: 52 },
-  { metricId: "traffic_fatalities", mcduffieMargin: -10, p05: 16, p25: 23, p50: 29, p75: 38, p95: 54 },
-  { metricId: "traffic_fatalities", mcduffieMargin: -1, p05: 17, p25: 24, p50: 31, p75: 40, p95: 57 },
-  { metricId: "traffic_fatalities", mcduffieMargin: 1, p05: 18, p25: 26, p50: 33, p75: 42, p95: 60 },
-  { metricId: "traffic_fatalities", mcduffieMargin: 10, p05: 18, p25: 26, p50: 34, p75: 44, p95: 62 },
-  { metricId: "traffic_fatalities", mcduffieMargin: 20, p05: 19, p25: 27, p50: 34, p75: 45, p95: 63 },
-
-  { metricId: "housing_permits", mcduffieMargin: -20, p05: 1800, p25: 3600, p50: 5200, p75: 6900, p95: 9500 },
-  { metricId: "housing_permits", mcduffieMargin: -10, p05: 1700, p25: 3300, p50: 4800, p75: 6400, p95: 8800 },
-  { metricId: "housing_permits", mcduffieMargin: -1, p05: 1500, p25: 2900, p50: 4200, p75: 5700, p95: 8000 },
-  { metricId: "housing_permits", mcduffieMargin: 1, p05: 1300, p25: 2400, p50: 3400, p75: 4800, p95: 7000 },
-  { metricId: "housing_permits", mcduffieMargin: 10, p05: 1400, p25: 2500, p50: 3600, p75: 5100, p95: 7400 },
-  { metricId: "housing_permits", mcduffieMargin: 20, p05: 1500, p25: 2700, p50: 3900, p75: 5500, p95: 7900 },
-];
+const FORECASTS = forecastData as ForecastPoint[];
 
 const GEORGE = "#0f766e";
 const MCDUFFIE = "#b45309";
@@ -206,6 +184,14 @@ export default function DCMayorForecastExplorer() {
     scale(value, yMin, yMax, chart.top + plotHeight, chart.top);
 
   const hover = activePoint ?? georgeClose ?? rows[0];
+  const modelSet = Array.from(
+    new Set(
+      FORECASTS.map(
+        (row) => `${row.model.replace("-", " ")} (${row.promptVariant})`,
+      ),
+    ),
+  ).join(", ");
+  const minCellN = Math.min(...FORECASTS.map((row) => row.n));
   const favors =
     metric.lowerIsBetter
       ? rd < 0
@@ -220,10 +206,10 @@ export default function DCMayorForecastExplorer() {
       <section className="dc-forecast" aria-label="Interactive D.C. mayor forecast plot">
         <div className="dc-forecast__header">
           <div>
-            <p className="dc-forecast__eyebrow">Codex draft forecast surface</p>
+            <p className="dc-forecast__eyebrow">Codex subagent forecast surface</p>
             <h2>McD -20 to McD +20</h2>
             <p>
-              One prototype response set, plotted as McDuffie's margin over George.
+              Validated JSON responses, plotted as McDuffie's margin over George.
               Negative margins are George wins; positive margins are McDuffie wins.
             </p>
           </div>
@@ -439,7 +425,7 @@ export default function DCMayorForecastExplorer() {
             <strong>{formatDiff(metric, rd)}</strong>
             <small>
               George close win minus McDuffie close win. Lower is better only
-              for fatalities. Favors {favors} in this draft.
+              for fatalities. Favors {favors} in this run.
             </small>
           </div>
           <div>
@@ -457,7 +443,9 @@ export default function DCMayorForecastExplorer() {
         <div className="dc-forecast__meta">
           <span>Baseline: {metric.baseline}</span>
           <span>Target: {metric.target}</span>
-          <span>Model set: Codex draft, named candidates</span>
+          <span>
+            Model set: {modelSet}; n={minCellN} per point
+          </span>
         </div>
       </section>
       <style>{`
@@ -660,4 +648,3 @@ export default function DCMayorForecastExplorer() {
     </>
   );
 }
-

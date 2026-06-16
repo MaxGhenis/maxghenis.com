@@ -12,7 +12,7 @@ Candidates:
 Primary-source outcome metrics:
 
 - dc_real_gdp: D.C. real GDP (millions of chained 2017 dollars); source: https://www.bea.gov/data/gdp/gdp-state
-- bike_lane_miles: Bike lane miles (miles); source: https://opendata.dc.gov/datasets/DCGIS::bicycle-lanes/explore
+- bike_lane_miles: Bike lane route miles (route miles); source: https://opendata.dc.gov/datasets/DCGIS::bicycle-lanes/explore
 - traffic_fatalities: Traffic fatalities (fatal persons per calendar year); source: https://opendata.dc.gov/datasets/DCGIS::crashes-in-dc/about
 - housing_permits: Housing permits (new privately owned housing units authorized by building permits); source: https://www.census.gov/construction/bps/statemonthly.html
 

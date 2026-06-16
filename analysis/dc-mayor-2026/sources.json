@@ -45,12 +45,12 @@
     },
     {
       "id": "bike_lane_miles",
-      "label": "Bike lane miles",
+      "label": "Bike lane route miles",
       "primary_source": "DC Open Data / District Department of Transportation Bicycle Lanes",
       "source_url": "https://opendata.dc.gov/datasets/DCGIS::bicycle-lanes/explore",
       "endpoint_url": "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Transportation_Bikes_Trails_WebMercator/MapServer/2",
-      "unit": "miles",
-      "series_definition": "Route miles are sum(LENGTH) / 1609.344. Lane-miles multiply segment length by TOTALBIKELANES.",
+      "unit": "route miles",
+      "series_definition": "Route miles are sum(LENGTH) / 1609.344. Lane-miles are also available by multiplying segment length by TOTALBIKELANES, but this forecast target uses route miles.",
       "forecast_target": "stock at end of 2030"
     },
     {

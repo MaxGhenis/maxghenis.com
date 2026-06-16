@@ -1,0 +1,25 @@
+metric_id,model,prompt_variant,mcduffie_margin_points,george_margin_points,candidate,n,p05,p25,p50,p75,p95
+bike_lane_miles,codex-subagent,named,-20,20,Janeese Lewis George,1,121.0,139.0,158.0,178.0,204.0
+bike_lane_miles,codex-subagent,named,-10,10,Janeese Lewis George,1,119.0,134.0,150.0,168.0,190.0
+bike_lane_miles,codex-subagent,named,-1,1,Janeese Lewis George,1,116.0,128.0,141.0,156.0,176.0
+bike_lane_miles,codex-subagent,named,1,-1,Kenyan McDuffie,1,112.0,121.0,130.0,142.0,161.0
+bike_lane_miles,codex-subagent,named,10,-10,Kenyan McDuffie,1,111.0,118.0,126.0,136.0,155.0
+bike_lane_miles,codex-subagent,named,20,-20,Kenyan McDuffie,1,110.0,116.0,123.0,132.0,150.0
+dc_real_gdp,codex-subagent,named,-20,20,Janeese Lewis George,1,134000.0,147700.0,158000.0,169700.0,185500.0
+dc_real_gdp,codex-subagent,named,-10,10,Janeese Lewis George,1,133800.0,147300.0,157600.0,169200.0,184800.0
+dc_real_gdp,codex-subagent,named,-1,1,Janeese Lewis George,1,133500.0,147000.0,157200.0,168700.0,184200.0
+dc_real_gdp,codex-subagent,named,1,-1,Kenyan McDuffie,1,134000.0,147500.0,157800.0,169000.0,184500.0
+dc_real_gdp,codex-subagent,named,10,-10,Kenyan McDuffie,1,134500.0,148000.0,158400.0,169800.0,185200.0
+dc_real_gdp,codex-subagent,named,20,-20,Kenyan McDuffie,1,135000.0,148500.0,159000.0,170500.0,186000.0
+housing_permits,codex-subagent,named,-20,20,Janeese Lewis George,1,1050.0,2350.0,4100.0,6300.0,9400.0
+housing_permits,codex-subagent,named,-10,10,Janeese Lewis George,1,950.0,2100.0,3700.0,5700.0,8700.0
+housing_permits,codex-subagent,named,-1,1,Janeese Lewis George,1,850.0,1850.0,3350.0,5200.0,8100.0
+housing_permits,codex-subagent,named,1,-1,Kenyan McDuffie,1,800.0,1700.0,3000.0,4700.0,7200.0
+housing_permits,codex-subagent,named,10,-10,Kenyan McDuffie,1,850.0,1800.0,3150.0,4900.0,7500.0
+housing_permits,codex-subagent,named,20,-20,Kenyan McDuffie,1,900.0,1900.0,3300.0,5100.0,7800.0
+traffic_fatalities,codex-subagent,named,-20,20,Janeese Lewis George,1,13.0,19.0,27.0,36.0,50.0
+traffic_fatalities,codex-subagent,named,-10,10,Janeese Lewis George,1,14.0,21.0,29.0,38.0,52.0
+traffic_fatalities,codex-subagent,named,-1,1,Janeese Lewis George,1,15.0,23.0,31.0,41.0,55.0
+traffic_fatalities,codex-subagent,named,1,-1,Kenyan McDuffie,1,16.0,25.0,34.0,44.0,59.0
+traffic_fatalities,codex-subagent,named,10,-10,Kenyan McDuffie,1,17.0,26.0,35.0,45.0,60.0
+traffic_fatalities,codex-subagent,named,20,-20,Kenyan McDuffie,1,18.0,27.0,36.0,46.0,61.0

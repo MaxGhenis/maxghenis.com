@@ -1,0 +1,46 @@
+[
+  {
+    "model": "codex-subagent",
+    "prompt_variant": "named",
+    "metric_id": "bike_lane_miles",
+    "mcduffie_close_p50": 130.0,
+    "george_close_p50": 141.0,
+    "close_election_rd_p50": 11.0,
+    "george_mandate_gradient_p50": 17.0,
+    "mcduffie_mandate_gradient_p50": -7.0,
+    "wide_margin_contrast_p50": 35.0
+  },
+  {
+    "model": "codex-subagent",
+    "prompt_variant": "named",
+    "metric_id": "dc_real_gdp",
+    "mcduffie_close_p50": 157800.0,
+    "george_close_p50": 157200.0,
+    "close_election_rd_p50": -600.0,
+    "george_mandate_gradient_p50": 800.0,
+    "mcduffie_mandate_gradient_p50": 1200.0,
+    "wide_margin_contrast_p50": -1000.0
+  },
+  {
+    "model": "codex-subagent",
+    "prompt_variant": "named",
+    "metric_id": "housing_permits",
+    "mcduffie_close_p50": 3000.0,
+    "george_close_p50": 3350.0,
+    "close_election_rd_p50": 350.0,
+    "george_mandate_gradient_p50": 750.0,
+    "mcduffie_mandate_gradient_p50": 300.0,
+    "wide_margin_contrast_p50": 800.0
+  },
+  {
+    "model": "codex-subagent",
+    "prompt_variant": "named",
+    "metric_id": "traffic_fatalities",
+    "mcduffie_close_p50": 34.0,
+    "george_close_p50": 31.0,
+    "close_election_rd_p50": -3.0,
+    "george_mandate_gradient_p50": -4.0,
+    "mcduffie_mandate_gradient_p50": 2.0,
+    "wide_margin_contrast_p50": -9.0
+  }
+]

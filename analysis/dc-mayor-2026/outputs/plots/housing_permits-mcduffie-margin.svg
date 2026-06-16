@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 560" role="img" aria-labelledby="title desc">
+<title>Housing permits by McDuffie margin</title>
+<desc>Forecast p50 values plotted from McDuffie margin -20 to +20, split at the zero-margin cutoff.</desc>
+<rect width="100%" height="100%" fill="#ffffff" />
+<rect x="82" y="58" width="432.0" height="416" fill="#f8fafc" />
+<rect x="514.0" y="58" width="432.0" height="416" fill="#ffffff" />
+<text x="82" y="28" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#111827">Housing permits</text>
+<text x="82" y="47" font-family="Arial, sans-serif" font-size="12" fill="#4b5563">p50 forecast by model; vertical whiskers show p25-p75. Axis is McDuffie margin over George.</text>
+<text x="92" y="78" font-family="Arial, sans-serif" font-size="12" fill="#64748b">George wins</text>
+<text x="850" y="78" font-family="Arial, sans-serif" font-size="12" fill="#64748b">McDuffie wins</text>
+<line x1="82.0" y1="58" x2="82.0" y2="474" stroke="#e5e7eb" />
+<text x="82.0" y="498" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#374151">-20</text>
+<line x1="298.0" y1="58" x2="298.0" y2="474" stroke="#e5e7eb" />
+<text x="298.0" y="498" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#374151">-10</text>
+<line x1="514.0" y1="58" x2="514.0" y2="474" stroke="#cbd5e1" stroke-dasharray="5 5" />
+<text x="514.0" y="498" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#374151">+0</text>
+<line x1="730.0" y1="58" x2="730.0" y2="474" stroke="#e5e7eb" />
+<text x="730.0" y="498" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#374151">+10</text>
+<line x1="946.0" y1="58" x2="946.0" y2="474" stroke="#e5e7eb" />
+<text x="946.0" y="498" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#374151">+20</text>
+<line x1="82" y1="474.0" x2="946" y2="474.0" stroke="#e5e7eb" />
+<text x="72" y="478.0" text-anchor="end" font-family="Arial, sans-serif" font-size="11" fill="#374151">112</text>
+<line x1="82" y1="370.0" x2="946" y2="370.0" stroke="#e5e7eb" />
+<text x="72" y="374.0" text-anchor="end" font-family="Arial, sans-serif" font-size="11" fill="#374151">2,606</text>
+<line x1="82" y1="266.0" x2="946" y2="266.0" stroke="#e5e7eb" />
+<text x="72" y="270.0" text-anchor="end" font-family="Arial, sans-serif" font-size="11" fill="#374151">5,100</text>
+<line x1="82" y1="162.0" x2="946" y2="162.0" stroke="#e5e7eb" />
+<text x="72" y="166.0" text-anchor="end" font-family="Arial, sans-serif" font-size="11" fill="#374151">7,594</text>
+<line x1="82" y1="58.0" x2="946" y2="58.0" stroke="#e5e7eb" />
+<text x="72" y="62.0" text-anchor="end" font-family="Arial, sans-serif" font-size="11" fill="#374151">10,088</text>
+<line x1="82" y1="474" x2="946" y2="474" stroke="#111827" />
+<line x1="82" y1="58" x2="82" y2="474" stroke="#111827" />
+<text x="514.0" y="532" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#111827">McDuffie margin over George, percentage points</text>
+<text x="22" y="266.0" transform="rotate(-90 22 266.0)" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#111827">new privately owned housing units authorized by building permits</text>
+<text x="521.0" y="466" font-family="Arial, sans-serif" font-size="11" fill="#64748b">cutoff</text>
+<line x1="90" y1="522" x2="114" y2="522" stroke="#2563eb" stroke-width="2.5" />
+<text x="120" y="526" font-family="Arial, sans-serif" font-size="11" fill="#374151">codex-subagent (named)</text>
+<polyline points="82.0,307.7 298.0,324.4 492.4,339.0" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" />
+<polyline points="535.6,353.6 730.0,347.3 946.0,341.1" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" />
+<line x1="82.0" y1="380.7" x2="82.0" y2="216.0" stroke="#2563eb" stroke-width="1.6" opacity="0.45" />
+<circle cx="82.0" cy="307.7" r="4.2" fill="#ffffff" stroke="#2563eb" stroke-width="2" />
+<line x1="298.0" y1="391.1" x2="298.0" y2="241.0" stroke="#2563eb" stroke-width="1.6" opacity="0.45" />
+<circle cx="298.0" cy="324.4" r="4.2" fill="#ffffff" stroke="#2563eb" stroke-width="2" />
+<line x1="492.4" y1="401.5" x2="492.4" y2="261.8" stroke="#2563eb" stroke-width="1.6" opacity="0.45" />
+<circle cx="492.4" cy="339.0" r="4.2" fill="#ffffff" stroke="#2563eb" stroke-width="2" />
+<line x1="535.6" y1="407.8" x2="535.6" y2="282.7" stroke="#2563eb" stroke-width="1.6" opacity="0.45" />
+<circle cx="535.6" cy="353.6" r="4.2" fill="#ffffff" stroke="#2563eb" stroke-width="2" />
+<line x1="730.0" y1="403.6" x2="730.0" y2="274.3" stroke="#2563eb" stroke-width="1.6" opacity="0.45" />
+<circle cx="730.0" cy="347.3" r="4.2" fill="#ffffff" stroke="#2563eb" stroke-width="2" />
+<line x1="946.0" y1="399.4" x2="946.0" y2="266.0" stroke="#2563eb" stroke-width="1.6" opacity="0.45" />
+<circle cx="946.0" cy="341.1" r="4.2" fill="#ffffff" stroke="#2563eb" stroke-width="2" />
+</svg>

@@ -15,7 +15,7 @@ The metric rule is: outcome series must come from a primary government source.
 | Metric | Primary source | Forecast unit | Note |
 |---|---|---:|---|
 | D.C. real GDP | Bureau of Economic Analysis GDP by state | Millions of chained 2017 dollars | Quarterly state GDP, D.C. row |
-| Bike lanes | DC Open Data / DDOT Bicycle Lanes ArcGIS layer | Route miles and lane-miles | Current stock layer; not a historical buildout series |
+| Bike lanes | DC Open Data / DDOT Bicycle Lanes ArcGIS layer | Route miles | Current stock layer; lane-miles are also fetched as context |
 | Traffic fatalities | DC Open Data / DDOT Crashes in DC ArcGIS layer | Fatal persons per calendar year | Sums all fatality fields in crash records |
 | Housing starts proxy | Census Building Permits Survey | New privately owned units authorized by permit | Census does not publish true D.C.-level starts; permits are the primary-source city-level proxy |
 
@@ -59,6 +59,7 @@ After collecting one or more response files, aggregate them:
 
 ```bash
 .venv/bin/python analysis/dc-mayor-2026/scripts/aggregate_responses.py
+.venv/bin/python analysis/dc-mayor-2026/scripts/export_site_data.py
 ```
 
 By default, the aggregator reads `analysis/dc-mayor-2026/responses/*.jsonl` and writes:
@@ -68,6 +69,7 @@ By default, the aggregator reads `analysis/dc-mayor-2026/responses/*.jsonl` and 
 - `outputs/forecast-series.json`
 - `outputs/forecast-series.csv`
 - `outputs/plots/*-mcduffie-margin.svg`
+- `../../src/data/dc-mayor-forecast-series.json`
 
 The summary reports the close-election RD contrast as `George close win` minus `McDuffie close win`. The plot-ready series flips the prompt margin into McDuffie's margin over George, so the chart runs from `McD -20` to `McD +20`; negative values are George wins and positive values are McDuffie wins. The SVG plots split the line at zero rather than connecting across the discontinuity.
 
