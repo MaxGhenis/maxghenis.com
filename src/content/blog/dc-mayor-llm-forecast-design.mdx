@@ -49,9 +49,9 @@ For visualization I flip the axis to McDuffie's margin over George, running from
 
 <DCMayorForecastExplorer client:load />
 
-This interactive chart uses real Codex subagent responses, not hand-entered placeholder forecasts. There are 12 Codex subagents in the current pass: four original full-surface agents, one per metric, and eight additional close-cutoff agents. The close cells now have `n=9` paired responses per metric: the eight close-cutoff agents plus the original full-surface response for that metric. The outer `±10` and `±20` cells still have `n=1`, so those lines remain a workshop surface rather than an ensemble.
+The chart plots real Codex subagent responses, each validated against the JSON schema. The current pass uses 12 agents: four full-surface agents, one per metric, and eight close-cutoff agents. Each `±1` cell pools `n=9` responses — the eight close-cutoff agents plus that metric's full-surface agent. The `±10` and `±20` cells are single runs, so those outer lines are a workshop sketch rather than an ensemble.
 
-The chart reports cell medians. The cell-median close-election discontinuity is:
+Hover any point for its median, p25-p75, and p05-p95. The chart reports cell medians, and the cell-median close-election discontinuity is:
 
 | Outcome | George close win minus McDuffie close win | Interpretation |
 |---|---:|---|

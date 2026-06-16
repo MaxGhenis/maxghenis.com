@@ -171,7 +171,9 @@ export default function DCMayorForecastExplorer() {
   const rawMin = Math.min(...values);
   const rawMax = Math.max(...values);
   const step = nearestNiceStep((rawMax - rawMin || rawMax || 1) / 4);
-  const yMin = Math.floor((rawMin - step * 0.25) / step) * step;
+  const computedMin = Math.floor((rawMin - step * 0.25) / step) * step;
+  // None of these metrics can be negative, so never let the axis dip below zero.
+  const yMin = rawMin >= 0 ? Math.max(0, computedMin) : computedMin;
   const yMax = Math.ceil((rawMax + step * 0.25) / step) * step;
   const ticks = [];
   for (let value = yMin; value <= yMax + step / 10; value += step) {
@@ -211,12 +213,13 @@ export default function DCMayorForecastExplorer() {
       <section className="dc-forecast" aria-label="Interactive D.C. mayor forecast plot">
         <div className="dc-forecast__header">
           <div>
-            <p className="dc-forecast__eyebrow">Codex subagent forecast surface</p>
-            <h2>McD -20 to McD +20</h2>
+            <p className="dc-forecast__eyebrow">Codex subagent pass</p>
+            <h2>Conditional forecasts across the winner cutoff</h2>
             <p>
-              Validated JSON responses, plotted as McDuffie's margin over George.
-              Negative margins are George wins; positive margins are McDuffie wins.
-              Close cells have a denser agent sample than the outer margins.
+              Each point is a model's median forecast for one election margin,
+              plotted as McDuffie's margin over George. Left of zero George wins;
+              right of zero McDuffie wins. The ±1 cells pool 9 agents; the ±10 and
+              ±20 cells are single runs.
             </p>
           </div>
           <label className="dc-forecast__toggle">
@@ -313,13 +316,21 @@ export default function DCMayorForecastExplorer() {
               </g>
             ))}
 
-            <text x={chart.left + 12} y={chart.top + 18} fontSize="12" fill={GEORGE}>
+            <text
+              x={x(0) - 10}
+              y={chart.top + 18}
+              textAnchor="end"
+              fontSize="12"
+              fontWeight={600}
+              fill={GEORGE}
+            >
               George wins
             </text>
             <text
-              x={chart.left + plotWidth - 94}
+              x={x(0) + 10}
               y={chart.top + 18}
               fontSize="12"
+              fontWeight={600}
               fill={MCDUFFIE}
             >
               McDuffie wins
@@ -387,19 +398,38 @@ export default function DCMayorForecastExplorer() {
             {rows.map((row) => {
               const color = row.mcduffieMargin < 0 ? GEORGE : MCDUFFIE;
               const isActive = hover === row;
+              const cx = x(row.mcduffieMargin);
               return (
                 <g key={`${row.metricId}-${row.mcduffieMargin}`}>
                   <line
-                    x1={x(row.mcduffieMargin)}
-                    x2={x(row.mcduffieMargin)}
-                    y1={y(row.p25)}
-                    y2={y(row.p75)}
+                    x1={cx}
+                    x2={cx}
+                    y1={y(row.p05)}
+                    y2={y(row.p95)}
                     stroke={color}
-                    strokeWidth="1.8"
-                    opacity="0.55"
+                    strokeWidth="1.6"
+                    opacity="0.4"
+                  />
+                  <line
+                    x1={cx - 4}
+                    x2={cx + 4}
+                    y1={y(row.p05)}
+                    y2={y(row.p05)}
+                    stroke={color}
+                    strokeWidth="1.6"
+                    opacity="0.4"
+                  />
+                  <line
+                    x1={cx - 4}
+                    x2={cx + 4}
+                    y1={y(row.p95)}
+                    y2={y(row.p95)}
+                    stroke={color}
+                    strokeWidth="1.6"
+                    opacity="0.4"
                   />
                   <circle
-                    cx={x(row.mcduffieMargin)}
+                    cx={cx}
                     cy={y(row.p50)}
                     r={isActive ? 6 : 4.4}
                     fill="#ffffff"
@@ -419,10 +449,14 @@ export default function DCMayorForecastExplorer() {
           <aside className="dc-forecast__tooltip" aria-live="polite">
             <span>{scenarioLabel(hover.mcduffieMargin)}</span>
             <strong>{formatValue(metric, hover.p50)}</strong>
+            <small>median forecast, {metric.unit}</small>
             <small>
               p25-p75: {formatValue(metric, hover.p25)} to {formatValue(metric, hover.p75)}
             </small>
-            <small>Cell n: {hover.n}</small>
+            <small>
+              p05-p95: {formatValue(metric, hover.p05)} to {formatValue(metric, hover.p95)}
+            </small>
+            <small>{hover.n === 1 ? "1 agent" : `${hover.n} agents`}</small>
           </aside>
         </div>
 
