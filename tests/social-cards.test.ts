@@ -27,7 +27,7 @@ describe('Social cards', () => {
 			// Blog posts known to not have custom OG images yet
 			const blogExclusions = [
 				'snap-recertification-claude-code', 'scrollywood', 'mystquarto',
-				'amodei-adolescence-policyengine', 'three-days-with-fable',
+				'amodei-adolescence-policyengine',
 			];
 
 			const isBlogPost = file.startsWith('blog/') &&

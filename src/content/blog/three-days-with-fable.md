@@ -2,6 +2,7 @@
 title: "The US government just gutted Anthropic's R&D capacity"
 description: "A Commerce export control pulled Claude Fable 5 and Mythos 5 on Friday. The overlooked effect: it cut roughly a third of Anthropic's own researchers off from the frontier models they build, while every competitor's researchers keep theirs."
 pubDate: 'Jun 15 2026'
+heroImage: './images/three-days-with-fable.png'
 ---
 
 Anthropic released Claude Fable 5 last week. I used it for three days before the government switched it off.
