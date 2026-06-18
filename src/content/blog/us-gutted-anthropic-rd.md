@@ -31,7 +31,7 @@ The barred researchers also have an obvious exit. The control attaches to Anthro
 
 ## Even if it's temporary
 
-None of this needs to be permanent to matter. Prediction markets expect a temporary pause — both [Polymarket](https://polymarket.com/event/us-government-rescinds-claude-fable-5-foreigner-ban-by-20260613202427937) and [Kalshi](https://news.kalshi.com/p/fable-5-odds-anthropic-access-restored-july-57-percent) have access most likely returning within a few weeks. But the field doesn't pause with it. The length of tasks frontier models can do reliably has been [doubling every four to seven months](https://metr.org/time-horizons/); against a curve that steep, weeks on the sidelines — while rivals keep training, shipping, and hiring — shift leads and define careers. A temporary pause here is not a small one.
+None of this needs to be permanent to matter. Prediction markets expect a temporary pause — both [Polymarket](https://polymarket.com/event/us-government-rescinds-claude-fable-5-foreigner-ban-by-20260613202427937) and [Kalshi](https://news.kalshi.com/p/fable-5-odds-anthropic-access-restored-july-57-percent) have access most likely returning within a few weeks. But the field doesn't pause with it, and it's speeding up: the length of tasks frontier models can do reliably has been [doubling every seven months — lately closer to four](https://metr.org/time-horizons/), a doubling time that keeps shrinking. On a curve that steep and still accelerating, weeks on the sidelines — while rivals keep training, shipping, and hiring — shift leads and define careers. A temporary pause here is not a small one.
 
 ## The incentive it sets
 
