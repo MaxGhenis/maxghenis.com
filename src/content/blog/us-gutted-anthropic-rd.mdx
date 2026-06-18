@@ -5,6 +5,8 @@ pubDate: 'Jun 15 2026'
 heroImage: './images/three-days-with-fable.png'
 ---
 
+import CrosspostAware from '../../components/CrosspostAware.astro';
+
 Anthropic released Claude Fable 5 last week. I used it for three days before the government switched it off.
 
 I spent Tuesday through Thursday at a convening and Friday traveling without connectivity, so I worked at about a quarter of my usual pace. In that window I pointed Fable at a range of projects, including the microdata pipeline that PolicyEngine's tax and benefit modeling runs on. That pipeline combines household surveys, administrative records, and calibration against published totals into a synthetic population for federal, state, and local analysis. We had spent months rebuilding it. Fable redesigned the architecture across the dependent packages, rebuilt the pipeline, and produced a dataset about five times more accurate than the one it replaces, measured against our held-out targets. That work reaches users this week. In the same three days it re-engineered the agentic flows behind several systems we ship over the coming weeks.
@@ -49,17 +51,33 @@ The directive names only Anthropic's two models, and the jailbreak behind it is 
 
 The fixation on Anthropic predates the order. On a May 8 podcast — weeks before Anthropic overtook OpenAI in valuation — the administration's AI czar, David Sacks, [called it "the most powerful monopoly ever created in human history"](https://www.youtube.com/watch?v=10MdOvK-aG4&t=982s) and likened it to Standard Oil rebranded as "Safe Oil," casting its safety record as cover for a monopoly. On the same show, Sacks said the cyber capability was not Anthropic's alone — ["OpenAI now has a model that's just as cyber capable as Mythos,"](https://www.youtube.com/watch?v=10MdOvK-aG4&t=2713s) with every major lab and Chinese models to follow within months — and his prescription then was industry-wide hardening, not a restriction on one company.
 
+<CrosspostAware>
+<Fragment slot="interactive">
 <details>
-<summary style="cursor: pointer;">David Sacks's "Safe Oil" monologue — All-In, May 8, 2026</summary>
+<summary style={{ cursor: "pointer" }}>David Sacks's "Safe Oil" monologue — All-In, May 8, 2026</summary>
 <blockquote>
 <p>"Unless something about their current trajectory changes, Anthropic will be the most powerful monopoly ever created in human history. […]</p>
 <p>I just want you to think for a second about the case of John D. Rockefeller, who I think is known as probably the most successful, most ruthless monopolist in American history. But he wasn't very good at PR. He was terrible at PR. Everyone sort of recognized how ruthless he is. We've seen movies like There Will Be Blood, which is basically about him.</p>
 <p>In any event, imagine if John D. Rockefeller was way better at public relations, and instead of calling his company Standard Oil, he called it Safe Oil. … He called it Safe Oil because, as we know, kerosene is dangerous. Their first big product was kerosene. And kerosene can light your house or it can burn it down, and in the wrong hands it can torch a city or you can use it to make a bomb. So John D should have called for the creation of a new government agency to regulate the safety of his product, and they could have done rigorous testing, licensing, common-sense regulation. … And I think people would have gotten so wrapped up in this debate over what constituted Safe Oil or Safe Kerosene that they would have missed what was really going on, which is that Rockefeller was building the richest, most powerful monopoly of all. In fact, people might even have called Rockefeller an Effective Altruist, because of course he was so concerned about the safety of his product."</p>
 </blockquote>
 </details>
+</Fragment>
+</CrosspostAware>
 
 The day before the export control, the same hosts opened their show attacking Fable for the opposite sin — too much caution. They called its guardrails "Orwellian" and its 30-day data retention "mandatory surveillance," and Sacks called the safety posture ["a very sophisticated regulatory capture campaign based on fear-mongering."](https://www.youtube.com/watch?v=gH4FTjDm9FQ&t=602s) Later in the same episode, asked about Bernie Sanders's plan to seize a government stake in the AI companies, Sacks said he ["may be okay with Bernie's idea"](https://www.youtube.com/watch?v=gH4FTjDm9FQ&t=3364s) — but only for "a public benefit corporation that says it's going to cause massive job loss, that trained for free on humanity's knowledge but gatekeeps and refuses to give back," and "maybe it should be 75%." Sacks offered those as principled conditions, but they fit OpenAI as well as Anthropic: both are public benefit corporations, both trained on the same public data, both keep their weights closed, and both CEOs have predicted mass job loss. A test that singles out one of two near-identical companies isn't a test; it's a target with criteria attached. The next day the government restricted Anthropic, and only Anthropic, for being insufficiently safe.
 
 No published standard tells another lab what to avoid, or tells Anthropic what to fix — only that, for now, the one company singled out must route its own researchers through a months-long license to use the model they built, or watch them rebuild it somewhere else.
 
 The deeper irony is that standards-based, politically neutral governance is what Anthropic spent years asking for. It proposed uniform disclosure rules for every frontier lab in ["The Case for Targeted Regulation"](https://www.anthropic.com/news/the-case-for-targeted-regulation), and days before the order, Dario Amodei's ["Policy on the AI Exponential"](https://darioamodei.com/post/policy-on-the-ai-exponential) argued that any government power to block a model "must be scoped to … four specific risks" with "protective measures against political favoritism or arbitrary decisions." Defending the order, Sacks [wrote that Anthropic "asked for government regulation of Mythos"](https://x.com/DavidSacks/status/2065853007619588171) — but its proposals were model-neutral, applied to all frontier developers, and it had gated Mythos itself rather than ask Washington to single it out. Anthropic asked to be governed by a standard applied to everyone; it got an ad-hoc decree applied to it alone.
+
+<CrosspostAware>
+<Fragment slot="static">
+<h2>Appendix: David Sacks's "Safe Oil" monologue</h2>
+<p><em>All-In, May 8, 2026</em></p>
+<blockquote>
+<p>"Unless something about their current trajectory changes, Anthropic will be the most powerful monopoly ever created in human history. […]</p>
+<p>I just want you to think for a second about the case of John D. Rockefeller, who I think is known as probably the most successful, most ruthless monopolist in American history. But he wasn't very good at PR. He was terrible at PR. Everyone sort of recognized how ruthless he is. We've seen movies like There Will Be Blood, which is basically about him.</p>
+<p>In any event, imagine if John D. Rockefeller was way better at public relations, and instead of calling his company Standard Oil, he called it Safe Oil. … He called it Safe Oil because, as we know, kerosene is dangerous. Their first big product was kerosene. And kerosene can light your house or it can burn it down, and in the wrong hands it can torch a city or you can use it to make a bomb. So John D should have called for the creation of a new government agency to regulate the safety of his product, and they could have done rigorous testing, licensing, common-sense regulation. … And I think people would have gotten so wrapped up in this debate over what constituted Safe Oil or Safe Kerosene that they would have missed what was really going on, which is that Rockefeller was building the richest, most powerful monopoly of all. In fact, people might even have called Rockefeller an Effective Altruist, because of course he was so concerned about the safety of his product."</p>
+</blockquote>
+</Fragment>
+</CrosspostAware>
