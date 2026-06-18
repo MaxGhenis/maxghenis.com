@@ -1,6 +1,6 @@
 ---
-title: "The US government just gutted Anthropic's R&D capacity"
-description: "A Commerce export control pulled Claude Fable 5 and Mythos 5 on Friday. It cut roughly a third of Anthropic's own researchers off from the frontier models they build, while every competitor's keep theirs."
+title: "The US government is gutting Anthropic's R&D capacity"
+description: "A Commerce export control pulled Claude Fable 5 and Mythos 5 on Friday. It's cutting roughly a third of Anthropic's own researchers off from the frontier models they build, while every competitor's keep theirs."
 pubDate: 'Jun 15 2026'
 heroImage: './images/three-days-with-fable.png'
 ---
@@ -28,6 +28,10 @@ How murky even that line is showed up within a day. Headlines reported that [And
 Frontier AI runs on immigrant talent: about [two-thirds of top-tier AI researchers in the United States earned their undergraduate degrees abroad](https://macropolo.org/interactive/digital-projects/the-global-ai-talent-tracker/), and international students are [the core of the US AI PhD pipeline](https://cset.georgetown.edu/article/international-graduate-students-critical-to-u-s-ai-competitiveness/). No public figure exists for Anthropic, so I asked Claude to estimate it — five independent passes, each from a different angle: the AI-talent pipeline, Anthropic's visa filings, the China–India green-card backlog, the company's youth, and peer-company workforces. They ranged from 27% to 42% of its researchers, with a mean near 36% — on the order of a third. The passes agree on why it runs high: Anthropic is only four years old, so few foreign-origin researchers have had time to naturalize, and [green-card backlogs for Chinese and Indian nationals](https://www.dwt.com/insights/2020/05/us-bis-china-technology-export-ban) — the field's two largest talent sources — run a decade or more, leaving even long-tenured staff on temporary visas. It is an estimate, not a count: Anthropic publishes no breakdown, and its [H-1B filings](https://h1bgrader.com/h1b-sponsors/anthropic-pbc-10j7p51g0v) are flow, not stock.
 
 The barred researchers also have an obvious exit. The control attaches to Anthropic's models, not to the people, so a visa-holder cut off inside Anthropic can join OpenAI, Google, or any other lab and use a frontier model there on day one — every researcher at those labs, visa holders included, keeps access, because the order names only Anthropic's models. So it does not just bench a third of Anthropic's researchers; it hands every competitor a standing recruiting pitch aimed squarely at them, turning a model restriction into a talent-export pump pointed at one company.
+
+## Even if it's temporary
+
+None of this needs to be permanent to matter. Prediction markets expect a temporary pause — both [Polymarket](https://polymarket.com/event/us-government-rescinds-claude-fable-5-foreigner-ban-by-20260613202427937) and [Kalshi](https://news.kalshi.com/p/fable-5-odds-anthropic-access-restored-july-57-percent) have access most likely returning within a few weeks. But the field doesn't pause with it. The length of tasks frontier models can do reliably has been [doubling every four to seven months](https://metr.org/time-horizons/); against a curve that steep, weeks on the sidelines — while rivals keep training, shipping, and hiring — shift leads and define careers. A temporary pause here is not a small one.
 
 ## The incentive it sets
 
