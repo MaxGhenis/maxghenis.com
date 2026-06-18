@@ -5,6 +5,8 @@ dist/
 
 # dependencies
 node_modules/
+.venv/
+__pycache__/
 
 # logs
 npm-debug.log*
