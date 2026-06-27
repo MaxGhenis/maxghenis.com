@@ -1,0 +1,417 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE } from '../consts';
+
+// Dryer disposition → badge label + style.
+const dryMeta: Record<string, { label: string; cls: string }> = {
+  tumble: { label: 'Tumble OK', cls: 'dry-good' },
+  low: { label: 'Low only', cls: 'dry-warn' },
+  hang: { label: 'Hang dry', cls: 'dry-warn' },
+  air: { label: 'Air dry', cls: 'dry-warn' },
+  flat: { label: 'Lay flat', cls: 'dry-bad' },
+  dryclean: { label: 'Dry clean', cls: 'dry-bad' },
+};
+
+// Wash loads — what to throw in together.
+const loads = [
+  {
+    name: 'Delicates & wool',
+    settings: 'Cold · gentle / hand cycle · wool wash (Eucalan) · lay flat',
+    dry: 'flat',
+    items: [
+      'Olive merino quarter-zip',
+      'Wool & Prince merino tops & undershirts',
+      'Sunspel polos',
+      'Pantherella dress socks',
+    ],
+    note: 'Wash rarely — merino is anti-odor, so air it out and it goes many wears between washes. Never the dryer (it felts and shrinks), and never regular detergent — the enzymes that fight stains digest wool.',
+  },
+  {
+    name: 'Nice cottons',
+    settings: 'Cold · gentle · mild detergent · hang dry',
+    dry: 'hang',
+    items: [
+      'Blue Japanese selvedge OCBD',
+      'White Favorite Oxford',
+      'White cotton-linen shirt',
+      'White linen shirt',
+      'Oatmeal linen Sutton trousers',
+    ],
+    note: 'Hang, don’t tumble — heat shrinks and wrinkles them. Iron warm while slightly damp. Wash the blue selvedge with darks the first wash or two; it sheds dye. Keep these out of the whites load.',
+  },
+  {
+    name: 'Activewear',
+    settings: 'Cold · inside out · sport detergent or ½-cup vinegar soak · no softener · air dry',
+    dry: 'air',
+    items: ['Lululemon Pace Breaker shorts', 'Swim short', 'Any synthetic gym tops'],
+    note: 'Hot water and fabric softener are the two mistakes here — heat sets the odor and softener clogs the wicking. Cold + a sport detergent or vinegar soak kills the smell instead.',
+  },
+  {
+    name: 'Everyday colors & darks',
+    settings: 'Cold · normal · machine dry low',
+    dry: 'low',
+    items: ['Khaki chino', 'Jeans (inside out)', 'Colored tees', 'Colored socks'],
+    note: 'Jeans and chinos last longer hung, but low-tumble is fine. Wash new or saturated items on their own the first couple of washes.',
+  },
+  {
+    name: 'Whites',
+    settings: 'Warm / hot OK · oxygen brightener (OxiClean) · machine dry',
+    dry: 'tumble',
+    items: ['White tees', 'White socks', 'White boxers & underwear'],
+    note: 'The one load that can take heat and a brightener to stay crisp. Keep your white dress shirts out of here — those go in Nice cottons and hang.',
+  },
+  {
+    name: 'Towels',
+    settings: 'Warm / hot · no fabric softener · machine dry',
+    dry: 'tumble',
+    items: ['Bath & hand towels'],
+    note: 'No softener ever — it coats the fibers and kills absorbency. An occasional vinegar rinse strips buildup. Dry fully so they don’t mildew. Their own load (they shed lint on everything).',
+  },
+  {
+    name: 'Sheets',
+    settings: 'Warm · normal · machine dry',
+    dry: 'tumble',
+    items: ['Bed sheets & pillowcases'],
+    note: 'Own load, weekly — and keep them away from towels, which lint all over them.',
+  },
+  {
+    name: 'Dry clean only',
+    settings: 'No machine — dry clean or steam between wears',
+    dry: 'dryclean',
+    items: ['Navy suit (jacket + trousers)', 'Glen plaid blazer'],
+    note: 'Steam at home between wears and dry-clean sparingly — over-cleaning wears tailoring out faster than wearing it does.',
+  },
+];
+
+// Full inventory, grouped by category.
+const groups = [
+  {
+    title: 'Dress shirts',
+    rows: [
+      { item: 'Blue Japanese selvedge OCBD', sub: 'Todd Snyder', fabric: '100% cotton selvedge', wash: 'Cold, inside out, no softener, non-chlorine bleach only', dry: 'hang', notes: 'Wrinkles — iron warm while damp, keep the collar roll. Sheds dye the first wash or two (wash with darks).' },
+      { item: 'White Favorite Oxford', sub: 'Todd Snyder', fabric: 'Cotton, stonewashed', wash: 'Cold, gentle, mild detergent', dry: 'hang', notes: 'Softer and lower-maintenance than the selvedge. Hang to keep the fit.' },
+      { item: 'White cotton-linen shirt', sub: 'Suitsupply', fabric: 'Cotton-linen', wash: 'Cold, gentle', dry: 'hang', notes: 'Iron or steam; hang to dry.' },
+      { item: 'White linen shirt', sub: '', fabric: 'Linen', wash: 'Cold, gentle', dry: 'hang', notes: 'Wrinkles by nature — that’s the look. Roll-packs fine.' },
+    ],
+  },
+  {
+    title: 'Knits & polos',
+    rows: [
+      { item: 'Olive merino quarter-zip', sub: '', fabric: 'Merino wool', wash: 'Cold / wool cycle or hand, wool wash (Eucalan)', dry: 'flat', notes: 'Never the dryer. Lay flat — hanging wet stretches the shoulders. Wash rarely; air it out instead.' },
+      { item: 'Merino tops & undershirts', sub: 'Wool & Prince', fabric: 'Merino wool', wash: 'Cold, wool wash, gentle', dry: 'flat', notes: 'Same as the quarter-zip. Double as gym tops; anti-odor, so re-wear and wash seldom.' },
+      { item: 'Sunspel polo — navy', sub: 'Sunspel', fabric: 'Cotton', wash: 'Cold, inside out, no softener', dry: 'flat', notes: 'Lay flat — hanging wet stretches it out. Runs trim; size up in Sunspel.' },
+      { item: 'Sunspel polo — olive', sub: 'Sunspel', fabric: 'Cotton', wash: 'Cold, inside out, no softener', dry: 'flat', notes: 'Lay flat to dry, reshaped.' },
+    ],
+  },
+  {
+    title: 'Trousers',
+    rows: [
+      { item: 'Oatmeal linen Sutton', sub: 'Todd Snyder', fabric: 'Linen', wash: 'Cold, gentle', dry: 'hang', notes: 'Hang dry; iron or steam.' },
+      { item: 'Khaki chino', sub: '', fabric: 'Cotton', wash: 'Cold (warm OK)', dry: 'low', notes: 'Durable; low-tumble is fine, hang to avoid any shrink/fade. Your single chino — pairs with everything.' },
+      { item: 'Jeans', sub: '', fabric: 'Cotton denim', wash: 'Cold, inside out, wash rarely', dry: 'low', notes: 'Hang or low-tumble. Raw selvedge (when you get a pair): wash cold, sparingly, hang only.' },
+    ],
+  },
+  {
+    title: 'Tailoring & outerwear',
+    rows: [
+      { item: 'Navy suit', sub: '', fabric: 'Wool', wash: 'Dry clean / steam', dry: 'dryclean', notes: 'Never machine wash. Steam between wears; dry-clean sparingly.' },
+      { item: 'Glen plaid blazer', sub: 'Suitsupply', fabric: 'Wool', wash: 'Dry clean / steam', dry: 'dryclean', notes: 'Same. The workhorse jacket — steam and air it, clean rarely.' },
+      { item: 'Packable parka', sub: 'Uniqlo', fabric: 'Synthetic', wash: 'Machine wash cold, gentle (check label)', dry: 'low', notes: 'Tumble low or hang. No softener on technical fabric.' },
+    ],
+  },
+  {
+    title: 'Activewear',
+    rows: [
+      { item: 'Pace Breaker shorts', sub: 'Lululemon', fabric: 'Synthetic', wash: 'Cold, inside out, no softener', dry: 'air', notes: 'Air dry or lowest heat. Sport detergent or a vinegar soak for odor.' },
+      { item: 'Swim short', sub: '', fabric: 'Synthetic', wash: 'Rinse after use; cold gentle if washed', dry: 'air', notes: 'Air dry only; doubles as a casual short.' },
+    ],
+  },
+  {
+    title: 'Base layers & socks',
+    rows: [
+      { item: 'Boxers ×8', sub: '', fabric: 'Cotton / synthetic', wash: 'Warm', dry: 'tumble', notes: 'Goes with whites (light) or everyday (dark). Tumble fine.' },
+      { item: 'Pantherella dress socks ×4', sub: '', fabric: 'Wool blend', wash: 'Cold, gentle', dry: 'flat', notes: 'Wash with delicates; lay flat. Navy, charcoal, brown, black.' },
+      { item: 'Athletic / no-show socks', sub: '', fabric: 'Synthetic / cotton', wash: 'Normal', dry: 'tumble', notes: 'Everyday load; tumble fine.' },
+    ],
+  },
+  {
+    title: 'Linens',
+    rows: [
+      { item: 'Towels', sub: '', fabric: 'Cotton', wash: 'Warm / hot, no softener', dry: 'tumble', notes: 'Own load. Softener kills absorbency; vinegar rinse occasionally.' },
+      { item: 'Sheets', sub: '', fabric: 'Cotton', wash: 'Warm', dry: 'tumble', notes: 'Own load, weekly. Keep away from towels (lint).' },
+    ],
+  },
+];
+
+// Footwear — spot care, not laundry.
+const footwear = [
+  { item: 'AE Park Avenue oxfords', care: 'Saphir Renovator + horsehair brush; condition every ~10–15 wears. Cedar trees between wears. Never water or machine.' },
+  { item: 'Hoka Clifton 10', care: 'Remove insoles & laces, cold gentle cycle in a mesh bag, air dry only — dryer heat wrecks the foam and glue. Crep Protect spray for water resistance.' },
+  { item: 'Suede loafers', care: 'Suede brush + Crep Protect; no water. Spot-clean with a suede eraser.' },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead
+      title={`Closet | ${SITE_TITLE}`}
+      description="Everything I own and how to wash it — by garment, by wash load, and what's safe for the dryer."
+    />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <header class="page-header">
+        <h1>Closet</h1>
+        <p class="page-description">
+          What I own and how to wash it — sorted by wash load, by garment, and by
+          what survives the dryer.
+        </p>
+      </header>
+
+      <div class="callout">
+        <strong>The whole system in one line:</strong> cold water for everything you
+        care about; warm or hot only for whites, towels, and sheets — and merino,
+        polos, and tailoring never see the dryer.
+      </div>
+
+      <section>
+        <h2>By load</h2>
+        <p>What to throw in together, and on what settings.</p>
+        <div class="loads">
+          {loads.map((load) => (
+            <div class="load-card">
+              <div class="load-head">
+                <h3>{load.name}</h3>
+                <span class={`dry-badge ${dryMeta[load.dry].cls}`}>{dryMeta[load.dry].label}</span>
+              </div>
+              <p class="load-settings">{load.settings}</p>
+              <ul class="load-items">
+                {load.items.map((it) => <li>{it}</li>)}
+              </ul>
+              <p class="load-note">{load.note}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section>
+        <h2>By garment</h2>
+        <p>Every piece, its fabric, how it washes, and whether it can go in the dryer.</p>
+        {groups.map((group) => (
+          <div class="garment-group">
+            <h3>{group.title}</h3>
+            <div class="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Item</th>
+                    <th>Fabric</th>
+                    <th>Wash</th>
+                    <th>Dryer</th>
+                    <th>Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {group.rows.map((row) => (
+                    <tr>
+                      <td class="cell-item">
+                        {row.item}
+                        {row.sub && <span class="item-sub">{row.sub}</span>}
+                      </td>
+                      <td>{row.fabric}</td>
+                      <td>{row.wash}</td>
+                      <td><span class={`dry-badge ${dryMeta[row.dry].cls}`}>{dryMeta[row.dry].label}</span></td>
+                      <td class="cell-notes">{row.notes}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        ))}
+      </section>
+
+      <section>
+        <h2>Detergents</h2>
+        <ul>
+          <li><strong>Wool &amp; delicates:</strong> Eucalan (no-rinse) or The Laundress Wool &amp; Cashmere — enzyme-free, so it won’t eat the merino.</li>
+          <li><strong>Everything else:</strong> a normal detergent (Dirty Labs or Tide Free &amp; Gentle). Keep it off wool.</li>
+          <li><strong>Activewear:</strong> a sport detergent (Hex, WIN) or a ½-cup white-vinegar cold soak for odor.</li>
+          <li><strong>Whites:</strong> add an oxygen brightener (OxiClean) on warm.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Footwear</h2>
+        <p>Spot care, not laundry.</p>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr><th>Pair</th><th>Care</th></tr>
+            </thead>
+            <tbody>
+              {footwear.map((f) => (
+                <tr>
+                  <td class="cell-item">{f.item}</td>
+                  <td class="cell-notes">{f.care}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+    <Footer />
+
+    <style>
+      main {
+        max-width: 1000px;
+      }
+
+      .page-header {
+        margin-bottom: 2rem;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+      }
+
+      .page-header h1 {
+        font-size: 3rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .page-description {
+        font-size: 1.25rem;
+        color: var(--text-secondary);
+        max-width: 640px;
+      }
+
+      .callout {
+        background: #fef3c7;
+        border-left: 4px solid #f59e0b;
+        padding: 1rem 1.25rem;
+        border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+        margin-bottom: 3rem;
+        color: #78350f;
+        line-height: 1.6;
+        font-size: 0.9375rem;
+      }
+
+      section {
+        margin-bottom: 3.5rem;
+      }
+
+      section > h2 {
+        font-size: 1.75rem;
+        margin-bottom: 0.5rem;
+      }
+
+      section > p {
+        color: var(--text-secondary);
+        margin-bottom: 1.5rem;
+      }
+
+      section ul {
+        color: var(--text-secondary);
+        line-height: 1.6;
+        padding-left: 1.5rem;
+      }
+
+      section li {
+        margin-bottom: 0.5rem;
+      }
+
+      /* Dryer badges */
+      .dry-badge {
+        display: inline-block;
+        white-space: nowrap;
+        padding: 0.15rem 0.55rem;
+        border-radius: var(--radius-full);
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.01em;
+        border: 1px solid transparent;
+      }
+      .dry-good { background: rgba(132, 204, 22, 0.15); color: #3f6212; border-color: rgba(132, 204, 22, 0.4); }
+      .dry-warn { background: rgba(245, 158, 11, 0.15); color: #92400e; border-color: rgba(245, 158, 11, 0.4); }
+      .dry-bad { background: rgba(190, 24, 24, 0.10); color: #991b1b; border-color: rgba(190, 24, 24, 0.3); }
+
+      /* Load cards */
+      .loads {
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .load-card {
+        background: var(--cream-dark);
+        border: 1px solid rgba(15, 23, 42, 0.08);
+        border-radius: var(--radius-lg);
+        padding: 1.25rem 1.35rem;
+      }
+      .load-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+        margin-bottom: 0.5rem;
+      }
+      .load-head h3 {
+        font-size: 1.2rem;
+        margin: 0;
+      }
+      .load-settings {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.72rem;
+        color: var(--text-muted);
+        margin: 0 0 0.75rem 0;
+        line-height: 1.5;
+      }
+      .load-items {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 0.75rem 0;
+      }
+      .load-items li {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        padding: 0.15rem 0;
+        border-bottom: 1px dashed rgba(15, 23, 42, 0.06);
+      }
+      .load-items li:last-child { border-bottom: none; }
+      .load-note {
+        font-size: 0.82rem;
+        color: var(--text-muted);
+        line-height: 1.55;
+        margin: 0;
+      }
+
+      /* Garment tables */
+      .garment-group { margin-bottom: 2rem; }
+      .garment-group h3 {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+      }
+      .table-wrapper { overflow-x: auto; }
+      table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+      th, td {
+        text-align: left;
+        padding: 0.6rem 0.85rem;
+        border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+        vertical-align: top;
+      }
+      th { font-weight: 600; color: var(--ink); font-size: 0.82rem; background: var(--bg-secondary); }
+      td { color: var(--text-secondary); }
+      .cell-item { font-weight: 600; color: var(--ink); min-width: 9rem; }
+      .item-sub { display: block; font-weight: 400; font-size: 0.78rem; color: var(--text-muted); }
+      .cell-notes { font-size: 0.82rem; color: var(--text-muted); min-width: 14rem; }
+
+      @media (max-width: 720px) {
+        .loads { grid-template-columns: 1fr; }
+        .page-header h1 { font-size: 2.25rem; }
+      }
+    </style>
+  </body>
+</html>
