@@ -15,7 +15,7 @@ describe('Social cards', () => {
 			// Exclude utility/internal pages and full-page embeds
 			const utilityPages = [
 				'blog', 'cv', 'projects', 'voter-guides', 'elections', 'rss.xml', '404',
-				'style', 'lab', 'feed', 'brand', 'whatnut', 'mita', 'givewell-cea', // utility/experimental/embed pages
+				'style', 'lab', 'feed', 'brand', 'whatnut', 'mita', 'givewell-cea', 'closet', // utility/experimental/embed pages
 				'scrollywood', 'openmessages', 'mystquarto', // project pages without custom OG images yet
 			];
 
