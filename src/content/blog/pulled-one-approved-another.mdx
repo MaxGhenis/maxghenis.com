@@ -1,0 +1,55 @@
+---
+title: "The administration is hand-picking who runs which frontier model"
+description: "On the same stated cyber rationale, the Commerce Department pulled Anthropic's Fable 5 offline, the White House cleared OpenAI's GPT-5.6 for a chosen list of companies, and a second Commerce letter reopened Mythos 5 to 100-plus named organizations — three models, three bespoke deals, no published rule. Capability, safeguards, and prior coordination don't explain who got which."
+pubDate: 'Jun 27 2026'
+heroImage: './images/two-gates.png'
+draft: true
+---
+
+On June 12 the Commerce Department pulled Anthropic's Claude Fable 5 and Mythos 5 [offline for every user on earth](https://www.anthropic.com/news/fable-mythos-access). On June 26 OpenAI [launched GPT-5.6](https://the-decoder.com/openais-claude-mythos-competitor-gpt-5-6-sol-launches-under-government-controlled-access-it-calls-unsustainable/) — and kept it running for its own researchers, shipped it to about [20 government-approved customers](https://thenextweb.com/news/openai-gpt-5-6-sol-limited-preview-government-approved-partners), and benchmarked it by name against the two models the government had just pulled. That same evening, the government told Anthropic it could put Mythos 5 back — for [more than 100 organizations](https://techcrunch.com/2026/06/26/trump-admin-releases-anthropic-mythos-to-be-used-by-more-than-100-us-companies-agencies/) that defend critical infrastructure, named by the government. Fable 5, the version built for everyone else, stays offline.
+
+The two sit under different kinds of authority. Anthropic's came as signed Commerce letters: a June 12 [export-control directive](https://www.business-standard.com/world-news/howard-lutnick-s-letter-to-anthropic-warned-of-curbs-on-top-ai-models-126061700109_1.html) from Secretary Lutnick requiring a government license before any "foreign person" could access Fable or Mythos, on pain of criminal and civil penalties — then a second letter on the 26th lifting the license for the organizations it named. OpenAI received no such order. Its limit is voluntary: a White House request, a [verbal caution from Lutnick](https://www.tomshardware.com/tech-industry/artificial-intelligence/openais-chatgpt-5-6-gets-the-same-banhammer-treatment-as-anthropics-mythos-from-the-federal-government-source-says-that-washington-cautioned-openai-against-releasing-the-model-without-receiving-approval), and access approved customer by customer — no license, no penalty, no instrument, an arrangement OpenAI itself [said shouldn't become the norm](https://techcrunch.com/2026/06/26/openai-limits-gpt-5-6-rollout-after-government-request-says-restrictions-shouldnt-be-the-norm/).
+
+Every one of these moves rests on the same stated concern: a frontier model's cyber capability. In two weeks the government pulled two models, cleared a third for about 20 companies, and reopened one of the first two to more than 100 organizations — each on different terms. The [June 2 executive order](https://www.whitehouse.gov/presidential-actions/2026/06/promoting-advanced-artificial-intelligence-innovation-and-security/) said it was not creating "a mandatory governmental licensing, preclearance, or permitting requirement" for AI models. It is now deciding, model by model, who may run which — with no published rule separating them. And the arrangements keep moving: Mythos returning to some users, GPT-5.6's [access set to widen](https://www.cnbc.com/2026/06/26/us-government-anthropic-claude-mythos5-ai.html) — each shift another case-by-case call rather than a rule.
+
+The cleanest comparison is Fable 5 and GPT-5.6: both general-use deployments of a frontier model, both resting on the same cyber rationale — one blocked, one cleared. So what separates them? Three answers get offered: the model is more capable, it's less safeguarded, the company didn't coordinate. The public record rules out all three.
+
+## Not capability
+
+OpenAI made the comparison itself. In its launch, GPT-5.6 Sol scores 88.8 on Terminal-Bench 2.1 — 91.9 in its Ultra mode — against [Mythos 5 at 88.0 and Fable 5 at 84.3](https://the-decoder.com/openais-claude-mythos-competitor-gpt-5-6-sol-launches-under-government-controlled-access-it-calls-unsustainable/). On ExploitBench, the cyber benchmark closest to the capability the export order named, OpenAI reports Sol competitive with Mythos at about a third of the output tokens. The administration's own AI czar said the same thing on May 8, before either launch: ["OpenAI now has a model that's just as cyber capable as Mythos."](https://www.youtube.com/watch?v=10MdOvK-aG4&t=2713s)
+
+These are OpenAI's own numbers, run against models outsiders can't independently test — but the government [moved on GPT-5.6 for that same cyber capability](https://www.cnn.com/2026/06/25/tech/openai-limit-release-white-house), not despite it. By the seller's benchmarks and the regulator's own rationale, the cyber capability is the same — and only one of the two is offline.
+
+## Not safeguards
+
+Fable 5 is the [safeguarded deployment of Mythos](https://techcrunch.com/2026/06/09/anthropic-released-claude-fable-5-its-most-powerful-model-publicly-days-after-warning-ai-is-getting-too-dangerous/) — Anthropic gated raw Mythos itself. GPT-5.6's [system card](https://deploymentsafety.openai.com/gpt-5-6-preview) describes the same categories of defense every frontier lab uses: refusals trained against disguised and jailbroken requests, classifiers that watch internal activations and can pause output mid-generation, real-time output scanning, and tiered access. On the measure that triggered the Fable order — jailbreak resistance — the card rates Sol "comparable to recent predecessors" and calls the result "directional rather than definitive." It does not claim Sol resists the attack that bypassed Fable.
+
+That attack appears to be generic. Anthropic [found no universal jailbreak](https://www.anthropic.com/news/fable-mythos-access) and noted the same capability sits in OpenAI's unrestricted GPT-5.5; security researcher Katie Moussouris [described the technique](https://techcrunch.com/2026/06/15/the-us-governments-anthropic-models-ban-was-never-about-an-ai-jailbreak/) — the gap between asking a model to "review this code" and to "fix it" — as something that "cannot meaningfully be fixed." A hole every capable model shares is not a safeguard one model has and another lacks.
+
+## Not coordination
+
+The distinction offered in reporting is that OpenAI worked with the government before launch and Anthropic didn't. Anthropic coordinated more. Before release it tested Mythos with [U.S. intelligence agencies](https://www.cnbc.com/2026/06/23/anthropics-mythos-model-found-vulnerabilities-in-classified-us-government-systems-official-says.html) — the same testing that found vulnerabilities in classified federal systems within hours — and convened [Project Glasswing](https://www.cnbc.com/2026/06/26/us-government-anthropic-claude-mythos5-ai.html) to harden critical software ahead of release. It [gated Mythos itself](https://techcrunch.com/2026/06/09/anthropic-released-claude-fable-5-its-most-powerful-model-publicly-days-after-warning-ai-is-getting-too-dangerous/) and had proposed [model-neutral disclosure rules](https://www.anthropic.com/news/the-case-for-targeted-regulation) for every frontier lab. The lab that coordinated most still drew the mandatory order. Whatever sorted these models, it was not how much each company worked with the government.
+
+| | Fable 5 | GPT-5.6 |
+|---|---|---|
+| Instrument | Commerce export-control letters; license, criminal penalties | Voluntary request; no order |
+| Internal researcher access | Cut off | Retained |
+| External release | Blocked worldwide | Government-approved list |
+| Stated rationale | Cyber capability | Cyber capability |
+| Published criteria | None | None |
+
+## What the approval grants
+
+The customer list is the visible part of the asymmetry. There is also an internal one: OpenAI's researchers keep building on GPT-5.6 — [the model has significantly accelerated OpenAI's own development](https://openai.com/index/previewing-gpt-5-6-sol/) — while the Fable order cut a share of Anthropic's own researchers, roughly a third (an estimate I asked Claude to produce, detailed in the [earlier post](/blog/us-gutted-anthropic-rd/)), off from the model they build. Frontier task length has been [doubling every four to seven months](https://metr.org/time-horizons/); weeks of access to the frontier model feed the next one. The June 26 letter hands some of that back — its relief reaches [Anthropic's own foreign-national employees](https://srnnews.com/us-releases-anthropic-model-mythos-to-some-us-companies-semafor-reports/), not only outside organizations — but it covers Mythos, not Fable, and the cut held for two weeks.
+
+The Fable order followed a [warning from Amazon](https://www.axios.com/2026/06/13/anthropic-amazon-white-house) — Anthropic's largest investor, whose platform now [hosts GPT-5.6 on Bedrock](https://thenextweb.com/news/openai-gpt-5-6-sol-limited-preview-government-approved-partners). The trigger has been reported; the standard has not.
+
+## What being a generation behind costs
+
+The companies cleared for these models get something their competitors don't: the frontier itself. The gap can read as a few weeks. It isn't necessarily small. In [the earlier post](/blog/us-gutted-anthropic-rd/) I used Fable for about one working day — a quarter of my pace over four — and it rebuilt the architecture of one of PolicyEngine's core products and reworked several others. On a curve where task length [doubles every four to seven months](https://metr.org/time-horizons/), a competitor a generation ahead for a few weeks doesn't stay a few weeks ahead.
+
+And the list runs one way. The criteria the government has disclosed — trusted operators and agencies that [defend critical infrastructure](https://techcrunch.com/2026/06/26/trump-admin-releases-anthropic-mythos-to-be-used-by-more-than-100-us-companies-agencies/) — don't describe a startup. The gap falls hardest on the firms least able to absorb it: the ones already a generation behind, watching cleared incumbents pull away.
+
+## On a missing standard
+
+Nothing on the public record separates Fable from GPT-5.6 — not capability, not safeguards, not prior coordination — and the government has named nothing else. What decides is now in plain view, and it isn't a rule. It's letters: two from Secretary Lutnick to Anthropic in two weeks — one to switch its models off worldwide, one to switch Mythos back on for the organizations it named — and, for OpenAI, a request and a list of approved customers. Three models, three bespoke arrangements. The June 2 executive order said there would be no licensing, preclearance, or permitting regime. There is one. It runs on letters and handshakes, with no published rule for who gets in.
