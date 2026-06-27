@@ -14,6 +14,16 @@ const dryMeta: Record<string, { label: string; cls: string }> = {
   dryclean: { label: 'Dry clean', cls: 'dry-bad' },
 };
 
+// Spin tracks the dry method — the gentler the dry, the lower the spin.
+const spinFromDry: Record<string, string> = {
+  tumble: 'High',
+  low: 'Medium',
+  hang: 'Low–med',
+  air: 'Low–med',
+  flat: 'Low',
+  dryclean: '—',
+};
+
 // Wash loads — minimized to two machine loads plus a rare wool wash.
 // The clothes load washes together; only the drying diverges.
 interface Load {
@@ -28,7 +38,7 @@ interface Load {
 const loads: Load[] = [
   {
     name: 'Clothes',
-    settings: 'Cold · regular detergent · no softener · wash together, sort at the dryer',
+    settings: 'Cold · regular detergent · no softener · medium spin · wash together, sort at the dryer',
     drySort: [
       { dry: 'hang', items: 'Dress shirts, OCBDs, linen shirt, oatmeal linen trousers' },
       { dry: 'flat', items: 'Sunspel polos (cotton — wash here, just lay flat)' },
@@ -39,14 +49,14 @@ const loads: Load[] = [
   },
   {
     name: 'Linens',
-    settings: 'Warm / hot · OxiClean · no softener · tumble dry',
+    settings: 'Warm / hot · OxiClean · no softener · high spin · tumble dry',
     dry: 'tumble',
     items: ['Towels', 'Sheets & pillowcases'],
     note: 'Towels + sheets together. No softener — it kills towel absorbency. OxiClean is ideal here (oxygen bleach, color-safe). Combining leaves a little lint on the sheets; split towels off solo if that bugs you.',
   },
   {
     name: 'Wool — occasional',
-    settings: 'Cold · wool wash (Eucalan) · lay flat · wash rarely',
+    settings: 'Cold · wool wash (Eucalan) · low / no spin · lay flat · wash rarely',
     dry: 'flat',
     items: ['Olive merino quarter-zip', 'Wool & Prince merino tops & undershirts', 'Pantherella wool dress socks'],
     note: 'The only things that can’t ride in the clothes load — regular detergent’s enzymes digest wool. Merino is anti-odor, so this is every few weeks, and small enough to hand-wash in the sink.',
@@ -198,7 +208,7 @@ const footwear = [
 
       <section>
         <h2>By garment</h2>
-        <p>Every piece, its fabric, how it washes, and whether it can go in the dryer.</p>
+        <p>Every piece, its fabric, how it washes, the spin, and whether it can go in the dryer. Spin is the most each item should take; in the combined clothes load, run the gentlest (medium).</p>
         {groups.map((group) => (
           <div class="garment-group">
             <h3>{group.title}</h3>
@@ -209,6 +219,7 @@ const footwear = [
                     <th>Item</th>
                     <th>Fabric</th>
                     <th>Wash</th>
+                    <th>Spin</th>
                     <th>Dryer</th>
                     <th>Notes</th>
                   </tr>
@@ -222,6 +233,7 @@ const footwear = [
                       </td>
                       <td>{row.fabric}</td>
                       <td>{row.wash}</td>
+                      <td class="cell-spin">{spinFromDry[row.dry]}</td>
                       <td><span class={`dry-badge ${dryMeta[row.dry].cls}`}>{dryMeta[row.dry].label}</span></td>
                       <td class="cell-notes">{row.notes}</td>
                     </tr>
@@ -432,6 +444,7 @@ const footwear = [
       .cell-item { font-weight: 600; color: var(--ink); min-width: 9rem; }
       .item-sub { display: block; font-weight: 400; font-size: 0.78rem; color: var(--text-muted); }
       .cell-notes { font-size: 0.82rem; color: var(--text-muted); min-width: 14rem; }
+      .cell-spin { font-size: 0.82rem; white-space: nowrap; color: var(--text-secondary); }
 
       @media (max-width: 720px) {
         .page-header h1 { font-size: 2.25rem; }
