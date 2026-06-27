@@ -14,74 +14,49 @@ const dryMeta: Record<string, { label: string; cls: string }> = {
   dryclean: { label: 'Dry clean', cls: 'dry-bad' },
 };
 
-// Wash loads — what to throw in together.
-const loads = [
+// Wash loads — minimized to two machine loads plus a rare wool wash.
+// The clothes load washes together; only the drying diverges.
+interface Load {
+  name: string;
+  settings: string;
+  note: string;
+  dry?: string;
+  items?: string[];
+  drySort?: { dry: string; items: string }[];
+}
+
+const loads: Load[] = [
   {
-    name: 'Delicates & wool',
-    settings: 'Cold · gentle / hand cycle · wool wash (Eucalan) · lay flat',
+    name: 'Clothes',
+    settings: 'Cold · regular detergent · no softener · wash together, sort at the dryer',
+    drySort: [
+      { dry: 'hang', items: 'Dress shirts, OCBDs, linen shirt, oatmeal linen trousers' },
+      { dry: 'flat', items: 'Sunspel polos (cotton — wash here, just lay flat)' },
+      { dry: 'air', items: 'Activewear — gym shorts, swim short' },
+      { dry: 'tumble', items: 'Tees, socks, underwear, boxers, chinos, jeans' },
+    ],
+    note: 'Everything you wear in one cold wash — the only thing that changes is where it dries. New darks bleed at first, so run the blue selvedge OCBD on its own the first wash or two.',
+  },
+  {
+    name: 'Linens',
+    settings: 'Warm / hot · OxiClean · no softener · tumble dry',
+    dry: 'tumble',
+    items: ['Towels', 'Sheets & pillowcases'],
+    note: 'Towels + sheets together. No softener — it kills towel absorbency. OxiClean is ideal here (oxygen bleach, color-safe). Combining leaves a little lint on the sheets; split towels off solo if that bugs you.',
+  },
+  {
+    name: 'Wool — occasional',
+    settings: 'Cold · wool wash (Eucalan) · lay flat · wash rarely',
     dry: 'flat',
-    items: [
-      'Olive merino quarter-zip',
-      'Wool & Prince merino tops & undershirts',
-      'Sunspel polos',
-      'Pantherella dress socks',
-    ],
-    note: 'Wash rarely — merino is anti-odor, so air it out and it goes many wears between washes. Never the dryer (it felts and shrinks), and never regular detergent — the enzymes that fight stains digest wool.',
+    items: ['Olive merino quarter-zip', 'Wool & Prince merino tops & undershirts', 'Pantherella wool dress socks'],
+    note: 'The only things that can’t ride in the clothes load — regular detergent’s enzymes digest wool. Merino is anti-odor, so this is every few weeks, and small enough to hand-wash in the sink.',
   },
   {
-    name: 'Nice cottons',
-    settings: 'Cold · gentle · mild detergent · hang dry',
-    dry: 'hang',
-    items: [
-      'Blue Japanese selvedge OCBD',
-      'White Favorite Oxford',
-      'White cotton-linen shirt',
-      'White linen shirt',
-      'Oatmeal linen Sutton trousers',
-    ],
-    note: 'Hang, don’t tumble — heat shrinks and wrinkles them. Iron warm while slightly damp. Wash the blue selvedge with darks the first wash or two; it sheds dye. Keep these out of the whites load.',
-  },
-  {
-    name: 'Activewear',
-    settings: 'Cold · inside out · sport detergent or ½-cup vinegar soak · no softener · air dry',
-    dry: 'air',
-    items: ['Lululemon Pace Breaker shorts', 'Swim short', 'Any synthetic gym tops'],
-    note: 'Hot water and fabric softener are the two mistakes here — heat sets the odor and softener clogs the wicking. Cold + a sport detergent or vinegar soak kills the smell instead.',
-  },
-  {
-    name: 'Everyday colors & darks',
-    settings: 'Cold · normal · machine dry low',
-    dry: 'low',
-    items: ['Khaki chino', 'Jeans (inside out)', 'Colored tees', 'Colored socks'],
-    note: 'Jeans and chinos last longer hung, but low-tumble is fine. Wash new or saturated items on their own the first couple of washes.',
-  },
-  {
-    name: 'Whites',
-    settings: 'Warm / hot OK · oxygen brightener (OxiClean) · machine dry',
-    dry: 'tumble',
-    items: ['White tees', 'White socks', 'White boxers & underwear'],
-    note: 'The one load that can take heat and a brightener to stay crisp. Keep your white dress shirts out of here — those go in Nice cottons and hang.',
-  },
-  {
-    name: 'Towels',
-    settings: 'Warm / hot · no fabric softener · machine dry',
-    dry: 'tumble',
-    items: ['Bath & hand towels'],
-    note: 'No softener ever — it coats the fibers and kills absorbency. An occasional vinegar rinse strips buildup. Dry fully so they don’t mildew. Their own load (they shed lint on everything).',
-  },
-  {
-    name: 'Sheets',
-    settings: 'Warm · normal · machine dry',
-    dry: 'tumble',
-    items: ['Bed sheets & pillowcases'],
-    note: 'Own load, weekly — and keep them away from towels, which lint all over them.',
-  },
-  {
-    name: 'Dry clean only',
+    name: 'Dry clean',
     settings: 'No machine — dry clean or steam between wears',
     dry: 'dryclean',
     items: ['Navy suit (jacket + trousers)', 'Glen plaid blazer'],
-    note: 'Steam at home between wears and dry-clean sparingly — over-cleaning wears tailoring out faster than wearing it does.',
+    note: 'Steam at home between wears; dry-clean sparingly.',
   },
 ];
 
@@ -132,7 +107,7 @@ const groups = [
     title: 'Base layers & socks',
     rows: [
       { item: 'Boxers ×8', sub: '', fabric: 'Cotton / synthetic', wash: 'Warm', dry: 'tumble', notes: 'Goes with whites (light) or everyday (dark). Tumble fine.' },
-      { item: 'Pantherella dress socks ×4', sub: '', fabric: 'Wool blend', wash: 'Cold, gentle', dry: 'flat', notes: 'Wash with delicates; lay flat. Navy, charcoal, brown, black.' },
+      { item: 'Pantherella dress socks ×4', sub: '', fabric: 'Wool blend', wash: 'Cold, wool wash', dry: 'flat', notes: 'Wash with the wool load; lay flat. Navy, charcoal, brown, black.' },
       { item: 'Athletic / no-show socks', sub: '', fabric: 'Synthetic / cotton', wash: 'Normal', dry: 'tumble', notes: 'Everyday load; tumble fine.' },
     ],
   },
@@ -173,29 +148,52 @@ const footwear = [
       </header>
 
       <div class="callout">
-        <strong>The whole system in one line:</strong> cold water for everything you
-        care about; warm or hot only for whites, towels, and sheets — and merino,
-        polos, and tailoring never see the dryer.
+        <strong>The whole system in one line:</strong> one cold load for your clothes,
+        one warm load for towels and sheets, and a rare cold wash for the wool — then
+        sort the clothes load at the dryer.
       </div>
 
       <section>
         <h2>By load</h2>
-        <p>What to throw in together, and on what settings.</p>
+        <p>
+          Minimized to two machine loads plus a rare wool wash. The trick: wash
+          together, then sort at the dryer.
+        </p>
         <div class="loads">
           {loads.map((load) => (
             <div class="load-card">
               <div class="load-head">
                 <h3>{load.name}</h3>
-                <span class={`dry-badge ${dryMeta[load.dry].cls}`}>{dryMeta[load.dry].label}</span>
+                {load.dry && (
+                  <span class={`dry-badge ${dryMeta[load.dry].cls}`}>{dryMeta[load.dry].label}</span>
+                )}
               </div>
               <p class="load-settings">{load.settings}</p>
-              <ul class="load-items">
-                {load.items.map((it) => <li>{it}</li>)}
-              </ul>
+              {load.drySort ? (
+                <div class="dry-sort">
+                  {load.drySort.map((g) => (
+                    <div class="sort-row">
+                      <span class={`dry-badge ${dryMeta[g.dry].cls}`}>{dryMeta[g.dry].label}</span>
+                      <span class="sort-items">{g.items}</span>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <ul class="load-items">
+                  {load.items?.map((it) => <li>{it}</li>)}
+                </ul>
+              )}
               <p class="load-note">{load.note}</p>
             </div>
           ))}
         </div>
+        <p class="loads-foot">
+          Two compromises, neither does any damage: white basics washed cold with
+          colors slowly dull (fine for socks and tees — your white dress shirts hang
+          either way), and towels share a little lint with the sheets. Want crisp
+          whites and lint-free sheets? Split into three — clothes (cold), whites +
+          sheets (warm + OxiClean), towels solo.
+        </p>
       </section>
 
       <section>
@@ -241,7 +239,7 @@ const footwear = [
           <li><strong>Wool &amp; delicates:</strong> Eucalan (no-rinse) or The Laundress Wool &amp; Cashmere — enzyme-free, so it won’t eat the merino.</li>
           <li><strong>Everything else:</strong> a normal detergent (Dirty Labs or Tide Free &amp; Gentle). Keep it off wool.</li>
           <li><strong>Activewear:</strong> a sport detergent (Hex, WIN) or a ½-cup white-vinegar cold soak for odor.</li>
-          <li><strong>Whites:</strong> add an oxygen brightener (OxiClean) on warm.</li>
+          <li><strong>Whites, towels &amp; sheets:</strong> an oxygen brightener (OxiClean) on warm — color-safe, lifts body oils and yellowing.</li>
         </ul>
       </section>
 
@@ -341,9 +339,36 @@ const footwear = [
 
       /* Load cards */
       .loads {
-        display: grid;
+        display: flex;
+        flex-direction: column;
         gap: 1rem;
-        grid-template-columns: repeat(2, 1fr);
+      }
+      .dry-sort {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-bottom: 0.85rem;
+      }
+      .sort-row {
+        display: flex;
+        align-items: baseline;
+        gap: 0.65rem;
+      }
+      .sort-row .dry-badge {
+        flex-shrink: 0;
+        min-width: 5.5rem;
+        text-align: center;
+      }
+      .sort-items {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        line-height: 1.4;
+      }
+      .loads-foot {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        line-height: 1.55;
+        margin-top: 1.25rem;
       }
       .load-card {
         background: var(--cream-dark);
@@ -409,8 +434,8 @@ const footwear = [
       .cell-notes { font-size: 0.82rem; color: var(--text-muted); min-width: 14rem; }
 
       @media (max-width: 720px) {
-        .loads { grid-template-columns: 1fr; }
         .page-header h1 { font-size: 2.25rem; }
+        .sort-row { flex-direction: column; gap: 0.2rem; }
       }
     </style>
   </body>
