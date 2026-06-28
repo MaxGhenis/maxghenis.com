@@ -1,0 +1,255 @@
+{
+  "meta": {
+    "total_giving_usd": 26300000000.0,
+    "total_giving_source": "MacKenzie Scott cumulative giving since 2019, ~$26.3B to >1,600 orgs as of Dec 2025 ($7.17B in 2025 alone). CNBC 2025-12-13; Alliance Magazine 2025.",
+    "base_year": 2026,
+    "discount_rate": 0.03,
+    "cost_per_qaly_floor_usd": 5000
+  },
+  "conversions": {
+    "qaly_per_death_averted": {
+      "remaining_life_expectancy": {
+        "dist": "normal",
+        "mean": 26,
+        "sd": 4,
+        "min": 5
+      },
+      "utility_weight": {
+        "dist": "triangular",
+        "low": 0.6,
+        "mode": 0.78,
+        "high": 0.92
+      },
+      "source": "Remaining life expectancy ~26y for low-income adults ~age 55 (the populations in Miller et al. 2021 and Bailey & Goodman-Bacon 2015); utility weight ~0.78 typical for this age/health. Discounted at 3%."
+    },
+    "vsly_usd": {
+      "dist": "triangular",
+      "low": 231000,
+      "mode": 611000,
+      "high": 1030000,
+      "source": "HHS ASPE Standard Values for Regulatory Analysis 2026: VSLY central $611k (3% discount), $1.03M (7%); 2024 low estimate $231k. NOTE the high end reflects 7% discounting while QALYs here use 3%, so the monetization spans discount conventions and is approximate (affects only the $-value / benefit-cost ratio, never the QALY count)."
+    },
+    "frontier_cost_per_qaly_usd": {
+      "dist": "loguniform",
+      "low": 50,
+      "high": 150,
+      "source": "GiveWell long-lasting insecticide-treated nets ~$78 per DALY averted ($3,340 per life saved); top-charity range ~$50-150 per QALY/DALY."
+    }
+  },
+  "realization_factor": {
+    "dist": "triangular",
+    "low": 0.55,
+    "mode": 0.8,
+    "high": 1.1,
+    "source": "Implementation/attribution only (evidence quality now lives in causal_credibility). Center for Effective Philanthropy (2023): large unrestricted gifts materially expand recipient capacity/reach."
+  },
+  "evidence_tiers": {
+    "randomized": {
+      "mean": 0.85,
+      "concentration": 22,
+      "design": "RCT / clean natural randomization (e.g., lottery)"
+    },
+    "strong_quasi": {
+      "mean": 0.65,
+      "concentration": 13,
+      "design": "Credible quasi-experiment (DD/IV) with admin data and checks"
+    },
+    "moderate_quasi": {
+      "mean": 0.45,
+      "concentration": 8,
+      "design": "Quasi-experiment with notable concerns or a contested literature"
+    },
+    "observational": {
+      "mean": 0.22,
+      "concentration": 6,
+      "design": "Associational; confounding-prone"
+    },
+    "projection": {
+      "mean": 0.15,
+      "concentration": 6,
+      "design": "Model/IAM projection; no direct causal estimate for this lever"
+    },
+    "assumption": {
+      "mean": 0.07,
+      "concentration": 9,
+      "design": "No causal health evidence; skeptical expert prior"
+    }
+  },
+  "allocation_concentration": 60,
+  "archetypes": {
+    "health_coverage": {
+      "label": "Health - insurance & access",
+      "allocation_share": 0.06,
+      "method": "cost_per_life",
+      "causal_credibility": "strong_quasi",
+      "identification": "DD across staggered state Medicaid expansions with linked administrative mortality (Miller et al. 2021). Strong; Oregon HIE RCT (null on 2-yr physical health) tempers it, hence not the top tier.            # cost_per_qaly = cost_per_life / qaly_per_death",
+      "cost_per_life_usd": {
+        "dist": "loguniform",
+        "low": 327000,
+        "high": 867000
+      },
+      "source": "Miller, Johnson & Wherry (2021), QJE 136(3): Medicaid expansion saved ~1 life/yr per 239-316 adults gaining coverage; implied $327k-$867k per life saved (0.132 pp annual mortality decline, 9.4% reduction)."
+    },
+    "health_chc": {
+      "label": "Health - community health centers",
+      "allocation_share": 0.05,
+      "method": "cost_per_qaly_derived_chc",
+      "causal_credibility": "moderate_quasi",
+      "identification": "Event-study/DD on CHC rollout (Bailey & Goodman-Bacon 2015). Credible but 1960s-70s rollout with documented spatial-spillover concerns in later re-analyses; external validity to today's CHCs uncertain.  # = medicare_cost_per_lifeyear * chc_fraction",
+      "medicare_cost_per_lifeyear_usd": {
+        "dist": "loguniform",
+        "low": 100000,
+        "high": 300000
+      },
+      "chc_fraction_of_medicare": {
+        "dist": "uniform",
+        "low": 0.125,
+        "high": 0.333
+      },
+      "source": "Bailey & Goodman-Bacon (2015), AER 105(3): CHCs cut mortality among 50+ by ~2% within a decade, achieving the reduction at 1/8 to 1/3 the cost of the equivalent reduction through Medicare."
+    },
+    "health_mental": {
+      "label": "Health - mental & behavioral",
+      "allocation_share": 0.04,
+      "method": "cost_per_qaly",
+      "causal_credibility": "randomized",
+      "identification": "ICERs come from RCTs of collaborative care for depression (high internal validity). Discount here is mostly attribution (does Scott's grant fund this exact model), handled by realization, not identification.",
+      "cost_per_qaly_usd": {
+        "dist": "lognormal_ci",
+        "low": 15000,
+        "high": 90000
+      },
+      "source": "Collaborative-care depression systematic reviews (e.g., Jacob et al.; community guide): ICERs ~$17k-$49.5k/QALY (healthcare perspective), adolescents $18,239/QALY; program cost $104-$639/person/yr."
+    },
+    "econ_cash": {
+      "label": "Economic security - cash & financial",
+      "allocation_share": 0.08,
+      "method": "cost_per_qaly",
+      "causal_credibility": "randomized",
+      "identification": "Lottery randomization (Cesarini et al. 2016) credibly estimates a ~null adult-mortality effect of income. High credibility for a SMALL effect: we trust the estimate, and the estimate is that there is little here.",
+      "cost_per_qaly_usd": {
+        "dist": "lognormal_ci",
+        "low": 80000,
+        "high": 2000000
+      },
+      "source": "Cesarini et al. (2016, QJE) lottery study finds ~zero causal effect of income on adult mortality in a rich country; EITC health effects exist but are contested/confounded. Most value here is non-health consumption and wellbeing, which QALYs do not capture -> high $/QALY, wide."
+    },
+    "econ_food": {
+      "label": "Economic security - food security",
+      "allocation_share": 0.07,
+      "method": "cost_per_qaly",
+      "causal_credibility": "observational",
+      "identification": "SNAP/health links are largely associational with endogenous take-up (sicker or poorer households select in/out); strong confounding risk. The cost-per-QALY assumes the effect is real; credibility says it may not be causal.",
+      "cost_per_qaly_usd": {
+        "dist": "lognormal_ci",
+        "low": 20000,
+        "high": 200000
+      },
+      "source": "Cost-effectiveness range CONDITIONAL on the association being causal, anchored to (not derived from) CBPP syntheses and food-is-medicine RCTs: SNAP linked to ~$1,400/yr lower health costs and ~4% fewer hospitalizations (46% among food-insecure seniors). Causal doubt is carried by the observational credibility tier, NOT by inflating this range (avoids double-counting)."
+    },
+    "econ_housing": {
+      "label": "Economic security - housing & homelessness",
+      "allocation_share": 0.08,
+      "method": "cost_per_qaly",
+      "causal_credibility": "moderate_quasi",
+      "identification": "NASEM (2018) judged the PSH health evidence MIXED: few RCTs, mostly pre/post and quasi-experimental, contested cost-savings. Real signal for high-need subgroups, weak identification overall.",
+      "cost_per_qaly_usd": {
+        "dist": "lognormal_ci",
+        "low": 20000,
+        "high": 150000
+      },
+      "source": "NASEM (2018) Permanent Supportive Housing review. The ~$62,493/QALY point is the Housing & Health Study, an HIV-positive unstably-housed cohort that NASEM reviews (not general chronic homelessness); PSH frequently cost-saving ($6,875-$33,502/person/yr) for high-need groups. Range conditional on a real effect; identification doubt is in the credibility tier."
+    },
+    "econ_workforce": {
+      "label": "Economic security - workforce & mobility",
+      "allocation_share": 0.08,
+      "method": "cost_per_qaly",
+      "causal_credibility": "observational",
+      "identification": "Health effect inferred from the income-health gradient with a causal discount; little direct experimental evidence that workforce grants move health. Consistent with the credible ~null income-mortality result.",
+      "cost_per_qaly_usd": {
+        "dist": "lognormal_ci",
+        "low": 40000,
+        "high": 600000
+      },
+      "source": "Cost-effectiveness CONDITIONAL on workforce/earnings gains translating to health via the income-health gradient. The causal doubt (~null per Cesarini et al. 2016) is carried by the observational credibility tier, not this range. Most value is economic, not health -> high $/QALY, wide."
+    },
+    "education": {
+      "label": "Education (HBCUs, comm. college, scholarships)",
+      "allocation_share": 0.18,
+      "method": "cost_per_qaly",
+      "causal_credibility": "moderate_quasi",
+      "identification": "Compulsory-schooling IV/quasi-experiments (Lleras-Muney; Lager & Torssander; Dutch reform) are credible but the literature is genuinely contested \u2014 Clark & Royer (2013) find ~null mortality effects. Wide.",
+      "cost_per_qaly_usd": {
+        "dist": "lognormal_ci",
+        "low": 40000,
+        "high": 600000
+      },
+      "source": "van Kippersluis, O'Donnell & van Doorslaer (2011, Journal of Human Resources 46(4), Dutch reform): +1 yr schooling -> ~6% lower mortality; Lleras-Muney (2005); Card returns to schooling. Long lag; large non-health (earnings) value excluded."
+    },
+    "equity_justice": {
+      "label": "Equity & justice",
+      "allocation_share": 0.22,
+      "method": "cost_per_qaly",
+      "causal_credibility": "assumption",
+      "identification": "No credible causal estimate links Scott's equity/justice grants to QALYs. Plausible indirect pathways (e.g., incarceration-mortality) exist but attribution is speculative; value is overwhelmingly non-health.",
+      "cost_per_qaly_usd": {
+        "dist": "lognormal_ci",
+        "low": 50000,
+        "high": 2000000
+      },
+      "source": "Racial equity, criminal-justice reform, immigration, gender. Health pathway is weak/indirect (e.g., reduced incarceration); most value is non-health (rights, fairness, opportunity). Very wide."
+    },
+    "civic_democracy": {
+      "label": "Civic / democracy / philanthropy infra",
+      "allocation_share": 0.04,
+      "method": "cost_per_qaly",
+      "causal_credibility": "assumption",
+      "identification": "No causal health evidence; value is civic/institutional.",
+      "cost_per_qaly_usd": {
+        "dist": "lognormal_ci",
+        "low": 100000,
+        "high": 5000000
+      },
+      "source": "Negligible direct health pathway; value is civic and institutional."
+    },
+    "arts_culture": {
+      "label": "Arts & culture",
+      "allocation_share": 0.03,
+      "method": "cost_per_qaly",
+      "causal_credibility": "assumption",
+      "identification": "Arts-and-health literature exists (WHO 2019; Bygren et al.) but is observational and about participation programs, not institutional grants. Treated as a skeptical near-zero prior.",
+      "cost_per_qaly_usd": {
+        "dist": "lognormal_ci",
+        "low": 200000,
+        "high": 10000000
+      },
+      "source": "Negligible direct health pathway; wellbeing value not captured by QALYs."
+    },
+    "environment": {
+      "label": "Environment / climate",
+      "allocation_share": 0.04,
+      "method": "cost_per_qaly",
+      "causal_credibility": "projection",
+      "identification": "Mortality cost of carbon is an integrated-assessment-model projection (Bressler 2021), not a causal estimate of a gift's effect; abatement attribution of diffuse climate philanthropy is speculative.",
+      "cost_per_qaly_usd": {
+        "dist": "lognormal_ci",
+        "low": 25000,
+        "high": 2000000
+      },
+      "source": "Wide $/QALY range ANCHORED TO, not derived from, Bressler (2021, Nature Communications) mortality cost of carbon (~4,434 tCO2 per excess death, 2020-2100): no abatement-leverage chain is modeled, so the effective $/QALY is a deliberately wide prior, not a calculation. Speculative."
+    },
+    "other_community": {
+      "label": "Other / general community",
+      "allocation_share": 0.03,
+      "method": "cost_per_qaly",
+      "causal_credibility": "observational",
+      "identification": "Blended social-services proxy; no single identified estimate.",
+      "cost_per_qaly_usd": {
+        "dist": "lognormal_ci",
+        "low": 30000,
+        "high": 400000
+      },
+      "source": "Blended social-services proxy for unclassified giving."
+    }
+  }
+}

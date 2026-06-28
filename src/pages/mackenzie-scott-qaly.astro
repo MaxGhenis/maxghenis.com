@@ -1,0 +1,167 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE } from '../consts';
+import QalyExplorer from '../components/QalyExplorer.tsx';
+import { PARAMS } from '../lib/mackenzie-qaly';
+
+const archetypeCount = Object.keys(PARAMS.archetypes).length;
+const REPO = 'https://github.com/MaxGhenis/mackenzie-scott-qaly';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead
+      title={`MacKenzie Scott's giving, in QALYs | ${SITE_TITLE}`}
+      description="An interactive, GiveWell-style cost-effectiveness model estimating the health impact — in quality-adjusted life-years — of MacKenzie Scott's $26.3B in lifetime philanthropy. Runs entirely in your browser."
+    />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <header class="page-header">
+        <h1>MacKenzie Scott's giving, in QALYs</h1>
+        <p class="page-description">
+          How much health does $26.3 billion of philanthropy buy? Drag the
+          assumptions and watch a Monte Carlo cost-effectiveness model rerun in
+          your browser.
+        </p>
+      </header>
+
+      <div class="intro prose">
+        <p>
+          MacKenzie Scott has given <strong>$26.3 billion</strong> to more than
+          1,600 organizations since 2019. I wanted one number for the health
+          impact: quality-adjusted life-years, the unit health economists use to
+          compare a death averted against years lived in better health.
+        </p>
+        <p>
+          The dollar total barely matters to the answer. What matters is the
+          cost-per-QALY of each cause and how credibly the evidence behind it
+          identifies cause and effect. So this is a GiveWell-style model:
+          {archetypeCount} intervention archetypes, each cost-per-QALY drawn
+          where possible from a published <em>causal</em> estimate (Medicaid
+          mortality, community health centers, supportive housing,
+          collaborative-care depression), each effect then shrunk toward zero in
+          proportion to how well its study identifies causation, and the whole
+          thing run live through thousands of Monte Carlo draws each time you
+          move a slider.
+        </p>
+        <p>
+          I built the model with Claude; every estimate below is a model output,
+          not a measured fact. The Python package, tests, and sources are on
+          <a href={REPO}>GitHub</a>; this page runs a faithful TypeScript port of
+          the same math, reading the same parameter file.
+        </p>
+        <p class="callout">
+          The single most important control is <strong>evidence stance</strong>.
+          Slide it from skeptical to credulous and the central estimate moves
+          from ~106,000 QALYs (weight each effect by study quality) to ~250,000
+          (trust every cited effect at face value). That gap — not the dollar
+          figure — is the real uncertainty.
+        </p>
+      </div>
+
+      <QalyExplorer client:load />
+
+      <section class="prose method">
+        <h2>How it works</h2>
+        <p>
+          Each Monte Carlo draw allocates the giving across the archetypes
+          (a Dirichlet around a best-guess split, since Scott doesn't publish
+          dollars-by-cause), assigns each a cost-per-QALY, and multiplies by two
+          independent discounts:
+        </p>
+        <ul>
+          <li>
+            <strong>Causal credibility</strong> — how well the effect is
+            identified, drawn from the study's design tier: a lottery RCT
+            (income → mortality) is trusted; an associational SNAP correlation is
+            shrunk hard; an assumption-only bucket (arts, civic) goes to near
+            zero. This is the <em>evidence stance</em> slider.
+          </li>
+          <li>
+            <strong>Realization</strong> — the fraction of the studied effect a
+            marginal unrestricted grant actually delivers.
+          </li>
+        </ul>
+        <p>
+          The "vs. global frontier" figure compares Scott's blended
+          cost-per-QALY to the best global-health buys (insecticide-treated nets
+          at roughly $80 per QALY), handicapping the frontier with the same
+          realization and credibility so it's a like-for-like comparison.
+        </p>
+
+        <h2>What this doesn't capture</h2>
+        <p>
+          A QALY is a <em>health</em> metric. Most of Scott's giving targets
+          economic mobility, education, and equity, whose value is largely
+          non-health — income, opportunity, rights, wellbeing. The model
+          therefore understates her total social impact; it answers one specific
+          question. The largest dollar buckets (equity &amp; justice at ~22%,
+          education at ~18%) contribute little <em>health</em> precisely because
+          no credible study ties those grants to QALYs, not because the giving
+          lacks value.
+        </p>
+
+        <h2>Key sources</h2>
+        <ul class="sources">
+          <li>Miller, Johnson &amp; Wherry (2021), <em>QJE</em> — Medicaid expansion mortality: ~$327k–$867k per life saved.</li>
+          <li>Bailey &amp; Goodman-Bacon (2015), <em>AER</em> — community health centers cut 50+ mortality at ⅛–⅓ the cost of Medicare.</li>
+          <li>NASEM (2018); Housing &amp; Health Study — permanent supportive housing ~$62,493/QALY.</li>
+          <li>Collaborative-care depression reviews (Gilbody; Community Guide) — ~$17k–$49.5k/QALY.</li>
+          <li>Cesarini et al. (2016), <em>QJE</em> — lottery evidence of a ~null causal income→mortality effect.</li>
+          <li>HHS ASPE (2026) — value of a statistical life-year, $611k central.</li>
+          <li>GiveWell — global-health frontier (~$78/DALY for bed nets).</li>
+        </ul>
+        <p>
+          Full annotated bibliography, parameter file, and the 33-test Python
+          suite: <a href={REPO}>github.com/MaxGhenis/mackenzie-scott-qaly</a>.
+        </p>
+      </section>
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  main {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+  .page-header {
+    margin-bottom: 1.5rem;
+  }
+  .page-description {
+    color: var(--text-muted);
+    font-size: var(--text-lg);
+    max-width: 640px;
+  }
+  .intro {
+    margin: 0 0 2rem;
+  }
+  .intro.prose,
+  .method.prose {
+    max-width: 760px;
+    margin-left: 0;
+  }
+  .callout {
+    background: var(--amber-glow);
+    border-left: 4px solid var(--accent);
+    padding: 1rem 1.25rem;
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    color: var(--text-secondary);
+  }
+  .method {
+    margin-top: 3rem;
+  }
+  .sources {
+    font-size: var(--text-sm);
+  }
+  .sources li {
+    margin-bottom: 0.5em;
+  }
+</style>
