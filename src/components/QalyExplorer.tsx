@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
+  ARCHETYPE_KEYS,
   ARCHETYPES,
   computeAll,
   fmtDollars,
@@ -471,39 +472,66 @@ function Histogram(props: { hist: { x: number; count: number }[]; medianLog: num
   );
 }
 
+// Concise display names (the model labels are long; drop prefixes/parentheticals).
+const SHORT_LABELS: Record<string, string> = {
+  health_mental: "Mental & behavioral health",
+  health_coverage: "Health insurance & access",
+  health_chc: "Community health centers",
+  econ_cash: "Cash & financial security",
+  econ_food: "Food security",
+  econ_housing: "Housing & homelessness",
+  econ_workforce: "Workforce & mobility",
+  education: "Education",
+  equity_justice: "Equity & justice",
+  civic_democracy: "Civic / democracy",
+  arts_culture: "Arts & culture",
+  environment: "Environment / climate",
+  other_community: "Other / general community",
+};
+
+// Map full model labels -> short labels, for shortening sensitivity-driver names.
+const LABEL_TO_SHORT: Record<string, string> = Object.fromEntries(
+  ARCHETYPE_KEYS.map((k, i) => [ARCHETYPES[i].label, SHORT_LABELS[k] ?? ARCHETYPES[i].label]),
+);
+
+function shortenDriver(name: string): string {
+  let out = name;
+  for (const [full, short] of Object.entries(LABEL_TO_SHORT)) out = out.replace(full, short);
+  return out;
+}
+
 function ArchetypeBars(props: { summary: Summary }) {
   const rows = props.summary.perArchetype;
   const maxV = Math.max(...rows.map((r) => r.meanQalys), 1);
   return (
     <div>
       {rows.map((r) => (
-        <div
-          key={r.key}
-          style={{
-            display: "grid",
-            gridTemplateColumns: "minmax(0,1.6fr) 3fr auto",
-            gap: "0.5rem",
-            alignItems: "center",
-            marginBottom: 5,
-          }}
-        >
-          <div style={{ fontSize: "0.72rem", color: C.inkSoft, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }} title={r.label}>
-            {r.label}
+        <div key={r.key} style={{ marginBottom: "0.6rem" }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "baseline",
+              gap: "0.75rem",
+              marginBottom: 3,
+            }}
+          >
+            <span style={{ fontSize: "0.82rem", color: C.ink }}>{SHORT_LABELS[r.key] ?? r.label}</span>
+            <span style={{ fontSize: "0.8rem", fontFamily: MONO, color: C.ink, whiteSpace: "nowrap", flexShrink: 0 }}>
+              {fmtQalys(r.meanQalys)}
+              <span style={{ color: C.inkMuted, fontSize: "0.7rem" }}> · {TIER_LABELS[r.tier] ?? r.tier}</span>
+            </span>
           </div>
-          <div style={{ background: C.borderSoft, borderRadius: 4, height: 16, position: "relative" }}>
+          <div style={{ background: C.borderSoft, borderRadius: 4, height: 9 }}>
             <div
               style={{
                 width: `${(r.meanQalys / maxV) * 100}%`,
                 background: C.amber,
                 height: "100%",
                 borderRadius: 4,
-                minWidth: 1,
+                minWidth: 2,
               }}
             />
-          </div>
-          <div style={{ fontSize: "0.72rem", fontFamily: MONO, color: C.ink, textAlign: "right", minWidth: 86 }}>
-            {fmtQalys(r.meanQalys)}
-            <span style={{ color: C.inkMuted }}> · {TIER_LABELS[r.tier] ?? r.tier}</span>
           </div>
         </div>
       ))}
@@ -534,7 +562,10 @@ function Tornado(props: { drivers: Driver[] }) {
               fill={C.inkSoft}
               textAnchor={d.rho >= 0 ? "end" : "start"}
             >
-              {d.name.length > 46 ? d.name.slice(0, 45) + "…" : d.name}
+              {(() => {
+                const n = shortenDriver(d.name);
+                return n.length > 42 ? n.slice(0, 41) + "…" : n;
+              })()}
             </text>
             <text x={x + (d.rho >= 0 ? w + 4 : -4)} y={y + (rowH - 10) / 2 + 4} fontSize={10} fontFamily={MONO} fill={C.inkMuted} textAnchor={d.rho >= 0 ? "start" : "end"}>
               {d.rho >= 0 ? "+" : ""}
