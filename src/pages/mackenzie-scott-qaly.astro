@@ -5,6 +5,7 @@ import Footer from '../components/Footer.astro';
 import { SITE_TITLE } from '../consts';
 import QalyExplorer from '../components/QalyExplorer.tsx';
 import { PARAMS } from '../lib/mackenzie-qaly';
+import ogImage from '../assets/og-mackenzie-qaly.png';
 
 const archetypeCount = Object.keys(PARAMS.archetypes).length;
 const REPO = 'https://github.com/MaxGhenis/mackenzie-scott-qaly';
@@ -16,6 +17,7 @@ const REPO = 'https://github.com/MaxGhenis/mackenzie-scott-qaly';
     <BaseHead
       title={`MacKenzie Scott's giving, in QALYs | ${SITE_TITLE}`}
       description="An interactive, GiveWell-style cost-effectiveness model estimating the health impact — in quality-adjusted life-years — of MacKenzie Scott's $26.3B in lifetime philanthropy. Runs entirely in your browser."
+      image={ogImage}
     />
   </head>
   <body>
