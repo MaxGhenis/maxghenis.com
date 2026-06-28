@@ -50,7 +50,8 @@ export interface Params {
   conversions: {
     qaly_per_death_averted: { remaining_life_expectancy: DistSpec; utility_weight: DistSpec };
     vsly_usd: DistSpec;
-    frontier_cost_per_qaly_usd: DistSpec;
+    frontier_cost_per_daly_usd: DistSpec;
+    daly_to_qaly_factor: number;
   };
   realization_factor: { dist: "triangular"; low: number; mode: number; high: number };
   evidence_tiers: Record<string, { mean: number; concentration: number; design: string }>;
@@ -281,7 +282,8 @@ export function runModel(overrides: Overrides = {}): ModelResult {
 
   const qd = p.conversions.qaly_per_death_averted;
   const vslySpec = p.conversions.vsly_usd;
-  const frontierSpec = p.conversions.frontier_cost_per_qaly_usd;
+  const frontierSpec = p.conversions.frontier_cost_per_daly_usd; // per DALY averted
+  const dalyToQaly = p.conversions.daly_to_qaly_factor ?? 1;
   const randomizedTier = p.evidence_tiers.randomized;
 
   // Precompute per-archetype beta(a, b) credibility parameters ONCE — the tier
@@ -346,9 +348,10 @@ export function runModel(overrides: Overrides = {}): ModelResult {
     totalQalys[i] = total;
 
     // Like-for-like frontier handicap (same realization + RCT-grade credibility).
+    // frontierCpq is $ per DALY averted; dalyToQaly converts to QALY-equivalents.
     const frontierCpq = sampleOne(frontierSpec, rng);
     const frontierCred = clampUnit(rng.beta(frontierA, frontierB));
-    frontierQalys[i] = (giving * real * frontierCred) / frontierCpq;
+    frontierQalys[i] = (giving * real * frontierCred * dalyToQaly) / frontierCpq;
 
     const vsly = sampleOne(vslySpec, rng);
     valueUsd[i] = total * vsly;

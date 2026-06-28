@@ -29,12 +29,13 @@
       "high": 1030000,
       "source": "HHS ASPE Standard Values for Regulatory Analysis 2026: VSLY central $611k (3% discount), $1.03M (7%); 2024 low estimate $231k. NOTE the high end reflects 7% discounting while QALYs here use 3%, so the monetization spans discount conventions and is approximate (affects only the $-value / benefit-cost ratio, never the QALY count)."
     },
-    "frontier_cost_per_qaly_usd": {
+    "frontier_cost_per_daly_usd": {
       "dist": "loguniform",
       "low": 50,
       "high": 150,
-      "source": "GiveWell long-lasting insecticide-treated nets ~$78 per DALY averted ($3,340 per life saved); top-charity range ~$50-150 per QALY/DALY."
-    }
+      "source": "GiveWell long-lasting insecticide-treated nets ~$78 per DALY averted ($3,340 per life saved); top-charity range ~$50-150 per DALY."
+    },
+    "daly_to_qaly_factor": 1.0
   },
   "realization_factor": {
     "dist": "triangular",
