@@ -160,7 +160,7 @@ export default function QalyExplorer() {
             step={0.1}
             onChange={setGivingB}
             display={`$${givingB.toFixed(1)}B`}
-            help="Lifetime total. $26.3B as of end-2025."
+            help="Lifetime total. Default $26.3B; Yield Giving says over $26B in 2,700+ gifts."
           />
           <Slider
             label="Discount rate"

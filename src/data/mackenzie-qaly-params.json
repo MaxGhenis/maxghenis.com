@@ -1,7 +1,7 @@
 {
   "meta": {
     "total_giving_usd": 26300000000.0,
-    "total_giving_source": "MacKenzie Scott cumulative giving since 2019, ~$26.3B to >1,600 orgs as of Dec 2025 ($7.17B in 2025 alone). CNBC 2025-12-13; Alliance Magazine 2025.",
+    "total_giving_source": "Model uses the ~$26.3B cumulative estimate reported for year-end 2025; official Yield Giving copy says the network has yielded over $26B in 2,700+ gifts to nonprofit teams.",
     "base_year": 2026,
     "discount_rate": 0.03,
     "cost_per_qaly_floor_usd": 5000
@@ -29,13 +29,12 @@
       "high": 1030000,
       "source": "HHS ASPE Standard Values for Regulatory Analysis 2026: VSLY central $611k (3% discount), $1.03M (7%); 2024 low estimate $231k. NOTE the high end reflects 7% discounting while QALYs here use 3%, so the monetization spans discount conventions and is approximate (affects only the $-value / benefit-cost ratio, never the QALY count)."
     },
-    "frontier_cost_per_daly_usd": {
+    "frontier_cost_per_qaly_usd": {
       "dist": "loguniform",
-      "low": 50,
-      "high": 150,
-      "source": "GiveWell long-lasting insecticide-treated nets ~$78 per DALY averted ($3,340 per life saved); top-charity range ~$50-150 per DALY."
-    },
-    "daly_to_qaly_factor": 1.0
+      "low": 100,
+      "high": 250,
+      "source": "GiveWell impact estimates currently put malaria nets at about $5,500 per life saved and malaria medication at about $4,000 per life saved. Converted to a discounted child-life QALY-equivalent, this implies roughly low-hundreds of dollars per QALY; model uses a deliberately broad $100-$250/QALY-equivalent frontier range."
+    }
   },
   "realization_factor": {
     "dist": "triangular",
@@ -86,10 +85,10 @@
       "identification": "DD across staggered state Medicaid expansions with linked administrative mortality (Miller et al. 2021). Strong; Oregon HIE RCT (null on 2-yr physical health) tempers it, hence not the top tier.            # cost_per_qaly = cost_per_life / qaly_per_death",
       "cost_per_life_usd": {
         "dist": "loguniform",
-        "low": 327000,
-        "high": 867000
+        "low": 525000,
+        "high": 1400000
       },
-      "source": "Miller, Johnson & Wherry (2021), QJE 136(3): Medicaid expansion saved ~1 life/yr per 239-316 adults gaining coverage; implied $327k-$867k per life saved (0.132 pp annual mortality decline, 9.4% reduction)."
+      "source": "Miller, Johnson & Wherry (2021), QJE 136(3): ACA Medicaid expansion reduced annual mortality by 0.132 pp (9.4%). Cost-per-life range comes from Sommers, Gawande & Baicker's Medicaid cost-benefit estimate of $327k-$867k per life saved in 2007 dollars, CPI-U inflated to roughly $525k-$1.4M in 2026 dollars."
     },
     "health_chc": {
       "label": "Health - community health centers",

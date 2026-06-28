@@ -12,15 +12,16 @@ const REPO = 'https://github.com/MaxGhenis/mackenzie-scott-qaly';
 
 // Sources for inline citation of every falsifiable claim on the page.
 const S = {
-  giving: 'https://www.cnbc.com/2025/12/13/mackenzie-scott-revealed-her-total-charitable-donations-for-2025.html',
+  giving: 'https://yieldgiving.com/',
   medicaid: 'https://academic.oup.com/qje/article-abstract/136/3/1783/6124639',
+  medicaidCost: 'https://www.nejm.org/doi/full/10.1056/NEJMp1202099',
   chc: 'https://www.aeaweb.org/articles?id=10.1257/aer.20120070',
   housing: 'https://nap.nationalacademies.org/read/25133/chapter/6',
   depression: 'https://link.springer.com/article/10.1186/1472-6963-10-19',
   income: 'https://academic.oup.com/qje/article/131/2/687/2606947',
   snap: 'https://www.cbpp.org/research/food-assistance/snap-is-linked-with-improved-health-outcomes-and-lower-health-care-costs',
   vsly: 'https://aspe.hhs.gov/sites/default/files/documents/2d83af5823915d81871334ee08ad03d9/Standard-RIA-Values-2026.pdf',
-  frontier: 'https://www.givewell.org/charities/amf',
+  frontier: 'https://www.givewell.org/impact-estimates',
 };
 ---
 
@@ -47,15 +48,17 @@ const S = {
 
       <div class="intro prose">
         <p>
-          MacKenzie Scott has given <a href={S.giving} target="_blank" rel="noopener"><strong>$26.3 billion</strong> to more than
-          1,600 organizations</a> since 2019. I wanted one number for the health
+          MacKenzie Scott's Yield Giving network has made <a href={S.giving} target="_blank" rel="noopener"><strong>over $26 billion</strong>
+          in 2,700+ gifts</a> since 2019. I model that as $26.3 billion and
+          wanted one number for the health
           impact: quality-adjusted life-years, the unit health economists use to
           compare a death averted against years lived in better health.
         </p>
         <p>
-          The dollar total barely matters to the answer. What matters is the
-          cost-per-QALY of each cause and how credibly the evidence behind it
-          identifies cause and effect. So this is a GiveWell-style model:
+          The dollar total sets the scale linearly. The hard part is estimating
+          health per dollar: the cost-per-QALY of each cause and how credibly
+          the evidence behind it identifies cause and effect. So this is a
+          GiveWell-style model:
           {archetypeCount} intervention archetypes, each cost-per-QALY drawn
           where possible from a published <em>causal</em> estimate
           (<a href={S.medicaid} target="_blank" rel="noopener">Medicaid mortality</a>,
@@ -70,15 +73,15 @@ const S = {
         <p>
           I built the model with Claude; every estimate below is a model output,
           not a measured fact. The Python package, tests, and sources are on
-          <a href={REPO}>GitHub</a>; this page runs a faithful TypeScript port of
-          the same math, reading the same parameter file.
+          <a href={REPO}>GitHub</a>; this page runs a checked TypeScript
+          implementation in the browser, reading the exported parameter file.
         </p>
         <p class="callout">
           The single most important control is <strong>evidence stance</strong>.
           Slide it from skeptical to credulous and the central estimate moves
-          from ~106,000 QALYs (weight each effect by study quality) to ~250,000
+          from ~98,000 QALYs (weight each effect by study quality) to ~238,000
           (trust every cited effect at face value). That gap — not the dollar
-          figure — is the real uncertainty.
+          figure's last decimal — is the real uncertainty.
         </p>
       </div>
 
@@ -109,11 +112,11 @@ const S = {
         <p>
           The "vs. global frontier" figure compares Scott's blended
           cost-per-QALY to the best global-health buys
-          (<a href={S.frontier} target="_blank" rel="noopener">insecticide-treated nets at ~$78 per DALY averted</a>),
+          (<a href={S.frontier} target="_blank" rel="noopener">GiveWell's malaria nets and medication at roughly $4,000-$5,500 per life saved</a>),
           handicapping the frontier with the same realization and credibility so
-          it's like-for-like. One honest caveat: that frontier figure is per
-          <em>DALY</em>, and I treat a DALY averted as ≈1 QALY — the standard
-          "one year of full health" convention, not a measured equivalence.
+          it's like-for-like. I convert those lives-saved estimates to a rough
+          $100-$250 per QALY-equivalent range; this is a benchmark, not a
+          claim that GiveWell itself reports QALYs.
         </p>
 
         <h2>What this doesn't capture</h2>
@@ -130,13 +133,13 @@ const S = {
 
         <h2>Key sources</h2>
         <ul class="sources">
-          <li><a href={S.medicaid} target="_blank" rel="noopener">Miller, Johnson &amp; Wherry (2021), <em>QJE</em></a> — Medicaid expansion mortality: ~$327k–$867k per life saved.</li>
+          <li><a href={S.medicaid} target="_blank" rel="noopener">Miller, Johnson &amp; Wherry (2021), <em>QJE</em></a> — Medicaid expansion mortality; <a href={S.medicaidCost} target="_blank" rel="noopener">Sommers, Gawande &amp; Baicker (2012)</a> — Medicaid cost-benefit, inflated here to ~$525k–$1.4M per life saved.</li>
           <li><a href={S.chc} target="_blank" rel="noopener">Bailey &amp; Goodman-Bacon (2015), <em>AER</em></a> — community health centers cut 50+ mortality at ⅛–⅓ the cost of Medicare.</li>
           <li><a href={S.housing} target="_blank" rel="noopener">NASEM (2018)</a>; Housing &amp; Health Study — permanent supportive housing ~$62,493/QALY.</li>
           <li><a href={S.depression} target="_blank" rel="noopener">Collaborative-care depression reviews</a> (Gilbody; Community Guide) — ~$17k–$49.5k/QALY.</li>
           <li><a href={S.income} target="_blank" rel="noopener">Cesarini et al. (2016), <em>QJE</em></a> — lottery evidence of a ~null causal income→mortality effect.</li>
           <li><a href={S.vsly} target="_blank" rel="noopener">HHS ASPE (2026)</a> — value of a statistical life-year, $611k central.</li>
-          <li><a href={S.frontier} target="_blank" rel="noopener">GiveWell</a> — global-health frontier (~$78/DALY for bed nets).</li>
+          <li><a href={S.frontier} target="_blank" rel="noopener">GiveWell</a> — global-health frontier cost per life saved, converted here to a rough QALY-equivalent benchmark.</li>
         </ul>
         <p>
           Full annotated bibliography, parameter file, and the 33-test Python
