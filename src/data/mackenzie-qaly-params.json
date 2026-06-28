@@ -1,7 +1,7 @@
 {
   "meta": {
     "total_giving_usd": 26300000000.0,
-    "total_giving_source": "Model uses the ~$26.3B cumulative estimate reported for year-end 2025; official Yield Giving copy says the network has yielded over $26B in 2,700+ gifts to nonprofit teams.",
+    "total_giving_source": "Model uses the ~$26.3B cumulative estimate reported for year-end 2025; [Yield Giving](https://yieldgiving.com/) says the network has yielded over $26B in 2,700+ gifts to nonprofit teams.",
     "base_year": 2026,
     "discount_rate": 0.03,
     "cost_per_qaly_floor_usd": 5000
@@ -20,20 +20,20 @@
         "mode": 0.78,
         "high": 0.92
       },
-      "source": "Remaining life expectancy ~26y for low-income adults ~age 55 (the populations in Miller et al. 2021 and Bailey & Goodman-Bacon 2015); utility weight ~0.78 typical for this age/health. Discounted at 3%."
+      "source": "Remaining life expectancy ~26y for low-income adults ~age 55 (the populations in [Miller, Johnson & Wherry 2021](https://www.nber.org/papers/w26081) and [Bailey & Goodman-Bacon 2015](https://www.aeaweb.org/articles?id=10.1257/aer.20120070)); utility weight ~0.78 typical for this age/health. Discounted at 3%."
     },
     "vsly_usd": {
       "dist": "triangular",
       "low": 231000,
       "mode": 611000,
       "high": 1030000,
-      "source": "HHS ASPE Standard Values for Regulatory Analysis 2026: VSLY central $611k (3% discount), $1.03M (7%); 2024 low estimate $231k. NOTE the high end reflects 7% discounting while QALYs here use 3%, so the monetization spans discount conventions and is approximate (affects only the $-value / benefit-cost ratio, never the QALY count)."
+      "source": "[HHS ASPE Standard Values for Regulatory Analysis 2026](https://aspe.hhs.gov/sites/default/files/documents/2d83af5823915d81871334ee08ad03d9/Standard-RIA-Values-2026.pdf): VSLY central $611k (3% discount), $1.03M (7%); 2024 low estimate $231k. NOTE the high end reflects 7% discounting while QALYs here use 3%, so the monetization spans discount conventions and is approximate (affects only the $-value / benefit-cost ratio, never the QALY count)."
     },
     "frontier_cost_per_qaly_usd": {
       "dist": "loguniform",
-      "low": 100,
-      "high": 250,
-      "source": "GiveWell impact estimates currently put malaria nets at about $5,500 per life saved and malaria medication at about $4,000 per life saved. Converted to a discounted child-life QALY-equivalent, this implies roughly low-hundreds of dollars per QALY; model uses a deliberately broad $100-$250/QALY-equivalent frontier range."
+      "low": 50,
+      "high": 150,
+      "source": "GiveWell reports global-health cost-effectiveness in lives saved and DALYs, not QALYs: its [current impact estimates](https://www.givewell.org/impact-estimates) put malaria nets around $5,500 per life saved, and an older [AMF/GiveWell summary](https://forum.effectivealtruism.org/posts/HbunzTyFPRwcYihg6/long-lasting-insecticide-treated-nets-usd3-340-per-life) reports about $3,340 per life saved and about $78-$100 per DALY averted. The model uses a single loguniform $50-$150/QALY-equivalent range, treating one DALY averted as approximately one QALY gained under the standard one-year-of-full-health convention."
     }
   },
   "realization_factor": {
@@ -41,7 +41,7 @@
     "low": 0.55,
     "mode": 0.8,
     "high": 1.1,
-    "source": "Implementation/attribution only (evidence quality now lives in causal_credibility). Center for Effective Philanthropy (2023): large unrestricted gifts materially expand recipient capacity/reach."
+    "source": "Implementation/attribution only (evidence quality now lives in causal_credibility). [Center for Effective Philanthropy (2023)](https://cep.org/wp-content/uploads/2023/11/BigGiftsStudy_Report_Y2_FNL.pdf): large unrestricted gifts materially expand recipient capacity/reach."
   },
   "evidence_tiers": {
     "randomized": {
@@ -85,10 +85,10 @@
       "identification": "DD across staggered state Medicaid expansions with linked administrative mortality (Miller et al. 2021). Strong; Oregon HIE RCT (null on 2-yr physical health) tempers it, hence not the top tier.            # cost_per_qaly = cost_per_life / qaly_per_death",
       "cost_per_life_usd": {
         "dist": "loguniform",
-        "low": 525000,
+        "low": 529000,
         "high": 1400000
       },
-      "source": "Miller, Johnson & Wherry (2021), QJE 136(3): ACA Medicaid expansion reduced annual mortality by 0.132 pp (9.4%). Cost-per-life range comes from Sommers, Gawande & Baicker's Medicaid cost-benefit estimate of $327k-$867k per life saved in 2007 dollars, CPI-U inflated to roughly $525k-$1.4M in 2026 dollars."
+      "source": "[Miller, Johnson & Wherry (2021)](https://www.nber.org/papers/w26081), QJE 136(3), estimate ACA Medicaid expansion reduced annual mortality by 0.132 percentage points (9.4%). Cost-per-life range comes from [Sommers, Baicker & Epstein (2012)](https://www.nejm.org/doi/full/10.1056/NEJMsa1202099), NEJM 367:1025, whose cost-benefit table reports $327k-$867k per life saved in 2007 dollars. Inflated with [FRED CPI-U (CPIAUCNS)](https://fred.stlouisfed.org/series/CPIAUCNS) from the 2007 annual average 207.342 to May 2026 335.123 (multiplier 1.616), this is $529k-$1.40M in 2026 dollars."
     },
     "health_chc": {
       "label": "Health - community health centers",
@@ -106,7 +106,7 @@
         "low": 0.125,
         "high": 0.333
       },
-      "source": "Bailey & Goodman-Bacon (2015), AER 105(3): CHCs cut mortality among 50+ by ~2% within a decade, achieving the reduction at 1/8 to 1/3 the cost of the equivalent reduction through Medicare."
+      "source": "[Bailey & Goodman-Bacon (2015)](https://www.aeaweb.org/articles?id=10.1257/aer.20120070), AER 105(3): CHCs cut mortality among 50+ by ~2% within a decade, achieving the reduction at 1/8 to 1/3 the cost of the equivalent reduction through Medicare."
     },
     "health_mental": {
       "label": "Health - mental & behavioral",
@@ -119,7 +119,7 @@
         "low": 15000,
         "high": 90000
       },
-      "source": "Collaborative-care depression systematic reviews (e.g., Jacob et al.; community guide): ICERs ~$17k-$49.5k/QALY (healthcare perspective), adolescents $18,239/QALY; program cost $104-$639/person/yr."
+      "source": "Collaborative-care depression systematic reviews (e.g., [Gilbody et al.](https://link.springer.com/article/10.1186/1472-6963-10-19) and the [Community Guide](https://www.thecommunityguide.org/findings/mental-health-and-mental-illness-collaborative-care-management-depressive-disorders.html)): ICERs ~$17k-$49.5k/QALY (healthcare perspective), adolescents $18,239/QALY; program cost $104-$639/person/yr."
     },
     "econ_cash": {
       "label": "Economic security - cash & financial",
@@ -132,7 +132,7 @@
         "low": 80000,
         "high": 2000000
       },
-      "source": "Cesarini et al. (2016, QJE) lottery study finds ~zero causal effect of income on adult mortality in a rich country; EITC health effects exist but are contested/confounded. Most value here is non-health consumption and wellbeing, which QALYs do not capture -> high $/QALY, wide."
+      "source": "[Cesarini et al. (2016, QJE)](https://academic.oup.com/qje/article/131/2/687/2606947) lottery study finds ~zero causal effect of income on adult mortality in a rich country; [EITC health evidence](https://academyhealth.org/sites/default/files/Updated.EITC%20Rapid%20Evidence%20Review%20FINAL.pdf) is mixed and confounded. Most value here is non-health consumption and wellbeing, which QALYs do not capture -> high $/QALY, wide."
     },
     "econ_food": {
       "label": "Economic security - food security",
@@ -145,7 +145,7 @@
         "low": 20000,
         "high": 200000
       },
-      "source": "Cost-effectiveness range CONDITIONAL on the association being causal, anchored to (not derived from) CBPP syntheses and food-is-medicine RCTs: SNAP linked to ~$1,400/yr lower health costs and ~4% fewer hospitalizations (46% among food-insecure seniors). Causal doubt is carried by the observational credibility tier, NOT by inflating this range (avoids double-counting)."
+      "source": "Cost-effectiveness range CONDITIONAL on the association being causal, anchored to (not derived from) [CBPP syntheses](https://www.cbpp.org/research/food-assistance/snap-is-linked-with-improved-health-outcomes-and-lower-health-care-costs) and food-is-medicine RCTs: SNAP linked to ~$1,400/yr lower health costs and ~4% fewer hospitalizations (46% among food-insecure seniors). Causal doubt is carried by the observational credibility tier, NOT by inflating this range (avoids double-counting)."
     },
     "econ_housing": {
       "label": "Economic security - housing & homelessness",
@@ -158,7 +158,7 @@
         "low": 20000,
         "high": 150000
       },
-      "source": "NASEM (2018) Permanent Supportive Housing review. The ~$62,493/QALY point is the Housing & Health Study, an HIV-positive unstably-housed cohort that NASEM reviews (not general chronic homelessness); PSH frequently cost-saving ($6,875-$33,502/person/yr) for high-need groups. Range conditional on a real effect; identification doubt is in the credibility tier."
+      "source": "[NASEM (2018) Permanent Supportive Housing review](https://nap.nationalacademies.org/read/25133/chapter/6). The ~$62,493/QALY point is the Housing & Health Study, an HIV-positive unstably-housed cohort that NASEM reviews (not general chronic homelessness); PSH frequently cost-saving ($6,875-$33,502/person/yr) for high-need groups. Range conditional on a real effect; identification doubt is in the credibility tier."
     },
     "econ_workforce": {
       "label": "Economic security - workforce & mobility",
@@ -171,7 +171,7 @@
         "low": 40000,
         "high": 600000
       },
-      "source": "Cost-effectiveness CONDITIONAL on workforce/earnings gains translating to health via the income-health gradient. The causal doubt (~null per Cesarini et al. 2016) is carried by the observational credibility tier, not this range. Most value is economic, not health -> high $/QALY, wide."
+      "source": "Cost-effectiveness CONDITIONAL on workforce/earnings gains translating to health via the income-health gradient. The causal doubt (~null per [Cesarini et al. 2016](https://academic.oup.com/qje/article/131/2/687/2606947)) is carried by the observational credibility tier, not this range. Most value is economic, not health -> high $/QALY, wide."
     },
     "education": {
       "label": "Education (HBCUs, comm. college, scholarships)",
@@ -184,7 +184,7 @@
         "low": 40000,
         "high": 600000
       },
-      "source": "van Kippersluis, O'Donnell & van Doorslaer (2011, Journal of Human Resources 46(4), Dutch reform): +1 yr schooling -> ~6% lower mortality; Lleras-Muney (2005); Card returns to schooling. Long lag; large non-health (earnings) value excluded."
+      "source": "[van Kippersluis, O'Donnell & van Doorslaer (2011)](https://jhr.uwpress.org/content/46/4/695.short), Journal of Human Resources 46(4), Dutch reform: +1 yr schooling -> ~6% lower mortality; [Lleras-Muney (2005)](https://academic.oup.com/restud/article-abstract/72/1/189/1581055); Card returns to schooling. Long lag; large non-health (earnings) value excluded."
     },
     "equity_justice": {
       "label": "Equity & justice",
@@ -197,7 +197,7 @@
         "low": 50000,
         "high": 2000000
       },
-      "source": "Racial equity, criminal-justice reform, immigration, gender. Health pathway is weak/indirect (e.g., reduced incarceration); most value is non-health (rights, fairness, opportunity). Very wide."
+      "source": "Cause mix informed by [HBS analysis of Yield Giving recipients](https://www.library.hbs.edu/working-knowledge/mackenzie-scotts-15-billion-pledge-what-the-data-says-about-her-epic-giving): racial equity, criminal-justice reform, immigration, gender. Health pathway is weak/indirect (e.g., reduced incarceration); most value is non-health (rights, fairness, opportunity). Very wide."
     },
     "civic_democracy": {
       "label": "Civic / democracy / philanthropy infra",
@@ -210,7 +210,7 @@
         "low": 100000,
         "high": 5000000
       },
-      "source": "Negligible direct health pathway; value is civic and institutional."
+      "source": "Cause mix informed by [HBS analysis of Yield Giving recipients](https://www.library.hbs.edu/working-knowledge/mackenzie-scotts-15-billion-pledge-what-the-data-says-about-her-epic-giving). Negligible direct health pathway; value is civic and institutional."
     },
     "arts_culture": {
       "label": "Arts & culture",
@@ -223,7 +223,7 @@
         "low": 200000,
         "high": 10000000
       },
-      "source": "Negligible direct health pathway; wellbeing value not captured by QALYs."
+      "source": "Arts-health evidence such as the [WHO 2019 scoping review](https://www.who.int/europe/publications/i/item/9789289054553) concerns participation and wellbeing, not institutional grants. Negligible direct health pathway; wellbeing value not captured by QALYs."
     },
     "environment": {
       "label": "Environment / climate",
@@ -236,7 +236,7 @@
         "low": 25000,
         "high": 2000000
       },
-      "source": "Wide $/QALY range ANCHORED TO, not derived from, Bressler (2021, Nature Communications) mortality cost of carbon (~4,434 tCO2 per excess death, 2020-2100): no abatement-leverage chain is modeled, so the effective $/QALY is a deliberately wide prior, not a calculation. Speculative."
+      "source": "Wide $/QALY range ANCHORED TO, not derived from, [Bressler (2021, Nature Communications)](https://www.nature.com/articles/s41467-021-24487-w) mortality cost of carbon (~4,434 tCO2 per excess death, 2020-2100): no abatement-leverage chain is modeled, so the effective $/QALY is a deliberately wide prior, not a calculation. Speculative."
     },
     "other_community": {
       "label": "Other / general community",
@@ -249,7 +249,7 @@
         "low": 30000,
         "high": 400000
       },
-      "source": "Blended social-services proxy for unclassified giving."
+      "source": "Blended social-services proxy for unclassified giving, with recipient mix informed by [HBS analysis of Yield Giving recipients](https://www.library.hbs.edu/working-knowledge/mackenzie-scotts-15-billion-pledge-what-the-data-says-about-her-epic-giving)."
     }
   }
 }

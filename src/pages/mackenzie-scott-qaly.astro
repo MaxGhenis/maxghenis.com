@@ -14,7 +14,8 @@ const REPO = 'https://github.com/MaxGhenis/mackenzie-scott-qaly';
 const S = {
   giving: 'https://yieldgiving.com/',
   medicaid: 'https://academic.oup.com/qje/article-abstract/136/3/1783/6124639',
-  medicaidCost: 'https://www.nejm.org/doi/full/10.1056/NEJMp1202099',
+  medicaidCost: 'https://www.nejm.org/doi/full/10.1056/NEJMsa1202099',
+  cpi: 'https://fred.stlouisfed.org/series/CPIAUCNS',
   chc: 'https://www.aeaweb.org/articles?id=10.1257/aer.20120070',
   housing: 'https://nap.nationalacademies.org/read/25133/chapter/6',
   depression: 'https://link.springer.com/article/10.1186/1472-6963-10-19',
@@ -22,6 +23,7 @@ const S = {
   snap: 'https://www.cbpp.org/research/food-assistance/snap-is-linked-with-improved-health-outcomes-and-lower-health-care-costs',
   vsly: 'https://aspe.hhs.gov/sites/default/files/documents/2d83af5823915d81871334ee08ad03d9/Standard-RIA-Values-2026.pdf',
   frontier: 'https://www.givewell.org/impact-estimates',
+  frontierOld: 'https://forum.effectivealtruism.org/posts/HbunzTyFPRwcYihg6/long-lasting-insecticide-treated-nets-usd3-340-per-life',
 };
 ---
 
@@ -111,12 +113,15 @@ const S = {
         </ul>
         <p>
           The "vs. global frontier" figure compares Scott's blended
-          cost-per-QALY to the best global-health buys
-          (<a href={S.frontier} target="_blank" rel="noopener">GiveWell's malaria nets and medication at roughly $4,000-$5,500 per life saved</a>),
-          handicapping the frontier with the same realization and credibility so
-          it's like-for-like. I convert those lives-saved estimates to a rough
-          $100-$250 per QALY-equivalent range; this is a benchmark, not a
-          claim that GiveWell itself reports QALYs.
+          cost-per-QALY to the best global-health buys, handicapping the
+          frontier with the same realization and credibility so it's
+          like-for-like. <a href={S.frontier} target="_blank" rel="noopener">GiveWell's current
+          impact estimates</a> put malaria nets around $5,500 per life saved;
+          an older <a href={S.frontierOld} target="_blank" rel="noopener">AMF/GiveWell summary</a>
+          reports about $3,340 per life saved and about $78-$100 per DALY
+          averted. I model that as one $50-$150/QALY-equivalent benchmark,
+          treating one DALY averted as approximately one QALY gained under the
+          one-year-of-full-health convention.
         </p>
 
         <h2>What this doesn't capture</h2>
@@ -133,16 +138,16 @@ const S = {
 
         <h2>Key sources</h2>
         <ul class="sources">
-          <li><a href={S.medicaid} target="_blank" rel="noopener">Miller, Johnson &amp; Wherry (2021), <em>QJE</em></a> — Medicaid expansion mortality; <a href={S.medicaidCost} target="_blank" rel="noopener">Sommers, Gawande &amp; Baicker (2012)</a> — Medicaid cost-benefit, inflated here to ~$525k–$1.4M per life saved.</li>
+          <li><a href={S.medicaid} target="_blank" rel="noopener">Miller, Johnson &amp; Wherry (2021), <em>QJE</em></a> — Medicaid expansion mortality; <a href={S.medicaidCost} target="_blank" rel="noopener">Sommers, Baicker &amp; Epstein (2012), <em>NEJM</em> 367:1025</a> — $327k-$867k per life saved in 2007 dollars, <a href={S.cpi} target="_blank" rel="noopener">CPI-U inflated</a> here to $529k-$1.40M in 2026 dollars.</li>
           <li><a href={S.chc} target="_blank" rel="noopener">Bailey &amp; Goodman-Bacon (2015), <em>AER</em></a> — community health centers cut 50+ mortality at ⅛–⅓ the cost of Medicare.</li>
           <li><a href={S.housing} target="_blank" rel="noopener">NASEM (2018)</a>; Housing &amp; Health Study — permanent supportive housing ~$62,493/QALY.</li>
           <li><a href={S.depression} target="_blank" rel="noopener">Collaborative-care depression reviews</a> (Gilbody; Community Guide) — ~$17k–$49.5k/QALY.</li>
           <li><a href={S.income} target="_blank" rel="noopener">Cesarini et al. (2016), <em>QJE</em></a> — lottery evidence of a ~null causal income→mortality effect.</li>
           <li><a href={S.vsly} target="_blank" rel="noopener">HHS ASPE (2026)</a> — value of a statistical life-year, $611k central.</li>
-          <li><a href={S.frontier} target="_blank" rel="noopener">GiveWell</a> — global-health frontier cost per life saved, converted here to a rough QALY-equivalent benchmark.</li>
+          <li><a href={S.frontier} target="_blank" rel="noopener">GiveWell current impact estimates</a> and an older <a href={S.frontierOld} target="_blank" rel="noopener">AMF/GiveWell summary</a> — global-health lives-saved/DALY benchmarks converted here to a single $50-$150/QALY-equivalent parameter.</li>
         </ul>
         <p>
-          Full annotated bibliography, parameter file, and the 33-test Python
+          Full annotated bibliography, parameter file, and the 34-test Python
           suite: <a href={REPO}>github.com/MaxGhenis/mackenzie-scott-qaly</a>.
         </p>
       </section>

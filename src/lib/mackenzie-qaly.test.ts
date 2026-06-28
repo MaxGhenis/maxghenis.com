@@ -15,8 +15,8 @@ import {
 } from "./mackenzie-qaly";
 
 // Reference values from the browser model (n=100k seed=0):
-//   median 97,828 · mean 105,169 · p05 54,084 · p95 179,822
-//   blended $268,840/QALY · benefit-cost 2.27 · frontier multiple 1163
+//   median 97,754 · mean 105,107 · p05 54,050 · p95 179,754
+//   blended $269,044/QALY · benefit-cost 2.27 · frontier multiple 2124
 // Monte Carlo output is RNG-sensitive, so we assert distributional agreement
 // with generous tolerances, not bit-parity.
 
@@ -90,6 +90,13 @@ describe("model end-to-end", () => {
   const r = runModel({ n: 40000, seed: 0 });
   const s = summarize(r);
 
+  it("uses one QALY-equivalent frontier parameter", () => {
+    const conversions = PARAMS.conversions as Record<string, unknown>;
+    expect(conversions.frontier_cost_per_qaly_usd).toBeDefined();
+    expect(conversions.frontier_cost_per_daly_usd).toBeUndefined();
+    expect(conversions.daly_to_qaly_factor).toBeUndefined();
+  });
+
   it("matches the checked reference range within Monte Carlo tolerance", () => {
     expect(s.median).toBeGreaterThan(84000);
     expect(s.median).toBeLessThan(112000);
@@ -106,9 +113,9 @@ describe("model end-to-end", () => {
     expect(s.bcMedian).toBeLessThan(2.8);
   });
 
-  it("frontier is handicapped but still hundreds of times better per dollar", () => {
-    expect(s.frontierMultiple).toBeGreaterThan(700);
-    expect(s.frontierMultiple).toBeLessThan(1700);
+  it("frontier is handicapped but still thousands of times better per dollar", () => {
+    expect(s.frontierMultiple).toBeGreaterThan(1500);
+    expect(s.frontierMultiple).toBeLessThan(3000);
     // handicapped: below the raw giving / frontier_cpq
     const rawFrontier = r.giving / impliedMedian(PARAMS.conversions.frontier_cost_per_qaly_usd);
     expect(s.frontierMedian).toBeLessThan(rawFrontier);
