@@ -9,6 +9,19 @@ import ogImage from '../assets/og-mackenzie-qaly.png';
 
 const archetypeCount = Object.keys(PARAMS.archetypes).length;
 const REPO = 'https://github.com/MaxGhenis/mackenzie-scott-qaly';
+
+// Sources for inline citation of every falsifiable claim on the page.
+const S = {
+  giving: 'https://www.cnbc.com/2025/12/13/mackenzie-scott-revealed-her-total-charitable-donations-for-2025.html',
+  medicaid: 'https://academic.oup.com/qje/article-abstract/136/3/1783/6124639',
+  chc: 'https://www.aeaweb.org/articles?id=10.1257/aer.20120070',
+  housing: 'https://nap.nationalacademies.org/read/25133/chapter/6',
+  depression: 'https://link.springer.com/article/10.1186/1472-6963-10-19',
+  income: 'https://academic.oup.com/qje/article/131/2/687/2606947',
+  snap: 'https://www.cbpp.org/research/food-assistance/snap-is-linked-with-improved-health-outcomes-and-lower-health-care-costs',
+  vsly: 'https://aspe.hhs.gov/sites/default/files/documents/2d83af5823915d81871334ee08ad03d9/Standard-RIA-Values-2026.pdf',
+  frontier: 'https://www.givewell.org/charities/amf',
+};
 ---
 
 <!doctype html>
@@ -34,8 +47,8 @@ const REPO = 'https://github.com/MaxGhenis/mackenzie-scott-qaly';
 
       <div class="intro prose">
         <p>
-          MacKenzie Scott has given <strong>$26.3 billion</strong> to more than
-          1,600 organizations since 2019. I wanted one number for the health
+          MacKenzie Scott has given <a href={S.giving} target="_blank" rel="noopener"><strong>$26.3 billion</strong> to more than
+          1,600 organizations</a> since 2019. I wanted one number for the health
           impact: quality-adjusted life-years, the unit health economists use to
           compare a death averted against years lived in better health.
         </p>
@@ -44,9 +57,12 @@ const REPO = 'https://github.com/MaxGhenis/mackenzie-scott-qaly';
           cost-per-QALY of each cause and how credibly the evidence behind it
           identifies cause and effect. So this is a GiveWell-style model:
           {archetypeCount} intervention archetypes, each cost-per-QALY drawn
-          where possible from a published <em>causal</em> estimate (Medicaid
-          mortality, community health centers, supportive housing,
-          collaborative-care depression), each effect then shrunk toward zero in
+          where possible from a published <em>causal</em> estimate
+          (<a href={S.medicaid} target="_blank" rel="noopener">Medicaid mortality</a>,
+          <a href={S.chc} target="_blank" rel="noopener">community health centers</a>,
+          <a href={S.housing} target="_blank" rel="noopener">supportive housing</a>,
+          <a href={S.depression} target="_blank" rel="noopener">collaborative-care depression</a>),
+          each effect then shrunk toward zero in
           proportion to how well its study identifies causation, and the whole
           thing run live through thousands of Monte Carlo draws each time you
           move a slider.
@@ -79,9 +95,10 @@ const REPO = 'https://github.com/MaxGhenis/mackenzie-scott-qaly';
         <ul>
           <li>
             <strong>Causal credibility</strong> — how well the effect is
-            identified, drawn from the study's design tier: a lottery RCT
-            (income → mortality) is trusted; an associational SNAP correlation is
-            shrunk hard; an assumption-only bucket (arts, civic) goes to near
+            identified, drawn from the study's design tier: a
+            <a href={S.income} target="_blank" rel="noopener">lottery RCT (income → mortality)</a>
+            is trusted; an <a href={S.snap} target="_blank" rel="noopener">associational SNAP correlation</a>
+            is shrunk hard; an assumption-only bucket (arts, civic) goes to near
             zero. This is the <em>evidence stance</em> slider.
           </li>
           <li>
@@ -91,8 +108,9 @@ const REPO = 'https://github.com/MaxGhenis/mackenzie-scott-qaly';
         </ul>
         <p>
           The "vs. global frontier" figure compares Scott's blended
-          cost-per-QALY to the best global-health buys (insecticide-treated nets
-          at roughly $80 per QALY), handicapping the frontier with the same
+          cost-per-QALY to the best global-health buys
+          (<a href={S.frontier} target="_blank" rel="noopener">insecticide-treated nets at roughly $80 per QALY</a>),
+          handicapping the frontier with the same
           realization and credibility so it's a like-for-like comparison.
         </p>
 
@@ -110,13 +128,13 @@ const REPO = 'https://github.com/MaxGhenis/mackenzie-scott-qaly';
 
         <h2>Key sources</h2>
         <ul class="sources">
-          <li>Miller, Johnson &amp; Wherry (2021), <em>QJE</em> — Medicaid expansion mortality: ~$327k–$867k per life saved.</li>
-          <li>Bailey &amp; Goodman-Bacon (2015), <em>AER</em> — community health centers cut 50+ mortality at ⅛–⅓ the cost of Medicare.</li>
-          <li>NASEM (2018); Housing &amp; Health Study — permanent supportive housing ~$62,493/QALY.</li>
-          <li>Collaborative-care depression reviews (Gilbody; Community Guide) — ~$17k–$49.5k/QALY.</li>
-          <li>Cesarini et al. (2016), <em>QJE</em> — lottery evidence of a ~null causal income→mortality effect.</li>
-          <li>HHS ASPE (2026) — value of a statistical life-year, $611k central.</li>
-          <li>GiveWell — global-health frontier (~$78/DALY for bed nets).</li>
+          <li><a href={S.medicaid} target="_blank" rel="noopener">Miller, Johnson &amp; Wherry (2021), <em>QJE</em></a> — Medicaid expansion mortality: ~$327k–$867k per life saved.</li>
+          <li><a href={S.chc} target="_blank" rel="noopener">Bailey &amp; Goodman-Bacon (2015), <em>AER</em></a> — community health centers cut 50+ mortality at ⅛–⅓ the cost of Medicare.</li>
+          <li><a href={S.housing} target="_blank" rel="noopener">NASEM (2018)</a>; Housing &amp; Health Study — permanent supportive housing ~$62,493/QALY.</li>
+          <li><a href={S.depression} target="_blank" rel="noopener">Collaborative-care depression reviews</a> (Gilbody; Community Guide) — ~$17k–$49.5k/QALY.</li>
+          <li><a href={S.income} target="_blank" rel="noopener">Cesarini et al. (2016), <em>QJE</em></a> — lottery evidence of a ~null causal income→mortality effect.</li>
+          <li><a href={S.vsly} target="_blank" rel="noopener">HHS ASPE (2026)</a> — value of a statistical life-year, $611k central.</li>
+          <li><a href={S.frontier} target="_blank" rel="noopener">GiveWell</a> — global-health frontier (~$78/DALY for bed nets).</li>
         </ul>
         <p>
           Full annotated bibliography, parameter file, and the 33-test Python
