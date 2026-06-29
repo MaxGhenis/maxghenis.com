@@ -23,6 +23,8 @@ Personal website built with Astro.
 
 This applies to blog post titles, section headings, page titles, and body text.
 
+**Cover images are editorial illustrations, not infographics.** A blog post's `heroImage` (which doubles as the og:image) should be an editorial illustration generated via ChatGPT (GPT-4o image gen) — restrained, op-ed style, site palette (cream `#fefdf8` background, amber `#f59e0b`, ink `#0f172a`), no text. Do **not** auto-generate stat-card / chart-card / "infographic" covers. When a post needs a cover, suggest a ChatGPT prompt for Max to run, then wire the returned file in as `hero.png`.
+
 **No paywalled sources**: All links should be freely accessible. Use official announcements, free surveys, or archive.is links instead of paywalled articles.
 
 **Direct tone, numbers over adjectives**: Cut phrases that describe the argument instead of making it ("It's a great rhetorical move", "The point that survives…", "precision matters because…", "what's interesting is…"). Don't use adjectives or adverbs unless there's a number in the same sentence/paragraph backing them. Prefer ratios and tables to qualitative descriptions. Flag estimates from Claude explicitly ("I asked Claude to estimate") vs. figures from published data.
