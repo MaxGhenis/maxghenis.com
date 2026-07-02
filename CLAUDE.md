@@ -2,6 +2,9 @@
 
 Personal website built with Astro.
 
+**Also read [AGENTS.md](AGENTS.md)** — the mechanical agent contract (generated
+files you must never hand-edit, test gotchas, draft handling, deploy rules).
+
 ## Style guide
 
 **CRITICAL: Use sentence case for all headings** - only capitalize the first word and proper nouns.
