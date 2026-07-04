@@ -95,12 +95,12 @@ const defaultWorkload = clientWorkloads.find((w) => w.id === DEFAULT_WORKLOAD_ID
 const defaultCell = defaultDrink.byCombo[`${defaultScope.id}:${defaultWorkload.id}`];
 const defaultPerUnitMl = defaultScope.perQueryMl * defaultWorkload.multiple;
 
-// Beer at the on-site scope, in each workload unit — for the "shift to agents" strip.
+// Beer at the default scope, in each workload unit — for the "shift to agents" strip.
 const heroBeer = clientDrinks.find((d) => d.id === 'beer') ?? clientDrinks[0];
 const beerUnits = WORKLOAD_TIERS.map((w) => ({
   label: w.unit,
   multiple: w.multiple,
-  count: heroBeer.byCombo[`onsite:${w.id}`].count,
+  count: heroBeer.byCombo[`${DEFAULT_SCOPE_ID}:${w.id}`].count,
 }));
 
 const sourceCards = [
@@ -258,7 +258,7 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 	<head>
 		<BaseHead
 			title={`Drinking AI | ${SITE_TITLE}`}
-			description="One beer's water footprint equals about 331,000 ChatGPT queries. Drinks converted into AI queries across three water-accounting scopes, plus US drink categories against all of 2025's AI water use — all from peer-reviewed sources."
+			description="One beer's water footprint equals about 53,300 ChatGPT queries counting cooling and power-plant water — 331,000 by OpenAI's cooling-only figure. Drinks vs AI across three accounting scopes, from peer-reviewed sources."
 			image="/og/drinking-ai.png"
 		/>
 	</head>
@@ -272,10 +272,11 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 				<h1 class="poster-title">Drinking AI</h1>
 				<p class="lede">
 					Growing, brewing, and packaging one beer takes about as much water as
-					<strong>331,000</strong> ChatGPT queries — using AI's own most-cited water figure.
-					Pick a drink, widen the accounting scope, or switch from single queries to
-					agentic tasks to stress-test the number, then watch whole US drink categories
-					dwarf everything AI drank in 2025 — and what it is on track to drink in 2026.
+					<strong>53,300</strong> ChatGPT queries — counting both data-center cooling and
+					the power plants behind it, the same supply-chain accounting the drink figures
+					use. By OpenAI's cooling-only figure, it's 331,000. Pick a drink, shift the
+					scope, or count by agentic tasks, then watch whole US drink categories dwarf
+					everything AI drank in 2025 — and what it is on track to drink in 2026.
 				</p>
 			</section>
 
@@ -493,9 +494,9 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 					<div class="horizon-column">
 						<h3>A query is becoming a task</h3>
 						<p>
-							The 0.32 mL figure is a <em>median single prompt</em>. Reasoning models emit
-							far more tokens, and agents chain many calls per task, so the honest unit is
-							shifting. Holding the on-site scope fixed, one beer is:
+							The published per-query figures are <em>median single prompts</em>. Reasoning
+							models emit far more tokens, and agents chain many calls per task, so the
+							honest unit is shifting. At the default 2 mL scope, one beer is:
 						</p>
 						<div class="unit-strip">
 							{beerUnits.map((u) => (
@@ -511,7 +512,7 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 							<a href="https://arxiv.org/abs/2505.09598" target="_blank" rel="noopener">Jegham et al.</a>, and
 							<a href="https://www.anthropic.com/engineering/multi-agent-research-system" target="_blank" rel="noopener">Anthropic</a>
 							(multi-agent ≈ 15× a chat's tokens). Per-task water rises, but so does what each
-							task does — a beer still covers tens of thousands of even the heaviest ones.
+							task does — a beer still covers thousands of even the heaviest ones.
 						</p>
 					</div>
 				</div>
@@ -537,7 +538,9 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 							(<a href="https://arxiv.org/abs/2505.09598" target="_blank" rel="noopener">Jegham et al.</a>).
 							A full per-response life-cycle assessment of a large model reaches 45 mL
 							(<a href="https://mistral.ai/news/our-contribution-to-a-global-environmental-standard-for-ai" target="_blank" rel="noopener">Mistral</a>).
-							The selector shows all three; even at 45 mL, one beer still equals more than 2,000 queries.
+							The selector shows all three and defaults to the middle scope — the boundary
+							that matches the drinks' supply-chain accounting. Even at 45 mL, one beer
+							still equals more than 2,000 queries.
 						</p>
 					</div>
 					<div class="methodology-column">

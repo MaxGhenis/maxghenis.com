@@ -56,8 +56,15 @@ describe('per-query scopes', () => {
     expect(QUERY_SCOPES[2].perQueryMl).toBe(45);
   });
 
-  it('default scope is the on-site figure', () => {
-    expect(DEFAULT_SCOPE_ID).toBe('onsite');
+  it('defaults to the operational scope, matching the drinks\' supply-chain boundary', () => {
+    expect(DEFAULT_SCOPE_ID).toBe('operational');
+  });
+
+  it('the default headline: one beer is about 53,300 queries at 2 mL', () => {
+    const beer = SCOPED_DRINKS.find((d) => d.id === 'beer');
+    if (!beer) throw new Error('missing beer');
+    expect(roundToSigFigs(beer.queriesByScope.operational)).toBe(53_300);
+    expect(beer.usageByScope.operational).toBe('5 years');
   });
 
   it('every scope links a working https source', () => {

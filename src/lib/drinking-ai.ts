@@ -57,7 +57,7 @@ export const QUERY_SCOPES: QueryScope[] = [
     boundary: 'Cooling + electricity generation',
     perQueryMl: 2.0,
     detail:
-      'Adds the water used to generate the electricity the query draws, not just data-center cooling. A peer-reviewed measurement puts an efficient 2025 model (GPT-4o) near 2 mL on this all-in operational basis.',
+      'Adds the water used to generate the electricity the query draws, not just data-center cooling — the same supply-chain boundary the drink footprints use. A peer-reviewed measurement puts an efficient 2025 model (GPT-4o) near 2 mL on this basis.',
     sourceLabel: 'Jegham et al. 2025',
     sourceUrl: 'https://arxiv.org/abs/2505.09598',
   },
@@ -73,7 +73,13 @@ export const QUERY_SCOPES: QueryScope[] = [
   },
 ];
 
-export const DEFAULT_SCOPE_ID = 'onsite';
+/**
+ * Default scope: cooling + power-plant water. The drink footprints count the
+ * full supply chain (water embedded in barley, grapes, beans), so the
+ * boundary-consistent AI figure includes the water embedded in the query's
+ * electricity — not data-center cooling alone.
+ */
+export const DEFAULT_SCOPE_ID = 'operational';
 export const WATER_PER_QUERY_ML = ALTMAN_ML_PER_QUERY;
 
 /* ──────────────────────────────────────────────────────────────────────────
