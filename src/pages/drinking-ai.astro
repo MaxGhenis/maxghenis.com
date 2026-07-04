@@ -34,7 +34,7 @@ const chartMaxLiters = Math.max(...AGGREGATE_CATEGORIES.map((c) => c.totalWaterL
 const clientDrinks = SCOPED_DRINKS.map((d) => {
   // One cell per (scope × workload) combination — both axes multiply the
   // water-per-unit, so a count is waterLiters / (scopeMl × workloadMultiple).
-  const byCombo: Record<string, { count: number; drops: number; usage: string }> = {};
+  const byCombo: Record<string, { count: number; drops: number; subDrop: boolean; usage: string }> = {};
   for (const s of QUERY_SCOPES) {
     for (const w of WORKLOAD_TIERS) {
       const perUnitMl = s.perQueryMl * w.multiple;
@@ -42,6 +42,8 @@ const clientDrinks = SCOPED_DRINKS.map((d) => {
       byCombo[`${s.id}:${w.id}`] = {
         count: roundToSigFigs(raw),
         drops: Math.max(1, Math.round(raw / QUERIES_PER_DROP)),
+        // Rounds below one drop: shown as a single faded drop labeled "<1".
+        subDrop: Math.round(raw / QUERIES_PER_DROP) === 0,
         usage: dailyUseLabel(raw),
       };
     }
@@ -280,55 +282,7 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 			<section class="workspace animate-fade-in-up delay-100" aria-labelledby="calculator-heading">
 				<h2 id="calculator-heading" class="sr-only">One drink in ChatGPT queries</h2>
 
-				<div class="controls" role="group" aria-label="Drink selector">
-					{clientDrinks.map((drink, index) => (
-						<button
-							type="button"
-							class={`drink-button${index === 0 ? ' is-active' : ''}`}
-							aria-pressed={index === 0 ? 'true' : 'false'}
-							data-drink={drink.id}
-						>
-							<span class="drink-name">{drink.name}</span>
-							<span class="drink-serving">{drink.serving}</span>
-						</button>
-					))}
-				</div>
-
-				<div class="scope-control">
-					<span class="scope-label">Water counted per unit</span>
-					<div class="scope-pills" role="group" aria-label="AI water-accounting scope">
-						{clientScopes.map((scope) => (
-							<button
-								type="button"
-								class={`scope-pill${scope.id === defaultScope.id ? ' is-active' : ''}`}
-								aria-pressed={scope.id === defaultScope.id ? 'true' : 'false'}
-								data-scope={scope.id}
-							>
-								<span class="scope-pill-label">{scope.label}</span>
-								<span class="scope-pill-ml">{scope.perQueryMl < 1 ? scope.perQueryMl.toFixed(2) : scope.perQueryMl} mL</span>
-							</button>
-						))}
-					</div>
-				</div>
-
-				<div class="scope-control workload-control">
-					<span class="scope-label">Counting by</span>
-					<div class="scope-pills" role="group" aria-label="AI workload unit">
-						{clientWorkloads.map((workload) => (
-							<button
-								type="button"
-								class={`scope-pill${workload.id === defaultWorkload.id ? ' is-active' : ''}`}
-								aria-pressed={workload.id === defaultWorkload.id ? 'true' : 'false'}
-								data-workload={workload.id}
-							>
-								<span class="scope-pill-label">{workload.label}</span>
-								<span class="scope-pill-ml">{workload.multiple}×</span>
-							</button>
-						))}
-					</div>
-				</div>
-
-				<div class="result-grid">
+				<div class="console">
 					<section class="result-panel" aria-live="polite">
 						<div class="result-label">One <span data-result-name>{defaultDrink.name.toLowerCase()}</span> ≈</div>
 						<div class="result-number" data-result-number>{defaultCell.count.toLocaleString()}</div>
@@ -342,40 +296,90 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 						</p>
 					</section>
 
-					<aside class="detail-rail">
-						<div class="detail-item">
-							<div class="detail-label">Drink water footprint</div>
-							<div class="detail-value" data-result-water>{defaultDrink.waterLiters.toFixed(1)} liters</div>
-							<p data-result-derivation>{defaultDrink.derivation}</p>
+					<div class="console-controls">
+						<div class="controls" role="group" aria-label="Drink selector">
+							{clientDrinks.map((drink, index) => (
+								<button
+									type="button"
+									class={`drink-button${index === 0 ? ' is-active' : ''}`}
+									aria-pressed={index === 0 ? 'true' : 'false'}
+									data-drink={drink.id}
+								>
+									<span class="drink-name">{drink.name}</span>
+									<span class="drink-serving">{drink.serving}</span>
+								</button>
+							))}
 						</div>
-						<div class="detail-item">
-							<div class="detail-label">
-								What's counted
-								<span class="flag-tag" data-result-flag hidden>industry estimate</span>
+
+						<div class="scope-control">
+							<span class="scope-label">Water counted per unit</span>
+							<div class="scope-pills" role="group" aria-label="AI water-accounting scope">
+								{clientScopes.map((scope) => (
+									<button
+										type="button"
+										class={`scope-pill${scope.id === defaultScope.id ? ' is-active' : ''}`}
+										aria-pressed={scope.id === defaultScope.id ? 'true' : 'false'}
+										data-scope={scope.id}
+									>
+										<span class="scope-pill-label">{scope.label}</span>
+										<span class="scope-pill-ml">{scope.perQueryMl < 1 ? scope.perQueryMl.toFixed(2) : scope.perQueryMl} mL</span>
+									</button>
+								))}
 							</div>
-							<p class="detail-note" data-result-note>{defaultDrink.scopeNote}</p>
-							<p class="detail-source" data-result-sources set:html={defaultDrink.sources.map((s) => `<a href="${s.url}" target="_blank" rel="noopener">${s.label}</a>`).join(' · ') || 'No external source needed'} />
 						</div>
-						<div class="detail-item ai-baseline">
-							<div class="detail-label">AI water per <span data-unit-singular>{defaultWorkload.unitSingular}</span></div>
-							<div class="detail-value">
-								<span data-perunit-ml>{defaultPerUnitMl < 1 ? defaultPerUnitMl.toFixed(2) : defaultPerUnitMl}</span> mL
-								<span class="scope-boundary" data-scope-boundary>{defaultScope.boundary}</span>
+
+						<div class="scope-control workload-control" id="counting-by">
+							<span class="scope-label">Counting by</span>
+							<div class="scope-pills" role="group" aria-label="AI workload unit">
+								{clientWorkloads.map((workload) => (
+									<button
+										type="button"
+										class={`scope-pill${workload.id === defaultWorkload.id ? ' is-active' : ''}`}
+										aria-pressed={workload.id === defaultWorkload.id ? 'true' : 'false'}
+										data-workload={workload.id}
+									>
+										<span class="scope-pill-label">{workload.label}</span>
+										<span class="scope-pill-ml">{workload.multiple}×</span>
+									</button>
+								))}
 							</div>
-							<p data-scope-detail>{defaultScope.detail}</p>
-							<p class="detail-note workload-detail" data-workload-detail hidden>{defaultWorkload.detail}</p>
-							<p class="detail-source" data-ai-sources set:html={`<a href="${defaultScope.sourceUrl}" target="_blank" rel="noopener">${defaultScope.sourceLabel}</a>`} />
 						</div>
-					</aside>
+					</div>
+
+					<div class="dot-field-card">
+						<div class="dot-field-header">
+							<span class="dot-legend"><span class="dot-swatch" aria-hidden="true"></span>1 drop = {QUERIES_PER_DROP.toLocaleString()} <span data-dot-unit>{defaultWorkload.daily}</span></span>
+							<span class="dot-count"><strong data-dot-count>{defaultCell.drops.toLocaleString()}</strong> <span data-drops-word>{defaultCell.drops === 1 ? 'drop' : 'drops'}</span></span>
+						</div>
+						<div class="dot-field" data-dot-field aria-hidden="true"></div>
+					</div>
 				</div>
 
-				<div class="dot-field-card">
-					<div class="dot-field-header">
-						<span class="dot-legend"><span class="dot-swatch" aria-hidden="true"></span>1 drop = {QUERIES_PER_DROP.toLocaleString()} <span data-dot-unit>{defaultWorkload.daily}</span></span>
-						<span class="dot-count"><strong data-dot-count>{defaultCell.drops.toLocaleString()}</strong> drops</span>
+				<aside class="detail-rail">
+					<div class="detail-item">
+						<div class="detail-label">Drink water footprint</div>
+						<div class="detail-value" data-result-water>{defaultDrink.waterLiters.toFixed(1)} liters</div>
+						<p data-result-derivation>{defaultDrink.derivation}</p>
 					</div>
-					<div class="dot-field" data-dot-field aria-hidden="true"></div>
-				</div>
+					<div class="detail-item">
+						<div class="detail-label">
+							What's counted
+							<span class="flag-tag" data-result-flag hidden>industry estimate</span>
+						</div>
+						<p class="detail-note" data-result-note>{defaultDrink.scopeNote}</p>
+						<p class="detail-source" data-result-sources set:html={defaultDrink.sources.map((s) => `<a href="${s.url}" target="_blank" rel="noopener">${s.label}</a>`).join(' · ') || 'No external source needed'} />
+					</div>
+					<div class="detail-item ai-baseline">
+						<div class="detail-label">AI water per <span data-unit-singular>{defaultWorkload.unitSingular}</span></div>
+						<div class="detail-value">
+							<span data-perunit-ml>{defaultPerUnitMl < 1 ? defaultPerUnitMl.toFixed(2) : defaultPerUnitMl}</span> mL
+							<span class="scope-boundary" data-scope-boundary>{defaultScope.boundary}</span>
+						</div>
+						<p data-scope-detail>{defaultScope.detail}</p>
+						<p class="detail-note workload-detail" data-workload-detail hidden>{defaultWorkload.detail}</p>
+						<p class="detail-source" data-ai-sources set:html={`<a href="${defaultScope.sourceUrl}" target="_blank" rel="noopener">${defaultScope.sourceLabel}</a>`} />
+					</div>
+				</aside>
 			</section>
 
 			<section class="aggregate-section animate-fade-in-up delay-200" aria-labelledby="aggregate-heading">
@@ -392,7 +396,7 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 					</p>
 				</div>
 
-				<div class="chart" data-chart role="img" aria-label={`Annual water footprints on one scale: global AI ${formatLiters(AI_2025_MIN_LITERS)} to ${formatLiters(AI_2025_MAX_LITERS)}; ${AGGREGATE_CATEGORIES.map((c) => `US ${c.name.toLowerCase()} ${formatLiters(c.totalWaterLiters)} (${formatMultipleRange(c.multipleMin, c.multipleMax)} AI)`).join('; ')}.`}>
+				<div class="chart" data-chart role="img" aria-label={`Annual water footprints on one scale: global AI ${formatLiters(AI_2025_MIN_LITERS)} to ${formatLiters(AI_2025_MAX_LITERS)} in 2025, projected ${formatLiters(AI_2026_MIN_LITERS)} to ${formatLiters(AI_2026_MAX_LITERS)} in 2026 (extrapolation); ${AGGREGATE_CATEGORIES.map((c) => `US ${c.name.toLowerCase()} ${formatLiters(c.totalWaterLiters)} (${formatMultipleRange(c.multipleMin, c.multipleMax)} AI)`).join('; ')}.`}>
 					<div class="chart-row is-ai">
 						<div class="chart-head">
 							<span class="chart-name">All global AI <span class="chart-year">2025, modeled</span></span>
@@ -642,6 +646,7 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 			const dotFieldEl = document.querySelector('[data-dot-field]');
 			const dotCountEl = document.querySelector('[data-dot-count]');
 			const dotUnitEl = document.querySelector('[data-dot-unit]');
+			const dropsWordEl = document.querySelector('[data-drops-word]');
 
 			const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 			const fmtMl = (ml) => (ml < 1 ? ml.toFixed(2) : String(Math.round(ml * 100) / 100));
@@ -678,19 +683,20 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 				numberTimeout = setTimeout(setFinal, duration + 100);
 			}
 
-			function renderDots(drops) {
+			function renderDots(drops, subDrop) {
 				dotFieldEl.replaceChildren();
 				const fragment = document.createDocumentFragment();
 				const perDotDelay = reduceMotion ? 0 : Math.min(900 / drops, 4);
 				for (let i = 0; i < drops; i++) {
 					const dot = document.createElement('span');
-					dot.className = 'dot';
+					dot.className = subDrop ? 'dot dot--fraction' : 'dot';
 					if (perDotDelay > 0) dot.style.animationDelay = `${(i * perDotDelay).toFixed(1)}ms`;
 					else dot.style.animation = 'none';
 					fragment.appendChild(dot);
 				}
 				dotFieldEl.appendChild(fragment);
-				dotCountEl.textContent = drops.toLocaleString();
+				dotCountEl.textContent = subDrop ? '<1' : drops.toLocaleString();
+				dropsWordEl.textContent = drops === 1 ? 'drop' : 'drops';
 			}
 
 			function render() {
@@ -732,7 +738,7 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 					aiSourcesEl.innerHTML = link(scope.sourceLabel, scope.sourceUrl);
 				}
 
-				renderDots(cell.drops);
+				renderDots(cell.drops, cell.subDrop);
 				dotUnitEl.textContent = workload.daily;
 
 				drinkButtons.forEach((button) => {
@@ -771,7 +777,10 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 				});
 			});
 
-			renderDots(cellFor(currentDrinkId, currentScopeId, currentWorkloadId).drops);
+			{
+				const initialCell = cellFor(currentDrinkId, currentScopeId, currentWorkloadId);
+				renderDots(initialCell.drops, initialCell.subDrop);
+			}
 
 			// Bars start collapsed only when JS runs; they grow on first scroll into view.
 			const chart = document.querySelector('[data-chart]');
@@ -871,17 +880,44 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 		padding-top: 1.5rem;
 	}
 
+	/* Number and selectors share the viewport: outputs (number + drops) left,
+	   all knobs right. */
+	.console {
+		display: grid;
+		grid-template-columns: minmax(0, 1.05fr) minmax(340px, 1fr);
+		grid-template-areas:
+			'panel controls'
+			'dots controls';
+		gap: 1.25rem;
+		align-items: start;
+	}
+
+	.console .result-panel {
+		grid-area: panel;
+	}
+
+	.console-controls {
+		grid-area: controls;
+		display: grid;
+		gap: 0.8rem;
+		align-content: start;
+	}
+
+	.console .dot-field-card {
+		grid-area: dots;
+		margin-top: 0;
+	}
+
 	.controls {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.55rem;
-		margin-bottom: 1.4rem;
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 0.5rem;
 	}
 
 	.drink-button {
 		display: grid;
-		gap: 0.1rem;
-		padding: 0.7rem 1.05rem;
+		gap: 0.05rem;
+		padding: 0.55rem 0.9rem;
 		border: 1.5px solid var(--glass-border);
 		border-radius: var(--radius-lg);
 		background: var(--glass);
@@ -911,11 +947,11 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 	.drink-name {
 		font-weight: 700;
 		color: var(--ink);
-		font-size: 0.98rem;
+		font-size: 0.94rem;
 	}
 
 	.drink-serving {
-		font-size: 0.8rem;
+		font-size: 0.76rem;
 		color: var(--ink-muted);
 	}
 
@@ -925,9 +961,8 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 		display: flex;
 		align-items: center;
 		flex-wrap: wrap;
-		gap: 0.6rem 0.9rem;
-		margin-bottom: 1.5rem;
-		padding: 0.85rem 1rem;
+		gap: 0.5rem 0.9rem;
+		padding: 0.7rem 0.9rem;
 		border: 1px dashed rgba(8, 145, 178, 0.28);
 		border-radius: var(--radius-lg);
 		background: var(--water-subtle);
@@ -982,13 +1017,6 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 		color: var(--ink-muted);
 	}
 
-	.result-grid {
-		display: grid;
-		grid-template-columns: minmax(0, 1.45fr) minmax(270px, 0.75fr);
-		gap: 1.25rem;
-		align-items: stretch;
-	}
-
 	.result-panel,
 	.detail-item,
 	.dot-field-card,
@@ -1005,12 +1033,12 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 	}
 
 	.result-panel {
-		padding: 2.2rem 2.4rem;
+		padding: 2rem 2.2rem;
 		display: grid;
 		align-content: center;
 		gap: 0.3rem;
 		background:
-			linear-gradient(160deg, rgba(8, 145, 178, 0.05) 0%, rgba(255, 255, 255, 0.78) 55%);
+			linear-gradient(160deg, rgba(8, 145, 178, 0.05) 0%, rgba(255, 255, 255, 0.9) 55%);
 	}
 
 	.result-number {
@@ -1056,8 +1084,10 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 
 	.detail-rail {
 		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
 		gap: 0.8rem;
-		align-content: stretch;
+		align-items: stretch;
+		margin-top: 1.25rem;
 	}
 
 	.detail-item {
@@ -1175,15 +1205,21 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 		animation: dot-in 240ms var(--ease-out) both;
 	}
 
+	/* The `to` frame omits opacity so dots settle at their own computed value
+	   (1 for full drops, 0.4 for the sub-drop fraction case). */
 	@keyframes dot-in {
 		from {
 			opacity: 0;
 			transform: rotate(-45deg) scale(0.3);
 		}
 		to {
-			opacity: 1;
 			transform: rotate(-45deg) scale(1);
 		}
+	}
+
+	/* A combination that rounds below one drop: single faded drop, count reads "<1". */
+	.dot-field :global(.dot--fraction) {
+		opacity: 0.4;
 	}
 
 	/* ─── Sections ─── */
@@ -1335,9 +1371,6 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 
 	/* ─── Workload control + projected bar ─── */
 
-	.workload-control {
-		margin-top: -0.6rem;
-	}
 
 	.chart-bar.is-projected {
 		background:
@@ -1505,10 +1538,43 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 	/* ─── Responsive ─── */
 
 	@media (max-width: 900px) {
-		.result-grid,
 		.methodology-grid,
-		.horizon-grid {
+		.horizon-grid,
+		.detail-rail {
 			grid-template-columns: 1fr;
+		}
+
+		/* Single column: number pinned while the selectors scroll under it,
+		   dots move below the controls. */
+		.console {
+			display: flex;
+			flex-direction: column;
+			gap: 0.9rem;
+		}
+
+		.console .result-panel {
+			order: 1;
+			position: sticky;
+			top: 76px;
+			z-index: 5;
+			padding: 1.4rem 1.5rem;
+			background:
+				linear-gradient(160deg, rgba(8, 145, 178, 0.06) 0%, rgba(254, 253, 248, 0.97) 55%);
+			box-shadow:
+				0 4px 16px rgba(15, 23, 42, 0.08),
+				inset 0 1px 0 rgba(255, 255, 255, 0.5);
+		}
+
+		.console-controls {
+			order: 2;
+		}
+
+		.console .dot-field-card {
+			order: 3;
+		}
+
+		.result-number {
+			font-size: clamp(2.6rem, 11vw, 4rem);
 		}
 
 		.section-heading {
@@ -1523,11 +1589,6 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 	}
 
 	@media (max-width: 640px) {
-		.controls {
-			display: grid;
-			grid-template-columns: repeat(2, 1fr);
-		}
-
 		.scope-control {
 			flex-direction: column;
 			align-items: stretch;
@@ -1546,7 +1607,11 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 		}
 
 		.result-panel {
-			padding: 1.5rem 1.4rem;
+			padding: 1.2rem 1.3rem;
+		}
+
+		.result-range {
+			display: none;
 		}
 
 		.chart-head {

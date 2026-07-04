@@ -111,7 +111,7 @@ export const WORKLOAD_TIERS: WorkloadTier[] = [
     unitSingular: 'query',
     multiple: 1,
     detail:
-      'A median single text prompt — the basis for OpenAI’s and Google’s published per-query figures.',
+      "A median single text prompt — the basis for OpenAI's and Google's published per-query figures.",
     sourceLabel: 'Google, 2025',
     sourceUrl: 'https://arxiv.org/abs/2508.15734',
   },
@@ -346,7 +346,7 @@ export function roundToSigFigs(value: number, figures = 3): number {
   return Math.round(value / magnitude) * magnitude;
 }
 
-/** "30 years" / "37 days" / "5 hours" at QUERIES_PER_DAY queries per day. */
+/** "30 years" / "37 days" / "5 hours" / "25 minutes" at QUERIES_PER_DAY per day. */
 export function dailyUseLabel(queries: number, perDay: number = QUERIES_PER_DAY): string {
   const days = queries / perDay;
   const years = days / 365.25;
@@ -358,8 +358,13 @@ export function dailyUseLabel(queries: number, perDay: number = QUERIES_PER_DAY)
     const r = Math.round(days);
     return `${r} day${r === 1 ? '' : 's'}`;
   }
-  const hours = Math.round(days * 24);
-  return `${hours} hour${hours === 1 ? '' : 's'}`;
+  const hours = days * 24;
+  if (hours >= 1) {
+    const r = Math.round(hours);
+    return `${r} hour${r === 1 ? '' : 's'}`;
+  }
+  const minutes = Math.max(1, Math.round(hours * 60));
+  return `${minutes} minute${minutes === 1 ? '' : 's'}`;
 }
 
 export interface ScopedDrink extends Drink {

@@ -183,10 +183,12 @@ describe('time-equivalence framing at 30 queries/day', () => {
   it('tap water covers about 37 days', () => {
     expect(drink('tap-water').usageByScope.onsite).toBe('37 days');
   });
-  it('drops to hours for tiny counts', () => {
+  it('drops to hours, then minutes, for tiny counts', () => {
     expect(dailyUseLabel(30)).toBe('1 day');
     expect(dailyUseLabel(60)).toBe('2 days');
     expect(dailyUseLabel(15)).toBe('12 hours');
+    expect(dailyUseLabel(0.526)).toBe('25 minutes');
+    expect(dailyUseLabel(0.01)).toBe('1 minute');
   });
 });
 
