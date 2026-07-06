@@ -108,6 +108,34 @@ const nuttyPuddingViews: RecipeView[] = [
 		],
 	},
 ];
+const morningMixViews: RecipeView[] = [
+	{
+		id: 'mm-one',
+		label: '1 serving',
+		title: '1 serving',
+		description: 'Daily dose, mixed into water fresh each morning.',
+		rows: [
+			{ ingredient: 'Blueprint Longevity Mix', amount: '1 scoop (14.8g)', where: 'Powder jar' },
+			{ ingredient: 'Blueprint Creatine', amount: '1 scoop (5g)', where: 'Powder jar' },
+			{ ingredient: 'Goddess agave inulin', amount: '1 tsp (4g)', where: 'Powder jar' },
+			{ ingredient: 'Larch arabinogalactan', amount: '1 tsp (3g)', where: 'Powder jar' },
+			{ ingredient: 'Water', amount: '~500 ml', where: 'Mix fresh; don’t pre-mix liquid' },
+		],
+	},
+	{
+		id: 'mm-jar',
+		label: '30-day jar',
+		title: '30-day powder jar',
+		description:
+			'One full Longevity Mix bag is exactly 30 servings, so the whole bag anchors the batch. Dry total 804g; a daily serving is 26.8g (~1.8 Longevity Mix scoops). Fits a half-gallon mason jar.',
+		rows: [
+			{ ingredient: 'Blueprint Longevity Mix', amount: 'whole bag: 30 scoops (444g)', where: 'Jar' },
+			{ ingredient: 'Blueprint Creatine', amount: '30 scoops (150g)', where: 'Jar' },
+			{ ingredient: 'Goddess agave inulin', amount: '10 tbsp (120g; ~5/8 cup)', where: 'Jar' },
+			{ ingredient: 'Larch arabinogalactan', amount: '10 tbsp (90g; ~5/8 cup)', where: 'Jar' },
+		],
+	},
+];
 const groundUpSummary = protocolGroundUp.summary;
 const referenceCaseModel = protocolGroundUp.reference_case.current_protocol_model;
 const groundUpTopActions = protocolGroundUp.state_marginal_decisions.slice(0, 6);
@@ -374,7 +402,7 @@ const statusColors: Record<string, string> = {
 				<!-- Morning mix -->
 				<div class="time-block">
 					<h3>Morning mix</h3>
-					<p>All powders mixed into water. I pre-mix several days' worth into a smaller mason jar and scoop daily.</p>
+					<p>All powders mixed into water. I batch a 30-day dry mix into a half-gallon mason jar — one full Longevity Mix bag sets the batch size — and scoop daily.</p>
 					<div class="table-wrapper">
 						<table class="schedule-table">
 							<thead>
@@ -394,6 +422,61 @@ const statusColors: Record<string, string> = {
 								))}
 							</tbody>
 						</table>
+					</div>
+
+					<div data-np-scope>
+						<div class="np-tabs" role="tablist" aria-label="Morning mix scale">
+							{morningMixViews.map((view, index) => (
+								<button
+									type="button"
+									class="np-tab"
+									id={`np-tab-${view.id}`}
+									data-np-tab={view.id}
+									role="tab"
+									aria-selected={index === 0 ? 'true' : 'false'}
+									aria-controls={`np-panel-${view.id}`}
+								>
+									{view.label}
+								</button>
+							))}
+						</div>
+
+						{morningMixViews.map((view, index) => (
+							<div
+								class="np-panel"
+								id={`np-panel-${view.id}`}
+								data-np-panel={view.id}
+								role="tabpanel"
+								aria-labelledby={`np-tab-${view.id}`}
+								hidden={index !== 0}
+							>
+								<div class="np-panel-header">
+									<h4>{view.title}</h4>
+									<p>{view.description}</p>
+								</div>
+								<div class="table-wrapper">
+									<table>
+										<thead>
+											<tr>
+												<th>Ingredient</th>
+												<th class="num">Amount</th>
+												<th>Where</th>
+											</tr>
+										</thead>
+										<tbody>
+											{view.rows.map(row => (
+												<tr>
+													<td>{row.ingredient}</td>
+													<td class="num">{row.amount}</td>
+													<td>{row.where}</td>
+												</tr>
+											))}
+										</tbody>
+									</table>
+								</div>
+							</div>
+						))}
+						<p class="recipe-note"><strong>Mixing order:</strong> half the Longevity Mix bag in first, then creatine, inulin, and arabinogalactan, then the rest of the bag. Shake hard ~30s to combine; shake before each scoop — creatine is dense crystal and settles under the lighter fibers. Add a food-safe desiccant packet (inulin is hygroscopic and clumps in humidity). Dry creatine is shelf-stable; it only degrades in solution, so mix into water fresh each morning.</p>
 					</div>
 				</div>
 
@@ -538,7 +621,7 @@ const statusColors: Record<string, string> = {
 					<h2>Meal recipes</h2>
 					<p>Food prep kept separate from the supplement stack. Nutty pudding amounts use the toggle for one serving, one 4-serving blender batch, or the 14-serving powder jar.</p>
 
-					<div class="recipe-block">
+					<div class="recipe-block" data-np-scope>
 						<h3>Nutty pudding</h3>
 						<p>Optimized from <a href="https://www.reddit.com/r/blueprint_/comments/1jlu0dv/whats_the_latest_nutty_pudding_recipe/">Bryan Johnson's recipe</a> for QALY/$ and adherence. Keeps pomegranate juice for taste, uses ground macadamias and walnuts in the powder jar, blends hazelnuts and blanched almonds whole, and keeps Blueprint fruit mix out by default.</p>
 						<div class="np-tabs" role="tablist" aria-label="Nutty pudding scale">
@@ -1255,19 +1338,23 @@ const statusColors: Record<string, string> = {
 	</style>
 
 	<script>
-		const npTabs = document.querySelectorAll<HTMLButtonElement>('[data-np-tab]');
-		const npPanels = document.querySelectorAll<HTMLElement>('[data-np-panel]');
+		// Each [data-np-scope] wrapper is an independent tab group (nutty
+		// pudding, morning mix); clicks only toggle tabs/panels in their group.
+		document.querySelectorAll<HTMLElement>('[data-np-scope]').forEach(scope => {
+			const tabs = scope.querySelectorAll<HTMLButtonElement>('[data-np-tab]');
+			const panels = scope.querySelectorAll<HTMLElement>('[data-np-panel]');
 
-		npTabs.forEach(tab => {
-			tab.addEventListener('click', () => {
-				const target = tab.dataset.npTab;
+			tabs.forEach(tab => {
+				tab.addEventListener('click', () => {
+					const target = tab.dataset.npTab;
 
-				npTabs.forEach(button => {
-					button.setAttribute('aria-selected', button === tab ? 'true' : 'false');
-				});
+					tabs.forEach(button => {
+						button.setAttribute('aria-selected', button === tab ? 'true' : 'false');
+					});
 
-				npPanels.forEach(panel => {
-					panel.hidden = panel.dataset.npPanel !== target;
+					panels.forEach(panel => {
+						panel.hidden = panel.dataset.npPanel !== target;
+					});
 				});
 			});
 		});
