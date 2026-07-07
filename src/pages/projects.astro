@@ -4,72 +4,205 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE } from '../consts';
 
-const software = [
+const organizations = [
 	{
-		title: 'MacKenzie Scott\'s giving, in QALYs',
-		description: 'Interactive, GiveWell-style Monte Carlo model estimating the health impact of MacKenzie Scott\'s $26.3B in giving. Runs entirely in your browser from the exported parameter file.',
-		href: '/mackenzie-scott-qaly',
-		repo: 'https://github.com/MaxGhenis/mackenzie-scott-qaly',
-		tag: 'Interactive',
+		title: 'PolicyEngine',
+		href: 'https://policyengine.org',
+		role: 'Co-founder & CEO · 2021—',
+		description:
+			'Free, open-source software that computes taxes and benefits for any household and simulates reforms across whole populations. Policymakers, researchers, and benefit navigators use it in the US, UK, and Canada. See the research portfolio at policyengine.org/us/research.',
 	},
 	{
-		title: 'opencollective-py',
-		description: 'Python client for OpenCollective API with CLI and MCP server for Claude Code integration.',
-		href: '/opencollective-py',
-		repo: 'https://github.com/MaxGhenis/opencollective-py',
-		tag: 'Python',
+		title: 'UBI Center',
+		href: 'https://ubicenter.org',
+		role: 'Founder · 2019–2023',
+		description:
+			'Open-source think tank researching universal basic income and cash transfer policies. The team produced over 60 reports on UBI proposals, child allowances, and carbon dividends.',
+	},
+];
+
+const products = [
+	{
+		title: 'PolicyBench',
+		href: 'https://policybench.org',
+		repo: 'https://github.com/PolicyEngine/policybench',
+		description: 'Open benchmark scoring AI models on tax and benefit law, graded against exact calculations.',
+		tag: 'AI eval',
+		pole: 'cast',
 	},
 	{
-		title: 'RAMBar',
-		description: 'A native macOS menu bar app for tracking memory usage across Claude Code sessions, VS Code workspaces, Chrome tabs, and Python processes.',
-		href: 'https://maxghenis.com/rambar',
-		repo: 'https://github.com/MaxGhenis/rambar',
-		tag: 'macOS',
+		title: 'populace',
+		href: 'https://populace.dev',
+		description: 'Calibrated survey microdata for policy simulation — national to local, fully reproducible.',
+		tag: 'Microdata',
+		pole: 'cast',
 	},
 	{
-		title: 'Scrollywood',
-		description: 'Chrome extension for smooth scroll recordings of any webpage, with scrollytelling support and WebM, MP4, or GIF export.',
-		href: '/scrollywood',
-		repo: 'https://github.com/MaxGhenis/scrollywood',
-		tag: 'Chrome',
+		title: 'HiveSight',
+		href: 'https://hivesight.ai',
+		description: 'Estimates public opinion by segment, grounding language models in survey microdata.',
+		tag: 'Opinion',
+		pole: 'cast',
 	},
 	{
-		title: 'TerminalGrid',
-		description: 'A VS Code extension for keyboard-driven terminal grid management with project picker and auto-launch for AI coding tools.',
-		href: 'https://maxghenis.com/terminalgrid',
-		repo: 'https://github.com/MaxGhenis/terminalgrid',
-		tag: 'VS Code',
+		title: 'EggNest',
+		href: 'https://eggnest.co',
+		description: 'Monte Carlo financial planning with real tax calculations.',
+		tag: 'Finance',
+		pole: 'cast',
+	},
+	{
+		title: 'OptiQAL',
+		href: 'https://optiqal.ai',
+		description: 'AI-assisted QALY estimation for lifestyle choices.',
+		tag: 'Health',
+		pole: 'cast',
 	},
 	{
 		title: 'CodeStitch',
-		description: 'Combine GitHub repos, PRs, and issues into single files for AI context.',
 		href: 'https://codestitch.dev',
 		repo: 'https://github.com/MaxGhenis/codestitch',
-		tag: 'Developer Tools',
+		description: 'Combines GitHub repos, PRs, and issues into single files for AI context.',
+		tag: 'Dev tools',
+		pole: 'rule',
+	},
+];
+
+const tools = [
+	{
+		title: 'microdf',
+		href: 'https://github.com/PolicyEngine/microdf',
+		description: "Pandas extensions for weighted survey microdata, used across PolicyEngine's models.",
+		tag: 'Python',
+		pole: 'rule',
 	},
 	{
-		title: 'PR Improver',
-		description: 'LLM-powered tool suggesting improvements to PRs based on repo guidelines.',
-		href: 'https://pr-improver.streamlit.app',
-		repo: 'https://github.com/MaxGhenis/pr-improver',
-		tag: 'Open Source',
+		title: 'OpenMessage',
+		href: '/blog/openmessage',
+		repo: 'https://github.com/MaxGhenis/openmessage',
+		description: 'macOS Google Messages client that gives coding agents access to your texts.',
+		tag: 'macOS',
+		pole: 'rule',
 	},
 	{
-		title: 'OEWS Explorer',
-		description: 'Dashboard for exploring BLS occupational employment and wage data.',
-		href: 'https://oews-explorer.streamlit.app',
-		repo: 'https://github.com/MaxGhenis/oews-explorer',
-		tag: 'Data Viz',
+		title: 'TerminalGrid',
+		href: '/terminalgrid',
+		repo: 'https://github.com/MaxGhenis/terminalgrid',
+		description: 'VS Code extension for keyboard-driven terminal grids, built for agentic coding.',
+		tag: 'VS Code',
+		pole: 'rule',
+	},
+	{
+		title: 'RAMBar',
+		href: '/rambar',
+		repo: 'https://github.com/MaxGhenis/rambar',
+		description: 'Native macOS menu bar app tracking memory across Claude Code, VS Code, Chrome, and Python.',
+		tag: 'macOS',
+		pole: 'rule',
+	},
+	{
+		title: 'Scrollywood',
+		href: '/scrollywood',
+		repo: 'https://github.com/MaxGhenis/scrollywood',
+		description: 'Chrome extension recording smooth-scroll videos and GIFs of any webpage.',
+		tag: 'Chrome',
+		pole: 'rule',
+	},
+	{
+		title: 'opencollective-py',
+		href: '/opencollective-py',
+		repo: 'https://github.com/MaxGhenis/opencollective-py',
+		description: 'Python client for the OpenCollective API, with CLI and MCP server.',
+		tag: 'Python',
+		pole: 'rule',
+	},
+];
+
+const interactives = [
+	{
+		title: "MacKenzie Scott's giving, in QALYs",
+		href: '/mackenzie-scott-qaly',
+		repo: 'https://github.com/MaxGhenis/mackenzie-scott-qaly',
+		description: "GiveWell-style Monte Carlo model estimating the health impact of $26.3B in giving, running entirely in your browser.",
+		tag: 'Monte Carlo',
+		pole: 'cast',
+	},
+	{
+		title: 'A year of ChatGPT is a fifth of a beer',
+		href: '/drinking-ai',
+		description: 'Prices drinks in AI queries, and lets you flip every assumption behind published AI water numbers.',
+		tag: 'Explorable',
+		pole: 'cast',
+	},
+	{
+		title: 'Voter guides',
+		href: '/voter-guides/',
+		description: 'Recommendations for California elections — propositions, candidates, and local measures.',
+		tag: 'Civic',
+		pole: 'rule',
 	},
 ];
 
 const papers = [
 	{
+		title: 'What can LLMs tell us about the ETI?',
+		authors: 'Max Ghenis & Jason DeBacker',
+		status: 'Working paper',
+		date: '2025',
+		abstract:
+			'We investigate how large language models perceive and simulate behavioral responses to tax policy changes, with implications for using LLMs in policy analysis.',
+		links: [
+			{ label: 'Read', href: '/llm-eti/' },
+			{ label: 'PDF', href: '/llm-eti/book.pdf' },
+			{ label: 'SSRN', href: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5410643' },
+			{ label: 'Code', href: 'https://github.com/MaxGhenis/llm-eti' },
+		],
+	},
+	{
+		title: 'Enhancing survey microdata with administrative records',
+		authors: 'Max Ghenis & Nikhil Woodruff',
+		status: 'Published',
+		venue: 'National Tax Association Annual Meeting',
+		date: 'November 2024',
+		abstract:
+			'A novel approach to microsimulation dataset construction that combines Current Population Survey data with IRS administrative records for improved tax-benefit modeling.',
+		links: [
+			{ label: 'PDF', href: 'https://github.com/PolicyEngine/policyengine-us-data/blob/main/paper/main.pdf' },
+			{ label: 'Code', href: 'https://github.com/PolicyEngine/policyengine-us-data' },
+		],
+	},
+	{
+		title: 'Can LLMs forecast human value evolution?',
+		authors: 'Max Ghenis',
+		status: 'Working paper',
+		date: '2025',
+		abstract:
+			'Testing whether language models can predict moral and value change trajectories using historical General Social Survey data as ground truth.',
+		links: [
+			{ label: 'Read', href: '/value-forecasting/' },
+			{ label: 'PDF', href: '/value-forecasting/value-forecasting.pdf' },
+			{ label: 'Code', href: 'https://github.com/MaxGhenis/value-forecasting' },
+		],
+	},
+	{
+		title: 'AI model policy impact forecasts: A narrative prompting approach',
+		authors: 'Max Ghenis',
+		status: 'Working paper',
+		date: '2024',
+		abstract:
+			'Examining the use of large language models for forecasting policy outcomes under different U.S. presidential administrations using narrative prompting techniques.',
+		links: [
+			{ label: 'PDF', href: 'https://github.com/MaxGhenis/llm-presidential-outcome-forecasts/blob/main/paper/main.pdf' },
+			{ label: 'Code', href: 'https://github.com/MaxGhenis/llm-presidential-outcome-forecasts' },
+		],
+	},
+	{
 		title: 'The double distortion: Income-based traffic fines and labor supply',
 		authors: 'Max Ghenis',
 		status: 'Working paper',
 		date: '2025',
-		abstract: 'Agent-based simulation analyzing welfare effects of income-based vs flat traffic fines, showing labor supply distortions from implicit marginal tax rates.',
+		abstract:
+			'Agent-based simulation analyzing welfare effects of income-based vs flat traffic fines, showing labor supply distortions from implicit marginal tax rates.',
 		links: [
 			{ label: 'Read', href: '/traffic-fine-sim/' },
 			{ label: 'PDF', href: '/traffic-fine-sim/traffic-fines.pdf' },
@@ -93,7 +226,8 @@ const papers = [
 		authors: 'Max Ghenis',
 		status: 'Working paper',
 		date: '2025',
-		abstract: 'Monte Carlo analysis of life expectancy from nut consumption, with evidence-traced claims and hierarchical nutrient models.',
+		abstract:
+			'Monte Carlo analysis of life expectancy from nut consumption, with evidence-traced claims and hierarchical nutrient models.',
 		links: [
 			{ label: 'Read', href: '/whatnut-paper/' },
 			{ label: 'PDF', href: '/whatnut-paper/whatnut.pdf' },
@@ -101,46 +235,12 @@ const papers = [
 		],
 	},
 	{
-		title: 'What can LLMs tell us about the ETI?',
-		authors: 'Max Ghenis & Jason DeBacker',
-		status: 'Working paper',
-		date: '2025',
-		abstract: 'We investigate how large language models perceive and simulate behavioral responses to tax policy changes, with implications for using LLMs in policy analysis.',
-		links: [
-			{ label: 'Read', href: '/llm-eti/' },
-			{ label: 'PDF', href: '/llm-eti/book.pdf' },
-			{ label: 'SSRN', href: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5410643' },
-			{ label: 'Code', href: 'https://github.com/MaxGhenis/llm-eti' },
-		],
-	},
-	{
-		title: 'Can LLMs forecast human value evolution?',
-		authors: 'Max Ghenis',
-		status: 'Working paper',
-		date: '2025',
-		abstract: 'Testing whether language models can predict moral and value change trajectories using historical General Social Survey data as ground truth.',
-		links: [
-			{ label: 'Read', href: '/value-forecasting/' },
-			{ label: 'PDF', href: '/value-forecasting/value-forecasting.pdf' },
-			{ label: 'Code', href: 'https://github.com/MaxGhenis/value-forecasting' },
-		],
-	},
-	{
-		title: 'The Mind: LLM coordination',
-		authors: 'Max Ghenis',
-		status: 'In progress',
-		date: '2025',
-		abstract: 'Simulating The Mind card game with large language models to study emergent coordination without explicit communication.',
-		links: [
-			{ label: 'Code', href: 'https://github.com/MaxGhenis/the-mind' },
-		],
-	},
-	{
 		title: 'Beer price controls at Yankee Stadium',
 		authors: 'Max Ghenis',
 		status: 'Working paper',
 		date: '2024',
-		abstract: 'An economic analysis of consumer welfare, revenue, and externalities from stadium beer pricing policies.',
+		abstract:
+			'An economic analysis of consumer welfare, revenue, and externalities from stadium beer pricing policies.',
 		links: [
 			{ label: 'Read', href: '/yankee-stadium-beer-price-controls/' },
 			{ label: 'PDF', href: '/yankee-stadium-beer-price-controls/beer-price-controls.pdf' },
@@ -148,40 +248,13 @@ const papers = [
 		],
 	},
 	{
-		title: 'AI model policy impact forecasts: A narrative prompting approach',
+		title: 'The Mind: LLM coordination',
 		authors: 'Max Ghenis',
-		status: 'Working paper',
-		date: '2024',
-		abstract: 'Examining the use of large language models for forecasting policy outcomes under different U.S. presidential administrations using narrative prompting techniques.',
-		links: [
-			{ label: 'PDF', href: 'https://github.com/MaxGhenis/llm-presidential-outcome-forecasts/blob/main/paper/main.pdf' },
-			{ label: 'Code', href: 'https://github.com/MaxGhenis/llm-presidential-outcome-forecasts' },
-		],
-	},
-	{
-		title: 'Enhancing survey microdata with administrative records',
-		authors: 'Max Ghenis & Nikhil Woodruff',
-		status: 'Published',
-		venue: 'National Tax Association Annual Meeting',
-		date: 'November 2024',
-		abstract: 'A novel approach to microsimulation dataset construction that combines Current Population Survey data with IRS administrative records for improved tax-benefit modeling.',
-		links: [
-			{ label: 'PDF', href: 'https://github.com/PolicyEngine/policyengine-us-data/blob/main/paper/main.pdf' },
-			{ label: 'Code', href: 'https://github.com/PolicyEngine/policyengine-us-data' },
-		],
-	},
-	{
-		title: 'Farness: Forecasting as a harness for decision-making',
-		authors: 'Max Ghenis',
-		status: 'Working paper',
-		date: '2024',
-		abstract: 'A decision-making framework that reframes subjective questions into forecasting problems with explicit KPIs, confidence intervals, and calibration tracking. Includes a Python package and methodology for measuring framework effectiveness in LLMs.',
-		links: [
-			{ label: 'Read', href: 'https://farness.ai' },
-			{ label: 'Paper', href: 'https://github.com/MaxGhenis/farness/blob/main/paper/preemptive_rigor.md' },
-			{ label: 'PyPI', href: 'https://pypi.org/project/farness/' },
-			{ label: 'Code', href: 'https://github.com/MaxGhenis/farness' },
-		],
+		status: 'In progress',
+		date: '2025',
+		abstract:
+			'Simulating The Mind card game with large language models to study emergent coordination without explicit communication.',
+		links: [{ label: 'Code', href: 'https://github.com/MaxGhenis/the-mind' }],
 	},
 ];
 ---
@@ -194,59 +267,86 @@ const papers = [
 	<body>
 		<Header />
 		<main>
-			<h1>Projects</h1>
-			<p class="intro">
-				Software I've built and research I've published—mostly at the intersection of policy, economics, and AI.
-			</p>
+			<header class="page-header">
+				<h1>Projects</h1>
+				<p class="intro">
+					Software I've built and research I've published — mostly at the
+					intersection of policy, economics, and AI. Rules on one side,
+					estimates and forecasts on the other; most of it lives in between.
+				</p>
+			</header>
 
-			<section>
-				<h2>Software</h2>
-				<div class="software-grid">
-					{software.map((project) => (
-						<a href={project.href} class="software-card" target="_blank" rel="noopener">
-							<div class="software-header">
-								<span class="software-tag">{project.tag}</span>
-								{project.repo && (
-									<span class="repo-link" data-repo={project.repo} aria-label="View source">
-										<svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true">
-											<path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
-										</svg>
-									</span>
-								)}
+			<section class="block">
+				<span class="eyebrow">Organizations</span>
+				<div class="org-list">
+					{organizations.map((org) => (
+						<a href={org.href} class="org-card" target="_blank" rel="noopener">
+							<div class="org-seam" aria-hidden="true"></div>
+							<div class="org-body">
+								<span class="org-role">{org.role}</span>
+								<h2>{org.title}</h2>
+								<p>{org.description}</p>
 							</div>
-							<h3>{project.title}</h3>
-							<p>{project.description}</p>
 						</a>
 					))}
 				</div>
 			</section>
 
-			<script>
-				document.querySelectorAll('.repo-link').forEach(link => {
-					link.addEventListener('click', (e) => {
-						e.preventDefault();
-						e.stopPropagation();
-						window.open((link as HTMLElement).dataset.repo, '_blank');
-					});
-				});
-			</script>
+			<section class="block">
+				<span class="eyebrow">Products &amp; platforms</span>
+				<div class="card-grid">
+					{products.map((item) => (
+						<a href={item.href} class="card" target={item.href.startsWith('http') ? '_blank' : undefined} rel={item.href.startsWith('http') ? 'noopener' : undefined}>
+							<span class={`card-tag ${item.pole}-tag`}>{item.tag}</span>
+							<h3>{item.title}</h3>
+							<p>{item.description}</p>
+						</a>
+					))}
+				</div>
+			</section>
 
-			<section>
-				<h2>Research</h2>
+			<section class="block">
+				<span class="eyebrow">Tools &amp; libraries</span>
+				<div class="card-grid">
+					{tools.map((item) => (
+						<a href={item.href} class="card" target={item.href.startsWith('http') ? '_blank' : undefined} rel={item.href.startsWith('http') ? 'noopener' : undefined}>
+							<span class={`card-tag ${item.pole}-tag`}>{item.tag}</span>
+							<h3>{item.title}</h3>
+							<p>{item.description}</p>
+						</a>
+					))}
+				</div>
+			</section>
+
+			<section class="block">
+				<span class="eyebrow">Interactives &amp; analyses</span>
+				<div class="card-grid">
+					{interactives.map((item) => (
+						<a href={item.href} class="card">
+							<span class={`card-tag ${item.pole}-tag`}>{item.tag}</span>
+							<h3>{item.title}</h3>
+							<p>{item.description}</p>
+						</a>
+					))}
+				</div>
+			</section>
+
+			<section class="block" id="research">
+				<span class="eyebrow">Research &amp; working papers</span>
 				<div class="papers">
 					{papers.map((paper) => (
 						<article class="paper">
-							<div class="paper-header">
+							<div class="paper-head">
 								<h3>{paper.title}</h3>
-								<span class={`status-tag status-${paper.status.toLowerCase().replace(/\s+/g, '-')}`}>{paper.status}</span>
+								<span class="paper-date">{paper.date}</span>
 							</div>
-							<p class="meta">
-								<span class="authors">{paper.authors}</span>
-								{paper.venue && <span class="venue">{paper.venue}</span>}
-								<span class="date">{paper.date}</span>
+							<p class="paper-meta">
+								{paper.authors}
+								{paper.venue && <span> · {paper.venue}</span>}
+								<span> · {paper.status}</span>
 							</p>
-							<p class="abstract">{paper.abstract}</p>
-							<div class="links">
+							<p class="paper-abstract">{paper.abstract}</p>
+							<div class="paper-links">
 								{paper.links.map((link) => (
 									<a href={link.href} {...(link.href.startsWith('/') ? {} : { target: '_blank', rel: 'noopener' })}>{link.label}</a>
 								))}
@@ -256,34 +356,10 @@ const papers = [
 				</div>
 			</section>
 
-			<section>
-				<h2>Civic engagement</h2>
+			<section class="block lab-note">
 				<p>
-					My recommendations for California elections, with detailed analysis of ballot measures and races.
-				</p>
-				<div class="jupyter-books">
-					<a href="/voter-guides/" class="book-card">
-						<h3>Voter guides</h3>
-						<p>Recommendations for statewide and local elections, covering propositions, candidates, and local measures with evidence-based analysis.</p>
-						<span class="view-link">View all guides →</span>
-					</a>
-				</div>
-			</section>
-
-			<section>
-				<h2>PolicyEngine</h2>
-				<p>
-					As CEO of PolicyEngine, I contribute to numerous policy analyses. Visit the
-					<a href="https://policyengine.org/us/research">PolicyEngine Research page</a>
-					for our full portfolio of published work on tax and benefit policy.
-				</p>
-			</section>
-
-			<section>
-				<h2>UBI Center</h2>
-				<p>
-					I founded the <a href="https://ubicenter.org">UBI Center</a> in 2019, an open-source think tank researching universal basic income and cash transfer policies.
-					From 2019 to 2023, the team produced over 60 reports on UBI proposals, child allowances, and carbon dividends.
+					Smaller experiments — games, prototypes, one-offs — live in
+					<a href="/lab">the lab</a>.
 				</p>
 			</section>
 		</main>
@@ -292,84 +368,136 @@ const papers = [
 </html>
 
 <style>
+	.page-header {
+		padding: 2.5rem 0 1rem;
+	}
+
+	.page-header h1 {
+		font-size: clamp(2.4rem, 4.5vw, 3.25rem);
+		font-weight: 500;
+		margin-bottom: 0.75rem;
+	}
+
 	.intro {
-		color: var(--text-secondary);
-		margin-bottom: 2.5rem;
-		font-size: 1.125rem;
-		max-width: 600px;
+		color: var(--ink-soft);
+		font-size: 1.1rem;
+		max-width: 640px;
+		margin-bottom: 1rem;
 	}
 
-	section {
-		margin-bottom: 3.5rem;
+	.block {
+		margin-bottom: 4rem;
 	}
 
-	h2 {
-		margin-bottom: 1.25rem;
-		padding-bottom: 0.75rem;
-		border-bottom: 2px solid rgba(15, 23, 42, 0.08);
+	.block > .eyebrow {
+		margin-bottom: 1.5rem;
 	}
 
-	/* Software Grid */
-	.software-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+	/* Organizations */
+	.org-list {
+		display: flex;
+		flex-direction: column;
 		gap: 1.25rem;
 	}
 
-	.software-card {
+	.org-card {
+		position: relative;
 		display: block;
-		padding: 1.5rem;
-		background: white;
-		border: 1px solid rgba(15, 23, 42, 0.08);
+		padding: 1.875rem 2rem 1.875rem 2.25rem;
+		background: var(--card);
+		border: 1px solid var(--line);
+		border-radius: var(--radius-lg);
+		text-decoration: none;
+		overflow: hidden;
+		box-shadow: var(--shadow-sm);
+		transition: all var(--duration-normal) var(--ease-out);
+	}
+
+	.org-card:hover {
+		box-shadow: var(--shadow-lg);
+		transform: translateY(-2px);
+	}
+
+	.org-seam {
+		position: absolute;
+		left: 0;
+		top: 0;
+		bottom: 0;
+		width: 4px;
+		background: var(--seam-vertical);
+	}
+
+	.org-role {
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--ink-muted);
+		display: block;
+		margin-bottom: 0.5rem;
+	}
+
+	.org-card h2 {
+		font-size: 1.5rem;
+		margin-bottom: 0.5rem;
+		color: var(--ink);
+	}
+
+	.org-card p {
+		color: var(--ink-soft);
+		font-size: 0.9688rem;
+		max-width: 720px;
+		margin: 0;
+	}
+
+	/* Card grids */
+	.card-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 1.25rem;
+	}
+
+	.card {
+		display: flex;
+		flex-direction: column;
+		padding: 1.375rem 1.5rem;
+		background: var(--card);
+		border: 1px solid var(--line);
 		border-radius: var(--radius-lg);
 		text-decoration: none;
 		transition: all var(--duration-fast) var(--ease-out);
 	}
 
-	.software-card:hover {
-		border-color: rgba(15, 23, 42, 0.15);
+	.card:hover {
+		border-color: #d9d2c2;
 		box-shadow: var(--shadow-md);
 		transform: translateY(-2px);
 	}
 
-	.software-header {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
+	.card-tag {
+		font-family: var(--font-mono);
+		font-size: 0.65rem;
+		font-weight: 500;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
 		margin-bottom: 0.75rem;
 	}
 
-	.software-tag {
-		display: inline-block;
-		padding: 0.25rem 0.625rem;
-		background: var(--cream-dark);
-		color: var(--text-muted);
-		font-size: 0.75rem;
+	.rule-tag { color: var(--rule-deep); }
+	.cast-tag { color: var(--cast-deep); }
+
+	.card h3 {
+		font-size: 1.15rem;
 		font-weight: 600;
-		border-radius: var(--radius-sm);
-		text-transform: uppercase;
-		letter-spacing: 0.05em;
-	}
-
-	.repo-link {
-		color: var(--text-muted);
-		cursor: pointer;
-		transition: color var(--duration-fast) var(--ease-out);
-	}
-
-	.repo-link:hover {
-		color: var(--amber-dark);
-	}
-
-	.software-card h3 {
-		margin-bottom: 0.5rem;
-		font-size: 1.125rem;
+		margin-bottom: 0.375rem;
 		color: var(--ink);
+		line-height: 1.3;
 	}
 
-	.software-card p {
-		color: var(--text-secondary);
-		font-size: 0.9375rem;
+	.card p {
+		font-size: 0.9rem;
+		line-height: 1.55;
+		color: var(--ink-soft);
 		margin: 0;
 	}
 
@@ -377,151 +505,100 @@ const papers = [
 	.papers {
 		display: flex;
 		flex-direction: column;
-		gap: 1.25rem;
 	}
 
 	.paper {
-		padding: 1.5rem;
-		background: white;
-		border: 1px solid rgba(15, 23, 42, 0.08);
-		border-radius: var(--radius-lg);
+		padding: 1.5rem 0.25rem;
+		border-bottom: 1px solid var(--line);
 	}
 
-	.paper-header {
+	.paper:first-of-type {
+		border-top: 1px solid var(--line);
+	}
+
+	.paper-head {
 		display: flex;
 		justify-content: space-between;
-		align-items: flex-start;
-		gap: 0.75rem;
-		margin-bottom: 0.5rem;
-	}
-
-	.paper-header h3 {
-		margin: 0;
-		color: var(--ink);
-		font-size: 1.125rem;
-	}
-
-	.status-tag {
-		display: inline-block;
-		padding: 0.25rem 0.625rem;
-		font-size: 0.75rem;
-		font-weight: 600;
-		border-radius: var(--radius-sm);
-		text-transform: uppercase;
-		letter-spacing: 0.05em;
-		white-space: nowrap;
-		flex-shrink: 0;
-	}
-
-	.status-published {
-		background: #dcfce7;
-		color: #166534;
-	}
-
-	.status-working-paper {
-		background: var(--cream-dark);
-		color: var(--text-muted);
-	}
-
-	.status-in-progress {
-		background: #fef3c7;
-		color: #92400e;
-	}
-
-	.status-framework {
-		background: #dbeafe;
-		color: #1e40af;
-	}
-
-	.meta {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.5rem 1rem;
-		margin-bottom: 1rem;
-		font-size: 0.875rem;
-	}
-
-	.authors {
-		color: var(--text-secondary);
-	}
-
-	.venue {
-		color: var(--text-muted);
-		font-style: italic;
-	}
-
-	.date {
-		color: var(--text-muted);
-	}
-
-	.abstract {
-		margin-bottom: 1rem;
-		color: var(--text-secondary);
-	}
-
-	.links {
-		display: flex;
-		gap: 0.75rem;
-	}
-
-	.links a {
-		padding: 0.4rem 1rem;
-		background: var(--ink);
-		color: white;
-		border-radius: var(--radius-md);
-		text-decoration: none;
-		font-size: 0.875rem;
-		font-weight: 500;
-		transition: all var(--duration-fast) var(--ease-out);
-	}
-
-	.links a:hover {
-		background: var(--ink-soft);
-		transform: translateY(-1px);
-	}
-
-	/* Jupyter Books */
-	.jupyter-books {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		align-items: baseline;
 		gap: 1rem;
-		margin-top: 1rem;
+		margin-bottom: 0.25rem;
 	}
 
-	.book-card {
-		padding: 1.5rem;
-		background: white;
-		border: 1px solid rgba(15, 23, 42, 0.08);
-		border-radius: var(--radius-lg);
-		text-decoration: none;
-		transition: all var(--duration-fast) var(--ease-out);
-	}
-
-	.book-card:hover {
-		border-color: var(--amber);
-		box-shadow: var(--shadow-md);
-	}
-
-	.book-card h3 {
-		margin-bottom: 0.5rem;
+	.paper-head h3 {
+		margin: 0;
+		font-size: 1.2rem;
 		color: var(--ink);
-		font-size: 1.125rem;
 	}
 
-	.book-card p {
+	.paper-date {
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		color: var(--cast-deep);
+		white-space: nowrap;
+	}
+
+	.paper-meta {
+		font-size: 0.85rem;
+		color: var(--ink-muted);
+		margin-bottom: 0.625rem;
+	}
+
+	.paper-abstract {
+		font-size: 0.9375rem;
+		color: var(--ink-soft);
+		max-width: 760px;
+		margin-bottom: 0.75rem;
+	}
+
+	.paper-links {
+		display: flex;
+		gap: 1.25rem;
+	}
+
+	.paper-links a {
+		font-family: var(--font-mono);
+		font-size: 0.8125rem;
+		color: var(--rule-deep);
+	}
+
+	.paper-links a:hover {
+		color: var(--rule);
+	}
+
+	/* Lab note */
+	.lab-note {
 		margin-bottom: 1rem;
-		color: var(--text-secondary);
 	}
 
-	.view-link {
-		color: var(--amber-dark);
-		font-weight: 600;
-		font-size: 0.875rem;
+	.lab-note p {
+		font-family: var(--font-display);
+		font-style: italic;
+		font-size: 1.05rem;
+		color: var(--ink-soft);
 	}
 
-	@media (max-width: 768px) {
-		.software-grid {
+	.lab-note a {
+		color: var(--rule-deep);
+		text-decoration: underline;
+		text-decoration-thickness: 1.5px;
+		text-underline-offset: 3px;
+	}
+
+	/* Responsive */
+	@media (max-width: 900px) {
+		.card-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media (max-width: 640px) {
+		.card-grid {
 			grid-template-columns: 1fr;
+		}
+
+		.paper-head {
+			flex-direction: column;
+			gap: 0.25rem;
 		}
 	}
 </style>

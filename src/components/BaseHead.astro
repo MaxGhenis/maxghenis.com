@@ -35,8 +35,13 @@ const imageUrl = typeof image === 'string'
 />
 <meta name="generator" content={Astro.generator} />
 
-<!-- Fonts - Preconnect for faster loading -->
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+	href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..600&family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:wght@400..900&family=Source+Sans+3:wght@300..700&display=swap"
+	rel="stylesheet"
+/>
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
@@ -61,4 +66,4 @@ const imageUrl = typeof image === 'string'
 <meta property="twitter:image" content={imageUrl} />
 
 <!-- Theme color for mobile browsers -->
-<meta name="theme-color" content="#fefdf8" />
+<meta name="theme-color" content="#fbfaf6" />

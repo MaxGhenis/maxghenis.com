@@ -1,26 +1,61 @@
 @import "tailwindcss";
 
+/*
+  Design system — "the seam"
+  One warm paper ground, two accent poles that never blend except in the seam:
+    --rule (amber)  · determinism — what the law says
+    --cast (rose)   · prediction — what will happen
+  Display type is Newsreader (serif thinking); body/UI is Geist (sans
+  engineering); JetBrains Mono carries dates, tags, and axis labels.
+*/
+
 :root {
-  /* Editorial Architect Color System */
-  --ink: #0f172a;
-  --ink-soft: #334155;
-  --ink-muted: #64748b;
-  --cream: #fefdf8;
-  --cream-dark: #faf9f4;
-  --amber: #f59e0b;
-  --amber-dark: #d97706;
-  --amber-glow: rgba(245, 158, 11, 0.15);
+  /* Ground */
+  --paper: #fbfaf6;
+  --paper-deep: #f4f1e9;
+  --card: #ffffff;
+  --ink: #211d18;
+  --ink-soft: #4a453f;
+  --ink-muted: #7d766c;
+  --line: #e8e3d8;
+
+  /* Poles */
+  --rule: #b45309;
+  --rule-deep: #8a3d08;
+  --rule-glow: rgba(180, 83, 9, 0.09);
+  --cast: #a94e80;
+  --cast-deep: #8f3d6a;
+  --cast-glow: rgba(169, 78, 128, 0.09);
+  --mist: #9fb6c6;
+  --sky: #5e97c8;
+  --pool: #f3f7fa;
+
+  /* The seam — amber meets rose */
+  --seam: linear-gradient(90deg, #b45309 0%, #bf8a64 38%, #b08aa0 62%, #a94e80 100%);
+  --seam-vertical: linear-gradient(180deg, #b45309 0%, #bf8a64 38%, #b08aa0 62%, #a94e80 100%);
+
+  /* Type stacks */
+  --font-display: 'Newsreader', Georgia, serif;
+  --font-body: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  /* Legacy aliases — older standalone pages depend on these names */
+  --cream: var(--paper);
+  --cream-dark: var(--paper-deep);
+  --amber: #c05d12;
+  --amber-dark: var(--rule);
+  --amber-glow: var(--rule-glow);
   --sage: #84cc16;
-  --navy-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  --navy-gradient: linear-gradient(135deg, #211d18 0%, #3b342b 100%);
 
   /* Semantic colors */
   --text-primary: var(--ink);
   --text-secondary: var(--ink-soft);
   --text-muted: var(--ink-muted);
-  --bg-primary: var(--cream);
-  --bg-secondary: var(--cream-dark);
-  --accent: var(--amber);
-  --accent-dark: var(--amber-dark);
+  --bg-primary: var(--paper);
+  --bg-secondary: var(--paper-deep);
+  --accent: var(--rule);
+  --accent-dark: var(--rule-deep);
 
   /* Spacing rhythm */
   --space-xs: 0.25rem;
@@ -42,11 +77,11 @@
   --text-5xl: 3.5rem;
   --text-6xl: 4.5rem;
 
-  /* Shadows */
-  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.07), 0 2px 4px -1px rgba(15, 23, 42, 0.04);
-  --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -2px rgba(15, 23, 42, 0.04);
-  --shadow-xl: 0 20px 25px -5px rgba(15, 23, 42, 0.1), 0 10px 10px -5px rgba(15, 23, 42, 0.04);
+  /* Shadows — warm-tinted */
+  --shadow-sm: 0 1px 2px rgba(33, 29, 24, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(33, 29, 24, 0.07), 0 2px 4px -1px rgba(33, 29, 24, 0.04);
+  --shadow-lg: 0 10px 15px -3px rgba(33, 29, 24, 0.08), 0 4px 6px -2px rgba(33, 29, 24, 0.04);
+  --shadow-xl: 0 20px 25px -5px rgba(33, 29, 24, 0.1), 0 10px 10px -5px rgba(33, 29, 24, 0.04);
 
   /* Border radius */
   --radius-sm: 4px;
@@ -62,31 +97,6 @@
   --duration-slow: 500ms;
 }
 
-/* Custom fonts */
-@font-face {
-  font-family: 'Playfair Display';
-  font-style: normal;
-  font-weight: 400 900;
-  font-display: swap;
-  src: url('https://fonts.gstatic.com/s/playfairdisplay/v37/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKd3vXDXbtM.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Source Sans 3';
-  font-style: normal;
-  font-weight: 300 700;
-  font-display: swap;
-  src: url('https://fonts.gstatic.com/s/sourcesans3/v15/nwpBtKy2OAdR1K-IwhWudF-R9QMylBJAV3Bo8Ky462EN_io6npfB.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 400 700;
-  font-display: swap;
-  src: url('https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKxjPVmUsaaDhw.woff2') format('woff2');
-}
-
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -96,38 +106,41 @@ html {
 }
 
 body {
-  font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: var(--font-body);
   margin: 0;
   padding: 0;
   background: var(--bg-primary);
   color: var(--text-primary);
-  font-size: 18px;
+  font-size: 17px;
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
 
-  /* Subtle graph paper texture */
-  background-image:
-    linear-gradient(rgba(15, 23, 42, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(15, 23, 42, 0.02) 1px, transparent 1px);
-  background-size: 40px 40px;
-  background-position: -1px -1px;
+::selection {
+  background: var(--rule-glow);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--sky);
+  outline-offset: 2px;
 }
 
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: var(--font-display);
   font-weight: 600;
+  font-optical-sizing: auto;
   color: var(--text-primary);
-  line-height: 1.2;
+  line-height: 1.15;
   margin: 0 0 0.5em 0;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.015em;
 }
 
 h1 {
   font-size: var(--text-5xl);
-  font-weight: 700;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
 }
 h2 { font-size: var(--text-3xl); }
 h3 { font-size: var(--text-2xl); }
@@ -146,19 +159,40 @@ strong, b {
 }
 
 a {
-  color: var(--accent-dark);
+  color: var(--rule-deep);
   text-decoration: none;
   transition: color var(--duration-fast) var(--ease-out);
 }
 
 a:hover {
-  color: var(--accent);
+  color: var(--rule);
+}
+
+/* Section eyebrow — mono label opened by a short seam dash */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.eyebrow::before {
+  content: '';
+  width: 22px;
+  height: 2px;
+  background: var(--seam);
+  border-radius: 1px;
 }
 
 /* Main content container */
 main {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: var(--space-xl) var(--space-lg);
 }
@@ -177,8 +211,9 @@ main {
 
 /* Prose styles for blog content */
 .prose {
-  max-width: 720px;
+  max-width: 700px;
   margin: 0 auto;
+  font-size: 1.0625rem;
 }
 
 .prose p {
@@ -188,8 +223,6 @@ main {
 .prose h2 {
   margin-top: 2.5em;
   margin-bottom: 0.75em;
-  padding-bottom: 0.5em;
-  border-bottom: 2px solid rgba(15, 23, 42, 0.08);
 }
 
 .prose h3 {
@@ -201,6 +234,7 @@ main {
   margin-bottom: 1.5em;
   padding-left: 1.5em;
   list-style: revert;
+  color: var(--text-secondary);
 }
 
 .prose li {
@@ -208,17 +242,24 @@ main {
 }
 
 .prose blockquote {
-  border-left: 4px solid var(--accent);
-  padding: 0.5em 0 0.5em 1.5em;
+  position: relative;
+  border-left: 3px solid transparent;
+  border-image: var(--seam-vertical) 1;
+  padding: 0.25em 0 0.25em 1.5em;
   margin: 2em 0;
+  font-family: var(--font-display);
   font-style: italic;
-  color: var(--text-muted);
-  background: var(--amber-glow);
-  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  font-size: 1.1em;
+  color: var(--ink-soft);
+}
+
+.prose blockquote p {
+  color: inherit;
 }
 
 .prose pre {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-mono);
+  font-size: 0.85em;
   padding: 1.5em;
   border-radius: var(--radius-lg);
   overflow-x: auto;
@@ -228,30 +269,30 @@ main {
 }
 
 .prose code {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-mono);
   padding: 0.2em 0.4em;
-  background: rgba(15, 23, 42, 0.06);
+  background: rgba(33, 29, 24, 0.06);
   border-radius: var(--radius-sm);
-  font-size: 0.9em;
+  font-size: 0.88em;
 }
 
 .prose pre > code {
   all: unset;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-mono);
 }
 
 .prose a {
-  color: var(--accent-dark);
+  color: var(--ink);
   text-decoration: underline;
-  text-decoration-color: var(--amber-glow);
+  text-decoration-color: var(--rule);
+  text-decoration-thickness: 1.5px;
   text-underline-offset: 3px;
-  text-decoration-thickness: 2px;
   transition: all var(--duration-fast) var(--ease-out);
 }
 
 .prose a:hover {
-  color: var(--accent);
-  text-decoration-color: var(--accent);
+  color: var(--rule-deep);
+  text-decoration-color: var(--cast);
 }
 
 img {
@@ -269,7 +310,7 @@ table {
 
 th, td {
   padding: 0.75em 1em;
-  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+  border-bottom: 1px solid var(--line);
   text-align: left;
 }
 
@@ -282,7 +323,8 @@ th {
 hr {
   border: none;
   height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(15, 23, 42, 0.1), transparent);
+  background: var(--seam);
+  opacity: 0.35;
   margin: 3em 0;
 }
 
@@ -349,3 +391,15 @@ hr {
 .delay-400 { animation-delay: 0.4s; }
 .delay-500 { animation-delay: 0.5s; }
 .delay-600 { animation-delay: 0.6s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-up,
+  .animate-fade-in {
+    animation: none;
+    opacity: 1;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}

@@ -4,25 +4,28 @@ const today = new Date();
 ---
 
 <footer>
+	<div class="seam-edge" aria-hidden="true"></div>
 	<div class="footer-container">
 		<div class="footer-main">
-			<div class="footer-brand">
-				<span class="footer-name">Max Ghenis</span>
-			</div>
-			<p class="footer-tagline">Building tools for better policy.</p>
+			<span class="footer-name">Max Ghenis</span>
+			<p class="footer-tagline">Open models of how policy works — the rules as written, and what happens next.</p>
 		</div>
 
 		<div class="footer-links">
 			<div class="footer-column">
-				<h4>Navigate</h4>
+				<h4>Explore</h4>
 				<a href="/">Home</a>
 				<a href="/blog">Writing</a>
 				<a href="/projects">Projects</a>
+				<a href="/lab">Lab</a>
 				<a href="/cv">CV</a>
 			</div>
 			<div class="footer-column">
-				<h4>Tools</h4>
-				<a href="/blog/domain-migrator">Domain Migrator</a>
+				<h4>More</h4>
+				<a href="/setup">Setup</a>
+				<a href="/usage">Usage</a>
+				<a href="/protocol">Protocol</a>
+				<a href="/feed">Feed</a>
 			</div>
 			<div class="footer-column">
 				<h4>Connect</h4>
@@ -30,11 +33,12 @@ const today = new Date();
 				<a href={SOCIAL_LINKS.linkedin} target="_blank" rel="noopener">LinkedIn</a>
 				<a href={SOCIAL_LINKS.github} target="_blank" rel="noopener">GitHub</a>
 				<a href={SOCIAL_LINKS.bluesky} target="_blank" rel="noopener">Bluesky</a>
+				<a href={`mailto:${SOCIAL_LINKS.email}`}>Email</a>
 			</div>
 			<div class="footer-column">
 				<h4>Subscribe</h4>
-				<a href="/rss.xml">RSS Feed</a>
-				<a href={`mailto:${SOCIAL_LINKS.email}`}>Email</a>
+				<a href="/rss.xml">RSS feed</a>
+				<a href={SOCIAL_LINKS.substack} target="_blank" rel="noopener">Substack</a>
 			</div>
 		</div>
 	</div>
@@ -53,59 +57,46 @@ const today = new Date();
 <style>
 	footer {
 		margin-top: 4rem;
-		background: var(--ink);
-		color: white;
+		background: #211d18;
+		color: #f4f1e9;
+	}
+
+	.seam-edge {
+		height: 2px;
+		background: var(--seam);
 	}
 
 	.footer-container {
 		display: grid;
 		grid-template-columns: 1fr auto;
 		gap: 4rem;
-		max-width: 1200px;
+		max-width: 1100px;
 		margin: 0 auto;
-		padding: 4rem 2rem 3rem;
+		padding: 3.5rem 2rem 3rem;
 	}
 
-	/* Brand Section */
-	.footer-brand {
-		display: flex;
-		align-items: center;
-		gap: 0.75rem;
-		margin-bottom: 0.75rem;
-	}
-
-	.footer-logo {
-		width: 32px;
-		height: 28px;
-		background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
-		border-radius: 5px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		font-family: 'Playfair Display', Georgia, serif;
-		font-weight: 700;
-		font-size: 0.75rem;
-		color: var(--amber);
-		letter-spacing: 0.02em;
-	}
-
+	/* Brand section */
 	.footer-name {
-		font-family: 'Playfair Display', Georgia, serif;
-		font-size: 1.25rem;
-		font-weight: 700;
-		letter-spacing: -0.02em;
+		font-family: var(--font-display);
+		font-size: 1.35rem;
+		font-weight: 600;
+		letter-spacing: -0.01em;
+		display: block;
+		margin-bottom: 0.625rem;
 	}
 
 	.footer-tagline {
-		color: rgba(255, 255, 255, 0.5);
+		color: rgba(244, 241, 233, 0.55);
 		font-size: 0.9375rem;
+		line-height: 1.6;
 		margin: 0;
+		max-width: 300px;
 	}
 
-	/* Links Section */
+	/* Links section */
 	.footer-links {
 		display: flex;
-		gap: 4rem;
+		gap: 3.5rem;
 	}
 
 	.footer-column {
@@ -115,63 +106,63 @@ const today = new Date();
 	}
 
 	.footer-column h4 {
-		font-family: 'Source Sans 3', sans-serif;
-		font-size: 0.75rem;
-		font-weight: 600;
+		font-family: var(--font-mono);
+		font-size: 0.6875rem;
+		font-weight: 500;
 		text-transform: uppercase;
-		letter-spacing: 0.1em;
-		color: rgba(255, 255, 255, 0.4);
+		letter-spacing: 0.16em;
+		color: rgba(244, 241, 233, 0.4);
 		margin-bottom: 0.5rem;
 	}
 
 	.footer-column a {
-		color: rgba(255, 255, 255, 0.7);
+		color: rgba(244, 241, 233, 0.72);
 		text-decoration: none;
 		font-size: 0.9375rem;
 		transition: color var(--duration-fast) var(--ease-out);
 	}
 
 	.footer-column a:hover {
-		color: var(--amber);
+		color: #e9b98a;
 	}
 
-	/* Bottom Bar */
+	/* Bottom bar */
 	.footer-bottom {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		max-width: 1200px;
+		max-width: 1100px;
 		margin: 0 auto;
 		padding: 1.5rem 2rem;
-		border-top: 1px solid rgba(255, 255, 255, 0.08);
+		border-top: 1px solid rgba(244, 241, 233, 0.1);
 	}
 
 	.footer-bottom p {
 		margin: 0;
 		font-size: 0.875rem;
-		color: rgba(255, 255, 255, 0.4);
+		color: rgba(244, 241, 233, 0.4);
 	}
 
 	.source-link {
 		display: inline-flex;
 		align-items: center;
 		gap: 0.5rem;
-		color: rgba(255, 255, 255, 0.4);
+		color: rgba(244, 241, 233, 0.4);
 		text-decoration: none;
 		font-size: 0.875rem;
 		transition: color var(--duration-fast) var(--ease-out);
 	}
 
 	.source-link:hover {
-		color: var(--amber);
+		color: #e9b98a;
 	}
 
 	/* Responsive */
 	@media (max-width: 768px) {
 		.footer-container {
 			grid-template-columns: 1fr;
-			gap: 3rem;
-			padding: 3rem 1.5rem 2rem;
+			gap: 2.5rem;
+			padding: 2.5rem 1.5rem 2rem;
 		}
 
 		.footer-links {
