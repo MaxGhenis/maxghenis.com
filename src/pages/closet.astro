@@ -24,118 +24,119 @@ const spinFromDry: Record<string, string> = {
   dryclean: '—',
 };
 
-// Wash loads — minimized to two machine loads plus a rare wool wash.
-// The clothes load washes together; only the drying diverges.
-interface Load {
-  name: string;
-  settings: string;
-  note: string;
-  dry?: string;
-  items?: string[];
-  drySort?: { dry: string; items: string }[];
+// ONE inventory. Both views (by load, by garment) are generated from it, so
+// every item lands in exactly one load — MECE by construction, enforced below.
+type LoadKey = 'clothes' | 'linens' | 'wool' | 'dryclean';
+
+interface Item {
+  item: string;
+  sub?: string;
+  fabric: string;
+  wash: string;
+  dry: keyof typeof dryMeta;
+  load: LoadKey;
+  category: string;
+  notes: string;
 }
 
-const loads: Load[] = [
-  {
-    name: 'Clothes',
-    settings: 'Eco cold · Tru Earth (or any regular detergent) · no softener · medium spin · wash together, sort at the dryer',
-    drySort: [
-      { dry: 'hang', items: 'Dress shirts, OCBDs, linen shirt, oatmeal linen trousers' },
-      { dry: 'flat', items: 'Sunspel polos (cotton — wash here, just lay flat)' },
-      { dry: 'air', items: 'Activewear — gym shorts, swim short' },
-      { dry: 'tumble', items: 'Tees, socks, underwear, boxers, chinos, jeans' },
-    ],
-    note: 'Everything you wear in one eco-cold wash — the only thing that changes is where it dries. New darks bleed at first, so run the blue selvedge OCBD on its own the first wash or two.',
-  },
-  {
-    name: 'Linens',
-    settings: 'Warm / hot · OxiClean · no softener · high spin · tumble dry',
-    dry: 'tumble',
-    items: ['Towels', 'Sheets & pillowcases'],
-    note: 'Towels + sheets together. No softener — it kills towel absorbency. OxiClean is ideal here (oxygen bleach, color-safe). Combining leaves a little lint on the sheets; split towels off solo if that bugs you.',
-  },
-  {
-    name: 'Wool — occasional',
-    settings: 'Eco cold · wool wash (Eucalan) · low / no spin · lay flat · wash rarely',
-    dry: 'flat',
-    items: ['Olive merino quarter-zip', 'Wool & Prince merino tops & undershirts', 'Pantherella wool dress socks'],
-    note: 'The only things that can’t ride in the clothes load — regular detergent’s enzymes digest wool. Merino is anti-odor, so this is every few weeks, and small enough to hand-wash in the sink.',
-  },
-  {
-    name: 'Dry clean',
-    settings: 'No machine — dry clean or steam between wears',
-    dry: 'dryclean',
-    items: ['Navy suit (jacket + trousers)', 'Glen plaid blazer'],
-    note: 'Steam at home between wears; dry-clean sparingly.',
-  },
+const items: Item[] = [
+  // Shirts
+  { item: 'Blue Japanese selvedge OCBD', sub: 'Todd Snyder', fabric: '100% cotton selvedge', wash: 'Eco cold, inside out, no softener, non-chlorine bleach only', dry: 'hang', load: 'clothes', category: 'Shirts', notes: 'Wrinkles — iron warm while damp, keep the collar roll. Sheds dye the first wash or two (wash with darks).' },
+  { item: 'White Favorite Oxford', sub: 'Todd Snyder', fabric: 'Cotton, stonewashed', wash: 'Eco cold, gentle', dry: 'hang', load: 'clothes', category: 'Shirts', notes: 'Softer and lower-maintenance than the selvedge. Hang to keep the fit.' },
+  { item: 'White cotton-linen shirt', sub: 'Suitsupply', fabric: 'Cotton-linen', wash: 'Eco cold, gentle', dry: 'hang', load: 'clothes', category: 'Shirts', notes: 'Iron or steam; hang to dry.' },
+  { item: 'White linen shirt', sub: '', fabric: 'Linen', wash: 'Eco cold, gentle', dry: 'hang', load: 'clothes', category: 'Shirts', notes: 'Wrinkles by nature — that’s the look. Roll-packs fine.' },
+  { item: 'Chambray contrast-button shirt', sub: '', fabric: 'Cotton chambray', wash: 'Eco cold, gentle', dry: 'hang', load: 'clothes', category: 'Shirts', notes: 'Fades like light denim — inside out, with darks at first.' },
+
+  // Knits & polos
+  { item: 'Olive merino quarter-zip', sub: '', fabric: 'Merino wool', wash: 'Eco cold, wool cycle or hand, Eucalan', dry: 'flat', load: 'wool', category: 'Knits & polos', notes: 'Never the dryer. Lay flat — hanging wet stretches the shoulders. Wash rarely; air it out instead.' },
+  { item: 'Merino tops & undershirts', sub: 'Wool & Prince', fabric: 'Merino wool', wash: 'Eco cold, wool wash, gentle', dry: 'flat', load: 'wool', category: 'Knits & polos', notes: 'Same as the quarter-zip. Double as gym tops; anti-odor, so re-wear and wash seldom.' },
+  { item: 'Sunspel polo — navy', sub: 'Sunspel', fabric: 'Cotton', wash: 'Eco cold, inside out, no softener', dry: 'flat', load: 'clothes', category: 'Knits & polos', notes: 'Lay flat — hanging wet stretches it out. Runs trim; size up in Sunspel.' },
+  { item: 'Sunspel polo — olive', sub: 'Sunspel', fabric: 'Cotton', wash: 'Eco cold, inside out, no softener', dry: 'flat', load: 'clothes', category: 'Knits & polos', notes: 'Lay flat to dry, reshaped.' },
+
+  // Trousers
+  { item: 'Oatmeal linen Sutton', sub: 'Todd Snyder', fabric: 'Linen', wash: 'Eco cold, gentle', dry: 'hang', load: 'clothes', category: 'Trousers', notes: 'Hang dry; iron or steam.' },
+  { item: 'Khaki chino', sub: '', fabric: 'Cotton', wash: 'Eco cold (warm OK)', dry: 'low', load: 'clothes', category: 'Trousers', notes: 'Durable; low-tumble is fine, hang to avoid any shrink/fade. The workhorse — pairs with everything, including the glen blazer.' },
+  { item: 'Olive chino', sub: '', fabric: 'Cotton', wash: 'Eco cold (warm OK)', dry: 'low', load: 'clothes', category: 'Trousers', notes: 'Same care as the khaki. Wear it solo or with the navy polo — it muddies under the glen blazer.' },
+  { item: 'Jeans', sub: '', fabric: 'Cotton denim', wash: 'Eco cold, inside out, wash rarely', dry: 'low', load: 'clothes', category: 'Trousers', notes: 'Hang or low-tumble. Raw selvedge (when you get a pair): wash cold, sparingly, hang only.' },
+
+  // Tailoring & outerwear
+  { item: 'Navy suit', sub: '', fabric: 'Wool', wash: 'Dry clean / steam', dry: 'dryclean', load: 'dryclean', category: 'Tailoring & outerwear', notes: 'Never machine wash. Steam between wears; dry-clean sparingly.' },
+  { item: 'Grey-blue suit', sub: '', fabric: 'Wool', wash: 'Dry clean / steam', dry: 'dryclean', load: 'dryclean', category: 'Tailoring & outerwear', notes: 'The summer-wedding suit. Wear it as a suit — the jacket doesn’t read as a standalone blazer.' },
+  { item: 'Glen plaid blazer', sub: 'Suitsupply', fabric: 'Wool', wash: 'Dry clean / steam', dry: 'dryclean', load: 'dryclean', category: 'Tailoring & outerwear', notes: 'Same. The workhorse jacket — steam and air it, clean rarely.' },
+  { item: 'Eisenhower jacket', sub: '', fabric: 'Check label', wash: 'Check label — cold gentle if washable', dry: 'hang', load: 'dryclean', category: 'Tailoring & outerwear', notes: 'Filed under dry clean until the label says otherwise; hang dry is safe either way.' },
+  { item: 'Packable parka', sub: 'Uniqlo', fabric: 'Synthetic', wash: 'Eco cold, gentle', dry: 'low', load: 'clothes', category: 'Tailoring & outerwear', notes: 'Tumble low or hang. No softener on technical fabric.' },
+
+  // Activewear
+  { item: 'Pace Breaker shorts', sub: 'Lululemon', fabric: 'Synthetic', wash: 'Eco cold, inside out, no softener', dry: 'air', load: 'clothes', category: 'Activewear', notes: 'Air dry or lowest heat. A vinegar soak kills gym odor.' },
+  { item: 'License to Train tee', sub: 'Lululemon', fabric: 'Synthetic', wash: 'Eco cold, inside out, no softener', dry: 'air', load: 'clothes', category: 'Activewear', notes: 'Same as the shorts — heat wrecks the wicking.' },
+  { item: 'Swim short', sub: '', fabric: 'Synthetic', wash: 'Rinse after use; eco cold gentle if washed', dry: 'air', load: 'clothes', category: 'Activewear', notes: 'Air dry only; doubles as a casual short.' },
+
+  // Base layers & socks
+  { item: 'Boxers ×8', sub: 'incl. lululemon AIM', fabric: 'Cotton / synthetic', wash: 'Eco cold (clothes load)', dry: 'tumble', load: 'clothes', category: 'Base layers & socks', notes: 'Tumble fine; the synthetic AIM pairs prefer low heat.' },
+  { item: 'Tees', sub: '', fabric: 'Cotton', wash: 'Eco cold (clothes load)', dry: 'tumble', load: 'clothes', category: 'Base layers & socks', notes: 'Whites dull slowly when washed cold with colors — acceptable for tees.' },
+  { item: 'Pantherella dress socks ×4', sub: '', fabric: 'Wool blend', wash: 'Eco cold, wool wash', dry: 'flat', load: 'wool', category: 'Base layers & socks', notes: 'Wash with the wool load; lay flat. Navy, charcoal, brown, black.' },
+  { item: 'Invisibles ×4', sub: 'Falke Cool 24/7', fabric: 'Cotton blend', wash: 'Eco cold (clothes load)', dry: 'low', load: 'clothes', category: 'Base layers & socks', notes: 'Low or air dry — heat wears out the silicone heel grip.' },
+  { item: 'Athletic socks', sub: '', fabric: 'Synthetic / cotton', wash: 'Eco cold (clothes load)', dry: 'tumble', load: 'clothes', category: 'Base layers & socks', notes: 'Tumble fine.' },
+
+  // Linens
+  { item: 'Towels', sub: '', fabric: 'Cotton', wash: 'Warm / hot, no softener', dry: 'tumble', load: 'linens', category: 'Linens', notes: 'Linens load. Softener kills absorbency; vinegar rinse occasionally.' },
+  { item: 'Sheets', sub: '', fabric: 'Cotton', wash: 'Warm', dry: 'tumble', load: 'linens', category: 'Linens', notes: 'Linens load, weekly. Sharing with towels leaves a little lint — split if it bugs you.' },
 ];
 
-// Full inventory, grouped by category.
-const groups = [
-  {
-    title: 'Shirts',
-    rows: [
-      { item: 'Blue Japanese selvedge OCBD', sub: 'Todd Snyder', fabric: '100% cotton selvedge', wash: 'Eco cold, inside out, no softener, non-chlorine bleach only', dry: 'hang', notes: 'Wrinkles — iron warm while damp, keep the collar roll. Sheds dye the first wash or two (wash with darks).' },
-      { item: 'White Favorite Oxford', sub: 'Todd Snyder', fabric: 'Cotton, stonewashed', wash: 'Eco cold, gentle', dry: 'hang', notes: 'Softer and lower-maintenance than the selvedge. Hang to keep the fit.' },
-      { item: 'White cotton-linen shirt', sub: 'Suitsupply', fabric: 'Cotton-linen', wash: 'Eco cold, gentle', dry: 'hang', notes: 'Iron or steam; hang to dry.' },
-      { item: 'White linen shirt', sub: '', fabric: 'Linen', wash: 'Eco cold, gentle', dry: 'hang', notes: 'Wrinkles by nature — that’s the look. Roll-packs fine.' },
-      { item: 'Chambray contrast-button shirt', sub: '', fabric: 'Cotton chambray', wash: 'Eco cold, gentle', dry: 'hang', notes: 'Fades like light denim — inside out, with darks at first.' },
-    ],
+const loadMeta: Record<LoadKey, { name: string; settings: string; note: string }> = {
+  clothes: {
+    name: 'Clothes',
+    settings: 'Eco cold · Tru Earth (or any regular detergent) · no softener · medium spin · wash together, sort at the dryer',
+    note: 'Everything you wear in one eco-cold wash — the only thing that changes is where it dries. New darks bleed at first, so run the blue selvedge OCBD on its own the first wash or two.',
   },
-  {
-    title: 'Knits & polos',
-    rows: [
-      { item: 'Olive merino quarter-zip', sub: '', fabric: 'Merino wool', wash: 'Eco cold, wool cycle or hand, Eucalan', dry: 'flat', notes: 'Never the dryer. Lay flat — hanging wet stretches the shoulders. Wash rarely; air it out instead.' },
-      { item: 'Merino tops & undershirts', sub: 'Wool & Prince', fabric: 'Merino wool', wash: 'Eco cold, wool wash, gentle', dry: 'flat', notes: 'Same as the quarter-zip. Double as gym tops; anti-odor, so re-wear and wash seldom.' },
-      { item: 'Sunspel polo — navy', sub: 'Sunspel', fabric: 'Cotton', wash: 'Eco cold, inside out, no softener', dry: 'flat', notes: 'Lay flat — hanging wet stretches it out. Runs trim; size up in Sunspel.' },
-      { item: 'Sunspel polo — olive', sub: 'Sunspel', fabric: 'Cotton', wash: 'Eco cold, inside out, no softener', dry: 'flat', notes: 'Lay flat to dry, reshaped.' },
-    ],
+  linens: {
+    name: 'Linens',
+    settings: 'Warm / hot · OxiClean · no softener · high spin · tumble dry',
+    note: 'Towels + sheets together. No softener — it kills towel absorbency. OxiClean is ideal here (oxygen bleach, color-safe). Combining leaves a little lint on the sheets; split towels off solo if that bugs you.',
   },
-  {
-    title: 'Trousers',
-    rows: [
-      { item: 'Oatmeal linen Sutton', sub: 'Todd Snyder', fabric: 'Linen', wash: 'Eco cold, gentle', dry: 'hang', notes: 'Hang dry; iron or steam.' },
-      { item: 'Khaki chino', sub: '', fabric: 'Cotton', wash: 'Eco cold (warm OK)', dry: 'low', notes: 'Durable; low-tumble is fine, hang to avoid any shrink/fade. The workhorse — pairs with everything, including the glen blazer.' },
-      { item: 'Olive chino', sub: '', fabric: 'Cotton', wash: 'Eco cold (warm OK)', dry: 'low', notes: 'Same care as the khaki. Wear it solo or with the navy polo — it muddies under the glen blazer.' },
-      { item: 'Jeans', sub: '', fabric: 'Cotton denim', wash: 'Eco cold, inside out, wash rarely', dry: 'low', notes: 'Hang or low-tumble. Raw selvedge (when you get a pair): wash cold, sparingly, hang only.' },
-    ],
+  wool: {
+    name: 'Wool — occasional',
+    settings: 'Eco cold · wool wash (Eucalan) · low / no spin · lay flat · wash rarely',
+    note: 'The only things that can’t ride in the clothes load — regular detergent’s enzymes digest wool. Merino is anti-odor, so this is every few weeks, and small enough to hand-wash in the sink.',
   },
-  {
-    title: 'Tailoring & outerwear',
-    rows: [
-      { item: 'Navy suit', sub: '', fabric: 'Wool', wash: 'Dry clean / steam', dry: 'dryclean', notes: 'Never machine wash. Steam between wears; dry-clean sparingly.' },
-      { item: 'Grey-blue suit', sub: '', fabric: 'Wool', wash: 'Dry clean / steam', dry: 'dryclean', notes: 'The summer-wedding suit. Wear it as a suit — the jacket doesn’t read as a standalone blazer.' },
-      { item: 'Glen plaid blazer', sub: 'Suitsupply', fabric: 'Wool', wash: 'Dry clean / steam', dry: 'dryclean', notes: 'Same. The workhorse jacket — steam and air it, clean rarely.' },
-      { item: 'Eisenhower jacket', sub: '', fabric: 'Check label', wash: 'Check label — cold gentle if washable, else dry clean', dry: 'hang', notes: 'Hang dry is safe either way.' },
-      { item: 'Packable parka', sub: 'Uniqlo', fabric: 'Synthetic', wash: 'Eco cold, gentle', dry: 'low', notes: 'Tumble low or hang. No softener on technical fabric.' },
-    ],
+  dryclean: {
+    name: 'Dry clean',
+    settings: 'No machine — dry clean or steam between wears',
+    note: 'Steam at home between wears; dry-clean sparingly.',
   },
-  {
-    title: 'Activewear',
-    rows: [
-      { item: 'Pace Breaker shorts', sub: 'Lululemon', fabric: 'Synthetic', wash: 'Eco cold, inside out, no softener', dry: 'air', notes: 'Air dry or lowest heat. A vinegar soak kills gym odor.' },
-      { item: 'License to Train tee', sub: 'Lululemon', fabric: 'Synthetic', wash: 'Eco cold, inside out, no softener', dry: 'air', notes: 'Same as the shorts — heat wrecks the wicking.' },
-      { item: 'Swim short', sub: '', fabric: 'Synthetic', wash: 'Rinse after use; eco cold gentle if washed', dry: 'air', notes: 'Air dry only; doubles as a casual short.' },
-    ],
-  },
-  {
-    title: 'Base layers & socks',
-    rows: [
-      { item: 'Boxers ×8', sub: 'incl. lululemon AIM', fabric: 'Cotton / synthetic', wash: 'Eco cold (clothes load)', dry: 'tumble', notes: 'Tumble fine; the synthetic AIM pairs prefer low heat.' },
-      { item: 'Tees', sub: '', fabric: 'Cotton', wash: 'Eco cold (clothes load)', dry: 'tumble', notes: 'Whites dull slowly when washed cold with colors — acceptable for tees.' },
-      { item: 'Pantherella dress socks ×4', sub: '', fabric: 'Wool blend', wash: 'Eco cold, wool wash', dry: 'flat', notes: 'Wash with the wool load; lay flat. Navy, charcoal, brown, black.' },
-      { item: 'Invisibles ×4', sub: 'Falke Cool 24/7', fabric: 'Cotton blend', wash: 'Eco cold (clothes load)', dry: 'low', notes: 'Low or air dry — heat wears out the silicone heel grip.' },
-      { item: 'Athletic socks', sub: '', fabric: 'Synthetic / cotton', wash: 'Eco cold (clothes load)', dry: 'tumble', notes: 'Tumble fine.' },
-    ],
-  },
-  {
-    title: 'Linens',
-    rows: [
-      { item: 'Towels', sub: '', fabric: 'Cotton', wash: 'Warm / hot, no softener', dry: 'tumble', notes: 'Linens load. Softener kills absorbency; vinegar rinse occasionally.' },
-      { item: 'Sheets', sub: '', fabric: 'Cotton', wash: 'Warm', dry: 'tumble', notes: 'Linens load, weekly. Sharing with towels leaves a little lint — split if it bugs you.' },
-    ],
-  },
-];
+};
+
+// MECE guard: every item in exactly one known load; build fails otherwise.
+const loadOrder: LoadKey[] = ['clothes', 'linens', 'wool', 'dryclean'];
+for (const it of items) {
+  if (!loadOrder.includes(it.load)) {
+    throw new Error(`closet: "${it.item}" has unknown load "${it.load}"`);
+  }
+}
+const assigned = loadOrder.reduce((n, l) => n + items.filter((i) => i.load === l).length, 0);
+if (assigned !== items.length) {
+  throw new Error(`closet: ${items.length - assigned} item(s) missing a load`);
+}
+
+const byLoad = loadOrder.map((key) => ({
+  key,
+  ...loadMeta[key],
+  items: items.filter((i) => i.load === key),
+}));
+
+// Within a load, group by dry method for the sort-at-the-dryer view.
+const dryOrder = ['hang', 'flat', 'air', 'low', 'tumble', 'dryclean'];
+function dryGroups(list: Item[]) {
+  return dryOrder
+    .map((d) => ({ dry: d, names: list.filter((i) => i.dry === d).map((i) => i.item) }))
+    .filter((g) => g.names.length > 0);
+}
+
+const categoryOrder = [...new Set(items.map((i) => i.category))];
+const byCategory = categoryOrder.map((title) => ({
+  title,
+  rows: items.filter((i) => i.category === title),
+}));
 
 // Footwear — spot care, not laundry.
 const footwear = [
@@ -162,8 +163,8 @@ const footwear = [
       <header class="page-header">
         <h1>Closet</h1>
         <p class="page-description">
-          What I own and how to wash it — sorted by wash load, by garment, and by
-          what survives the dryer.
+          What I own and how to wash it — one inventory, two views. Every piece
+          sits in exactly one wash load.
         </p>
       </header>
 
@@ -173,36 +174,33 @@ const footwear = [
         the wool — then sort the clothes load at the dryer.
       </div>
 
-      <section>
-        <h2>By load</h2>
-        <p>
-          Minimized to two machine loads plus a rare wool wash. The trick: wash
-          together, then sort at the dryer.
+      <div class="view-toggle" role="tablist" aria-label="Inventory view">
+        <button type="button" data-view="load" class="active" role="tab" aria-selected="true">By load</button>
+        <button type="button" data-view="garment" role="tab" aria-selected="false">By garment</button>
+      </div>
+
+      <!-- By load -->
+      <section id="view-load">
+        <p class="view-lede">
+          Two machine loads plus a rare wool wash. Wash together, then sort at the
+          dryer — the badge is where each group dries.
         </p>
         <div class="loads">
-          {loads.map((load) => (
+          {byLoad.map((load) => (
             <div class="load-card">
               <div class="load-head">
                 <h3>{load.name}</h3>
-                {load.dry && (
-                  <span class={`dry-badge ${dryMeta[load.dry].cls}`}>{dryMeta[load.dry].label}</span>
-                )}
+                <span class="load-count">{load.items.length} item{load.items.length === 1 ? '' : 's'}</span>
               </div>
               <p class="load-settings">{load.settings}</p>
-              {load.drySort ? (
-                <div class="dry-sort">
-                  {load.drySort.map((g) => (
-                    <div class="sort-row">
-                      <span class={`dry-badge ${dryMeta[g.dry].cls}`}>{dryMeta[g.dry].label}</span>
-                      <span class="sort-items">{g.items}</span>
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <ul class="load-items">
-                  {load.items?.map((it) => <li>{it}</li>)}
-                </ul>
-              )}
+              <div class="dry-sort">
+                {dryGroups(load.items).map((g) => (
+                  <div class="sort-row">
+                    <span class={`dry-badge ${dryMeta[g.dry].cls}`}>{dryMeta[g.dry].label}</span>
+                    <span class="sort-items">{g.names.join(' · ')}</span>
+                  </div>
+                ))}
+              </div>
               <p class="load-note">{load.note}</p>
             </div>
           ))}
@@ -219,10 +217,13 @@ const footwear = [
         </p>
       </section>
 
-      <section>
-        <h2>By garment</h2>
-        <p>Every piece, its fabric, how it washes, the spin, and whether it can go in the dryer. Spin is the most each item should take; in the combined clothes load, run the gentlest (medium).</p>
-        {groups.map((group) => (
+      <!-- By garment -->
+      <section id="view-garment" hidden>
+        <p class="view-lede">
+          Every piece, its fabric, wash, spin, dryer, and load. Spin is the most each
+          item should take; in the combined clothes load, run the gentlest (medium).
+        </p>
+        {byCategory.map((group) => (
           <div class="garment-group">
             <h3>{group.title}</h3>
             <div class="table-wrapper">
@@ -234,6 +235,7 @@ const footwear = [
                     <th>Wash</th>
                     <th>Spin</th>
                     <th>Dryer</th>
+                    <th>Load</th>
                     <th>Notes</th>
                   </tr>
                 </thead>
@@ -248,6 +250,7 @@ const footwear = [
                       <td>{row.wash}</td>
                       <td class="cell-spin">{spinFromDry[row.dry]}</td>
                       <td><span class={`dry-badge ${dryMeta[row.dry].cls}`}>{dryMeta[row.dry].label}</span></td>
+                      <td class="cell-load">{loadMeta[row.load].name}</td>
                       <td class="cell-notes">{row.notes}</td>
                     </tr>
                   ))}
@@ -294,6 +297,46 @@ const footwear = [
     </main>
     <Footer />
 
+    <script>
+      const KEY = 'closet-view';
+      const buttons = Array.from(
+        document.querySelectorAll<HTMLButtonElement>('.view-toggle button'),
+      );
+      const views: Record<string, HTMLElement | null> = {
+        load: document.getElementById('view-load'),
+        garment: document.getElementById('view-garment'),
+      };
+
+      function setView(v: string) {
+        for (const b of buttons) {
+          const on = b.dataset.view === v;
+          b.classList.toggle('active', on);
+          b.setAttribute('aria-selected', String(on));
+        }
+        for (const [k, el] of Object.entries(views)) {
+          if (el) el.hidden = k !== v;
+        }
+        try {
+          localStorage.setItem(KEY, v);
+        } catch {
+          /* private mode */
+        }
+      }
+
+      buttons.forEach((b) =>
+        b.addEventListener('click', () => setView(b.dataset.view || 'load')),
+      );
+
+      let initial = 'load';
+      try {
+        initial = localStorage.getItem(KEY) || 'load';
+      } catch {
+        /* private mode */
+      }
+      if (!(initial in views)) initial = 'load';
+      setView(initial);
+    </script>
+
     <style>
       main {
         max-width: 1000px;
@@ -321,10 +364,41 @@ const footwear = [
         border-left: 4px solid #f59e0b;
         padding: 1rem 1.25rem;
         border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
-        margin-bottom: 3rem;
+        margin-bottom: 2rem;
         color: #78350f;
         line-height: 1.6;
         font-size: 0.9375rem;
+      }
+
+      /* View toggle */
+      .view-toggle {
+        display: inline-flex;
+        gap: 0;
+        border: 1px solid rgba(15, 23, 42, 0.15);
+        border-radius: var(--radius-full);
+        padding: 0.2rem;
+        background: var(--cream-dark);
+        margin-bottom: 2rem;
+      }
+      .view-toggle button {
+        appearance: none;
+        border: none;
+        background: transparent;
+        font: inherit;
+        font-size: 0.9375rem;
+        font-weight: 600;
+        color: var(--text-muted);
+        padding: 0.4rem 1.1rem;
+        border-radius: var(--radius-full);
+        cursor: pointer;
+        transition: all var(--duration-fast) var(--ease-out);
+      }
+      .view-toggle button.active {
+        background: var(--ink);
+        color: var(--cream);
+      }
+      .view-toggle button:not(.active):hover {
+        color: var(--ink);
       }
 
       section {
@@ -336,7 +410,8 @@ const footwear = [
         margin-bottom: 0.5rem;
       }
 
-      section > p {
+      section > p,
+      .view-lede {
         color: var(--text-secondary);
         margin-bottom: 1.5rem;
       }
@@ -391,7 +466,7 @@ const footwear = [
       .sort-items {
         font-size: 0.9rem;
         color: var(--text-secondary);
-        line-height: 1.4;
+        line-height: 1.5;
       }
       .loads-foot {
         font-size: 0.85rem;
@@ -407,7 +482,7 @@ const footwear = [
       }
       .load-head {
         display: flex;
-        align-items: center;
+        align-items: baseline;
         justify-content: space-between;
         gap: 0.75rem;
         margin-bottom: 0.5rem;
@@ -416,6 +491,12 @@ const footwear = [
         font-size: 1.2rem;
         margin: 0;
       }
+      .load-count {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.7rem;
+        color: var(--text-muted);
+        white-space: nowrap;
+      }
       .load-settings {
         font-family: 'JetBrains Mono', monospace;
         font-size: 0.72rem;
@@ -423,18 +504,6 @@ const footwear = [
         margin: 0 0 0.75rem 0;
         line-height: 1.5;
       }
-      .load-items {
-        list-style: none;
-        padding: 0;
-        margin: 0 0 0.75rem 0;
-      }
-      .load-items li {
-        font-size: 0.9rem;
-        color: var(--text-secondary);
-        padding: 0.15rem 0;
-        border-bottom: 1px dashed rgba(15, 23, 42, 0.06);
-      }
-      .load-items li:last-child { border-bottom: none; }
       .load-note {
         font-size: 0.82rem;
         color: var(--text-muted);
@@ -462,6 +531,7 @@ const footwear = [
       .item-sub { display: block; font-weight: 400; font-size: 0.78rem; color: var(--text-muted); }
       .cell-notes { font-size: 0.82rem; color: var(--text-muted); min-width: 14rem; }
       .cell-spin { font-size: 0.82rem; white-space: nowrap; color: var(--text-secondary); }
+      .cell-load { font-size: 0.82rem; white-space: nowrap; color: var(--text-secondary); }
 
       @media (max-width: 720px) {
         .page-header h1 { font-size: 2.25rem; }
