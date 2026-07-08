@@ -79,8 +79,9 @@ const items: Item[] = [
   { item: 'Athletic socks', sub: '', fabric: 'Synthetic / cotton', wash: 'Eco cold (clothes load)', dry: 'tumble', load: 'clothes', category: 'Base layers & socks', notes: 'Tumble fine.' },
 
   // Linens
-  { item: 'Towels', sub: '', fabric: 'Cotton', wash: 'Warm / hot, no softener', dry: 'tumble', load: 'linens', category: 'Linens', notes: 'Linens load. Softener kills absorbency; vinegar rinse occasionally.' },
-  { item: 'Sheets', sub: '', fabric: 'Cotton', wash: 'Warm', dry: 'tumble', load: 'linens', category: 'Linens', notes: 'Linens load, weekly. Sharing with towels leaves a little lint — split if it bugs you.' },
+  { item: 'Towels', sub: '', fabric: 'Cotton', wash: 'Warm (hot for an occasional refresh), no softener', dry: 'tumble', load: 'linens', category: 'Linens', notes: 'Linens load. Softener kills absorbency; a hot + OxiClean or vinegar load strips musty buildup when it creeps in.' },
+  { item: 'Sheets', sub: '', fabric: 'Cotton', wash: 'Warm', dry: 'tumble', load: 'linens', category: 'Linens', notes: 'Linens load, weekly. Hot fades cotton and wears out fitted-sheet elastic. Sharing with towels leaves a little lint — split if it bugs you.' },
+  { item: 'Duvet cover', sub: 'Eight Sleep', fabric: 'Cotton blend', wash: 'Warm, gentle', dry: 'tumble', load: 'linens', category: 'Linens', notes: 'Every 1–2 weeks with no top sheet (it is the top sheet); 3–4 weeks with one. The insert inside almost never needs washing — air it out; the Pod’s Active Grid cover is spot-clean only, never machine.' },
 ];
 
 const loadMeta: Record<LoadKey, { name: string; settings: string; note: string }> = {
@@ -91,8 +92,8 @@ const loadMeta: Record<LoadKey, { name: string; settings: string; note: string }
   },
   linens: {
     name: 'Linens',
-    settings: 'Warm / hot · OxiClean · no softener · high spin · tumble dry',
-    note: 'Towels + sheets together. No softener — it kills towel absorbency. OxiClean is ideal here (oxygen bleach, color-safe). Combining leaves a little lint on the sheets; split towels off solo if that bugs you.',
+    settings: 'Warm · OxiClean · no softener · high spin · tumble dry',
+    note: 'Towels + sheets + duvet cover together, warm — OxiClean does the sanitizing that people think needs hot water, and hot fades sheets and wears their elastic. Save hot for two cases: an occasional towels-only refresh when they turn musty, and after illness. No softener — it kills towel absorbency. Combining leaves a little lint on the sheets; split towels off solo if that bugs you.',
   },
   wool: {
     name: 'Wool — occasional',
