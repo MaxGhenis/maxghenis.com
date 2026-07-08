@@ -38,14 +38,14 @@ interface Load {
 const loads: Load[] = [
   {
     name: 'Clothes',
-    settings: 'Cold · regular detergent · no softener · medium spin · wash together, sort at the dryer',
+    settings: 'Eco cold · Tru Earth (or any regular detergent) · no softener · medium spin · wash together, sort at the dryer',
     drySort: [
       { dry: 'hang', items: 'Dress shirts, OCBDs, linen shirt, oatmeal linen trousers' },
       { dry: 'flat', items: 'Sunspel polos (cotton — wash here, just lay flat)' },
       { dry: 'air', items: 'Activewear — gym shorts, swim short' },
       { dry: 'tumble', items: 'Tees, socks, underwear, boxers, chinos, jeans' },
     ],
-    note: 'Everything you wear in one cold wash — the only thing that changes is where it dries. New darks bleed at first, so run the blue selvedge OCBD on its own the first wash or two.',
+    note: 'Everything you wear in one eco-cold wash — the only thing that changes is where it dries. New darks bleed at first, so run the blue selvedge OCBD on its own the first wash or two.',
   },
   {
     name: 'Linens',
@@ -56,7 +56,7 @@ const loads: Load[] = [
   },
   {
     name: 'Wool — occasional',
-    settings: 'Cold · wool wash (Eucalan) · low / no spin · lay flat · wash rarely',
+    settings: 'Eco cold · wool wash (Eucalan) · low / no spin · lay flat · wash rarely',
     dry: 'flat',
     items: ['Olive merino quarter-zip', 'Wool & Prince merino tops & undershirts', 'Pantherella wool dress socks'],
     note: 'The only things that can’t ride in the clothes load — regular detergent’s enzymes digest wool. Merino is anti-odor, so this is every few weeks, and small enough to hand-wash in the sink.',
@@ -73,68 +73,78 @@ const loads: Load[] = [
 // Full inventory, grouped by category.
 const groups = [
   {
-    title: 'Dress shirts',
+    title: 'Shirts',
     rows: [
-      { item: 'Blue Japanese selvedge OCBD', sub: 'Todd Snyder', fabric: '100% cotton selvedge', wash: 'Cold, inside out, no softener, non-chlorine bleach only', dry: 'hang', notes: 'Wrinkles — iron warm while damp, keep the collar roll. Sheds dye the first wash or two (wash with darks).' },
-      { item: 'White Favorite Oxford', sub: 'Todd Snyder', fabric: 'Cotton, stonewashed', wash: 'Cold, gentle, mild detergent', dry: 'hang', notes: 'Softer and lower-maintenance than the selvedge. Hang to keep the fit.' },
-      { item: 'White cotton-linen shirt', sub: 'Suitsupply', fabric: 'Cotton-linen', wash: 'Cold, gentle', dry: 'hang', notes: 'Iron or steam; hang to dry.' },
-      { item: 'White linen shirt', sub: '', fabric: 'Linen', wash: 'Cold, gentle', dry: 'hang', notes: 'Wrinkles by nature — that’s the look. Roll-packs fine.' },
+      { item: 'Blue Japanese selvedge OCBD', sub: 'Todd Snyder', fabric: '100% cotton selvedge', wash: 'Eco cold, inside out, no softener, non-chlorine bleach only', dry: 'hang', notes: 'Wrinkles — iron warm while damp, keep the collar roll. Sheds dye the first wash or two (wash with darks).' },
+      { item: 'White Favorite Oxford', sub: 'Todd Snyder', fabric: 'Cotton, stonewashed', wash: 'Eco cold, gentle', dry: 'hang', notes: 'Softer and lower-maintenance than the selvedge. Hang to keep the fit.' },
+      { item: 'White cotton-linen shirt', sub: 'Suitsupply', fabric: 'Cotton-linen', wash: 'Eco cold, gentle', dry: 'hang', notes: 'Iron or steam; hang to dry.' },
+      { item: 'White linen shirt', sub: '', fabric: 'Linen', wash: 'Eco cold, gentle', dry: 'hang', notes: 'Wrinkles by nature — that’s the look. Roll-packs fine.' },
+      { item: 'Chambray contrast-button shirt', sub: '', fabric: 'Cotton chambray', wash: 'Eco cold, gentle', dry: 'hang', notes: 'Fades like light denim — inside out, with darks at first.' },
     ],
   },
   {
     title: 'Knits & polos',
     rows: [
-      { item: 'Olive merino quarter-zip', sub: '', fabric: 'Merino wool', wash: 'Cold / wool cycle or hand, wool wash (Eucalan)', dry: 'flat', notes: 'Never the dryer. Lay flat — hanging wet stretches the shoulders. Wash rarely; air it out instead.' },
-      { item: 'Merino tops & undershirts', sub: 'Wool & Prince', fabric: 'Merino wool', wash: 'Cold, wool wash, gentle', dry: 'flat', notes: 'Same as the quarter-zip. Double as gym tops; anti-odor, so re-wear and wash seldom.' },
-      { item: 'Sunspel polo — navy', sub: 'Sunspel', fabric: 'Cotton', wash: 'Cold, inside out, no softener', dry: 'flat', notes: 'Lay flat — hanging wet stretches it out. Runs trim; size up in Sunspel.' },
-      { item: 'Sunspel polo — olive', sub: 'Sunspel', fabric: 'Cotton', wash: 'Cold, inside out, no softener', dry: 'flat', notes: 'Lay flat to dry, reshaped.' },
+      { item: 'Olive merino quarter-zip', sub: '', fabric: 'Merino wool', wash: 'Eco cold, wool cycle or hand, Eucalan', dry: 'flat', notes: 'Never the dryer. Lay flat — hanging wet stretches the shoulders. Wash rarely; air it out instead.' },
+      { item: 'Merino tops & undershirts', sub: 'Wool & Prince', fabric: 'Merino wool', wash: 'Eco cold, wool wash, gentle', dry: 'flat', notes: 'Same as the quarter-zip. Double as gym tops; anti-odor, so re-wear and wash seldom.' },
+      { item: 'Sunspel polo — navy', sub: 'Sunspel', fabric: 'Cotton', wash: 'Eco cold, inside out, no softener', dry: 'flat', notes: 'Lay flat — hanging wet stretches it out. Runs trim; size up in Sunspel.' },
+      { item: 'Sunspel polo — olive', sub: 'Sunspel', fabric: 'Cotton', wash: 'Eco cold, inside out, no softener', dry: 'flat', notes: 'Lay flat to dry, reshaped.' },
     ],
   },
   {
     title: 'Trousers',
     rows: [
-      { item: 'Oatmeal linen Sutton', sub: 'Todd Snyder', fabric: 'Linen', wash: 'Cold, gentle', dry: 'hang', notes: 'Hang dry; iron or steam.' },
-      { item: 'Khaki chino', sub: '', fabric: 'Cotton', wash: 'Cold (warm OK)', dry: 'low', notes: 'Durable; low-tumble is fine, hang to avoid any shrink/fade. Your single chino — pairs with everything.' },
-      { item: 'Jeans', sub: '', fabric: 'Cotton denim', wash: 'Cold, inside out, wash rarely', dry: 'low', notes: 'Hang or low-tumble. Raw selvedge (when you get a pair): wash cold, sparingly, hang only.' },
+      { item: 'Oatmeal linen Sutton', sub: 'Todd Snyder', fabric: 'Linen', wash: 'Eco cold, gentle', dry: 'hang', notes: 'Hang dry; iron or steam.' },
+      { item: 'Khaki chino', sub: '', fabric: 'Cotton', wash: 'Eco cold (warm OK)', dry: 'low', notes: 'Durable; low-tumble is fine, hang to avoid any shrink/fade. The workhorse — pairs with everything, including the glen blazer.' },
+      { item: 'Olive chino', sub: '', fabric: 'Cotton', wash: 'Eco cold (warm OK)', dry: 'low', notes: 'Same care as the khaki. Wear it solo or with the navy polo — it muddies under the glen blazer.' },
+      { item: 'Jeans', sub: '', fabric: 'Cotton denim', wash: 'Eco cold, inside out, wash rarely', dry: 'low', notes: 'Hang or low-tumble. Raw selvedge (when you get a pair): wash cold, sparingly, hang only.' },
     ],
   },
   {
     title: 'Tailoring & outerwear',
     rows: [
       { item: 'Navy suit', sub: '', fabric: 'Wool', wash: 'Dry clean / steam', dry: 'dryclean', notes: 'Never machine wash. Steam between wears; dry-clean sparingly.' },
+      { item: 'Grey-blue suit', sub: '', fabric: 'Wool', wash: 'Dry clean / steam', dry: 'dryclean', notes: 'The summer-wedding suit. Wear it as a suit — the jacket doesn’t read as a standalone blazer.' },
       { item: 'Glen plaid blazer', sub: 'Suitsupply', fabric: 'Wool', wash: 'Dry clean / steam', dry: 'dryclean', notes: 'Same. The workhorse jacket — steam and air it, clean rarely.' },
-      { item: 'Packable parka', sub: 'Uniqlo', fabric: 'Synthetic', wash: 'Machine wash cold, gentle (check label)', dry: 'low', notes: 'Tumble low or hang. No softener on technical fabric.' },
+      { item: 'Eisenhower jacket', sub: '', fabric: 'Check label', wash: 'Check label — cold gentle if washable, else dry clean', dry: 'hang', notes: 'Hang dry is safe either way.' },
+      { item: 'Packable parka', sub: 'Uniqlo', fabric: 'Synthetic', wash: 'Eco cold, gentle', dry: 'low', notes: 'Tumble low or hang. No softener on technical fabric.' },
     ],
   },
   {
     title: 'Activewear',
     rows: [
-      { item: 'Pace Breaker shorts', sub: 'Lululemon', fabric: 'Synthetic', wash: 'Cold, inside out, no softener', dry: 'air', notes: 'Air dry or lowest heat. Sport detergent or a vinegar soak for odor.' },
-      { item: 'Swim short', sub: '', fabric: 'Synthetic', wash: 'Rinse after use; cold gentle if washed', dry: 'air', notes: 'Air dry only; doubles as a casual short.' },
+      { item: 'Pace Breaker shorts', sub: 'Lululemon', fabric: 'Synthetic', wash: 'Eco cold, inside out, no softener', dry: 'air', notes: 'Air dry or lowest heat. A vinegar soak kills gym odor.' },
+      { item: 'License to Train tee', sub: 'Lululemon', fabric: 'Synthetic', wash: 'Eco cold, inside out, no softener', dry: 'air', notes: 'Same as the shorts — heat wrecks the wicking.' },
+      { item: 'Swim short', sub: '', fabric: 'Synthetic', wash: 'Rinse after use; eco cold gentle if washed', dry: 'air', notes: 'Air dry only; doubles as a casual short.' },
     ],
   },
   {
     title: 'Base layers & socks',
     rows: [
-      { item: 'Boxers ×8', sub: '', fabric: 'Cotton / synthetic', wash: 'Warm', dry: 'tumble', notes: 'Goes with whites (light) or everyday (dark). Tumble fine.' },
-      { item: 'Pantherella dress socks ×4', sub: '', fabric: 'Wool blend', wash: 'Cold, wool wash', dry: 'flat', notes: 'Wash with the wool load; lay flat. Navy, charcoal, brown, black.' },
-      { item: 'Athletic / no-show socks', sub: '', fabric: 'Synthetic / cotton', wash: 'Normal', dry: 'tumble', notes: 'Everyday load; tumble fine.' },
+      { item: 'Boxers ×8', sub: 'incl. lululemon AIM', fabric: 'Cotton / synthetic', wash: 'Eco cold (clothes load)', dry: 'tumble', notes: 'Tumble fine; the synthetic AIM pairs prefer low heat.' },
+      { item: 'Tees', sub: '', fabric: 'Cotton', wash: 'Eco cold (clothes load)', dry: 'tumble', notes: 'Whites dull slowly when washed cold with colors — acceptable for tees.' },
+      { item: 'Pantherella dress socks ×4', sub: '', fabric: 'Wool blend', wash: 'Eco cold, wool wash', dry: 'flat', notes: 'Wash with the wool load; lay flat. Navy, charcoal, brown, black.' },
+      { item: 'Invisibles ×4', sub: 'Falke Cool 24/7', fabric: 'Cotton blend', wash: 'Eco cold (clothes load)', dry: 'low', notes: 'Low or air dry — heat wears out the silicone heel grip.' },
+      { item: 'Athletic socks', sub: '', fabric: 'Synthetic / cotton', wash: 'Eco cold (clothes load)', dry: 'tumble', notes: 'Tumble fine.' },
     ],
   },
   {
     title: 'Linens',
     rows: [
-      { item: 'Towels', sub: '', fabric: 'Cotton', wash: 'Warm / hot, no softener', dry: 'tumble', notes: 'Own load. Softener kills absorbency; vinegar rinse occasionally.' },
-      { item: 'Sheets', sub: '', fabric: 'Cotton', wash: 'Warm', dry: 'tumble', notes: 'Own load, weekly. Keep away from towels (lint).' },
+      { item: 'Towels', sub: '', fabric: 'Cotton', wash: 'Warm / hot, no softener', dry: 'tumble', notes: 'Linens load. Softener kills absorbency; vinegar rinse occasionally.' },
+      { item: 'Sheets', sub: '', fabric: 'Cotton', wash: 'Warm', dry: 'tumble', notes: 'Linens load, weekly. Sharing with towels leaves a little lint — split if it bugs you.' },
     ],
   },
 ];
 
 // Footwear — spot care, not laundry.
 const footwear = [
-  { item: 'AE Park Avenue oxfords', care: 'Saphir Renovator + horsehair brush; condition every ~10–15 wears. Cedar trees between wears. Never water or machine.' },
-  { item: 'Hoka Clifton 10', care: 'Remove insoles & laces, cold gentle cycle in a mesh bag, air dry only — dryer heat wrecks the foam and glue. Crep Protect spray for water resistance.' },
-  { item: 'Suede loafers', care: 'Suede brush + Crep Protect; no water. Spot-clean with a suede eraser.' },
+  { item: 'AE Park Avenue oxfords (chili)', care: 'Saphir Renovator + horsehair brush; condition every ~10–15 wears. Cedar trees between wears. Never water or machine. Color-loss scuffs get AE chili cream.' },
+  { item: 'Black dress shoes ×2', care: 'Same Saphir routine; black or neutral cream for scuffs.' },
+  { item: 'Hoka Clifton 10', care: 'Remove insoles & laces, eco-cold gentle cycle in a mesh bag, air dry only — dryer heat wrecks the foam and glue. Crep Protect spray for water resistance.' },
+  { item: 'Grant Stone suede loafers', care: 'Suede brush + Crep Protect; no water. Spot-clean with a suede eraser.' },
+  { item: 'White leather sneakers (Cole Haan)', care: 'Wipe with a damp cloth + mild soap; magic eraser on the soles; leather conditioner occasionally. No machine.' },
+  { item: 'White canvas sneakers', care: 'Hand scrub with soap + soft brush, air dry. Machine only in a pinch (cold, mesh bag, air dry).' },
 ];
 ---
 
@@ -158,9 +168,9 @@ const footwear = [
       </header>
 
       <div class="callout">
-        <strong>The whole system in one line:</strong> one cold load for your clothes,
-        one warm load for towels and sheets, and a rare cold wash for the wool — then
-        sort the clothes load at the dryer.
+        <strong>The whole system in one line:</strong> one eco-cold load for your
+        clothes, one warm load for towels and sheets, and a rare eco-cold wash for
+        the wool — then sort the clothes load at the dryer.
       </div>
 
       <section>
@@ -198,11 +208,14 @@ const footwear = [
           ))}
         </div>
         <p class="loads-foot">
-          Two compromises, neither does any damage: white basics washed cold with
-          colors slowly dull (fine for socks and tees — your white dress shirts hang
-          either way), and towels share a little lint with the sheets. Want crisp
-          whites and lint-free sheets? Split into three — clothes (cold), whites +
-          sheets (warm + OxiClean), towels solo.
+          On the temperature button: eco cold = true cold tap, and it&rsquo;s the right
+          pick for both cold loads — reach for cool only when winter tap water runs
+          near-freezing or a load is genuinely filthy. Two compromises, neither does
+          any damage: white basics washed cold with colors slowly dull (fine for
+          socks and tees — your white dress shirts hang either way), and towels
+          share a little lint with the sheets. Want crisp whites and lint-free
+          sheets? Split into three — clothes (eco cold), whites + sheets (warm +
+          OxiClean), towels solo.
         </p>
       </section>
 
@@ -246,13 +259,17 @@ const footwear = [
       </section>
 
       <section>
-        <h2>Detergents</h2>
+        <h2>On the shelf</h2>
         <ul>
-          <li><strong>Wool &amp; delicates:</strong> Eucalan (no-rinse) or The Laundress Wool &amp; Cashmere — enzyme-free, so it won’t eat the merino.</li>
-          <li><strong>Everything else:</strong> a normal detergent (Dirty Labs or Tide Free &amp; Gentle). Keep it off wool.</li>
-          <li><strong>Activewear:</strong> a sport detergent (Hex, WIN) or a ½-cup white-vinegar cold soak for odor.</li>
-          <li><strong>Whites, towels &amp; sheets:</strong> an oxygen brightener (OxiClean) on warm — color-safe, lifts body oils and yellowing.</li>
+          <li><strong>Tru Earth strips</strong> — the everyday detergent for the clothes load. Tear off ~¼ sheet for a sink hand-wash.</li>
+          <li><strong>Eucalan</strong> — the wool wash. No-rinse: soak 15 min, press out, lay flat. Enzyme-free, so it won’t eat the merino.</li>
+          <li><strong>OxiClean</strong> — oxygen brightener for the linens load (and any whites boost). Color-safe; keep it off wool and stretchy activewear.</li>
+          <li><strong>White vinegar</strong> — ½-cup cold soak kills gym-clothes odor; occasional rinse strips towel buildup.</li>
         </ul>
+        <p>
+          The one rule: enzyme detergents — including Tide evo (subtilisin) — never
+          touch wool. The protease that fights stains digests protein fibers.
+        </p>
       </section>
 
       <section>
