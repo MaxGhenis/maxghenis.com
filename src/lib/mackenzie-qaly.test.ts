@@ -123,6 +123,9 @@ describe("model end-to-end", () => {
   it("blended cost-per-QALY and benefit-cost land near the reference", () => {
     expect(s.blendedMedian).toBeGreaterThan(290000);
     expect(s.blendedMedian).toBeLessThan(420000);
+    expect(s.blendedP05).toBeGreaterThan(0);
+    expect(s.blendedP05).toBeLessThan(s.blendedMedian);
+    expect(s.blendedP95).toBeGreaterThan(s.blendedMedian);
     expect(s.bcMedian).toBeGreaterThan(1.6);
     expect(s.bcMedian).toBeLessThan(2.7);
   });

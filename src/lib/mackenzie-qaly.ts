@@ -466,6 +466,8 @@ export interface Summary {
   p05: number;
   p95: number;
   blendedMedian: number;
+  blendedP05: number;
+  blendedP95: number;
   valueMedian: number;
   bcMedian: number;
   bcP05: number;
@@ -492,13 +494,16 @@ export function summarize(r: ModelResult): Summary {
   })).sort((x, y) => y.meanQalys - x.meanQalys);
 
   const [median, p05, p95] = quantilesOf(tq, [50, 5, 95]);
+  const [blendedMedian, blendedP05, blendedP95] = quantilesOf(r.blended, [50, 5, 95]);
   const [bcMedian, bcP05, bcP95] = quantilesOf(r.bcRatio, [50, 5, 95]);
   return {
     median,
     mean: mean(tq),
     p05,
     p95,
-    blendedMedian: quantilesOf(r.blended, [50])[0],
+    blendedMedian,
+    blendedP05,
+    blendedP95,
     valueMedian: quantilesOf(r.valueUsd, [50])[0],
     bcMedian,
     bcP05,

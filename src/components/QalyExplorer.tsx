@@ -271,12 +271,17 @@ export default function QalyExplorer() {
                   marginBottom: "1.5rem",
                 }}
               >
-                <Metric hero label="Median QALYs" value={fmtQalys(s.median)} />
                 <Metric
-                  label="90% interval"
-                  value={`${fmtQalys(s.p05)}–${fmtQalys(s.p95)}`}
+                  hero
+                  label="Median QALYs"
+                  value={fmtQalys(s.median)}
+                  sub={`90%: ${fmtQalys(s.p05)}–${fmtQalys(s.p95)}`}
                 />
-                <Metric label="Blended $/QALY" value={fmtDollars(s.blendedMedian)} />
+                <Metric
+                  label="Blended $/QALY"
+                  value={fmtDollars(s.blendedMedian)}
+                  sub={`90%: ${fmtDollars(s.blendedP05)}–${fmtDollars(s.blendedP95)}`}
+                />
                 <Metric
                   label="Benefit / cost"
                   value={`${s.bcMedian.toFixed(1)}×`}
