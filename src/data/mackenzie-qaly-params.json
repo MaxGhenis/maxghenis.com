@@ -88,17 +88,17 @@
       "high": 1150000,
       "unit": "usd_per_qaly",
       "dollars_base_year": 2026,
-      "source": "[HHS ASPE Standard Values for Regulatory Analysis 2026](https://aspe.hhs.gov/sites/default/files/documents/2d83af5823915d81871334ee08ad03d9/Standard-RIA-Values-2026.pdf), Table 3: VQALY for 2026 impacts at a 3% discount rate, low/central/high $339k / $726k / $1,105k in constant 2025 dollars. Inflated to the May 2026 price level with [CPI-U](https://fred.stlouisfed.org/series/CPIAUCNS) 335.123 / 321.943 (2025 annual average) = 1.0409: $353k / $756k / $1,150k. One series, one price level, denominated at the 3% reference rate; at other rates the model rescales by the adult PV-QALY ratio (vqaly_adult below), which reproduces HHS Table 2 (19.5 QALYs at 3%, 11.7 at 7%) within ~1%, keeping the benefit/cost ratio consistent with the discount slider."
+      "source": "[HHS ASPE Standard Values for Regulatory Analysis 2026](https://aspe.hhs.gov/sites/default/files/documents/2d83af5823915d81871334ee08ad03d9/Standard-RIA-Values-2026.pdf), Table 3: VQALY for 2026 impacts at a 3% discount rate, low/central/high $339k / $726k / $1,105k in constant 2025 dollars. Inflated to the May 2026 price level with [CPI-U](https://fred.stlouisfed.org/series/CPIAUCNS) 335.123 / 321.943 (2025 annual average) = 1.0409: $353k / $756k / $1,150k. One series, one price level, denominated at the 3% reference rate; at other rates the model rescales by the adult PV-QALY ratio (vqaly_adult below), which reproduces HHS Table 2's discounted PV QALYs (19.5 at 3%, 11.7 at 7%) to within 0.1%, keeping the benefit/cost ratio consistent with the discount slider."
     },
     "vqaly_adult": {
       "remaining_life_years": {
         "dist": "fixed",
-        "value": 40.7,
+        "value": 37.7,
         "unit": "years"
       },
       "utility_weight": {
         "dist": "fixed",
-        "value": 0.8256,
+        "value": 0.8584,
         "unit": "utility_weight"
       }
     },
