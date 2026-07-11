@@ -31,7 +31,7 @@ const svg = `
   <text x="70" y="190" font-family="Georgia, serif" font-weight="700" font-size="68" fill="${ink}">MacKenzie Scott's giving,</text>
   <text x="70" y="268" font-family="Georgia, serif" font-weight="700" font-size="68" fill="${ink}">in QALYs</text>
 
-  <text x="70" y="430" font-family="Georgia, serif" font-weight="700" font-size="150" fill="${amberDark}">≈ 71,000</text>
+  <text x="70" y="430" font-family="Georgia, serif" font-weight="700" font-size="150" fill="${amberDark}">≈ 70,000</text>
   <text x="74" y="478" font-family="Helvetica, Arial, sans-serif" font-size="30" fill="${inkSoft}">quality-adjusted life-years of health impact</text>
 
   <text x="70" y="556" font-family="Helvetica, Arial, sans-serif" font-size="27" fill="${inkMuted}">A GiveWell-style cost-effectiveness model of her $26.3B in philanthropy.</text>

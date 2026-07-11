@@ -14,6 +14,7 @@ const REPO = 'https://github.com/MaxGhenis/mackenzie-scott-qaly';
 const S = {
   giving: 'https://yieldgiving.com/',
   giftDb: 'https://yieldgiving.com/gifts',
+  propublica: 'https://projects.propublica.org/nonprofits/',
   giftMap: 'https://github.com/MaxGhenis/mackenzie-scott-qaly/blob/main/data/yieldgiving/leaf_to_archetype.yaml',
   givingTotal: 'https://www.cnbc.com/2025/12/13/mackenzie-scott-revealed-her-total-charitable-donations-for-2025.html',
   medicaid: 'https://academic.oup.com/qje/article-abstract/136/3/1783/6124639',
@@ -63,8 +64,8 @@ const S = {
       <div class="intro prose">
         <p class="callout">
           The most important control is <strong>evidence stance</strong>: from
-          skeptical (~71,000 QALYs — each effect weighted by how well its study
-          identifies causation) to credulous (~201,000 — every cited effect at
+          skeptical (~70,000 QALYs — each effect weighted by how well its study
+          identifies causation) to credulous (~200,000 — every cited effect at
           face value). That gap, not the dollar figure, is the real uncertainty.
         </p>
 
@@ -107,7 +108,10 @@ const S = {
           <a href={S.giftDb} target="_blank" rel="noopener">Scott's own gift database</a> —
           dollar amounts are disclosed for about two-thirds of the money, and
           each organization's dollars are split across its reported focus
-          areas and mapped to the 13 archetypes), assigns each a
+          areas and mapped to the 13 archetypes; the undisclosed remainder is
+          imputed from her announced year totals, scaled by each recipient's
+          pre-gift <a href={S.propublica} target="_blank" rel="noopener">IRS 990
+          revenue</a>), assigns each a
           cost-per-QALY, and multiplies by two independent discounts:
         </p>
         <ul>
@@ -178,7 +182,7 @@ const S = {
           <li><a href={S.income} target="_blank" rel="noopener">Cesarini et al. (2016), <em>QJE</em></a> — lottery evidence of a ~null causal income→mortality effect.</li>
           <li><a href={S.vsly} target="_blank" rel="noopener">HHS ASPE (2026), Table 3</a> — value per QALY, $726k central at a 3% discount rate in constant 2025 dollars (~$756k in May-2026 dollars), used for the benefit/cost ratio.</li>
           <li><a href={S.frontier} target="_blank" rel="noopener">GiveWell current impact estimates</a> — 2022–2024 lives-saved program averages converted here to $150–$260 per QALY-equivalent.</li>
-          <li><a href={S.giftDb} target="_blank" rel="noopener">Yield Giving gift database</a> — 2,711 gifts with dollar amounts disclosed for about two-thirds of the $26.39B; org-reported focus areas drive the allocation split (<a href={S.giftMap} target="_blank" rel="noopener">area-to-archetype mapping</a>).</li>
+          <li><a href={S.giftDb} target="_blank" rel="noopener">Yield Giving gift database</a> — 2,711 gifts with dollar amounts disclosed for about two-thirds of the $26.39B; org-reported focus areas drive the allocation split (<a href={S.giftMap} target="_blank" rel="noopener">area-to-archetype mapping</a>); undisclosed amounts imputed from year totals in proportion to pre-gift <a href={S.propublica} target="_blank" rel="noopener">IRS 990 revenue</a>, elasticity fit on the disclosed gifts.</li>
         </ul>
         <p>
           Full annotated bibliography, parameter file, and the tested Python

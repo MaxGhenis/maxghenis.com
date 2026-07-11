@@ -167,7 +167,7 @@
   "archetypes": {
     "health_coverage": {
       "label": "Health - insurance & access",
-      "allocation_share": 0.051,
+      "allocation_share": 0.054,
       "method": "cost_per_life",
       "causal_credibility": "strong_quasi",
       "identification": "DD across staggered state Medicaid expansions with linked coverage data (Sommers 2017; Miller, Johnson & Wherry 2021 corroborate with linked administrative mortality for the ACA expansion). Strong; the Oregon HIE RCT (null on 2-yr physical health measures) tempers it, hence not the top tier.",
@@ -182,7 +182,7 @@
     },
     "health_chc": {
       "label": "Health - community health centers",
-      "allocation_share": 0.051,
+      "allocation_share": 0.054,
       "method": "cost_per_life_year",
       "causal_credibility": "moderate_quasi",
       "identification": "Event-study/DD on the 1960s-70s CHC rollout (Bailey & Goodman-Bacon 2015). Credible design; spatial-spillover concerns in later re-analyses. (Transport to today's CHCs is a realization matter, not identification.)",
@@ -212,7 +212,7 @@
     },
     "econ_cash": {
       "label": "Economic security - cash & financial",
-      "allocation_share": 0.042,
+      "allocation_share": 0.037,
       "method": "cost_per_qaly",
       "causal_credibility": "randomized",
       "identification": "Lottery randomization (Cesarini et al. 2016) credibly estimates a ~null adult-mortality effect of income. High credibility for a SMALL effect: we trust the estimate, and the estimate is that there is little here.",
@@ -227,7 +227,7 @@
     },
     "econ_food": {
       "label": "Economic security - food security",
-      "allocation_share": 0.02,
+      "allocation_share": 0.024,
       "method": "cost_per_qaly",
       "causal_credibility": "observational",
       "identification": "SNAP/health links are largely associational with endogenous take-up (sicker or poorer households select in/out); strong confounding risk. The cost-per-QALY assumes the effect is real; credibility says it may not be causal.",
@@ -242,7 +242,7 @@
     },
     "econ_housing": {
       "label": "Economic security - housing & homelessness",
-      "allocation_share": 0.039,
+      "allocation_share": 0.036,
       "method": "cost_per_qaly",
       "causal_credibility": "moderate_quasi",
       "identification": "NASEM (2018) judged the PSH health evidence MIXED: few RCTs, mostly pre/post and quasi-experimental, contested cost-savings. Real signal for high-need subgroups, weak identification overall.",
@@ -257,7 +257,7 @@
     },
     "econ_workforce": {
       "label": "Economic security - workforce & mobility",
-      "allocation_share": 0.143,
+      "allocation_share": 0.134,
       "method": "cost_per_qaly",
       "causal_credibility": "observational",
       "identification": "Health effect inferred from the income-health gradient with a causal discount; little direct experimental evidence that workforce grants move health. Consistent with the credible ~null income-mortality result.",
@@ -272,7 +272,7 @@
     },
     "education": {
       "label": "Education (HBCUs, comm. college, scholarships)",
-      "allocation_share": 0.202,
+      "allocation_share": 0.188,
       "method": "cost_per_qaly",
       "causal_credibility": "moderate_quasi",
       "identification": "Compulsory-schooling IV/quasi-experiments (Lleras-Muney; Lager & Torssander; Dutch reform) are credible but the literature is genuinely contested \u2014 Clark & Royer (2013) find ~null mortality effects. Wide.",
@@ -287,7 +287,7 @@
     },
     "equity_justice": {
       "label": "Equity & justice",
-      "allocation_share": 0.157,
+      "allocation_share": 0.172,
       "method": "cost_per_qaly",
       "causal_credibility": "assumption",
       "identification": "No credible causal estimate links Scott's equity/justice grants to QALYs. Plausible indirect pathways (e.g., incarceration-mortality) exist but attribution is speculative; value is overwhelmingly non-health.",
@@ -302,7 +302,7 @@
     },
     "civic_democracy": {
       "label": "Civic / democracy / philanthropy infra",
-      "allocation_share": 0.108,
+      "allocation_share": 0.107,
       "method": "cost_per_qaly",
       "causal_credibility": "assumption",
       "identification": "No causal health evidence; value is civic/institutional.",
@@ -317,7 +317,7 @@
     },
     "arts_culture": {
       "label": "Arts & culture",
-      "allocation_share": 0.03,
+      "allocation_share": 0.034,
       "method": "cost_per_qaly",
       "causal_credibility": "assumption",
       "identification": "Arts-and-health literature exists (WHO 2019; Bygren et al.) but is observational and about participation programs, not institutional grants. Treated as a skeptical near-zero prior.",
@@ -332,7 +332,7 @@
     },
     "environment": {
       "label": "Environment / climate",
-      "allocation_share": 0.074,
+      "allocation_share": 0.082,
       "method": "cost_per_qaly",
       "causal_credibility": "projection",
       "identification": "Partition of doubts (each in exactly one layer): the global realization factor covers only the GENERIC grant-delivery gap it covers everywhere (overhead, funging, transport to the funded organization); this archetype's wide cost-per-QALY prior covers the PROGRAM-level step from an effective climate organization's dollar to abatement; and the projection tier covers trust in Bressler (2021)'s IAM mortality projection itself.",
@@ -347,7 +347,7 @@
     },
     "other_community": {
       "label": "Other / general community",
-      "allocation_share": 0.06,
+      "allocation_share": 0.055,
       "method": "cost_per_qaly",
       "causal_credibility": "observational",
       "identification": "Blended social-services proxy; no single identified estimate.",
