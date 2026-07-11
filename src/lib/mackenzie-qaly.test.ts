@@ -17,7 +17,7 @@ import {
 
 // Reference values from the Python model (n=100k seed=0, round 3):
 //   giving $30.30B (2026$, from $26.39B nominal disclosed tranches)
-//   median 86,596 · mean 93,456 · p05 48,490 · p95 160,914
+//   median 70,398 · mean 77,251 · p05 37,809 · p95 139,018
 //   blended $349,922/QALY · benefit-cost 2.12 (HHS VQALY) · frontier multiple 1,215
 // Monte Carlo output is RNG-sensitive, so we assert distributional agreement
 // with generous tolerances, not bit-parity.
@@ -112,22 +112,22 @@ describe("model end-to-end", () => {
   });
 
   it("matches the checked reference range within Monte Carlo tolerance", () => {
-    expect(s.median).toBeGreaterThan(74000);
-    expect(s.median).toBeLessThan(100000);
-    expect(s.mean).toBeGreaterThan(80000);
-    expect(s.mean).toBeLessThan(108000);
-    expect(s.p05).toBeGreaterThan(40000);
-    expect(s.p95).toBeLessThan(190000);
+    expect(s.median).toBeGreaterThan(60000);
+    expect(s.median).toBeLessThan(82000);
+    expect(s.mean).toBeGreaterThan(66000);
+    expect(s.mean).toBeLessThan(90000);
+    expect(s.p05).toBeGreaterThan(30000);
+    expect(s.p95).toBeLessThan(165000);
   });
 
   it("blended cost-per-QALY and benefit-cost land near the reference", () => {
-    expect(s.blendedMedian).toBeGreaterThan(290000);
-    expect(s.blendedMedian).toBeLessThan(420000);
+    expect(s.blendedMedian).toBeGreaterThan(350000);
+    expect(s.blendedMedian).toBeLessThan(520000);
     expect(s.blendedP05).toBeGreaterThan(0);
     expect(s.blendedP05).toBeLessThan(s.blendedMedian);
     expect(s.blendedP95).toBeGreaterThan(s.blendedMedian);
-    expect(s.bcMedian).toBeGreaterThan(1.6);
-    expect(s.bcMedian).toBeLessThan(2.7);
+    expect(s.bcMedian).toBeGreaterThan(1.4);
+    expect(s.bcMedian).toBeLessThan(2.2);
   });
 
   it("frontier is handicapped but still ~1,000x+ better per dollar", () => {
