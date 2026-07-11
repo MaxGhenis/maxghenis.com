@@ -285,7 +285,7 @@ export default function QalyExplorer() {
                 <Metric
                   label="Benefit / cost"
                   value={`${s.bcMedian.toFixed(1)}×`}
-                  sub={`${fmtDollars(s.valueMedian)} of health at HHS's value/QALY ÷ ${fmtDollars(givingB * 1e9)} given`}
+                  sub={`${fmtDollars(s.valueMedian)} of health at HHS's value/QALY ÷ ${fmtDollars(givingB * 1e9)} given`}
                 />
               </div>
 
