@@ -58,8 +58,12 @@ export interface Params {
   };
   conversions: {
     qaly_per_death_averted: { remaining_life_expectancy: DistSpec; utility_weight: DistSpec };
-    vsly_usd: DistSpec;
+    vqaly_usd: DistSpec;
     frontier_cost_per_qaly_usd: DistSpec;
+    frontier_child: {
+      remaining_life_years: { dist: "fixed"; value: number; unit: string };
+      utility_weight: { dist: "fixed"; value: number; unit: string };
+    };
   };
   realization_factor: { dist: "triangular"; low: number; mode: number; high: number };
   evidence_tiers: Record<string, { mean: number; concentration: number; design: string }>;
@@ -213,7 +217,7 @@ export function discountedQale(years: number, utility: number, rate: number): nu
 }
 
 export interface Overrides {
-  /** Total lifetime giving in dollars (default $26.3B). */
+  /** Total giving in base-year dollars (default: the derived tranche total). */
   totalGiving?: number;
   /** Central realization factor (triangular mode), clamped to [low, high]. */
   realizationMode?: number;
@@ -294,8 +298,15 @@ export function runModel(overrides: Overrides = {}): ModelResult {
   const shares = Array.from({ length: k }, () => new Float64Array(n));
 
   const qd = p.conversions.qaly_per_death_averted;
-  const vslySpec = p.conversions.vsly_usd;
+  const vqalySpec = p.conversions.vqaly_usd;
   const frontierSpec = p.conversions.frontier_cost_per_qaly_usd;
+  // The frontier prior is denominated at the 3% reference rate; rescale it to
+  // the active rate via the child-QALE ratio so like-for-like holds at any
+  // discount setting: cpq(rate) = cpq(3%) * QALE(3%) / QALE(rate).
+  const fc = p.conversions.frontier_child;
+  const frontierScale =
+    discountedQale(fc.remaining_life_years.value, fc.utility_weight.value, 0.03) /
+    discountedQale(fc.remaining_life_years.value, fc.utility_weight.value, rate);
   const randomizedTier = p.evidence_tiers.randomized;
 
   // Precompute per-archetype beta(a, b) credibility parameters ONCE — the tier
@@ -344,10 +355,13 @@ export function runModel(overrides: Overrides = {}): ModelResult {
         cpq = sampleOne(a.cost_per_qaly_usd!, rng);
       } else if (a.method === "cost_per_life") {
         cpq = sampleOne(a.cost_per_life_usd!, rng) / qpd;
-      } else {
-        // cost_per_life_year: $/life-year -> $/QALY via the same utility draw
-        // used in the QALE annuity (mirrors the Python model).
+      } else if (a.method === "cost_per_life_year") {
+        // $/life-year -> $/QALY via the same utility draw used in the QALE
+        // annuity (mirrors the Python model).
         cpq = sampleOne(a.cost_per_life_year_usd!, rng) / u;
+      } else {
+        // Fail closed, matching Python: an unknown method is a data error.
+        throw new Error(`Unknown method "${a.method}" for ${a.label}`);
       }
       cpq = Math.max(cpq, floor);
 
@@ -364,14 +378,14 @@ export function runModel(overrides: Overrides = {}): ModelResult {
     }
     totalQalys[i] = total;
 
-    // Like-for-like frontier handicap (same realization + RCT-grade credibility).
-    // frontierCpq is already a rough $/QALY-equivalent from GiveWell lives-saved estimates.
-    const frontierCpq = sampleOne(frontierSpec, rng);
+    // Like-for-like frontier handicap (same realization + RCT-grade credibility),
+    // with the QALY-equivalent cost rescaled to the active discount rate.
+    const frontierCpq = sampleOne(frontierSpec, rng) * frontierScale;
     const frontierCred = clampUnit(rng.beta(frontierA, frontierB));
     frontierQalys[i] = (giving * real * frontierCred) / frontierCpq;
 
-    const vsly = sampleOne(vslySpec, rng);
-    valueUsd[i] = total * vsly;
+    const vqaly = sampleOne(vqalySpec, rng);
+    valueUsd[i] = total * vqaly;
     bcRatio[i] = valueUsd[i] / giving;
     blended[i] = giving / Math.max(total, 1e-9);
   }
@@ -488,10 +502,19 @@ export function summarize(r: ModelResult): Summary {
 // Probabilistic sensitivity (Spearman tornado) — port of driver_sensitivity
 // ---------------------------------------------------------------------------
 function ranks(a: ArrayLike<number>): Float64Array {
+  // Midranks: ties get their group-average rank, so tied values contribute no
+  // spurious sort-order correlation.
   const n = a.length;
   const idx = Array.from({ length: n }, (_, i) => i).sort((x, y) => a[x] - a[y]);
   const r = new Float64Array(n);
-  for (let i = 0; i < n; i++) r[idx[i]] = i;
+  let i = 0;
+  while (i < n) {
+    let j = i;
+    while (j + 1 < n && a[idx[j + 1]] === a[idx[i]]) j++;
+    const avg = (i + j) / 2;
+    for (let k = i; k <= j; k++) r[idx[k]] = avg;
+    i = j + 1;
+  }
   return r;
 }
 

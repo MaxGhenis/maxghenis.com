@@ -15,10 +15,10 @@ import {
   summarize,
 } from "./mackenzie-qaly";
 
-// Reference values from the Python model (n=100k seed=0, post-rebuild):
-//   giving $30.2B (2026$, from $26.3B nominal tranches)
-//   median 86,716 · mean 93,513 · p05 48,621 · p95 160,760
-//   blended $348,261/QALY · benefit-cost 1.72 · frontier multiple 1,411
+// Reference values from the Python model (n=100k seed=0, round 3):
+//   giving $30.30B (2026$, from $26.39B nominal disclosed tranches)
+//   median 86,596 · mean 93,456 · p05 48,490 · p95 160,914
+//   blended $349,922/QALY · benefit-cost 2.12 (HHS VQALY) · frontier multiple 1,215
 // Monte Carlo output is RNG-sensitive, so we assert distributional agreement
 // with generous tolerances, not bit-parity.
 
@@ -106,7 +106,7 @@ describe("model end-to-end", () => {
       0,
     );
     expect(meta.total_giving_usd).toBeCloseTo(real, 0);
-    expect(meta.total_giving_nominal_usd).toBeCloseTo(26.3e9, -8);
+    expect(meta.total_giving_nominal_usd).toBeCloseTo(26.3934e9, -8);
     expect(meta.total_giving_usd).toBeGreaterThan(meta.total_giving_nominal_usd);
     expect(r.giving).toBeCloseTo(meta.total_giving_usd, 0);
   });
@@ -123,8 +123,8 @@ describe("model end-to-end", () => {
   it("blended cost-per-QALY and benefit-cost land near the reference", () => {
     expect(s.blendedMedian).toBeGreaterThan(290000);
     expect(s.blendedMedian).toBeLessThan(420000);
-    expect(s.bcMedian).toBeGreaterThan(1.3);
-    expect(s.bcMedian).toBeLessThan(2.2);
+    expect(s.bcMedian).toBeGreaterThan(1.6);
+    expect(s.bcMedian).toBeLessThan(2.7);
   });
 
   it("frontier is handicapped but still ~1,000x+ better per dollar", () => {

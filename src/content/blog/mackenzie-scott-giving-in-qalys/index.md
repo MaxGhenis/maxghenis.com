@@ -19,7 +19,7 @@ How much that gap should bother you is the open question, and the QALY count doe
 
 I built this with two coding agents, and the more useful part was letting them check each other. Claude Code wrote the model and the tool. Then I had Codex review the assumptions cold: it caught a real error — a cost-per-life figure I'd left in old dollars without inflating it — and disagreed with Claude on whether the global benchmark belongs in QALYs or DALYs. I'm centralizing on QALYs. Two models disagreeing about a modeling choice is a sharper adversarial review than either alone.
 
-A second full review round (both models, against everything) caught more, and the fixes moved the headline from ~98,000 to ~87,000: gifts are now inflated to 2026 dollars year by year instead of divided nominal-vs-current; the community-health-center figure now uses the paper's own [~$54k per life-year](https://pmc.ncbi.nlm.nih.gov/articles/PMC4436657/) with an explicit life-year→QALY conversion (the old version skipped it); several 2000s-era cost-effectiveness anchors got inflated; the frontier benchmark was re-derived with discounting consistent across both sides (which roughly halved the headline multiple); and one citation was re-attributed to the paper the numbers actually come from — [Sommers (2017)](https://www.journals.uchicago.edu/doi/10.1162/ajhe_a_00080), verified against the PDF, after I'd confidently planted the wrong one. Every correction made the model more skeptical or more honest, none was caught by a human, and the errors had survived three earlier review passes.
+Two further full review rounds (both models, against everything) caught more, and the fixes moved the headline from ~98,000 to ~87,000: gifts are now recorded as the exact disclosed tranches and inflated to 2026 dollars year by year instead of divided nominal-vs-current; the community-health-center figure now uses the paper's own [~$54k per life-year](https://pmc.ncbi.nlm.nih.gov/articles/PMC4436657/) with an explicit life-year→QALY conversion (the old version skipped it); several 2000s-era cost-effectiveness anchors got inflated to current dollars; the frontier benchmark was re-derived twice — first for discounting consistency, then onto [GiveWell's current program averages](https://www.givewell.org/impact-estimates) — cutting the headline multiple by about 40%; the benefit/cost ratio now uses [HHS's published value per QALY](https://aspe.hhs.gov/reports/standard-ria-values) instead of a per-life-year value applied to QALYs; and one citation was re-attributed to the paper the numbers actually come from — [Sommers (2017)](https://www.journals.uchicago.edu/doi/10.1162/ajhe_a_00080), verified against the PDF, after I'd confidently planted the wrong one. Every correction made the model more skeptical or more honest, none was caught by a human, and the errors had survived earlier review passes.
 
 None of the model code was hand-written; the whole thing was natural-language prompting. For transparency, here is every prompt I typed, verbatim — typos and all.
 
@@ -42,6 +42,7 @@ None of the model code was hand-written; the whole thing was natural-language pr
 13. yes
 14. do a full review of this, both you and with a sol subagent
 15. yep go - and dont have anyu allegiance to existing code, feel free to rebuild any and all things froms cratch
+16. do it all
 
 **To Codex:**
 

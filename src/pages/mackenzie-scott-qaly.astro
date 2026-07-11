@@ -55,8 +55,9 @@ const S = {
         <p>
           MacKenzie Scott's Yield Giving network has made <a href={S.giving} target="_blank" rel="noopener"><strong>over $26 billion</strong>
           in 2,700+ gifts</a> since 2019 — <a href={S.givingTotal} target="_blank" rel="noopener">$26.3 billion through 2025</a> by
-          CNBC's year-end accounting. I inflate each year's gifts to
-          <a href={S.cpi} target="_blank" rel="noopener">2026 dollars</a> (~$30.2 billion, so the
+          CNBC's year-end accounting ($26.39 billion in exact disclosed
+          tranches). I inflate each year's gifts to
+          <a href={S.cpi} target="_blank" rel="noopener">2026 dollars</a> (~$30.3 billion, so the
           dollars and the cost-effectiveness evidence share one price level)
           and ask one number: quality-adjusted life-years, the unit health
           economists use to compare a death averted against years lived in
@@ -121,16 +122,18 @@ const S = {
           The "vs. global frontier" figure compares Scott's blended
           cost-per-QALY to the best global-health buys, handicapping the
           frontier with the same realization and credibility so it's
-          like-for-like. <a href={S.frontier} target="_blank" rel="noopener">GiveWell's current
-          impact estimates</a> put malaria nets around $5,500 per life saved;
-          an older <a href={S.frontierOld} target="_blank" rel="noopener">AMF/GiveWell summary</a>
-          reports about $3,340. A child death averted at ~age 1 is ~25
-          <em>discounted</em> QALYs under this model's own conventions (~65
-          remaining years, 3% discount, utility ~0.87), so those endpoints
-          become roughly $134–$220 per QALY-equivalent; I model the benchmark
-          as loguniform $110–$260. An earlier revision used $50–$150 from
-          undiscounted per-DALY conventions — inconsistent with the discounted
-          US-side QALYs, and flattering to the frontier.
+          like-for-like (and rescaling the frontier's cost when you move the
+          discount slider, so the comparison stays consistent at any rate).
+          <a href={S.frontier} target="_blank" rel="noopener">GiveWell's current impact
+          estimates</a> put the 2022–2024 program averages at ~$4,000 per life
+          saved (Malaria Consortium) to ~$5,500 (AMF nets). A child death
+          averted at ~age 1 is ~25 <em>discounted</em> QALYs under this model's
+          own conventions (~65 remaining years, 3% discount, utility ~0.87), so
+          those endpoints — inflated to 2026 dollars — become roughly $175–$241
+          per QALY-equivalent; I model the benchmark as loguniform $150–$260.
+          (Two earlier revisions used, first, $50–$150 per-DALY figures and
+          then a 2015 per-life figure; both understated the frontier's current
+          cost and flattered the multiple.)
         </p>
 
         <h2>What this doesn't capture</h2>
@@ -152,8 +155,8 @@ const S = {
           <li><a href={S.housing} target="_blank" rel="noopener">Holtgrave et al. (2013), <em>AIDS and Behavior</em></a> — Housing &amp; Health intervention $62,493/QALY (HIV-positive unstably-housed cohort; ~$97k in 2026 dollars); <a href={S.housingNasem} target="_blank" rel="noopener">NASEM (2018)</a> for the mixed-evidence assessment of supportive housing.</li>
           <li><a href={S.depression} target="_blank" rel="noopener">Collaborative-care depression reviews</a> (Gilbody; Community Guide) — ~$17k–$49.5k/QALY in 2000s dollars, ~$28k–$82k inflated.</li>
           <li><a href={S.income} target="_blank" rel="noopener">Cesarini et al. (2016), <em>QJE</em></a> — lottery evidence of a ~null causal income→mortality effect.</li>
-          <li><a href={S.vsly} target="_blank" rel="noopener">HHS ASPE (2026)</a> — value of a statistical life-year, $611k central at a 3% discount rate.</li>
-          <li><a href={S.frontier} target="_blank" rel="noopener">GiveWell current impact estimates</a> and an older <a href={S.frontierOld} target="_blank" rel="noopener">AMF/GiveWell summary</a> — lives-saved benchmarks converted here to $110–$260 per QALY-equivalent.</li>
+          <li><a href={S.vsly} target="_blank" rel="noopener">HHS ASPE (2026), Table 3</a> — value per QALY, $726k central at a 3% discount rate in constant 2025 dollars (~$756k in May-2026 dollars), used for the benefit/cost ratio.</li>
+          <li><a href={S.frontier} target="_blank" rel="noopener">GiveWell current impact estimates</a> — 2022–2024 lives-saved program averages converted here to $150–$260 per QALY-equivalent.</li>
         </ul>
         <p>
           Full annotated bibliography, parameter file, and the tested Python

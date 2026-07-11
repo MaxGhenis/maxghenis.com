@@ -91,9 +91,12 @@ export default function QalyExplorer() {
   }
 
   const s = computed?.summary;
+  // Mirror the model's zero-sum fallback so the displayed percentages always
+  // match what is actually simulated (all-zero sliders -> file defaults).
   const normShares = useMemo(() => {
-    const sum = shares.reduce((a, b) => a + Math.max(b, 0), 0) || 1;
-    return shares.map((v) => Math.max(v, 0) / sum);
+    const effective = shares.some((v) => v > 0) ? shares : DEFAULT_SHARES;
+    const sum = effective.reduce((a, b) => a + Math.max(b, 0), 0);
+    return effective.map((v) => Math.max(v, 0) / sum);
   }, [shares]);
 
   return (
