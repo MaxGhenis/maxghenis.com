@@ -64,6 +64,10 @@ export interface Params {
       remaining_life_years: { dist: "fixed"; value: number; unit: string };
       utility_weight: { dist: "fixed"; value: number; unit: string };
     };
+    vqaly_adult: {
+      remaining_life_years: { dist: "fixed"; value: number; unit: string };
+      utility_weight: { dist: "fixed"; value: number; unit: string };
+    };
   };
   realization_factor: { dist: "triangular"; low: number; mode: number; high: number };
   evidence_tiers: Record<string, { mean: number; concentration: number; design: string }>;
@@ -307,6 +311,13 @@ export function runModel(overrides: Overrides = {}): ModelResult {
   const frontierScale =
     discountedQale(fc.remaining_life_years.value, fc.utility_weight.value, 0.03) /
     discountedQale(fc.remaining_life_years.value, fc.utility_weight.value, rate);
+  // The VQALY prior is likewise denominated at 3%; rescale by the adult
+  // PV-QALY ratio (reproduces HHS Table 2 within ~1%) so benefit/cost stays
+  // consistent with the discount slider.
+  const va = p.conversions.vqaly_adult;
+  const vqalyScale =
+    discountedQale(va.remaining_life_years.value, va.utility_weight.value, 0.03) /
+    discountedQale(va.remaining_life_years.value, va.utility_weight.value, rate);
   const randomizedTier = p.evidence_tiers.randomized;
 
   // Precompute per-archetype beta(a, b) credibility parameters ONCE — the tier
@@ -384,7 +395,7 @@ export function runModel(overrides: Overrides = {}): ModelResult {
     const frontierCred = clampUnit(rng.beta(frontierA, frontierB));
     frontierQalys[i] = (giving * real * frontierCred) / frontierCpq;
 
-    const vqaly = sampleOne(vqalySpec, rng);
+    const vqaly = sampleOne(vqalySpec, rng) * vqalyScale;
     valueUsd[i] = total * vqaly;
     bcRatio[i] = valueUsd[i] / giving;
     blended[i] = giving / Math.max(total, 1e-9);

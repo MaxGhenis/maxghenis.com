@@ -170,7 +170,7 @@ export default function QalyExplorer() {
             step={0.1}
             onChange={setGivingB}
             display={`$${givingB.toFixed(1)}B`}
-            help="Real 2026 dollars. Default inflates each year's gifts ($26.3B nominal, 2020–2025) to ~$30.2B with CPI-U."
+            help="Real 2026 dollars. Default inflates each year's gifts ($26.39B nominal, 2020–2025) to ~$30.3B with CPI-U."
           />
           <Slider
             label="Discount rate"
@@ -280,7 +280,7 @@ export default function QalyExplorer() {
                 <Metric
                   label="Benefit / cost"
                   value={`${s.bcMedian.toFixed(1)}×`}
-                  sub={`at VSLY · ${fmtDollars(s.valueMedian)}`}
+                  sub={`at HHS VQALY · ${fmtDollars(s.valueMedian)}`}
                 />
                 <Metric
                   label="Vs. global frontier"
@@ -299,6 +299,10 @@ export default function QalyExplorer() {
 
               <ChartCard title="What drives the spread">
                 <Tornado drivers={computed!.drivers} />
+                <p style={{ fontSize: "0.68rem", color: C.inkMuted, margin: "0.5rem 0 0", lineHeight: 1.4 }}>
+                  Allocation shares are compositional (they sum to 1), so a
+                  share's correlation is relative to the buckets it displaces.
+                </p>
               </ChartCard>
             </>
           ) : (

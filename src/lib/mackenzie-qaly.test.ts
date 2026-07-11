@@ -215,3 +215,17 @@ describe("formatters", () => {
     expect(fmtDollars(999999)).toBe("$1.0M");
   });
 });
+
+describe("discount-rate consistency", () => {
+  it("rescales VQALY and the frontier at non-reference rates", () => {
+    const base = summarize(runModel({ n: 20000, seed: 13, discountRate: 0.03 }));
+    const hi = summarize(runModel({ n: 20000, seed: 13, discountRate: 0.07 }));
+    // Per-QALY monetization rises at 7%, approximating HHS's 1205/726 ratio.
+    const impliedRatio =
+      hi.valueMedian / hi.median / (base.valueMedian / base.median);
+    expect(impliedRatio).toBeGreaterThan(1.5);
+    expect(impliedRatio).toBeLessThan(1.85);
+    // Frontier cost rises too, so frontier QALYs fall.
+    expect(hi.frontierMedian).toBeLessThan(0.8 * base.frontierMedian);
+  });
+});
