@@ -29,19 +29,29 @@ export type DistSpec =
 export interface Archetype {
   label: string;
   allocation_share: number;
-  method: "cost_per_qaly" | "cost_per_life" | "cost_per_qaly_derived_chc";
+  method: "cost_per_qaly" | "cost_per_life" | "cost_per_life_year";
   causal_credibility?: string;
   cost_per_qaly_usd?: DistSpec;
   cost_per_life_usd?: DistSpec;
-  medicare_cost_per_lifeyear_usd?: DistSpec;
-  chc_fraction_of_medicare?: DistSpec;
+  cost_per_life_year_usd?: DistSpec;
   source?: string;
   identification?: string;
 }
 
+export interface GivingTranche {
+  year: number;
+  nominal_usd: number;
+  cpi: number;
+  source: string;
+}
+
 export interface Params {
   meta: {
+    /** Derived by the Python loader: nominal tranches inflated to base-year $. */
     total_giving_usd: number;
+    total_giving_nominal_usd: number;
+    giving_tranches: GivingTranche[];
+    cpi_target: number;
     base_year: number;
     discount_rate: number;
     cost_per_qaly_floor_usd: number;
@@ -258,9 +268,14 @@ export function runModel(overrides: Overrides = {}): ModelResult {
     mode: clamp(overrides.realizationMode ?? rf.mode, rf.low, rf.high),
   };
 
-  // Central allocation shares (overridable), normalized.
-  const baseShares = overrides.shares ?? ARCHETYPES.map((a) => a.allocation_share);
-  const shareSum = baseShares.reduce((s, v) => s + Math.max(v, 0), 0) || 1;
+  // Central allocation shares (overridable), normalized. An all-zero override
+  // has no valid normalization — fall back to the parameter-file shares rather
+  // than sampling a degenerate Dirichlet.
+  const requested = overrides.shares ?? ARCHETYPES.map((a) => a.allocation_share);
+  const baseShares = requested.some((v) => v > 0)
+    ? requested
+    : ARCHETYPES.map((a) => a.allocation_share);
+  const shareSum = baseShares.reduce((s, v) => s + Math.max(v, 0), 0);
   const central = baseShares.map((v) => Math.max(v, 0) / shareSum);
   const conc = p.allocation_concentration;
   const alpha = central.map((c) => Math.max(c * conc, 1e-6));
@@ -290,6 +305,11 @@ export function runModel(overrides: Overrides = {}): ModelResult {
   const credActive = new Uint8Array(k);
   for (let j = 0; j < k; j++) {
     const tierName = ARCHETYPES[j].causal_credibility;
+    if (tierName && !p.evidence_tiers[tierName]) {
+      // Fail closed, matching the Python model: an unknown tier is a data
+      // error, not full credibility.
+      throw new Error(`Unknown evidence tier "${tierName}" for ${ARCHETYPES[j].label}`);
+    }
     const t = tierName ? p.evidence_tiers[tierName] : undefined;
     if (!t) {
       credActive[j] = 0;
@@ -325,9 +345,9 @@ export function runModel(overrides: Overrides = {}): ModelResult {
       } else if (a.method === "cost_per_life") {
         cpq = sampleOne(a.cost_per_life_usd!, rng) / qpd;
       } else {
-        const med = sampleOne(a.medicare_cost_per_lifeyear_usd!, rng);
-        const frac = sampleOne(a.chc_fraction_of_medicare!, rng);
-        cpq = med * frac;
+        // cost_per_life_year: $/life-year -> $/QALY via the same utility draw
+        // used in the QALE annuity (mirrors the Python model).
+        cpq = sampleOne(a.cost_per_life_year_usd!, rng) / u;
       }
       cpq = Math.max(cpq, floor);
 

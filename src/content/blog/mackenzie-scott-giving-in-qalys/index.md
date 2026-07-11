@@ -5,7 +5,7 @@ pubDate: 'Jun 28 2026'
 heroImage: './hero.png'
 ---
 
-MacKenzie Scott gave away [$7 billion in 2025](https://www.cnbc.com/2025/12/13/mackenzie-scott-revealed-her-total-charitable-donations-for-2025.html) — [about a third of every megagift in America that year](https://fortune.com/2026/06/25/mackenzie-scott-largest-megadonor-2025-7-billion-donations-giving-usa-iu-report/), by the Indiana University Lilly Family School of Philanthropy's count. Almost none of it is denominated in health. I built an interactive tool that asks what her [$26 billion](https://yieldgiving.com/) in lifetime giving buys in the unit health economists use to compare lives — quality-adjusted life-years: **[maxghenis.com/mackenzie-scott-qaly](/mackenzie-scott-qaly)**. Drag the assumptions and a Monte Carlo cost-effectiveness model reruns in your browser; on the skeptical default it lands around 100,000 QALYs — a model output, not a measured fact, which is why the tool exists: move the assumptions yourself.
+MacKenzie Scott gave away [$7 billion in 2025](https://www.cnbc.com/2025/12/13/mackenzie-scott-revealed-her-total-charitable-donations-for-2025.html) — [about a third of every megagift in America that year](https://fortune.com/2026/06/25/mackenzie-scott-largest-megadonor-2025-7-billion-donations-giving-usa-iu-report/), by the Indiana University Lilly Family School of Philanthropy's count. Almost none of it is denominated in health. I built an interactive tool that asks what her [$26 billion](https://yieldgiving.com/) in lifetime giving buys in the unit health economists use to compare lives — quality-adjusted life-years: **[maxghenis.com/mackenzie-scott-qaly](/mackenzie-scott-qaly)**. Drag the assumptions and a Monte Carlo cost-effectiveness model reruns in your browser; on the skeptical default it lands around 90,000 QALYs — a model output, not a measured fact, which is why the tool exists: move the assumptions yourself.
 
 It runs the same machinery as the [GiveWell cost-effectiveness replication](/blog/givewell-cea/) I built in February — editable parameters, Monte Carlo, sensitivity analysis — pointed at a different question. GiveWell scores the most cost-effective charities in the world. This points the same lens at one donor's actual $26B portfolio, most of it unrestricted gifts to US organizations, where almost none of the spending is denominated in health to begin with.
 
@@ -18,6 +18,8 @@ How much that gap should bother you is the open question, and the QALY count doe
 ## Two models, arguing
 
 I built this with two coding agents, and the more useful part was letting them check each other. Claude Code wrote the model and the tool. Then I had Codex review the assumptions cold: it caught a real error — a cost-per-life figure I'd left in old dollars without inflating it — and disagreed with Claude on whether the global benchmark belongs in QALYs or DALYs. I'm centralizing on QALYs. Two models disagreeing about a modeling choice is a sharper adversarial review than either alone.
+
+A second full review round (both models, against everything) caught more, and the fixes moved the headline from ~98,000 to ~87,000: gifts are now inflated to 2026 dollars year by year instead of divided nominal-vs-current; the community-health-center figure now uses the paper's own [~$54k per life-year](https://pmc.ncbi.nlm.nih.gov/articles/PMC4436657/) with an explicit life-year→QALY conversion (the old version skipped it); several 2000s-era cost-effectiveness anchors got inflated; the frontier benchmark was re-derived with discounting consistent across both sides (which roughly halved the headline multiple); and one citation was re-attributed to the paper the numbers actually come from — [Sommers (2017)](https://www.journals.uchicago.edu/doi/10.1162/ajhe_a_00080), verified against the PDF, after I'd confidently planted the wrong one. Every correction made the model more skeptical or more honest, none was caught by a human, and the errors had survived three earlier review passes.
 
 None of the model code was hand-written; the whole thing was natural-language prompting. For transparency, here is every prompt I typed, verbatim — typos and all.
 
@@ -36,6 +38,10 @@ None of the model code was hand-written; the whole thing was natural-language pr
 9. fix
 10. codex made some changes wdyt
 11. give me a prompt for it to fix. but i think there was a misunderstanding i didnt ask for a qaly/daly change, could we centralize around one? which?
+12. if you were starting this project from scratch howd you do it
+13. yes
+14. do a full review of this, both you and with a sol subagent
+15. yep go - and dont have anyu allegiance to existing code, feel free to rebuild any and all things froms cratch
 
 **To Codex:**
 

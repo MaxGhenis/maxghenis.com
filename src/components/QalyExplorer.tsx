@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import {
   ARCHETYPE_KEYS,
   ARCHETYPES,
+  PARAMS,
   computeAll,
   fmtDollars,
   fmtQalys,
@@ -37,11 +38,17 @@ const PRECISIONS: Precision[] = [
   { label: "High", n: 30000 },
 ];
 
+// Defaults come from the exported parameter file, never hardcoded — a future
+// params sync changes the UI defaults automatically.
+const DEFAULT_GIVING_B = Math.round(PARAMS.meta.total_giving_usd / 1e8) / 10;
+const DEFAULT_REALIZATION = PARAMS.realization_factor.mode;
+const DEFAULT_DISCOUNT = PARAMS.meta.discount_rate;
+
 export default function QalyExplorer() {
   const [credulity, setCredulity] = useState(0);
-  const [realization, setRealization] = useState(0.8);
-  const [givingB, setGivingB] = useState(26.3);
-  const [discount, setDiscount] = useState(0.03);
+  const [realization, setRealization] = useState(DEFAULT_REALIZATION);
+  const [givingB, setGivingB] = useState(DEFAULT_GIVING_B);
+  const [discount, setDiscount] = useState(DEFAULT_DISCOUNT);
   const [shares, setShares] = useState<number[]>(DEFAULT_SHARES);
   const [precision, setPrecision] = useState(1);
   const [computed, setComputed] = useState<ComputeOutput | null>(null);
@@ -77,9 +84,9 @@ export default function QalyExplorer() {
 
   function reset() {
     setCredulity(0);
-    setRealization(0.8);
-    setGivingB(26.3);
-    setDiscount(0.03);
+    setRealization(DEFAULT_REALIZATION);
+    setGivingB(DEFAULT_GIVING_B);
+    setDiscount(DEFAULT_DISCOUNT);
     setShares(DEFAULT_SHARES);
   }
 
@@ -143,24 +150,24 @@ export default function QalyExplorer() {
             accent
           />
           <Slider
-            label="Realization factor"
+            label="Realization (mode)"
             value={realization}
             min={0.55}
             max={1.1}
             step={0.01}
             onChange={setRealization}
-            display={realization.toFixed(2)}
-            help="Fraction of the studied effect a marginal unrestricted grant actually delivers."
+            display={`mode ${realization.toFixed(2)}`}
+            help="Central value (mode) of a 0.55–1.10 triangular draw for the share of the studied effect a marginal unrestricted grant delivers — the whole distribution is sampled, not this number alone."
           />
           <Slider
-            label="Total giving"
+            label="Total giving (2026 $)"
             value={givingB}
             min={5}
             max={60}
             step={0.1}
             onChange={setGivingB}
             display={`$${givingB.toFixed(1)}B`}
-            help="Lifetime total. Default $26.3B; Yield Giving says over $26B in 2,700+ gifts."
+            help="Real 2026 dollars. Default inflates each year's gifts ($26.3B nominal, 2020–2025) to ~$30.2B with CPI-U."
           />
           <Slider
             label="Discount rate"

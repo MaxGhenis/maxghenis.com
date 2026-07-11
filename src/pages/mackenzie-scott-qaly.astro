@@ -13,11 +13,14 @@ const REPO = 'https://github.com/MaxGhenis/mackenzie-scott-qaly';
 // Sources for inline citation of every falsifiable claim on the page.
 const S = {
   giving: 'https://yieldgiving.com/',
+  givingTotal: 'https://www.cnbc.com/2025/12/13/mackenzie-scott-revealed-her-total-charitable-donations-for-2025.html',
   medicaid: 'https://academic.oup.com/qje/article-abstract/136/3/1783/6124639',
-  medicaidCost: 'https://www.nejm.org/doi/full/10.1056/NEJMsa1202099',
+  medicaidCost: 'https://www.journals.uchicago.edu/doi/10.1162/ajhe_a_00080',
   cpi: 'https://fred.stlouisfed.org/series/CPIAUCNS',
   chc: 'https://www.aeaweb.org/articles?id=10.1257/aer.20120070',
-  housing: 'https://nap.nationalacademies.org/read/25133/chapter/6',
+  chcText: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC4436657/',
+  housing: 'https://link.springer.com/article/10.1007/s10461-012-0204-3',
+  housingNasem: 'https://nap.nationalacademies.org/read/25133/chapter/6',
   depression: 'https://link.springer.com/article/10.1186/1472-6963-10-19',
   income: 'https://academic.oup.com/qje/article/131/2/687/2606947',
   snap: 'https://www.cbpp.org/research/food-assistance/snap-is-linked-with-improved-health-outcomes-and-lower-health-care-costs',
@@ -51,10 +54,13 @@ const S = {
       <div class="intro prose">
         <p>
           MacKenzie Scott's Yield Giving network has made <a href={S.giving} target="_blank" rel="noopener"><strong>over $26 billion</strong>
-          in 2,700+ gifts</a> since 2019. I model that as $26.3 billion and
-          wanted one number for the health
-          impact: quality-adjusted life-years, the unit health economists use to
-          compare a death averted against years lived in better health.
+          in 2,700+ gifts</a> since 2019 — <a href={S.givingTotal} target="_blank" rel="noopener">$26.3 billion through 2025</a> by
+          CNBC's year-end accounting. I inflate each year's gifts to
+          <a href={S.cpi} target="_blank" rel="noopener">2026 dollars</a> (~$30.2 billion, so the
+          dollars and the cost-effectiveness evidence share one price level)
+          and ask one number: quality-adjusted life-years, the unit health
+          economists use to compare a death averted against years lived in
+          better health.
         </p>
         <p>
           The dollar total sets the scale linearly. The hard part is estimating
@@ -81,7 +87,7 @@ const S = {
         <p class="callout">
           The single most important control is <strong>evidence stance</strong>.
           Slide it from skeptical to credulous and the central estimate moves
-          from ~98,000 QALYs (weight each effect by study quality) to ~238,000
+          from ~87,000 QALYs (weight each effect by study quality) to ~224,000
           (trust every cited effect at face value). That gap — not the dollar
           figure's last decimal — is the real uncertainty.
         </p>
@@ -118,10 +124,13 @@ const S = {
           like-for-like. <a href={S.frontier} target="_blank" rel="noopener">GiveWell's current
           impact estimates</a> put malaria nets around $5,500 per life saved;
           an older <a href={S.frontierOld} target="_blank" rel="noopener">AMF/GiveWell summary</a>
-          reports about $3,340 per life saved and about $78-$100 per DALY
-          averted. I model that as one $50-$150/QALY-equivalent benchmark,
-          treating one DALY averted as approximately one QALY gained under the
-          one-year-of-full-health convention.
+          reports about $3,340. A child death averted at ~age 1 is ~25
+          <em>discounted</em> QALYs under this model's own conventions (~65
+          remaining years, 3% discount, utility ~0.87), so those endpoints
+          become roughly $134–$220 per QALY-equivalent; I model the benchmark
+          as loguniform $110–$260. An earlier revision used $50–$150 from
+          undiscounted per-DALY conventions — inconsistent with the discounted
+          US-side QALYs, and flattering to the frontier.
         </p>
 
         <h2>What this doesn't capture</h2>
@@ -138,17 +147,17 @@ const S = {
 
         <h2>Key sources</h2>
         <ul class="sources">
-          <li><a href={S.medicaid} target="_blank" rel="noopener">Miller, Johnson &amp; Wherry (2021), <em>QJE</em></a> — Medicaid expansion mortality; <a href={S.medicaidCost} target="_blank" rel="noopener">Sommers, Baicker &amp; Epstein (2012), <em>NEJM</em> 367:1025</a> — $327k-$867k per life saved in 2007 dollars, <a href={S.cpi} target="_blank" rel="noopener">CPI-U inflated</a> here to $529k-$1.40M in 2026 dollars.</li>
-          <li><a href={S.chc} target="_blank" rel="noopener">Bailey &amp; Goodman-Bacon (2015), <em>AER</em></a> — community health centers cut 50+ mortality at ⅛–⅓ the cost of Medicare.</li>
-          <li><a href={S.housing} target="_blank" rel="noopener">NASEM (2018)</a>; Housing &amp; Health Study — permanent supportive housing ~$62,493/QALY.</li>
-          <li><a href={S.depression} target="_blank" rel="noopener">Collaborative-care depression reviews</a> (Gilbody; Community Guide) — ~$17k–$49.5k/QALY.</li>
+          <li><a href={S.medicaidCost} target="_blank" rel="noopener">Sommers (2017), <em>AJHE</em> 3(3)</a> — Medicaid cost per life saved $327k–$867k in 2007 dollars, <a href={S.cpi} target="_blank" rel="noopener">CPI-U inflated</a> here to $529k–$1.40M; mortality effect corroborated by <a href={S.medicaid} target="_blank" rel="noopener">Miller, Johnson &amp; Wherry (2021), <em>QJE</em></a>.</li>
+          <li><a href={S.chc} target="_blank" rel="noopener">Bailey &amp; Goodman-Bacon (2015), <em>AER</em></a> — community health centers at <a href={S.chcText} target="_blank" rel="noopener">~$54k per life-year (2012 dollars)</a>, ~$79k in 2026 dollars, converted to $/QALY with the model's utility draw.</li>
+          <li><a href={S.housing} target="_blank" rel="noopener">Holtgrave et al. (2013), <em>AIDS and Behavior</em></a> — Housing &amp; Health intervention $62,493/QALY (HIV-positive unstably-housed cohort; ~$97k in 2026 dollars); <a href={S.housingNasem} target="_blank" rel="noopener">NASEM (2018)</a> for the mixed-evidence assessment of supportive housing.</li>
+          <li><a href={S.depression} target="_blank" rel="noopener">Collaborative-care depression reviews</a> (Gilbody; Community Guide) — ~$17k–$49.5k/QALY in 2000s dollars, ~$28k–$82k inflated.</li>
           <li><a href={S.income} target="_blank" rel="noopener">Cesarini et al. (2016), <em>QJE</em></a> — lottery evidence of a ~null causal income→mortality effect.</li>
-          <li><a href={S.vsly} target="_blank" rel="noopener">HHS ASPE (2026)</a> — value of a statistical life-year, $611k central.</li>
-          <li><a href={S.frontier} target="_blank" rel="noopener">GiveWell current impact estimates</a> and an older <a href={S.frontierOld} target="_blank" rel="noopener">AMF/GiveWell summary</a> — global-health lives-saved/DALY benchmarks converted here to a single $50-$150/QALY-equivalent parameter.</li>
+          <li><a href={S.vsly} target="_blank" rel="noopener">HHS ASPE (2026)</a> — value of a statistical life-year, $611k central at a 3% discount rate.</li>
+          <li><a href={S.frontier} target="_blank" rel="noopener">GiveWell current impact estimates</a> and an older <a href={S.frontierOld} target="_blank" rel="noopener">AMF/GiveWell summary</a> — lives-saved benchmarks converted here to $110–$260 per QALY-equivalent.</li>
         </ul>
         <p>
-          Full annotated bibliography, parameter file, and the 34-test Python
-          suite: <a href={REPO}>github.com/MaxGhenis/mackenzie-scott-qaly</a>.
+          Full annotated bibliography, parameter file, and the tested Python
+          package: <a href={REPO}>github.com/MaxGhenis/mackenzie-scott-qaly</a>.
         </p>
       </section>
     </main>

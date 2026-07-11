@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  ARCHETYPE_KEYS,
   PARAMS,
   RNG,
   discountedQale,
@@ -14,9 +15,10 @@ import {
   summarize,
 } from "./mackenzie-qaly";
 
-// Reference values from the browser model (n=100k seed=0):
-//   median 97,754 · mean 105,107 · p05 54,050 · p95 179,754
-//   blended $269,044/QALY · benefit-cost 2.27 · frontier multiple 2124
+// Reference values from the Python model (n=100k seed=0, post-rebuild):
+//   giving $30.2B (2026$, from $26.3B nominal tranches)
+//   median 86,716 · mean 93,513 · p05 48,621 · p95 160,760
+//   blended $348,261/QALY · benefit-cost 1.72 · frontier multiple 1,411
 // Monte Carlo output is RNG-sensitive, so we assert distributional agreement
 // with generous tolerances, not bit-parity.
 
@@ -97,28 +99,52 @@ describe("model end-to-end", () => {
     expect(conversions.daly_to_qaly_factor).toBeUndefined();
   });
 
+  it("giving is the derived 2026-dollar tranche total, above nominal", () => {
+    const meta = PARAMS.meta;
+    const real = meta.giving_tranches.reduce(
+      (acc, t) => acc + (t.nominal_usd * meta.cpi_target) / t.cpi,
+      0,
+    );
+    expect(meta.total_giving_usd).toBeCloseTo(real, 0);
+    expect(meta.total_giving_nominal_usd).toBeCloseTo(26.3e9, -8);
+    expect(meta.total_giving_usd).toBeGreaterThan(meta.total_giving_nominal_usd);
+    expect(r.giving).toBeCloseTo(meta.total_giving_usd, 0);
+  });
+
   it("matches the checked reference range within Monte Carlo tolerance", () => {
-    expect(s.median).toBeGreaterThan(84000);
-    expect(s.median).toBeLessThan(112000);
-    expect(s.mean).toBeGreaterThan(92000);
-    expect(s.mean).toBeLessThan(120000);
-    expect(s.p05).toBeGreaterThan(43000);
-    expect(s.p95).toBeLessThan(215000);
+    expect(s.median).toBeGreaterThan(74000);
+    expect(s.median).toBeLessThan(100000);
+    expect(s.mean).toBeGreaterThan(80000);
+    expect(s.mean).toBeLessThan(108000);
+    expect(s.p05).toBeGreaterThan(40000);
+    expect(s.p95).toBeLessThan(190000);
   });
 
   it("blended cost-per-QALY and benefit-cost land near the reference", () => {
-    expect(s.blendedMedian).toBeGreaterThan(230000);
-    expect(s.blendedMedian).toBeLessThan(330000);
-    expect(s.bcMedian).toBeGreaterThan(1.8);
-    expect(s.bcMedian).toBeLessThan(2.8);
+    expect(s.blendedMedian).toBeGreaterThan(290000);
+    expect(s.blendedMedian).toBeLessThan(420000);
+    expect(s.bcMedian).toBeGreaterThan(1.3);
+    expect(s.bcMedian).toBeLessThan(2.2);
   });
 
-  it("frontier is handicapped but still thousands of times better per dollar", () => {
-    expect(s.frontierMultiple).toBeGreaterThan(1500);
-    expect(s.frontierMultiple).toBeLessThan(3000);
+  it("frontier is handicapped but still ~1,000x+ better per dollar", () => {
+    expect(s.frontierMultiple).toBeGreaterThan(1000);
+    expect(s.frontierMultiple).toBeLessThan(1900);
     // handicapped: below the raw giving / frontier_cpq
     const rawFrontier = r.giving / impliedMedian(PARAMS.conversions.frontier_cost_per_qaly_usd);
     expect(s.frontierMedian).toBeLessThan(rawFrontier);
+  });
+
+  it("CHC life-year costs are converted to QALYs (unit-slip regression)", () => {
+    const j = ARCHETYPE_KEYS.indexOf("health_chc");
+    expect(j).toBeGreaterThanOrEqual(0);
+    const cpq = r.costPerQaly[j];
+    const medianCpq = percentile(cpq, 50);
+    // $/QALY must exceed the $/life-year prior's median (divided by utility<1).
+    const cply = impliedMedian(PARAMS.archetypes.health_chc.cost_per_life_year_usd!);
+    expect(medianCpq).toBeGreaterThan(cply);
+    expect(medianCpq).toBeGreaterThan(80000);
+    expect(medianCpq).toBeLessThan(140000);
   });
 
   it("per-archetype QALYs sum to the total", () => {
@@ -145,7 +171,7 @@ describe("model end-to-end", () => {
     const top5 = s.perArchetype.slice(0, 5).map((a) => a.label);
     expect(top5.some((l) => l.includes("mental"))).toBe(true);
     expect(top5.some((l) => l.includes("insurance"))).toBe(true);
-    expect(top5.some((l) => l.includes("community health centers"))).toBe(true);
+    expect(top5.some((l) => l.includes("housing"))).toBe(true);
   });
 
   it("equity & justice contributes little health despite a large allocation", () => {
@@ -160,7 +186,7 @@ describe("evidence-stance slider", () => {
     const skeptical = summarize(runModel({ n: 30000, seed: 0, credulity: 0 }));
     const credulous = summarize(runModel({ n: 30000, seed: 0, credulity: 1 }));
     expect(credulous.median).toBeGreaterThan(1.6 * skeptical.median);
-    expect(credulous.median).toBeGreaterThan(200000); // approaches the ~238k "trust everything" figure
+    expect(credulous.median).toBeGreaterThan(185000); // approaches the ~224k "trust everything" figure
   });
 });
 
