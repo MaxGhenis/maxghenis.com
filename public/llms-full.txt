@@ -1,7 +1,7 @@
 # Max Ghenis - Full Content
 
 > This file contains the full text of all blog posts from maxghenis.com, formatted for LLM consumption.
-> Generated: 2026-07-05T13:39:19.367Z
+> Generated: 2026-07-11T22:48:25.024Z
 > See also: /llms.txt for a curated overview
 
 ---
@@ -16,8 +16,8 @@
 6. [Billionaires aren't 'just as likely' to be nonpayers as top taxpayers](/blog/madoff-billionaire-nonpayers/)
 7. [I built a MyST-to-Quarto converter (and why you might need one)](/blog/mystquarto/)
 8. [One year of Claude Code](/blog/my-claude-code-config/)
-9. [Why you can''t make double eye contact](/blog/double-eye-contact/)
-10. [Interactive replication of GiveWell''s cost-effectiveness analysis](/blog/givewell-cea/)
+9. [Interactive replication of GiveWell''s cost-effectiveness analysis](/blog/givewell-cea/)
+10. [Why you can''t make double eye contact](/blog/double-eye-contact/)
 11. [OpenMessage: How I built a macOS Google Messages client to give Claude my texts](/blog/openmessage/)
 12. [Where US immigrants come from, and where ICE focuses enforcement](/blog/bad-bunny-immigration-enforcement/)
 13. [I used Claude Code to recertify for SNAP](/blog/snap-recertification-claude-code/)
@@ -115,19 +115,23 @@ Drink responsibly. Prompt freely: [maxghenis.com/drinking-ai](https://maxghenis.
 **Published:** Jun 28 2026
 **Description:** An interactive cost-effectiveness model for MacKenzie Scott's $26B in philanthropy — and the AI prompts that built it.
 
-MacKenzie Scott gave away [$7 billion in 2025](https://www.cnbc.com/2025/12/13/mackenzie-scott-revealed-her-total-charitable-donations-for-2025.html) — [about a third of every megagift in America that year](https://fortune.com/2026/06/25/mackenzie-scott-largest-megadonor-2025-7-billion-donations-giving-usa-iu-report/), by the Indiana University Lilly Family School of Philanthropy's count. Almost none of it is denominated in health. I built an interactive tool that asks what her [$26 billion](https://yieldgiving.com/) in lifetime giving buys in the unit health economists use to compare lives — quality-adjusted life-years: **[maxghenis.com/mackenzie-scott-qaly](/mackenzie-scott-qaly)**. Drag the assumptions and a Monte Carlo cost-effectiveness model reruns in your browser; on the skeptical default it lands around 100,000 QALYs — a model output, not a measured fact, which is why the tool exists: move the assumptions yourself.
+MacKenzie Scott gave away [$7 billion in 2025](https://www.cnbc.com/2025/12/13/mackenzie-scott-revealed-her-total-charitable-donations-for-2025.html) — [about a third of every megagift in America that year](https://fortune.com/2026/06/25/mackenzie-scott-largest-megadonor-2025-7-billion-donations-giving-usa-iu-report/), by the Indiana University Lilly Family School of Philanthropy's count. Almost none of it is denominated in health. I built an interactive tool that asks what her [$26 billion](https://yieldgiving.com/) in lifetime giving buys in the unit health economists use to compare lives — quality-adjusted life-years: **[maxghenis.com/mackenzie-scott-qaly](/mackenzie-scott-qaly)**. Drag the assumptions and a Monte Carlo cost-effectiveness model reruns in your browser; on the skeptical default it lands around 71,000 QALYs — a model output, not a measured fact, which is why the tool exists: move the assumptions yourself.
 
 It runs the same machinery as the [GiveWell cost-effectiveness replication](/blog/givewell-cea/) I built in February — editable parameters, Monte Carlo, sensitivity analysis — pointed at a different question. GiveWell scores the most cost-effective charities in the world. This points the same lens at one donor's actual $26B portfolio, most of it unrestricted gifts to US organizations, where almost none of the spending is denominated in health to begin with.
 
 ## Why I care about the gap
 
-I [took the Giving What We Can pledge in 2019](/blog/why-ive-taken-the-giving-what-we-can-pledge/) for one reason: the global poor benefit far more from a dollar than I do. This tool puts a number on that for Scott's giving. Measured purely in health, a dollar at the [global-health frontier](https://www.givewell.org/charities/amf) — bed nets averting child deaths — buys more than a thousand times the QALYs of her US-focused giving.
+I [took the Giving What We Can pledge in 2019](/blog/why-ive-taken-the-giving-what-we-can-pledge/) for one reason: the global poor benefit far more from a dollar than I do. This tool puts a number on that for Scott's giving. Measured purely in health, a dollar at the [global-health frontier](https://www.givewell.org/charities/amf) — bed nets averting child deaths — buys more than a thousand times the QALYs of her US-focused giving. That's a marginal comparison; redeploying the full $26 billion would saturate frontier opportunities and cut the multiple to a few hundred times — [the tool page works through the arithmetic](/mackenzie-scott-qaly).
 
 How much that gap should bother you is the open question, and the QALY count doesn't settle it. Part of the gap is outside her control: preventing a death costs far more in a rich country than a poor one, and a QALY ignores the income, opportunity, and rights her giving targets. Part of it is a choice: $26 billion is enough that where it goes carries real opportunity cost, measured in lives. The tool hands you the number, not the verdict. It's the same arithmetic that sends my own giving abroad.
 
 ## Two models, arguing
 
 I built this with two coding agents, and the more useful part was letting them check each other. Claude Code wrote the model and the tool. Then I had Codex review the assumptions cold: it caught a real error — a cost-per-life figure I'd left in old dollars without inflating it — and disagreed with Claude on whether the global benchmark belongs in QALYs or DALYs. I'm centralizing on QALYs. Two models disagreeing about a modeling choice is a sharper adversarial review than either alone.
+
+Two further full review rounds (both models, against everything) caught more, and the fixes moved the headline from ~98,000 to ~87,000: gifts are now recorded as the exact disclosed tranches and inflated to 2026 dollars year by year instead of divided nominal-vs-current; the community-health-center figure now uses the paper's own [~$54k per life-year](https://pmc.ncbi.nlm.nih.gov/articles/PMC4436657/) with an explicit life-year→QALY conversion (the old version skipped it); several 2000s-era cost-effectiveness anchors got inflated to current dollars; the frontier benchmark was re-derived twice — first for discounting consistency, then onto [GiveWell's current program averages](https://www.givewell.org/impact-estimates) — cutting the headline multiple by about 40%; the benefit/cost ratio now uses [HHS's published value per QALY](https://aspe.hhs.gov/reports/standard-ria-values) instead of a per-life-year value applied to QALYs; and one citation was re-attributed to the paper the numbers actually come from — [Sommers (2017)](https://www.journals.uchicago.edu/doi/10.1162/ajhe_a_00080), verified against the PDF, after I'd confidently planted the wrong one. Every correction made the model more skeptical or more honest, none was caught by a human, and the errors had survived earlier review passes.
+
+The allocation across causes was still my prior, though — I'd accepted "Scott doesn't publish dollars-by-cause" without checking hard enough. She publishes better: [Yield Giving's gift database](https://yieldgiving.com/gifts) itemizes dollar amounts for about two-thirds of the money, with focus areas on every disclosed dollar. Deriving the split from her own data — 53 org-reported areas mapped onto the model's 13 archetypes, [every rule documented](https://github.com/MaxGhenis/mackenzie-scott-qaly/blob/main/data/yieldgiving/leaf_to_archetype.yaml) — cut the skeptical median from ~87,000 to ~71,000. Her real portfolio holds less food, housing, and cash assistance than I'd assumed (the buckets with the strongest health evidence) and more workforce development and nonprofit infrastructure (which have almost none).
 
 None of the model code was hand-written; the whole thing was natural-language prompting. For transparency, here is every prompt I typed, verbatim — typos and all.
 
@@ -146,6 +150,20 @@ None of the model code was hand-written; the whole thing was natural-language pr
 9. fix
 10. codex made some changes wdyt
 11. give me a prompt for it to fix. but i think there was a misunderstanding i didnt ask for a qaly/daly change, could we centralize around one? which?
+12. if you were starting this project from scratch howd you do it
+13. yes
+14. do a full review of this, both you and with a sol subagent
+15. yep go - and dont have anyu allegiance to existing code, feel free to rebuild any and all things froms cratch
+16. do it all
+17. make sure the prose isnt bogged down by the history - like it seems like leading with the inflation adjustment in the tool is just based on it having been a bug we just fixed. users should see the tool first thing when they get to the page
+18. can we give the blog post like a button at the top to use the tool, like we do for rambar etc
+19. whats the delta against givewell? noting scaling limitations etc
+20. sure yeah does it belong in the blog or the tool? like you could imagine a bigger version of the tool that also combines it with givewells for a general qaly estimator for every intervention and portfolio but not now
+21. Vs. global frontier / 1,212× / more health per marginal $ — this makes it sounds like scott's is 1212x more effective
+22. maybe we should drop the card and just discuss it in the written stuff...
+23. then could you just make the 90% interval below in small text instead of a separate card, also add to the $/qaly
+24. i dont get these two - whats the 2.1x wrt? whats 64.2b?
+25. scott doesnt publish *any* dollars by cause? i thought she at least published her list of orgs, like are we basing this on any real data?
 
 **To Codex:**
 
@@ -1069,48 +1087,6 @@ The repo is at [github.com/MaxGhenis/.claude](https://github.com/MaxGhenis/.clau
 
 ---
 
-## Why you can''t make double eye contact
-
-**URL:** https://maxghenis.com/blog/double-eye-contact/
-**Published:** Feb 10 2026
-**Description:** Your eyes can only converge on a single point. Up close, that means you have to pick one of the other person''s eyes to look at.
-
-import EyeConvergence from '../../../components/EyeConvergence.tsx';
-
-Have you ever noticed that when you're face-to-face with someone, you can't actually look at both of their eyes at the same time? You're always picking one — left or right — and subtly switching between them.
-
-This isn't a limitation of attention or focus. It's geometry.
-
-## One convergence point
-
-Your two eyes always rotate as a pair to aim at the same target. This is called [**vergence**](https://pmc.ncbi.nlm.nih.gov/articles/PMC5122972/), and it means they converge on a single point in space at any given moment.
-
-When someone is close to you, their two eyes occupy noticeably different positions in your visual field. The angular separation between them is large enough that you can't fit both into the single point your eyes converge on. So you pick one.
-
-## Try it yourself
-
-Toggle between looking at each eye, and slide the distance to see how angular separation changes.
-
-<EyeConvergence client:load />
-
-When the face is close, the angular separation between their eyes is large — well beyond your [fovea](https://pmc.ncbi.nlm.nih.gov/articles/PMC12330045/) (the high-resolution center of your vision, [~1.5mm across](https://pmc.ncbi.nlm.nih.gov/articles/PMC12330045/) or roughly 5° of visual angle). You're clearly choosing one eye.
-
-As the face moves farther away, both eyes fall into a tighter angular range. Eventually they're so close together in your visual field that it _feels_ like you're looking at both — even though you're still converging on a single point.
-
-## Why it doesn't matter at a distance
-
-Human interpupillary distance [averages about 63mm](https://pmc.ncbi.nlm.nih.gov/articles/PMC3520592/). At 1 meter away, that subtends roughly 3.6°. At 3 meters, it's about 1.2° — easily within your fovea's ~5° span. This is why you barely notice the effect in normal conversation but absolutely feel it during an intimate close-up.
-
-## What about Magic Eye?
-
-If you've viewed a [Magic Eye stereogram](https://en.wikipedia.org/wiki/Magic_Eye), you know it's possible to diverge your eyes — point them more parallel than the object distance would normally call for — while still focusing on a near surface. Could you use this trick to aim each eye at a different target?
-
-No. Even in Magic Eye viewing, both eyes are still aimed at a single convergence point — it's just a virtual one behind the page rather than on the surface. You've moved _where_ your eyes converge, but you haven't split that point in two. To make double eye contact, you'd need each eye aimed at a completely independent target, and that's not something the [vergence system](https://www.ncbi.nlm.nih.gov/books/NBK11070/) supports — it always drives both eyes toward the same point in space.
-
-I never would have built an interactive visualization to explore a random curiosity like this before. But with [Claude Code](https://claude.ai/claude-code), describing what I wanted and getting a working widget took a couple hours — so why not? The idle question gets a better answer when you can play with it yourself.
-
----
-
 ## Interactive replication of GiveWell''s cost-effectiveness analysis
 
 **URL:** https://maxghenis.com/blog/givewell-cea/
@@ -1328,6 +1304,48 @@ I replicated the *structure* of GiveWell's models but not their full analytical 
 For donation decisions, use [GiveWell's published estimates](https://www.givewell.org/how-we-work/our-criteria/cost-effectiveness/cost-effectiveness-models).
 
 Source code: [github.com/MaxGhenis/givewell-cea](https://github.com/MaxGhenis/givewell-cea)
+
+---
+
+## Why you can''t make double eye contact
+
+**URL:** https://maxghenis.com/blog/double-eye-contact/
+**Published:** Feb 10 2026
+**Description:** Your eyes can only converge on a single point. Up close, that means you have to pick one of the other person''s eyes to look at.
+
+import EyeConvergence from '../../../components/EyeConvergence.tsx';
+
+Have you ever noticed that when you're face-to-face with someone, you can't actually look at both of their eyes at the same time? You're always picking one — left or right — and subtly switching between them.
+
+This isn't a limitation of attention or focus. It's geometry.
+
+## One convergence point
+
+Your two eyes always rotate as a pair to aim at the same target. This is called [**vergence**](https://pmc.ncbi.nlm.nih.gov/articles/PMC5122972/), and it means they converge on a single point in space at any given moment.
+
+When someone is close to you, their two eyes occupy noticeably different positions in your visual field. The angular separation between them is large enough that you can't fit both into the single point your eyes converge on. So you pick one.
+
+## Try it yourself
+
+Toggle between looking at each eye, and slide the distance to see how angular separation changes.
+
+<EyeConvergence client:load />
+
+When the face is close, the angular separation between their eyes is large — well beyond your [fovea](https://pmc.ncbi.nlm.nih.gov/articles/PMC12330045/) (the high-resolution center of your vision, [~1.5mm across](https://pmc.ncbi.nlm.nih.gov/articles/PMC12330045/) or roughly 5° of visual angle). You're clearly choosing one eye.
+
+As the face moves farther away, both eyes fall into a tighter angular range. Eventually they're so close together in your visual field that it _feels_ like you're looking at both — even though you're still converging on a single point.
+
+## Why it doesn't matter at a distance
+
+Human interpupillary distance [averages about 63mm](https://pmc.ncbi.nlm.nih.gov/articles/PMC3520592/). At 1 meter away, that subtends roughly 3.6°. At 3 meters, it's about 1.2° — easily within your fovea's ~5° span. This is why you barely notice the effect in normal conversation but absolutely feel it during an intimate close-up.
+
+## What about Magic Eye?
+
+If you've viewed a [Magic Eye stereogram](https://en.wikipedia.org/wiki/Magic_Eye), you know it's possible to diverge your eyes — point them more parallel than the object distance would normally call for — while still focusing on a near surface. Could you use this trick to aim each eye at a different target?
+
+No. Even in Magic Eye viewing, both eyes are still aimed at a single convergence point — it's just a virtual one behind the page rather than on the surface. You've moved _where_ your eyes converge, but you haven't split that point in two. To make double eye contact, you'd need each eye aimed at a completely independent target, and that's not something the [vergence system](https://www.ncbi.nlm.nih.gov/books/NBK11070/) supports — it always drives both eyes toward the same point in space.
+
+I never would have built an interactive visualization to explore a random curiosity like this before. But with [Claude Code](https://claude.ai/claude-code), describing what I wanted and getting a working widget took a couple hours — so why not? The idle question gets a better answer when you can play with it yourself.
 
 ---
 
