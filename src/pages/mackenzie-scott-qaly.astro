@@ -52,58 +52,54 @@ const S = {
         </p>
       </header>
 
+      <QalyExplorer client:load />
+
       <div class="intro prose">
+        <p class="callout">
+          The most important control is <strong>evidence stance</strong>: from
+          skeptical (~87,000 QALYs — each effect weighted by how well its study
+          identifies causation) to credulous (~224,000 — every cited effect at
+          face value). That gap, not the dollar figure, is the real uncertainty.
+        </p>
+
+        <h2>About this model</h2>
         <p>
-          MacKenzie Scott's Yield Giving network has made <a href={S.giving} target="_blank" rel="noopener"><strong>over $26 billion</strong>
+          MacKenzie Scott's Yield Giving network has made <a href={S.giving} target="_blank" rel="noopener">over $26 billion
           in 2,700+ gifts</a> since 2019 — <a href={S.givingTotal} target="_blank" rel="noopener">$26.3 billion through 2025</a> by
-          CNBC's year-end accounting ($26.39 billion in exact disclosed
-          tranches). I inflate each year's gifts to
-          <a href={S.cpi} target="_blank" rel="noopener">2026 dollars</a> (~$30.3 billion, so the
-          dollars and the cost-effectiveness evidence share one price level)
-          and ask one number: quality-adjusted life-years, the unit health
-          economists use to compare a death averted against years lived in
-          better health.
+          CNBC's year-end accounting. This page asks what that buys in
+          quality-adjusted life-years, the unit health economists use to
+          compare a death averted against years lived in better health.
         </p>
         <p>
-          The dollar total sets the scale linearly. The hard part is estimating
-          health per dollar: the cost-per-QALY of each cause and how credibly
-          the evidence behind it identifies cause and effect. So this is a
-          GiveWell-style model:
-          {archetypeCount} intervention archetypes, each cost-per-QALY drawn
-          where possible from a published <em>causal</em> estimate
+          It is a GiveWell-style model: {archetypeCount} intervention
+          archetypes, each cost-per-QALY drawn where possible from a published
+          <em>causal</em> estimate
           (<a href={S.medicaid} target="_blank" rel="noopener">Medicaid mortality</a>,
           <a href={S.chc} target="_blank" rel="noopener">community health centers</a>,
           <a href={S.housing} target="_blank" rel="noopener">supportive housing</a>,
           <a href={S.depression} target="_blank" rel="noopener">collaborative-care depression</a>),
-          each effect then shrunk toward zero in
-          proportion to how well its study identifies causation, and the whole
-          thing run live through thousands of Monte Carlo draws each time you
-          move a slider.
+          each effect shrunk toward zero in proportion to how well its study
+          identifies causation, and the whole thing rerun through thousands of
+          Monte Carlo draws each time you move a slider.
         </p>
         <p>
-          I built the model with Claude; every estimate below is a model output,
+          I built the model with Claude; every estimate here is a model output,
           not a measured fact. The Python package, tests, and sources are on
           <a href={REPO}>GitHub</a>; this page runs a checked TypeScript
           implementation in the browser, reading the exported parameter file.
         </p>
-        <p class="callout">
-          The single most important control is <strong>evidence stance</strong>.
-          Slide it from skeptical to credulous and the central estimate moves
-          from ~87,000 QALYs (weight each effect by study quality) to ~224,000
-          (trust every cited effect at face value). That gap — not the dollar
-          figure's last decimal — is the real uncertainty.
-        </p>
       </div>
-
-      <QalyExplorer client:load />
 
       <section class="prose method">
         <h2>How it works</h2>
         <p>
-          Each Monte Carlo draw allocates the giving across the archetypes
-          (a Dirichlet around a best-guess split, since Scott doesn't publish
-          dollars-by-cause), assigns each a cost-per-QALY, and multiplies by two
-          independent discounts:
+          Each Monte Carlo draw takes the giving — each year's gifts
+          <a href={S.cpi} target="_blank" rel="noopener">inflated to 2026 dollars</a>
+          ($26.39 billion nominal ≈ $30.3 billion, so the dollars and the
+          cost-effectiveness evidence share one price level) — allocates it
+          across the archetypes (a Dirichlet around a best-guess split, since
+          Scott doesn't publish dollars-by-cause), assigns each a
+          cost-per-QALY, and multiplies by two independent discounts:
         </p>
         <ul>
           <li>
@@ -132,9 +128,6 @@ const S = {
           own conventions (~65 remaining years, 3% discount, utility ~0.87), so
           those endpoints — inflated to 2026 dollars — become roughly $175–$241
           per QALY-equivalent; I model the benchmark as loguniform $150–$260.
-          (Two earlier revisions used, first, $50–$150 per-DALY figures and
-          then a 2015 per-life figure; both understated the frontier's current
-          cost and flattered the multiple.)
         </p>
 
         <h2>What this doesn't capture</h2>
