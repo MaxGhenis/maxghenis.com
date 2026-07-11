@@ -3,6 +3,7 @@ title: "MacKenzie Scott's giving, in QALYs"
 description: "An interactive cost-effectiveness model for MacKenzie Scott's $26B in philanthropy — and the AI prompts that built it."
 pubDate: 'Jun 28 2026'
 heroImage: './hero.png'
+projectUrl: '/mackenzie-scott-qaly'
 ---
 
 MacKenzie Scott gave away [$7 billion in 2025](https://www.cnbc.com/2025/12/13/mackenzie-scott-revealed-her-total-charitable-donations-for-2025.html) — [about a third of every megagift in America that year](https://fortune.com/2026/06/25/mackenzie-scott-largest-megadonor-2025-7-billion-donations-giving-usa-iu-report/), by the Indiana University Lilly Family School of Philanthropy's count. Almost none of it is denominated in health. I built an interactive tool that asks what her [$26 billion](https://yieldgiving.com/) in lifetime giving buys in the unit health economists use to compare lives — quality-adjusted life-years: **[maxghenis.com/mackenzie-scott-qaly](/mackenzie-scott-qaly)**. Drag the assumptions and a Monte Carlo cost-effectiveness model reruns in your browser; on the skeptical default it lands around 87,000 QALYs — a model output, not a measured fact, which is why the tool exists: move the assumptions yourself.
