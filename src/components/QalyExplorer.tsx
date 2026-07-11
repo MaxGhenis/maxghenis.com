@@ -283,7 +283,7 @@ export default function QalyExplorer() {
                   sub={`at HHS VQALY · ${fmtDollars(s.valueMedian)}`}
                 />
                 <Metric
-                  label="Vs. global frontier"
+                  label="Global frontier's edge"
                   value={`${Math.round(s.frontierMultiple).toLocaleString()}×`}
                   sub="more health per marginal $"
                 />
