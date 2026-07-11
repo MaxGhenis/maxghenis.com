@@ -282,11 +282,6 @@ export default function QalyExplorer() {
                   value={`${s.bcMedian.toFixed(1)}×`}
                   sub={`at HHS VQALY · ${fmtDollars(s.valueMedian)}`}
                 />
-                <Metric
-                  label="Global frontier's edge"
-                  value={`${Math.round(s.frontierMultiple).toLocaleString()}×`}
-                  sub={"more health per marginal $"}
-                />
               </div>
 
               <ChartCard title="Distribution of total QALYs">
