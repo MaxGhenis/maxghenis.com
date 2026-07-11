@@ -285,7 +285,7 @@ export default function QalyExplorer() {
                 <Metric
                   label="Vs. global frontier"
                   value={`${Math.round(s.frontierMultiple).toLocaleString()}×`}
-                  sub="more health per $"
+                  sub="more health per marginal $"
                 />
               </div>
 
