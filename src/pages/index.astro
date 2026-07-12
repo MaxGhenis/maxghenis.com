@@ -88,13 +88,14 @@ const research = [
 			<!-- Hero -->
 			<section class="hero">
 				<h1 class="hero-title">
-					What <span class="u-rule">the law says</span> —<br class="title-break" />
-					and <span class="u-cast">what will happen</span>.
+					Simulating futures<br class="title-break" />
+					to build the one we want.
 				</h1>
 				<p class="hero-sub">
-					I'm Max Ghenis. I build open-source software that computes public
-					policy: tax and benefit rules encoded exactly as written, and their
-					effects on households simulated and forecast.
+					I'm Max Ghenis. I build open-source software that
+					<span class="u-rule">computes what the law says</span>,
+					<span class="u-cast">forecasts what will happen</span>, and
+					<span class="u-want">estimates what people value</span>.
 				</p>
 				<div class="hero-meta">
 					<img src="/images/headshot.png" alt="Max Ghenis" class="hero-photo" />
@@ -106,8 +107,8 @@ const research = [
 				</div>
 			</section>
 
-			<!-- Signature chart: rules to the left of now, forecasts to the right -->
-			<section class="seamchart" aria-label="Chart metaphor: enacted policy as a step function up to now, then a fan of forecast paths after it.">
+			<!-- Signature chart: rules left of now, forecasts right, one path chosen -->
+			<section class="seamchart" aria-label="Chart metaphor: enacted policy as a step function up to now, then a fan of forecast paths after it, with one chosen path drawn through the fan.">
 				<svg viewBox="0 0 1160 312" preserveAspectRatio="none" role="img" aria-hidden="true" class="seamchart-svg">
 					<defs>
 						<linearGradient id="seamV" x1="0" y1="0" x2="0" y2="1">
@@ -166,6 +167,21 @@ const research = [
 						<circle cx="1140" cy="122" r="4.5" fill="#a94e80" />
 					</g>
 
+					<!-- the chosen path through the fan -->
+					<g class="choice">
+						<path
+							class="choice-path"
+							d="M 580,138 Q 850,124 1140,100"
+							fill="none"
+							stroke="#211d18"
+							stroke-width="2.5"
+							stroke-linecap="round"
+							vector-effect="non-scaling-stroke"
+						/>
+						<circle class="choice-dot" cx="1140" cy="100" r="4.5" fill="#211d18" />
+						<text class="choice-label" x="1122" y="84" font-family="'JetBrains Mono', monospace" font-size="11" fill="#211d18" text-anchor="end">the one we want</text>
+					</g>
+
 					<!-- axis -->
 					<g class="ticks" font-family="'JetBrains Mono', monospace" font-size="11" fill="#7d766c" text-anchor="middle">
 						<text x="130" y="300">2014</text>
@@ -181,9 +197,13 @@ const research = [
 						<span class="pole-tag rule-tag">Rules</span>
 						<span class="pole-copy">what the law says — exact, cited, computable</span>
 					</div>
-					<div class="pole pole-right">
+					<div class="pole pole-mid">
 						<span class="pole-tag cast-tag">Forecasts</span>
 						<span class="pole-copy">what will happen — probabilistic, scored, revisable</span>
+					</div>
+					<div class="pole pole-right">
+						<span class="pole-tag want-tag">Choice</span>
+						<span class="pole-copy">the one we want — decided, then built</span>
 					</div>
 				</div>
 			</section>
@@ -307,14 +327,16 @@ const research = [
 	}
 
 	.u-rule,
-	.u-cast {
+	.u-cast,
+	.u-want {
 		text-decoration: underline;
-		text-decoration-thickness: 3px;
-		text-underline-offset: 7px;
+		text-decoration-thickness: 2px;
+		text-underline-offset: 5px;
 	}
 
 	.u-rule { text-decoration-color: var(--rule); }
 	.u-cast { text-decoration-color: var(--cast); }
+	.u-want { text-decoration-color: var(--ink); }
 
 	.hero-sub {
 		font-size: 1.15rem;
@@ -412,6 +434,11 @@ const research = [
 		align-items: flex-end;
 	}
 
+	.pole-mid {
+		text-align: center;
+		align-items: center;
+	}
+
 	.pole-tag {
 		display: inline-flex;
 		align-items: center;
@@ -425,9 +452,11 @@ const research = [
 
 	.rule-tag { color: var(--rule-deep); }
 	.cast-tag { color: var(--cast-deep); }
+	.want-tag { color: var(--ink); }
 
 	.pole-tag.rule-tag::before,
-	.pole-tag.cast-tag::before {
+	.pole-tag.cast-tag::before,
+	.pole-tag.want-tag::before {
 		content: '';
 		width: 14px;
 		height: 2.5px;
@@ -436,6 +465,7 @@ const research = [
 
 	.pole-tag.rule-tag::before { background: var(--rule); }
 	.pole-tag.cast-tag::before { background: var(--cast); }
+	.pole-tag.want-tag::before { background: var(--ink); }
 
 	.pole-right .pole-tag { flex-direction: row-reverse; }
 
@@ -460,6 +490,18 @@ const research = [
 		.seam-line {
 			opacity: 0;
 			animation: seamIn 0.6s var(--ease-out) 0.9s forwards;
+		}
+
+		.choice-path {
+			stroke-dasharray: 620;
+			stroke-dashoffset: 620;
+			animation: drawstep 0.9s var(--ease-out) 2s forwards;
+		}
+
+		.choice-dot,
+		.choice-label {
+			opacity: 0;
+			animation: fadeIn 0.5s var(--ease-out) 2.7s forwards;
 		}
 	}
 
@@ -778,7 +820,8 @@ const research = [
 			height: 200px;
 		}
 
-		.seamchart-svg :global(.ticks) {
+		.seamchart-svg :global(.ticks),
+		.seamchart-svg :global(.choice-label) {
 			display: none;
 		}
 
@@ -787,7 +830,8 @@ const research = [
 			gap: 0.875rem;
 		}
 
-		.pole-right {
+		.pole-right,
+		.pole-mid {
 			text-align: left;
 			align-items: flex-start;
 		}

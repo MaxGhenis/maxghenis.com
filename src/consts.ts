@@ -1,6 +1,6 @@
 // Site metadata
 export const SITE_TITLE = 'Max Ghenis';
-export const SITE_DESCRIPTION = 'Policy entrepreneur, technologist, and economist. Co-founder and CEO of PolicyEngine.';
+export const SITE_DESCRIPTION = 'Simulating futures to build the one we want. Open-source software that computes what the law says, forecasts what will happen, and measures what people value.';
 
 // Social links
 export const SOCIAL_LINKS = {
