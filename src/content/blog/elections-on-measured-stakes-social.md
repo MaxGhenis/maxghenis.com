@@ -18,6 +18,16 @@ An election model where every input except perception is measured:
 engine-computed stakes.
 
 At perfect information, the winner turns on a $4/year financing residual.
+
+## X / Bluesky (strategic-layer follow-up)
+
+Let the candidates move and the verdict flips: with clear-eyed voters,
+every pure Nash equilibrium is the status quo — competition undercuts
+any program to zero. Noise is what lets self-serving platforms through.
+
+And a 10% informed-sociotropic voter minority takes the discipline back,
+at any noise level. A few voters who reliably vote the societal signal
+beat everyone caring somewhat.
 At σ=$1,000 of noise, elections track welfare perfectly.
 
 Interactive: maxghenis.com/blog/elections-on-measured-stakes/

@@ -7,8 +7,9 @@ draft: true
 ---
 
 Subtitle: An election model where every input except perception is
-measured. At perfect information, the winner turns on a $4-a-year
-financing residual.
+measured. At perfect information, fixed platforms turn on a $4-a-year
+residual — and platforms that can move get disciplined to the status
+quo.
 
 Canonical: https://maxghenis.com/blog/elections-on-measured-stakes/
 
@@ -76,14 +77,64 @@ state its n is a sample size, not a finding. And noise and bias are
 different objects: elections here tolerate large independent error and
 flip on small shared error.
 
-This is a thought experiment about one mechanism, not political science
-or election prediction. The welfare ranking is a modeling choice
-(inequality aversion of η ≥ 3 flips it), and both financed policies
-score below the status quo, which plurality doesn't offer. The repo
-carries the findings note, regeneration scripts for every number, and
-tests that pin the knife-edge facts.
+**Let the candidates move, and the verdict on information flips.** Make
+the platforms choices — two dials, how much credit increase and how deep
+a rate cap — picked by two candidates who are themselves households from
+the data (a three-child household at $109,693 with +$1,133 riding on the
+credit; a childless household at $578,540, the median-income member of
+the rate cap's winners, with +$4,655 on the cap). Each values an enacted
+position in dollars: own household change plus society's
+equally-distributed-equivalent income change, mixed by a selfish weight.
+Every pure Nash equilibrium is computed exactly.
 
-The missing measurement is perception itself: what people believe
-specific reforms would do to their own household, versus what the engine
-computes. That's a survey (democrasim#3), and its answer will be one
-number on the axis the interactive version lets you drag.
+[IMAGE: equilibrium platform intensity vs noise — elections-on-measured-stakes-strategic.png]
+
+At σ = 0 every equilibrium enacts the status quo — which log welfare
+ranks above both financed programs — whatever the candidates want: any
+program is a levy, any levy hands the opponent a cheaper platform, and
+competition undercuts to zero. Accurate voters graded fixed policies on
+a welfare-irrelevant residual; they discipline chosen policies to the
+welfare optimum. Noise dissolves that discipline — by σ = $10,000 both
+candidates run their full programs (enacted blend 0.65 credit / 0.25
+cap), and by $30,000 the election between the two full programs is a
+0.545-to-0.455 coin flip that erases even the head-count advantage of a
+program whose winners are a fifth of adults over one whose winners are
+3%.
+
+**Voters with mixed motives repair it cheaply.** Give voters the same
+dollar-scale utility — own stake weighed against the policy's societal
+value under their own inequality aversion. The societal signal between
+these policies is $209.77 per household versus the knife-edge voters'
+$4.10 margin, so putting under 4% of utility weight on society flips
+perfect-information tracking from 0 to 1. At the noisy end, tracking at
+σ = $30,000 runs 0.55 → 0.69 → 0.90 → 1.0 as selfish weight falls from 1
+to 0. The strongest pairing: purely selfish candidates against a noisy
+electorate with a 10% informed-sociotropic minority enact the status quo
+at every noise level — the bloc deterministically punishes whichever
+candidate proposes the more welfare-negative program (at a 2% share the
+game has no pure equilibrium at all; best responses cycle). And the bloc
+beats diffuse goodwill: 30% sociotropic voters misreading the societal
+value by $500 hold enacted intensity to 0.11, while a uniformly
+half-selfish electorate only gets from 0.63 to 0.44.
+
+[IMAGE: enacted intensity vs sociotropic share — elections-on-measured-stakes-discipline.png]
+
+The catch is that sociotropic voting swaps perception problems for
+values problems: push inequality aversion from η = 1 to 2.5 and the
+welfare ranking of these policies flips by $2.88 per household — fully
+informed sociotropic voters split with zero misperception anywhere, and
+no survey closes that gap.
+
+This is a thought experiment about a few mechanisms, not political
+science or election prediction. The welfare ranking is a modeling choice
+(inequality aversion of η = 2.5 flips it), and both financed policies
+score below the status quo — which fixed-platform plurality doesn't
+offer, and the position game chooses. The repo carries the full notes,
+regeneration scripts for every number, and tests that pin the knife-edge
+facts.
+
+The missing measurements are perception and motive: what people believe
+specific reforms would do to their own household and to households like
+theirs, versus what the engine computes, and how much weight they put on
+each. That's a survey (democrasim#3), and its answers are points on the
+axes the interactive version lets you drag.

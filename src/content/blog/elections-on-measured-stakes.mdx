@@ -1,7 +1,7 @@
 ---
 title: 'Elections on measured stakes'
-description: 'An election model where every input except perception is measured. At perfect information, the winner turns on a $4-a-year financing residual.'
-pubDate: 'Jul 11 2026'
+description: 'An election model where every input except perception is measured. At perfect information, fixed platforms turn on a $4-a-year residual — and platforms that can move get disciplined to the status quo.'
+pubDate: 'Jul 12 2026'
 heroImage: './elections-on-measured-stakes-hero.png'
 ---
 
@@ -117,24 +117,114 @@ $221-per-voter bias — a fifth of one per-child credit step. The cheap
 way to move this election is a small error everyone shares, which is
 what framing and salience plausibly are.
 
+## Let the candidates move
+
+Everything above grades elections against two fixed policies. Make the
+platforms choices instead: a position is a pair of dials — how much of
+the credit increase, how deep a rate cap — and two candidates pick
+positions to maximize their own expected payoff, knowing what the
+opponent picks. The candidates are households from the data (a
+three-child household at $109,693 whose full credit stake is +$1,133,
+and a childless household at $578,540 — the median-income member of the
+rate cap's winners — with +$4,655 riding on the cap). Each one values an
+enacted position in dollars: their own household's change, plus
+society's change in equally-distributed-equivalent income, mixed by a
+selfish weight. Per-capita financing makes every position's stakes an
+exact blend of the two measured impact columns, so the model computes
+every pure Nash equilibrium of the game exactly — no simulation, no
+approximation beyond the grid.
+
+![Equilibrium platform intensity against perception noise, by candidate selfish weight](./elections-on-measured-stakes-strategic.png)
+
+Perfect information now produces the *best* outcome the model can
+grade. At σ = 0 every equilibrium enacts the status quo — which log
+welfare ranks above both financed programs — whatever the candidates
+want. The same trivial-stakes mass that voted its $4.10 sliver against
+fixed platforms becomes an enforcement bloc against moving ones: any
+program is a levy, any levy hands the opponent a cheaper platform, and
+competition undercuts its way to zero. The two information regimes
+trade places. Accurate voters graded fixed policies on a
+welfare-irrelevant residual; they discipline chosen policies to the
+welfare optimum.
+
+Noise dissolves the discipline. By σ = $1,000 the credit candidate's
+equilibrium program is enacted at intensity 0.19; by $10,000 both
+candidates run their full programs and the enacted blend is 0.65 credit
+/ 0.25 cap; by $30,000 the election between the two full programs is a
+near-coin flip — win probability 0.545 versus 0.455. That last number
+kills the one comfort left: with clear-eyed voters, a program whose
+winners are a fifth of adults beats one whose winners are 3% by four to
+one, but enough misperception erases even the head-count advantage of
+broad constituencies over narrow ones. Under fixed platforms, noise
+rescued this election. Once someone sets the agenda, noise is what lets
+self-serving agendas through.
+
+## Voters with mixed motives
+
+Real voters aren't purely selfish, so give them the candidates' utility:
+each voter weighs their own perceived stake against a perceived societal
+value — the policy's equally-distributed-equivalent income change, in
+dollars, under the voter's own inequality aversion — and populations mix
+voter types with different weights, values, and information quality.
+
+Two dollars-scale facts do a lot of work. The two policies differ by
+$209.77 of societal value per household, while the knife-edge voters'
+own margin is $4.10 — a fifty-to-one signal. So at perfect information,
+putting under 4% of utility weight on society flips tracking from 0 to
+1: the knife-edge needs voters to be not just fully informed but almost
+perfectly selfish. Societal weight also substitutes for accuracy at the
+noisy end — at σ = $30,000, tracking runs 0.55 for selfish voters, 0.69
+at half weight, 0.90 at a quarter, 1.0 for sociotropic voters.
+
+The catch is that sociotropic voting swaps a perception problem for a
+values problem. Push inequality aversion from η = 1 to η = 2.5 and the
+welfare ranking of these two policies flips — by $2.88 per household
+(−$696.74 versus −$699.62). Fully informed sociotropic voters holding
+those two lenses split the electorate with zero misperception anywhere,
+and either half calls the other's outcome a failure. No survey closes
+that gap.
+
+![Enacted platform intensity against the sociotropic voter share](./elections-on-measured-stakes-discipline.png)
+
+The strongest result pairs the two layers. Set the candidates purely
+selfish, the electorate noisy (σ = $10,000, where they enacted 0.65 of
+the credit program above), and mix in informed sociotropic voters: at a
+10% share, every equilibrium enacts the status quo again, at every
+noise level tested. The bloc votes deterministically against whichever
+candidate proposes the more welfare-negative program, and a tenth of
+the electorate outweighs whatever margin a program buys among its
+beneficiaries. The transition is jagged — at a 2% share (5% under heavier
+noise) the game has no pure equilibrium at all, and best responses
+cycle: propose, get punished, undercut, repeat. And the bloc beats diffuse goodwill: 30% sociotropic
+voters who misread the societal value by $500 still hold enacted
+intensity to 0.11, while an electorate that is uniformly half-selfish
+only gets from 0.63 to 0.44. A few voters who reliably vote the
+societal signal discipline candidates more than everyone caring
+somewhat.
+
 ## Scope
 
-This is a thought experiment about one mechanism: self-interested voting
-on misperceived, engine-computed household impacts. Real voters weigh
-values, identity, and much else; nothing here predicts elections. The
-welfare ranking is a modeling choice — log utility with a $1,000 income
-floor ranks A first, and inequality aversion of η ≥ 3 flips it — and
-both financed policies score below the status quo, which plurality
-doesn't offer as a ballot option. The
-[repo](https://github.com/MaxGhenis/democrasim) carries the
-[full findings note](https://github.com/MaxGhenis/democrasim/blob/main/docs/findings.md),
-regeneration scripts for every number above, and tests that pin the
+This is a thought experiment about a few mechanisms: voting on
+misperceived, engine-computed household impacts, with platforms fixed
+or chosen and motives selfish or mixed. Real voters weigh identity and
+much else; real candidates face primaries, entry, and repeated play;
+nothing here predicts elections. The welfare ranking is a modeling
+choice — log utility with a $1,000 income floor ranks A first, and
+inequality aversion of η = 2.5 flips it — and both financed policies
+score below the status quo, which fixed-platform plurality doesn't
+offer as a ballot option (the position game does, and chooses it). The
+[repo](https://github.com/MaxGhenis/democrasim) carries the full notes —
+[findings](https://github.com/MaxGhenis/democrasim/blob/main/docs/findings.md),
+[the position game](https://github.com/MaxGhenis/democrasim/blob/strategic/docs/strategic.md),
+[mixed motives](https://github.com/MaxGhenis/democrasim/blob/strategic/docs/heterogeneity.md) —
+plus regeneration scripts for every number above and tests that pin the
 knife-edge facts so a data update can't silently flip them.
 
-The missing measurement is perception. The model says what happens *if*
-voters see their stakes with σ = $500 or a $200 shared bias; it can't
-say where real voters sit. That's a survey — elicit what people believe
-specific reforms would do to their own household, compute what the tax
-engine says, and fit the gap
-([democrasim#3](https://github.com/MaxGhenis/democrasim/issues/3)). Its
-answer will be one number on the axis you just dragged.
+The missing measurements are perception and motive. The model says what
+happens *if* voters see their stakes with σ = $500, or put 10% of their
+weight on an accurately perceived societal signal; it can't say where
+real voters sit. That's a survey — elicit what people believe specific
+reforms would do to their own household and to households like theirs,
+compute what the tax engine says, and fit the gaps
+([democrasim#3](https://github.com/MaxGhenis/democrasim/issues/3)).
+Its answers are points on the axes you just dragged.
