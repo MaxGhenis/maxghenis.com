@@ -17,7 +17,7 @@ import {
 
 // Reference values from the Python model (n=100k seed=0, round 3):
 //   giving $30.30B (2026$, from $26.39B nominal disclosed tranches)
-//   median 69,538 · mean 76,179 · p05 37,637 · p95 135,905
+//   median 70,129 · mean 76,694 · p05 37,906 · p95 136,933
 //   blended $349,922/QALY · benefit-cost 2.12 (HHS VQALY) · frontier multiple 1,215
 // Monte Carlo output is RNG-sensitive, so we assert distributional agreement
 // with generous tolerances, not bit-parity.
