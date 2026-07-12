@@ -129,7 +129,7 @@
     "mode": 0.8,
     "high": 1.1,
     "unit": "multiplier",
-    "source": "AUTHOR-ELICITED PRIOR (no literature estimate exists for this quantity). Downweight for transport/overhead/funging; upweight allowed past 1.0 because [Center for Effective Philanthropy (2023)](https://cep.org/wp-content/uploads/2023/11/BigGiftsStudy_Report_Y2_FNL.pdf) finds large unrestricted gifts materially expand recipient capacity/reach. Stress-test with the interactive's realization slider (it moves the MODE of this triangle within [0.55, 1.10])."
+    "source": "AI-PROPOSED, AUTHOR-REVIEWED PRIOR (no literature estimate exists for this quantity). Downweight for transport/overhead/funging; upweight allowed past 1.0 because [Center for Effective Philanthropy (2023)](https://cep.org/wp-content/uploads/2023/11/BigGiftsStudy_Report_Y2_FNL.pdf) finds large unrestricted gifts materially expand recipient capacity/reach. Stress-test with the interactive's realization slider (it moves the MODE of this triangle within [0.55, 1.10])."
   },
   "evidence_tiers": {
     "randomized": {
@@ -223,7 +223,7 @@
         "unit": "usd_per_qaly",
         "dollars_base_year": 2026
       },
-      "source": "[Cesarini et al. (2016, QJE)](https://academic.oup.com/qje/article/131/2/687/2606947) lottery study finds ~zero causal effect of income on adult mortality in a rich country; [EITC health evidence](https://academyhealth.org/sites/default/files/Updated.EITC%20Rapid%20Evidence%20Review%20FINAL.pdf) is mixed and confounded. The wide 2026-dollar prior is a judgment consistent with that ~null: most value here is non-health consumption and wellbeing, which QALYs do not capture."
+      "source": "[Cesarini et al. (2016, QJE)](https://academic.oup.com/qje/article/131/2/687/2606947) lottery study finds ~zero causal effect of income on adult mortality in a rich country; the largest US guaranteed-income RCT ([Miller et al. 2024, NBER w32711](https://www.nber.org/papers/w32711): $1,000/month for 3 years) found no physical-health effects and fading first-year stress/mental-health gains; a one-time $500-$2,000 UCT RCT with 5,243 Americans in poverty ([Jaroszewicz et al. 2024](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4154000)) found no improvement on any pre-specified financial, psychological, or health outcome; [EITC health evidence](https://academyhealth.org/sites/default/files/Updated.EITC%20Rapid%20Evidence%20Review%20FINAL.pdf) is mixed and confounded. The wide 2026-dollar prior is a judgment consistent with those ~nulls: most value here is non-health consumption and wellbeing, which QALYs do not capture."
     },
     "econ_food": {
       "label": "Economic security - food security",
