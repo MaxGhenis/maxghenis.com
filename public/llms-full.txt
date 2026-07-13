@@ -1,7 +1,7 @@
 # Max Ghenis - Full Content
 
 > This file contains the full text of all blog posts from maxghenis.com, formatted for LLM consumption.
-> Generated: 2026-07-13T15:22:11.027Z
+> Generated: 2026-07-13T15:39:10.007Z
 > See also: /llms.txt for a curated overview
 
 ---
@@ -123,7 +123,7 @@ It runs the same machinery as the [GiveWell cost-effectiveness replication](/blo
 
 ## Why I care about the gap
 
-I [took the Giving What We Can pledge in 2019](/blog/why-ive-taken-the-giving-what-we-can-pledge/) for one reason: the global poor benefit far more from a dollar than I do. This tool puts a number on that for Scott's giving. Measured purely in health, a dollar at the [global-health frontier](https://www.givewell.org/charities/amf) — bed nets averting child deaths — buys more than a thousand times the QALYs of her US-focused giving. That's a marginal comparison; redeploying the full $26 billion would saturate frontier opportunities and cut the multiple to a few hundred times, with a floor around 50–100× even if every dollar became [direct cash](https://blog.givewell.org/2024/11/12/re-evaluating-the-impact-of-unconditional-cash-transfers/) — [the tool page works through the arithmetic](/mackenzie-scott-qaly).
+I [took the Giving What We Can pledge in 2019](/blog/why-ive-taken-the-giving-what-we-can-pledge/) for one reason: the global poor benefit far more from a dollar than I do. This tool puts a number on that for Scott's giving. Measured purely in health, a dollar at the [global-health frontier](https://www.givewell.org/charities/amf) — bed nets averting child deaths — buys roughly 500 times the QALYs of her blended portfolio. That's a marginal comparison; redeploying the full $26 billion would compress it toward the floor — around 20–40× even if every dollar became [direct cash](https://blog.givewell.org/2024/11/12/re-evaluating-the-impact-of-unconditional-cash-transfers/) — [the tool page works through the arithmetic](/mackenzie-scott-qaly).
 
 How much that gap should bother you is the open question, and the QALY count doesn't settle it. Part of the gap is outside her control: preventing a death costs far more in a rich country than a poor one, and a QALY ignores the income, opportunity, and rights her giving targets. Part of it is a choice: $26 billion is enough that where it goes carries real opportunity cost, measured in lives. The tool hands you the number, not the verdict. It's the same arithmetic that sends my own giving abroad.
 
