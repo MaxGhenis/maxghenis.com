@@ -17,7 +17,7 @@ import {
 
 // Reference values from the Python model (n=100k seed=0, round 3):
 //   giving $30.30B (2026$, from $26.39B nominal disclosed tranches)
-//   median 70,129 · mean 76,694 · p05 37,906 · p95 136,933
+//   median 204,840 · mean 224,762 · p05 94,685 · p95 423,654
 //   blended $349,922/QALY · benefit-cost 2.12 (HHS VQALY) · frontier multiple 1,215
 // Monte Carlo output is RNG-sensitive, so we assert distributional agreement
 // with generous tolerances, not bit-parity.
@@ -112,27 +112,27 @@ describe("model end-to-end", () => {
   });
 
   it("matches the checked reference range within Monte Carlo tolerance", () => {
-    expect(s.median).toBeGreaterThan(60000);
-    expect(s.median).toBeLessThan(82000);
-    expect(s.mean).toBeGreaterThan(66000);
-    expect(s.mean).toBeLessThan(90000);
-    expect(s.p05).toBeGreaterThan(30000);
-    expect(s.p95).toBeLessThan(165000);
+    expect(s.median).toBeGreaterThan(170000);
+    expect(s.median).toBeLessThan(245000);
+    expect(s.mean).toBeGreaterThan(185000);
+    expect(s.mean).toBeLessThan(270000);
+    expect(s.p05).toBeGreaterThan(75000);
+    expect(s.p95).toBeLessThan(510000);
   });
 
   it("blended cost-per-QALY and benefit-cost land near the reference", () => {
-    expect(s.blendedMedian).toBeGreaterThan(350000);
-    expect(s.blendedMedian).toBeLessThan(520000);
+    expect(s.blendedMedian).toBeGreaterThan(120000);
+    expect(s.blendedMedian).toBeLessThan(185000);
     expect(s.blendedP05).toBeGreaterThan(0);
     expect(s.blendedP05).toBeLessThan(s.blendedMedian);
     expect(s.blendedP95).toBeGreaterThan(s.blendedMedian);
-    expect(s.bcMedian).toBeGreaterThan(1.4);
-    expect(s.bcMedian).toBeLessThan(2.2);
+    expect(s.bcMedian).toBeGreaterThan(4.0);
+    expect(s.bcMedian).toBeLessThan(6.0);
   });
 
   it("frontier is handicapped but still ~1,000x+ better per dollar", () => {
-    expect(s.frontierMultiple).toBeGreaterThan(1000);
-    expect(s.frontierMultiple).toBeLessThan(1900);
+    expect(s.frontierMultiple).toBeGreaterThan(380);
+    expect(s.frontierMultiple).toBeLessThan(680);
     // handicapped: below the raw giving / frontier_cpq
     const rawFrontier = r.giving / impliedMedian(PARAMS.conversions.frontier_cost_per_qaly_usd);
     expect(s.frontierMedian).toBeLessThan(rawFrontier);
@@ -170,11 +170,15 @@ describe("model end-to-end", () => {
     }
   });
 
-  it("health-effect archetypes remain among the largest QALY contributors", () => {
-    const top5 = s.perArchetype.slice(0, 5).map((a) => a.label);
-    expect(top5.some((l) => l.includes("mental"))).toBe(true);
-    expect(top5.some((l) => l.includes("insurance"))).toBe(true);
-    expect(top5.some((l) => l.includes("housing"))).toBe(true);
+  it("global health dominates; US health archetypes still rank high", () => {
+    expect(s.perArchetype[0].label).toContain("Global health");
+    // Non-US delivery is ~5% of dollars but most of the modeled QALYs.
+    expect(s.perArchetype[0].meanQalys / s.mean).toBeGreaterThan(0.5);
+    const top4 = s.perArchetype.slice(0, 4).map((a) => a.label);
+    expect(top4.some((l) => l.includes("insurance"))).toBe(true);
+    expect(top4.some((l) => l.includes("mental"))).toBe(true);
+    const top6 = s.perArchetype.slice(0, 6).map((a) => a.label);
+    expect(top6.some((l) => l.includes("housing"))).toBe(true);
   });
 
   it("equity & justice contributes little health despite a large allocation", () => {

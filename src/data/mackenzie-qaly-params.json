@@ -167,7 +167,7 @@
   "archetypes": {
     "health_coverage": {
       "label": "Health - insurance & access",
-      "allocation_share": 0.054,
+      "allocation_share": 0.037,
       "method": "cost_per_life",
       "causal_credibility": "strong_quasi",
       "identification": "DD across staggered state Medicaid expansions with linked coverage data (Sommers 2017; Miller, Johnson & Wherry 2021 corroborate with linked administrative mortality for the ACA expansion). Strong; the Oregon HIE RCT (null on 2-yr physical health measures) tempers it, hence not the top tier.",
@@ -182,7 +182,7 @@
     },
     "health_chc": {
       "label": "Health - community health centers",
-      "allocation_share": 0.054,
+      "allocation_share": 0.037,
       "method": "cost_per_life_year",
       "causal_credibility": "moderate_quasi",
       "identification": "Event-study/DD on the 1960s-70s CHC rollout (Bailey & Goodman-Bacon 2015). Credible design; spatial-spillover concerns in later re-analyses. (Transport to today's CHCs is a realization matter, not identification.)",
@@ -197,7 +197,7 @@
     },
     "health_mental": {
       "label": "Health - mental & behavioral",
-      "allocation_share": 0.023,
+      "allocation_share": 0.021,
       "method": "cost_per_qaly",
       "causal_credibility": "randomized",
       "identification": "ICERs come from RCTs of collaborative care for depression (high internal validity). Attribution of Scott's grants to this exact model is a realization matter.",
@@ -210,9 +210,24 @@
       },
       "source": "Anchors are 2000s-era nominal ICERs and are inflated here. The [Community Guide review](https://www.thecommunityguide.org/findings/mental-health-and-mental-illness-collaborative-care-management-depressive-disorders.html) reports the Gilbody-era $17k-$39k/QALY range in 2008 dollars, which [CPI-U](https://fred.stlouisfed.org/series/CPIAUCNS) 335.123/215.303 = 1.56 inflates to ~$26k-$61k; the systematic review at [van Steenbergen-Weijenburg et al. (2010), BMC Health Services Research 10:19](https://link.springer.com/article/10.1186/1472-6963-10-19) reports study ICERs of ~$21.5k-$49.5k without year normalization (similar-era dollars, similar inflated magnitude; an earlier revision misattributed this link to \"Gilbody et al. 2006\" and pooled the two reviews' endpoints as one range). Together the inflated cost-effective case sits around $26k-$77k. The upper tail extends toward [Grochtdreis et al. (2015)](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0123078), whose healthcare-perspective ICERs reach $153,299 in 2012 international dollars (not CPI-converted here; international dollars are not US CPI dollars). The 5th/95th prior {25k, 150k} brackets the inflated evidence."
     },
+    "global_health": {
+      "label": "Global health & development (non-US delivery)",
+      "allocation_share": 0.049,
+      "method": "cost_per_qaly",
+      "causal_credibility": "strong_quasi",
+      "identification": "Dollars route here by delivery geography: the non-US share of each organization's reported service locations, applied to its health-relevant focus areas (src/msqaly/allocation.py). The routed portfolio spans GiveWell-grade programs backed by RCTs (Malaria Consortium $10M, Evidence Action $20M, GiveDirectly's global program $50M+$5M) through strong community-health-worker and health-systems organizations (Living Goods $25M+$3.5M, Muso $15M, Amref $50M, Partners In Health $50M, Noora Health $20M, icddr,b $16M) to partial-health-tagged organizations. strong_quasi reflects that mix.",
+      "cost_per_qaly_usd": {
+        "dist": "lognormal_ci",
+        "low": 300,
+        "high": 4000,
+        "unit": "usd_per_qaly",
+        "dollars_base_year": 2026
+      },
+      "source": "Pricing a non-US health dollar at US anchors understates it by orders of magnitude \u2014 the correction a reader prompted. The 90% CI $300-$4,000 per QALY (2026$) spans [GiveWell's current program averages](https://www.givewell.org/impact-estimates) (~$4,000-5,500 per under-5 life saved ~ $175-241 per discounted QALY, the marquee floor sitting just below this range's low end), community-health-worker and systems programs GiveWell scores in the low single-digit multiples of cash (~$500-2,000 per QALY-equivalent), and [GiveDirectly's global cash program](https://blog.givewell.org/2024/11/12/re-evaluating-the-impact-of-unconditional-cash-transfers/) (child-mortality channel ~ $8,000 per discounted QALY, above this range's high end \u2014 the tail covers it). Gift amounts verified in [Yield Giving's database](https://yieldgiving.com/gifts)."
+    },
     "econ_cash": {
       "label": "Economic security - cash & financial",
-      "allocation_share": 0.037,
+      "allocation_share": 0.029,
       "method": "cost_per_qaly",
       "causal_credibility": "strong_quasi",
       "identification": "Mixed by target population, replicated across developed countries. Adult-targeted cash is credibly ~null on health (Swedish lottery randomization; two US cash RCTs; Swedish lottery wealth buys sustained life satisfaction but significantly smaller mental-health effects). Child-targeted cash shows replicated positive effects in strong quasi-experimental designs in the US (Mothers' Pensions, EITC, casino dividends) and Canada (child-benefit expansions). strong_quasi reflects that the positive anchors are QEDs coexisting with RCT-grade adult nulls.",
@@ -227,7 +242,7 @@
     },
     "econ_food": {
       "label": "Economic security - food security",
-      "allocation_share": 0.024,
+      "allocation_share": 0.019,
       "method": "cost_per_qaly",
       "causal_credibility": "observational",
       "identification": "SNAP/health links are largely associational with endogenous take-up (sicker or poorer households select in/out); strong confounding risk. The cost-per-QALY assumes the effect is real; credibility says it may not be causal.",
