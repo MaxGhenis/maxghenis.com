@@ -99,7 +99,7 @@ const research = [
 				</p>
 				<div class="hero-meta">
 					<img src="/images/headshot.png" alt="Max Ghenis" class="hero-photo" />
-					<span class="hero-role">Co-founder &amp; CEO, PolicyEngine · Washington, DC</span>
+					<span class="hero-role">CEO, The Axiom Foundation &amp; PolicyEngine · Washington, DC</span>
 				</div>
 				<div class="hero-actions">
 					<a href={`mailto:${SOCIAL_LINKS.email}`} class="btn-primary">Get in touch</a>
@@ -209,6 +209,25 @@ const research = [
 				<div class="section-head">
 					<span class="eyebrow">Work</span>
 				</div>
+
+				<a href="https://axiom-foundation.org" class="featured" target="_blank" rel="noopener">
+					<div class="featured-seam featured-rule" aria-hidden="true"></div>
+					<div class="featured-body">
+						<span class="featured-role">Founder &amp; CEO · 2026—</span>
+						<h2>The Axiom Foundation</h2>
+						<p>
+							Publishes the law as open, verified code — every value citing
+							its statute, every clause carrying its effective date, every
+							encoding checked against independent implementations. Launches
+							publicly July 28; PolicyEngine becomes its first and most
+							demanding consumer.
+						</p>
+						<span class="featured-link">axiom-foundation.org →</span>
+					</div>
+					<div class="featured-logo">
+						<img src="/assets/logos/axiom-mark.svg" alt="" width="72" height="72" />
+					</div>
+				</a>
 
 				<a href="https://policyengine.org" class="featured" target="_blank" rel="noopener">
 					<div class="featured-seam" aria-hidden="true"></div>
@@ -547,6 +566,11 @@ const research = [
 		bottom: 0;
 		width: 4px;
 		background: var(--seam-vertical);
+	}
+
+	/* Axiom sits on the rules pole; PolicyEngine keeps the full seam */
+	.featured-seam.featured-rule {
+		background: var(--rule);
 	}
 
 	.featured-body {
