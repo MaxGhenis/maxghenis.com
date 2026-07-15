@@ -1,6 +1,6 @@
 // Site metadata
 export const SITE_TITLE = 'Max Ghenis';
-export const SITE_DESCRIPTION = 'Simulating futures to build the one we want. CEO of the Axiom Foundation and PolicyEngine — open-source software that computes what the law says, forecasts what will happen, and measures what people value.';
+export const SITE_DESCRIPTION = 'Simulating futures to build the one we want. CEO of the Axiom Foundation and PolicyEngine — open-source software that computes what the law says, measures what it does, and projects what happens next.';
 
 // Social links
 export const SOCIAL_LINKS = {
