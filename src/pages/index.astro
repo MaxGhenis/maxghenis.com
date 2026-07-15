@@ -107,87 +107,8 @@ const research = [
 				</div>
 			</section>
 
-			<!-- Signature chart: rules left of now, forecasts right, one path chosen -->
-			<section class="seamchart" aria-label="Chart metaphor: enacted policy as a step function up to now, then a fan of forecast paths after it, with one chosen path drawn through the fan.">
-				<svg viewBox="0 0 1160 312" preserveAspectRatio="none" role="img" aria-hidden="true" class="seamchart-svg">
-					<defs>
-						<linearGradient id="seamV" x1="0" y1="0" x2="0" y2="1">
-							<stop offset="0%" stop-color="#b45309" />
-							<stop offset="38%" stop-color="#bf8a64" />
-							<stop offset="62%" stop-color="#b08aa0" />
-							<stop offset="100%" stop-color="#a94e80" />
-						</linearGradient>
-					</defs>
-
-					<!-- grid -->
-					<g class="grid" stroke="#e8e3d8" stroke-width="1">
-						<line x1="20" y1="64" x2="1140" y2="64" />
-						<line x1="20" y1="124" x2="1140" y2="124" />
-						<line x1="20" y1="184" x2="1140" y2="184" />
-						<line x1="20" y1="244" x2="1140" y2="244" />
-					</g>
-
-					<!-- the seam: now -->
-					<line class="seam-line" x1="580" y1="18" x2="580" y2="272" stroke="url(#seamV)" stroke-width="1.5" opacity="0.55" vector-effect="non-scaling-stroke" />
-
-					<!-- past: rules as a step function -->
-					<path
-						class="step-path"
-						d="M 20,238 H 130 V 208 H 240 V 218 H 350 V 178 H 460 V 158 H 520 V 138 H 580"
-						fill="none"
-						stroke="#b45309"
-						stroke-width="2.5"
-						stroke-linejoin="miter"
-						vector-effect="non-scaling-stroke"
-					/>
-
-					<!-- future: forecasts as a fan -->
-					<g class="fan">
-						<path
-							d="M 580,138 Q 830,104 1140,54 L 1140,266 Q 830,186 580,138 Z"
-							fill="#9fb6c6"
-							opacity="0.20"
-						/>
-						<path
-							d="M 580,138 Q 830,118 1140,96 L 1140,188 Q 830,158 580,138 Z"
-							fill="#a94e80"
-							opacity="0.14"
-						/>
-						<path
-							class="median-path"
-							d="M 580,138 Q 840,132 1140,122"
-							fill="none"
-							stroke="#a94e80"
-							stroke-width="2.5"
-							stroke-dasharray="2 7"
-							stroke-linecap="round"
-							vector-effect="non-scaling-stroke"
-						/>
-						<circle cx="1140" cy="122" r="9" fill="#a94e80" opacity="0.16" />
-						<circle cx="1140" cy="122" r="4.5" fill="#a94e80" />
-					</g>
-
-					<!-- the chosen path through the fan -->
-					<g class="choice">
-						<path
-							class="choice-path"
-							d="M 580,138 Q 850,124 1140,100"
-							fill="none"
-							stroke="#211d18"
-							stroke-width="2.5"
-							stroke-linecap="round"
-							vector-effect="non-scaling-stroke"
-						/>
-						<circle class="choice-dot" cx="1140" cy="100" r="4.5" fill="#211d18" />
-						<text class="choice-label" x="1122" y="84" font-family="'JetBrains Mono', monospace" font-size="11" fill="#211d18" text-anchor="end">the one we want</text>
-					</g>
-
-					<!-- axis: only "now" is a real coordinate; the chart is a metaphor -->
-					<g class="ticks" font-family="'JetBrains Mono', monospace" font-size="11" fill="#7d766c" text-anchor="middle">
-						<text x="580" y="300" fill="#211d18" font-weight="500">now</text>
-					</g>
-				</svg>
-
+			<!-- The three poles, stated plainly -->
+			<section class="poles-strip">
 				<div class="poles">
 					<div class="pole">
 						<span class="pole-tag rule-tag">Rules</span>
@@ -419,22 +340,15 @@ const research = [
 		color: var(--rule-deep);
 	}
 
-	/* Signature chart */
-	.seamchart {
-		margin: 1.5rem 0 5rem;
-	}
-
-	.seamchart-svg {
-		width: 100%;
-		height: auto;
-		display: block;
+	/* The three poles */
+	.poles-strip {
+		margin: 2.75rem 0 5rem;
 	}
 
 	.poles {
 		display: flex;
 		justify-content: space-between;
 		gap: 2rem;
-		margin-top: 0.75rem;
 		padding: 0 4px;
 	}
 
@@ -487,45 +401,6 @@ const research = [
 	.pole-copy {
 		font-size: 0.875rem;
 		color: var(--ink-muted);
-	}
-
-	/* Chart animation */
-	@media (prefers-reduced-motion: no-preference) {
-		.step-path {
-			stroke-dasharray: 1400;
-			stroke-dashoffset: 1400;
-			animation: drawstep 1.2s var(--ease-out) 0.25s forwards;
-		}
-
-		.fan {
-			opacity: 0;
-			animation: fadeIn 0.9s var(--ease-out) 1.15s forwards;
-		}
-
-		.seam-line {
-			opacity: 0;
-			animation: seamIn 0.6s var(--ease-out) 0.9s forwards;
-		}
-
-		.choice-path {
-			stroke-dasharray: 620;
-			stroke-dashoffset: 620;
-			animation: drawstep 0.9s var(--ease-out) 2s forwards;
-		}
-
-		.choice-dot,
-		.choice-label {
-			opacity: 0;
-			animation: fadeIn 0.5s var(--ease-out) 2.7s forwards;
-		}
-	}
-
-	@keyframes drawstep {
-		to { stroke-dashoffset: 0; }
-	}
-
-	@keyframes seamIn {
-		to { opacity: 0.55; }
 	}
 
 	/* Sections */
@@ -831,18 +706,8 @@ const research = [
 			display: none;
 		}
 
-		.seamchart {
-			margin: 1rem 0 3.5rem;
-		}
-
-		.seamchart-svg {
-			aspect-ratio: auto;
-			height: 200px;
-		}
-
-		.seamchart-svg :global(.ticks),
-		.seamchart-svg :global(.choice-label) {
-			display: none;
+		.poles-strip {
+			margin: 1.5rem 0 3.5rem;
 		}
 
 		.poles {
