@@ -549,6 +549,11 @@ function ArchetypeBars(props: { summary: Summary }) {
           </div>
         </div>
       ))}
+      <p style={{ fontSize: "0.68rem", color: C.inkMuted, margin: "0.5rem 0 0", lineHeight: 1.4 }}>
+        Mean contribution per archetype; bars sum to the mean total (
+        {fmtQalys(props.summary.mean)}), not the {fmtQalys(props.summary.median)}{" "}
+        median headline — only means add across categories.
+      </p>
     </div>
   );
 }
