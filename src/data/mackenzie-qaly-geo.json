@@ -53,13 +53,14 @@
   ]
  },
  "full_ledger": {
-  "method": "All ledger dollars (disclosed + imputed) split equally across each organization's reported service locations. Muted buckets name a reporting granularity, not a place.",
+  "method": "All ledger dollars (disclosed + imputed) split equally across each organization's reported service locations. 'Global' slices of the top-50 audited organizations are redistributed per their own published geographies (geo_audit.jsonl); unattributable shares stay Global. Muted buckets name a reporting granularity, not a place.",
+  "n_audited_orgs": 50,
   "total_usd": 26393400000,
   "regions": [
    {
     "key": "us_national",
     "label": "US \u2014 national / unspecified",
-    "usd": 6924512516,
+    "usd": 7188503390,
     "unspecified": true
    },
    {
@@ -81,12 +82,6 @@
     "unspecified": false
    },
    {
-    "key": "global",
-    "label": "Global (multi-region)",
-    "usd": 2068683090,
-    "unspecified": true
-   },
-   {
     "key": "us_northeast",
     "label": "US \u2014 Northeast",
     "usd": 1912822914,
@@ -95,19 +90,25 @@
    {
     "key": "sub-_saharan_africa",
     "label": "Sub-Saharan Africa",
-    "usd": 1485692459,
+    "usd": 1637510804,
+    "unspecified": false
+   },
+   {
+    "key": "global",
+    "label": "Global (multi-region)",
+    "usd": 1062528576,
+    "unspecified": true
+   },
+   {
+    "key": "latin_america&_caribbean",
+    "label": "Latin America & Caribbean",
+    "usd": 1018445970,
     "unspecified": false
    },
    {
     "key": "south_asia",
     "label": "South Asia",
-    "usd": 863477766,
-    "unspecified": false
-   },
-   {
-    "key": "latin_america&_caribbean",
-    "label": "Latin America & Caribbean",
-    "usd": 842390734,
+    "usd": 959922440,
     "unspecified": false
    },
    {
@@ -119,25 +120,25 @@
    {
     "key": "east_asia&_pacific",
     "label": "East Asia & Pacific",
-    "usd": 231544505,
+    "usd": 333278365,
+    "unspecified": false
+   },
+   {
+    "key": "europe&_central_asia",
+    "label": "Europe & Central Asia",
+    "usd": 264647341,
+    "unspecified": false
+   },
+   {
+    "key": "middle_east&_north_africa",
+    "label": "Middle East & North Africa",
+    "usd": 130472452,
     "unspecified": false
    },
    {
     "key": "canada",
     "label": "Canada",
     "usd": 123813474,
-    "unspecified": false
-   },
-   {
-    "key": "europe&_central_asia",
-    "label": "Europe & Central Asia",
-    "usd": 98098518,
-    "unspecified": false
-   },
-   {
-    "key": "middle_east&_north_africa",
-    "label": "Middle East & North Africa",
-    "usd": 80909752,
     "unspecified": false
    },
    {
