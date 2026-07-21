@@ -517,6 +517,11 @@ function shortenDriver(name: string): string {
 function ArchetypeBars(props: { summary: Summary }) {
   const rows = props.summary.perArchetype;
   const maxV = Math.max(...rows.map((r) => r.meanQalys), 1);
+  const meanTotal = Math.max(props.summary.mean, 1);
+  const fmtShare = (v: number) => {
+    const pct = (v / meanTotal) * 100;
+    return pct >= 0.5 ? `${Math.round(pct)}%` : "<1%";
+  };
   return (
     <div>
       {rows.map((r) => (
@@ -532,7 +537,7 @@ function ArchetypeBars(props: { summary: Summary }) {
           >
             <span style={{ fontSize: "0.82rem", color: C.ink }}>{SHORT_LABELS[r.key] ?? r.label}</span>
             <span style={{ fontSize: "0.8rem", fontFamily: MONO, color: C.ink, whiteSpace: "nowrap", flexShrink: 0 }}>
-              {fmtQalys(r.meanQalys)}
+              {fmtQalys(r.meanQalys)} · {fmtShare(r.meanQalys)}
               <span style={{ color: C.inkMuted, fontSize: "0.7rem" }}> · {TIER_LABELS[r.tier] ?? r.tier}</span>
             </span>
           </div>
@@ -550,9 +555,10 @@ function ArchetypeBars(props: { summary: Summary }) {
         </div>
       ))}
       <p style={{ fontSize: "0.68rem", color: C.inkMuted, margin: "0.5rem 0 0", lineHeight: 1.4 }}>
-        Mean contribution per archetype; bars sum to the mean total (
-        {fmtQalys(props.summary.mean)}), not the {fmtQalys(props.summary.median)}{" "}
-        median headline — only means add across categories.
+        Mean QALYs per archetype and share of the {fmtQalys(props.summary.mean)}{" "}
+        mean total. The headline {fmtQalys(props.summary.median)} is the median —
+        lower because the distribution is right-skewed, and only means add
+        across categories.
       </p>
     </div>
   );
