@@ -613,7 +613,8 @@ function GeoBars() {
             <div
               style={{
                 width: `${(r.usd / maxV) * 100}%`,
-                background: C.amber,
+                background: r.key === "global" ? C.inkMuted : C.amber,
+                opacity: r.key === "global" ? 0.55 : 1,
                 height: "100%",
                 borderRadius: 4,
                 minWidth: 2,
@@ -628,7 +629,9 @@ function GeoBars() {
         dollars, {fmtDollars(GEO.us_usd)}, is US-side). Dollars split equally
         across each organization&apos;s listed locations — descriptive
         gift-database data, not a model output; only the health slice is priced
-        by geography.
+        by geography. Bars partition the dollars (they sum to{" "}
+        {fmtDollars(GEO.nonus_usd)}), not the map: &ldquo;Global&rdquo;
+        organizations serve the named regions too.
       </p>
     </div>
   );
