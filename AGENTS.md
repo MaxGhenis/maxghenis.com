@@ -36,6 +36,6 @@ Never commit, delete, or move them. They make local test runs differ from CI
 
 ## Deploys
 
-Push to `master` deploys (GitHub Pages + Vercel). No PRs needed for content.
+Push to `master` deploys (Vercel only). No PRs needed for content.
 Never rewrite or force-push `master`. End commit messages with a
 `Co-Authored-By:` trailer identifying the agent.
