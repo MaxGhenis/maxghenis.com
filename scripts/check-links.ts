@@ -7,7 +7,7 @@
  *   bun run scripts/check-links.ts [--fix]
  */
 
-import { readdir, readFile, writeFile } from 'fs/promises';
+import { readFile } from 'fs/promises';
 import { join } from 'path';
 
 const CONTENT_DIR = './src/content/blog';

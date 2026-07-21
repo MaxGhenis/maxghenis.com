@@ -13,7 +13,7 @@ interface Props {
 	electionSlug: string;
 }
 
-const { title, description, electionDate, location, electionSlug } = Astro.props;
+const { title, description, electionDate, electionSlug } = Astro.props;
 
 // Get all recommendations for this election
 const allRecs = await getCollection('recommendations');

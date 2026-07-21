@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "prebuild": "npx tsx scripts/generate-llms-full.ts",
+    "prebuild": "bun scripts/generate-llms-full.ts",
     "build": "astro build",
     "vercel-build": "bun run prebuild && astro build && node scripts/fix-vercel-rewrites.js",
     "preview": "astro preview",
@@ -35,7 +35,6 @@
     "@testing-library/dom": "^10.4.1",
     "glob": "^13.0.0",
     "happy-dom": "^20.3.7",
-    "tsx": "^4.21.0",
     "typescript": "^5.9.3",
     "vitest": "^4.0.18"
   }

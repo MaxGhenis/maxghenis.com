@@ -1,6 +1,6 @@
 /**
  * Generate llms-full.txt - comprehensive content dump for LLMs
- * Run: npx tsx scripts/generate-llms-full.ts
+ * Run: bun scripts/generate-llms-full.ts
  */
 
 import fs from 'node:fs';

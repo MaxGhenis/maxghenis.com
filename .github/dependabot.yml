@@ -1,0 +1,17 @@
+# Dependabot supports bun for version updates only — security updates for
+# bun lockfiles are not supported, so multi-major security jumps stay manual.
+# Keeping deps current here is what makes security patches land as minors.
+version: 2
+updates:
+  - package-ecosystem: "bun"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    groups:
+      dependencies:
+        patterns:
+          - "*"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"

@@ -33,6 +33,7 @@ describe('CrosspostAware component', () => {
 			// Static version has plain markdown-style dates without the component wrapper
 			// Check that the static format is NOT present (it would be outside timeline-container)
 			const staticPattern = /<p>\s*<strong>Feb 24, 2025<\/strong>\s*—\s*<a/;
+			expect(html).not.toMatch(staticPattern);
 			// The interactive version has dates inside timeline-date divs
 			expect(html).toContain('class="timeline-date"');
 		});

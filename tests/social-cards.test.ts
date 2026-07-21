@@ -50,6 +50,9 @@ describe('Social cards', () => {
 			const filePath = join(distDir, file);
 			const html = readFileSync(filePath, 'utf-8');
 
+			// Astro-generated redirect stubs (meta refresh, noindex) don't need cards
+			if (html.includes('http-equiv="refresh"')) continue;
+
 			// Check for og:image meta tag
 			const ogImageMatch = html.match(/<meta\s+property="og:image"\s+content="([^"]+)"/);
 

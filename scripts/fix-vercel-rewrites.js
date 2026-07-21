@@ -2,7 +2,7 @@
 // This bypasses Vercel's framework adapter, which adds "check: true"
 // to external rewrites causing them to fail.
 
-import { readFileSync, writeFileSync, cpSync, mkdirSync, existsSync } from 'fs';
+import { readFileSync, writeFileSync, cpSync, mkdirSync } from 'fs';
 
 const outputDir = '.vercel/output';
 const staticDir = `${outputDir}/static`;

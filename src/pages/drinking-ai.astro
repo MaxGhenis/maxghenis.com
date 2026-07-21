@@ -621,7 +621,7 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 		</main>
 		<Footer />
 
-		<script define:vars={{ clientDrinks, clientScopes, clientWorkloads, defaultScopeId: defaultScope.id, defaultWorkloadId: defaultWorkload.id }}>
+		<script is:inline define:vars={{ clientDrinks, clientScopes, clientWorkloads, defaultScopeId: defaultScope.id, defaultWorkloadId: defaultWorkload.id }}>
 			const drinkMap = Object.fromEntries(clientDrinks.map((drink) => [drink.id, drink]));
 			const scopeMap = Object.fromEntries(clientScopes.map((scope) => [scope.id, scope]));
 			const workloadMap = Object.fromEntries(clientWorkloads.map((w) => [w.id, w]));
