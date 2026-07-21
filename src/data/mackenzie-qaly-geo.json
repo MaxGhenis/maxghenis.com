@@ -1,53 +1,151 @@
 {
- "source": "data/yieldgiving/organisations.json (snapshot 2026-07-11)",
- "method": "Disclosed gift dollars split equally across each organization's reported service locations; ISO country codes rolled into the database's region vocabulary. Descriptive data, not a model output.",
- "us_usd": 13893902000,
- "nonus_usd": 3566230000,
- "regions": [
-  {
-   "key": "global",
-   "label": "Global (multi-region)",
-   "usd": 1245300000
-  },
-  {
-   "key": "sub-_saharan_africa",
-   "label": "Sub-Saharan Africa",
-   "usd": 914333333
-  },
-  {
-   "key": "south_asia",
-   "label": "South Asia",
-   "usd": 503500000
-  },
-  {
-   "key": "latin_america&_caribbean",
-   "label": "Latin America & Caribbean",
-   "usd": 500650000
-  },
-  {
-   "key": "east_asia&_pacific",
-   "label": "East Asia & Pacific",
-   "usd": 171833333
-  },
-  {
-   "key": "canada",
-   "label": "Canada",
-   "usd": 122780000
-  },
-  {
-   "key": "europe&_central_asia",
-   "label": "Europe & Central Asia",
-   "usd": 66666667
-  },
-  {
-   "key": "middle_east&_north_africa",
-   "label": "Middle East & North Africa",
-   "usd": 21000000
-  },
-  {
-   "key": "other",
-   "label": "Other / unmapped",
-   "usd": 20166667
-  }
- ]
+ "disclosed_nonus": {
+  "source": "data/yieldgiving/organisations.json (snapshot 2026-07-11)",
+  "method": "Disclosed gift dollars split equally across each organization's reported service locations; ISO country codes rolled into the database's region vocabulary. Descriptive data, not a model output.",
+  "us_usd": 13893902000,
+  "nonus_usd": 3566230000,
+  "regions": [
+   {
+    "key": "global",
+    "label": "Global (multi-region)",
+    "usd": 1245300000
+   },
+   {
+    "key": "sub-_saharan_africa",
+    "label": "Sub-Saharan Africa",
+    "usd": 914333333
+   },
+   {
+    "key": "south_asia",
+    "label": "South Asia",
+    "usd": 503500000
+   },
+   {
+    "key": "latin_america&_caribbean",
+    "label": "Latin America & Caribbean",
+    "usd": 500650000
+   },
+   {
+    "key": "east_asia&_pacific",
+    "label": "East Asia & Pacific",
+    "usd": 171833333
+   },
+   {
+    "key": "canada",
+    "label": "Canada",
+    "usd": 122780000
+   },
+   {
+    "key": "europe&_central_asia",
+    "label": "Europe & Central Asia",
+    "usd": 66666667
+   },
+   {
+    "key": "middle_east&_north_africa",
+    "label": "Middle East & North Africa",
+    "usd": 21000000
+   },
+   {
+    "key": "other",
+    "label": "Other / unmapped",
+    "usd": 20166667
+   }
+  ]
+ },
+ "full_ledger": {
+  "method": "All ledger dollars (disclosed + imputed) split equally across each organization's reported service locations. Muted buckets name a reporting granularity, not a place.",
+  "total_usd": 26393400000,
+  "regions": [
+   {
+    "key": "us_national",
+    "label": "US \u2014 national / unspecified",
+    "usd": 6924512516,
+    "unspecified": true
+   },
+   {
+    "key": "us_south",
+    "label": "US \u2014 South",
+    "usd": 5224663250,
+    "unspecified": false
+   },
+   {
+    "key": "us_west",
+    "label": "US \u2014 West",
+    "usd": 3499219463,
+    "unspecified": false
+   },
+   {
+    "key": "us_midwest",
+    "label": "US \u2014 Midwest",
+    "usd": 2395184187,
+    "unspecified": false
+   },
+   {
+    "key": "global",
+    "label": "Global (multi-region)",
+    "usd": 2068683090,
+    "unspecified": true
+   },
+   {
+    "key": "us_northeast",
+    "label": "US \u2014 Northeast",
+    "usd": 1912822914,
+    "unspecified": false
+   },
+   {
+    "key": "sub-_saharan_africa",
+    "label": "Sub-Saharan Africa",
+    "usd": 1485692459,
+    "unspecified": false
+   },
+   {
+    "key": "south_asia",
+    "label": "South Asia",
+    "usd": 863477766,
+    "unspecified": false
+   },
+   {
+    "key": "latin_america&_caribbean",
+    "label": "Latin America & Caribbean",
+    "usd": 842390734,
+    "unspecified": false
+   },
+   {
+    "key": "north_america_unspec",
+    "label": "North America (unspecified)",
+    "usd": 607836753,
+    "unspecified": true
+   },
+   {
+    "key": "east_asia&_pacific",
+    "label": "East Asia & Pacific",
+    "usd": 231544505,
+    "unspecified": false
+   },
+   {
+    "key": "canada",
+    "label": "Canada",
+    "usd": 123813474,
+    "unspecified": false
+   },
+   {
+    "key": "europe&_central_asia",
+    "label": "Europe & Central Asia",
+    "usd": 98098518,
+    "unspecified": false
+   },
+   {
+    "key": "middle_east&_north_africa",
+    "label": "Middle East & North Africa",
+    "usd": 80909752,
+    "unspecified": false
+   },
+   {
+    "key": "other",
+    "label": "Other / unmapped",
+    "usd": 34550620,
+    "unspecified": true
+   }
+  ]
+ }
 }

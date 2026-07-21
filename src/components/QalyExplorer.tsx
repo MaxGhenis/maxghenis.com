@@ -298,7 +298,7 @@ export default function QalyExplorer() {
                 <ArchetypeBars summary={s} />
               </ChartCard>
 
-              <ChartCard title="Where the non-US dollars go">
+              <ChartCard title="Where the dollars go">
                 <GeoBars />
               </ChartCard>
 
@@ -588,9 +588,10 @@ function ArchetypeBars(props: { summary: Summary }) {
 }
 
 function GeoBars() {
-  const rows = GEO.regions;
+  const rows = GEO.full_ledger.regions;
   const maxV = Math.max(...rows.map((r) => r.usd), 1);
-  const usShare = Math.round((100 * GEO.us_usd) / (GEO.us_usd + GEO.nonus_usd));
+  const total = GEO.full_ledger.total_usd;
+  const unspec = rows.filter((r) => r.unspecified).reduce((a, r) => a + r.usd, 0);
   return (
     <div>
       {rows.map((r) => (
@@ -607,14 +608,15 @@ function GeoBars() {
             <span style={{ fontSize: "0.82rem", color: C.ink }}>{r.label}</span>
             <span style={{ fontSize: "0.8rem", fontFamily: MONO, color: C.ink, whiteSpace: "nowrap", flexShrink: 0 }}>
               {fmtDollars(r.usd)}
+              <span style={{ color: C.inkMuted, fontSize: "0.7rem" }}> · {Math.round((100 * r.usd) / total)}%</span>
             </span>
           </div>
           <div style={{ background: C.borderSoft, borderRadius: 4, height: 9 }}>
             <div
               style={{
                 width: `${(r.usd / maxV) * 100}%`,
-                background: r.key === "global" ? C.inkMuted : C.amber,
-                opacity: r.key === "global" ? 0.55 : 1,
+                background: r.unspecified ? C.inkMuted : C.amber,
+                opacity: r.unspecified ? 0.55 : 1,
                 height: "100%",
                 borderRadius: 4,
                 minWidth: 2,
@@ -624,14 +626,13 @@ function GeoBars() {
         </div>
       ))}
       <p style={{ fontSize: "0.68rem", color: C.inkMuted, margin: "0.5rem 0 0", lineHeight: 1.4 }}>
-        Reported service regions of the {fmtDollars(GEO.nonus_usd)} in disclosed
-        gifts to organizations serving outside the US ({usShare}% of disclosed
-        dollars, {fmtDollars(GEO.us_usd)}, is US-side). Dollars split equally
-        across each organization&apos;s listed locations — descriptive
-        gift-database data, not a model output; only the health slice is priced
-        by geography. Bars partition the dollars (they sum to{" "}
-        {fmtDollars(GEO.nonus_usd)}), not the map: &ldquo;Global&rdquo;
-        organizations serve the named regions too.
+        All {fmtDollars(total)} of nominal ledger dollars — disclosed gifts plus
+        the ~$8.9B imputed from pre-gift IRS 990 revenue — split equally across
+        each organization&apos;s reported service locations. Bars partition the
+        dollars, not the map; muted bars ({fmtDollars(unspec)}) are reporting
+        granularity, not places: &ldquo;Global&rdquo; and national organizations
+        serve the named regions too. Only the health slice is priced by
+        geography in the model.
       </p>
     </div>
   );
