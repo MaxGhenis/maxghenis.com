@@ -1,0 +1,53 @@
+{
+ "source": "data/yieldgiving/organisations.json (snapshot 2026-07-11)",
+ "method": "Disclosed gift dollars split equally across each organization's reported service locations; ISO country codes rolled into the database's region vocabulary. Descriptive data, not a model output.",
+ "us_usd": 13893902000,
+ "nonus_usd": 3566230000,
+ "regions": [
+  {
+   "key": "global",
+   "label": "Global (multi-region)",
+   "usd": 1245300000
+  },
+  {
+   "key": "sub-_saharan_africa",
+   "label": "Sub-Saharan Africa",
+   "usd": 914333333
+  },
+  {
+   "key": "south_asia",
+   "label": "South Asia",
+   "usd": 503500000
+  },
+  {
+   "key": "latin_america&_caribbean",
+   "label": "Latin America & Caribbean",
+   "usd": 500650000
+  },
+  {
+   "key": "east_asia&_pacific",
+   "label": "East Asia & Pacific",
+   "usd": 171833333
+  },
+  {
+   "key": "canada",
+   "label": "Canada",
+   "usd": 122780000
+  },
+  {
+   "key": "europe&_central_asia",
+   "label": "Europe & Central Asia",
+   "usd": 66666667
+  },
+  {
+   "key": "middle_east&_north_africa",
+   "label": "Middle East & North Africa",
+   "usd": 21000000
+  },
+  {
+   "key": "other",
+   "label": "Other / unmapped",
+   "usd": 20166667
+  }
+ ]
+}

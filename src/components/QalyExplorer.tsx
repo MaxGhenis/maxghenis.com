@@ -12,6 +12,7 @@ import {
   type Overrides,
   type Summary,
 } from "../lib/mackenzie-qaly";
+import GEO from "../data/mackenzie-qaly-geo.json";
 
 // Design tokens (mirrors src/styles/global.css :root).
 const C = {
@@ -275,7 +276,7 @@ export default function QalyExplorer() {
                   hero
                   label="Median QALYs"
                   value={fmtQalys(s.median)}
-                  sub={`90%: ${fmtQalys(s.p05)}–${fmtQalys(s.p95)}`}
+                  sub={`90%: ${fmtQalys(s.p05)}–${fmtQalys(s.p95)} · mean ${fmtQalys(s.mean)}`}
                 />
                 <Metric
                   label="Blended $/QALY"
@@ -290,11 +291,15 @@ export default function QalyExplorer() {
               </div>
 
               <ChartCard title="Distribution of total QALYs">
-                <Histogram hist={computed!.hist} medianLog={computed!.medianLog} median={s.median} />
+                <Histogram hist={computed!.hist} medianLog={computed!.medianLog} median={s.median} mean={s.mean} />
               </ChartCard>
 
               <ChartCard title="Where the QALYs come from">
                 <ArchetypeBars summary={s} />
+              </ChartCard>
+
+              <ChartCard title="Where the non-US dollars go">
+                <GeoBars />
               </ChartCard>
 
               <ChartCard title="What drives the spread">
@@ -427,7 +432,7 @@ function ChartCard(props: { title: string; children: React.ReactNode }) {
   );
 }
 
-function Histogram(props: { hist: { x: number; count: number }[]; medianLog: number; median: number }) {
+function Histogram(props: { hist: { x: number; count: number }[]; medianLog: number; median: number; mean: number }) {
   const W = 640;
   const H = 200;
   const pad = { l: 8, r: 8, t: 10, b: 28 };
@@ -469,6 +474,24 @@ function Histogram(props: { hist: { x: number; count: number }[]; medianLog: num
         fontFamily={MONO}
       >
         median {fmtQalys(props.median)}
+      </text>
+      <line
+        x1={xOf(Math.log10(props.mean))}
+        x2={xOf(Math.log10(props.mean))}
+        y1={pad.t}
+        y2={H - pad.b}
+        stroke={C.inkMuted}
+        strokeWidth={1.5}
+        strokeDasharray="4 3"
+      />
+      <text
+        x={xOf(Math.log10(props.mean)) + 5}
+        y={pad.t + 28}
+        fontSize={12}
+        fill={C.inkMuted}
+        fontFamily={MONO}
+      >
+        mean {fmtQalys(props.mean)}
       </text>
       {ticks.map((t, i) => (
         <text
@@ -559,6 +582,53 @@ function ArchetypeBars(props: { summary: Summary }) {
         mean total. The headline {fmtQalys(props.summary.median)} is the median —
         lower because the distribution is right-skewed, and only means add
         across categories.
+      </p>
+    </div>
+  );
+}
+
+function GeoBars() {
+  const rows = GEO.regions;
+  const maxV = Math.max(...rows.map((r) => r.usd), 1);
+  const usShare = Math.round((100 * GEO.us_usd) / (GEO.us_usd + GEO.nonus_usd));
+  return (
+    <div>
+      {rows.map((r) => (
+        <div key={r.key} style={{ marginBottom: "0.6rem" }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "baseline",
+              gap: "0.75rem",
+              marginBottom: 3,
+            }}
+          >
+            <span style={{ fontSize: "0.82rem", color: C.ink }}>{r.label}</span>
+            <span style={{ fontSize: "0.8rem", fontFamily: MONO, color: C.ink, whiteSpace: "nowrap", flexShrink: 0 }}>
+              {fmtDollars(r.usd)}
+            </span>
+          </div>
+          <div style={{ background: C.borderSoft, borderRadius: 4, height: 9 }}>
+            <div
+              style={{
+                width: `${(r.usd / maxV) * 100}%`,
+                background: C.amber,
+                height: "100%",
+                borderRadius: 4,
+                minWidth: 2,
+              }}
+            />
+          </div>
+        </div>
+      ))}
+      <p style={{ fontSize: "0.68rem", color: C.inkMuted, margin: "0.5rem 0 0", lineHeight: 1.4 }}>
+        Reported service regions of the {fmtDollars(GEO.nonus_usd)} in disclosed
+        gifts to organizations serving outside the US ({usShare}% of disclosed
+        dollars, {fmtDollars(GEO.us_usd)}, is US-side). Dollars split equally
+        across each organization&apos;s listed locations — descriptive
+        gift-database data, not a model output; only the health slice is priced
+        by geography.
       </p>
     </div>
   );
