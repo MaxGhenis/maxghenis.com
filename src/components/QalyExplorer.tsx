@@ -280,7 +280,7 @@ export default function QalyExplorer() {
                 <Metric
                   label="Blended $/QALY"
                   value={fmtDollars(s.blendedMedian)}
-                  sub={`90%: ${fmtDollars(s.blendedP05)}–${fmtDollars(s.blendedP95)}`}
+                  sub={`90%: ${fmtDollars(s.blendedP05)}–${fmtDollars(s.blendedP95)} · ${fmtDollars(givingB * 1e9)} (2026 $) ÷ QALYs`}
                 />
                 <Metric
                   label="Benefit / cost"
