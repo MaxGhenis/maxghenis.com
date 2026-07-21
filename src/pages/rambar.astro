@@ -37,8 +37,8 @@ import { SITE_TITLE } from '../consts';
 			</header>
 
 			<section class="screenshot">
-				<img src="/rambar/panel-v2.png" alt="Rambar panel showing 22 Claude Code sessions grouped with footprints, rising markers, and a hygiene section listing the same four MCP servers resident 16 times" width="344" loading="eager" />
-				<p class="caption">Live panel: sessions ranked by physical footprint, and the same four MCP servers resident once per session — 2.9 GB of duplicates on this machine.</p>
+				<video src="/rambar/demo.mp4" poster="/rambar/panel-v2.png" autoplay muted loop playsinline width="344" aria-label="Rambar panel: sessions ranked by footprint, then one expands to show its helper processes — MCP servers, pytest, codex — while the panel refreshes live"></video>
+				<p class="caption">Live panel: sessions ranked by physical footprint, one expanded to its helper tree, and the same four MCP servers resident once per session — 2.9 GB of duplicates on this machine.</p>
 			</section>
 
 			<section class="features">
@@ -212,7 +212,8 @@ import { SITE_TITLE } from '../consts';
 		margin-bottom: 3rem;
 	}
 
-	.screenshot img {
+	.screenshot video {
+		display: block;
 		max-width: min(344px, 100%);
 		height: auto;
 		margin-inline: auto;
