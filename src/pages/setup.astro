@@ -124,27 +124,34 @@ fi</pre>
 					<li><strong>Bypass permissions:</strong> enabled for trusted repos</li>
 					<li><strong>Hooks:</strong>
 						<ul>
-							<li><code>enforce-package-managers</code> &mdash; blocks wrong package managers per project</li>
-							<li><code>bounce-plan-gpt</code> &mdash; automatically bounces implementation plans off GPT before exiting plan mode (max 2 rounds)</li>
-							<li><code>auto-commit-wip</code> &mdash; commits work-in-progress on session end</li>
+							<li><code>enforce-package-managers</code> &mdash; blocks wrong package managers per project (bun over npm, uv over pip)</li>
+							<li><code>check-model-downgrade</code> &mdash; detects silent model-fallback serves and injects rerouting instructions</li>
+							<li><code>gitnexus</code> &mdash; enriches code searches with knowledge-graph context (PreToolUse only)</li>
+							<li><code>gmail-draft-guard</code> &mdash; reminds that Gmail drafts render like sent mail after every mail read</li>
+							<li><code>verify-should-work</code> &mdash; blocks ending a turn on an unverified &ldquo;should work&rdquo; claim</li>
+							<li><code>auto-commit-wip</code> &mdash; commits work-in-progress before context compaction (skips the public config repo)</li>
 							<li><code>warn-uncommitted</code> &mdash; alerts on large uncommitted diffs</li>
+							<li><code>ensure-plugin-manifests</code> &mdash; synthesizes missing plugin manifests at session start</li>
 							<li><code>sync-setup-page</code> &mdash; reminds Claude to update this page after dotfiles/config commits</li>
 						</ul>
 					</li>
 				</ul>
 
 				<h3>Skills</h3>
-				<p>13 on-demand skills that load based on conversation context (not preloaded). Examples: Whoop health data, Xero UK accounting, App Store Connect, GCP billing, OpenCollective expenses, Modal/Vercel deployment, OpenMessage patterns, agent teams, Slack patterns, Cloudflare domains.</p>
+				<p>33 on-demand skills (16 standalone + 17 in the max-productivity pack) that load based on conversation context (not preloaded). Examples: Whoop health data, Xero UK accounting, App Store Connect, GCP billing, OpenCollective expenses, Modal/Vercel deployment, OpenMessage patterns, agent teams, Slack patterns, Cloudflare domains.</p>
 
 				<h3>Commands</h3>
-				<p>12 slash commands including <code>/briefing</code> (daily summary), <code>/search-everything</code> (cross-platform search), <code>/expense</code> (OpenCollective filing), <code>/config-tidy</code> (audit and reorganize config layers), and more.</p>
+				<p>22 slash commands including <code>/briefing</code> (daily summary), <code>/search-everything</code> (cross-platform search), <code>/expense</code> (OpenCollective filing), <code>/config-tidy</code> (audit and reorganize config layers), and more.</p>
 
 				<h3>Plugins</h3>
 				<ul>
-					<li><strong>max-productivity</strong> (local) &mdash; custom commands + all 13 skills</li>
-					<li><strong>policyengine-claude</strong> &mdash; PolicyEngine design system and patterns</li>
+					<li><strong>max-productivity</strong> (auto-loaded from the skills dir) &mdash; personal commands + 17 reference skills</li>
+					<li><strong>policyengine-claude</strong> &mdash; PolicyEngine design system and patterns (currently disabled)</li>
 					<li><strong>rules-foundation</strong> &mdash; tax/benefit rules engine conventions</li>
 					<li><strong>frontend-design</strong> &mdash; production-grade UI generation</li>
+					<li><strong>vercel</strong> &mdash; Vercel and Next.js deployment guidance</li>
+					<li><strong>academic-referee</strong> &mdash; multi-referee paper review</li>
+					<li><strong>codex-bridge</strong> &mdash; <code>/codex</code> second-agent bridge</li>
 					<li><strong>plugin-dev</strong> &mdash; Claude Code plugin development</li>
 				</ul>
 			</section>
