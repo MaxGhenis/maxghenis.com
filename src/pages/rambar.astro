@@ -9,7 +9,7 @@ import { SITE_TITLE } from '../consts';
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={`RAMBar | ${SITE_TITLE}`} description="Native macOS menu bar app for monitoring RAM with developer-focused breakdowns for Claude Code, VS Code, Chrome, and Python" image="/og/rambar.png" />
+		<BaseHead title={`Rambar | ${SITE_TITLE}`} description="macOS menu bar app that shows RAM by agent session — every Claude Code or Codex session with the full process tree it spawned, duplicate MCP servers, orphaned helpers, and kernel-pressure alerts that name the mover." image="/og/rambar.png" />
 	</head>
 	<body>
 		<Header />
@@ -23,96 +23,94 @@ import { SITE_TITLE } from '../consts';
 						<line x1="6" y1="18" x2="6.01" y2="18"></line>
 					</svg>
 				</div>
-				<h1>RAMBar</h1>
-				<p class="page-description">Native macOS menu bar app for monitoring RAM with developer-focused breakdowns for Claude Code, VS Code, Chrome, and Python.</p>
+				<h1>Rambar</h1>
+				<p class="page-description">Shows RAM by agent session: every Claude Code or Codex session with the full process tree it spawned — MCP servers, dev servers, shells — whether it runs under the desktop app, a terminal, or headless.</p>
 				<div class="header-actions">
-					<a href="https://github.com/MaxGhenis/rambar/releases/latest/download/RAMBar.dmg" class="download-btn">
-						<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-							<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-							<polyline points="7 10 12 15 17 10"></polyline>
-							<line x1="12" y1="15" x2="12" y2="3"></line>
-						</svg>
-						Download for macOS
-					</a>
+					<code class="brew-line">brew install maxghenis/tap/rambar</code>
 					<a href="https://github.com/MaxGhenis/rambar" class="github-btn">
 						<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
 							<path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
 						</svg>
-						View Source
+						View source
 					</a>
 				</div>
 			</header>
 
+			<section class="screenshot">
+				<img src="/rambar/panel-v2.png" alt="Rambar panel showing 22 Claude Code sessions grouped with footprints, rising markers, and a hygiene section listing the same four MCP servers resident 16 times" width="344" loading="eager" />
+				<p class="caption">Live panel: sessions ranked by physical footprint, and the same four MCP servers resident once per session — 2.9 GB of duplicates on this machine.</p>
+			</section>
+
 			<section class="features">
-				<h2>Features</h2>
+				<h2>What it shows</h2>
 				<div class="feature-grid">
-					<div class="feature-card">
-						<div class="feature-icon">
-							<Icon name="chart" size={32} duotone />
-						</div>
-						<h3>Menu bar widget</h3>
-						<p>Always-visible RAM percentage with color-coded status (green/yellow/red)</p>
-					</div>
 					<div class="feature-card">
 						<div class="feature-icon">
 							<Icon name="robot" size={32} duotone />
 						</div>
-						<h3>Claude Code sessions</h3>
-						<p>Track main sessions vs subagents with project names and memory per session</p>
+						<h3>Sessions, not apps</h3>
+						<p>Each agent session groups its whole descendant tree, so a dev server or MCP server counts against the session that spawned it</p>
 					</div>
 					<div class="feature-card">
 						<div class="feature-icon">
-							<Icon name="laptop" size={32} duotone />
+							<Icon name="chart" size={32} duotone />
 						</div>
-						<h3>VS Code workspaces</h3>
-						<p>Memory breakdown by workspace with crash detection alerts</p>
-					</div>
-					<div class="feature-card">
-						<div class="feature-icon">
-							<Icon name="globe" size={32} duotone />
-						</div>
-						<h3>Chrome tabs</h3>
-						<p>Top memory-consuming tabs to find what's eating your RAM</p>
-					</div>
-					<div class="feature-card">
-						<div class="feature-icon">
-							<Icon name="python" size={32} duotone />
-						</div>
-						<h3>Python processes</h3>
-						<p>Track Jupyter, scripts, and MCP servers with memory usage</p>
+						<h3>Duplicate helpers</h3>
+						<p>The same MCP server resident once per session shows up as one line: name, count, total memory</p>
 					</div>
 					<div class="feature-card">
 						<div class="feature-icon">
 							<Icon name="dashboard" size={32} duotone />
 						</div>
-						<h3>Full dashboard</h3>
-						<p>Expand to retro-futuristic control room view with all details</p>
+						<h3>Orphan reclaim</h3>
+						<p>Helpers that outlive their session get flagged after a grace period, with one click to terminate them</p>
+					</div>
+					<div class="feature-card">
+						<div class="feature-icon">
+							<Icon name="laptop" size={32} duotone />
+						</div>
+						<h3>Kernel pressure, not percent</h3>
+						<p>Alerts fire on macOS memory-pressure events and name the session that grew most in the last 10 minutes</p>
+					</div>
+					<div class="feature-card">
+						<div class="feature-icon">
+							<Icon name="globe" size={32} duotone />
+						</div>
+						<h3>History</h3>
+						<p>A 60-minute sparkline in the panel; a week of 5-second samples in SQLite for the mornings something ate 20 GB overnight</p>
+					</div>
+					<div class="feature-card">
+						<div class="feature-icon">
+							<Icon name="python" size={32} duotone />
+						</div>
+						<h3>Agents read it too</h3>
+						<p>A CLI (<code>rambar top</code>) and an MCP server, so a session can check its own footprint before spawning subagents</p>
 					</div>
 				</div>
 			</section>
 
 			<section class="install">
-				<h2>Installation</h2>
+				<h2>Install</h2>
 				<div class="install-steps">
 					<div class="step">
 						<span class="step-number">1</span>
 						<div class="step-content">
-							<h3>Download</h3>
-							<p>Download <code>RAMBar.dmg</code> from the link above</p>
+							<h3>Install</h3>
+							<p><code>brew install maxghenis/tap/rambar</code>, or build from <a href="https://github.com/MaxGhenis/rambar">source</a></p>
 						</div>
 					</div>
 					<div class="step">
 						<span class="step-number">2</span>
 						<div class="step-content">
-							<h3>Install</h3>
-							<p>Open the DMG and drag RAMBar to Applications</p>
+							<h3>Start the collector</h3>
+							<p><code>rambar install-daemon</code> starts the 5-second sampler as a launchd agent; <code>rambar doctor</code> checks every layer</p>
 						</div>
 					</div>
 					<div class="step">
 						<span class="step-number">3</span>
 						<div class="step-content">
-							<h3>First launch</h3>
-							<p>Right-click → Open to bypass Gatekeeper (unsigned app)</p>
+							<h3>Optional: connect your agents</h3>
+							<p><code>claude mcp add rambar -- rambar mcp</code> gives sessions read access to the ledger</p>
 						</div>
 					</div>
 				</div>
@@ -122,7 +120,7 @@ import { SITE_TITLE } from '../consts';
 				<h2>Requirements</h2>
 				<ul>
 					<li>macOS 14.0 (Sonoma) or later</li>
-					<li>Automation permission for Chrome/VS Code tab enumeration (optional)</li>
+					<li>No special permissions — collection uses same-user system calls; no AppleScript, no screen recording</li>
 				</ul>
 			</section>
 		</main>
@@ -146,19 +144,18 @@ import { SITE_TITLE } from '../consts';
 		width: 80px;
 		height: 80px;
 		margin: 0 auto 1.5rem;
-		background: linear-gradient(135deg, #12121a 0%, #1a1a24 100%);
-		border: 2px solid #00ffd5;
+		background: var(--ink);
 		border-radius: 16px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		box-shadow: 0 0 30px rgba(0, 255, 213, 0.2);
+		box-shadow: var(--shadow-md);
 	}
 
 	.app-icon svg {
 		width: 40px;
 		height: 40px;
-		color: #00ffd5;
+		color: var(--amber);
 	}
 
 	.page-header h1 {
@@ -169,7 +166,7 @@ import { SITE_TITLE } from '../consts';
 	.page-description {
 		font-size: 1.25rem;
 		color: var(--text-secondary);
-		max-width: 600px;
+		max-width: 640px;
 		margin: 0 auto 2rem;
 	}
 
@@ -177,10 +174,20 @@ import { SITE_TITLE } from '../consts';
 		display: flex;
 		gap: 1rem;
 		justify-content: center;
+		align-items: center;
 		flex-wrap: wrap;
 	}
 
-	.download-btn, .github-btn {
+	.brew-line {
+		background: var(--ink);
+		color: var(--amber);
+		padding: 0.875rem 1.5rem;
+		border-radius: var(--radius-lg);
+		font-size: 0.9375rem;
+		font-weight: 500;
+	}
+
+	.github-btn {
 		display: inline-flex;
 		align-items: center;
 		gap: 0.5rem;
@@ -190,28 +197,33 @@ import { SITE_TITLE } from '../consts';
 		font-weight: 600;
 		font-size: 1rem;
 		transition: all var(--duration-fast) var(--ease-out);
-	}
-
-	.download-btn {
-		background: #00ffd5;
-		color: #0a0a0f;
-	}
-
-	.download-btn:hover {
-		background: #00c4a7;
-		transform: translateY(-2px);
-		box-shadow: 0 8px 30px rgba(0, 255, 213, 0.3);
-	}
-
-	.github-btn {
-		background: var(--ink);
-		color: white;
+		background: white;
+		color: var(--ink);
+		border: 1px solid rgba(15, 23, 42, 0.15);
 	}
 
 	.github-btn:hover {
-		background: var(--ink-soft);
 		transform: translateY(-2px);
 		box-shadow: var(--shadow-md);
+	}
+
+	.screenshot {
+		text-align: center;
+		margin-bottom: 3rem;
+	}
+
+	.screenshot img {
+		max-width: min(344px, 100%);
+		height: auto;
+		margin-inline: auto;
+		border-radius: 12px;
+		box-shadow: 0 20px 60px rgba(15, 23, 42, 0.25);
+	}
+
+	.screenshot .caption {
+		margin-top: 1rem;
+		font-size: 0.9375rem;
+		color: var(--text-secondary);
 	}
 
 	section {
@@ -272,6 +284,10 @@ import { SITE_TITLE } from '../consts';
 		line-height: 1.5;
 	}
 
+	.feature-card code {
+		font-size: 0.875em;
+	}
+
 	.install-steps {
 		display: flex;
 		flex-direction: column;
@@ -287,8 +303,8 @@ import { SITE_TITLE } from '../consts';
 	.step-number {
 		width: 36px;
 		height: 36px;
-		background: #00ffd5;
-		color: #0a0a0f;
+		background: var(--amber);
+		color: var(--ink);
 		border-radius: 50%;
 		display: flex;
 		align-items: center;
@@ -307,7 +323,7 @@ import { SITE_TITLE } from '../consts';
 	}
 
 	.step-content code {
-		background: rgba(0, 255, 213, 0.1);
+		background: var(--amber-glow);
 		padding: 0.125rem 0.375rem;
 		border-radius: 4px;
 		font-size: 0.875rem;
@@ -329,7 +345,7 @@ import { SITE_TITLE } from '../consts';
 		content: "✓";
 		position: absolute;
 		left: 0;
-		color: #00ffd5;
+		color: var(--amber-dark);
 		font-weight: bold;
 	}
 
