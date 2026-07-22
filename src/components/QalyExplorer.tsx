@@ -13,6 +13,7 @@ import {
   type Summary,
 } from "../lib/mackenzie-qaly";
 import GEO from "../data/mackenzie-qaly-geo.json";
+import V11 from "../data/mackenzie-qaly-allocation-v11.json";
 
 // Design tokens (mirrors src/styles/global.css :root).
 const C = {
@@ -29,6 +30,13 @@ const C = {
 };
 
 const DEFAULT_SHARES = ARCHETYPES.map((a) => a.allocation_share);
+const V11_SHARES = ARCHETYPE_KEYS.map(
+  (k) => (V11.allocation_share as Record<string, number>)[k],
+);
+const VERSIONS = [
+  { label: "v1.0", shares: DEFAULT_SHARES, note: "published July 13" },
+  { label: "v1.1", shares: V11_SHARES, note: "geo-audited July 22" },
+];
 const SERIF = "'Playfair Display', Georgia, serif";
 const MONO = "'JetBrains Mono', monospace";
 
@@ -52,6 +60,7 @@ export default function QalyExplorer() {
   const [discount, setDiscount] = useState(DEFAULT_DISCOUNT);
   const [shares, setShares] = useState<number[]>(DEFAULT_SHARES);
   const [precision, setPrecision] = useState(1);
+  const [version, setVersion] = useState(0);
   const [computed, setComputed] = useState<ComputeOutput | null>(null);
   const [busy, setBusy] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -88,7 +97,7 @@ export default function QalyExplorer() {
     setRealization(DEFAULT_REALIZATION);
     setGivingB(DEFAULT_GIVING_B);
     setDiscount(DEFAULT_DISCOUNT);
-    setShares(DEFAULT_SHARES);
+    setShares(VERSIONS[version].shares);
   }
 
   const s = computed?.summary;
@@ -136,6 +145,55 @@ export default function QalyExplorer() {
             Drag to see the estimate move. The model reruns in your browser.
           </p>
 
+          <div
+            style={{
+              display: "flex",
+              alignItems: "baseline",
+              justifyContent: "space-between",
+              gap: "0.5rem",
+              marginBottom: "0.35rem",
+            }}
+          >
+            <span style={{ fontSize: "0.85rem", fontWeight: 600, color: C.inkSoft }}>
+              Model version
+            </span>
+            <div style={{ display: "flex", gap: 4 }}>
+              {VERSIONS.map((v, i) => (
+                <button
+                  key={v.label}
+                  onClick={() => {
+                    setVersion(i);
+                    setShares(v.shares);
+                  }}
+                  style={{
+                    fontSize: "0.7rem",
+                    padding: "0.25rem 0.5rem",
+                    borderRadius: 6,
+                    border: `1px solid ${i === version ? C.amberDark : C.border}`,
+                    background: i === version ? C.amberGlow : "transparent",
+                    color: i === version ? C.amberDark : C.inkMuted,
+                    cursor: "pointer",
+                  }}
+                  title={v.note}
+                >
+                  {v.label}
+                </button>
+              ))}
+            </div>
+          </div>
+          <p style={{ fontSize: "0.68rem", color: C.inkMuted, margin: "0 0 1rem", lineHeight: 1.4 }}>
+            v1.0 is the published July 13 allocation. v1.1 recenters it on the{" "}
+            <a
+              href="https://github.com/MaxGhenis/mackenzie-scott-qaly/blob/main/data/yieldgiving/geo_audit/geo_audit.jsonl"
+              target="_blank"
+              rel="noopener"
+              style={{ color: C.inkMuted }}
+            >
+              geo audit
+            </a>{" "}
+            of the 50 largest &ldquo;global&rdquo;-listed organizations
+            (two-model cross-check, per-organization sources).
+          </p>
           <Slider
             label="Evidence stance"
             value={credulity}
