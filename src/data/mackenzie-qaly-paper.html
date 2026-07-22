@@ -1,114 +1,14 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
-<meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.36">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-<meta name="author" content="Max Ghenis">
-
-<title>MacKenzie Scott’s giving, in QALYs</title>
-<style>
-/* Default styles provided by pandoc.
-** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-*/
-code{white-space: pre-wrap;}
-span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
-div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-ul.task-list{list-style: none;}
-ul.task-list li input[type="checkbox"] {
-  width: 0.8em;
-  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
-  vertical-align: middle;
-}
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
-
-
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-170b94ad9e322df11de454cd5eb05b1b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
-<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
-
-
-<meta name="citation_title" content="MacKenzie Scott&amp;amp;#039;s giving, in QALYs">
-<meta name="citation_abstract" content="MacKenzie Scott has disclosed $26.39 billion in gifts to more than 2,500 organizations since 2019 — her 2025 giving alone was about a third of the value of that year&amp;amp;#039;s U.S. megagifts — yet almost none of it is denominated in outcomes. This paper prices the entire portfolio in quality-adjusted life-years. A Monte Carlo model allocates dollars across 14 intervention archetypes using Scott's own gift-level database, imputes the undisclosed third from recipients' pre-gift IRS 990 revenue, assigns each archetype a cost-per-QALY anchor from published causal estimates, and shrinks every effect toward zero in proportion to the causal credibility of its evidence. The best-guess estimate is a median of roughly 202,000 QALYs (90% interval 94,000–419,000), a blended $150,000 per QALY, and a median benefit–cost ratio of 4.9 under the valuation distribution HHS uses for regulatory analysis. Three findings follow. First, estimated impact is geographically concentrated: the 4.8% of dollars funding health and development delivered outside the United States, priced at global-health anchors, accounts for 69% of estimated health impact. Second, gift size scales with recipient size to only the 0.41 power — a 10× larger organization receives about 2.5× more money. Third, the answer is dominated by evidence philosophy rather than arithmetic: restricting credit almost entirely to randomized evidence collapses the median to ~9,000 QALYs while taking every study at near face value raises it to ~415,000 — a 45× range, larger than the spread from any single distributional parameter tested. All parameters, code, data snapshots, and an AI-audit trail are public, and the model runs interactively in the browser.
-">
-<meta name="citation_author" content="Max Ghenis">
-<meta name="citation_language" content="en">
-<meta name="citation_reference" content="citation_title=Wealth, health, and child development: Evidence from administrative data on Swedish lottery players;,citation_author=David Cesarini;,citation_author=Erik Lindqvist;,citation_author=Robert Östling;,citation_author=Björn Wallace;,citation_publication_date=2016;,citation_cover_date=2016;,citation_year=2016;,citation_issue=2;,citation_doi=10.1093/qje/qjw001;,citation_volume=131;,citation_journal_title=Quarterly Journal of Economics;">
-<meta name="citation_reference" content="citation_title=Medicaid and mortality: New evidence from linked survey and administrative data;,citation_author=Sarah Miller;,citation_author=Norman Johnson;,citation_author=Laura R. Wherry;,citation_publication_date=2021;,citation_cover_date=2021;,citation_year=2021;,citation_issue=3;,citation_doi=10.1093/qje/qjab004;,citation_volume=136;,citation_journal_title=Quarterly Journal of Economics;">
-<meta name="citation_reference" content="citation_title=State Medicaid expansions and mortality, revisited: A cost-benefit analysis;,citation_author=Benjamin D. Sommers;,citation_publication_date=2017;,citation_cover_date=2017;,citation_year=2017;,citation_issue=3;,citation_doi=10.1162/ajhe_a_00080;,citation_volume=3;,citation_journal_title=American Journal of Health Economics;">
-<meta name="citation_reference" content="citation_title=The War on Poverty’s experiment in public medicine: Community health centers and the mortality of older Americans;,citation_author=Martha J. Bailey;,citation_author=Andrew Goodman-Bacon;,citation_publication_date=2015;,citation_cover_date=2015;,citation_year=2015;,citation_issue=3;,citation_doi=10.1257/aer.20120070;,citation_volume=105;,citation_journal_title=American Economic Review;">
-<meta name="citation_reference" content="citation_title=The Oregon health insurance experiment: Evidence from the first year;,citation_author=Amy Finkelstein;,citation_author=Sarah Taubman;,citation_author=Bill Wright;,citation_author=Mira Bernstein;,citation_author=Jonathan Gruber;,citation_author=Joseph P. Newhouse;,citation_author=Heidi Allen;,citation_author=Katherine Baicker;,citation_author=Oregon Health Study Group;,citation_publication_date=2012;,citation_cover_date=2012;,citation_year=2012;,citation_issue=3;,citation_doi=10.1093/qje/qjs020;,citation_volume=127;,citation_journal_title=Quarterly Journal of Economics;">
-<meta name="citation_reference" content="citation_title=The long-run impact of cash transfers to poor families;,citation_author=Anna Aizer;,citation_author=Shari Eli;,citation_author=Joseph Ferrie;,citation_author=Adriana Lleras-Muney;,citation_publication_date=2016;,citation_cover_date=2016;,citation_year=2016;,citation_issue=4;,citation_doi=10.1257/aer.20140529;,citation_volume=106;,citation_journal_title=American Economic Review;">
-<meta name="citation_reference" content="citation_title=Impact estimates;,citation_author=GiveWell;,citation_publication_date=2025;,citation_cover_date=2025;,citation_year=2025;,citation_publisher=https://www.givewell.org/impact-estimates;">
-<meta name="citation_reference" content="citation_title=Re-evaluating the impact of unconditional cash transfers;,citation_author=GiveWell;,citation_publication_date=2024;,citation_cover_date=2024;,citation_year=2024;,citation_publisher=https://blog.givewell.org/2024/11/12/re-evaluating-the-impact-of-unconditional-cash-transfers/;">
-<meta name="citation_reference" content="citation_title=HHS standard values for regulatory analysis, 2026;,citation_author=Aaron Kearsley;,citation_publication_date=2026;,citation_cover_date=2026;,citation_year=2026;,citation_fulltext_html_url=https://aspe.hhs.gov/reports/standard-ria-values;,citation_technical_report_institution=ASPE;">
-<meta name="citation_reference" content="citation_title=Emerging impacts: The effects of MacKenzie Scott’s large, unrestricted gifts: Results from year two of a three-year study;,citation_author=Ellie Buteau;,citation_author=Elisha Smith Arrillaga;,citation_author=Christina Im;,citation_publication_date=2023;,citation_cover_date=2023;,citation_year=2023;,citation_fulltext_html_url=https://cep.org/wp-content/uploads/2023/11/BigGiftsStudy_Report_Y2_FNL.pdf;,citation_technical_report_institution=Center for Effective Philanthropy;">
-<meta name="citation_reference" content="citation_title=Gifts database;,citation_author=Yield Giving;,citation_publication_date=2026;,citation_cover_date=2026;,citation_year=2026;,citation_publisher=https://yieldgiving.com/gifts;">
-<meta name="citation_reference" content="citation_title=MacKenzie Scott announced another $7.1 billion in 2025 charitable donations—she’s now given away $26.3 billion since 2019;,citation_author=Jr. Huddleston;,citation_publication_date=2025;,citation_cover_date=2025;,citation_year=2025;,citation_publisher=https://www.cnbc.com/2025/12/13/mackenzie-scott-revealed-her-total-charitable-donations-for-2025.html;">
-<meta name="citation_reference" content="citation_title=Giving USA 2026: The annual report on philanthropy for the year 2025;,citation_author=Indiana University Lilly Family School of Philanthropy;,citation_publication_date=2026;,citation_cover_date=2026;,citation_year=2026;,citation_technical_report_institution=Giving USA Foundation;">
-<meta name="citation_reference" content="citation_title=Nonprofit explorer;,citation_author=ProPublica;,citation_publication_date=2026;,citation_cover_date=2026;,citation_year=2026;,citation_publisher=https://projects.propublica.org/nonprofits/;">
-<meta name="citation_reference" content="citation_title=The moral imperative toward cost-effectiveness in global health;,citation_author=Toby Ord;,citation_publication_date=2013;,citation_cover_date=2013;,citation_year=2013;,citation_fulltext_html_url=https://www.cgdev.org/publication/moral-imperative-toward-cost-effectiveness-global-health;,citation_inbook_title=Essays;">
-<meta name="citation_reference" content="citation_title=Donors gave U.S. Charities $617 billion in 2025, according to the new giving USA report;,citation_author=Rasheeda Childress;,citation_publication_date=2026;,citation_cover_date=2026;,citation_year=2026;,citation_publisher=https://apnews.com/article/8363b76bc8cf854f6865c31129e8a4b1;">
-<meta name="citation_reference" content="citation_title=Our approach: Metrics and benefit–cost analysis;,citation_author=Robin Hood Foundation;,citation_publication_date=2023;,citation_cover_date=2023;,citation_year=2023;,citation_publisher=https://robinhood.org/our-work/our-approach/;">
-<meta name="citation_reference" content="citation_title=2025 investment report;,citation_author=Constellation Fund;,citation_publication_date=2026;,citation_cover_date=2026;,citation_year=2026;,citation_publisher=https://constellationfund.org/impact-news-insights/investment-report-2025/;">
-<meta name="citation_reference" content="citation_title=Donors can spend more money, better, with cost evidence;,citation_author=Center for Effective Global Action;,citation_publication_date=2022;,citation_cover_date=2022;,citation_year=2022;,citation_publisher=https://cega.berkeley.edu/article/donors-can-spend-more-money-better-with-cost-evidence/;">
-</head>
-
-<body class="quarto-light">
-<div style="border-bottom:1px solid #e2e8f0;background:#fdfcf9">
-  <nav style="max-width:900px;margin:0 auto;padding:0.7rem 1rem;display:flex;gap:1.25rem;align-items:baseline;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:0.9rem">
-    <a href="/mackenzie-scott-qaly" style="color:#475569;text-decoration:none">Interactive</a>
-    <span style="color:#b45309;font-weight:600;border-bottom:2px solid #b45309;padding-bottom:2px">Working paper</span>
-    <a href="/mackenzie-scott-qaly/paper/index.pdf" style="color:#475569;text-decoration:none">PDF</a>
-    <a href="https://github.com/MaxGhenis/mackenzie-scott-qaly" style="color:#475569;text-decoration:none;margin-left:auto">Code &amp; data</a>
-  </nav>
-</div>
-
 <header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">MacKenzie Scott’s giving, in QALYs</h1>
-            <p class="subtitle lead">An evidence-weighted, auditable cost-effectiveness model of a $26 billion portfolio</p>
+
+
           </div>
 
-    
+
     <div class="quarto-title-meta-container">
       <div class="quarto-title-meta-column-start">
-        
+
         <div class="quarto-title-meta">
 
                 <div>
@@ -117,9 +17,9 @@ div.csl-indent {
                         <p><a href="https://maxghenis.com">Max Ghenis</a> <a href="mailto:max@maxghenis.com" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
                       </div>
           </div>
-                
-          
-                
+
+
+
               </div>
       </div>
       <div class="quarto-title-meta-column-end quarto-other-formats-target">
@@ -136,46 +36,12 @@ div.csl-indent {
 
     <div class="quarto-other-links-text-target">
     </div>  </div>
-</header><div id="quarto-content" class="page-columns page-rows-contents page-layout-article toc-left">
-<div id="quarto-sidebar-toc-left" class="sidebar toc-left">
-  <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a>
-  <ul class="collapse">
-  <li><a href="#the-ledger" id="toc-the-ledger" class="nav-link" data-scroll-target="#the-ledger">The ledger</a></li>
-  <li><a href="#allocation-across-causes" id="toc-allocation-across-causes" class="nav-link" data-scroll-target="#allocation-across-causes">Allocation across causes</a></li>
-  <li><a href="#delivery-geography" id="toc-delivery-geography" class="nav-link" data-scroll-target="#delivery-geography">Delivery geography</a></li>
-  </ul></li>
-  <li><a href="#model" id="toc-model" class="nav-link" data-scroll-target="#model">Model</a></li>
-  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a>
-  <ul class="collapse">
-  <li><a href="#where-it-comes-from" id="toc-where-it-comes-from" class="nav-link" data-scroll-target="#where-it-comes-from">Where it comes from</a></li>
-  <li><a href="#against-the-global-health-frontier" id="toc-against-the-global-health-frontier" class="nav-link" data-scroll-target="#against-the-global-health-frontier">Against the global-health frontier</a></li>
-  </ul></li>
-  <li><a href="#robustness" id="toc-robustness" class="nav-link" data-scroll-target="#robustness">Robustness</a>
-  <ul class="collapse">
-  <li><a href="#evidence-philosophy-dominates-everything-else" id="toc-evidence-philosophy-dominates-everything-else" class="nav-link" data-scroll-target="#evidence-philosophy-dominates-everything-else">Evidence philosophy dominates everything else</a></li>
-  <li><a href="#the-audit-moved-the-headline-by-less-than-2" id="toc-the-audit-moved-the-headline-by-less-than-2" class="nav-link" data-scroll-target="#the-audit-moved-the-headline-by-less-than-2">The audit moved the headline by less than 2%</a></li>
-  <li><a href="#corrections-history" id="toc-corrections-history" class="nav-link" data-scroll-target="#corrections-history">Corrections history</a></li>
-  </ul></li>
-  <li><a href="#construction-and-auditability" id="toc-construction-and-auditability" class="nav-link" data-scroll-target="#construction-and-auditability">Construction and auditability</a></li>
-  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations">Limitations</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
-  <li><a href="#acknowledgments" id="toc-acknowledgments" class="nav-link" data-scroll-target="#acknowledgments">Acknowledgments</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
-  </ul>
-<div class="quarto-alternate-notebooks"><h2>Notebooks</h2><ul><li><a href="index-preview.html"><i class="bi bi-journal-code"></i>Article Notebook</a></li></ul></div></nav>
-</div>
-<div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-</div>
+</header>
 <main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
-  
+
 
 
 <section id="introduction" class="level1">
@@ -214,7 +80,7 @@ div.csl-indent {
 <div id="fig-dist" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-dist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="results/figure.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1: Distribution of total QALYs across 100,000 Monte Carlo draws at the best-guess defaults. The dashed line marks the mean; the solid line the median."><img src="results/figure.png" class="img-fluid figure-img"></a>
+<a href="/mackenzie-scott-qaly/paper-assets/results/figure.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1: Distribution of total QALYs across 100,000 Monte Carlo draws at the best-guess defaults. The dashed line marks the mean; the solid line the median."><img src="/mackenzie-scott-qaly/paper-assets/results/figure.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: Distribution of total QALYs across 100,000 Monte Carlo draws at the best-guess defaults. The dashed line marks the mean; the solid line the median.
@@ -567,7 +433,7 @@ Table&nbsp;2: A deterministic post-estimation decomposition of mean archetype QA
 <div id="fig-stance" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-stance-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="index_files/figure-html/fig-stance-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;2: Median total QALYs across the evidence-stance range, 100,000 draws per point, seed 0. The stance interpolates each tier’s credibility mean piecewise-linearly from a near-RCT-only floor (non-randomized tiers at mean 0.01; randomized tier at its drafted mean) through the drafted best-guess tiers (0.5) to near face value (all means 0.999). A scenario path, not a bound; tier concentrations are held fixed."><img src="index_files/figure-html/fig-stance-output-1.png" width="657" height="335" class="figure-img"></a>
+<a href="/mackenzie-scott-qaly/paper-assets/index_files/figure-html/fig-stance-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;2: Median total QALYs across the evidence-stance range, 100,000 draws per point, seed 0. The stance interpolates each tier’s credibility mean piecewise-linearly from a near-RCT-only floor (non-randomized tiers at mean 0.01; randomized tier at its drafted mean) through the drafted best-guess tiers (0.5) to near face value (all means 0.999). A scenario path, not a bound; tier concentrations are held fixed."><img src="/mackenzie-scott-qaly/paper-assets/index_files/figure-html/fig-stance-output-1.png" width="657" height="335" class="figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-stance-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2: Median total QALYs across the evidence-stance range, 100,000 draws per point, seed 0. The stance interpolates each tier’s credibility mean piecewise-linearly from a near-RCT-only floor (non-randomized tiers at mean 0.01; randomized tier at its drafted mean) through the drafted best-guess tiers (0.5) to near face value (all means 0.999). A scenario path, not a bound; tier concentrations are held fixed.
@@ -580,7 +446,7 @@ Figure&nbsp;2: Median total QALYs across the evidence-stance range, 100,000 draw
 <div id="fig-tornado" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-tornado-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="results/sensitivity.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;3: What drives the spread: Spearman rank correlations between each input draw and total QALYs at the best-guess defaults."><img src="results/sensitivity.png" class="img-fluid figure-img"></a>
+<a href="/mackenzie-scott-qaly/paper-assets/results/sensitivity.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;3: What drives the spread: Spearman rank correlations between each input draw and total QALYs at the best-guess defaults."><img src="/mackenzie-scott-qaly/paper-assets/results/sensitivity.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tornado-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3: What drives the spread: Spearman rank correlations between each input draw and total QALYs at the best-guess defaults.
@@ -715,442 +581,3 @@ Yield Giving. 2026. <em>Gifts Database</em>. <a href="https://yieldgiving.com/gi
 </section>
 
 </main>
-<!-- /main column -->
-<script id="quarto-html-after-body" type="application/javascript">
-  window.document.addEventListener("DOMContentLoaded", function (event) {
-    const icon = "";
-    const anchorJS = new window.AnchorJS();
-    anchorJS.options = {
-      placement: 'right',
-      icon: icon
-    };
-    anchorJS.add('.anchored');
-    const isCodeAnnotation = (el) => {
-      for (const clz of el.classList) {
-        if (clz.startsWith('code-annotation-')) {                     
-          return true;
-        }
-      }
-      return false;
-    }
-    const onCopySuccess = function(e) {
-      // button target
-      const button = e.trigger;
-      // don't keep focus
-      button.blur();
-      // flash "checked"
-      button.classList.add('code-copy-button-checked');
-      var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
-      let tooltip;
-      if (window.bootstrap) {
-        button.setAttribute("data-bs-toggle", "tooltip");
-        button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
-        tooltip = new bootstrap.Tooltip(button, 
-          { trigger: "manual", 
-            customClass: "code-copy-button-tooltip",
-            offset: [0, -8]});
-        tooltip.show();    
-      }
-      setTimeout(function() {
-        if (tooltip) {
-          tooltip.hide();
-          button.removeAttribute("data-bs-title");
-          button.removeAttribute("data-bs-toggle");
-          button.removeAttribute("data-bs-placement");
-        }
-        button.setAttribute("title", currentTitle);
-        button.classList.remove('code-copy-button-checked');
-      }, 1000);
-      // clear code selection
-      e.clearSelection();
-    }
-    const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-      text: getTextToCopy
-    });
-    clipboard.on('success', onCopySuccess);
-    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-        text: getTextToCopy,
-        container: window.document.getElementById('quarto-embedded-source-code-modal')
-      });
-      clipboardModal.on('success', onCopySuccess);
-    }
-      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
-      var isInternal = (href) => {
-          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-      }
-      // Inspect non-navigation links and adorn them if external
-     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-      for (var i=0; i<links.length; i++) {
-        const link = links[i];
-        if (!isInternal(link.href)) {
-          // undo the damage that might have been done by quarto-nav.js in the case of
-          // links that we want to consider external
-          if (link.dataset.originalHref !== undefined) {
-            link.href = link.dataset.originalHref;
-          }
-        }
-      }
-    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-      const config = {
-        allowHTML: true,
-        maxWidth: 500,
-        delay: 100,
-        arrow: false,
-        appendTo: function(el) {
-            return el.parentElement;
-        },
-        interactive: true,
-        interactiveBorder: 10,
-        theme: 'quarto',
-        placement: 'bottom-start',
-      };
-      if (contentFn) {
-        config.content = contentFn;
-      }
-      if (onTriggerFn) {
-        config.onTrigger = onTriggerFn;
-      }
-      if (onUntriggerFn) {
-        config.onUntrigger = onUntriggerFn;
-      }
-      window.tippy(el, config); 
-    }
-    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-    for (var i=0; i<noterefs.length; i++) {
-      const ref = noterefs[i];
-      tippyHover(ref, function() {
-        // use id or data attribute instead here
-        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-        try { href = new URL(href).hash; } catch {}
-        const id = href.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note) {
-          return note.innerHTML;
-        } else {
-          return "";
-        }
-      });
-    }
-    const xrefs = window.document.querySelectorAll('a.quarto-xref');
-    const processXRef = (id, note) => {
-      // Strip column container classes
-      const stripColumnClz = (el) => {
-        el.classList.remove("page-full", "page-columns");
-        if (el.children) {
-          for (const child of el.children) {
-            stripColumnClz(child);
-          }
-        }
-      }
-      stripColumnClz(note)
-      if (id === null || id.startsWith('sec-')) {
-        // Special case sections, only their first couple elements
-        const container = document.createElement("div");
-        if (note.children && note.children.length > 2) {
-          container.appendChild(note.children[0].cloneNode(true));
-          for (let i = 1; i < note.children.length; i++) {
-            const child = note.children[i];
-            if (child.tagName === "P" && child.innerText === "") {
-              continue;
-            } else {
-              container.appendChild(child.cloneNode(true));
-              break;
-            }
-          }
-          if (window.Quarto?.typesetMath) {
-            window.Quarto.typesetMath(container);
-          }
-          return container.innerHTML
-        } else {
-          if (window.Quarto?.typesetMath) {
-            window.Quarto.typesetMath(note);
-          }
-          return note.innerHTML;
-        }
-      } else {
-        // Remove any anchor links if they are present
-        const anchorLink = note.querySelector('a.anchorjs-link');
-        if (anchorLink) {
-          anchorLink.remove();
-        }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
-        }
-        if (note.classList.contains("callout")) {
-          return note.outerHTML;
-        } else {
-          return note.innerHTML;
-        }
-      }
-    }
-    for (var i=0; i<xrefs.length; i++) {
-      const xref = xrefs[i];
-      tippyHover(xref, undefined, function(instance) {
-        instance.disable();
-        let url = xref.getAttribute('href');
-        let hash = undefined; 
-        if (url.startsWith('#')) {
-          hash = url;
-        } else {
-          try { hash = new URL(url).hash; } catch {}
-        }
-        if (hash) {
-          const id = hash.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          if (note !== null) {
-            try {
-              const html = processXRef(id, note.cloneNode(true));
-              instance.setContent(html);
-            } finally {
-              instance.enable();
-              instance.show();
-            }
-          } else {
-            // See if we can fetch this
-            fetch(url.split('#')[0])
-            .then(res => res.text())
-            .then(html => {
-              const parser = new DOMParser();
-              const htmlDoc = parser.parseFromString(html, "text/html");
-              const note = htmlDoc.getElementById(id);
-              if (note !== null) {
-                const html = processXRef(id, note);
-                instance.setContent(html);
-              } 
-            }).finally(() => {
-              instance.enable();
-              instance.show();
-            });
-          }
-        } else {
-          // See if we can fetch a full url (with no hash to target)
-          // This is a special case and we should probably do some content thinning / targeting
-          fetch(url)
-          .then(res => res.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.querySelector('main.content');
-            if (note !== null) {
-              // This should only happen for chapter cross references
-              // (since there is no id in the URL)
-              // remove the first header
-              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-                note.children[0].remove();
-              }
-              const html = processXRef(null, note);
-              instance.setContent(html);
-            } 
-          }).finally(() => {
-            instance.enable();
-            instance.show();
-          });
-        }
-      }, function(instance) {
-      });
-    }
-        let selectedAnnoteEl;
-        const selectorForAnnotation = ( cell, annotation) => {
-          let cellAttr = 'data-code-cell="' + cell + '"';
-          let lineAttr = 'data-code-annotation="' +  annotation + '"';
-          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-          return selector;
-        }
-        const selectCodeLines = (annoteEl) => {
-          const doc = window.document;
-          const targetCell = annoteEl.getAttribute("data-target-cell");
-          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-          const lineIds = lines.map((line) => {
-            return targetCell + "-" + line;
-          })
-          let top = null;
-          let height = null;
-          let parent = null;
-          if (lineIds.length > 0) {
-              //compute the position of the single el (top and bottom and make a div)
-              const el = window.document.getElementById(lineIds[0]);
-              top = el.offsetTop;
-              height = el.offsetHeight;
-              parent = el.parentElement.parentElement;
-            if (lineIds.length > 1) {
-              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-              height = bottom - top;
-            }
-            if (top !== null && height !== null && parent !== null) {
-              // cook up a div (if necessary) and position it 
-              let div = window.document.getElementById("code-annotation-line-highlight");
-              if (div === null) {
-                div = window.document.createElement("div");
-                div.setAttribute("id", "code-annotation-line-highlight");
-                div.style.position = 'absolute';
-                parent.appendChild(div);
-              }
-              div.style.top = top - 2 + "px";
-              div.style.height = height + 4 + "px";
-              div.style.left = 0;
-              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-              if (gutterDiv === null) {
-                gutterDiv = window.document.createElement("div");
-                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-                gutterDiv.style.position = 'absolute';
-                const codeCell = window.document.getElementById(targetCell);
-                const gutter = codeCell.querySelector('.code-annotation-gutter');
-                gutter.appendChild(gutterDiv);
-              }
-              gutterDiv.style.top = top - 2 + "px";
-              gutterDiv.style.height = height + 4 + "px";
-            }
-            selectedAnnoteEl = annoteEl;
-          }
-        };
-        const unselectCodeLines = () => {
-          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-          elementsIds.forEach((elId) => {
-            const div = window.document.getElementById(elId);
-            if (div) {
-              div.remove();
-            }
-          });
-          selectedAnnoteEl = undefined;
-        };
-          // Handle positioning of the toggle
-      window.addEventListener(
-        "resize",
-        throttle(() => {
-          elRect = undefined;
-          if (selectedAnnoteEl) {
-            selectCodeLines(selectedAnnoteEl);
-          }
-        }, 10)
-      );
-      function throttle(fn, ms) {
-      let throttle = false;
-      let timer;
-        return (...args) => {
-          if(!throttle) { // first call gets through
-              fn.apply(this, args);
-              throttle = true;
-          } else { // all the others get throttled
-              if(timer) clearTimeout(timer); // cancel #2
-              timer = setTimeout(() => {
-                fn.apply(this, args);
-                timer = throttle = false;
-              }, ms);
-          }
-        };
-      }
-        // Attach click handler to the DT
-        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-        for (const annoteDlNode of annoteDls) {
-          annoteDlNode.addEventListener('click', (event) => {
-            const clickedEl = event.target;
-            if (clickedEl !== selectedAnnoteEl) {
-              unselectCodeLines();
-              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-              if (activeEl) {
-                activeEl.classList.remove('code-annotation-active');
-              }
-              selectCodeLines(clickedEl);
-              clickedEl.classList.add('code-annotation-active');
-            } else {
-              // Unselect the line
-              unselectCodeLines();
-              clickedEl.classList.remove('code-annotation-active');
-            }
-          });
-        }
-    const findCites = (el) => {
-      const parentEl = el.parentElement;
-      if (parentEl) {
-        const cites = parentEl.dataset.cites;
-        if (cites) {
-          return {
-            el,
-            cites: cites.split(' ')
-          };
-        } else {
-          return findCites(el.parentElement)
-        }
-      } else {
-        return undefined;
-      }
-    };
-    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-    for (var i=0; i<bibliorefs.length; i++) {
-      const ref = bibliorefs[i];
-      const citeInfo = findCites(ref);
-      if (citeInfo) {
-        tippyHover(citeInfo.el, function() {
-          var popup = window.document.createElement('div');
-          citeInfo.cites.forEach(function(cite) {
-            var citeDiv = window.document.createElement('div');
-            citeDiv.classList.add('hanging-indent');
-            citeDiv.classList.add('csl-entry');
-            var biblioDiv = window.document.getElementById('ref-' + cite);
-            if (biblioDiv) {
-              citeDiv.innerHTML = biblioDiv.innerHTML;
-            }
-            popup.appendChild(citeDiv);
-          });
-          return popup.innerHTML;
-        });
-      }
-    }
-  });
-  </script>
-</div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
-(function() {
-  let previousOnload = window.onload;
-  window.onload = () => {
-    if (previousOnload) {
-      previousOnload();
-    }
-    lightboxQuarto.on('slide_before_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      const href = trigger.getAttribute('href');
-      if (href !== null) {
-        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
-        if (imgEl !== null) {
-          const srcAttr = imgEl.getAttribute("src");
-          if (srcAttr && srcAttr.startsWith("data:")) {
-            slideConfig.href = srcAttr;
-          }
-        }
-      } 
-    });
-  
-    lightboxQuarto.on('slide_after_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(slideNode);
-      }
-    });
-  
-  };
-  
-})();
-          </script>
-
-
-
-
-</body></html>
