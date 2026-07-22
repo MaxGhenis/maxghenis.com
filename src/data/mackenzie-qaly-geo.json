@@ -60,7 +60,7 @@
    {
     "key": "us_national",
     "label": "US \u2014 national / unspecified",
-    "usd": 7188503390,
+    "usd": 7174168708,
     "unspecified": true
    },
    {
@@ -90,25 +90,25 @@
    {
     "key": "sub-_saharan_africa",
     "label": "Sub-Saharan Africa",
-    "usd": 1637510804,
+    "usd": 1602579545,
     "unspecified": false
    },
    {
     "key": "global",
     "label": "Global (multi-region)",
-    "usd": 1062528576,
+    "usd": 1220923454,
     "unspecified": true
    },
    {
     "key": "latin_america&_caribbean",
     "label": "Latin America & Caribbean",
-    "usd": 1018445970,
+    "usd": 983695793,
     "unspecified": false
    },
    {
     "key": "south_asia",
     "label": "South Asia",
-    "usd": 959922440,
+    "usd": 934533100,
     "unspecified": false
    },
    {
@@ -120,19 +120,19 @@
    {
     "key": "east_asia&_pacific",
     "label": "East Asia & Pacific",
-    "usd": 333278365,
+    "usd": 303852026,
     "unspecified": false
    },
    {
     "key": "europe&_central_asia",
     "label": "Europe & Central Asia",
-    "usd": 264647341,
+    "usd": 247064105,
     "unspecified": false
    },
    {
     "key": "middle_east&_north_africa",
     "label": "Middle East & North Africa",
-    "usd": 130472452,
+    "usd": 128492608,
     "unspecified": false
    },
    {

@@ -630,7 +630,7 @@ function GeoBars() {
         the ~$8.9B imputed from pre-gift IRS 990 revenue — split equally across
         each organization&apos;s reported service locations. The 50 largest
         &ldquo;global&rdquo;-listed organizations (87% of that bucket&apos;s
-        dollars) are redistributed per their own published geographies;
+        dollars) are redistributed per their own published geographies, cross-checked by two independent model reviews;
         unattributable shares stay Global. Bars partition the dollars, not the
         map; muted bars ({fmtDollars(unspec)}) are reporting granularity, not
         places. Only the health slice is priced by geography in the model.
