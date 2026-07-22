@@ -613,8 +613,29 @@ function BreakdownTable(props: { summary: Summary }) {
   const meanTotal = Math.max(s.mean, 1);
   const givingUsd = DEFAULT_GIVING_B * 1e9;
   const pct = (x: number) => (x >= 0.005 ? `${Math.round(x * 100)}%` : "<1%");
-  const noteStyle = { fontSize: "0.68rem", color: C.inkMuted, margin: "0.5rem 0 0", lineHeight: 1.4 } as const;
+  const noteStyle = { fontSize: "0.68rem", color: C.inkMuted, margin: "0.6rem 0 0", lineHeight: 1.4 } as const;
   const gh = s.perArchetype.find((r) => r.key === "global_health");
+
+  const th = (label: string, align: "left" | "right" = "right") =>
+    (
+      <th
+        key={label}
+        style={{
+          textAlign: align,
+          fontSize: "0.68rem",
+          fontWeight: 600,
+          color: C.inkMuted,
+          padding: "0 0 0.4rem" + (align === "right" ? " 0.9rem" : ""),
+          borderBottom: `1px solid ${C.border}`,
+          whiteSpace: "nowrap",
+        }}
+      >
+        {label}
+      </th>
+    );
+  const tdNum = { textAlign: "right", fontFamily: MONO, fontSize: "0.78rem", color: C.ink, padding: "0.32rem 0 0.32rem 0.9rem", whiteSpace: "nowrap" } as const;
+  const tdLabel = { textAlign: "left", fontSize: "0.8rem", color: C.ink, padding: "0.32rem 0" } as const;
+  const rowBorder = { borderBottom: `1px solid ${C.borderSoft}` } as const;
 
   const pills = (
     <div style={{ display: "flex", gap: 4, marginBottom: "0.85rem" }}>
@@ -640,114 +661,87 @@ function BreakdownTable(props: { summary: Summary }) {
 
   if (by === "geo") {
     const rows = GEO.full_ledger.regions;
-    const maxV = Math.max(...rows.map((r) => r.usd), 1);
     const total = GEO.full_ledger.total_usd;
-    const unspec = rows.filter((r) => r.unspecified).reduce((a, r) => a + r.usd, 0);
     return (
       <div>
         {pills}
-        {rows.map((r) => (
-          <div key={r.key} style={{ marginBottom: "0.6rem" }}>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "baseline",
-                gap: "0.75rem",
-                marginBottom: 3,
-              }}
-            >
-              <span style={{ fontSize: "0.82rem", color: C.ink }}>{r.label}</span>
-              <span style={{ fontSize: "0.8rem", fontFamily: MONO, color: C.ink, whiteSpace: "nowrap", flexShrink: 0 }}>
-                {fmtDollars(r.usd)}
-                <span style={{ color: C.inkMuted, fontSize: "0.7rem" }}> · {pct(r.usd / total)}</span>
-              </span>
-            </div>
-            <div style={{ background: C.borderSoft, borderRadius: 4, height: 9 }}>
-              <div
-                style={{
-                  width: `${(r.usd / maxV) * 100}%`,
-                  background: r.unspecified ? C.inkMuted : C.amber,
-                  opacity: r.unspecified ? 0.55 : 1,
-                  height: "100%",
-                  borderRadius: 4,
-                  minWidth: 2,
-                }}
-              />
-            </div>
-          </div>
-        ))}
+        <div style={{ overflowX: "auto" }}>
+          <table style={{ width: "100%", borderCollapse: "collapse" }}>
+            <thead>
+              <tr>{[th("Region", "left"), th("Dollars"), th("% of $")]}</tr>
+            </thead>
+            <tbody>
+              {rows.map((r) => (
+                <tr key={r.key} style={rowBorder}>
+                  <td style={{ ...tdLabel, color: r.unspecified ? C.inkMuted : C.ink, fontStyle: r.unspecified ? "italic" : "normal" }}>
+                    {r.label}
+                  </td>
+                  <td style={{ ...tdNum, color: r.unspecified ? C.inkMuted : C.ink }}>{fmtDollars(r.usd)}</td>
+                  <td style={{ ...tdNum, color: r.unspecified ? C.inkMuted : C.ink }}>{pct(r.usd / total)}</td>
+                </tr>
+              ))}
+              <tr>
+                <td style={{ ...tdLabel, fontWeight: 600 }}>Total (nominal)</td>
+                <td style={{ ...tdNum, fontWeight: 600 }}>{fmtDollars(total)}</td>
+                <td style={{ ...tdNum, fontWeight: 600 }}>100%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
         <p style={noteStyle}>
-          Dollars only — the nominal ledger ({fmtDollars(total)}: disclosed gifts
-          plus ~$8.9B imputed), split equally across each organization&apos;s
-          reported service locations; audited &ldquo;global&rdquo; slices
-          redistribute to their published regions. Muted bars ({fmtDollars(unspec)})
-          are reporting granularity, not places. The model ties QALYs to
-          geography through one channel only: the ~5% of dollars funding health
-          &amp; development abroad produce {gh ? pct(gh.meanQalys / meanTotal) : "~70%"}{" "}
-          of estimated QALYs — region-level QALYs aren&apos;t modeled.
+          Dollars only — the nominal ledger (disclosed gifts plus ~$8.9B
+          imputed), split equally across each organization&apos;s reported
+          service locations; audited &ldquo;global&rdquo; slices redistribute
+          to their published regions. Italic rows are reporting granularity,
+          not places. The model ties QALYs to geography through one channel
+          only: the ~5% of dollars funding health &amp; development abroad
+          produce {gh ? pct(gh.meanQalys / meanTotal) : "~70%"} of estimated
+          QALYs — region-level QALYs aren&apos;t modeled.
         </p>
       </div>
     );
   }
 
   const rows = s.perArchetype;
-  const maxQ = Math.max(...rows.map((r) => r.meanQalys), 1);
-  const maxD = Math.max(...rows.map((r) => r.share), 1e-9);
+  const sumD = rows.reduce((a, r) => a + r.share, 0) * givingUsd;
   return (
     <div>
       {pills}
-      {rows.map((r) => (
-        <div key={r.key} style={{ marginBottom: "0.7rem" }}>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "baseline",
-              gap: "0.75rem",
-              marginBottom: 3,
-            }}
-          >
-            <span style={{ fontSize: "0.82rem", color: C.ink }}>{SHORT_LABELS[r.key] ?? r.label}</span>
-            <span style={{ fontSize: "0.8rem", fontFamily: MONO, color: C.ink, whiteSpace: "nowrap", flexShrink: 0 }}>
-              {fmtDollars(r.share * givingUsd)} · {pct(r.share)}
-              <span style={{ color: C.inkMuted }}> → </span>
-              {fmtQalys(r.meanQalys)} · {pct(r.meanQalys / meanTotal)}
-              <span style={{ color: C.inkMuted, fontSize: "0.7rem" }}> · {TIER_LABELS[r.tier] ?? r.tier}</span>
-            </span>
-          </div>
-          <div style={{ background: C.borderSoft, borderRadius: 4, height: 5, marginBottom: 2 }}>
-            <div
-              style={{
-                width: `${(r.share / maxD) * 100}%`,
-                background: C.inkMuted,
-                opacity: 0.45,
-                height: "100%",
-                borderRadius: 4,
-                minWidth: 2,
-              }}
-            />
-          </div>
-          <div style={{ background: C.borderSoft, borderRadius: 4, height: 5 }}>
-            <div
-              style={{
-                width: `${(r.meanQalys / maxQ) * 100}%`,
-                background: C.amber,
-                height: "100%",
-                borderRadius: 4,
-                minWidth: 2,
-              }}
-            />
-          </div>
-        </div>
-      ))}
+      <div style={{ overflowX: "auto" }}>
+        <table style={{ width: "100%", borderCollapse: "collapse" }}>
+          <thead>
+            <tr>{[th("Cause", "left"), th("Dollars"), th("% of $"), th("QALYs"), th("% of QALYs"), th("Evidence")]}</tr>
+          </thead>
+          <tbody>
+            {rows.map((r) => (
+              <tr key={r.key} style={rowBorder}>
+                <td style={tdLabel}>{SHORT_LABELS[r.key] ?? r.label}</td>
+                <td style={tdNum}>{fmtDollars(r.share * givingUsd)}</td>
+                <td style={tdNum}>{pct(r.share)}</td>
+                <td style={tdNum}>{fmtQalys(r.meanQalys)}</td>
+                <td style={tdNum}>{pct(r.meanQalys / meanTotal)}</td>
+                <td style={{ ...tdNum, fontFamily: "inherit", fontSize: "0.7rem", color: C.inkMuted }}>
+                  {TIER_LABELS[r.tier] ?? r.tier}
+                </td>
+              </tr>
+            ))}
+            <tr>
+              <td style={{ ...tdLabel, fontWeight: 600 }}>Total</td>
+              <td style={{ ...tdNum, fontWeight: 600 }}>{fmtDollars(sumD)}</td>
+              <td style={{ ...tdNum, fontWeight: 600 }}>100%</td>
+              <td style={{ ...tdNum, fontWeight: 600 }}>{fmtQalys(meanTotal)}</td>
+              <td style={{ ...tdNum, fontWeight: 600 }}>100%</td>
+              <td style={tdNum}></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       <p style={noteStyle}>
-        Gray bar: median allocation share of the {fmtDollars(givingUsd)} (2026 $).
-        Amber bar: mean QALY contribution (each scaled to its own column&apos;s
-        max). The gap between a row&apos;s two percentages is its
-        cost-effectiveness. QALY shares are of the {fmtQalys(s.mean)} mean;
-        the {fmtQalys(s.median)} headline is the median — only means add
-        across categories.
+        Dollars: median allocation share of the {fmtDollars(givingUsd)} total
+        (2026 $). QALYs: mean contribution per archetype — shares are of the{" "}
+        {fmtQalys(s.mean)} mean; the {fmtQalys(s.median)} headline is the
+        median, and only means add across categories. A row&apos;s % of $
+        versus % of QALYs is its cost-effectiveness at a glance.
       </p>
     </div>
   );
