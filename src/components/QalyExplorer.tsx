@@ -609,6 +609,7 @@ function shortenDriver(name: string): string {
 
 function BreakdownTable(props: { summary: Summary; inputShares: number[] }) {
   const [by, setBy] = useState<"cause" | "geo">("cause");
+  const [sort, setSort] = useState<{ col: string; dir: 1 | -1 }>({ col: "qalys", dir: -1 });
   const s = props.summary;
   const meanTotal = Math.max(s.mean, 1);
   const givingUsd = DEFAULT_GIVING_B * 1e9;
@@ -616,33 +617,49 @@ function BreakdownTable(props: { summary: Summary; inputShares: number[] }) {
   const noteStyle = { fontSize: "0.68rem", color: C.inkMuted, margin: "0.6rem 0 0", lineHeight: 1.4 } as const;
   const gh = s.perArchetype.find((r) => r.key === "global_health");
 
-  const th = (label: string, align: "left" | "right" = "right") =>
-    (
+  const tdNum = { textAlign: "right", fontFamily: MONO, fontSize: "0.78rem", color: C.ink, padding: "0.32rem 0 0.32rem 0.9rem", whiteSpace: "nowrap" } as const;
+  const tdLabel = { textAlign: "left", fontSize: "0.8rem", color: C.ink, padding: "0.32rem 0" } as const;
+  const rowBorder = { borderBottom: `1px solid ${C.borderSoft}` } as const;
+
+  const switchMode = (k: "cause" | "geo") => {
+    setBy(k);
+    setSort(k === "cause" ? { col: "qalys", dir: -1 } : { col: "usd", dir: -1 });
+  };
+
+  const th = (col: string, label: string, align: "left" | "right" = "right") => {
+    const active = sort.col === col;
+    return (
       <th
-        key={label}
+        key={col}
+        onClick={() =>
+          setSort(active ? { col, dir: (sort.dir * -1) as 1 | -1 } : { col, dir: align === "left" ? 1 : -1 })
+        }
+        title="Sort"
+        aria-sort={active ? (sort.dir === 1 ? "ascending" : "descending") : "none"}
         style={{
           textAlign: align,
           fontSize: "0.68rem",
           fontWeight: 600,
-          color: C.inkMuted,
+          color: active ? C.amberDark : C.inkMuted,
           padding: "0 0 0.4rem" + (align === "right" ? " 0.9rem" : ""),
           borderBottom: `1px solid ${C.border}`,
           whiteSpace: "nowrap",
+          cursor: "pointer",
+          userSelect: "none",
         }}
       >
         {label}
+        {active ? (sort.dir === 1 ? " ▲" : " ▼") : ""}
       </th>
     );
-  const tdNum = { textAlign: "right", fontFamily: MONO, fontSize: "0.78rem", color: C.ink, padding: "0.32rem 0 0.32rem 0.9rem", whiteSpace: "nowrap" } as const;
-  const tdLabel = { textAlign: "left", fontSize: "0.8rem", color: C.ink, padding: "0.32rem 0" } as const;
-  const rowBorder = { borderBottom: `1px solid ${C.borderSoft}` } as const;
+  };
 
   const pills = (
     <div style={{ display: "flex", gap: 4, marginBottom: "0.85rem" }}>
       {(["cause", "geo"] as const).map((k) => (
         <button
           key={k}
-          onClick={() => setBy(k)}
+          onClick={() => switchMode(k)}
           style={{
             fontSize: "0.7rem",
             padding: "0.25rem 0.5rem",
@@ -660,15 +677,23 @@ function BreakdownTable(props: { summary: Summary; inputShares: number[] }) {
   );
 
   if (by === "geo") {
-    const rows = GEO.full_ledger.regions;
     const total = GEO.full_ledger.total_usd;
+    const keyFns: Record<string, (r: (typeof GEO.full_ledger.regions)[number]) => number | string> = {
+      label: (r) => r.label.toLowerCase(),
+      usd: (r) => r.usd,
+    };
+    const keyFn = keyFns[sort.col] ?? keyFns.usd;
+    const rows = [...GEO.full_ledger.regions].sort((a, b) => {
+      const va = keyFn(a), vb = keyFn(b);
+      return (va < vb ? -1 : va > vb ? 1 : 0) * sort.dir;
+    });
     return (
       <div>
         {pills}
         <div style={{ overflowX: "auto" }}>
           <table style={{ width: "100%", borderCollapse: "collapse" }}>
             <thead>
-              <tr>{[th("Region", "left"), th("Dollars"), th("% of $")]}</tr>
+              <tr>{[th("label", "Region", "left"), th("usd", "Dollars"), th("usd", "% of $")]}</tr>
             </thead>
             <tbody>
               {rows.map((r) => (
@@ -696,33 +721,57 @@ function BreakdownTable(props: { summary: Summary; inputShares: number[] }) {
           not places. The model ties QALYs to geography through one channel
           only: the ~5% of dollars funding health &amp; development abroad
           produce {gh ? pct(gh.meanQalys / meanTotal) : "~70%"} of estimated
-          QALYs — region-level QALYs aren&apos;t modeled.
+          QALYs — region-level QALYs aren&apos;t modeled. Click a column to
+          sort.
         </p>
       </div>
     );
   }
 
-  const rows = s.perArchetype;
-  // Input allocation shares are the Dirichlet centers — the MEAN realized
-  // shares — so dollar figures add to the total exactly (medians would not).
   const shareByKey = new Map(ARCHETYPE_KEYS.map((k, j) => [k, props.inputShares[j]]));
-  const sumD = rows.reduce((a, r) => a + (shareByKey.get(r.key) ?? 0), 0) * givingUsd;
+  type Row = Summary["perArchetype"][number];
+  const dollarsOf = (r: Row) => (shareByKey.get(r.key) ?? 0) * givingUsd;
+  const cpqOf = (r: Row) => (r.meanQalys > 0 ? dollarsOf(r) / r.meanQalys : Infinity);
+  const keyFns: Record<string, (r: Row) => number | string> = {
+    label: (r) => (SHORT_LABELS[r.key] ?? r.label).toLowerCase(),
+    usd: dollarsOf,
+    qalys: (r) => r.meanQalys,
+    cpq: cpqOf,
+    evidence: (r) => r.medianCredibility,
+  };
+  const keyFn = keyFns[sort.col] ?? keyFns.qalys;
+  const rows = [...s.perArchetype].sort((a, b) => {
+    const va = keyFn(a), vb = keyFn(b);
+    return (va < vb ? -1 : va > vb ? 1 : 0) * sort.dir;
+  });
+  const sumD = s.perArchetype.reduce((a, r) => a + dollarsOf(r), 0);
   return (
     <div>
       {pills}
       <div style={{ overflowX: "auto" }}>
         <table style={{ width: "100%", borderCollapse: "collapse" }}>
           <thead>
-            <tr>{[th("Cause", "left"), th("Dollars"), th("% of $"), th("QALYs"), th("% of QALYs"), th("Evidence")]}</tr>
+            <tr>
+              {[
+                th("label", "Cause", "left"),
+                th("usd", "Dollars"),
+                th("usd", "% of $"),
+                th("qalys", "QALYs"),
+                th("qalys", "% of QALYs"),
+                th("cpq", "$/QALY"),
+                th("evidence", "Evidence"),
+              ]}
+            </tr>
           </thead>
           <tbody>
             {rows.map((r) => (
               <tr key={r.key} style={rowBorder}>
                 <td style={tdLabel}>{SHORT_LABELS[r.key] ?? r.label}</td>
-                <td style={tdNum}>{fmtDollars((shareByKey.get(r.key) ?? 0) * givingUsd)}</td>
-                <td style={tdNum}>{pct(shareByKey.get(r.key) ?? 0)}</td>
+                <td style={tdNum}>{fmtDollars(dollarsOf(r))}</td>
+                <td style={tdNum}>{pct(dollarsOf(r) / givingUsd)}</td>
                 <td style={tdNum}>{fmtQalys(r.meanQalys)}</td>
                 <td style={tdNum}>{pct(r.meanQalys / meanTotal)}</td>
+                <td style={tdNum}>{r.meanQalys > 0 ? fmtDollars(cpqOf(r)) : "—"}</td>
                 <td style={{ ...tdNum, fontFamily: "inherit", fontSize: "0.7rem", color: C.inkMuted }}>
                   {TIER_LABELS[r.tier] ?? r.tier}
                 </td>
@@ -734,6 +783,7 @@ function BreakdownTable(props: { summary: Summary; inputShares: number[] }) {
               <td style={{ ...tdNum, fontWeight: 600 }}>100%</td>
               <td style={{ ...tdNum, fontWeight: 600 }}>{fmtQalys(meanTotal)}</td>
               <td style={{ ...tdNum, fontWeight: 600 }}>100%</td>
+              <td style={{ ...tdNum, fontWeight: 600 }}>{fmtDollars(sumD / meanTotal)}</td>
               <td style={tdNum}></td>
             </tr>
           </tbody>
@@ -741,10 +791,14 @@ function BreakdownTable(props: { summary: Summary; inputShares: number[] }) {
       </div>
       <p style={noteStyle}>
         Dollars: allocation share (the Dirichlet center — the mean) of the{" "}
-        {fmtDollars(givingUsd)} total (2026 $), so rows add to the total. QALYs: mean contribution per archetype — shares are of the{" "}
-        {fmtQalys(s.mean)} mean; the {fmtQalys(s.median)} headline is the
-        median, and only means add across categories. A row&apos;s % of $
-        versus % of QALYs is its cost-effectiveness at a glance.
+        {fmtDollars(givingUsd)} total (2026 $). QALYs: mean contribution —
+        shares are of the {fmtQalys(s.mean)} mean; the {fmtQalys(s.median)}{" "}
+        headline is the median, and only means add. $/QALY: the row&apos;s
+        dollars ÷ its QALYs, after the credibility and realization discounts —
+        not the raw study anchor. The Total row&apos;s $/QALY is the ratio of
+        means; the headline card&apos;s blended figure is the median across
+        draws, so they differ slightly. Click a column to sort; Evidence sorts
+        by credibility.
       </p>
     </div>
   );
