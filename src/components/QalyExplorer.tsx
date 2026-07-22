@@ -57,7 +57,7 @@ const DEFAULT_DISCOUNT = PARAMS.meta.discount_rate;
 export default function QalyExplorer() {
   const [credulity, setCredulity] = useState(0.5);
   const [realization, setRealization] = useState(DEFAULT_REALIZATION);
-  const [givingB, setGivingB] = useState(DEFAULT_GIVING_B);
+  const givingB = DEFAULT_GIVING_B; // data, not an assumption
   const [discount, setDiscount] = useState(DEFAULT_DISCOUNT);
   const [shares, setShares] = useState<number[]>(DEFAULT_SHARES);
   const [precision, setPrecision] = useState(1);
@@ -76,7 +76,7 @@ export default function QalyExplorer() {
       n: PRECISIONS[precision].n,
       seed: 0,
     }),
-    [credulity, realization, givingB, discount, shares, precision],
+    [credulity, realization, discount, shares, precision],
   );
 
   // Recompute on any change. Debounced so it fires after you pause dragging —
@@ -96,7 +96,6 @@ export default function QalyExplorer() {
   function reset() {
     setCredulity(0.5);
     setRealization(DEFAULT_REALIZATION);
-    setGivingB(DEFAULT_GIVING_B);
     setDiscount(DEFAULT_DISCOUNT);
     setShares(VERSIONS[version].shares);
   }
@@ -140,10 +139,68 @@ export default function QalyExplorer() {
               marginBottom: "0.25rem",
             }}
           >
-            Assumptions
+            Controls
           </div>
           <p style={{ fontSize: "0.8rem", color: C.inkMuted, margin: "0 0 1rem" }}>
             Drag to see the estimate move. The model reruns in your browser.
+          </p>
+
+          <div style={{ fontSize: "0.72rem", fontWeight: 700, color: C.inkMuted, margin: "1.1rem 0 0.15rem" }}>Judgment</div>
+          <p style={{ fontSize: "0.68rem", color: C.inkMuted, margin: "0 0 0.6rem", lineHeight: 1.4 }}>The model&apos;s priors — drag to disagree in either direction.</p>
+          <Slider
+            label="Evidence stance"
+            value={credulity}
+            min={0}
+            max={1}
+            step={0.01}
+            onChange={setCredulity}
+            display={
+              credulity < 0.04
+                ? "RCT-only"
+                : Math.abs(credulity - 0.5) < 0.04
+                  ? "best guess"
+                  : credulity > 0.96
+                    ? "face value"
+                    : credulity < 0.5
+                      ? `${Math.round((0.5 - credulity) * 200)}% toward RCT-only`
+                      : `${Math.round((credulity - 0.5) * 200)}% toward face value`
+            }
+            help="The default is the model's best-guess weighting of each effect by how well its study identifies causation. Slide left to count only randomized evidence; right to trust every cited effect at face value."
+            accent
+          />
+          <Slider
+            label="Realization (mode)"
+            value={realization}
+            min={0.55}
+            max={1.1}
+            step={0.01}
+            onChange={setRealization}
+            display={`mode ${realization.toFixed(2)}`}
+            help="Central value (mode) of a 0.55–1.10 triangular draw for the share of the studied effect a marginal unrestricted grant delivers — the whole distribution is sampled, not this number alone."
+          />
+
+          <div style={{ fontSize: "0.72rem", fontWeight: 700, color: C.inkMuted, margin: "1.1rem 0 0.15rem" }}>Convention</div>
+          <Slider
+            label="Discount rate"
+            value={discount}
+            min={0}
+            max={0.07}
+            step={0.005}
+            onChange={setDiscount}
+            display={`${(discount * 100).toFixed(1)}%`}
+            help="Annual discount on future life-years."
+          />
+
+
+          <div style={{ fontSize: "0.72rem", fontWeight: 700, color: C.inkMuted, margin: "1.1rem 0 0.15rem" }}>Data</div>
+          <p style={{ fontSize: "0.68rem", color: C.inkMuted, margin: "0 0 0.6rem", lineHeight: 1.4 }}>From her gift records — measured or derived, not assumed.</p>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 2 }}>
+            <span style={{ fontSize: "0.85rem", fontWeight: 600, color: C.inkSoft }}>Total giving (2026 $)</span>
+            <span style={{ fontSize: "0.85rem", fontFamily: MONO, color: C.ink }}>${givingB.toFixed(1)}B</span>
+          </div>
+          <p style={{ fontSize: "0.68rem", color: C.inkMuted, margin: "0 0 0.75rem", lineHeight: 1.4 }}>
+            Her disclosed tranches: $26.39B nominal (2020&ndash;2025), inflated to
+            2026 dollars with CPI-U.
           </p>
 
           <div
@@ -196,58 +253,6 @@ export default function QalyExplorer() {
             (two-model cross-check, per-organization sources). v1.0 is the
             July 13 published allocation, kept for comparison.
           </p>
-          <Slider
-            label="Evidence stance"
-            value={credulity}
-            min={0}
-            max={1}
-            step={0.01}
-            onChange={setCredulity}
-            display={
-              credulity < 0.04
-                ? "RCT-only"
-                : Math.abs(credulity - 0.5) < 0.04
-                  ? "best guess"
-                  : credulity > 0.96
-                    ? "face value"
-                    : credulity < 0.5
-                      ? `${Math.round((0.5 - credulity) * 200)}% toward RCT-only`
-                      : `${Math.round((credulity - 0.5) * 200)}% toward face value`
-            }
-            help="The default is the model's best-guess weighting of each effect by how well its study identifies causation. Slide left to count only randomized evidence; right to trust every cited effect at face value."
-            accent
-          />
-          <Slider
-            label="Realization (mode)"
-            value={realization}
-            min={0.55}
-            max={1.1}
-            step={0.01}
-            onChange={setRealization}
-            display={`mode ${realization.toFixed(2)}`}
-            help="Central value (mode) of a 0.55–1.10 triangular draw for the share of the studied effect a marginal unrestricted grant delivers — the whole distribution is sampled, not this number alone."
-          />
-          <Slider
-            label="Total giving (2026 $)"
-            value={givingB}
-            min={5}
-            max={60}
-            step={0.1}
-            onChange={setGivingB}
-            display={`$${givingB.toFixed(1)}B`}
-            help="Real 2026 dollars. Default inflates each year's gifts ($26.39B nominal, 2020–2025) to ~$30.3B with CPI-U."
-          />
-          <Slider
-            label="Discount rate"
-            value={discount}
-            min={0}
-            max={0.07}
-            step={0.005}
-            onChange={setDiscount}
-            display={`${(discount * 100).toFixed(1)}%`}
-            help="Annual discount on future life-years."
-          />
-
           <details style={{ marginTop: "0.75rem" }}>
             <summary
               style={{
@@ -259,6 +264,11 @@ export default function QalyExplorer() {
             >
               Allocation across causes
             </summary>
+            <p style={{ fontSize: "0.68rem", color: C.inkMuted, margin: "0.4rem 0 0.6rem", lineHeight: 1.4 }}>
+              Derived from her gift database (disclosed amounts, focus areas,
+              audited geographic routing). Drag to explore counterfactual
+              portfolios; Reset returns to the derived shares.
+            </p>
             <div style={{ marginTop: "0.75rem" }}>
               {ARCHETYPES.map((a, j) => (
                 <Slider
