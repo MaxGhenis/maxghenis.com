@@ -369,7 +369,7 @@ export default function QalyExplorer() {
               </ChartCard>
 
               <ChartCard title="Where it goes">
-                <BreakdownTable summary={s} />
+                <BreakdownTable summary={s} inputShares={normShares} />
               </ChartCard>
 
               <ChartCard title="What drives the spread">
@@ -607,7 +607,7 @@ function shortenDriver(name: string): string {
   return out;
 }
 
-function BreakdownTable(props: { summary: Summary }) {
+function BreakdownTable(props: { summary: Summary; inputShares: number[] }) {
   const [by, setBy] = useState<"cause" | "geo">("cause");
   const s = props.summary;
   const meanTotal = Math.max(s.mean, 1);
@@ -703,7 +703,10 @@ function BreakdownTable(props: { summary: Summary }) {
   }
 
   const rows = s.perArchetype;
-  const sumD = rows.reduce((a, r) => a + r.share, 0) * givingUsd;
+  // Input allocation shares are the Dirichlet centers — the MEAN realized
+  // shares — so dollar figures add to the total exactly (medians would not).
+  const shareByKey = new Map(ARCHETYPE_KEYS.map((k, j) => [k, props.inputShares[j]]));
+  const sumD = rows.reduce((a, r) => a + (shareByKey.get(r.key) ?? 0), 0) * givingUsd;
   return (
     <div>
       {pills}
@@ -716,8 +719,8 @@ function BreakdownTable(props: { summary: Summary }) {
             {rows.map((r) => (
               <tr key={r.key} style={rowBorder}>
                 <td style={tdLabel}>{SHORT_LABELS[r.key] ?? r.label}</td>
-                <td style={tdNum}>{fmtDollars(r.share * givingUsd)}</td>
-                <td style={tdNum}>{pct(r.share)}</td>
+                <td style={tdNum}>{fmtDollars((shareByKey.get(r.key) ?? 0) * givingUsd)}</td>
+                <td style={tdNum}>{pct(shareByKey.get(r.key) ?? 0)}</td>
                 <td style={tdNum}>{fmtQalys(r.meanQalys)}</td>
                 <td style={tdNum}>{pct(r.meanQalys / meanTotal)}</td>
                 <td style={{ ...tdNum, fontFamily: "inherit", fontSize: "0.7rem", color: C.inkMuted }}>
@@ -737,8 +740,8 @@ function BreakdownTable(props: { summary: Summary }) {
         </table>
       </div>
       <p style={noteStyle}>
-        Dollars: median allocation share of the {fmtDollars(givingUsd)} total
-        (2026 $). QALYs: mean contribution per archetype — shares are of the{" "}
+        Dollars: allocation share (the Dirichlet center — the mean) of the{" "}
+        {fmtDollars(givingUsd)} total (2026 $), so rows add to the total. QALYs: mean contribution per archetype — shares are of the{" "}
         {fmtQalys(s.mean)} mean; the {fmtQalys(s.median)} headline is the
         median, and only means add across categories. A row&apos;s % of $
         versus % of QALYs is its cost-effectiveness at a glance.
