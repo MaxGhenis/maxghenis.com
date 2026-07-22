@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Max Ghenis">
+
+<title>MacKenzie Scott’s giving, in QALYs</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-170b94ad9e322df11de454cd5eb05b1b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+
+
+<meta name="citation_title" content="MacKenzie Scott&amp;amp;#039;s giving, in QALYs">
+<meta name="citation_abstract" content="MacKenzie Scott has disclosed $26.39 billion in gifts to more than 2,500 organizations since 2019 — her 2025 giving alone was about a third of the value of that year&amp;amp;#039;s U.S. megagifts — yet almost none of it is denominated in outcomes. This paper prices the entire portfolio in quality-adjusted life-years. A Monte Carlo model allocates dollars across 14 intervention archetypes using Scott's own gift-level database, imputes the undisclosed third from recipients' pre-gift IRS 990 revenue, assigns each archetype a cost-per-QALY anchor from published causal estimates, and shrinks every effect toward zero in proportion to the causal credibility of its evidence. The best-guess estimate is a median of roughly 202,000 QALYs (90% interval 94,000–419,000), a blended $150,000 per QALY, and a median benefit–cost ratio of 4.9 under the valuation distribution HHS uses for regulatory analysis. Three findings follow. First, estimated impact is geographically concentrated: the 4.8% of dollars funding health and development delivered outside the United States, priced at global-health anchors, accounts for 69% of estimated health impact. Second, gift size scales with recipient size to only the 0.41 power — a 10× larger organization receives about 2.5× more money. Third, the answer is dominated by evidence philosophy rather than arithmetic: restricting credit almost entirely to randomized evidence collapses the median to ~9,000 QALYs while taking every study at near face value raises it to ~415,000 — a 45× range, larger than the spread from any single distributional parameter tested. All parameters, code, data snapshots, and an AI-audit trail are public, and the model runs interactively in the browser.
+">
+<meta name="citation_author" content="Max Ghenis">
+<meta name="citation_language" content="en">
+<meta name="citation_reference" content="citation_title=Wealth, health, and child development: Evidence from administrative data on Swedish lottery players;,citation_author=David Cesarini;,citation_author=Erik Lindqvist;,citation_author=Robert Östling;,citation_author=Björn Wallace;,citation_publication_date=2016;,citation_cover_date=2016;,citation_year=2016;,citation_issue=2;,citation_doi=10.1093/qje/qjw001;,citation_volume=131;,citation_journal_title=Quarterly Journal of Economics;">
+<meta name="citation_reference" content="citation_title=Medicaid and mortality: New evidence from linked survey and administrative data;,citation_author=Sarah Miller;,citation_author=Norman Johnson;,citation_author=Laura R. Wherry;,citation_publication_date=2021;,citation_cover_date=2021;,citation_year=2021;,citation_issue=3;,citation_doi=10.1093/qje/qjab004;,citation_volume=136;,citation_journal_title=Quarterly Journal of Economics;">
+<meta name="citation_reference" content="citation_title=State Medicaid expansions and mortality, revisited: A cost-benefit analysis;,citation_author=Benjamin D. Sommers;,citation_publication_date=2017;,citation_cover_date=2017;,citation_year=2017;,citation_issue=3;,citation_doi=10.1162/ajhe_a_00080;,citation_volume=3;,citation_journal_title=American Journal of Health Economics;">
+<meta name="citation_reference" content="citation_title=The War on Poverty’s experiment in public medicine: Community health centers and the mortality of older Americans;,citation_author=Martha J. Bailey;,citation_author=Andrew Goodman-Bacon;,citation_publication_date=2015;,citation_cover_date=2015;,citation_year=2015;,citation_issue=3;,citation_doi=10.1257/aer.20120070;,citation_volume=105;,citation_journal_title=American Economic Review;">
+<meta name="citation_reference" content="citation_title=The Oregon health insurance experiment: Evidence from the first year;,citation_author=Amy Finkelstein;,citation_author=Sarah Taubman;,citation_author=Bill Wright;,citation_author=Mira Bernstein;,citation_author=Jonathan Gruber;,citation_author=Joseph P. Newhouse;,citation_author=Heidi Allen;,citation_author=Katherine Baicker;,citation_author=Oregon Health Study Group;,citation_publication_date=2012;,citation_cover_date=2012;,citation_year=2012;,citation_issue=3;,citation_doi=10.1093/qje/qjs020;,citation_volume=127;,citation_journal_title=Quarterly Journal of Economics;">
+<meta name="citation_reference" content="citation_title=The long-run impact of cash transfers to poor families;,citation_author=Anna Aizer;,citation_author=Shari Eli;,citation_author=Joseph Ferrie;,citation_author=Adriana Lleras-Muney;,citation_publication_date=2016;,citation_cover_date=2016;,citation_year=2016;,citation_issue=4;,citation_doi=10.1257/aer.20140529;,citation_volume=106;,citation_journal_title=American Economic Review;">
+<meta name="citation_reference" content="citation_title=Impact estimates;,citation_author=GiveWell;,citation_publication_date=2025;,citation_cover_date=2025;,citation_year=2025;,citation_publisher=https://www.givewell.org/impact-estimates;">
+<meta name="citation_reference" content="citation_title=Re-evaluating the impact of unconditional cash transfers;,citation_author=GiveWell;,citation_publication_date=2024;,citation_cover_date=2024;,citation_year=2024;,citation_publisher=https://blog.givewell.org/2024/11/12/re-evaluating-the-impact-of-unconditional-cash-transfers/;">
+<meta name="citation_reference" content="citation_title=HHS standard values for regulatory analysis, 2026;,citation_author=Aaron Kearsley;,citation_publication_date=2026;,citation_cover_date=2026;,citation_year=2026;,citation_fulltext_html_url=https://aspe.hhs.gov/reports/standard-ria-values;,citation_technical_report_institution=ASPE;">
+<meta name="citation_reference" content="citation_title=Emerging impacts: The effects of MacKenzie Scott’s large, unrestricted gifts: Results from year two of a three-year study;,citation_author=Ellie Buteau;,citation_author=Elisha Smith Arrillaga;,citation_author=Christina Im;,citation_publication_date=2023;,citation_cover_date=2023;,citation_year=2023;,citation_fulltext_html_url=https://cep.org/wp-content/uploads/2023/11/BigGiftsStudy_Report_Y2_FNL.pdf;,citation_technical_report_institution=Center for Effective Philanthropy;">
+<meta name="citation_reference" content="citation_title=Gifts database;,citation_author=Yield Giving;,citation_publication_date=2026;,citation_cover_date=2026;,citation_year=2026;,citation_publisher=https://yieldgiving.com/gifts;">
+<meta name="citation_reference" content="citation_title=MacKenzie Scott announced another $7.1 billion in 2025 charitable donations—she’s now given away $26.3 billion since 2019;,citation_author=Jr. Huddleston;,citation_publication_date=2025;,citation_cover_date=2025;,citation_year=2025;,citation_publisher=https://www.cnbc.com/2025/12/13/mackenzie-scott-revealed-her-total-charitable-donations-for-2025.html;">
+<meta name="citation_reference" content="citation_title=Giving USA 2026: The annual report on philanthropy for the year 2025;,citation_author=Indiana University Lilly Family School of Philanthropy;,citation_publication_date=2026;,citation_cover_date=2026;,citation_year=2026;,citation_technical_report_institution=Giving USA Foundation;">
+<meta name="citation_reference" content="citation_title=Nonprofit explorer;,citation_author=ProPublica;,citation_publication_date=2026;,citation_cover_date=2026;,citation_year=2026;,citation_publisher=https://projects.propublica.org/nonprofits/;">
+<meta name="citation_reference" content="citation_title=The moral imperative toward cost-effectiveness in global health;,citation_author=Toby Ord;,citation_publication_date=2013;,citation_cover_date=2013;,citation_year=2013;,citation_fulltext_html_url=https://www.cgdev.org/publication/moral-imperative-toward-cost-effectiveness-global-health;,citation_inbook_title=Essays;">
+<meta name="citation_reference" content="citation_title=Donors gave U.S. Charities $617 billion in 2025, according to the new giving USA report;,citation_author=Rasheeda Childress;,citation_publication_date=2026;,citation_cover_date=2026;,citation_year=2026;,citation_publisher=https://apnews.com/article/8363b76bc8cf854f6865c31129e8a4b1;">
+<meta name="citation_reference" content="citation_title=Our approach: Metrics and benefit–cost analysis;,citation_author=Robin Hood Foundation;,citation_publication_date=2023;,citation_cover_date=2023;,citation_year=2023;,citation_publisher=https://robinhood.org/our-work/our-approach/;">
+<meta name="citation_reference" content="citation_title=2025 investment report;,citation_author=Constellation Fund;,citation_publication_date=2026;,citation_cover_date=2026;,citation_year=2026;,citation_publisher=https://constellationfund.org/impact-news-insights/investment-report-2025/;">
+<meta name="citation_reference" content="citation_title=Donors can spend more money, better, with cost evidence;,citation_author=Center for Effective Global Action;,citation_publication_date=2022;,citation_cover_date=2022;,citation_year=2022;,citation_publisher=https://cega.berkeley.edu/article/donors-can-spend-more-money-better-with-cost-evidence/;">
+</head>
+
+<body class="quarto-light">
+<div style="border-bottom:1px solid #e2e8f0;background:#fdfcf9">
+  <nav style="max-width:900px;margin:0 auto;padding:0.7rem 1rem;display:flex;gap:1.25rem;align-items:baseline;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:0.9rem">
+    <a href="/mackenzie-scott-qaly" style="color:#475569;text-decoration:none">Interactive</a>
+    <span style="color:#b45309;font-weight:600;border-bottom:2px solid #b45309;padding-bottom:2px">Working paper</span>
+    <a href="/mackenzie-scott-qaly/paper/index.pdf" style="color:#475569;text-decoration:none">PDF</a>
+    <a href="https://github.com/MaxGhenis/mackenzie-scott-qaly" style="color:#475569;text-decoration:none;margin-left:auto">Code &amp; data</a>
+  </nav>
+</div>
+
+<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">MacKenzie Scott’s giving, in QALYs</h1>
+            <p class="subtitle lead">An evidence-weighted, auditable cost-effectiveness model of a $26 billion portfolio</p>
+          </div>
+
+    
+    <div class="quarto-title-meta-container">
+      <div class="quarto-title-meta-column-start">
+        
+        <div class="quarto-title-meta">
+
+                <div>
+            <div class="quarto-title-meta-heading">Author</div>
+            <div class="quarto-title-meta-contents">
+                        <p><a href="https://maxghenis.com">Max Ghenis</a> <a href="mailto:max@maxghenis.com" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
+                      </div>
+          </div>
+                
+          
+                
+              </div>
+      </div>
+      <div class="quarto-title-meta-column-end quarto-other-formats-target">
+      <div class="quarto-alternate-formats"><div class="quarto-title-meta-heading">Other Formats</div><div class="quarto-title-meta-contents"><p><a href="index.pdf"><i class="bi bi-file-pdf"></i>PDF</a></p></div></div></div>
+    </div>
+
+    <div>
+      <div class="abstract">
+        <div class="block-title">Abstract</div>
+        <p>MacKenzie Scott has disclosed $26.39 billion in gifts to more than 2,500 organizations since 2019 — her 2025 giving alone was about a third of the value of that year’s U.S. megagifts — yet almost none of it is denominated in outcomes. This paper prices the entire portfolio in quality-adjusted life-years. A Monte Carlo model allocates dollars across 14 intervention archetypes using Scott’s own gift-level database, imputes the undisclosed third from recipients’ pre-gift IRS 990 revenue, assigns each archetype a cost-per-QALY anchor from published causal estimates, and shrinks every effect toward zero in proportion to the causal credibility of its evidence. The best-guess estimate is a median of roughly 202,000 QALYs (90% interval 94,000–419,000), a blended $150,000 per QALY, and a median benefit–cost ratio of 4.9 under the valuation distribution HHS uses for regulatory analysis. Three findings follow. First, estimated impact is geographically concentrated: the 4.8% of dollars funding health and development delivered outside the United States, priced at global-health anchors, accounts for 69% of estimated health impact. Second, gift size scales with recipient size to only the 0.41 power — a 10× larger organization receives about 2.5× more money. Third, the answer is dominated by evidence philosophy rather than arithmetic: restricting credit almost entirely to randomized evidence collapses the median to ~9,000 QALYs while taking every study at near face value raises it to ~415,000 — a 45× range, larger than the spread from any single distributional parameter tested. All parameters, code, data snapshots, and an AI-audit trail are public, and the model runs interactively in the browser.</p>
+      </div>
+    </div>
+
+
+    <div class="quarto-other-links-text-target">
+    </div>  </div>
+</header><div id="quarto-content" class="page-columns page-rows-contents page-layout-article toc-left">
+<div id="quarto-sidebar-toc-left" class="sidebar toc-left">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a>
+  <ul class="collapse">
+  <li><a href="#the-ledger" id="toc-the-ledger" class="nav-link" data-scroll-target="#the-ledger">The ledger</a></li>
+  <li><a href="#allocation-across-causes" id="toc-allocation-across-causes" class="nav-link" data-scroll-target="#allocation-across-causes">Allocation across causes</a></li>
+  <li><a href="#delivery-geography" id="toc-delivery-geography" class="nav-link" data-scroll-target="#delivery-geography">Delivery geography</a></li>
+  </ul></li>
+  <li><a href="#model" id="toc-model" class="nav-link" data-scroll-target="#model">Model</a></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a>
+  <ul class="collapse">
+  <li><a href="#where-it-comes-from" id="toc-where-it-comes-from" class="nav-link" data-scroll-target="#where-it-comes-from">Where it comes from</a></li>
+  <li><a href="#against-the-global-health-frontier" id="toc-against-the-global-health-frontier" class="nav-link" data-scroll-target="#against-the-global-health-frontier">Against the global-health frontier</a></li>
+  </ul></li>
+  <li><a href="#robustness" id="toc-robustness" class="nav-link" data-scroll-target="#robustness">Robustness</a>
+  <ul class="collapse">
+  <li><a href="#evidence-philosophy-dominates-everything-else" id="toc-evidence-philosophy-dominates-everything-else" class="nav-link" data-scroll-target="#evidence-philosophy-dominates-everything-else">Evidence philosophy dominates everything else</a></li>
+  <li><a href="#the-audit-moved-the-headline-by-less-than-2" id="toc-the-audit-moved-the-headline-by-less-than-2" class="nav-link" data-scroll-target="#the-audit-moved-the-headline-by-less-than-2">The audit moved the headline by less than 2%</a></li>
+  <li><a href="#corrections-history" id="toc-corrections-history" class="nav-link" data-scroll-target="#corrections-history">Corrections history</a></li>
+  </ul></li>
+  <li><a href="#construction-and-auditability" id="toc-construction-and-auditability" class="nav-link" data-scroll-target="#construction-and-auditability">Construction and auditability</a></li>
+  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations">Limitations</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#acknowledgments" id="toc-acknowledgments" class="nav-link" data-scroll-target="#acknowledgments">Acknowledgments</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+<div class="quarto-alternate-notebooks"><h2>Notebooks</h2><ul><li><a href="index-preview.html"><i class="bi bi-journal-code"></i>Article Notebook</a></li></ul></div></nav>
+</div>
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+</div>
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+  
+
+
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>MacKenzie Scott gave away $7.17 billion in 2025 <span class="citation" data-cites="cnbc2025scott">(<a href="#ref-cnbc2025scott" role="doc-biblioref">Huddleston 2025</a>)</span>; Giving USA counts $6.65 billion of it against $19.2 billion in U.S. megagift dollars — about a third of that year’s megagift value <span class="citation" data-cites="givingusa2026 ap2026givingusa">(<a href="#ref-givingusa2026" role="doc-biblioref">Indiana University Lilly Family School of Philanthropy 2026</a>; <a href="#ref-ap2026givingusa" role="doc-biblioref">Childress 2026</a>)</span>. (The bases differ: Yield Giving’s own annual total is the larger figure.) Her disclosed lifetime total is $26.39 billion across 2,711 gifts to 2,545 organizations since 2019 <span class="citation" data-cites="yieldgiving2026">(<a href="#ref-yieldgiving2026" role="doc-biblioref">Yield Giving 2026</a>)</span>. Almost none of it is denominated in health, and, to my knowledge, no published estimate prices the portfolio in outcomes of any kind.</p>
+<p>This paper does so in the unit health economists use to compare a death averted against years lived in better health: the quality-adjusted life-year. The exercise is deliberately in the style of a charity evaluator’s cost-effectiveness analysis <span class="citation" data-cites="givewell2026impact">(<a href="#ref-givewell2026impact" role="doc-biblioref">GiveWell 2025</a>)</span>, scaled from a program to a portfolio, with one addition the setting forces: because most of the portfolio funds interventions whose health effects have never been causally measured, the model makes its epistemics explicit. Every effect is shrunk toward zero in proportion to how well its supporting study identifies causation, the shrinkage schedule is a slider rather than a buried constant, and the headline is reported across the full range of evidence philosophies — from counting only randomized evidence to taking every published estimate at face value.</p>
+<p>The paper makes four contributions. It provides what I believe is the first outside, portfolio-level cost-effectiveness estimate of Scott’s giving, and I have found no comparable outside estimate for any other individual mega-donor — funder-run portfolio metrics exist, including GiveWell’s aggregate impact estimates <span class="citation" data-cites="givewell2026impact">(<a href="#ref-givewell2026impact" role="doc-biblioref">GiveWell 2025</a>)</span>, Robin Hood’s benefit–cost framework <span class="citation" data-cites="robinhood2025">(<a href="#ref-robinhood2025" role="doc-biblioref">Robin Hood Foundation 2023</a>)</span>, the Constellation Fund’s portfolio reporting <span class="citation" data-cites="constellation2025">(<a href="#ref-constellation2025" role="doc-biblioref">Constellation Fund 2026</a>)</span>, and social-rate-of-return analysis of USAID’s Development Innovation Ventures portfolio <span class="citation" data-cites="cega2023div">(<a href="#ref-cega2023div" role="doc-biblioref">Center for Effective Global Action 2022</a>)</span>; the difference here is independence from the donor, a subject who publishes no outcome data, and explicit evidence weighting: a best-guess median of 202,000 QALYs from $26.39 billion nominal ($30.3B in 2026 dollars), a blended $150,067 per QALY, and a median benefit–cost ratio of 4.9 under the HHS regulatory value-per-QALY distribution <span class="citation" data-cites="aspe2026values">(<a href="#ref-aspe2026values" role="doc-biblioref">Kearsley 2026</a>)</span>. It estimates extreme geographic concentration of impact under its pricing assumptions: the 4.8% of dollars funding global health and development delivered outside the United States accounts for 69.1% of estimated health impact. It reports a new empirical regularity in the gift data itself: across 1,313 disclosed gift–filing pairs, gift size scales with recipient pre-gift revenue to the power 0.41 (R² 0.37) — Scott’s giving is far flatter across organization size than proportional. And it demonstrates a working method for auditable, AI-assisted cost-effectiveness modeling: the model was built with a frontier language model, reviewed and corrected in public through the revision history summarized in the robustness section, audited by two independent model families against primary filings, and ships with versioned parameters, machine-checked citations, and a browser implementation that reruns the full Monte Carlo under any reader’s assumptions.</p>
+<p>The unit of account deserves a caveat before any number. QALYs measure health. Most of Scott’s portfolio aims at other things — education, economic mobility, equity, civic infrastructure — whose primary benefits are not health benefits. A finding that a dollar of education philanthropy produces few QALYs is a statement about the lens, not a verdict on the gift. The estimates are a partial, health-only accounting under positive-effect priors — not a lower bound on total wellbeing: the lens omits the primary intended benefits of most of the portfolio, and the model places no probability on zero or harmful effects, a structural choice the limitations section returns to.</p>
+</section>
+<section id="data" class="level1">
+<h1>Data</h1>
+<section id="the-ledger" class="level2">
+<h2 class="anchored" data-anchor-id="the-ledger">The ledger</h2>
+<p>Scott’s essays disclose giving in dated tranches totaling $26.39 billion nominal over 2020–2025. The model inflates each tranche — booked by disclosure year — to 2026 dollars (CPI-U, anchored to May 2026), so dollars and cost-effectiveness evidence share one price level: $30.3B total. All derivations below, and the replication repository, start from a verbatim snapshot of the Yield Giving gift database retrieved July 11, 2026 <span class="citation" data-cites="yieldgiving2026">(<a href="#ref-yieldgiving2026" role="doc-biblioref">Yield Giving 2026</a>)</span>.</p>
+</section>
+<section id="allocation-across-causes" class="level2">
+<h2 class="anchored" data-anchor-id="allocation-across-causes">Allocation across causes</h2>
+<p>Scott publishes no aggregate dollars-by-cause breakdown, but she publishes something more granular: a gift-level database listing every recipient organization, its self-reported focus areas, and — for 2,035 of 2,711 gifts ($17.46B, about two-thirds of the nominal total) — the dollar amount. Each organization’s dollars are split equally across its focus areas; the database’s 53 areas map onto the model’s 14 intervention archetypes under a documented, sync-tested crosswalk.</p>
+<p>The undisclosed third is imputed rather than dropped. Because the essays give each year’s total, the undisclosed residual per period is a known dollar amount; it is distributed across that period’s undisclosed gifts in proportion to each recipient’s pre-gift IRS Form 990 total revenue <span class="citation" data-cites="propublica2026">(<a href="#ref-propublica2026" role="doc-biblioref">ProPublica 2026</a>)</span>, raised to an elasticity fit on the disclosed pairs. Pre-gift means the latest filing strictly before the gift year, since a Scott gift mechanically inflates receipt-year revenue. The fit is a finding in its own right: across 1,313 disclosed gift–filing pairs, log gift size rises with log revenue with slope 0.41 (R² 0.37). A 10× larger organization receives about 2.5× more money, not 10× more. The fit is descriptive and conditional: it is estimated on disclosed gifts with a matched pre-gift filing (1,313 of 2,035 disclosed and 2,711 total gifts), treats repeated gifts to an organization as independent, and pools years; 287 of the 676 undisclosed gifts lack a usable filing and receive their period’s median weight. It is a within-sample regularity used for imputation, not a validated prediction rule. Fuzzy name-to-EIN matches were audited by a third, smaller model against the live IRS API, with corrections committed as a reviewable overlay. The imputed third moves each cause share by at most about 1.5 percentage points — under the imputation model, the disclosed two-thirds is representative.</p>
+</section>
+<section id="delivery-geography" class="level2">
+<h2 class="anchored" data-anchor-id="delivery-geography">Delivery geography</h2>
+<p>Each organization reports service locations. Weighting disclosed dollars by the audited share of each organization’s locations outside the United States, an estimated 19% of disclosed dollars ($3.34B of $17.46B) sits with organizations reporting non-U.S. service locations — 20.4% under the raw rule that counts a bare “global” listing as fully non-U.S. — led by environment, health, and funding intermediaries. Locations are an equal-split proxy: a listed location is not an expenditure share, and no organization reports how Scott’s own gift was deployed. The model prices geography through a single channel: health-relevant dollars route to a global-health archetype in proportion to the recipient’s non-U.S. service share, because global health delivery is the one category with a published cost-per-QALY evidence base an order of magnitude below U.S. anchors. Education and climate dollars keep their U.S.-study anchors wherever they are delivered; if geography changes their effectiveness, the model does not capture it.</p>
+<p>The coarsest geographic field is the bare label “global.” An audit of the 50 organizations with the most dollars attached to that label — 87% of its dollars; 20 of the 50 also list other locations — replaced the blanket assumption of fully-abroad delivery with fractions coded independently by two model families from each organization’s filings and program reports, then reconciled — the second coder confirmed 33 within tolerance and disputed 17; four disputes were adjudicated to documented filings arithmetic, and final fractions average the two coders everywhere else, with per-organization sources and confidence grades — 16 high, 17 medium, 17 low — committed to the repository. Many “global” organizations operate substantially in the United States: Planned Parenthood and Crisis Text Line, for example, list “global” service but are roughly 95% and 93% U.S. in their most recent organization-wide reporting — later-period proxies for how earlier gifts were deployed, since neither reports gift-level allocation. The audited allocation routes 4.82% of the ledger to the global health and development archetype. That routed bucket is itself mixed: its dollars sit 42% in Sub-Saharan Africa, 20% in South Asia, and 11% in Latin America, but 18% is unattributable multi-region activity and roughly 4% sits in Europe &amp; Central Asia plus Canada — regions that are not classified by income here, so the bucket’s true high-income share is unidentified — all priced at the same low-and-middle-income anchors, a coarseness the limitations section flags.</p>
+</section>
+</section>
+<section id="model" class="level1">
+<h1>Model</h1>
+<p>Each Monte Carlo draw allocates the giving across archetypes (a Dirichlet centered on the derived shares), assigns each archetype a cost per QALY drawn from a distribution anchored in published estimates, and multiplies the implied QALYs by two independent discounts. <strong>Causal credibility</strong> asks whether the measured effect is real. Each archetype carries the identification tier of its best supporting evidence, and the tier sets a Beta-distributed shrinkage factor toward the null: a lottery-randomized wealth shock <span class="citation" data-cites="cesarini2016wealth">(<a href="#ref-cesarini2016wealth" role="doc-biblioref">Cesarini et al. 2016</a>)</span> or the Medicaid mortality quasi-experiments — the ACA expansions <span class="citation" data-cites="miller2021medicaid">(<a href="#ref-miller2021medicaid" role="doc-biblioref">Miller et al. 2021</a>)</span>, with cost–benefit arithmetic from the pre-ACA state expansions <span class="citation" data-cites="sommers2017medicaid">(<a href="#ref-sommers2017medicaid" role="doc-biblioref">Sommers 2017</a>)</span> whose spending component draws on the Oregon Health Insurance Experiment <span class="citation" data-cites="finkelstein2012oregon">(<a href="#ref-finkelstein2012oregon" role="doc-biblioref">Finkelstein et al. 2012</a>)</span> — keeps most of its effect; a child-targeted cash quasi-experiment <span class="citation" data-cites="aizer2016cash">(<a href="#ref-aizer2016cash" role="doc-biblioref">Aizer et al. 2016</a>)</span>, with related designs catalogued in the parameter file, anchors the cash bucket; the community-health-center rollout design <span class="citation" data-cites="bailey2015war">(<a href="#ref-bailey2015war" role="doc-biblioref">Bailey and Goodman-Bacon 2015</a>)</span> and similar contested quasi-experiments keep less; associational and assumption-only categories are shrunk near zero. <strong>Realization</strong> asks whether a marginal philanthropic dollar delivers the studied effect at all — transport to different populations, overhead, and funging, net of possible capacity effects: surveyed Scott recipients report stronger capacity and reach <span class="citation" data-cites="cep2023gifts">(<a href="#ref-cep2023gifts" role="doc-biblioref">Buteau et al. 2023</a>)</span>, self-reports on whose basis the model permits realization above one (an author judgment, not a CEP effect estimate). It is one global triangular draw with mode 0.80 on support 0.55–1.10.</p>
+<p>The two multipliers are designed to partition the doubt — transportability concerns in realization, identification concerns in credibility, cost-per-QALY priors stated conditional on the effect being real and delivered — though the separation is imperfect at the prior boundaries: several anchors already average over mixed null-and-positive evidence before the credibility discount applies (a limitation noted below). Allocation uncertainty is a Dirichlet with concentration 60 around the derived centers — a judgment prior, implying for example a roughly 1.3–10% ninety-percent range on the global-health share — and represents subjective allocation uncertainty rather than sampling uncertainty propagated from the gift data pipeline. The tier ordering is the defensible part; the levels are judgment, proposed by a language model and reviewed by the author, and the results section reports the full consequence of disagreeing with them.</p>
+<p>Health effects arrive in different natural units — lives saved, life-years, depression-free days — and are converted to discounted QALYs at a 3% annual rate under source-specific conventions: adult mortality anchors sample roughly 26 remaining life-years at a utility draw centered near 0.78, the frontier’s child-mortality benchmark uses a fixed ~65 remaining years at utility 0.87, and direct cost-per-QALY anchors keep their sources’ conventions. Every parameter’s unit and dollar vintage is machine-validated at load. The global-health frontier benchmark is handicapped within the same framework: GiveWell’s reported recent program averages <span class="citation" data-cites="givewell2026impact">(<a href="#ref-givewell2026impact" role="doc-biblioref">GiveWell 2025</a>)</span>, converted to roughly $175–$241 per discounted QALY-equivalent under this model’s own conventions (a model conversion, not a GiveWell QALY figure), modeled as loguniform $150–$260, sharing each draw’s realization multiplier, and receiving RCT-grade credibility — the strongest tier — where portfolio archetypes receive their own.</p>
+</section>
+<section id="results" class="level1">
+<h1>Results</h1>
+<p>At the best-guess defaults (100,000 draws), the portfolio produces a median of 201,923 QALYs, with a 90% interval of 94,000 to 419,000 and a mean of 222,060. The interval is a probabilistic-sensitivity range under the stated priors, not a confidence interval; Monte Carlo error on the median is a few hundred QALYs. The blended cost-effectiveness — dollars given over QALYs produced, at the median — is $150,067 per QALY. Monetized under the value-per-QALY distribution HHS recommends for regulatory analysis (central $726,000 at 3%; <span class="citation" data-cites="aspe2026values">Kearsley (<a href="#ref-aspe2026values" role="doc-biblioref">2026</a>)</span>, Table 3), the median draw-level benefit–cost ratio is 4.9 (90% interval 2.1–11.0, reflecting both health-output and valuation uncertainty). <a href="#fig-dist" class="quarto-xref">Figure&nbsp;1</a> shows the full distribution.</p>
+<div id="fig-dist" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="results/figure.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1: Distribution of total QALYs across 100,000 Monte Carlo draws at the best-guess defaults. The dashed line marks the mean; the solid line the median."><img src="results/figure.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Distribution of total QALYs across 100,000 Monte Carlo draws at the best-guess defaults. The dashed line marks the mean; the solid line the median.
+</figcaption>
+</figure>
+</div>
+<section id="where-it-comes-from" class="level2">
+<h2 class="anchored" data-anchor-id="where-it-comes-from">Where it comes from</h2>
+<p><a href="#tbl-cause" class="quarto-xref">Table&nbsp;1</a> decomposes the mean estimate by cause. The result is the paper’s central contrast: the global health and development slice — 4.8% of dollars — contributes 69.1% of estimated QALYs, at a modeled cost of about $9,477 per QALY against $75,673–$305,164 for the causes with quasi-experimental or better U.S. evidence. The 1,278-fold spread in modeled cost-effectiveness within a single donor’s portfolio, under stipulated priors, is partly the lens speaking — its low end is dominated by assumption-tier buckets whose near-zero credibility is an input, and whose main benefits QALYs do not count — but the spread among evidenced health buckets alone exceeds an order of magnitude, restating in one column an empirical regularity long emphasized in the effective-altruism literature <span class="citation" data-cites="ord2013">(<a href="#ref-ord2013" role="doc-biblioref">Ord 2013</a>)</span>: the cheapest health in the world is not bought where most philanthropic dollars are spent.</p>
+<div class="cell" data-execution_count="3">
+<div id="tbl-cause" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="3">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-cause-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Dollars and estimated QALYs by cause, best-guess defaults. Dollars apply the allocation centers to the 2026-dollar total; QALYs are mean contributions (only means are additive). $/QALY is the ratio of center dollars to mean QALYs after credibility and realization adjustments — a ratio of expectations, not the raw study anchor.
+</figcaption>
+<div aria-describedby="tbl-cause-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="3">
+<table class="cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 40%">
+<col style="width: 9%">
+<col style="width: 8%">
+<col style="width: 7%">
+<col style="width: 11%">
+<col style="width: 8%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Cause</th>
+<th style="text-align: left;">Dollars</th>
+<th style="text-align: left;">% of $</th>
+<th style="text-align: right;">QALYs</th>
+<th style="text-align: left;">% of QALYs</th>
+<th style="text-align: left;">$/QALY</th>
+<th style="text-align: left;">Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Global health &amp; development (non-US delivery)</td>
+<td style="text-align: left;">$1.45B</td>
+<td style="text-align: left;">5%</td>
+<td style="text-align: right;">153,469</td>
+<td style="text-align: left;">69%</td>
+<td style="text-align: left;">$9,477</td>
+<td style="text-align: left;">strong_quasi</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Education (HBCUs, comm. college, scholarships)</td>
+<td style="text-align: left;">$5.70B</td>
+<td style="text-align: left;">19%</td>
+<td style="text-align: right;">18,939</td>
+<td style="text-align: left;">9%</td>
+<td style="text-align: left;">$300,788</td>
+<td style="text-align: left;">moderate_quasi</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Health - insurance &amp; access</td>
+<td style="text-align: left;">$1.12B</td>
+<td style="text-align: left;">4%</td>
+<td style="text-align: right;">9,977</td>
+<td style="text-align: left;">4%</td>
+<td style="text-align: left;">$112,381</td>
+<td style="text-align: left;">strong_quasi</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Health - mental &amp; behavioral</td>
+<td style="text-align: left;">$667M</td>
+<td style="text-align: left;">2%</td>
+<td style="text-align: right;">8,810</td>
+<td style="text-align: left;">4%</td>
+<td style="text-align: left;">$75,673</td>
+<td style="text-align: left;">randomized</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Economic security - workforce &amp; mobility</td>
+<td style="text-align: left;">$4.06B</td>
+<td style="text-align: left;">13%</td>
+<td style="text-align: right;">6,632</td>
+<td style="text-align: left;">3%</td>
+<td style="text-align: left;">$612,212</td>
+<td style="text-align: left;">observational</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Economic security - housing &amp; homelessness</td>
+<td style="text-align: left;">$1.09B</td>
+<td style="text-align: left;">4%</td>
+<td style="text-align: right;">5,918</td>
+<td style="text-align: left;">3%</td>
+<td style="text-align: left;">$184,341</td>
+<td style="text-align: left;">moderate_quasi</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Health - community health centers</td>
+<td style="text-align: left;">$1.12B</td>
+<td style="text-align: left;">4%</td>
+<td style="text-align: right;">4,062</td>
+<td style="text-align: left;">2%</td>
+<td style="text-align: left;">$276,005</td>
+<td style="text-align: left;">moderate_quasi</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Other / general community</td>
+<td style="text-align: left;">$1.67B</td>
+<td style="text-align: left;">6%</td>
+<td style="text-align: right;">3,708</td>
+<td style="text-align: left;">2%</td>
+<td style="text-align: left;">$449,423</td>
+<td style="text-align: left;">observational</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Environment / climate</td>
+<td style="text-align: left;">$2.48B</td>
+<td style="text-align: left;">8%</td>
+<td style="text-align: right;">3,193</td>
+<td style="text-align: left;">1%</td>
+<td style="text-align: left;">$778,250</td>
+<td style="text-align: left;">projection</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Economic security - cash &amp; financial</td>
+<td style="text-align: left;">$879M</td>
+<td style="text-align: left;">3%</td>
+<td style="text-align: right;">2,880</td>
+<td style="text-align: left;">1%</td>
+<td style="text-align: left;">$305,164</td>
+<td style="text-align: left;">strong_quasi</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Economic security - food security</td>
+<td style="text-align: left;">$576M</td>
+<td style="text-align: left;">2%</td>
+<td style="text-align: right;">2,093</td>
+<td style="text-align: left;">1%</td>
+<td style="text-align: left;">$275,096</td>
+<td style="text-align: left;">observational</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Equity &amp; justice</td>
+<td style="text-align: left;">$5.21B</td>
+<td style="text-align: left;">17%</td>
+<td style="text-align: right;">1,763</td>
+<td style="text-align: left;">1%</td>
+<td style="text-align: left;">$3M</td>
+<td style="text-align: left;">assumption</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Civic / democracy / philanthropy infra</td>
+<td style="text-align: left;">$3.24B</td>
+<td style="text-align: left;">11%</td>
+<td style="text-align: right;">531</td>
+<td style="text-align: left;">&lt;1%</td>
+<td style="text-align: left;">$6M</td>
+<td style="text-align: left;">assumption</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Arts &amp; culture</td>
+<td style="text-align: left;">$1.03B</td>
+<td style="text-align: left;">3%</td>
+<td style="text-align: right;">85</td>
+<td style="text-align: left;">&lt;1%</td>
+<td style="text-align: left;">$12M</td>
+<td style="text-align: left;">assumption</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Total</td>
+<td style="text-align: left;">$30.30B</td>
+<td style="text-align: left;">100%</td>
+<td style="text-align: right;">222,060</td>
+<td style="text-align: left;">100%</td>
+<td style="text-align: left;">$136,458</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+<a class="quarto-notebook-link" id="nblink-1" href="index-preview.html">Source: Article Notebook</a></div>
+<p><a href="#tbl-geo" class="quarto-xref">Table&nbsp;2</a> decomposes the same run by delivery geography. The table is a by-construction decomposition, not evidence of regional differences: within each cause the model prices every delivery location identically — the health routing to global anchors is its only geographic pricing — so a cause’s QALYs follow its dollars across regions. Under that construction, Sub-Saharan Africa receives 6% of dollars and 30% of estimated QALYs at $27,031 per QALY; nationally-scoped U.S. giving receives 27% of dollars and 9% of QALYs at $403,000.</p>
+<div class="cell" data-execution_count="5">
+<div id="tbl-geo" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="5">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-geo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: A deterministic post-estimation decomposition of mean archetype QALYs by delivery geography — no region-level effect or uncertainty is estimated, and geography affects pricing only through the global-health routing. Asterisked rows are reporting granularity (national or multi-region listings), not places. Geography derives from each organization’s reported service locations, equal-split, with audited fractions for the 50 largest “global”-listed organizations.
+</figcaption>
+<div aria-describedby="tbl-geo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="5">
+<table class="cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 36%">
+<col style="width: 12%">
+<col style="width: 11%">
+<col style="width: 10%">
+<col style="width: 16%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Region</th>
+<th style="text-align: left;">Dollars</th>
+<th style="text-align: left;">% of $</th>
+<th style="text-align: right;">QALYs</th>
+<th style="text-align: left;">% of QALYs</th>
+<th style="text-align: left;">$/QALY</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Sub-Saharan Africa</td>
+<td style="text-align: left;">$1.81B</td>
+<td style="text-align: left;">6%</td>
+<td style="text-align: right;">67,007</td>
+<td style="text-align: left;">30%</td>
+<td style="text-align: left;">$27,031</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">South Asia</td>
+<td style="text-align: left;">$1.01B</td>
+<td style="text-align: left;">3%</td>
+<td style="text-align: right;">32,006</td>
+<td style="text-align: left;">14%</td>
+<td style="text-align: left;">$31,577</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Global (multi-region) *</td>
+<td style="text-align: left;">$1.53B</td>
+<td style="text-align: left;">5%</td>
+<td style="text-align: right;">28,288</td>
+<td style="text-align: left;">13%</td>
+<td style="text-align: left;">$54,164</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">US — national / unspecified *</td>
+<td style="text-align: left;">$8.24B</td>
+<td style="text-align: left;">27%</td>
+<td style="text-align: right;">20,443</td>
+<td style="text-align: left;">9%</td>
+<td style="text-align: left;">$403,000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Latin America &amp; Caribbean</td>
+<td style="text-align: left;">$1.11B</td>
+<td style="text-align: left;">4%</td>
+<td style="text-align: right;">17,472</td>
+<td style="text-align: left;">8%</td>
+<td style="text-align: left;">$63,620</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">US — South</td>
+<td style="text-align: left;">$5.96B</td>
+<td style="text-align: left;">20%</td>
+<td style="text-align: right;">16,041</td>
+<td style="text-align: left;">7%</td>
+<td style="text-align: left;">$371,678</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">US — West</td>
+<td style="text-align: left;">$4.02B</td>
+<td style="text-align: left;">13%</td>
+<td style="text-align: right;">10,966</td>
+<td style="text-align: left;">5%</td>
+<td style="text-align: left;">$366,611</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">US — Midwest</td>
+<td style="text-align: left;">$2.75B</td>
+<td style="text-align: left;">9%</td>
+<td style="text-align: right;">7,828</td>
+<td style="text-align: left;">4%</td>
+<td style="text-align: left;">$351,406</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">US — Northeast</td>
+<td style="text-align: left;">$2.20B</td>
+<td style="text-align: left;">7%</td>
+<td style="text-align: right;">5,631</td>
+<td style="text-align: left;">3%</td>
+<td style="text-align: left;">$390,341</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Europe &amp; Central Asia</td>
+<td style="text-align: left;">$299M</td>
+<td style="text-align: left;">1%</td>
+<td style="text-align: right;">5,453</td>
+<td style="text-align: left;">2%</td>
+<td style="text-align: left;">$54,776</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Middle East &amp; North Africa</td>
+<td style="text-align: left;">$153M</td>
+<td style="text-align: left;">1%</td>
+<td style="text-align: right;">4,177</td>
+<td style="text-align: left;">2%</td>
+<td style="text-align: left;">$36,670</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">East Asia &amp; Pacific</td>
+<td style="text-align: left;">$335M</td>
+<td style="text-align: left;">1%</td>
+<td style="text-align: right;">3,339</td>
+<td style="text-align: left;">2%</td>
+<td style="text-align: left;">$100,390</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">North America (unspecified) *</td>
+<td style="text-align: left;">$698M</td>
+<td style="text-align: left;">2%</td>
+<td style="text-align: right;">1,535</td>
+<td style="text-align: left;">1%</td>
+<td style="text-align: left;">$454,724</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Other / unmapped *</td>
+<td style="text-align: left;">$40M</td>
+<td style="text-align: left;">&lt;1%</td>
+<td style="text-align: right;">1,435</td>
+<td style="text-align: left;">1%</td>
+<td style="text-align: left;">$27,621</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Canada</td>
+<td style="text-align: left;">$142M</td>
+<td style="text-align: left;">&lt;1%</td>
+<td style="text-align: right;">439</td>
+<td style="text-align: left;">&lt;1%</td>
+<td style="text-align: left;">$323,208</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+</section>
+<section id="against-the-global-health-frontier" class="level2">
+<h2 class="anchored" data-anchor-id="against-the-global-health-frontier">Against the global-health frontier</h2>
+<p>Handicapped within the same framework — sharing each draw’s realization multiplier, with RCT-grade credibility — the GiveWell-derived frontier benchmark delivers roughly 521× more health per marginal dollar than the blended portfolio; the same sum directed entirely to the frontier would imply on the order of 105.5 million QALYs. That figure is arithmetic, not a forecast, and not an attainable counterfactual: frontier-priced opportunities are scarce — GiveWell’s directed funding runs to hundreds of millions of dollars per year, not tens of billions <span class="citation" data-cites="givewell2026impact">(<a href="#ref-givewell2026impact" role="doc-biblioref">GiveWell 2025</a>)</span> — and funding beyond identified room drives toward cash-transfer cost-effectiveness, whose GiveWell estimate rose 3–4× in a 2024 re-evaluation <span class="citation" data-cites="givewell2024cash">(<a href="#ref-givewell2024cash" role="doc-biblioref">GiveWell 2024</a>)</span>. Converting the full portfolio at cash-transfer cost-effectiveness under this model’s own conventions leaves a multiple in the tens — roughly 20–40×, model arithmetic rather than a GiveWell figure. The defensible statement is directional: the frontier multiple is several hundred at today’s margin and remains large at any scale the cited benchmarks speak to.</p>
+</section>
+</section>
+<section id="robustness" class="level1">
+<h1>Robustness</h1>
+<section id="evidence-philosophy-dominates-everything-else" class="level2">
+<h2 class="anchored" data-anchor-id="evidence-philosophy-dominates-everything-else">Evidence philosophy dominates everything else</h2>
+<div id="cell-fig-stance" class="cell" data-execution_count="6">
+<div class="cell-output cell-output-display">
+<div id="fig-stance" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-stance-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/fig-stance-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;2: Median total QALYs across the evidence-stance range, 100,000 draws per point, seed 0. The stance interpolates each tier’s credibility mean piecewise-linearly from a near-RCT-only floor (non-randomized tiers at mean 0.01; randomized tier at its drafted mean) through the drafted best-guess tiers (0.5) to near face value (all means 0.999). A scenario path, not a bound; tier concentrations are held fixed."><img src="index_files/figure-html/fig-stance-output-1.png" width="657" height="335" class="figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-stance-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Median total QALYs across the evidence-stance range, 100,000 draws per point, seed 0. The stance interpolates each tier’s credibility mean piecewise-linearly from a near-RCT-only floor (non-randomized tiers at mean 0.01; randomized tier at its drafted mean) through the drafted best-guess tiers (0.5) to near face value (all means 0.999). A scenario path, not a bound; tier concentrations are held fixed.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The dominant sensitivity is not a parameter but a philosophy. At the near-RCT-only floor — non-randomized tiers shrunk to a credibility mean of 0.01, the randomized tier kept at its drafted mean — the median collapses to 9,114 QALYs, dominated by the randomized-tier mental-health bucket; at near face value (all tier means 0.999) it rises to 414,264 (<a href="#fig-stance" class="quarto-xref">Figure&nbsp;2</a>). That 45-fold range exceeds the spread from any single distributional parameter — though structural choices can move the headline more: with no geographic repricing at all, every health dollar at U.S. anchors, the median is roughly 70,000 (the pre-correction model in the §5.3 table), so the routing assumption alone spans ~3× — and the gap between the face-value and best-guess estimates is a direct reading of how much of the estimated impact rests on evidence below randomized or strong quasi-experimental identification standards. The Spearman tornado (<a href="#fig-tornado" class="quarto-xref">Figure&nbsp;3</a>) tells the same story within the default stance: the top three drivers are the global-health allocation share, the realization factor, and global-health credibility.</p>
+<div id="fig-tornado" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-tornado-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="results/sensitivity.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;3: What drives the spread: Spearman rank correlations between each input draw and total QALYs at the best-guess defaults."><img src="results/sensitivity.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tornado-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: What drives the spread: Spearman rank correlations between each input draw and total QALYs at the best-guess defaults.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="the-audit-moved-the-headline-by-less-than-2" class="level2">
+<h2 class="anchored" data-anchor-id="the-audit-moved-the-headline-by-less-than-2">The audit moved the headline by less than 2%</h2>
+<p>The geography audit is the largest data correction the model has absorbed since publication, and its effect is small: recentering the allocation on audited service geographies moved the abroad share from 4.93% to 4.82%, the median from about 205,000 to 201,923, and the blended figure from about $148,000 to $150,067 per QALY. Both allocations ship with the model, the browser version exposes them as a version toggle, and the pre-audit parameters remain pinned at tag <code>v2026.07.20</code> (audited: <code>v2026.07.22</code>).</p>
+</section>
+<section id="corrections-history" class="level2">
+<h2 class="anchored" data-anchor-id="corrections-history">Corrections history</h2>
+<p>The model reached this state through a series of public revisions — counting a revision as a committed change that moved the headline — and the trajectory is itself evidence about the method. As recorded in the repository history:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Change</th>
+<th>Median before → after</th>
+<th>Caught by</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Cross-model review: dollar vintages normalized, a life-year→QALY conversion made explicit, frontier benchmark re-derived, one citation re-attributed</td>
+<td>~98,000 → ~87,000</td>
+<td>second model family</td>
+</tr>
+<tr class="even">
+<td>Allocation replaced with the derivation from Scott’s own gift database</td>
+<td>~87,000 → ~70,000</td>
+<td>author + model</td>
+</tr>
+<tr class="odd">
+<td>Health dollars had been priced at U.S. anchors regardless of delivery location</td>
+<td>~70,000 → ~205,000</td>
+<td>a reader</td>
+</tr>
+<tr class="even">
+<td>Two-model geography audit of “global”-listed organizations (tags v2026.07.20 → v2026.07.22)</td>
+<td>~205,000 → 202,000</td>
+<td>model audit</td>
+</tr>
+</tbody>
+</table>
+<p>Every correction is documented in the repository and summarized on the public tool; the detector column is the record, and none of these was caught by the author unaided.</p>
+</section>
+</section>
+<section id="construction-and-auditability" class="level1">
+<h1>Construction and auditability</h1>
+<p>The model was built with a frontier language model (Anthropic’s Claude), with the author reviewing every parameter and assumption; adversarial review by a second model family (OpenAI’s), plus reader corrections, produced the revision history above. Three mechanisms make the result checkable rather than merely stated. Parameters live in one typed file in which every value carries its unit, dollar vintage, and inline citation, machine-validated at load; an annotated bibliography maps each quantitative input to its primary source and price-level conversion. Sync tests force the published web parameters, allocation shares, and geography exports to equal fresh derivations from the committed data snapshots, and the body of this manuscript interpolates its model-derived numbers from those same artifacts at render time (the abstract’s figures are typed copies of the interpolated values; externally sourced constants carry citations). And the audit trail is data: the 990 match audit ships as its applied per-row overlay, and the 50-organization geography audit ships with per-organization sources and confidence grades — both applied by the pipeline rather than folded silently into parameters.</p>
+<p>The browser implementation is a checked TypeScript port that reruns the full Monte Carlo client-side; every figure in this paper can be reproduced, and every assumption overridden, at <a href="https://maxghenis.com/mackenzie-scott-qaly">maxghenis.com/mackenzie-scott-qaly</a>. The repository, including this manuscript’s source, is at <a href="https://github.com/MaxGhenis/mackenzie-scott-qaly">github.com/MaxGhenis/mackenzie-scott-qaly</a>.</p>
+</section>
+<section id="limitations" class="level1">
+<h1>Limitations</h1>
+<p>The credibility tiers and realization distribution are judgment priors with no literature calibration; the ordering is defensible, the levels are not measured, and the stance sweep is the honest bound on their influence. The QALY lens counts only health, so the estimate is a partial accounting that omits both the non-health benefits where Scott concentrates — education, mobility, equity — and any possible harms; it is not a floor on total wellbeing. Credibility shrinks toward zero but never below it, so the model places no mass on harmful giving; the closest available zero scenario is the near-RCT-only stance floor, which drives unsupported archetypes to ~1% credit. Allocation splits each organization’s dollars equally across its focus areas and service locations; both are coarse, and the geography audit covers only the 50 largest “global”-listed organizations. Realization is one global draw, so it cannot vary by cause. Archetype anchors treat heterogeneous organizations as draws from one distribution. Within each cause, delivery regions are priced identically, so the geographic decomposition exposes assumptions rather than measuring regional differences. The undisclosed third of dollars is imputed from a fitted elasticity, not observed. The routed global-health bucket prices its unattributable and Europe-&amp;-Central-Asia-plus-Canada dollars — roughly a fifth of the bucket, whose true income mix is unidentified — at low-and-middle-income anchors, an upward-bias channel. Several cost priors average over mixed null-and-positive evidence before the credibility discount applies, so the two-multiplier separation of doubts is imperfect at those boundaries. The Dirichlet allocation spread is a subjective prior; uncertainty from the elasticity fit, unmatched filings, the focus-area crosswalk, and the geography audit is not propagated. Allocation shares are derived in nominal dollars and applied to the real total; re-deriving in real dollars moves shares by hundredths of a percentage point. The geography audit’s scalar U.S. shares and regional decompositions were reconciled separately and can differ by fractions of a point per organization. Finally, several anchors rest on a small number of quasi-experimental papers whose external validity to Scott’s grantees is exactly what the realization factor is guessing at.</p>
+</section>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<p>Measured in health, MacKenzie Scott’s $26 billion buys an estimated median of about 202,000 quality-adjusted life-years — several times its cost under the government’s own regulatory valuation — and most of that estimated health comes from the twentieth of her dollars funding health and development delivered abroad. The number is a model output under stated priors, not a fact, and the model’s most important output is not the point estimate but the machinery around it: explicit evidence weights, a 45-fold stance range that any reader can traverse, versioned corrections, and audits committed as data. Portfolio-scale philanthropy is measurable in outcomes without waiting for donors to publish outcome data — their own gift lists, recipients’ tax filings, and the published causal literature suffice — and the same machinery applies to any large giver whose public disclosures carry comparable gift-level allocation and geography fields. The invitation of the interactive version is the paper’s real conclusion: disagree with a parameter, move it, and watch what survives.</p>
+</section>
+<section id="acknowledgments" class="level1 unnumbered">
+<h1 class="unnumbered">Acknowledgments</h1>
+<p>I thank readers on LinkedIn and the EA Forum whose corrections materially improved the model, including the reader who identified the original mispricing of internationally delivered health dollars. The model, audits, and this manuscript were built with Anthropic’s Claude, with additional adversarial review by OpenAI models; all judgments and errors are mine. This is a personal research project and does not represent the views of PolicyEngine or the Axiom Foundation. Neither I nor those organizations have received funding from MacKenzie Scott, Yield Giving, or GiveWell.</p>
+</section>
+<section id="references" class="level1 unnumbered">
+<h1 class="unnumbered">References</h1>
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-aizer2016cash" class="csl-entry" role="listitem">
+Aizer, Anna, Shari Eli, Joseph Ferrie, and Adriana Lleras-Muney. 2016. <span>“The Long-Run Impact of Cash Transfers to Poor Families.”</span> <em>American Economic Review</em> 106 (4): 935–71. <a href="https://doi.org/10.1257/aer.20140529">https://doi.org/10.1257/aer.20140529</a>.
+</div>
+<div id="ref-bailey2015war" class="csl-entry" role="listitem">
+Bailey, Martha J., and Andrew Goodman-Bacon. 2015. <span>“The <span>W</span>ar on <span>P</span>overty’s Experiment in Public Medicine: Community Health Centers and the Mortality of Older <span>A</span>mericans.”</span> <em>American Economic Review</em> 105 (3): 1067–104. <a href="https://doi.org/10.1257/aer.20120070">https://doi.org/10.1257/aer.20120070</a>.
+</div>
+<div id="ref-cep2023gifts" class="csl-entry" role="listitem">
+Buteau, Ellie, Elisha Smith Arrillaga, and Christina Im. 2023. <em>Emerging Impacts: The Effects of <span>M</span>ac<span>K</span>enzie <span>S</span>cott’s Large, Unrestricted Gifts: Results from Year Two of a Three-Year Study</em>. Center for Effective Philanthropy. <a href="https://cep.org/wp-content/uploads/2023/11/BigGiftsStudy_Report_Y2_FNL.pdf">https://cep.org/wp-content/uploads/2023/11/BigGiftsStudy_Report_Y2_FNL.pdf</a>.
+</div>
+<div id="ref-cega2023div" class="csl-entry" role="listitem">
+Center for Effective Global Action. 2022. <em>Donors Can Spend More Money, Better, with Cost Evidence</em>. <a href="https://cega.berkeley.edu/article/donors-can-spend-more-money-better-with-cost-evidence/" class="uri">Https://cega.berkeley.edu/article/donors-can-spend-more-money-better-with-cost-evidence/</a>.
+</div>
+<div id="ref-cesarini2016wealth" class="csl-entry" role="listitem">
+Cesarini, David, Erik Lindqvist, Robert Östling, and Björn Wallace. 2016. <span>“Wealth, Health, and Child Development: Evidence from Administrative Data on <span>S</span>wedish Lottery Players.”</span> <em>Quarterly Journal of Economics</em> 131 (2): 687–738. <a href="https://doi.org/10.1093/qje/qjw001">https://doi.org/10.1093/qje/qjw001</a>.
+</div>
+<div id="ref-ap2026givingusa" class="csl-entry" role="listitem">
+Childress, Rasheeda. 2026. <em>Donors Gave <span>U.S.</span> Charities $617 Billion in 2025, According to the New Giving <span>USA</span> Report</em>. <a href="https://apnews.com/article/8363b76bc8cf854f6865c31129e8a4b1" class="uri">Https://apnews.com/article/8363b76bc8cf854f6865c31129e8a4b1</a>.
+</div>
+<div id="ref-constellation2025" class="csl-entry" role="listitem">
+Constellation Fund. 2026. <em>2025 Investment Report</em>. <a href="https://constellationfund.org/impact-news-insights/investment-report-2025/" class="uri">Https://constellationfund.org/impact-news-insights/investment-report-2025/</a>.
+</div>
+<div id="ref-finkelstein2012oregon" class="csl-entry" role="listitem">
+Finkelstein, Amy, Sarah Taubman, Bill Wright, et al. 2012. <span>“The <span>O</span>regon Health Insurance Experiment: Evidence from the First Year.”</span> <em>Quarterly Journal of Economics</em> 127 (3): 1057–106. <a href="https://doi.org/10.1093/qje/qjs020">https://doi.org/10.1093/qje/qjs020</a>.
+</div>
+<div id="ref-givewell2024cash" class="csl-entry" role="listitem">
+GiveWell. 2024. <em>Re-Evaluating the Impact of Unconditional Cash Transfers</em>. <a href="https://blog.givewell.org/2024/11/12/re-evaluating-the-impact-of-unconditional-cash-transfers/" class="uri">Https://blog.givewell.org/2024/11/12/re-evaluating-the-impact-of-unconditional-cash-transfers/</a>.
+</div>
+<div id="ref-givewell2026impact" class="csl-entry" role="listitem">
+GiveWell. 2025. <em>Impact Estimates</em>. <a href="https://www.givewell.org/impact-estimates" class="uri">Https://www.givewell.org/impact-estimates</a>.
+</div>
+<div id="ref-cnbc2025scott" class="csl-entry" role="listitem">
+Huddleston, Jr., Tom. 2025. <em><span>M</span>ac<span>K</span>enzie <span>S</span>cott Announced Another $7.1 Billion in 2025 Charitable Donations—She’s Now Given Away $26.3 Billion Since 2019</em>. <a href="https://www.cnbc.com/2025/12/13/mackenzie-scott-revealed-her-total-charitable-donations-for-2025.html" class="uri">Https://www.cnbc.com/2025/12/13/mackenzie-scott-revealed-her-total-charitable-donations-for-2025.html</a>.
+</div>
+<div id="ref-givingusa2026" class="csl-entry" role="listitem">
+Indiana University Lilly Family School of Philanthropy. 2026. <em>Giving <span>USA</span> 2026: The Annual Report on Philanthropy for the Year 2025</em>. Giving USA Foundation.
+</div>
+<div id="ref-aspe2026values" class="csl-entry" role="listitem">
+Kearsley, Aaron. 2026. <em><span>HHS</span> Standard Values for Regulatory Analysis, 2026</em>. ASPE. <a href="https://aspe.hhs.gov/reports/standard-ria-values">https://aspe.hhs.gov/reports/standard-ria-values</a>.
+</div>
+<div id="ref-miller2021medicaid" class="csl-entry" role="listitem">
+Miller, Sarah, Norman Johnson, and Laura R. Wherry. 2021. <span>“Medicaid and Mortality: New Evidence from Linked Survey and Administrative Data.”</span> <em>Quarterly Journal of Economics</em> 136 (3): 1783–829. <a href="https://doi.org/10.1093/qje/qjab004">https://doi.org/10.1093/qje/qjab004</a>.
+</div>
+<div id="ref-ord2013" class="csl-entry" role="listitem">
+Ord, Toby. 2013. <span>“The Moral Imperative Toward Cost-Effectiveness in Global Health.”</span> In <em>Essays</em>. Center for Global Development. <a href="https://www.cgdev.org/publication/moral-imperative-toward-cost-effectiveness-global-health">https://www.cgdev.org/publication/moral-imperative-toward-cost-effectiveness-global-health</a>.
+</div>
+<div id="ref-propublica2026" class="csl-entry" role="listitem">
+ProPublica. 2026. <em>Nonprofit Explorer</em>. <a href="https://projects.propublica.org/nonprofits/" class="uri">Https://projects.propublica.org/nonprofits/</a>.
+</div>
+<div id="ref-robinhood2025" class="csl-entry" role="listitem">
+Robin Hood Foundation. 2023. <em>Our Approach: Metrics and Benefit–Cost Analysis</em>. <a href="https://robinhood.org/our-work/our-approach/" class="uri">Https://robinhood.org/our-work/our-approach/</a>.
+</div>
+<div id="ref-sommers2017medicaid" class="csl-entry" role="listitem">
+Sommers, Benjamin D. 2017. <span>“State <span>M</span>edicaid Expansions and Mortality, Revisited: A Cost-Benefit Analysis.”</span> <em>American Journal of Health Economics</em> 3 (3): 392–421. <a href="https://doi.org/10.1162/ajhe_a_00080">https://doi.org/10.1162/ajhe_a_00080</a>.
+</div>
+<div id="ref-yieldgiving2026" class="csl-entry" role="listitem">
+Yield Giving. 2026. <em>Gifts Database</em>. <a href="https://yieldgiving.com/gifts" class="uri">Https://yieldgiving.com/gifts</a>.
+</div>
+</div>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>

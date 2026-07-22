@@ -60,6 +60,12 @@ const S = {
         </p>
       </header>
 
+      <nav class="surface-tabs" aria-label="Views of this analysis">
+        <span class="tab active">Interactive</span>
+        <a class="tab" href="/mackenzie-scott-qaly/paper/">Working paper</a>
+        <a class="tab" href="/mackenzie-scott-qaly/paper/index.pdf">PDF</a>
+      </nav>
+
       <QalyExplorer client:load />
 
       <div class="intro prose">
@@ -260,5 +266,26 @@ const S = {
   }
   .sources li {
     margin-bottom: 0.5em;
+  }
+
+  .surface-tabs {
+    display: flex;
+    gap: 1.25rem;
+    margin: 0 0 1.1rem;
+    border-bottom: 1px solid var(--border, #e2e8f0);
+  }
+  .surface-tabs .tab {
+    padding: 0 0 0.45rem;
+    font-size: 0.9rem;
+    color: var(--ink-muted, #64748b);
+    text-decoration: none;
+  }
+  .surface-tabs .tab.active {
+    color: #b45309;
+    font-weight: 600;
+    border-bottom: 2px solid #b45309;
+  }
+  .surface-tabs a.tab:hover {
+    color: #b45309;
   }
 </style>
