@@ -148,5 +148,271 @@
     "unspecified": true
    }
   ]
+ },
+ "archetype_region_matrix": {
+  "note": "Within each archetype the model prices all delivery locations identically (the health->global_health routing is the only geographic pricing), so these dollar shares decompose the archetype's QALYs by construction.",
+  "regions": [
+   {
+    "key": "canada",
+    "label": "Canada",
+    "unspecified": false
+   },
+   {
+    "key": "east_asia&_pacific",
+    "label": "East Asia & Pacific",
+    "unspecified": false
+   },
+   {
+    "key": "europe&_central_asia",
+    "label": "Europe & Central Asia",
+    "unspecified": false
+   },
+   {
+    "key": "global",
+    "label": "Global (multi-region)",
+    "unspecified": true
+   },
+   {
+    "key": "latin_america&_caribbean",
+    "label": "Latin America & Caribbean",
+    "unspecified": false
+   },
+   {
+    "key": "middle_east&_north_africa",
+    "label": "Middle East & North Africa",
+    "unspecified": false
+   },
+   {
+    "key": "north_america_unspec",
+    "label": "North America (unspecified)",
+    "unspecified": true
+   },
+   {
+    "key": "other",
+    "label": "Other / unmapped",
+    "unspecified": true
+   },
+   {
+    "key": "south_asia",
+    "label": "South Asia",
+    "unspecified": false
+   },
+   {
+    "key": "sub-_saharan_africa",
+    "label": "Sub-Saharan Africa",
+    "unspecified": false
+   },
+   {
+    "key": "us_midwest",
+    "label": "US \u2014 Midwest",
+    "unspecified": false
+   },
+   {
+    "key": "us_national",
+    "label": "US \u2014 national / unspecified",
+    "unspecified": true
+   },
+   {
+    "key": "us_northeast",
+    "label": "US \u2014 Northeast",
+    "unspecified": false
+   },
+   {
+    "key": "us_south",
+    "label": "US \u2014 South",
+    "unspecified": false
+   },
+   {
+    "key": "us_west",
+    "label": "US \u2014 West",
+    "unspecified": false
+   }
+  ],
+  "matrix": {
+   "environment": {
+    "sub-_saharan_africa": 0.129776,
+    "south_asia": 0.061791,
+    "latin_america&_caribbean": 0.12866,
+    "europe&_central_asia": 0.025556,
+    "middle_east&_north_africa": 0.006756,
+    "global": 0.229606,
+    "us_national": 0.123315,
+    "us_south": 0.04627,
+    "us_northeast": 0.016629,
+    "east_asia&_pacific": 0.056294,
+    "us_midwest": 0.030485,
+    "us_west": 0.066489,
+    "north_america_unspec": 0.058859,
+    "canada": 0.019307,
+    "other": 0.000207
+   },
+   "equity_justice": {
+    "sub-_saharan_africa": 0.031262,
+    "south_asia": 0.026571,
+    "latin_america&_caribbean": 0.047597,
+    "europe&_central_asia": 0.011449,
+    "middle_east&_north_africa": 0.011216,
+    "global": 0.037242,
+    "us_national": 0.342077,
+    "us_south": 0.164912,
+    "us_west": 0.134009,
+    "us_northeast": 0.09097,
+    "north_america_unspec": 0.01958,
+    "us_midwest": 0.073314,
+    "east_asia&_pacific": 0.00605,
+    "canada": 0.002829,
+    "other": 0.000923
+   },
+   "global_health": {
+    "global": 0.176079,
+    "middle_east&_north_africa": 0.026478,
+    "sub-_saharan_africa": 0.424357,
+    "latin_america&_caribbean": 0.106913,
+    "europe&_central_asia": 0.033862,
+    "south_asia": 0.202116,
+    "east_asia&_pacific": 0.019538,
+    "other": 0.009033,
+    "canada": 0.001626
+   },
+   "civic_democracy": {
+    "us_south": 0.142432,
+    "us_national": 0.345977,
+    "global": 0.091513,
+    "us_west": 0.097086,
+    "us_midwest": 0.069263,
+    "us_northeast": 0.061323,
+    "east_asia&_pacific": 0.016519,
+    "south_asia": 0.026145,
+    "sub-_saharan_africa": 0.041082,
+    "latin_america&_caribbean": 0.044955,
+    "north_america_unspec": 0.027695,
+    "europe&_central_asia": 0.02242,
+    "canada": 0.007862,
+    "middle_east&_north_africa": 0.004417,
+    "other": 0.001311
+   },
+   "education": {
+    "us_south": 0.282233,
+    "us_national": 0.245203,
+    "us_northeast": 0.084596,
+    "us_midwest": 0.109777,
+    "us_west": 0.16363,
+    "north_america_unspec": 0.02295,
+    "global": 0.005074,
+    "sub-_saharan_africa": 0.043276,
+    "south_asia": 0.014276,
+    "east_asia&_pacific": 0.002497,
+    "latin_america&_caribbean": 0.015249,
+    "europe&_central_asia": 0.005014,
+    "canada": 0.001507,
+    "other": 0.001696,
+    "middle_east&_north_africa": 0.00302
+   },
+   "other_community": {
+    "us_south": 0.214673,
+    "us_national": 0.300541,
+    "us_west": 0.118883,
+    "latin_america&_caribbean": 0.024719,
+    "global": 0.034358,
+    "europe&_central_asia": 0.0095,
+    "north_america_unspec": 0.012979,
+    "sub-_saharan_africa": 0.0354,
+    "east_asia&_pacific": 0.007138,
+    "south_asia": 0.04181,
+    "us_northeast": 0.066063,
+    "us_midwest": 0.110084,
+    "middle_east&_north_africa": 0.001127,
+    "canada": 0.020742,
+    "other": 0.001982
+   },
+   "econ_workforce": {
+    "us_south": 0.23262,
+    "us_national": 0.27933,
+    "us_midwest": 0.096015,
+    "us_northeast": 0.066484,
+    "us_west": 0.13286,
+    "north_america_unspec": 0.014913,
+    "sub-_saharan_africa": 0.065068,
+    "south_asia": 0.045724,
+    "east_asia&_pacific": 0.009686,
+    "latin_america&_caribbean": 0.023795,
+    "europe&_central_asia": 0.001533,
+    "global": 0.027756,
+    "other": 0.000946,
+    "middle_east&_north_africa": 0.001237,
+    "canada": 0.002033
+   },
+   "arts_culture": {
+    "us_south": 0.257102,
+    "us_national": 0.209438,
+    "global": 0.013758,
+    "europe&_central_asia": 0.002518,
+    "north_america_unspec": 0.029915,
+    "middle_east&_north_africa": 0.000939,
+    "sub-_saharan_africa": 0.00428,
+    "us_midwest": 0.141116,
+    "us_west": 0.18881,
+    "us_northeast": 0.11725,
+    "south_asia": 0.002978,
+    "other": 0.000113,
+    "latin_america&_caribbean": 0.016274,
+    "east_asia&_pacific": 0.01551
+   },
+   "econ_cash": {
+    "us_national": 0.344145,
+    "us_south": 0.252852,
+    "us_midwest": 0.119936,
+    "us_northeast": 0.09649,
+    "us_west": 0.165169,
+    "north_america_unspec": 0.021409
+   },
+   "econ_housing": {
+    "us_midwest": 0.181211,
+    "us_northeast": 0.100929,
+    "us_south": 0.203413,
+    "us_national": 0.228715,
+    "global": 0.00156,
+    "us_west": 0.262925,
+    "sub-_saharan_africa": 0.001188,
+    "latin_america&_caribbean": 0.001005,
+    "east_asia&_pacific": 0.000366,
+    "south_asia": 0.00014,
+    "europe&_central_asia": 0.000331,
+    "middle_east&_north_africa": 2.1e-05,
+    "north_america_unspec": 0.018197
+   },
+   "health_coverage": {
+    "us_national": 0.388827,
+    "us_west": 0.14852,
+    "us_northeast": 0.086972,
+    "us_south": 0.221344,
+    "north_america_unspec": 0.02626,
+    "us_midwest": 0.128077
+   },
+   "health_chc": {
+    "us_national": 0.388827,
+    "us_west": 0.14852,
+    "us_northeast": 0.086972,
+    "us_south": 0.221344,
+    "north_america_unspec": 0.02626,
+    "us_midwest": 0.128077
+   },
+   "health_mental": {
+    "us_national": 0.397148,
+    "us_west": 0.178437,
+    "us_south": 0.20199,
+    "us_midwest": 0.113612,
+    "us_northeast": 0.091919,
+    "north_america_unspec": 0.016894
+   },
+   "econ_food": {
+    "us_national": 0.158472,
+    "us_west": 0.162514,
+    "us_south": 0.47853,
+    "us_midwest": 0.10113,
+    "us_northeast": 0.086516,
+    "north_america_unspec": 0.012838
+   }
+  }
  }
 }

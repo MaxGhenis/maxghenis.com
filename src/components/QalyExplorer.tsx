@@ -679,24 +679,58 @@ function BreakdownTable(props: { summary: Summary; inputShares: number[] }) {
     </div>
   );
 
+  const shareByKeyG = new Map(ARCHETYPE_KEYS.map((k, j) => [k, props.inputShares[j]]));
+
   if (by === "geo") {
-    const total = GEO.full_ledger.total_usd;
-    const keyFns: Record<string, (r: (typeof GEO.full_ledger.regions)[number]) => number | string> = {
+    // Decompose the current run by delivery geography: each archetype's
+    // dollars and mean QALYs spread over regions by its data-derived
+    // regional dollar shares. Within an archetype the model prices all
+    // regions identically, so QALYs follow dollars by construction.
+    const M = GEO.archetype_region_matrix.matrix as Record<string, Record<string, number>>;
+    const regionMeta = GEO.archetype_region_matrix.regions as { key: string; label: string; unspecified: boolean }[];
+    const acc = new Map<string, { usd: number; q: number }>();
+    for (const r of s.perArchetype) {
+      const dollars = (shareByKeyG.get(r.key) ?? 0) * givingUsd;
+      const w = M[r.key] ?? {};
+      for (const [region, share] of Object.entries(w)) {
+        const cur = acc.get(region) ?? { usd: 0, q: 0 };
+        cur.usd += dollars * share;
+        cur.q += r.meanQalys * share;
+        acc.set(region, cur);
+      }
+    }
+    const totalD = [...acc.values()].reduce((a, v) => a + v.usd, 0);
+    const totalQ = [...acc.values()].reduce((a, v) => a + v.q, 0);
+    const keyFns: Record<string, (r: { label: string; usd: number; q: number }) => number | string> = {
       label: (r) => r.label.toLowerCase(),
       usd: (r) => r.usd,
+      qalys: (r) => r.q,
+      cpq: (r) => (r.q > 0 ? r.usd / r.q : Infinity),
     };
     const keyFn = keyFns[sort.col] ?? keyFns.usd;
-    const rows = [...GEO.full_ledger.regions].sort((a, b) => {
-      const va = keyFn(a), vb = keyFn(b);
-      return (va < vb ? -1 : va > vb ? 1 : 0) * sort.dir;
-    });
+    const rows = regionMeta
+      .filter((m) => acc.has(m.key))
+      .map((m) => ({ ...m, usd: acc.get(m.key)!.usd, q: acc.get(m.key)!.q }))
+      .sort((a, b) => {
+        const va = keyFn(a), vb = keyFn(b);
+        return (va < vb ? -1 : va > vb ? 1 : 0) * sort.dir;
+      });
     return (
       <div>
         {pills}
         <div style={{ overflowX: "auto" }}>
           <table style={{ width: "100%", borderCollapse: "collapse" }}>
             <thead>
-              <tr>{[th("label", "Region", "left"), th("usd", "Dollars"), th("usd", "% of $")]}</tr>
+              <tr>
+                {[
+                  th("label", "Region", "left"),
+                  th("usd", "Dollars"),
+                  th("usd", "% of $"),
+                  th("qalys", "QALYs"),
+                  th("qalys", "% of QALYs"),
+                  th("cpq", "$/QALY"),
+                ]}
+              </tr>
             </thead>
             <tbody>
               {rows.map((r) => (
@@ -705,27 +739,35 @@ function BreakdownTable(props: { summary: Summary; inputShares: number[] }) {
                     {r.label}
                   </td>
                   <td style={{ ...tdNum, color: r.unspecified ? C.inkMuted : C.ink }} title={exactD(r.usd)}>{fmtDollars(r.usd)}</td>
-                  <td style={{ ...tdNum, color: r.unspecified ? C.inkMuted : C.ink }} title={exactPct(r.usd / total)}>{pct(r.usd / total)}</td>
+                  <td style={{ ...tdNum, color: r.unspecified ? C.inkMuted : C.ink }} title={exactPct(r.usd / totalD)}>{pct(r.usd / totalD)}</td>
+                  <td style={{ ...tdNum, color: r.unspecified ? C.inkMuted : C.ink }} title={exactQ(r.q)}>{fmtQalys(r.q)}</td>
+                  <td style={{ ...tdNum, color: r.unspecified ? C.inkMuted : C.ink }} title={exactPct(r.q / totalQ)}>{pct(r.q / totalQ)}</td>
+                  <td style={{ ...tdNum, color: r.unspecified ? C.inkMuted : C.ink }} title={r.q > 0 ? exactD(r.usd / r.q) + " per QALY" : ""}>
+                    {r.q > 0 ? fmtDollars(r.usd / r.q) : "—"}
+                  </td>
                 </tr>
               ))}
               <tr>
-                <td style={{ ...tdLabel, fontWeight: 600 }}>Total (nominal)</td>
-                <td style={{ ...tdNum, fontWeight: 600 }} title={exactD(total)}>{fmtDollars(total)}</td>
+                <td style={{ ...tdLabel, fontWeight: 600 }}>Total</td>
+                <td style={{ ...tdNum, fontWeight: 600 }} title={exactD(totalD)}>{fmtDollars(totalD)}</td>
                 <td style={{ ...tdNum, fontWeight: 600 }}>100%</td>
+                <td style={{ ...tdNum, fontWeight: 600 }} title={exactQ(totalQ)}>{fmtQalys(totalQ)}</td>
+                <td style={{ ...tdNum, fontWeight: 600 }}>100%</td>
+                <td style={{ ...tdNum, fontWeight: 600 }} title={exactD(totalD / Math.max(totalQ, 1)) + " per QALY"}>{fmtDollars(totalD / Math.max(totalQ, 1))}</td>
               </tr>
             </tbody>
           </table>
         </div>
         <p style={noteStyle}>
-          Dollars only — the nominal ledger (disclosed gifts plus ~$8.9B
-          imputed), split equally across each organization&apos;s reported
-          service locations; audited &ldquo;global&rdquo; slices redistribute
-          to their published regions. Italic rows are reporting granularity,
-          not places. The model ties QALYs to geography through one channel
-          only: the ~5% of dollars funding health &amp; development abroad
-          produce {gh ? pct(gh.meanQalys / meanTotal) : "~70%"} of estimated
-          QALYs — region-level QALYs aren&apos;t modeled. Click a column to
-          sort; hover any figure for its unrounded value.
+          A by-construction decomposition, not evidence of regional
+          differences: within each cause the model prices every delivery
+          location identically — the health-&amp;-development routing to
+          global anchors is its only geographic pricing — so a cause&apos;s
+          QALYs follow its dollars across regions. Geography comes from each
+          organization&apos;s reported service locations (equal split; audited
+          for the 50 largest &ldquo;global&rdquo;-listed organizations). Italic
+          rows are reporting granularity, not places. Click a column to sort;
+          hover any figure for its unrounded value.
         </p>
       </div>
     );
