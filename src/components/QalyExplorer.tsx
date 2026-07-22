@@ -614,6 +614,9 @@ function BreakdownTable(props: { summary: Summary; inputShares: number[] }) {
   const meanTotal = Math.max(s.mean, 1);
   const givingUsd = DEFAULT_GIVING_B * 1e9;
   const pct = (x: number) => (x >= 0.005 ? `${Math.round(x * 100)}%` : "<1%");
+  const exactD = (x: number) => "$" + Math.round(x).toLocaleString("en-US");
+  const exactQ = (x: number) => Math.round(x).toLocaleString("en-US") + " QALYs";
+  const exactPct = (x: number) => (100 * x).toFixed(2) + "%";
   const noteStyle = { fontSize: "0.68rem", color: C.inkMuted, margin: "0.6rem 0 0", lineHeight: 1.4 } as const;
   const gh = s.perArchetype.find((r) => r.key === "global_health");
 
@@ -701,13 +704,13 @@ function BreakdownTable(props: { summary: Summary; inputShares: number[] }) {
                   <td style={{ ...tdLabel, color: r.unspecified ? C.inkMuted : C.ink, fontStyle: r.unspecified ? "italic" : "normal" }}>
                     {r.label}
                   </td>
-                  <td style={{ ...tdNum, color: r.unspecified ? C.inkMuted : C.ink }}>{fmtDollars(r.usd)}</td>
-                  <td style={{ ...tdNum, color: r.unspecified ? C.inkMuted : C.ink }}>{pct(r.usd / total)}</td>
+                  <td style={{ ...tdNum, color: r.unspecified ? C.inkMuted : C.ink }} title={exactD(r.usd)}>{fmtDollars(r.usd)}</td>
+                  <td style={{ ...tdNum, color: r.unspecified ? C.inkMuted : C.ink }} title={exactPct(r.usd / total)}>{pct(r.usd / total)}</td>
                 </tr>
               ))}
               <tr>
                 <td style={{ ...tdLabel, fontWeight: 600 }}>Total (nominal)</td>
-                <td style={{ ...tdNum, fontWeight: 600 }}>{fmtDollars(total)}</td>
+                <td style={{ ...tdNum, fontWeight: 600 }} title={exactD(total)}>{fmtDollars(total)}</td>
                 <td style={{ ...tdNum, fontWeight: 600 }}>100%</td>
               </tr>
             </tbody>
@@ -722,7 +725,7 @@ function BreakdownTable(props: { summary: Summary; inputShares: number[] }) {
           only: the ~5% of dollars funding health &amp; development abroad
           produce {gh ? pct(gh.meanQalys / meanTotal) : "~70%"} of estimated
           QALYs — region-level QALYs aren&apos;t modeled. Click a column to
-          sort.
+          sort; hover any figure for its unrounded value.
         </p>
       </div>
     );
@@ -767,11 +770,11 @@ function BreakdownTable(props: { summary: Summary; inputShares: number[] }) {
             {rows.map((r) => (
               <tr key={r.key} style={rowBorder}>
                 <td style={tdLabel}>{SHORT_LABELS[r.key] ?? r.label}</td>
-                <td style={tdNum}>{fmtDollars(dollarsOf(r))}</td>
-                <td style={tdNum}>{pct(dollarsOf(r) / givingUsd)}</td>
-                <td style={tdNum}>{fmtQalys(r.meanQalys)}</td>
-                <td style={tdNum}>{pct(r.meanQalys / meanTotal)}</td>
-                <td style={tdNum}>{r.meanQalys > 0 ? fmtDollars(cpqOf(r)) : "—"}</td>
+                <td style={tdNum} title={exactD(dollarsOf(r))}>{fmtDollars(dollarsOf(r))}</td>
+                <td style={tdNum} title={exactPct(dollarsOf(r) / givingUsd)}>{pct(dollarsOf(r) / givingUsd)}</td>
+                <td style={tdNum} title={exactQ(r.meanQalys)}>{fmtQalys(r.meanQalys)}</td>
+                <td style={tdNum} title={exactPct(r.meanQalys / meanTotal)}>{pct(r.meanQalys / meanTotal)}</td>
+                <td style={tdNum} title={r.meanQalys > 0 ? exactD(cpqOf(r)) + " per QALY" : ""}>{r.meanQalys > 0 ? fmtDollars(cpqOf(r)) : "—"}</td>
                 <td style={{ ...tdNum, fontFamily: "inherit", fontSize: "0.7rem", color: C.inkMuted }}>
                   {TIER_LABELS[r.tier] ?? r.tier}
                 </td>
@@ -779,11 +782,11 @@ function BreakdownTable(props: { summary: Summary; inputShares: number[] }) {
             ))}
             <tr>
               <td style={{ ...tdLabel, fontWeight: 600 }}>Total</td>
-              <td style={{ ...tdNum, fontWeight: 600 }}>{fmtDollars(sumD)}</td>
+              <td style={{ ...tdNum, fontWeight: 600 }} title={exactD(sumD)}>{fmtDollars(sumD)}</td>
               <td style={{ ...tdNum, fontWeight: 600 }}>100%</td>
-              <td style={{ ...tdNum, fontWeight: 600 }}>{fmtQalys(meanTotal)}</td>
+              <td style={{ ...tdNum, fontWeight: 600 }} title={exactQ(meanTotal)}>{fmtQalys(meanTotal)}</td>
               <td style={{ ...tdNum, fontWeight: 600 }}>100%</td>
-              <td style={{ ...tdNum, fontWeight: 600 }}>{fmtDollars(sumD / meanTotal)}</td>
+              <td style={{ ...tdNum, fontWeight: 600 }} title={exactD(sumD / meanTotal) + " per QALY"}>{fmtDollars(sumD / meanTotal)}</td>
               <td style={tdNum}></td>
             </tr>
           </tbody>
@@ -798,7 +801,7 @@ function BreakdownTable(props: { summary: Summary; inputShares: number[] }) {
         not the raw study anchor. The Total row&apos;s $/QALY is the ratio of
         means; the headline card&apos;s blended figure is the median across
         draws, so they differ slightly. Click a column to sort; Evidence sorts
-        by credibility.
+        by credibility. Hover any figure for its unrounded value.
       </p>
     </div>
   );

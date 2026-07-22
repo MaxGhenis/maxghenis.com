@@ -647,7 +647,7 @@ export function fmtQalys(x: number): string {
 export function fmtDollars(x: number): string {
   const ax = Math.abs(x);
   if (ax >= 999_500_000) return "$" + (x / 1e9).toFixed(1) + "B";
-  if (ax >= 999_500) return "$" + (x / 1e6).toFixed(1) + "M";
+  if (ax >= 999_500) return "$" + Math.round(x / 1e6) + "M";
   if (ax >= 1000) return "$" + Math.round(x / 1e3) + "k";
   return "$" + Math.round(x).toString();
 }

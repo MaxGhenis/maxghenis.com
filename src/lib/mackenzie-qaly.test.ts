@@ -222,7 +222,7 @@ describe("formatters", () => {
     expect(fmtQalys(197000)).toBe("197k");
     expect(fmtQalys(999999)).toBe("1.00M");
     expect(fmtDollars(26_300_000_000)).toBe("$26.3B");
-    expect(fmtDollars(999999)).toBe("$1.0M");
+    expect(fmtDollars(999999)).toBe("$1M");
   });
 });
 
