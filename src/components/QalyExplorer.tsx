@@ -368,12 +368,8 @@ export default function QalyExplorer() {
                 <Histogram hist={computed!.hist} medianLog={computed!.medianLog} median={s.median} mean={s.mean} />
               </ChartCard>
 
-              <ChartCard title="Where the QALYs come from">
-                <ArchetypeBars summary={s} />
-              </ChartCard>
-
-              <ChartCard title="Where the dollars go">
-                <GeoBars />
+              <ChartCard title="Where it goes">
+                <BreakdownTable summary={s} />
               </ChartCard>
 
               <ChartCard title="What drives the spread">
@@ -611,18 +607,98 @@ function shortenDriver(name: string): string {
   return out;
 }
 
-function ArchetypeBars(props: { summary: Summary }) {
-  const rows = props.summary.perArchetype;
-  const maxV = Math.max(...rows.map((r) => r.meanQalys), 1);
-  const meanTotal = Math.max(props.summary.mean, 1);
-  const fmtShare = (v: number) => {
-    const pct = (v / meanTotal) * 100;
-    return pct >= 0.5 ? `${Math.round(pct)}%` : "<1%";
-  };
+function BreakdownTable(props: { summary: Summary }) {
+  const [by, setBy] = useState<"cause" | "geo">("cause");
+  const s = props.summary;
+  const meanTotal = Math.max(s.mean, 1);
+  const givingUsd = DEFAULT_GIVING_B * 1e9;
+  const pct = (x: number) => (x >= 0.005 ? `${Math.round(x * 100)}%` : "<1%");
+  const noteStyle = { fontSize: "0.68rem", color: C.inkMuted, margin: "0.5rem 0 0", lineHeight: 1.4 } as const;
+  const gh = s.perArchetype.find((r) => r.key === "global_health");
+
+  const pills = (
+    <div style={{ display: "flex", gap: 4, marginBottom: "0.85rem" }}>
+      {(["cause", "geo"] as const).map((k) => (
+        <button
+          key={k}
+          onClick={() => setBy(k)}
+          style={{
+            fontSize: "0.7rem",
+            padding: "0.25rem 0.5rem",
+            borderRadius: 6,
+            border: `1px solid ${by === k ? C.amberDark : C.border}`,
+            background: by === k ? C.amberGlow : "transparent",
+            color: by === k ? C.amberDark : C.inkMuted,
+            cursor: "pointer",
+          }}
+        >
+          {k === "cause" ? "By cause" : "By geography"}
+        </button>
+      ))}
+    </div>
+  );
+
+  if (by === "geo") {
+    const rows = GEO.full_ledger.regions;
+    const maxV = Math.max(...rows.map((r) => r.usd), 1);
+    const total = GEO.full_ledger.total_usd;
+    const unspec = rows.filter((r) => r.unspecified).reduce((a, r) => a + r.usd, 0);
+    return (
+      <div>
+        {pills}
+        {rows.map((r) => (
+          <div key={r.key} style={{ marginBottom: "0.6rem" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "baseline",
+                gap: "0.75rem",
+                marginBottom: 3,
+              }}
+            >
+              <span style={{ fontSize: "0.82rem", color: C.ink }}>{r.label}</span>
+              <span style={{ fontSize: "0.8rem", fontFamily: MONO, color: C.ink, whiteSpace: "nowrap", flexShrink: 0 }}>
+                {fmtDollars(r.usd)}
+                <span style={{ color: C.inkMuted, fontSize: "0.7rem" }}> · {pct(r.usd / total)}</span>
+              </span>
+            </div>
+            <div style={{ background: C.borderSoft, borderRadius: 4, height: 9 }}>
+              <div
+                style={{
+                  width: `${(r.usd / maxV) * 100}%`,
+                  background: r.unspecified ? C.inkMuted : C.amber,
+                  opacity: r.unspecified ? 0.55 : 1,
+                  height: "100%",
+                  borderRadius: 4,
+                  minWidth: 2,
+                }}
+              />
+            </div>
+          </div>
+        ))}
+        <p style={noteStyle}>
+          Dollars only — the nominal ledger ({fmtDollars(total)}: disclosed gifts
+          plus ~$8.9B imputed), split equally across each organization&apos;s
+          reported service locations; audited &ldquo;global&rdquo; slices
+          redistribute to their published regions. Muted bars ({fmtDollars(unspec)})
+          are reporting granularity, not places. The model ties QALYs to
+          geography through one channel only: the ~5% of dollars funding health
+          &amp; development abroad produce {gh ? pct(gh.meanQalys / meanTotal) : "~70%"}{" "}
+          of estimated QALYs — region-level QALYs aren&apos;t modeled.
+        </p>
+      </div>
+    );
+  }
+
+  const rows = s.perArchetype;
+  const maxQ = Math.max(...rows.map((r) => r.meanQalys), 1);
+  const maxD = Math.max(...rows.map((r) => r.share), 1e-9);
   return (
     <div>
+      {pills}
       {rows.map((r) => (
-        <div key={r.key} style={{ marginBottom: "0.6rem" }}>
+        <div key={r.key} style={{ marginBottom: "0.7rem" }}>
           <div
             style={{
               display: "flex",
@@ -634,14 +710,28 @@ function ArchetypeBars(props: { summary: Summary }) {
           >
             <span style={{ fontSize: "0.82rem", color: C.ink }}>{SHORT_LABELS[r.key] ?? r.label}</span>
             <span style={{ fontSize: "0.8rem", fontFamily: MONO, color: C.ink, whiteSpace: "nowrap", flexShrink: 0 }}>
-              {fmtQalys(r.meanQalys)} · {fmtShare(r.meanQalys)}
+              {fmtDollars(r.share * givingUsd)} · {pct(r.share)}
+              <span style={{ color: C.inkMuted }}> → </span>
+              {fmtQalys(r.meanQalys)} · {pct(r.meanQalys / meanTotal)}
               <span style={{ color: C.inkMuted, fontSize: "0.7rem" }}> · {TIER_LABELS[r.tier] ?? r.tier}</span>
             </span>
           </div>
-          <div style={{ background: C.borderSoft, borderRadius: 4, height: 9 }}>
+          <div style={{ background: C.borderSoft, borderRadius: 4, height: 5, marginBottom: 2 }}>
             <div
               style={{
-                width: `${(r.meanQalys / maxV) * 100}%`,
+                width: `${(r.share / maxD) * 100}%`,
+                background: C.inkMuted,
+                opacity: 0.45,
+                height: "100%",
+                borderRadius: 4,
+                minWidth: 2,
+              }}
+            />
+          </div>
+          <div style={{ background: C.borderSoft, borderRadius: 4, height: 5 }}>
+            <div
+              style={{
+                width: `${(r.meanQalys / maxQ) * 100}%`,
                 background: C.amber,
                 height: "100%",
                 borderRadius: 4,
@@ -651,63 +741,13 @@ function ArchetypeBars(props: { summary: Summary }) {
           </div>
         </div>
       ))}
-      <p style={{ fontSize: "0.68rem", color: C.inkMuted, margin: "0.5rem 0 0", lineHeight: 1.4 }}>
-        Mean QALYs per archetype and share of the {fmtQalys(props.summary.mean)}{" "}
-        mean total. The headline {fmtQalys(props.summary.median)} is the median —
-        lower because the distribution is right-skewed, and only means add
+      <p style={noteStyle}>
+        Gray bar: median allocation share of the {fmtDollars(givingUsd)} (2026 $).
+        Amber bar: mean QALY contribution (each scaled to its own column&apos;s
+        max). The gap between a row&apos;s two percentages is its
+        cost-effectiveness. QALY shares are of the {fmtQalys(s.mean)} mean;
+        the {fmtQalys(s.median)} headline is the median — only means add
         across categories.
-      </p>
-    </div>
-  );
-}
-
-function GeoBars() {
-  const rows = GEO.full_ledger.regions;
-  const maxV = Math.max(...rows.map((r) => r.usd), 1);
-  const total = GEO.full_ledger.total_usd;
-  const unspec = rows.filter((r) => r.unspecified).reduce((a, r) => a + r.usd, 0);
-  return (
-    <div>
-      {rows.map((r) => (
-        <div key={r.key} style={{ marginBottom: "0.6rem" }}>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "baseline",
-              gap: "0.75rem",
-              marginBottom: 3,
-            }}
-          >
-            <span style={{ fontSize: "0.82rem", color: C.ink }}>{r.label}</span>
-            <span style={{ fontSize: "0.8rem", fontFamily: MONO, color: C.ink, whiteSpace: "nowrap", flexShrink: 0 }}>
-              {fmtDollars(r.usd)}
-              <span style={{ color: C.inkMuted, fontSize: "0.7rem" }}> · {Math.round((100 * r.usd) / total)}%</span>
-            </span>
-          </div>
-          <div style={{ background: C.borderSoft, borderRadius: 4, height: 9 }}>
-            <div
-              style={{
-                width: `${(r.usd / maxV) * 100}%`,
-                background: r.unspecified ? C.inkMuted : C.amber,
-                opacity: r.unspecified ? 0.55 : 1,
-                height: "100%",
-                borderRadius: 4,
-                minWidth: 2,
-              }}
-            />
-          </div>
-        </div>
-      ))}
-      <p style={{ fontSize: "0.68rem", color: C.inkMuted, margin: "0.5rem 0 0", lineHeight: 1.4 }}>
-        All {fmtDollars(total)} of nominal ledger dollars — disclosed gifts plus
-        the ~$8.9B imputed from pre-gift IRS 990 revenue — split equally across
-        each organization&apos;s reported service locations. The 50 largest
-        &ldquo;global&rdquo;-listed organizations (87% of that bucket&apos;s
-        dollars) are redistributed per their own published geographies, cross-checked by two independent model reviews;
-        unattributable shares stay Global. Bars partition the dollars, not the
-        map; muted bars ({fmtDollars(unspec)}) are reporting granularity, not
-        places. Only the health slice is priced by geography in the model.
       </p>
     </div>
   );
