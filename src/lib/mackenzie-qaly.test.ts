@@ -189,11 +189,14 @@ describe("model end-to-end", () => {
 });
 
 describe("evidence-stance slider", () => {
-  it("credulity 1 (trust all effects) roughly doubles the skeptical estimate", () => {
-    const skeptical = summarize(runModel({ n: 30000, seed: 0, credulity: 0 }));
-    const credulous = summarize(runModel({ n: 30000, seed: 0, credulity: 1 }));
-    expect(credulous.median).toBeGreaterThan(1.6 * skeptical.median);
-    expect(credulous.median).toBeGreaterThan(185000); // approaches the ~224k "trust everything" figure
+  it("stance spans RCT-only through the best guess to face value", () => {
+    const rctOnly = summarize(runModel({ n: 30000, seed: 0, credulity: 0 }));
+    const best = summarize(runModel({ n: 30000, seed: 0, credulity: 0.5 }));
+    const faceValue = summarize(runModel({ n: 30000, seed: 0, credulity: 1 }));
+    expect(rctOnly.median).toBeLessThan(50000); // only randomized evidence counts
+    expect(best.median).toBeGreaterThan(4 * rctOnly.median);
+    expect(faceValue.median).toBeGreaterThan(1.6 * best.median);
+    expect(faceValue.median).toBeGreaterThan(185000); // approaches the "trust everything" figure
   });
 });
 

@@ -55,7 +55,7 @@ const DEFAULT_REALIZATION = PARAMS.realization_factor.mode;
 const DEFAULT_DISCOUNT = PARAMS.meta.discount_rate;
 
 export default function QalyExplorer() {
-  const [credulity, setCredulity] = useState(0);
+  const [credulity, setCredulity] = useState(0.5);
   const [realization, setRealization] = useState(DEFAULT_REALIZATION);
   const [givingB, setGivingB] = useState(DEFAULT_GIVING_B);
   const [discount, setDiscount] = useState(DEFAULT_DISCOUNT);
@@ -94,7 +94,7 @@ export default function QalyExplorer() {
   }, [overrides]);
 
   function reset() {
-    setCredulity(0);
+    setCredulity(0.5);
     setRealization(DEFAULT_REALIZATION);
     setGivingB(DEFAULT_GIVING_B);
     setDiscount(DEFAULT_DISCOUNT);
@@ -205,12 +205,16 @@ export default function QalyExplorer() {
             onChange={setCredulity}
             display={
               credulity < 0.04
-                ? "skeptical"
-                : credulity > 0.96
-                  ? "credulous"
-                  : `${Math.round(credulity * 100)}% credulous`
+                ? "RCT-only"
+                : Math.abs(credulity - 0.5) < 0.04
+                  ? "best guess"
+                  : credulity > 0.96
+                    ? "face value"
+                    : credulity < 0.5
+                      ? `${Math.round((0.5 - credulity) * 200)}% toward RCT-only`
+                      : `${Math.round((credulity - 0.5) * 200)}% toward face value`
             }
-            help="Skeptical weights each effect by how well its study identifies causation. Credulous trusts every cited effect at face value."
+            help="The default is the model's best-guess weighting of each effect by how well its study identifies causation. Slide left to count only randomized evidence; right to trust every cited effect at face value."
             accent
           />
           <Slider

@@ -64,10 +64,13 @@ const S = {
 
       <div class="intro prose">
         <p class="callout">
-          The most important control is <strong>evidence stance</strong>: from
-          skeptical (~202,000 QALYs — each effect weighted by how well its study
-          identifies causation) to credulous (~415,000 — every cited effect at
-          face value). That gap, not the dollar figure, is the real uncertainty.
+          The most important control is <strong>evidence stance</strong>. The
+          default is the model's best guess (~202,000 QALYs — each effect
+          weighted by how well its study identifies causation), and the slider
+          disagrees in both directions: restrict to randomized evidence only
+          and the median falls to ~9,000; trust every cited effect at face
+          value and it rises to ~415,000. That 45× range, not the dollar
+          figure, is the real uncertainty.
         </p>
 
         <h2>About this model</h2>
@@ -162,7 +165,7 @@ const S = {
           per QALY-equivalent; I model the benchmark as loguniform $150–$260,
           handicapped with the same realization and credibility as Scott's
           portfolio (and rescaled at other discount rates) so the comparison
-          is like-for-like. At the skeptical defaults, the frontier delivers
+          is like-for-like. At the best-guess defaults, the frontier delivers
           roughly 500× more health per marginal dollar.
         </p>
         <p>

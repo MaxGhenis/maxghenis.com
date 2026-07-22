@@ -265,7 +265,17 @@ export function runModel(overrides: Overrides = {}): ModelResult {
   const giving = overrides.totalGiving ?? p.meta.total_giving_usd;
   const rate = overrides.discountRate ?? p.meta.discount_rate;
   const floor = p.meta.cost_per_qaly_floor_usd ?? 5000;
-  const credulity = clamp(overrides.credulity ?? 0, 0, 1);
+  // Evidence stance: 0 = RCT-only (non-randomized tiers shrink to near
+  // zero), 0.5 = the drafted best-guess tiers (default), 1 = every effect
+  // at face value. Two-sided so disagreement with the priors can point
+  // either way; the default sits at the best guess, not an extreme.
+  const credulity = clamp(overrides.credulity ?? 0.5, 0, 1);
+  const stanceMean = (mean: number, isRandomized: boolean): number => {
+    const floor = isRandomized ? mean : 0.01;
+    return credulity <= 0.5
+      ? floor + (credulity / 0.5) * (mean - floor)
+      : mean + ((credulity - 0.5) / 0.5) * (1 - mean);
+  };
 
   // Realization spec, with the mode optionally overridden.
   const rf = p.realization_factor;
@@ -336,13 +346,13 @@ export function runModel(overrides: Overrides = {}): ModelResult {
     if (!t) {
       credActive[j] = 0;
     } else {
-      const m = clamp(t.mean + credulity * (1 - t.mean), 0, 0.999);
+      const m = clamp(stanceMean(t.mean, tierName === "randomized"), 0.001, 0.999);
       credA[j] = m * t.concentration;
       credB[j] = (1 - m) * t.concentration;
       credActive[j] = 1;
     }
   }
-  const fm = clamp(randomizedTier.mean + credulity * (1 - randomizedTier.mean), 0, 0.999);
+  const fm = clamp(stanceMean(randomizedTier.mean, true), 0.001, 0.999);
   const frontierA = fm * randomizedTier.concentration;
   const frontierB = (1 - fm) * randomizedTier.concentration;
 
