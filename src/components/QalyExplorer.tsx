@@ -13,7 +13,7 @@ import {
   type Summary,
 } from "../lib/mackenzie-qaly";
 import GEO from "../data/mackenzie-qaly-geo.json";
-import V11 from "../data/mackenzie-qaly-allocation-v11.json";
+import V10 from "../data/mackenzie-qaly-allocation-v10.json";
 
 // Design tokens (mirrors src/styles/global.css :root).
 const C = {
@@ -30,12 +30,13 @@ const C = {
 };
 
 const DEFAULT_SHARES = ARCHETYPES.map((a) => a.allocation_share);
-const V11_SHARES = ARCHETYPE_KEYS.map(
-  (k) => (V11.allocation_share as Record<string, number>)[k],
+const V10_SHARES = ARCHETYPE_KEYS.map(
+  (k) => (V10.allocation_share as Record<string, number>)[k],
 );
+// DEFAULT_SHARES (from the exported params) are the v1.1 allocation.
 const VERSIONS = [
-  { label: "v1.0", shares: DEFAULT_SHARES, note: "published July 13" },
-  { label: "v1.1", shares: V11_SHARES, note: "geo-audited July 22" },
+  { label: "v1.0", shares: V10_SHARES, note: "published July 13" },
+  { label: "v1.1", shares: DEFAULT_SHARES, note: "geo-audited July 22 — current" },
 ];
 const SERIF = "'Playfair Display', Georgia, serif";
 const MONO = "'JetBrains Mono', monospace";
@@ -60,7 +61,7 @@ export default function QalyExplorer() {
   const [discount, setDiscount] = useState(DEFAULT_DISCOUNT);
   const [shares, setShares] = useState<number[]>(DEFAULT_SHARES);
   const [precision, setPrecision] = useState(1);
-  const [version, setVersion] = useState(0);
+  const [version, setVersion] = useState(1);
   const [computed, setComputed] = useState<ComputeOutput | null>(null);
   const [busy, setBusy] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -182,7 +183,7 @@ export default function QalyExplorer() {
             </div>
           </div>
           <p style={{ fontSize: "0.68rem", color: C.inkMuted, margin: "0 0 1rem", lineHeight: 1.4 }}>
-            v1.0 is the published July 13 allocation. v1.1 recenters it on the{" "}
+            v1.1 (current) recenters the allocation on the{" "}
             <a
               href="https://github.com/MaxGhenis/mackenzie-scott-qaly/blob/main/data/yieldgiving/geo_audit/geo_audit.jsonl"
               target="_blank"
@@ -192,7 +193,8 @@ export default function QalyExplorer() {
               geo audit
             </a>{" "}
             of the 50 largest &ldquo;global&rdquo;-listed organizations
-            (two-model cross-check, per-organization sources).
+            (two-model cross-check, per-organization sources). v1.0 is the
+            July 13 published allocation, kept for comparison.
           </p>
           <Slider
             label="Evidence stance"

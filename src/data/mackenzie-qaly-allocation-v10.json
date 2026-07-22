@@ -1,0 +1,22 @@
+{
+ "version": "v1.0",
+ "label": "v1.0 \u2014 published allocation (July 13, 2026)",
+ "description": "The allocation as published with the July 13 geographic-routing correction: every 'global'-listed organization treated as fully non-US. Preserved for comparison; superseded by v1.1.",
+ "allocation_share": {
+  "education": 0.188,
+  "equity_justice": 0.172,
+  "econ_workforce": 0.134,
+  "civic_democracy": 0.107,
+  "environment": 0.082,
+  "other_community": 0.055,
+  "global_health": 0.049,
+  "health_coverage": 0.037,
+  "health_chc": 0.037,
+  "econ_housing": 0.036,
+  "arts_culture": 0.034,
+  "econ_cash": 0.029,
+  "health_mental": 0.021,
+  "econ_food": 0.019
+ },
+ "abroad_share_raw": 0.049327
+}

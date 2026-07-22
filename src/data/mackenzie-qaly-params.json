@@ -197,7 +197,7 @@
     },
     "health_mental": {
       "label": "Health - mental & behavioral",
-      "allocation_share": 0.021,
+      "allocation_share": 0.022,
       "method": "cost_per_qaly",
       "causal_credibility": "randomized",
       "identification": "ICERs come from RCTs of collaborative care for depression (high internal validity). Attribution of Scott's grants to this exact model is a realization matter.",
@@ -212,7 +212,7 @@
     },
     "global_health": {
       "label": "Global health & development (non-US delivery)",
-      "allocation_share": 0.049,
+      "allocation_share": 0.048,
       "method": "cost_per_qaly",
       "causal_credibility": "strong_quasi",
       "identification": "Dollars route here by delivery geography: the non-US share of each organization's reported service locations, applied to its health-relevant focus areas (src/msqaly/allocation.py). The routed portfolio spans GiveWell-grade programs backed by RCTs (Malaria Consortium $10M, Evidence Action $20M, GiveDirectly's global program $50M+$5M) through strong community-health-worker and health-systems organizations (Living Goods $25M+$3.5M, Muso $15M, Amref $50M, Partners In Health $50M, Noora Health $20M, icddr,b $16M) to partial-health-tagged organizations. strong_quasi reflects that mix.",
