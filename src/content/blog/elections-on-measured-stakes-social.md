@@ -71,3 +71,21 @@ what $1,000 of independent noise cannot.
 The post runs the model in your browser — the math reduces to a closed
 form, so you can drag noise, bias, financing, and electorate size
 yourself: maxghenis.com/blog/elections-on-measured-stakes/
+
+## X / Bluesky (approval-threshold result)
+
+Put the status quo on the ballot and every voting rule tracks welfare
+perfectly at perfect information — except strict approval. "Approve
+what beats current law" can never approve current law, so one program
+wins unopposed, and the threshold instruction swings the outcome from
+0% to 100% tracked. When three in four voters are near-indifferent,
+the ballot instruction outweighs the aggregation rule.
+
+## X / Bluesky (belief-inflation result)
+
+Give voters an ideal level of inequality and a belief about how far
+policy moves it, and demand scales as 1/belief. A voter who wants half
+the achievable gain but thinks policy is half as effective demands the
+entire axis — the maximalist's platform, for the opposite reason.
+"What policy do you support?" separates values from beliefs only if
+you measure both.

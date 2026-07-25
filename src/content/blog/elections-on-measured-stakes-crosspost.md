@@ -125,6 +125,59 @@ welfare ranking of these policies flips by $2.88 per household — fully
 informed sociotropic voters split with zero misperception anywhere, and
 no survey closes that gap.
 
+**Change the ballot, and the knife-edge turns out to be the agenda's
+fault.** Every election above chooses between two policies; the status
+quo — which the welfare metric ranks first — never appears, and with
+two options a sincere score ballot is a plurality ballot. Put current
+law on the ballot as a third option and every rule tested (plurality,
+approval, score, STAR, instant runoff) tracks perfectly at perfect
+information: the trivial-stakes mass votes for the option that charges
+it nothing, and ballot design, not vote counting, produced the
+two-option failure.
+
+[IMAGE: probability each rule enacts the welfare-optimal option, by noise — elections-on-measured-stakes-rules.png]
+
+The exception prices a single word. Strict approval — approve what
+beats the status quo — can never approve the status quo itself, so the
+credit's beneficiaries elect their program unopposed: 0% tracking,
+$169.29 of equally-distributed-equivalent income lost per household.
+The inclusive convention (approve anything at least as good) tracks
+100%. When three in four voters are near-indifferent, the ballot
+instruction decides the perfect-information outcome. Under noise the
+ordering reverses: strict approval becomes the most robust rule
+($19.75 mean regret at σ = $3,000 against plurality's $60.66 — its
+threshold filters all-noise ballots), plurality degrades worst, and
+stakes-proportional scoring buys no reliable edge over the normalized
+ballot. No rule dominates, and every gap between rules stays smaller
+than what the agenda decides.
+
+**A dial instead of a ballot: beliefs set demand, reciprocally.**
+Position t raises every federal bracket rate by t × 10 points and
+returns the revenue as an equal per-adult transfer: at t = 1,
+$1,286.6B of revenue, a $4,809 annual check per adult, 68.6% of
+households gaining, Gini falling from 0.4541 to 0.4135. Voters hold an
+ideal Gini and a belief λ about how far the dial moves it; because the
+measured Gini curve is nearly linear, demand scales as 1/λ until the
+axis runs out. A voter who wants half the achievable gain and believes
+policy half as effective demands the entire axis — the maximalist's
+platform, for the opposite reason. "What policy do you support?"
+separates values from beliefs only if you measure both.
+
+[IMAGE: demanded dial position against belief in the policy's reach — elections-on-measured-stakes-demand.png]
+
+Elections aggregate the errors by median, not mean. Give the
+electorate one shared goal, split it between correct voters and
+λ = 0.25 skeptics, and up to a 40% skeptic share two office-seeking
+candidates enact exactly 0.500 — what a fully correct electorate
+enacts, even though the average belief runs 30% too weak — then 0.750
+at 50% and the maximum from 60%. And self-interest wants the corner: a
+purely self-interested electorate enacts t = 1 at every noise level
+tested, because 68.6% of households gain (net stakes run from +$7,777
+in the bottom decile to −$35,671 in the top, crossing in the eighth) —
+Meltzer–Richard on measured incidence. The engine holds behavior
+fixed, so moderation must come from values or beliefs; this layer
+models demand formation, not optimal taxation.
+
 This is a thought experiment about a few mechanisms, not political
 science or election prediction. The welfare ranking is a modeling choice
 (inequality aversion of η = 2.5 flips it), and both financed policies
