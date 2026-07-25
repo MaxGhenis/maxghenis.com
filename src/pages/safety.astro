@@ -1,0 +1,271 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE } from '../consts';
+import SafetyExplorer from '../components/SafetyExplorer.tsx';
+import {
+  ADVISORY_LEVEL_COUNTS,
+  COUNTRIES,
+  FIT,
+  GLOBAL_VICTIMIZATION,
+  META,
+  byName,
+} from '../lib/safety';
+import ogImage from '../assets/og-safety.png';
+
+const eg = byName('Egypt')!;
+const us = byName('United States')!;
+const withHomicide = COUNTRIES.filter((c) => c.homicide !== null).length;
+const withAdvisory = COUNTRIES.filter((c) => c.advisory !== null).length;
+
+// Every falsifiable claim on this page points at one of these.
+const S = {
+  gallup2025:
+    'https://www.gallup.com/file/analytics/695138/Gallup_Global-Safety-Report-2025.pdf',
+  gallupSlip: 'https://news.gallup.com/poll/650516/global-safety-starts-slip.aspx',
+  lawOrder: 'https://www.gallup.com/analytics/694904/what-is-law-order-index.aspx',
+  sdg: 'https://unstats.un.org/sdgs/report/2025/goal-16/',
+  owid: 'https://ourworldindata.org/grapher/homicide-rate-unodc',
+  unodc:
+    'https://www.unodc.org/unodc/en/data-and-analysis/global-study-on-homicide.html',
+  advisories: 'https://travel.state.gov/_res/rss/TAsTWs.xml',
+  deaths: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC12782918/',
+  unwomen:
+    'https://www.gisf.ngo/wp-content/uploads/2020/02/2172-UN-Women-2013-Study-on-Ways-and-Methods-to-Eliminate-Sexual-Harassment-in-Egypt.pdf',
+  gpi: 'https://www.visionofhumanity.org/wp-content/uploads/2025/06/Global-Peace-Index-2025-web.pdf',
+  gti:
+    'https://www.visionofhumanity.org/global-terrorism-falls-to-a-decade-low-but-western-fatalities-surge/',
+  eisner:
+    'https://ourworldindata.org/data-insights/homicide-rates-have-declined-dramatically-over-the-centuries',
+  source: 'https://github.com/MaxGhenis/maxghenis.com/blob/master/scripts/generate-safety-data.py',
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead
+      title={`Felt safety vs. recorded safety | ${SITE_TITLE}`}
+      description="An interactive comparison of how safe people say they feel with what crime statistics and travel advisories actually record, across 144 countries. Perceived safety explains 54% of the variance in homicide rates — the interesting part is the other 46%."
+      image={ogImage}
+    />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <header class="page-header">
+        <h1>Felt safety vs. recorded safety</h1>
+        <p class="page-description">
+          Two independent measurements of the same thing — what people say
+          about walking home at night, and what the coroner's office counts.
+          They agree about half the time. Where they part company is the
+          interesting part.
+        </p>
+      </header>
+
+      <SafetyExplorer client:load />
+
+      <div class="intro prose">
+        <p class="callout">
+          Across the {FIT.n} countries carrying both measurements, the recorded
+          homicide rate explains <strong>{Math.round(FIT.r2 * 100)}% of the
+          variance</strong> in how safe people say they feel (r = {FIT.r.toFixed(2)}).
+          That is a strong result for a one-question survey measured against an
+          entirely separate administrative source. It also leaves {100 - Math.round(FIT.r2 * 100)}%
+          unexplained, and that residual is where the argument lives.
+        </p>
+
+        <h2>Why perception is on the axis at all</h2>
+        <p>
+          Homicide is close to the only crime statistic that compares across
+          borders. Assault, theft, and rape rates are dominated by whether
+          people report to police, and reporting rises with police trust and
+          state capacity — so a country that improves its policing records
+          <em>more</em> crime, not less. Comparing raw assault rates between two
+          countries mostly measures their institutions.
+        </p>
+        <p>
+          That is why the UN put a survey question, not a police statistic,
+          in <a href={S.sdg} target="_blank" rel="noopener">Sustainable
+          Development Goal indicator 16.1.4</a>: "Do you feel safe walking
+          alone at night in the city or area where you live?"
+          <a href={S.gallup2025} target="_blank" rel="noopener">Gallup</a> is
+          the only organization that asks it worldwide every year —
+          {META.gallupRespondents.toLocaleString()} adults across
+          {META.gallupCountries} countries in the {META.fieldYear} field year.
+        </p>
+        <p>
+          Gallup's <a href={S.lawOrder} target="_blank" rel="noopener">Law and
+          Order Index</a> is only half perception. Two of its four components
+          ask what happened to you, not how you feel: whether you had money or
+          property stolen in the past 12 months ({GLOBAL_VICTIMIZATION.theftPct}%
+          globally), and whether you were assaulted or mugged
+          ({GLOBAL_VICTIMIZATION.assaultPct}%).
+        </p>
+
+        <h2>Reading the gap</h2>
+        <p>
+          The dashed line fits felt safety to the log of the recorded homicide
+          rate. A country above it feels safer than its body count predicts; a
+          country below it feels less safe. Egypt sits
+          <strong>{eg.residual! > 0 ? '+' : ''}{eg.residual}</strong> points
+          above the line — the same direction as, and smaller than, the
+          United States at
+          <strong>{us.residual! > 0 ? '+' : ''}{us.residual}</strong>.
+        </p>
+        <p>
+          A positive gap is not automatically distortion. Where violence is
+          geographically concentrated, the national mean overstates what the
+          median resident actually faces, and the gap opens without anyone
+          shading their answer. Heavy visible policing can open it too, and so
+          can reluctance to tell a pollster your neighborhood is dangerous.
+          <strong>The residual cannot tell those apart.</strong> It marks where
+          to look, not what you'll find.
+        </p>
+
+        <h2>What this does not measure</h2>
+        <ul>
+          <li>
+            <strong>Harassment.</strong> It is in none of these series — not
+            homicide, not "assaulted or mugged," not really the walking-alone
+            question as most people parse it. A
+            <a href={S.unwomen} target="_blank" rel="noopener">2013 UN Women
+            study</a> found 99.3% of Egyptian women had experienced sexual
+            harassment, 89% of incidents on the street. That coexists with
+            Egypt's {eg.feltSafe}% headline without contradiction, because they
+            are different constructs.
+          </li>
+          <li>
+            <strong>Visitors.</strong> Every perception figure samples
+            residents about their own neighborhood. A resident's commute and a
+            foreigner's afternoon in a tourist district are different draws
+            from different distributions.
+          </li>
+          <li>
+            <strong>Recency, unevenly.</strong> UNODC homicide readings arrive
+            on each country's own schedule. Only {withHomicide} of
+            {COUNTRIES.length} countries here have a reading from 2015 or
+            later; Egypt's is {eg.homicideYear}. Every figure carries its year.
+          </li>
+          <li>
+            <strong>Rare, severe events.</strong> A homicide rate is an average
+            over a population. It says nothing about low-frequency,
+            high-severity risk aimed specifically at foreigners, which is a
+            different statistical shape and the one that historically drove
+            tourist risk in several countries on this page.
+          </li>
+        </ul>
+
+        <h2>The traveler layer</h2>
+        <p>
+          The "For travelers" view carries current
+          <a href={S.advisories} target="_blank" rel="noopener">U.S. State
+          Department advisories</a> — pulled from the official feed, with the
+          date each was last issued. The feed covers
+          {Object.values(ADVISORY_LEVEL_COUNTS).reduce((a, b) => a + b, 0)}
+          destinations across all four levels
+          ({ADVISORY_LEVEL_COUNTS['1']} at level 1, {ADVISORY_LEVEL_COUNTS['2']}
+          at level 2, {ADVISORY_LEVEL_COUNTS['3']} at level 3, and
+          {ADVISORY_LEVEL_COUNTS['4']} at level 4); {withAdvisory} of them match
+          a country Gallup polls, and those are the ones the table shows.
+        </p>
+        <p>
+          Against that, what actually kills travelers: across 15,549
+          non-natural deaths of U.S. citizens abroad from 2002 to 2022,
+          <a href={S.deaths} target="_blank" rel="noopener">vehicle accidents
+          account for 29% and homicide 21%</a>, with war and terrorism inside a
+          6% remainder. That study reports proportions rather than rates,
+          because — as its authors note — reliable counts of how many Americans
+          are in each country simply do not exist. Deaths per visitor by
+          country is not computable from public data, so this page does not
+          compute it.
+        </p>
+
+        <h2>How it's built</h2>
+        <p>
+          <a href={S.source} target="_blank" rel="noopener">One
+          script</a> joins four public sources on country name and writes a
+          single JSON file; the page reads only that file. The fit is ordinary
+          least squares on {FIT.form}. Country-name reconciliation across four
+          naming conventions is the fiddly part, and the generator prints every
+          country that fails to join rather than dropping it quietly — 30
+          countries have no recent UNODC reading, and the join report names
+          them. Tests pin the headline numbers, so regenerating the data with
+          different results fails the build instead of silently updating the
+          prose.
+        </p>
+
+        <h2>Sources</h2>
+        <ul class="sources">
+          <li>
+            <a href={S.gallup2025} target="_blank" rel="noopener">Gallup, The
+            Global Safety Report 2025</a> — walking-alone percentages and Law
+            and Order Index, {META.fieldYear} field year
+            (<a href={S.gallupSlip} target="_blank" rel="noopener">summary</a>).
+          </li>
+          <li>
+            <a href={S.owid} target="_blank" rel="noopener">Our World in Data</a>,
+            from the <a href={S.unodc} target="_blank" rel="noopener">UNODC
+            Global Study on Homicide</a> — homicide rates and time series.
+          </li>
+          <li>
+            <a href={S.advisories} target="_blank" rel="noopener">U.S. State
+            Department travel advisories</a> (official RSS).
+          </li>
+          <li>
+            <a href={S.deaths} target="_blank" rel="noopener">Analysis of the
+            non-natural deaths of US citizens while abroad</a>, 2002–2022.
+          </li>
+          <li>
+            <a href={S.gpi} target="_blank" rel="noopener">Global Peace Index
+            2025</a> and <a href={S.gti} target="_blank" rel="noopener">Global
+            Terrorism Index</a> — context for conflict trends, which move
+            separately from street safety.
+          </li>
+          <li>
+            <a href={S.eisner} target="_blank" rel="noopener">Our World in Data
+            on the long-run homicide decline</a>.
+          </li>
+        </ul>
+      </div>
+    </main>
+    <Footer />
+
+    <style>
+      main {
+        max-width: 1040px;
+        margin: 0 auto;
+        padding: 2rem 1.5rem 4rem;
+      }
+      .page-header {
+        margin-bottom: 1.5rem;
+      }
+      .page-description {
+        color: var(--text-muted);
+        font-size: var(--text-lg);
+        max-width: 640px;
+      }
+      .intro {
+        margin: 0 0 2rem;
+      }
+      .intro.prose {
+        max-width: 760px;
+        margin-left: 0;
+      }
+      .callout {
+        background: var(--rule-glow);
+        border-left: 4px solid var(--rule);
+        padding: 1rem 1.25rem;
+        border-radius: 0 var(--radius-md) var(--radius-md) 0;
+        color: var(--text-secondary);
+      }
+      .sources {
+        font-size: var(--text-sm);
+      }
+      .sources li {
+        margin-bottom: 0.5em;
+      }
+    </style>
+  </body>
+</html>
