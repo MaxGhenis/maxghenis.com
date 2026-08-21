@@ -23,10 +23,26 @@ const routes = [
 
 // Add redirects
 for (const r of vercelConfig.redirects || []) {
+  const status = r.permanent ? 308 : 307;
+
+  if (r.source.includes(':path*') && !r.destination.includes(':path*')) {
+    // Wildcard source, fixed destination: /foo/:path* -> https://ext/one-url
+    // Same matcher as the wildcard rewrites below, so /foo/ and /foo/a/b
+    // all redirect to the one destination instead of falling through to 404.
+    const base = r.source.replace('/:path*', '');
+    const escapedBase = base.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    routes.push({
+      src: `^${escapedBase}(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))?/?$`,
+      headers: { Location: r.destination },
+      status,
+    });
+    continue;
+  }
+
   routes.push({
     src: `^${r.source.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`,
     headers: { Location: r.destination },
-    status: r.permanent ? 308 : 307,
+    status,
   });
 }
 
