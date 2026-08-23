@@ -1,0 +1,376 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Icon from '../components/Icons.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`subfleet | ${SITE_TITLE}`} description="Run agentic AI work across every Claude Code and Codex subscription you own, without rotating logins. A fleet of subs." image="/og/subfleet.png" />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<header class="page-header">
+				<div class="app-icon">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<path d="M3 13.5c0-2 2.5-3.5 6-3.5h8c2.2 0 4 1.6 4 3.5S19.2 17 17 17H9c-3.5 0-6-1.5-6-3.5Z"></path>
+						<path d="M10 10V7h4v3"></path>
+						<path d="M12 7V4h3"></path>
+						<line x1="7.5" y1="13.5" x2="7.51" y2="13.5"></line>
+						<line x1="11" y1="13.5" x2="11.01" y2="13.5"></line>
+						<line x1="14.5" y1="13.5" x2="14.51" y2="13.5"></line>
+					</svg>
+				</div>
+				<h1>subfleet</h1>
+				<p class="page-description">A fleet of subs: run agentic AI work across every Claude Code and Codex subscription you own, without rotating logins. Each subscription is a lane; each job takes whichever lane is moving.</p>
+				<div class="header-actions">
+					<a href="https://github.com/MaxGhenis/subfleet" class="github-btn">
+						<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+							<path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+						</svg>
+						View source
+					</a>
+					<a href="#quick-start" class="anchor-btn">
+						<Icon name="terminal" size={18} />
+						Quick start
+					</a>
+				</div>
+			</header>
+
+			<section class="features">
+				<h2>What it does</h2>
+				<div class="feature-grid">
+					<div class="feature-card">
+						<div class="feature-icon">
+							<Icon name="target" size={32} duotone />
+						</div>
+						<h3>One front door</h3>
+						<p><code>subfleet run</code> classifies the task, picks a provider and lane from live capacity, and can explain every routing decision with <code>--why</code></p>
+					</div>
+					<div class="feature-card">
+						<div class="feature-icon">
+							<Icon name="layers" size={32} duotone />
+						</div>
+						<h3>Lanes, not logins</h3>
+						<p>Each Codex home and each enrolled Claude setup token is a dispatch lane; the app login you sit in never rotates</p>
+					</div>
+					<div class="feature-card">
+						<div class="feature-icon">
+							<Icon name="lightning" size={32} duotone />
+						</div>
+						<h3>Hardened runners</h3>
+						<p>Retries on transient failures, re-picks the lane after a mid-run usage limit, and snapshots dirty git state to salvage refs on any exit</p>
+					</div>
+					<div class="feature-card">
+						<div class="feature-icon">
+							<Icon name="chart" size={32} duotone />
+						</div>
+						<h3>Quota watchdog</h3>
+						<p>Five-hour and weekly windows per account, auth health, app-shadow detection, and alerts that fire on transitions rather than every pass</p>
+					</div>
+					<div class="feature-card">
+						<div class="feature-icon">
+							<Icon name="database" size={32} duotone />
+						</div>
+						<h3>Durable run ledger</h3>
+						<p>Every dispatch keeps its exact prompt, output, errors, and metadata; <code>subfleet runs</code> lists them, <code>runs show</code> replays one</p>
+					</div>
+					<div class="feature-card">
+						<div class="feature-icon">
+							<Icon name="grid" size={32} duotone />
+						</div>
+						<h3>Session mirror</h3>
+						<p>Claude desktop sessions from every account share one combined sidebar, so switching accounts hides nothing</p>
+					</div>
+				</div>
+			</section>
+
+			<section class="dispatch">
+				<h2>Dispatch</h2>
+				<p>
+					The router accepts prompt text or a prompt file, chooses a model family by
+					transparent pattern rules, consults the shared capacity view, and records the
+					decision. Explicit pins stay pins; everything else is machinery.
+				</p>
+				<pre><code>subfleet run --why -C /path/to/project -o result.md "Fix the failing retry test"
+subfleet codex -m MODEL_NAME -C "$PWD" -p task.md -o result.md
+subfleet claude -A -m MODEL_NAME -C "$PWD" -p task.md -o result.md</code></pre>
+				<p>
+					An unpinned run auto-picks a lane and re-picks if that lane hits a usage limit
+					mid-run. A <code>bin/codex</code> shim extends the same lane selection to bare
+					<code>codex exec</code> calls from other tools.
+				</p>
+			</section>
+
+			<section class="install" id="quick-start">
+				<h2>Quick start</h2>
+				<div class="install-steps">
+					<div class="step">
+						<span class="step-number">1</span>
+						<div class="step-content">
+							<h3>Clone and sync</h3>
+							<p><code>git clone https://github.com/MaxGhenis/subfleet && cd subfleet && uv sync</code></p>
+						</div>
+					</div>
+					<div class="step">
+						<span class="step-number">2</span>
+						<div class="step-content">
+							<h3>Configure accounts</h3>
+							<p>Copy <code>accounts.example.json</code> to <code>~/.config/subfleet/accounts.json</code> and list your Claude addresses and Codex homes</p>
+						</div>
+					</div>
+					<div class="step">
+						<span class="step-number">3</span>
+						<div class="step-content">
+							<h3>Enroll lanes</h3>
+							<p><code>claude setup-token | subfleet enroll you@example.com</code> per Claude account, <code>subfleet login codex 1</code> per Codex home, then <code>subfleet status</code></p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="requirements">
+				<h2>Requirements</h2>
+				<ul>
+					<li>Python 3.12 or later; the package itself has no dependencies outside the standard library</li>
+					<li>The Claude Code and Codex CLIs for the subscriptions you enroll</li>
+					<li><code>jq</code> and <code>uuidgen</code> for the Claude runner</li>
+					<li>A secret store: macOS keychain by default, or any configured secret-store command</li>
+				</ul>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	main {
+		max-width: 900px;
+	}
+
+	.page-header {
+		text-align: center;
+		margin-bottom: 3rem;
+		padding-bottom: 2rem;
+		border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+	}
+
+	.app-icon {
+		width: 80px;
+		height: 80px;
+		margin: 0 auto 1.5rem;
+		background: linear-gradient(160deg, #071423 0%, #0c2136 100%);
+		border: 2px solid #2dd4bf;
+		border-radius: 16px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		box-shadow: 0 0 30px rgba(45, 212, 191, 0.2);
+	}
+
+	.app-icon svg {
+		width: 44px;
+		height: 44px;
+		color: #2dd4bf;
+	}
+
+	.page-header h1 {
+		font-size: 3rem;
+		margin-bottom: 0.75rem;
+	}
+
+	.page-description {
+		font-size: 1.25rem;
+		color: var(--text-secondary);
+		max-width: 640px;
+		margin: 0 auto 2rem;
+	}
+
+	.header-actions {
+		display: flex;
+		gap: 1rem;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+
+	.github-btn, .anchor-btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.875rem 1.5rem;
+		border-radius: var(--radius-lg);
+		text-decoration: none;
+		font-weight: 600;
+		font-size: 1rem;
+		transition: all var(--duration-fast) var(--ease-out);
+	}
+
+	.github-btn {
+		background: var(--ink);
+		color: white;
+	}
+
+	.github-btn:hover {
+		background: var(--ink-soft);
+		transform: translateY(-2px);
+		box-shadow: var(--shadow-md);
+	}
+
+	.anchor-btn {
+		background: rgba(45, 212, 191, 0.12);
+		color: #0f766e;
+		border: 1px solid rgba(45, 212, 191, 0.4);
+	}
+
+	.anchor-btn:hover {
+		background: rgba(45, 212, 191, 0.2);
+		transform: translateY(-2px);
+	}
+
+	section {
+		margin-bottom: 3rem;
+	}
+
+	section h2 {
+		font-size: 1.75rem;
+		margin-bottom: 1.5rem;
+	}
+
+	.feature-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+		gap: 1.25rem;
+	}
+
+	.feature-card {
+		background: white;
+		border: 1px solid rgba(15, 23, 42, 0.08);
+		border-radius: var(--radius-lg);
+		padding: 1.5rem;
+		transition: all var(--duration-fast) var(--ease-out);
+	}
+
+	.feature-card:hover {
+		border-color: rgba(45, 212, 191, 0.5);
+		box-shadow: var(--shadow-md);
+		transform: translateY(-2px);
+	}
+
+	.feature-icon {
+		color: #0f766e;
+		margin-bottom: 0.75rem;
+	}
+
+	.feature-card h3 {
+		font-size: 1.05rem;
+		margin-bottom: 0.4rem;
+	}
+
+	.feature-card p {
+		font-size: 0.925rem;
+		color: var(--text-secondary);
+		line-height: 1.5;
+	}
+
+	.feature-card code, .step-content code {
+		font-size: 0.85em;
+		background: rgba(15, 23, 42, 0.05);
+		padding: 0.1em 0.35em;
+		border-radius: 4px;
+	}
+
+	.dispatch p {
+		color: var(--text-secondary);
+		max-width: 700px;
+		margin-bottom: 1rem;
+		line-height: 1.6;
+	}
+
+	.dispatch pre {
+		background: #071423;
+		color: #b9e8e0;
+		border-radius: var(--radius-lg);
+		padding: 1.25rem 1.5rem;
+		overflow-x: auto;
+		font-size: 0.875rem;
+		line-height: 1.7;
+		margin-bottom: 1rem;
+	}
+
+	.dispatch pre code {
+		background: none;
+		padding: 0;
+		color: inherit;
+	}
+
+	.install-steps {
+		display: flex;
+		flex-direction: column;
+		gap: 1.25rem;
+	}
+
+	.step {
+		display: flex;
+		gap: 1.25rem;
+		align-items: flex-start;
+	}
+
+	.step-number {
+		flex-shrink: 0;
+		width: 2.25rem;
+		height: 2.25rem;
+		border-radius: 50%;
+		background: rgba(45, 212, 191, 0.15);
+		color: #0f766e;
+		font-weight: 700;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.step-content h3 {
+		font-size: 1.05rem;
+		margin-bottom: 0.25rem;
+	}
+
+	.step-content p {
+		color: var(--text-secondary);
+		font-size: 0.95rem;
+		line-height: 1.55;
+	}
+
+	.requirements ul {
+		list-style: none;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.6rem;
+	}
+
+	.requirements li {
+		padding-left: 1.5rem;
+		position: relative;
+		color: var(--text-secondary);
+	}
+
+	.requirements li::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 0.55em;
+		width: 0.5rem;
+		height: 0.5rem;
+		border-radius: 50%;
+		background: #2dd4bf;
+	}
+
+	@media (max-width: 640px) {
+		.page-header h1 {
+			font-size: 2.25rem;
+		}
+	}
+</style>
