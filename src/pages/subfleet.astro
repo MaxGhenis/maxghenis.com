@@ -108,6 +108,11 @@ subfleet claude -A -m MODEL_NAME -C "$PWD" -p task.md -o result.md</code></pre>
 
 			<section class="install" id="quick-start">
 				<h2>Quick start</h2>
+				<p class="pip-note">
+					Monitoring only? <code>pip install subfleet</code> ships the status,
+					capacity, and ledger commands (v0.0.1 on <a href="https://pypi.org/project/subfleet/">PyPI</a>).
+					The dispatch runners come with the repository checkout:
+				</p>
 				<div class="install-steps">
 					<div class="step">
 						<span class="step-number">1</span>
@@ -305,6 +310,12 @@ subfleet claude -A -m MODEL_NAME -C "$PWD" -p task.md -o result.md</code></pre>
 		background: none;
 		padding: 0;
 		color: inherit;
+	}
+
+	.pip-note {
+		color: var(--text-secondary);
+		margin-bottom: 1.25rem;
+		line-height: 1.6;
 	}
 
 	.install-steps {
