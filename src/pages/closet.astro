@@ -87,13 +87,13 @@ const items: Item[] = [
 const loadMeta: Record<LoadKey, { name: string; settings: string; note: string }> = {
   clothes: {
     name: 'Clothes',
-    settings: 'Eco cold · liquid detergent in the drawer (Tide Free & Gentle) · activewear in a mesh bag · no softener · medium spin · palm’s gap at the top of the drum · wash together, sort at the dryer',
-    note: 'Everything you wear in one eco-cold wash — the only thing that changes is where it dries. New darks bleed at first, so run the blue selvedge OCBD on its own the first wash or two. Using a pod instead? Empty drum, pod in first, clothes on top, palm’s gap at the top; a pod dropped on a full load comes out of the dryer still a pod.',
+    settings: 'Eco cold · one Tide evo tile in the empty drum, then the clothes (two tiles for a big load) · activewear in a mesh bag · no softener · medium spin · palm’s gap at the top of the drum · wash together, sort at the dryer',
+    note: 'Everything you wear in one eco-cold wash — the only thing that changes is where it dries. New darks bleed at first, so run the blue selvedge OCBD on its own the first wash or two. Tiles and pods go in the empty drum first, clothes on top, palm’s gap at the top; dropped onto a full load they come out of the dryer intact.',
   },
   linens: {
     name: 'Linens',
-    settings: 'Warm · liquid detergent + OxiClean · no softener · high spin · tumble dry',
-    note: 'Towels + sheets + duvet cover together, warm. OxiClean is a percarbonate brightener, not a sanitizer (the EPA-registered OxiClean is a different product); its oxygen bleach does add germ kill at low temperatures, and hot fades sheets and wears their elastic. Save hot or the sanitize cycle for two cases: an occasional towels-only refresh when they turn musty, and after illness — the NHS line is 60 °C (140 °F) for towels, linen, and underwear. No softener — it coats the cotton and kills absorbency. Combining leaves a little lint on the sheets; split towels off solo if that bugs you.',
+    settings: 'Warm · Tide evo tile + a scoop of OxiClean, both in the empty drum before the linens · no softener · high spin · tumble dry',
+    note: 'Towels + sheets + duvet cover together, warm. OxiClean goes in the drum, never the drawer: powder cakes in the drawer and the next load flushes it out as a clump — that is what came out of the dryer stuck to a shirt. OxiClean is a percarbonate brightener, not a sanitizer (the EPA-registered OxiClean is a different product); its oxygen bleach does add germ kill at low temperatures, and hot fades sheets and wears their elastic. Save hot or the sanitize cycle for two cases: an occasional towels-only refresh when they turn musty, and after illness — the NHS line is 60 °C (140 °F) for towels, linen, and underwear. No softener — it coats the cotton and kills absorbency. Combining leaves a little lint on the sheets; split towels off solo if that bugs you.',
   },
   wool: {
     name: 'Wool — occasional',
@@ -207,11 +207,12 @@ const footwear = [
           ))}
         </div>
         <p class="loads-foot">
-          On the temperature button: eco cold = unheated tap water, and it&rsquo;s the
-          right pick for both cold loads. DC tap runs 75–85 °F from June through
-          September and near 40 °F in winter; cool mixes in hot water to hit a preset
-          (about 60 °F on Samsung, 65–75 °F on GE and Whirlpool), so it changes nothing
-          in summer and matters only in winter or for a genuinely filthy load. Two
+          On the temperature button (Electrolux): eco cold = cold tap supply for wash
+          and rinse, and it&rsquo;s the right pick for both cold loads. Cool blends some
+          warm water into the cold tap &ldquo;to achieve a precise cold&rdquo; — the manual
+          gives no number. DC tap runs 75–85 °F from June through September and near
+          40 °F in winter, so cool changes nothing in summer and matters only in winter
+          or for a genuinely filthy load. Two
           compromises, neither does any damage: white basics washed cold with colors
           slowly dull (fine for socks and tees — your white dress shirts hang either way), and towels
           share a little lint with the sheets. Want crisp whites and lint-free
@@ -267,11 +268,10 @@ const footwear = [
       <section>
         <h2>On the shelf</h2>
         <ul>
-          <li><strong>Tide Free &amp; Gentle liquid</strong> — the everyday detergent for the clothes and linens loads. It goes in the drawer, so it never depends on dissolving, and it doses down for a small load. 23¢ a load; Kirkland Ultra Clean is 14¢ if there is a Costco run.</li>
-          <li><strong>Pods</strong> — fine in eco cold: P&amp;G’s own spec for the film is dissolution at 50 °F within 10 minutes, and DC tap never gets that cold. The failure mode is placement, not temperature. Empty drum, pod in first, clothes on top, a palm’s gap at the top of the drum; never the drawer. One pod for a small load, two for a standard one. If one comes out of the dryer intact: soak the garment in warm water, rub the film off, rewash warm and check before drying — and rewash the load, it was washed in plain water.</li>
-          <li><strong>Tru Earth strips</strong> — travel and sink washes only (tear off ~¼ sheet). Consumer Reports scored them 11/100 on stains in August 2024, the lowest of anything tested; Tide Plus Ultra Stain Release liquid scored 84.</li>
+          <li><strong>Tide evo tiles</strong> — the everyday detergent for both machine loads. One tile at the bottom of the empty drum before the clothes, two for a big load; Tide’s own instruction, and it works in cold water. Consumer Reports rates it the best of the tile and sheet form and about even with an adequate powder; if stain removal ever matters more than the box on the shelf, the upgrade is a liquid (Tide Plus Ultra Stain Release, 84/100) or Kirkland Ultra Clean at 14¢ a load. Packs, if you ever use them: the pack compartment with the PODS option (the washer adds hot water to dissolve them) or the drum, never the plain drawer.</li>
+          <li><strong>Tru Earth strips</strong> — travel and sink washes only (tear off ~¼ sheet). Consumer Reports scored them 11/100 on stains in August 2024, the lowest of anything tested.</li>
           <li><strong>Eucalan</strong> — the wool wash. No-rinse: tepid water, soak 15 min, press out, lay flat. Enzyme-free, so it won’t eat the merino.</li>
-          <li><strong>OxiClean</strong> — oxygen brightener for the linens load (and any whites boost). Color-safe; keep it off wool and stretchy activewear. It is not a sanitizer.</li>
+          <li><strong>OxiClean</strong> — oxygen brightener for the linens load (and any whites boost). A scoop into the empty drum before the linens; never the drawer, where it cakes and rides into the next load. Color-safe; keep it off wool and stretchy activewear. It is not a sanitizer. A clump that survives to the dryer can bleach a pale spot into colored fabric: rinse it out cold and rewash before any heat.</li>
           <li><strong>White vinegar</strong> — ½-cup cold soak in the sink kills gym-clothes odor. Keep it out of the machine: Maytag warns the acid degrades rubber seals and hoses. For the drum, run the tub-clean cycle.</li>
         </ul>
         <p>
@@ -286,7 +286,7 @@ const footwear = [
         <h2>The machine</h2>
         <ul>
           <li><strong>Between loads</strong> — door and dispenser drawer ajar, gasket wiped dry. A closed front loader grows mold in the gasket.</li>
-          <li><strong>Monthly</strong> — run the tub-clean cycle (with the machine’s cleaner, not vinegar).</li>
+          <li><strong>Monthly</strong> — run the tub-clean cycle (with the machine’s cleaner, not vinegar), and pull the dispenser drawer and rinse it. Caked powder in the drawer is how a clump ends up on a shirt.</li>
           <li><strong>Every load</strong> — a palm’s gap between the clothes and the top of the drum. A stuffed drum is what leaves pods, strips, and lint where they started.</li>
         </ul>
       </section>
