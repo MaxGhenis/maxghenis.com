@@ -5,12 +5,15 @@
  * arithmetic on those figures. Tests in drinking-ai.test.ts pin the headline
  * numbers so silent drift in any constant fails CI.
  *
- * Two things are deliberately kept honest:
+ * Three things are deliberately kept honest:
  *  - Per-query AI water is a RANGE, not a point. The figure depends entirely on
  *    scope (data-center cooling only / + power-plant water / full per-response
  *    lifecycle). The page lets the reader pick; QUERY_SCOPES holds all three.
  *  - Drink footprints use the canonical peer-reviewed crop-water tables
  *    (Mekonnen & Hoekstra 2011, 2012), not the popular leaflet figures.
+ *  - Plant milks are the same tables applied to what is actually in the
+ *    carton (2% almonds, 10% oats, from the labels), so the recipe assumption
+ *    is explicit and the figure scales with it.
  */
 
 export const GALLONS_TO_LITERS = 3.785411784;
@@ -47,7 +50,7 @@ export const QUERY_SCOPES: QueryScope[] = [
     boundary: 'On-site cooling water only',
     perQueryMl: ALTMAN_ML_PER_QUERY,
     detail:
-      "OpenAI's published average (0.34 Wh, 0.000085 gallons per query). It matches Google's separately measured 0.26 mL median Gemini prompt, which Google defines as on-site data-center cooling water only — no power-plant water.",
+      "OpenAI's published average (0.34 Wh, 0.000085 gallons per query); the post states no boundary. It is within 25% of Google's separately measured 0.26 mL median Gemini prompt, which Google defines as on-site data-center cooling water only — no power-plant water — so the page treats both as that scope.",
     sourceLabel: 'OpenAI (Altman, 2025)',
     sourceUrl: 'https://blog.samaltman.com/the-gentle-singularity',
   },
@@ -57,17 +60,17 @@ export const QUERY_SCOPES: QueryScope[] = [
     boundary: 'Cooling + electricity generation',
     perQueryMl: 2.0,
     detail:
-      'Adds the water used to generate the electricity the query draws, not just data-center cooling — the same supply-chain boundary the drink footprints use. A peer-reviewed measurement puts an efficient 2025 model (GPT-4o) near 2 mL on this basis.',
+      'Adds the water used to generate the electricity the query draws, not just data-center cooling — the closest AI analog to the drinks\' upstream accounting. A benchmarking preprint (Jegham et al. 2025) models a short GPT-4o query (ChatGPT\'s default until August 2025), about 300 output tokens, near 2 mL on this basis; a 1,000-token response is about 6 mL.',
     sourceLabel: 'Jegham et al. 2025',
     sourceUrl: 'https://arxiv.org/abs/2505.09598',
   },
   {
     id: 'lifecycle',
-    label: 'Per-response lifecycle',
-    boundary: 'Full marginal response, LCA',
+    label: 'Per-response LCA',
+    boundary: 'One response, LCA: cooling, upstream electricity, hardware; no training',
     perQueryMl: 45,
     detail:
-      "Mistral's ISO-reviewed life-cycle assessment of one 400-token response from a large model, covering upstream electricity and cooling. Higher because the response is long and the model large; Li & Ren's older GPT-3 figure (10–50 mL/response) sits in the same band.",
+      "Mistral's life-cycle assessment (ISO 14040/44-compliant, reviewed by the audit consultancies Resilio and Hubblo) of one 400-token Le Chat response, covering upstream electricity, cooling, and embodied hardware. Higher because of that boundary and where the computation runs, not response length — 400 tokens is comparable to Jegham's short prompt. Li & Ren's older GPT-3 figure (10–50 mL per response) sits in the same band.",
     sourceLabel: 'Mistral AI LCA, 2025',
     sourceUrl: 'https://mistral.ai/news/our-contribution-to-a-global-environmental-standard-for-ai',
   },
@@ -75,17 +78,20 @@ export const QUERY_SCOPES: QueryScope[] = [
 
 /**
  * Default scope: cooling + power-plant water. The drink footprints count the
- * full supply chain (water embedded in barley, grapes, beans), so the
- * boundary-consistent AI figure includes the water embedded in the query's
- * electricity — not data-center cooling alone.
+ * full supply chain (water embedded in barley, grapes, beans), so the closest
+ * AI analog includes the water embedded in the query's electricity — not
+ * data-center cooling alone. It is the closest analog, not the same boundary:
+ * the crop tables also count rain (green) and pollution-dilution (grey) water,
+ * which have no AI-side counterpart.
  */
 export const DEFAULT_SCOPE_ID = 'operational';
-export const WATER_PER_QUERY_ML = ALTMAN_ML_PER_QUERY;
+export const DEFAULT_SCOPE: QueryScope = QUERY_SCOPES.find((s) => s.id === DEFAULT_SCOPE_ID) ?? QUERY_SCOPES[1];
 
 /* ──────────────────────────────────────────────────────────────────────────
-   Workload intensity. The per-query figures above are MEDIAN SINGLE PROMPTS.
-   Reasoning models emit far more tokens, and agents chain many calls per task,
-   so the honest unit shifts from "query" to "task". Water scales ~linearly with
+   Workload intensity. The per-query figures above are single short prompts (an
+   average for OpenAI, a median for Google). Reasoning models emit far more
+   tokens, and agents chain many calls per task, so the unit shifts from
+   "query" to "task". Water scales ~linearly with
    tokens, so a token multiplier is roughly a water multiplier.
    ────────────────────────────────────────────────────────────────────────── */
 
@@ -117,7 +123,7 @@ export const WORKLOAD_TIERS: WorkloadTier[] = [
     unitSingular: 'query',
     multiple: 1,
     detail:
-      "A median single text prompt — the basis for OpenAI's and Google's published per-query figures.",
+      "One short text prompt — OpenAI's average query and Google's median Gemini prompt.",
     sourceLabel: 'Google, 2025',
     sourceUrl: 'https://arxiv.org/abs/2508.15734',
   },
@@ -129,7 +135,7 @@ export const WORKLOAD_TIERS: WorkloadTier[] = [
     unitSingular: 'reasoning response',
     multiple: 10,
     detail:
-      'Extended-thinking models emit far more tokens. Measured multipliers run ~2.5x (Epoch) to ~7x (GPT-5 routing) and up to ~50x for long, high-effort reasoning; ~10x is a mid-range estimate.',
+      'Extended-thinking models emit far more tokens. Measured multipliers run ~2.5× (Epoch) to ~7× (GPT-5 routing) and up to ~50× for long, high-effort reasoning. 10× is a Claude mid-range estimate, not a measurement.',
     sourceLabel: 'Jegham et al. 2025',
     sourceUrl: 'https://arxiv.org/abs/2505.09598',
     estimate: true,
@@ -142,7 +148,7 @@ export const WORKLOAD_TIERS: WorkloadTier[] = [
     unitSingular: 'agentic task',
     multiple: 15,
     detail:
-      'Agents chain many model calls per task. Anthropic measured its multi-agent systems at about 15x the tokens of a chat; long autonomous coding runs go higher.',
+      'Agents chain many model calls per task. Anthropic measured its multi-agent systems at about 15× the tokens of a chat; long autonomous coding runs go higher.',
     sourceLabel: 'Anthropic, 2025',
     sourceUrl: 'https://www.anthropic.com/engineering/multi-agent-research-system',
   },
@@ -168,8 +174,8 @@ export const QUERIES_PER_DAY = 30;
 export const BEER_FOOTPRINT_L_PER_L = 300;
 // Wine: 869 L/kg (M&H 2011, "grape wines") × ~0.99 kg/L ≈ 860 L/L.
 export const WINE_FOOTPRINT_L_PER_L = 860;
-// Orange juice: 1,018 L/kg (M&H 2011) × ~1.045 kg/L ≈ 1,064 L/L.
-export const ORANGE_JUICE_FOOTPRINT_L_PER_L = 1064;
+// Orange juice: 1,018 L/kg (M&H 2011) × ~1.045 kg/L ≈ 1,060 L/L (3 significant figures, like the others).
+export const ORANGE_JUICE_FOOTPRINT_L_PER_L = 1060;
 // Soda: 169 L per 0.5 L PET bottle, low end of Ercin et al. 2011's 169–309 range.
 export const SODA_FOOTPRINT_L_PER_L = 169 / 0.5;
 // Milk: 1,020 L/kg (M&H 2012) × ~1.03 kg/L ≈ 1,050 L/L.
@@ -187,6 +193,45 @@ export const BOTTLED_WATER_FOOTPRINT_L_PER_L = 1.39;
 // Spirits: spiritsEUROPE industry figure, ~18 L per serving (flagged, non-peer-reviewed).
 export const SPIRITS_LITERS_PER_SERVING = 18;
 
+// Almonds, shelled: 16,095 L/kg global average (M&H 2011, green 9,264 / blue
+// 3,816 / grey 3,015). California-specific: 10,240 L/kg of kernel (Fulton,
+// Norton & Shilling 2019, 2004–2015 average).
+export const ALMOND_FOOTPRINT_L_PER_KG = 16095;
+export const ALMOND_FOOTPRINT_L_PER_KG_CALIFORNIA = 10240;
+export const CALIFORNIA_ALMOND_DISCOUNT_PCT = Math.round(
+  (1 - ALMOND_FOOTPRINT_L_PER_KG_CALIFORNIA / ALMOND_FOOTPRINT_L_PER_KG) * 100,
+);
+/** One almond kernel: 1.2 g, 23 kernels per ounce (USDA FoodData Central 170567). */
+export const ALMOND_KERNEL_GRAMS = 1.2;
+/** Almond milk is 2% almonds by weight (Almond Breeze label: "Almonds (2%)"). */
+export const ALMOND_MILK_ALMOND_SHARE = 0.02;
+// ≈ 322 L/L; plant milks are ~1 kg/L so no density correction.
+export const ALMOND_MILK_FOOTPRINT_L_PER_L = ALMOND_FOOTPRINT_L_PER_KG * ALMOND_MILK_ALMOND_SHARE;
+// Oat groats and meal: 2,536 L/kg (M&H 2011, green 2,098 / blue 257 / grey 182).
+export const OAT_FOOTPRINT_L_PER_KG = 2536;
+export const OAT_GREEN_SHARE = 2098 / 2536;
+/** Oat drink is 10% oats by weight (Oatly label: "OATS 10%"). */
+export const OAT_MILK_OAT_SHARE = 0.1;
+// ≈ 254 L/L.
+export const OAT_MILK_FOOTPRINT_L_PER_L = OAT_FOOTPRINT_L_PER_KG * OAT_MILK_OAT_SHARE;
+
+/**
+ * Sam Altman, Sources podcast (Alex Heath), published Sept 2, 2026, from memory:
+ * "for every 38,000 ChatGPT queries, that is the same amount of water that is
+ * used in the production of a single almond in California." The page lets the
+ * reader test it: at his own 0.32 mL per query that is 12.2 L per almond.
+ */
+export const ALTMAN_QUERIES_PER_ALMOND = 38_000;
+export const ALTMAN_IMPLIED_LITERS_PER_ALMOND = (ALTMAN_QUERIES_PER_ALMOND * ALTMAN_ML_PER_QUERY) / 1000;
+
+/**
+ * Cross-reference on a narrower boundary. Poore & Nemecek 2018 (Science) count
+ * freshwater withdrawals — irrigation and processing water, no rain — and do
+ * not publish the recipes, so their plant-milk figures are not charted with
+ * the crop-table figures above. Liters per liter, via Our World in Data.
+ */
+export const PN2018_L_PER_L = { almondMilk: 371, oatMilk: 48, dairyMilk: 628 };
+
 const ML = (ml: number) => ml / 1000;
 
 export interface DrinkSource {
@@ -198,7 +243,11 @@ export interface Drink {
   id: string;
   name: string;
   serving: string;
-  servingMl: number;
+  /** Noun phrase after "One" in the headline ("glass of milk"); defaults to the lowercased name. */
+  headline?: string;
+  /** Serving volume; absent for the one non-drink item (an almond kernel). */
+  servingMl?: number;
+  servingGrams?: number;
   waterLiters: number;
   /** How waterLiters is derived from the source figure. */
   derivation: string;
@@ -232,6 +281,34 @@ const SPIRITS_EUROPE: DrinkSource = {
   label: 'spiritsEUROPE 2020',
   url: 'https://spirits.eu/upload/files/publications/CP.MI-165-2020-%20Farm2Glass%20Brochure%20-%2014%20May%202020.pdf',
 };
+const GL2009: DrinkSource = {
+  label: 'Gerbens-Leenes & Hoekstra 2009',
+  url: 'https://www.waterfootprint.org/resources/Report38-WaterFootprint-sweeteners-ethanol.pdf',
+};
+const FULTON2019: DrinkSource = {
+  label: 'Fulton, Norton & Shilling 2019',
+  url: 'https://doi.org/10.1016/j.ecolind.2017.12.063',
+};
+const ALMOND_BREEZE_LABEL: DrinkSource = {
+  label: 'Almond Breeze label',
+  url: 'https://groceries.morrisons.com/products/blue-diamond-almonds-almond-breeze-unsweetened/111103900',
+};
+const OATLY_LABEL: DrinkSource = {
+  label: 'Oatly label',
+  url: 'https://www.oatly.com/en-gb/products/oat-drink/oat-drink-whole-2-8-1l',
+};
+const USDA_FDC_ALMONDS: DrinkSource = {
+  label: 'USDA FoodData Central',
+  url: 'https://fdc.nal.usda.gov/food-details/170567/nutrients',
+};
+const PN2018: DrinkSource = {
+  label: 'Poore & Nemecek 2018',
+  url: 'https://ourworldindata.org/environmental-impact-milks',
+};
+export const ALTMAN_ALMOND_SOURCE: DrinkSource = {
+  label: 'Altman, Sources podcast, Sept 2026',
+  url: 'https://www.tomshardware.com/tech-industry/data-centers/openai-ceo-sam-altman-says-38-000-chatgpt-queries-use-as-much-water-as-the-production-of-one-almond-says-data-centers-use-no-more-water-than-an-office-building',
+};
 
 export const DRINKS: Drink[] = [
   {
@@ -246,6 +323,7 @@ export const DRINKS: Drink[] = [
   },
   {
     id: 'wine',
+    headline: 'glass of wine',
     name: 'Wine',
     serving: '5 oz / 148 mL',
     servingMl: 148,
@@ -256,17 +334,20 @@ export const DRINKS: Drink[] = [
   },
   {
     id: 'cocktail',
-    name: 'Cocktail',
-    serving: 'one standard drink',
+    name: 'Spirits',
+    headline: 'serving of spirits',
+    serving: '1 serving (size unstated)',
+    // The brochure gives no serving size; 44 mL (1.5 oz) is the US standard drink, an assumption.
     servingMl: 44,
     waterLiters: SPIRITS_LITERS_PER_SERVING,
-    derivation: '18 L per serving of spirit drink',
-    scopeNote: 'Industry figure, not peer-reviewed — the only non-academic drink number on this page. The crop-water literature suggests the true figure is likely higher.',
-    sources: [SPIRITS_EUROPE],
+    derivation: '18 L per serving of spirit drink (spiritsEUROPE; serving size not stated in the brochure)',
+    scopeNote: 'Industry figure, not peer-reviewed; bottled water\'s ratio is the other industry benchmark here. The crop-water literature has no per-serving spirits figure; the ethanol crop-water tables (Gerbens-Leenes & Hoekstra 2009) imply 24–50 L of crop water for the 1.5 oz of spirit alone.',
+    sources: [SPIRITS_EUROPE, GL2009],
     flagged: true,
   },
   {
     id: 'coffee',
+    headline: 'cup of coffee',
     name: 'Coffee',
     serving: '8 oz / 237 mL',
     servingMl: 237,
@@ -277,6 +358,7 @@ export const DRINKS: Drink[] = [
   },
   {
     id: 'tea',
+    headline: 'cup of tea',
     name: 'Tea',
     serving: '8 oz / 237 mL',
     servingMl: 237,
@@ -287,26 +369,29 @@ export const DRINKS: Drink[] = [
   },
   {
     id: 'soda',
+    headline: 'can of soda',
     name: 'Soda',
     serving: '12 oz / 355 mL',
     servingMl: 355,
     waterLiters: SODA_FOOTPRINT_L_PER_L * ML(355),
-    derivation: '169 L per 0.5 L bottle (low end of Ercin et al. 2011’s 169–309 range) ≈ 338 L per L, scaled to 355 mL',
-    scopeNote: 'Low end of the published range; 99.7% is supply-chain water, and the sugar source sets the spread.',
+    derivation: "169 L per 0.5 L bottle (low end of Ercin et al. 2011's 169–309 range) ≈ 338 L per L, scaled to 355 mL",
+    scopeNote: 'Low end of the published range; 99.7–99.8% is supply-chain water, and the sugar source sets the spread.',
     sources: [ERCIN2011],
   },
   {
     id: 'orange-juice',
+    headline: 'glass of orange juice',
     name: 'Orange juice',
     serving: '8 oz / 237 mL',
     servingMl: 237,
     waterLiters: ORANGE_JUICE_FOOTPRINT_L_PER_L * ML(237),
-    derivation: '1,018 L per kg of orange juice (Mekonnen & Hoekstra 2011) ≈ 1,064 L per L, scaled to 237 mL',
+    derivation: '1,018 L per kg of orange juice (Mekonnen & Hoekstra 2011) ≈ 1,060 L per L, scaled to 237 mL',
     scopeNote: 'Full green, blue, and grey crop footprint — mostly orange-grove water.',
     sources: [MH2011],
   },
   {
     id: 'milk',
+    headline: 'glass of milk',
     name: 'Milk',
     serving: '8 oz / 237 mL',
     servingMl: 237,
@@ -316,17 +401,43 @@ export const DRINKS: Drink[] = [
     sources: [MH2012],
   },
   {
+    id: 'almond-milk',
+    headline: 'glass of almond milk',
+    name: 'Almond milk',
+    serving: '8 oz / 237 mL',
+    servingMl: 237,
+    waterLiters: ALMOND_MILK_FOOTPRINT_L_PER_L * ML(237),
+    derivation:
+      '16,095 L per kg of shelled almonds (Mekonnen & Hoekstra 2011) × 2% almonds by weight (Almond Breeze label) ≈ 322 L per L, scaled to 237 mL',
+    scopeNote: `About four almonds per glass. Full green, blue, and grey orchard water at the global average; California-specific growing (Fulton et al. 2019) gives ${CALIFORNIA_ALMOND_DISCOUNT_PCT}% less. The figure scales with the recipe: a 4% almond milk doubles it.`,
+    sources: [MH2011, ALMOND_BREEZE_LABEL, FULTON2019],
+  },
+  {
+    id: 'oat-milk',
+    headline: 'glass of oat milk',
+    name: 'Oat milk',
+    serving: '8 oz / 237 mL',
+    servingMl: 237,
+    waterLiters: OAT_MILK_FOOTPRINT_L_PER_L * ML(237),
+    derivation:
+      '2,536 L per kg of oat groats (Mekonnen & Hoekstra 2011) × 10% oats by weight (Oatly label) ≈ 254 L per L, scaled to 237 mL',
+    scopeNote: `Mostly rain: ${Math.round(OAT_GREEN_SHARE * 100)}% of the oat footprint is green water on rain-fed fields. Counting only irrigation and processing water, Poore & Nemecek 2018 put oat milk at ${PN2018_L_PER_L.oatMilk} L per L, about a fifth of this.`,
+    sources: [MH2011, OATLY_LABEL, PN2018],
+  },
+  {
     id: 'bottled-water',
+    headline: 'bottle of water',
     name: 'Bottled water',
     serving: '12 oz / 355 mL',
     servingMl: 355,
     waterLiters: BOTTLED_WATER_FOOTPRINT_L_PER_L * ML(355),
     derivation: '1.39 L used per 1 L bottled (IBWA 2024 benchmarking), scaled to 355 mL',
-    scopeNote: 'A bottling-plant facility ratio including the product water itself — not a crop footprint, so it is not comparable to the drinks above.',
+    scopeNote: 'A bottling-plant facility ratio including the product water itself — not a crop footprint, so it is not comparable to the crop-based drinks.',
     sources: [IBWA_BENCHMARK],
   },
   {
     id: 'tap-water',
+    headline: 'glass of tap water',
     name: 'Tap water',
     serving: '12 oz / 355 mL',
     servingMl: 355,
@@ -335,9 +446,21 @@ export const DRINKS: Drink[] = [
     scopeNote: 'Just the water you drink; no treatment or distribution lifecycle added.',
     sources: [],
   },
+  {
+    id: 'almond',
+    name: 'Almond',
+    serving: '1 kernel / 1.2 g',
+    servingGrams: ALMOND_KERNEL_GRAMS,
+    waterLiters: ALMOND_FOOTPRINT_L_PER_KG * (ALMOND_KERNEL_GRAMS / 1000),
+    derivation:
+      '16,095 L per kg of shelled almonds (Mekonnen & Hoekstra 2011) × 1.2 g per kernel (USDA) ≈ 19 L; California-specific, 10,240 L per kg (Fulton et al. 2019) ≈ 12 L',
+    scopeNote:
+      "Not a drink: the unit in Sam Altman's claim (Sources podcast, Sept 2026, from memory) that one California almond takes the water of 38,000 ChatGPT queries. At OpenAI's 0.32 mL per query that implies 12 L per almond, the California-specific figure; the global-average table used across this page gives 19 L.",
+    sources: [MH2011, FULTON2019, USDA_FDC_ALMONDS, ALTMAN_ALMOND_SOURCE],
+  },
 ];
 
-export function queriesForLiters(waterLiters: number, perQueryMl: number = WATER_PER_QUERY_ML): number {
+export function queriesForLiters(waterLiters: number, perQueryMl: number = DEFAULT_SCOPE.perQueryMl): number {
   return (waterLiters * 1000) / perQueryMl;
 }
 
@@ -348,35 +471,74 @@ export function queriesForLiters(waterLiters: number, perQueryMl: number = WATER
  */
 export function roundToSigFigs(value: number, figures = 3): number {
   if (value === 0) return 0;
-  const magnitude = 10 ** (Math.floor(Math.log10(Math.abs(value))) - (figures - 1));
-  return Math.round(value / magnitude) * magnitude;
+  // toPrecision avoids the float noise of multiplying back by a magnitude (55.9 not 55.900000000000006).
+  return Number(value.toPrecision(figures));
 }
 
 /** "30 years" / "37 days" / "5 hours" / "25 minutes" at QUERIES_PER_DAY per day. */
 export function dailyUseLabel(queries: number, perDay: number = QUERIES_PER_DAY): string {
   const days = queries / perDay;
   const years = days / 365.25;
-  if (years >= 1) {
-    const r = Math.round(years);
+  // Round before choosing the unit, so 0.999 days reads "1 day", not "24 hours".
+  if (years >= 1 || Math.round(days) >= 365) {
+    const r = Math.max(1, Math.round(years));
     return `${r} year${r === 1 ? '' : 's'}`;
   }
-  if (days >= 1) {
-    const r = Math.round(days);
+  const hours = days * 24;
+  if (days >= 1 || Math.round(hours) >= 24) {
+    const r = Math.max(1, Math.round(days));
     return `${r} day${r === 1 ? '' : 's'}`;
   }
-  const hours = days * 24;
-  if (hours >= 1) {
-    const r = Math.round(hours);
+  const minutes = hours * 60;
+  if (hours >= 1 || Math.round(minutes) >= 60) {
+    const r = Math.max(1, Math.round(hours));
     return `${r} hour${r === 1 ? '' : 's'}`;
   }
-  const minutes = Math.max(1, Math.round(hours * 60));
-  return `${minutes} minute${minutes === 1 ? '' : 's'}`;
+  const m = Math.max(1, Math.round(minutes));
+  return `${m} minute${m === 1 ? '' : 's'}`;
+}
+
+/** One drop in the dot field stands for this many units. */
+export const QUERIES_PER_DROP = 1000;
+
+/** One (scope × workload) cell of the calculator, as the page renders it. */
+export interface Cell {
+  /** Units, rounded to 3 significant figures. */
+  count: number;
+  drops: number;
+  /** Rounds below one drop: shown as a single faded drop labeled "<1". */
+  subDrop: boolean;
+  usage: string;
+}
+
+export function cellKey(scopeId: string, workloadId: string): string {
+  return `${scopeId}:${workloadId}`;
+}
+
+/** Every scope × workload cell for one drink. Both axes multiply the water per unit. */
+export function drinkCells(drink: Drink): Record<string, Cell> {
+  const cells: Record<string, Cell> = {};
+  for (const scope of QUERY_SCOPES) {
+    for (const workload of WORKLOAD_TIERS) {
+      const raw = queriesForLiters(drink.waterLiters, scope.perQueryMl * workload.multiple);
+      const wholeDrops = Math.round(raw / QUERIES_PER_DROP);
+      cells[cellKey(scope.id, workload.id)] = {
+        count: roundToSigFigs(raw),
+        drops: Math.max(1, wholeDrops),
+        subDrop: wholeDrops === 0,
+        usage: dailyUseLabel(raw),
+      };
+    }
+  }
+  return cells;
 }
 
 export interface ScopedDrink extends Drink {
   /** Query equivalents at each scope, keyed by scope id. */
   queriesByScope: Record<string, number>;
   usageByScope: Record<string, string>;
+  /** Rendered cells, keyed by cellKey(scope, workload). */
+  cells: Record<string, Cell>;
 }
 
 export const SCOPED_DRINKS: ScopedDrink[] = DRINKS.map((drink) => {
@@ -387,7 +549,7 @@ export const SCOPED_DRINKS: ScopedDrink[] = DRINKS.map((drink) => {
     queriesByScope[scope.id] = q;
     usageByScope[scope.id] = dailyUseLabel(q);
   }
-  return { ...drink, queriesByScope, usageByScope };
+  return { ...drink, queriesByScope, usageByScope, cells: drinkCells(drink) };
 });
 
 /* ──────────────────────────────────────────────────────────────────────────
@@ -411,10 +573,19 @@ export const AI_BENCHMARK_SOURCE: DrinkSource = {
  * constant intensity, so 2026 scales with AI-power growth. Published rates
  * for 2025→2026 span ~1.3x (IEA accelerated servers) to ~2.45x (de Vries-Gao's
  * own 2024→2025 pace); 1.5x is a central estimate that assumes the buildout
- * decelerates. A UN University study independently implies ~0.9T L AI water in
- * 2025, near de Vries-Gao's high end, supporting this band.
+ * decelerates. A UN University study (June 2026) puts the water footprint of
+ * data centers' 2025 electricity at 4.5T L with AI ~20% of that electricity,
+ * implying ~0.9T L — above de Vries-Gao's high end, on a higher water
+ * intensity per kWh.
  */
 export const AI_POWER_GROWTH_2025_TO_2026 = 1.5;
+
+/** UNU-INWEH (June 2026): water footprint of data centers' 2025 electricity, and AI's share of that electricity. */
+export const UNU_DC_ELECTRICITY_WATER_2025_LITERS = 4.5e12;
+export const UNU_AI_ELECTRICITY_SHARE = 0.2;
+export const UNU_AI_WATER_2025_LITERS = UNU_DC_ELECTRICITY_WATER_2025_LITERS * UNU_AI_ELECTRICITY_SHARE;
+/** How far the UNU-implied figure sits above de Vries-Gao's high estimate, as a percentage. */
+export const UNU_ABOVE_HIGH_PCT = Math.round((UNU_AI_WATER_2025_LITERS / AI_2025_MAX_LITERS - 1) * 100);
 export const AI_2026_MIN_LITERS = AI_2025_MIN_LITERS * AI_POWER_GROWTH_2025_TO_2026;
 export const AI_2026_MAX_LITERS = AI_2025_MAX_LITERS * AI_POWER_GROWTH_2025_TO_2026;
 
@@ -424,17 +595,38 @@ export const AI_2026_MAX_LITERS = AI_2025_MAX_LITERS * AI_POWER_GROWTH_2025_TO_2
 export const BEER_GALLONS_2023 = 6_170_858_000;
 export const WINE_GALLONS_2023 = 887_990_000;
 
-/** USDA ERS fruit-juices table, US 2021 (gallons, single-strength). */
-export const ORANGE_JUICE_GALLONS_2021 = 747_400_000;
+/** USDA ERS fruit-juices table, US 2022 (gallons, single-strength; food availability). */
+export const ORANGE_JUICE_GALLONS_2022 = 707_900_000;
 
-/** USDA ERS fluid beverage milk sales, US 2024 (pounds). */
-export const MILK_POUNDS_2024 = 43_178_500_000;
+/** USDA ERS fluid beverage milk sales, US 2025 (pounds). */
+export const MILK_POUNDS_2025 = 42_839_700_000;
 
-/** USDA FAS Coffee World Markets & Trade (Dec 2025): US domestic consumption MY2024/25. */
-export const COFFEE_GREEN_KG_2024 = 26_220_000 * 60; // 26,220 thousand 60-kg bags
+/** USDA FAS Coffee: World Markets and Trade (July 2026): US domestic consumption MY2024/25, revised. */
+export const COFFEE_GREEN_KG_2024 = 26_145_000 * 60; // 26,145 thousand 60-kg bags
 
-/** Tea Association of the USA fact sheet, 2023: ~86 billion servings. */
-export const TEA_SERVINGS_2023 = 86_000_000_000;
+/**
+ * Circana retail-scan data cited by NMPF (Feb 2026): US plant-based milk
+ * alternatives, 2025 (gallons); almond drinks are 63% of the category.
+ */
+export const PLANT_MILK_GALLONS_2025 = 358_400_000;
+export const PLANT_MILK_ALMOND_SHARE = 0.63;
+/**
+ * Blend for the aggregate: the almond share at the almond-milk footprint, the
+ * rest (oat, soy, coconut, rice) at the oat-milk footprint — a Claude
+ * simplification, flagged on the page. ≈ 297 L/L.
+ */
+export const PLANT_MILK_BLEND_FOOTPRINT_L_PER_L =
+  PLANT_MILK_ALMOND_SHARE * ALMOND_MILK_FOOTPRINT_L_PER_L +
+  (1 - PLANT_MILK_ALMOND_SHARE) * OAT_MILK_FOOTPRINT_L_PER_L;
+
+/**
+ * Tea Association of the USA fact sheet: ~86 billion servings in 2024 (about
+ * 4 billion gallons), and black + green tea imports of 265–270 million lb for
+ * 2024 (249 million through November). The aggregate uses leaf mass, like
+ * coffee: 75–80% of US tea is iced, so 3 g per serving would overstate it.
+ */
+export const TEA_SERVINGS_2024 = 86_000_000_000;
+export const TEA_IMPORT_POUNDS_2024 = 268_000_000;
 
 /** IBWA 2026 progress report: preliminary 2025 volume and per-capita figures. */
 export const BOTTLED_WATER_GALLONS_2025 = 16_800_000_000;
@@ -489,6 +681,10 @@ const IBWA_2026_SOURCE: DrinkSource = {
   label: 'IBWA 2026 progress report',
   url: 'https://bottledwater.org/wp-content/uploads/2026/01/2025-Progress-Report_FINAL.pdf',
 };
+const NMPF_PLANT_MILK_SOURCE: DrinkSource = {
+  label: 'NMPF (Circana data)',
+  url: 'https://www.nmpf.org/real-milk-extends-its-comeback/',
+};
 
 function aggregate(
   entry: Omit<AggregateCategory, 'multipleMin' | 'multipleMax'>,
@@ -506,16 +702,16 @@ const UNSORTED_CATEGORIES: AggregateCategory[] = [
     name: 'Coffee',
     year: '2024/25',
     totalWaterLiters: COFFEE_GREEN_KG_2024 * COFFEE_FOOTPRINT_L_PER_KG_GREEN,
-    volumeNote: '1.57 billion kg of green coffee (26.2M 60-kg bags)',
+    volumeNote: '1.57 billion kg of green coffee (26.1M 60-kg bags)',
     footprintNote: '15,897 L per kg green coffee — measured by bean mass, not brewed volume',
     sources: [FAS_COFFEE_SOURCE, MH2011],
   }),
   aggregate({
     id: 'milk',
     name: 'Milk',
-    year: '2024',
-    totalWaterLiters: MILK_POUNDS_2024 * POUNDS_TO_KG * MILK_FOOTPRINT_L_PER_KG,
-    volumeNote: '43.2 billion lb of fluid milk sold',
+    year: '2025',
+    totalWaterLiters: MILK_POUNDS_2025 * POUNDS_TO_KG * MILK_FOOTPRINT_L_PER_KG,
+    volumeNote: '42.8 billion lb of fluid milk sold',
     footprintNote: '1,020 L per kg, same source as the calculator',
     sources: [ERS_MILK_SOURCE, MH2012],
   }),
@@ -524,7 +720,7 @@ const UNSORTED_CATEGORIES: AggregateCategory[] = [
     name: 'Soda',
     year: '2025',
     totalWaterLiters: SODA_GALLONS_2025 * GALLONS_TO_LITERS * SODA_FOOTPRINT_L_PER_L,
-    volumeNote: `${(SODA_GALLONS_2025 / 1e9).toFixed(1)}B gallons, derived from IBWA per-capita figures`,
+    volumeNote: `${(SODA_GALLONS_2025 / 1e9).toFixed(1)} billion gallons, derived from IBWA per-capita figures`,
     footprintNote: '338 L per L — the low end of the published range',
     sources: [IBWA_2026_SOURCE, ERCIN2011],
   }),
@@ -533,17 +729,17 @@ const UNSORTED_CATEGORIES: AggregateCategory[] = [
     name: 'Beer',
     year: '2023',
     totalWaterLiters: BEER_GALLONS_2023 * GALLONS_TO_LITERS * BEER_FOOTPRINT_L_PER_L,
-    volumeNote: '6.17B gallons (NIAAA)',
+    volumeNote: '6.17 billion gallons (NIAAA)',
     footprintNote: '300 L per L, same source as the calculator',
     sources: [NIAAA_SOURCE, MH2011],
   }),
   aggregate({
     id: 'orange-juice',
     name: 'Orange juice',
-    year: '2021',
-    totalWaterLiters: ORANGE_JUICE_GALLONS_2021 * GALLONS_TO_LITERS * ORANGE_JUICE_FOOTPRINT_L_PER_L,
-    volumeNote: '0.75B gallons (USDA ERS, latest year in the series)',
-    footprintNote: '1,064 L per L, same source as the calculator',
+    year: '2022',
+    totalWaterLiters: ORANGE_JUICE_GALLONS_2022 * GALLONS_TO_LITERS * ORANGE_JUICE_FOOTPRINT_L_PER_L,
+    volumeNote: '0.71 billion gallons (USDA ERS, latest year in the series)',
+    footprintNote: '1,060 L per L, same source as the calculator',
     sources: [ERS_JUICE_SOURCE, MH2011],
   }),
   aggregate({
@@ -551,17 +747,17 @@ const UNSORTED_CATEGORIES: AggregateCategory[] = [
     name: 'Wine',
     year: '2023',
     totalWaterLiters: WINE_GALLONS_2023 * GALLONS_TO_LITERS * WINE_FOOTPRINT_L_PER_L,
-    volumeNote: '0.89B gallons (NIAAA)',
+    volumeNote: '0.89 billion gallons (NIAAA)',
     footprintNote: '860 L per L, same source as the calculator',
     sources: [NIAAA_SOURCE, MH2011],
   }),
   aggregate({
     id: 'tea',
     name: 'Tea',
-    year: '2023',
-    totalWaterLiters: TEA_SERVINGS_2023 * TEA_FOOTPRINT_L_PER_KG * (TEA_GRAMS_PER_CUP / 1000),
-    volumeNote: '86 billion servings (Tea Association estimate)',
-    footprintNote: '27 L per serving (3 g tea); the softest figure on the chart',
+    year: '2024',
+    totalWaterLiters: TEA_IMPORT_POUNDS_2024 * POUNDS_TO_KG * TEA_FOOTPRINT_L_PER_KG,
+    volumeNote: '268 million lb of tea imported (Tea Association projection; 86 billion servings)',
+    footprintNote: '8,856 L per kg of dry tea, by leaf mass like coffee; the softest figure on the chart',
     sources: [TEA_USA_SOURCE, MH2011],
     flagged: true,
   }),
@@ -570,9 +766,20 @@ const UNSORTED_CATEGORIES: AggregateCategory[] = [
     name: 'Bottled water',
     year: '2025',
     totalWaterLiters: BOTTLED_WATER_GALLONS_2025 * GALLONS_TO_LITERS * BOTTLED_WATER_FOOTPRINT_L_PER_L,
-    volumeNote: '16.8B gallons, preliminary (IBWA)',
+    volumeNote: '16.8 billion gallons, preliminary (IBWA)',
     footprintNote: '1.39 L per L facility ratio — the one category below the AI range',
     sources: [IBWA_2026_SOURCE, IBWA_BENCHMARK],
+  }),
+  aggregate({
+    id: 'plant-milk',
+    name: 'Plant-based milk',
+    year: '2025',
+    totalWaterLiters: PLANT_MILK_GALLONS_2025 * GALLONS_TO_LITERS * PLANT_MILK_BLEND_FOOTPRINT_L_PER_L,
+    volumeNote: '0.36 billion gallons of almond, oat, soy and other drinks (Circana retail data via NMPF)',
+    footprintNote:
+      '297 L per L: the 63% almond share at the almond-milk figure, the rest at oat milk\'s (a Claude simplification)',
+    sources: [NMPF_PLANT_MILK_SOURCE, MH2011],
+    flagged: true,
   }),
 ];
 
@@ -592,19 +799,48 @@ export const AGGREGATE_TOTAL_MULTIPLE_2026_MAX = AGGREGATE_TOTAL_LITERS / AI_202
 /* ── Formatting ── */
 
 const decimalFormatter = new Intl.NumberFormat('en-US', { maximumFractionDigits: 1 });
+const oneDecimalFormatter = new Intl.NumberFormat('en-US', {
+  minimumFractionDigits: 1,
+  maximumFractionDigits: 1,
+});
+
+/** Magnitude word chosen after one-decimal rounding, so 999.95 billion reads "1 trillion", not "1,000 billion". */
+function compactParts(value: number): { number: string; word: string } {
+  const oneDecimal = (x: number) => Math.round(x * 10) / 10;
+  if (oneDecimal(value / 1e12) >= 1) return { number: decimalFormatter.format(value / 1e12), word: 'trillion' };
+  if (oneDecimal(value / 1e9) >= 1) return { number: decimalFormatter.format(value / 1e9), word: 'billion' };
+  if (oneDecimal(value / 1e6) >= 1) return { number: decimalFormatter.format(value / 1e6), word: 'million' };
+  return { number: decimalFormatter.format(value), word: '' };
+}
 
 export function formatCompact(value: number): string {
-  if (value >= 1e12) return `${decimalFormatter.format(value / 1e12)} trillion`;
-  if (value >= 1e9) return `${decimalFormatter.format(value / 1e9)} billion`;
-  if (value >= 1e6) return `${decimalFormatter.format(value / 1e6)} million`;
-  return decimalFormatter.format(value);
+  const { number, word } = compactParts(value);
+  return word ? `${number} ${word}` : number;
 }
 
 export function formatLiters(value: number): string {
   return `${formatCompact(value)} liters`;
 }
 
+/** "312.5–764.6 billion liters", or "468.8 billion–1.1 trillion liters" when the ends differ in magnitude. */
+export function formatLitersRange(min: number, max: number): string {
+  const lo = compactParts(min);
+  const hi = compactParts(max);
+  if (lo.word === hi.word) return `${lo.number}–${hi.number} ${hi.word} liters`.replace('  ', ' ');
+  return `${lo.number} ${lo.word}–${hi.number} ${hi.word} liters`;
+}
+
 export function formatMultipleRange(min: number, max: number): string {
-  const fmt = (x: number) => (x >= 10 ? Math.round(x).toString() : decimalFormatter.format(x));
-  return `${fmt(min)}–${fmt(max)}x`;
+  // Both ends at the same precision: integers from 10 up, one decimal below.
+  const fmt = (x: number) => (x >= 10 ? Math.round(x).toString() : oneDecimalFormatter.format(x));
+  return `${fmt(min)}–${fmt(max)}×`;
+}
+
+/**
+ * Footprint display: 3 significant figures like the query counts, and
+ * millilitres below one litre so "355 mL" is never shown as "0.4 liters".
+ */
+export function formatFootprint(liters: number): string {
+  if (liters < 1) return `${Math.round(liters * 1000)} mL`;
+  return `${roundToSigFigs(liters).toLocaleString('en-US')} liters`;
 }

@@ -16,46 +16,47 @@ import {
   AI_2026_MIN_LITERS,
   AI_BENCHMARK_SOURCE,
   AI_POWER_GROWTH_2025_TO_2026,
+  ALMOND_FOOTPRINT_L_PER_KG,
+  ALMOND_FOOTPRINT_L_PER_KG_CALIFORNIA,
+  ALMOND_KERNEL_GRAMS,
+  ALTMAN_ALMOND_SOURCE,
+  ALTMAN_IMPLIED_LITERS_PER_ALMOND,
+  ALTMAN_QUERIES_PER_ALMOND,
+  COFFEE_GREEN_KG_2024,
   DEFAULT_SCOPE_ID,
   DEFAULT_WORKLOAD_ID,
+  MILK_POUNDS_2025,
+  ORANGE_JUICE_GALLONS_2022,
   QUERIES_PER_DAY,
+  QUERIES_PER_DROP,
   QUERY_SCOPES,
   SCOPED_DRINKS,
+  UNU_ABOVE_HIGH_PCT,
+  UNU_AI_ELECTRICITY_SHARE,
+  UNU_AI_WATER_2025_LITERS,
+  UNU_DC_ELECTRICITY_WATER_2025_LITERS,
   WORKLOAD_TIERS,
-  dailyUseLabel,
+  formatFootprint,
   formatLiters,
+  formatLitersRange,
   formatMultipleRange,
   roundToSigFigs,
 } from '../lib/drinking-ai';
-
-const QUERIES_PER_DROP = 1000;
 const chartMaxLiters = Math.max(...AGGREGATE_CATEGORIES.map((c) => c.totalWaterLiters));
 
 const clientDrinks = SCOPED_DRINKS.map((d) => {
-  // One cell per (scope × workload) combination — both axes multiply the
-  // water-per-unit, so a count is waterLiters / (scopeMl × workloadMultiple).
-  const byCombo: Record<string, { count: number; drops: number; subDrop: boolean; usage: string }> = {};
-  for (const s of QUERY_SCOPES) {
-    for (const w of WORKLOAD_TIERS) {
-      const perUnitMl = s.perQueryMl * w.multiple;
-      const raw = (d.waterLiters * 1000) / perUnitMl;
-      byCombo[`${s.id}:${w.id}`] = {
-        count: roundToSigFigs(raw),
-        drops: Math.max(1, Math.round(raw / QUERIES_PER_DROP)),
-        // Rounds below one drop: shown as a single faded drop labeled "<1".
-        subDrop: Math.round(raw / QUERIES_PER_DROP) === 0,
-        usage: dailyUseLabel(raw),
-      };
-    }
-  }
+  // One cell per (scope × workload) combination, computed and tested in the lib.
+  const byCombo = d.cells;
   // Default range: across accounting scopes at the default workload, so the unit
   // stays consistent (the client recomputes it when the workload changes).
   const defScopeCounts = QUERY_SCOPES.map((s) => byCombo[`${s.id}:${DEFAULT_WORKLOAD_ID}`].count);
   return {
     id: d.id,
     name: d.name,
+    headline: d.headline ?? d.name.toLowerCase(),
     serving: d.serving,
     waterLiters: d.waterLiters,
+    waterLabel: formatFootprint(d.waterLiters),
     derivation: d.derivation,
     scopeNote: d.scopeNote,
     sources: d.sources,
@@ -103,12 +104,54 @@ const beerUnits = WORKLOAD_TIERS.map((w) => ({
   count: heroBeer.byCombo[`${DEFAULT_SCOPE_ID}:${w.id}`].count,
 }));
 
+// The almond and the glass of almond milk at the default scope, for the lede.
+// A renamed id fails the build instead of silently printing the beer count.
+const byId = (id: string) => {
+  const found = clientDrinks.find((d) => d.id === id);
+  if (!found) throw new Error(`missing drink ${id}`);
+  return found;
+};
+const defaultCombo = `${DEFAULT_SCOPE_ID}:${DEFAULT_WORKLOAD_ID}`;
+const heroAlmond = byId('almond').byCombo[defaultCombo].count;
+const heroAlmondMilk = byId('almond-milk').byCombo[defaultCombo].count;
+// The same almond on the California-specific footprint at the default scope.
+const heroAlmondCalifornia = roundToSigFigs(
+  (ALMOND_FOOTPRINT_L_PER_KG_CALIFORNIA * ALMOND_KERNEL_GRAMS) / defaultScope.perQueryMl,
+);
+// The aggregate at the most aggressive published AI-growth rate (de Vries-Gao's own 2024→2025 pace).
+const AI_GROWTH_HIGH = 2.45;
+const growthHighMin = AGGREGATE_TOTAL_LITERS / (AI_2025_MAX_LITERS * AI_GROWTH_HIGH);
+const growthHighMax = AGGREGATE_TOTAL_LITERS / (AI_2025_MIN_LITERS * AI_GROWTH_HIGH);
+// One formatter for the per-unit mL, shared by the server render and the client script.
+const fmtMl = (ml: number) => (ml < 1 ? ml.toFixed(2) : String(Math.round(ml * 100) / 100));
+
+// Beer in agentic tasks at the default and lifecycle scopes, for the horizon caveat.
+const beerAgenticDefault = heroBeer.byCombo[`${DEFAULT_SCOPE_ID}:agentic`].count;
+const beerAgenticLifecycle = heroBeer.byCombo['lifecycle:agentic'].count;
+// The almond claim check, in liters (scope-independent).
+const californiaAlmondLiters = ALMOND_FOOTPRINT_L_PER_KG_CALIFORNIA * (ALMOND_KERNEL_GRAMS / 1000);
+const globalAlmondLiters = ALMOND_FOOTPRINT_L_PER_KG * (ALMOND_KERNEL_GRAMS / 1000);
+// AI bars as a share of the longest drink bar, for the chart legend and the per-row reference line.
+const pct = (liters: number) => (liters / chartMaxLiters) * 100;
+const aiHiPct = pct(AI_2025_MAX_LITERS);
+const aiSharePct = (lo: number, hi: number) => `${pct(lo).toFixed(1)}–${pct(hi).toFixed(1)}%`;
+const topCategoryName = AGGREGATE_CATEGORIES[0].name.toLowerCase();
+
+const COUNT_WORDS = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve'];
+const categoryCountWord = COUNT_WORDS[AGGREGATE_CATEGORIES.length] ?? String(AGGREGATE_CATEGORIES.length);
+
 const sourceCards = [
   {
     group: 'AI water',
     title: 'OpenAI / Sam Altman',
-    detail: 'Average ChatGPT query: 0.34 Wh and 0.000085 gallons (0.32 mL) of water. June 10, 2025.',
+    detail: 'Average ChatGPT query: 0.34 Wh and 0.000085 gallons (0.32 mL) of water; the post states no boundary. June 10, 2025.',
     url: 'https://blog.samaltman.com/the-gentle-singularity',
+  },
+  {
+    group: 'AI water',
+    title: 'Sam Altman on Sources, Sept 2, 2026',
+    detail: '"For every 38,000 ChatGPT queries, that is the same amount of water that is used in the production of a single almond in California" — cited from memory. Quoted by Tom\'s Hardware.',
+    url: ALTMAN_ALMOND_SOURCE.url,
   },
   {
     group: 'AI water',
@@ -119,19 +162,19 @@ const sourceCards = [
   {
     group: 'AI water',
     title: 'Jegham et al. 2025',
-    detail: '"How hungry is AI?" Adds power-plant water: GPT-4o lands near 2 mL per query on an all-in operational basis.',
+    detail: '"How hungry is AI?" (arXiv preprint, v6 Nov 2025). Adds power-plant water: a short GPT-4o query (ChatGPT\'s default until Aug 2025), about 300 output tokens, lands near 2 mL; a 1,000-token response near 6 mL.',
     url: 'https://arxiv.org/abs/2505.09598',
   },
   {
     group: 'AI water',
     title: 'Mistral AI',
-    detail: 'ISO-reviewed life-cycle assessment: 45 mL of water per 400-token response from a large model. 2025.',
+    detail: 'Life-cycle assessment, ISO 14040/44-compliant and reviewed by the audit consultancies Resilio and Hubblo: 45 mL of water per 400-token Le Chat response, marginal inference only. July 2025.',
     url: 'https://mistral.ai/news/our-contribution-to-a-global-environmental-standard-for-ai',
   },
   {
     group: 'AI water',
-    title: 'Li & Ren — "Making AI less thirsty"',
-    detail: 'GPT-3 consumed roughly a 500 mL bottle per 10–50 responses; 2027 global AI withdrawal projected at 4.2–6.6 billion m³.',
+    title: 'Li, Yang, Islam & Ren — "Making AI less thirsty"',
+    detail: 'GPT-3 on 2023 hardware at US-average WUE: a 500 mL bottle per 10–50 medium-length responses; 2027 global AI withdrawal projected at 4.2–6.6 billion m³. Communications of the ACM 68(7), July 2025; arXiv copy linked.',
     url: 'https://arxiv.org/abs/2304.03271',
   },
   {
@@ -143,31 +186,43 @@ const sourceCards = [
   {
     group: 'AI water',
     title: 'LBNL 2024 data-center report',
-    detail: 'US data centers consumed 17.4 billion gallons on-site in 2023, plus ~211 billion gallons via electricity.',
+    detail: 'US data centers consumed 66 billion liters (17.4 billion gallons) on-site in 2023, plus ~800 billion liters via electricity at 4.52 L/kWh. The latest LBNL water figures; the June 2026 update covers electricity only.',
     url: 'https://eta-publications.lbl.gov/sites/default/files/2024-12/lbnl-2024-united-states-data-center-energy-usage-report_1.pdf',
   },
   {
     group: 'Workload & growth',
     title: 'Anthropic engineering',
-    detail: 'Multi-agent systems used about 15x the tokens of a chat interaction; single agents about 4x.',
+    detail: 'Multi-agent systems used about 15× the tokens of a chat interaction; single agents about 4×.',
     url: 'https://www.anthropic.com/engineering/multi-agent-research-system',
   },
   {
     group: 'Workload & growth',
     title: 'Epoch AI',
-    detail: 'A typical query is ~0.3 Wh; reasoning models emit ~2.5x the tokens; AI data-center power was ~30 GW in late 2025.',
+    detail: 'A typical query is ~0.3 Wh; reasoning models emit ~2.5× the tokens. Feb 2025.',
     url: 'https://epoch.ai/gradient-updates/how-much-energy-does-chatgpt-use',
   },
   {
     group: 'Workload & growth',
+    title: 'Epoch AI data insight',
+    detail: 'AI data-center power capacity reached about 30 GW in the last quarter of 2025. Jan 2026.',
+    url: 'https://epoch.ai/data-insights/ai-datacenter-power',
+  },
+  {
+    group: 'Workload & growth',
     title: 'IEA — Energy and AI',
-    detail: 'Data-center electricity 415 TWh (2024) to ~945 TWh by 2030; accelerated servers grow ~30% a year.',
+    detail: 'Data-center electricity 415 TWh (2024) to ~945 TWh by 2030; accelerated servers grow ~30% a year. April 2025.',
     url: 'https://www.iea.org/reports/energy-and-ai',
   },
   {
     group: 'Workload & growth',
+    title: 'IEA — Key questions on energy and AI',
+    detail: 'April 2026 update: data-center electricity 485 TWh (2025) to ~950 TWh (2030); AI-focused data centers triple to ~465 TWh.',
+    url: 'https://www.iea.org/reports/key-questions-on-energy-and-ai',
+  },
+  {
+    group: 'Workload & growth',
     title: 'UN University (UNU-INWEH)',
-    detail: 'All data centers used ~4.5 trillion L of water in 2024/25 (AI ~20% of it), heading toward 9.3 trillion by 2030.',
+    detail: "The water footprint of data centers' 2025 electricity (448 TWh) was 4.5 trillion liters, heading toward 9.3 trillion by 2030; AI was ~20% of that electricity, implying ~0.9 trillion liters. June 2026.",
     url: 'https://unu.edu/inweh/news/environmental-cost-of-AIs-Enrgy-use-carbon-water-and-land-footprints',
   },
   {
@@ -179,19 +234,49 @@ const sourceCards = [
   {
     group: 'Drink footprints',
     title: 'Mekonnen & Hoekstra 2012',
-    detail: 'Farm-animal products: milk at 1,020 liters of water per kg.',
+    detail: 'Farm-animal products: milk at 1,020 L/kg.',
     url: 'https://www.waterfootprint.org/resources/Mekonnen-Hoekstra-2012-WaterFootprintFarmAnimalProducts_1.pdf',
   },
   {
     group: 'Drink footprints',
+    title: 'Fulton, Norton & Shilling 2019',
+    detail: 'California almonds, 2004–2015: 10,240 L per kg of kernel, about 12 L per almond, against 16,095 L per kg in the global table. Ecological Indicators, open access.',
+    url: 'https://doi.org/10.1016/j.ecolind.2017.12.063',
+  },
+  {
+    group: 'Drink footprints',
+    title: 'Poore & Nemecek 2018',
+    detail: 'Freshwater withdrawals per liter of milk: almond 371, oat 48, soy 28, dairy 628 — irrigation and processing water only, no rain. Via Our World in Data.',
+    url: 'https://ourworldindata.org/environmental-impact-milks',
+  },
+  {
+    group: 'Drink footprints',
+    title: 'Almond Breeze label',
+    detail: 'Ingredients: "Spring water, almonds (2%)…" — the almond share behind the almond-milk figure.',
+    url: 'https://groceries.morrisons.com/products/blue-diamond-almonds-almond-breeze-unsweetened/111103900',
+  },
+  {
+    group: 'Drink footprints',
+    title: 'Oatly label',
+    detail: 'Ingredients: "Water, oats 10%…" — the oat share behind the oat-milk figure.',
+    url: 'https://www.oatly.com/en-gb/products/oat-drink/oat-drink-whole-2-8-1l',
+  },
+  {
+    group: 'Drink footprints',
+    title: 'USDA FoodData Central',
+    detail: 'One almond kernel weighs 1.2 g; 23 kernels to the ounce.',
+    url: 'https://fdc.nal.usda.gov/food-details/170567/nutrients',
+  },
+  {
+    group: 'Drink footprints',
     title: 'Chapagain & Hoekstra 2007',
-    detail: 'The classic "140 liters per cup of coffee" study; 30–34 L per cup of tea.',
+    detail: 'The classic study: 140 liters per 125 mL cup of coffee (7 g roasted); 34 liters per 250 mL cup of tea (3 g), 17 for weak tea (1.5 g).',
     url: 'https://ayhoekstra.nl/pubs/Chapagain-Hoekstra-2007.pdf',
   },
   {
     group: 'Drink footprints',
     title: 'Ercin, Aldaya & Hoekstra 2011',
-    detail: 'Sugar-containing carbonated beverage: 169–309 liters per 0.5 L bottle; 99.7% in the supply chain.',
+    detail: 'Sugar-containing carbonated beverage: 169–309 liters per 0.5-liter bottle; 99.7–99.8% in the supply chain.',
     url: 'https://ayhoekstra.nl/pubs/Ercin-et-al-2011.pdf',
   },
   {
@@ -209,44 +294,50 @@ const sourceCards = [
   {
     group: 'US volumes',
     title: 'NIAAA Surveillance Report 122',
-    detail: 'US beer (6.17B gal) and wine (0.89B gal) volumes, 2023.',
+    detail: 'US beer (6.17 billion gallons) and wine (0.89 billion gallons), 2023.',
     url: 'https://www.niaaa.nih.gov/sites/default/files/surveillance-report122.Per-Capita-Consumption.pdf',
   },
   {
     group: 'US volumes',
     title: 'USDA ERS fruit-juices table',
-    detail: 'US orange juice: 747.4 million gallons in 2021, the latest year in the series.',
+    detail: `US orange juice: ${(ORANGE_JUICE_GALLONS_2022 / 1e6).toFixed(1)} million gallons in 2022, the latest year in the series.`,
     url: 'https://ers.usda.gov/media/5349/fruit-juices.csv?v=60123',
   },
   {
     group: 'US volumes',
     title: 'USDA ERS dairy data',
-    detail: 'US fluid milk sales: 43.2 billion pounds in 2024.',
+    detail: `US fluid milk sales: ${(MILK_POUNDS_2025 / 1e9).toFixed(1)} billion pounds in 2025.`,
     url: 'https://www.ers.usda.gov/data-products/dairy-data/',
   },
   {
     group: 'US volumes',
     title: 'USDA FAS coffee report',
-    detail: 'US green-coffee consumption: 26.2 million 60-kg bags in 2024/25.',
+    detail: `US green-coffee consumption: ${(COFFEE_GREEN_KG_2024 / 60 / 1e6).toFixed(1)} million 60-kg bags in 2024/25 (July 2026 edition).`,
     url: 'https://apps.fas.usda.gov/psdonline/circulars/coffee.pdf',
   },
   {
     group: 'US volumes',
     title: 'Tea Association of the USA',
-    detail: 'Americans drank about 86 billion servings of tea in 2023.',
+    detail: 'Americans drank about 86 billion servings of tea in 2024, about 4 billion gallons; black and green tea imports ran 265–270 million lb.',
     url: 'https://www.teausa.org/tea-fact-sheet',
   },
   {
     group: 'US volumes',
     title: 'IBWA 2026 progress report',
-    detail: 'Preliminary 2025: 16.8 billion gallons of bottled water; per-capita 47.5 gal water, 33.9 gal soda.',
+    detail: 'Preliminary 2025: 16.8 billion gallons of bottled water; 47.5 gallons per person of bottled water and 33.9 of soda.',
     url: 'https://bottledwater.org/wp-content/uploads/2026/01/2025-Progress-Report_FINAL.pdf',
+  },
+  {
+    group: 'US volumes',
+    title: 'NMPF, citing Circana',
+    detail: 'US plant-based milk alternatives: 358.4 million gallons at retail in 2025, down 6%; almond drinks are 63% of the category.',
+    url: 'https://www.nmpf.org/real-milk-extends-its-comeback/',
   },
   {
     group: 'Context',
     title: 'Andy Masley',
     detail: '"Using ChatGPT is not bad for the environment" — the post that prompted this page.',
-    url: 'https://andymasley.substack.com/p/individual-ai-use-is-not-bad-for',
+    url: 'https://blog.andymasley.com/p/individual-ai-use-is-not-bad-for',
   },
 ];
 
@@ -258,7 +349,7 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 	<head>
 		<BaseHead
 			title={`Drinking AI | ${SITE_TITLE}`}
-			description="One beer's water footprint equals about 53,300 ChatGPT queries counting cooling and power-plant water — 331,000 by OpenAI's cooling-only figure. Drinks vs AI across three accounting scopes, from peer-reviewed sources."
+			description={`One almond ≈ ${heroAlmond.toLocaleString()} ChatGPT queries, one beer ≈ ${defaultCell.count.toLocaleString()}: drinks priced in AI water across three accounting scopes, every source linked.`}
 			image="/og/drinking-ai.png"
 		/>
 	</head>
@@ -272,43 +363,65 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 				<h1 class="poster-title">Drinking AI</h1>
 				<p class="lede">
 					Asking ChatGPT 30 questions a day for a year uses about <strong>a fifth of the
-					water behind one beer</strong> — counting both data-center cooling and the power
-					plants behind it, the same supply-chain accounting the drink figures use. One
-					beer ≈ 53,300 queries; by OpenAI's cooling-only figure, 331,000. Pick a drink,
-					shift the scope, or count by agentic tasks, then see how whole US drink
-					categories compare with everything AI drank in 2025 — and what it is on track
-					to drink in 2026.
+					water behind one beer</strong> — counting data-center cooling plus the water used
+					to generate the query's electricity, the closest AI analog to how the drink
+					figures count the water behind the crops. Pick a drink, shift the scope, or
+					count by agentic tasks; then compare whole US drink categories with the modeled
+					water footprint of all AI in 2025, and with a 2026 extrapolation (a Claude estimate).
+				</p>
+				<p class="lede-note">
+					Sam Altman's September 2026 line — one California almond takes the water of
+					38,000 queries — works out at OpenAI's 0.32 mL per query and the California-specific
+					almond footprint: {ALTMAN_IMPLIED_LITERS_PER_ALMOND.toFixed(1)} L against {californiaAlmondLiters.toFixed(1)} L. At this page's default scope, one
+					almond ≈ {heroAlmond.toLocaleString()} queries, and a glass of almond milk, about four almonds,
+					≈ {heroAlmondMilk.toLocaleString()}.
 				</p>
 			</section>
 
 			<section class="workspace animate-fade-in-up delay-100" aria-labelledby="calculator-heading">
-				<h2 id="calculator-heading" class="sr-only">One drink in ChatGPT queries</h2>
+				<h2 id="calculator-heading" class="sr-only">One drink, or one almond, in ChatGPT queries</h2>
 
 				<div class="console">
-					<section class="result-panel" aria-live="polite">
-						<div class="result-label">One <span data-result-name>{defaultDrink.name.toLowerCase()}</span> ≈</div>
-						<div class="result-number" data-result-number>{defaultCell.count.toLocaleString()}</div>
+					<section class="result-panel">
+						<p class="sr-only" aria-live="polite" aria-atomic="true" data-result-announce>One {defaultDrink.headline} is about {defaultCell.count.toLocaleString()} {defaultWorkload.unit}, enough water for {QUERIES_PER_DAY} {defaultWorkload.daily} a day for {defaultCell.usage}.</p>
+						<div class="result-label">One <span data-result-name>{defaultDrink.headline}</span> ≈</div>
+						<div class="result-number" data-result-number aria-hidden="true">{defaultCell.count.toLocaleString()}</div>
 						<div class="result-unit" data-result-unit>{defaultWorkload.unit}</div>
 						<p class="result-usage">
 							Enough water for {QUERIES_PER_DAY} <span data-result-daily>{defaultWorkload.daily}</span> a day for
 							<strong data-result-usage>{defaultCell.usage}</strong>.
 						</p>
 						<p class="result-range">
-							Across accounting scopes: <span data-result-range>{defaultDrink.rangeLow.toLocaleString()}–{defaultDrink.rangeHigh.toLocaleString()}</span> <span data-result-range-unit>{defaultWorkload.daily}</span>.
+							All scopes: <span data-result-range>{defaultDrink.rangeLow.toLocaleString()}–{defaultDrink.rangeHigh.toLocaleString()}</span> <span data-result-range-unit>{defaultWorkload.daily}</span>.
 						</p>
+						<div class="claim-check" data-claim-check hidden>
+							<div class="unit-row">
+								<span class="unit-count">{ALTMAN_IMPLIED_LITERS_PER_ALMOND.toFixed(1)} L</span>
+								<span class="unit-name">Altman's {ALTMAN_QUERIES_PER_ALMOND.toLocaleString()} queries × OpenAI's 0.32 mL</span>
+							</div>
+							<div class="unit-row">
+								<span class="unit-count">{californiaAlmondLiters.toFixed(1)} L</span>
+								<span class="unit-name">one California almond (Fulton et al. 2019)</span>
+							</div>
+							<div class="unit-row">
+								<span class="unit-count">{globalAlmondLiters.toFixed(1)} L</span>
+								<span class="unit-name">global-average almond (Mekonnen &amp; Hoekstra), the table every item here uses</span>
+							</div>
+							<button type="button" class="claim-scope" data-set-scope="onsite">Use his 0.32 mL scope</button>
+						</div>
 					</section>
 
 					<div class="console-controls">
-						<div class="controls" role="group" aria-label="Drink selector">
+						<div class="controls" role="group" aria-label="Drink or item selector">
 							{clientDrinks.map((drink, index) => (
 								<button
 									type="button"
-									class={`drink-button${index === 0 ? ' is-active' : ''}`}
+									class={`drink-button${index === 0 ? ' is-active' : ''}${drink.id === 'almond' ? ' drink-button--check' : ''}`}
 									aria-pressed={index === 0 ? 'true' : 'false'}
 									data-drink={drink.id}
 								>
 									<span class="drink-name">{drink.name}</span>
-									<span class="drink-serving">{drink.serving}</span>
+									<span class="drink-serving">{drink.serving}{drink.id === 'almond' ? ` · Altman: ${ALTMAN_QUERIES_PER_ALMOND.toLocaleString()} queries` : ''}</span>
 								</button>
 							))}
 						</div>
@@ -340,7 +453,7 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 										aria-pressed={workload.id === defaultWorkload.id ? 'true' : 'false'}
 										data-workload={workload.id}
 									>
-										<span class="scope-pill-label">{workload.label}</span>
+										<span class="scope-pill-label">{workload.label}{workload.estimate && <span class="flag-tag">Claude estimate</span>}</span>
 										<span class="scope-pill-ml">{workload.multiple}×</span>
 									</button>
 								))}
@@ -353,33 +466,31 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 							<span class="dot-legend"><span class="dot-swatch" aria-hidden="true"></span>1 drop = {QUERIES_PER_DROP.toLocaleString()} <span data-dot-unit>{defaultWorkload.daily}</span></span>
 							<span class="dot-count"><strong data-dot-count>{defaultCell.drops.toLocaleString()}</strong> <span data-drops-word>{defaultCell.drops === 1 ? 'drop' : 'drops'}</span></span>
 						</div>
-						<div class="dot-field" data-dot-field aria-hidden="true"></div>
+						<div class="dot-field" data-dot-field aria-hidden="true">{Array.from({ length: defaultCell.drops }).map(() => <span class="dot" />)}</div>
 					</div>
 				</div>
 
-				<aside class="detail-rail">
-					<div class="detail-item">
-						<div class="detail-label">Drink water footprint</div>
-						<div class="detail-value" data-result-water>{defaultDrink.waterLiters.toFixed(1)} liters</div>
-						<p data-result-derivation>{defaultDrink.derivation}</p>
-					</div>
+				<aside class="detail-rail" aria-label="How the number is computed">
 					<div class="detail-item">
 						<div class="detail-label">
-							What's counted
+							Water footprint
 							<span class="flag-tag" data-result-flag hidden>industry estimate</span>
 						</div>
+						<div class="detail-value" data-result-water>{defaultDrink.waterLabel}</div>
+						<p data-result-derivation>{defaultDrink.derivation}</p>
 						<p class="detail-note" data-result-note>{defaultDrink.scopeNote}</p>
-						<p class="detail-source" data-result-sources set:html={defaultDrink.sources.map((s) => `<a href="${s.url}" target="_blank" rel="noopener">${s.label}</a>`).join(' · ') || 'No external source needed'} />
+						<p class="detail-source" data-result-sources>{defaultDrink.sources.length ? defaultDrink.sources.map((s, i) => (<>{i > 0 ? ' · ' : ''}<a href={s.url} target="_blank" rel="noopener">{s.label}</a></>)) : 'No external source needed'}</p>
 					</div>
+					<div class="detail-op" aria-hidden="true">÷</div>
 					<div class="detail-item ai-baseline">
 						<div class="detail-label">AI water per <span data-unit-singular>{defaultWorkload.unitSingular}</span></div>
 						<div class="detail-value">
-							<span data-perunit-ml>{defaultPerUnitMl < 1 ? defaultPerUnitMl.toFixed(2) : defaultPerUnitMl}</span> mL
+							<span data-perunit-ml>{fmtMl(defaultPerUnitMl)}</span> mL
 							<span class="scope-boundary" data-scope-boundary>{defaultScope.boundary}</span>
 						</div>
 						<p data-scope-detail>{defaultScope.detail}</p>
 						<p class="detail-note workload-detail" data-workload-detail hidden>{defaultWorkload.detail}</p>
-						<p class="detail-source" data-ai-sources set:html={`<a href="${defaultScope.sourceUrl}" target="_blank" rel="noopener">${defaultScope.sourceLabel}</a>`} />
+						<p class="detail-source" data-ai-sources><a href={defaultScope.sourceUrl} target="_blank" rel="noopener">{defaultScope.sourceLabel}</a></p>
 					</div>
 				</aside>
 			</section>
@@ -398,11 +509,12 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 					</p>
 				</div>
 
-				<div class="chart" data-chart role="img" aria-label={`Annual water footprints on one scale: global AI ${formatLiters(AI_2025_MIN_LITERS)} to ${formatLiters(AI_2025_MAX_LITERS)} in 2025, projected ${formatLiters(AI_2026_MIN_LITERS)} to ${formatLiters(AI_2026_MAX_LITERS)} in 2026 (extrapolation); ${AGGREGATE_CATEGORIES.map((c) => `US ${c.name.toLowerCase()} ${formatLiters(c.totalWaterLiters)} (${formatMultipleRange(c.multipleMin, c.multipleMax)} AI)`).join('; ')}.`}>
+				<p class="sr-only">{`Annual water footprints on one scale: global AI ${formatLiters(AI_2025_MIN_LITERS)} to ${formatLiters(AI_2025_MAX_LITERS)} in 2025, projected ${formatLiters(AI_2026_MIN_LITERS)} to ${formatLiters(AI_2026_MAX_LITERS)} in 2026 (extrapolation); ${AGGREGATE_CATEGORIES.map((c) => `US ${c.name.toLowerCase()} ${formatLiters(c.totalWaterLiters)} (${formatMultipleRange(c.multipleMin, c.multipleMax)} AI)`).join('; ')}.`}</p>
+				<div class="chart" data-chart style={`--ai-hi: ${aiHiPct}%`}>
 					<div class="chart-row is-ai">
 						<div class="chart-head">
 							<span class="chart-name">All global AI <span class="chart-year">2025, modeled</span></span>
-							<span class="chart-value">{formatLiters(AI_2025_MIN_LITERS)} – {formatLiters(AI_2025_MAX_LITERS)}</span>
+							<span class="chart-value">{formatLitersRange(AI_2025_MIN_LITERS, AI_2025_MAX_LITERS)}</span>
 						</div>
 						<div class="chart-track">
 							<div
@@ -412,13 +524,13 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 								<div class="ai-bar-min" style={`width: ${(AI_2025_MIN_LITERS / AI_2025_MAX_LITERS) * 100}%`}></div>
 							</div>
 						</div>
-						<p class="chart-meta">Solid: low estimate. Faded: high estimate. World total, all AI systems, consumption.</p>
+						<p class="chart-meta">Low to high estimate: {aiSharePct(AI_2025_MIN_LITERS, AI_2025_MAX_LITERS)} of the {topCategoryName} bar. World total, all AI systems, consumption. The dashed line on each drink bar marks the high estimate.</p>
 					</div>
 
 					<div class="chart-row is-ai">
 						<div class="chart-head">
 							<span class="chart-name">All global AI <span class="chart-year">2026, projected</span> <span class="flag-tag">extrapolation</span></span>
-							<span class="chart-value">{formatLiters(AI_2026_MIN_LITERS)} – {formatLiters(AI_2026_MAX_LITERS)}</span>
+							<span class="chart-value">{formatLitersRange(AI_2026_MIN_LITERS, AI_2026_MAX_LITERS)}</span>
 						</div>
 						<div class="chart-track">
 							<div
@@ -428,7 +540,7 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 								<div class="ai-bar-min" style={`width: ${(AI_2026_MIN_LITERS / AI_2026_MAX_LITERS) * 100}%`}></div>
 							</div>
 						</div>
-						<p class="chart-meta">Claude estimate: 2025 scaled by {AI_POWER_GROWTH_2025_TO_2026}× AI-power growth (published rates span 1.3–2.45×). Still a sliver of the chart.</p>
+						<p class="chart-meta">Claude estimate: 2025 scaled by {AI_POWER_GROWTH_2025_TO_2026}× AI-power growth (published rates span 1.3–2.45×): {aiSharePct(AI_2026_MIN_LITERS, AI_2026_MAX_LITERS)} of the {topCategoryName} bar.</p>
 					</div>
 
 					{AGGREGATE_CATEGORIES.map((category) => (
@@ -462,7 +574,7 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 				</div>
 
 				<p class="chart-total">
-					The eight categories sum to {formatLiters(AGGREGATE_TOTAL_LITERS)} a year —
+					The {categoryCountWord} categories sum to {formatLiters(AGGREGATE_TOTAL_LITERS)} a year —
 					{formatMultipleRange(AGGREGATE_TOTAL_MULTIPLE_MIN, AGGREGATE_TOTAL_MULTIPLE_MAX)} the 2025 AI range,
 					or {formatMultipleRange(AGGREGATE_TOTAL_MULTIPLE_2026_MIN, AGGREGATE_TOTAL_MULTIPLE_2026_MAX)} the projected 2026 range.
 					The AI estimate covers the world; the drink totals cover the US only, so world
@@ -473,8 +585,8 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 			<section class="horizon animate-fade-in-up delay-300" aria-labelledby="horizon-heading">
 				<div class="section-heading">
 					<div>
-						<span class="section-kicker">Where this is heading</span>
-						<h2 id="horizon-heading">2026, and the shift from queries to agents</h2>
+						<span class="section-kicker">Two moving parts</span>
+						<h2 id="horizon-heading">The 2026 projection, and the shift from queries to tasks</h2>
 					</div>
 				</div>
 				<div class="horizon-grid">
@@ -488,16 +600,18 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 							up to that 2.45× pace; scaling the 2025 range by a central {AI_POWER_GROWTH_2025_TO_2026}×
 							gives roughly {formatLiters(AI_2026_MIN_LITERS)} to {formatLiters(AI_2026_MAX_LITERS)} for 2026.
 							A <a href="https://unu.edu/inweh/news/environmental-cost-of-AIs-Enrgy-use-carbon-water-and-land-footprints" target="_blank" rel="noopener">UN University study</a>
-							independently implies about 0.9 trillion L of AI water in 2025, near the same band.
-							Even on the most aggressive growth, the drink categories still outweigh AI by tens of times.
+							puts the water footprint of data centers' 2025 electricity at {formatLiters(UNU_DC_ELECTRICITY_WATER_2025_LITERS)} with AI
+							about {Math.round(UNU_AI_ELECTRICITY_SHARE * 100)}% of that electricity — roughly {formatLiters(UNU_AI_WATER_2025_LITERS)}, {UNU_ABOVE_HIGH_PCT}% above de Vries-Gao's high estimate.
+							At the {AI_GROWTH_HIGH}× pace, the {categoryCountWord} categories are still {formatMultipleRange(growthHighMin, growthHighMax)} the 2026 AI range.
 						</p>
 					</div>
 					<div class="horizon-column">
 						<h3>A query is becoming a task</h3>
 						<p>
-							The published per-query figures are <em>median single prompts</em>. Reasoning
-							models emit far more tokens, and agents chain many calls per task, so the
-							honest unit is shifting. At the default 2 mL scope, one beer is:
+							The published per-query figures describe one short text prompt (OpenAI's
+							average, Google's median). Reasoning models emit far more tokens, and agents
+							chain many calls per task, so the unit is shifting from query to task. At the
+							default 2 mL scope, one beer is:
 						</p>
 						<div class="unit-strip">
 							{beerUnits.map((u) => (
@@ -512,8 +626,9 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 							<a href="https://epoch.ai/gradient-updates/how-much-energy-does-chatgpt-use" target="_blank" rel="noopener">Epoch</a>,
 							<a href="https://arxiv.org/abs/2505.09598" target="_blank" rel="noopener">Jegham et al.</a>, and
 							<a href="https://www.anthropic.com/engineering/multi-agent-research-system" target="_blank" rel="noopener">Anthropic</a>
-							(multi-agent ≈ 15× a chat's tokens). Per-task water rises, but so does what each
-							task does — a beer still covers thousands of even the heaviest ones.
+							(multi-agent ≈ 15× a chat's tokens). Per-task water rises with the multiplier: at
+							the default 2 mL scope one beer is {beerAgenticDefault.toLocaleString()} agentic tasks; at Mistral's
+							45 mL, {beerAgenticLifecycle.toLocaleString()}.
 						</p>
 					</div>
 				</div>
@@ -530,18 +645,28 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 					<div class="methodology-column">
 						<h3>The per-query figure is a range</h3>
 						<p>
-							Published water-per-query numbers span more than 100x, almost entirely because
+							Published water-per-query numbers span more than 100×, almost entirely because
 							of where the boundary is drawn.
 							<a href="https://blog.samaltman.com/the-gentle-singularity" target="_blank" rel="noopener">OpenAI</a>
 							and <a href="https://cloud.google.com/blog/products/infrastructure/measuring-the-environmental-impact-of-ai-inference/" target="_blank" rel="noopener">Google</a>
-							report about 0.26–0.32 mL for data-center cooling alone. Add the water used to
-							generate the electricity and an efficient 2025 model lands near 2 mL
-							(<a href="https://arxiv.org/abs/2505.09598" target="_blank" rel="noopener">Jegham et al.</a>).
-							A full per-response life-cycle assessment of a large model reaches 45 mL
+							report 0.32 mL and 0.26 mL. OpenAI's post states no boundary; Google defines its
+							figure as on-site data-center cooling water only, so the page treats both as the
+							cooling-only scope. Add the water used to generate the electricity and a modeled
+							short GPT-4o query lands near 2 mL
+							(<a href="https://arxiv.org/abs/2505.09598" target="_blank" rel="noopener">Jegham et al.</a>, preprint).
+							A life-cycle assessment of one 400-token Le Chat response — cooling, upstream
+							electricity, and hardware manufacturing, no training — reaches 45 mL
 							(<a href="https://mistral.ai/news/our-contribution-to-a-global-environmental-standard-for-ai" target="_blank" rel="noopener">Mistral</a>).
-							The selector shows all three and defaults to the middle scope — the boundary
-							that matches the drinks' supply-chain accounting. Even at 45 mL, one beer
+							The selector shows all three and defaults to the middle scope — the closest
+							match to the drinks' upstream accounting; the crop tables also count rain and
+							pollution-dilution water, which have no AI analog. Even at 45 mL, one beer
 							still equals more than 2,000 queries.
+							<a href={ALTMAN_ALMOND_SOURCE.url} target="_blank" rel="noopener">Sam Altman's September 2026 comparison</a>
+							— 38,000 queries per California almond, cited from memory — pairs OpenAI's
+							0.32 mL figure with the full California almond footprint
+							(<a href="https://doi.org/10.1016/j.ecolind.2017.12.063" target="_blank" rel="noopener">Fulton et al. 2019</a>: 12 L per kernel).
+							On the middle scope the same almond is about {heroAlmondCalifornia.toLocaleString()} queries, or {heroAlmond.toLocaleString()} on
+							the global-average table this page uses. The "Almond" selector runs the numbers.
 						</p>
 					</div>
 					<div class="methodology-column">
@@ -549,8 +674,7 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 						<p>
 							<a href={AI_BENCHMARK_SOURCE.url} target="_blank" rel="noopener">de Vries-Gao (Patterns, 2026)</a>
 							models AI worldwide at 312.5–764.6 billion liters consumed in 2025, built up
-							from data-center disclosures rather than a directly reported total. It covers
-							the whole world.
+							from data-center disclosures rather than a directly reported total.
 							<a href="https://eta-publications.lbl.gov/sites/default/files/2024-12/lbnl-2024-united-states-data-center-energy-usage-report_1.pdf" target="_blank" rel="noopener">LBNL</a>
 							separately puts all US data centers near 17 billion gallons on-site in 2023. A
 							competing projection from
@@ -567,11 +691,21 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 							(<a href="https://hess.copernicus.org/articles/15/1577/2011/hess-15-1577-2011.pdf" target="_blank" rel="noopener">Mekonnen &amp; Hoekstra 2011</a>,
 							<a href="https://www.waterfootprint.org/resources/Mekonnen-Hoekstra-2012-WaterFootprintFarmAnimalProducts_1.pdf" target="_blank" rel="noopener">2012</a>) —
 							full green, blue, and grey water. Coffee and tea are set by bean and leaf mass,
-							not cup volume. Soda uses the low end of the 169–309 L range
+							not cup volume. Almond and oat milk apply the same tables to what is in the
+							carton — 2% almonds and 10% oats by weight, from the
+							<a href="https://groceries.morrisons.com/products/blue-diamond-almonds-almond-breeze-unsweetened/111103900" target="_blank" rel="noopener">Almond Breeze</a>
+							and <a href="https://www.oatly.com/en-gb/products/oat-drink/oat-drink-whole-2-8-1l" target="_blank" rel="noopener">Oatly</a>
+							labels — so a richer recipe scales the figure in proportion. The widely cited
+							<a href="https://ourworldindata.org/environmental-impact-milks" target="_blank" rel="noopener">Poore &amp; Nemecek</a>
+							milk comparison (371 L almond, 48 L oat, 628 L dairy per liter) counts
+							irrigation and processing water only, no rain, and does not publish recipes,
+							so it is not charted with the crop-table figures. Soda uses the low end of the 169–309 L range
 							(<a href="https://ayhoekstra.nl/pubs/Ercin-et-al-2011.pdf" target="_blank" rel="noopener">Ercin et al. 2011</a>).
 							Bottled water is a 1.39 L/L facility ratio and tap water is just the glass, so
-							both understate next to the crop-based drinks. Spirits is the one industry figure,
-							and the crop literature suggests it undercounts.
+							both understate next to the crop-based drinks. Spirits (spiritsEUROPE) and bottled
+							water (IBWA) are the two industry figures; the ethanol crop-water tables
+							(<a href="https://www.waterfootprint.org/resources/Report38-WaterFootprint-sweeteners-ethanol.pdf" target="_blank" rel="noopener">Gerbens-Leenes &amp; Hoekstra 2009</a>)
+							imply 24–50 L for the spirit alone, above the 18 L used here.
 						</p>
 					</div>
 					<div class="methodology-column">
@@ -580,17 +714,23 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 							Each category uses its latest public total: beer and wine from
 							<a href="https://www.niaaa.nih.gov/sites/default/files/surveillance-report122.Per-Capita-Consumption.pdf" target="_blank" rel="noopener">NIAAA (2023)</a>,
 							orange juice from
-							<a href="https://ers.usda.gov/media/5349/fruit-juices.csv?v=60123" target="_blank" rel="noopener">USDA ERS (2021, the latest in the series)</a>,
+							<a href="https://ers.usda.gov/media/5349/fruit-juices.csv?v=60123" target="_blank" rel="noopener">USDA ERS (2022, the latest in the series)</a>,
 							milk from
-							<a href="https://www.ers.usda.gov/data-products/dairy-data/" target="_blank" rel="noopener">USDA ERS (2024)</a>,
+							<a href="https://www.ers.usda.gov/data-products/dairy-data/" target="_blank" rel="noopener">USDA ERS (2025)</a>,
 							coffee from
 							<a href="https://apps.fas.usda.gov/psdonline/circulars/coffee.pdf" target="_blank" rel="noopener">USDA FAS (2024/25, by bean mass)</a>,
 							bottled water and soda from
 							<a href="https://bottledwater.org/wp-content/uploads/2026/01/2025-Progress-Report_FINAL.pdf" target="_blank" rel="noopener">IBWA (2025)</a>.
 							Soda has no published total, so it comes from IBWA's own per-capita figure and
-							implied population. Tea is the softest number — an industry serving count
-							(<a href="https://www.teausa.org/tea-fact-sheet" target="_blank" rel="noopener">Tea Association</a>).
-							<a href="https://andymasley.substack.com/p/individual-ai-use-is-not-bad-for" target="_blank" rel="noopener">Andy Masley's post</a>
+							implied population; IBWA's own market-share split (29% bottled water, 21% soda)
+							independently gives about 12.2 billion gallons, within 1.5%. Two figures are soft:
+							tea is priced by leaf mass from an industry import projection
+							(<a href="https://www.teausa.org/tea-fact-sheet" target="_blank" rel="noopener">Tea Association</a>: 265–270 million lb for 2024),
+							and plant-based milk is a retail-scan total
+							(<a href="https://www.nmpf.org/real-milk-extends-its-comeback/" target="_blank" rel="noopener">Circana, via NMPF</a>)
+							priced at the almond-milk footprint for its 63% almond share and the oat-milk
+							footprint for the rest — a Claude simplification.
+							<a href="https://blog.andymasley.com/p/individual-ai-use-is-not-bad-for" target="_blank" rel="noopener">Andy Masley's post</a>
 							prompted the question.
 						</p>
 					</div>
@@ -651,10 +791,29 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 			const dotCountEl = document.querySelector('[data-dot-count]');
 			const dotUnitEl = document.querySelector('[data-dot-unit]');
 			const dropsWordEl = document.querySelector('[data-drops-word]');
+			const claimEl = document.querySelector('[data-claim-check]');
+			const setScopeButtons = Array.from(document.querySelectorAll('[data-set-scope]'));
 
 			const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 			const fmtMl = (ml) => (ml < 1 ? ml.toFixed(2) : String(Math.round(ml * 100) / 100));
-			const link = (label, url) => `<a href="${url}" target="_blank" rel="noopener">${label}</a>`;
+			const announceEl = document.querySelector('[data-result-announce]');
+			// Build anchors with DOM APIs so a label or URL can never be parsed as markup.
+			function renderLinks(el, sources, fallback) {
+				el.replaceChildren();
+				if (!sources.length) {
+					el.textContent = fallback;
+					return;
+				}
+				sources.forEach((s, i) => {
+					if (i > 0) el.append(' · ');
+					const a = document.createElement('a');
+					a.href = s.url;
+					a.target = '_blank';
+					a.rel = 'noopener';
+					a.textContent = s.label;
+					el.append(a);
+				});
+			}
 
 			let currentDrinkId = clientDrinks[0].id;
 			let currentScopeId = defaultScopeId;
@@ -688,9 +847,14 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 			}
 
 			function renderDots(drops, subDrop) {
+				dotCountEl.textContent = subDrop ? '<1' : drops.toLocaleString();
+				dropsWordEl.textContent = drops === 1 ? 'drop' : 'drops';
+				// The card is hidden on phones; skip the DOM work when nothing can be seen.
+				if (!dotFieldEl.offsetParent) return;
 				dotFieldEl.replaceChildren();
 				const fragment = document.createDocumentFragment();
-				const perDotDelay = reduceMotion ? 0 : Math.min(900 / drops, 4);
+				// A hidden tab never advances CSS animations, so skip them there (as animateNumber does).
+				const perDotDelay = reduceMotion || document.hidden ? 0 : Math.min(900 / drops, 4);
 				for (let i = 0; i < drops; i++) {
 					const dot = document.createElement('span');
 					dot.className = subDrop ? 'dot dot--fraction' : 'dot';
@@ -699,8 +863,6 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 					fragment.appendChild(dot);
 				}
 				dotFieldEl.appendChild(fragment);
-				dotCountEl.textContent = subDrop ? '<1' : drops.toLocaleString();
-				dropsWordEl.textContent = drops === 1 ? 'drop' : 'drops';
 			}
 
 			function render() {
@@ -709,7 +871,7 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 				const workload = workloadMap[currentWorkloadId];
 				const cell = cellFor(currentDrinkId, currentScopeId, currentWorkloadId);
 
-				nameEl.textContent = drink.name.toLowerCase();
+				nameEl.textContent = drink.headline;
 				animateNumber(currentCount, cell.count);
 				currentCount = cell.count;
 				unitEl.textContent = workload.unit;
@@ -721,12 +883,10 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 				rangeEl.textContent = `${Math.min(...scopeCounts).toLocaleString()}–${Math.max(...scopeCounts).toLocaleString()}`;
 				rangeUnitEl.textContent = workload.daily;
 
-				waterEl.textContent = `${drink.waterLiters.toFixed(1)} liters`;
+				waterEl.textContent = drink.waterLabel;
 				derivationEl.textContent = drink.derivation;
 				noteEl.textContent = drink.scopeNote;
-				sourcesEl.innerHTML = drink.sources.length
-					? drink.sources.map((s) => link(s.label, s.url)).join(' · ')
-					: 'No external source needed';
+				renderLinks(sourcesEl, drink.sources, 'No external source needed');
 				flagEl.hidden = !drink.flagged;
 
 				unitSingularEl.textContent = workload.unitSingular;
@@ -736,14 +896,21 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 				if (workload.multiple > 1) {
 					workloadDetailEl.textContent = workload.detail;
 					workloadDetailEl.hidden = false;
-					aiSourcesEl.innerHTML = `${link(scope.sourceLabel, scope.sourceUrl)} · ${link(workload.sourceLabel, workload.sourceUrl)}`;
+					renderLinks(aiSourcesEl, [
+						{ label: scope.sourceLabel, url: scope.sourceUrl },
+						{ label: workload.sourceLabel, url: workload.sourceUrl },
+					], '');
 				} else {
 					workloadDetailEl.hidden = true;
-					aiSourcesEl.innerHTML = link(scope.sourceLabel, scope.sourceUrl);
+					renderLinks(aiSourcesEl, [{ label: scope.sourceLabel, url: scope.sourceUrl }], '');
 				}
+				// One sentence for assistive tech, set once per change; the count-up above is aria-hidden.
+				announceEl.textContent = `One ${drink.headline} is about ${cell.count.toLocaleString()} ${workload.unit}, enough water for 30 ${workload.daily} a day for ${cell.usage}.`;
 
 				renderDots(cell.drops, cell.subDrop);
 				dotUnitEl.textContent = workload.daily;
+				// The Altman claim check only makes sense for the almond.
+				claimEl.hidden = drink.id !== 'almond';
 
 				drinkButtons.forEach((button) => {
 					const isActive = button.dataset.drink === currentDrinkId;
@@ -777,6 +944,12 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 			workloadPills.forEach((pill) => {
 				pill.addEventListener('click', () => {
 					currentWorkloadId = pill.dataset.workload;
+					render();
+				});
+			});
+			setScopeButtons.forEach((button) => {
+				button.addEventListener('click', () => {
+					currentScopeId = button.dataset.setScope;
 					render();
 				});
 			});
@@ -824,6 +997,10 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 		--water: #0891b2;
 		--water-bright: #06b6d4;
 		--water-deep: #164e63;
+		/* Text-sized cyan: #0891b2 is fine for bars and borders but only 3.5:1 on the cream ground. */
+		--water-text: #0e7490;
+		/* A darker muted ink for this page's small labels (5.7:1 on the ground). */
+		--ink-muted: #6b645a;
 		--water-glow: rgba(8, 145, 178, 0.18);
 		--water-subtle: rgba(8, 145, 178, 0.07);
 		--glass: rgba(255, 255, 255, 0.72);
@@ -851,7 +1028,26 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 		font-weight: 700;
 		letter-spacing: 0.14em;
 		text-transform: uppercase;
-		color: var(--water);
+		color: var(--water-text);
+	}
+
+	.section-heading h2,
+	.poster-title {
+		text-wrap: balance;
+	}
+
+	/* Keyboard focus at 8.7:1 on this page's controls (the global sky ring is under 3:1 on cream). */
+	.drinking-ai-page :is(.drink-button, .scope-pill, .claim-scope):focus-visible {
+		outline-color: var(--water-deep);
+	}
+
+	@media (forced-colors: active) {
+		.poster-title,
+		.result-number {
+			background: none;
+			-webkit-text-fill-color: CanvasText;
+			color: CanvasText;
+		}
 	}
 
 	/* ─── Poster ─── */
@@ -861,14 +1057,12 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 		max-width: 52rem;
 	}
 
+	/* Smaller than the result number and plain ink, so the number is the page's one gradient glyph. */
 	.poster-title {
-		font-size: clamp(3.4rem, 8vw, 6.5rem);
-		margin: 0.4rem 0 1.1rem;
-		letter-spacing: -0.04em;
-		background: linear-gradient(135deg, var(--ink) 0%, var(--water-deep) 60%, var(--water) 100%);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-clip: text;
+		font-size: clamp(2.8rem, 6vw, 4.8rem);
+		margin: 0.4rem 0 1rem;
+		letter-spacing: -0.035em;
+		color: var(--ink);
 	}
 
 	.lede {
@@ -876,6 +1070,18 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 		line-height: 1.7;
 		color: var(--ink-soft);
 		max-width: 44rem;
+	}
+
+	.lede-note {
+		margin: 0.9rem 0 0;
+		padding: 0.75rem 1rem;
+		max-width: 44rem;
+		font-size: 0.98rem;
+		line-height: 1.6;
+		color: var(--ink-soft);
+		border-left: 3px solid var(--amber);
+		background: var(--amber-glow);
+		border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
 	}
 
 	/* ─── Calculator ─── */
@@ -892,12 +1098,16 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 		grid-template-areas:
 			'panel controls'
 			'dots controls';
+		grid-template-rows: 1fr auto;
 		gap: 1.25rem;
 		align-items: start;
 	}
 
+	/* The panel fills its column so the number centers and the drops sit flush
+	   with the bottom of the controls instead of floating mid-column. */
 	.console .result-panel {
 		grid-area: panel;
+		align-self: stretch;
 	}
 
 	.console-controls {
@@ -914,15 +1124,59 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 
 	.controls {
 		display: grid;
-		grid-template-columns: repeat(2, minmax(0, 1fr));
+		grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
 		gap: 0.5rem;
+	}
+
+	/* The almond is not a drink: a full-width, dashed "check this claim" row.
+	   (Doubled class beats the .drink-button gap rule declared below it.) */
+	.drink-button.drink-button--check {
+		grid-column: 1 / -1;
+		grid-template-columns: auto 1fr;
+		align-items: baseline;
+		gap: 0.7rem;
+		border-style: dashed;
+	}
+
+	.claim-check {
+		display: grid;
+		gap: 0.4rem;
+		margin-top: 0.9rem;
+	}
+
+	.claim-check .unit-count {
+		font-size: 1.05rem;
+		min-width: 4.2rem;
+	}
+
+	.claim-check .unit-name {
+		font-size: 0.84rem;
+	}
+
+	.claim-scope {
+		justify-self: start;
+		margin-top: 0.2rem;
+		padding: 0.35rem 0.8rem;
+		border: 1.5px solid rgba(8, 145, 178, 0.35);
+		border-radius: var(--radius-full);
+		background: rgba(255, 255, 255, 0.7);
+		color: var(--water-deep);
+		font: inherit;
+		font-size: 0.82rem;
+		font-weight: 700;
+		cursor: pointer;
+	}
+
+	.claim-scope:hover {
+		border-color: var(--water);
+		background: rgba(8, 145, 178, 0.1);
 	}
 
 	.drink-button {
 		display: grid;
 		gap: 0.05rem;
 		padding: 0.55rem 0.9rem;
-		border: 1.5px solid var(--glass-border);
+		border: 1.5px solid rgba(33, 29, 24, 0.22);
 		border-radius: var(--radius-lg);
 		background: var(--glass);
 		color: var(--ink-soft);
@@ -936,10 +1190,12 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 			box-shadow 180ms var(--ease-out);
 	}
 
-	.drink-button:hover {
-		transform: translateY(-2px);
-		border-color: rgba(217, 119, 6, 0.3);
-		box-shadow: 0 4px 12px rgba(217, 119, 6, 0.08);
+	@media (hover: hover) and (pointer: fine) {
+		.drink-button:hover {
+			transform: translateY(-2px);
+			border-color: rgba(217, 119, 6, 0.3);
+			box-shadow: 0 4px 12px rgba(217, 119, 6, 0.08);
+		}
 	}
 
 	.drink-button.is-active {
@@ -976,10 +1232,18 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 		flex-shrink: 0;
 	}
 
+	/* The three scopes are one ladder (0.32 → 2 → 45 mL): one row, equal cells. */
 	.scope-pills {
-		display: flex;
-		flex-wrap: wrap;
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
 		gap: 0.4rem;
+		flex: 1 1 auto;
+	}
+
+	.scope-pill .flag-tag {
+		margin-left: 0.3rem;
+		font-size: 0.6rem;
+		vertical-align: 1px;
 	}
 
 	.scope-pill {
@@ -1017,19 +1281,16 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 
 	.scope-pill-ml {
 		font-family: 'JetBrains Mono', monospace;
-		font-size: 0.74rem;
-		color: var(--ink-muted);
+		font-size: 0.76rem;
+		color: var(--ink-soft);
 	}
 
 	.result-panel,
 	.detail-item,
-	.dot-field-card,
-	.source-item {
+	.dot-field-card {
 		border: 1px solid var(--glass-border);
 		border-radius: var(--radius-xl);
 		background: var(--glass);
-		backdrop-filter: blur(12px);
-		-webkit-backdrop-filter: blur(12px);
 		box-shadow:
 			0 1px 3px rgba(15, 23, 42, 0.04),
 			0 8px 24px rgba(15, 23, 42, 0.03),
@@ -1041,6 +1302,8 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 		display: grid;
 		align-content: center;
 		gap: 0.3rem;
+		backdrop-filter: blur(12px);
+		-webkit-backdrop-filter: blur(12px);
 		background:
 			linear-gradient(160deg, rgba(8, 145, 178, 0.05) 0%, rgba(255, 255, 255, 0.9) 55%);
 	}
@@ -1073,6 +1336,7 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 
 	.result-usage strong {
 		color: var(--amber-dark);
+		white-space: nowrap;
 	}
 
 	.result-range {
@@ -1086,12 +1350,22 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 		font-variant-numeric: tabular-nums;
 	}
 
+	/* The rail reads as the equation the page is doing: footprint ÷ water per unit. */
 	.detail-rail {
 		display: grid;
-		grid-template-columns: repeat(3, minmax(0, 1fr));
+		grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
 		gap: 0.8rem;
 		align-items: stretch;
 		margin-top: 1.25rem;
+	}
+
+	.detail-op {
+		align-self: center;
+		font-family: 'Playfair Display', Georgia, serif;
+		font-size: 2.6rem;
+		line-height: 1;
+		color: var(--ink-soft);
+		padding: 0 0.2rem;
 	}
 
 	.detail-item {
@@ -1128,8 +1402,8 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 		padding: 0.05rem 0.45rem;
 		border-radius: var(--radius-full);
 		background: rgba(217, 119, 6, 0.14);
-		color: var(--amber-dark);
-		font-size: 0.62rem;
+		color: var(--rule-deep);
+		font-size: 0.7rem;
 		font-weight: 700;
 		letter-spacing: 0.06em;
 		text-transform: uppercase;
@@ -1152,7 +1426,7 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 	.scope-boundary {
 		font-size: 0.78rem;
 		font-weight: 600;
-		color: var(--water);
+		color: var(--water-text);
 	}
 
 	/* ─── Dot field ─── */
@@ -1206,7 +1480,9 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 		border-radius: 50% 50% 50% 0;
 		transform: rotate(-45deg);
 		background: radial-gradient(circle at 35% 30%, var(--water-bright), var(--water-deep));
-		animation: dot-in 240ms var(--ease-out) both;
+		/* `backwards`, not `both`: a tab whose animations never run (hidden, throttled,
+		   or screenshotted) still shows the dots at their natural opacity. */
+		animation: dot-in 240ms var(--ease-out) backwards;
 	}
 
 	/* The `to` frame omits opacity so dots settle at their own computed value
@@ -1275,7 +1551,7 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 
 	.chart-year {
 		margin-left: 0.5rem;
-		font-size: 0.68rem;
+		font-size: 0.74rem;
 		color: var(--ink-muted);
 	}
 
@@ -1286,18 +1562,21 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 		font-variant-numeric: tabular-nums;
 	}
 
+	/* "× AI" is an AI-colored quantity; amber stays reserved for drink bars and caveat tags. */
 	.chart-multiple {
 		display: inline-block;
 		margin-left: 0.6rem;
 		padding: 0.1rem 0.55rem;
 		border-radius: var(--radius-full);
-		background: var(--amber-glow);
-		color: var(--amber-dark);
+		background: var(--water-subtle);
+		border: 1px solid rgba(8, 145, 178, 0.2);
+		color: var(--water-deep);
 		font-weight: 700;
 		font-size: 0.8rem;
 	}
 
 	.chart-track {
+		position: relative;
 		height: 1.05rem;
 		border-radius: var(--radius-full);
 		background: linear-gradient(180deg, rgba(15, 23, 42, 0.05) 0%, rgba(15, 23, 42, 0.09) 100%);
@@ -1315,14 +1594,27 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 		position: relative;
 	}
 
+	/* High estimate: lighter cyan with a solid edge (≥3:1 against the track); low estimate: solid deep cyan. */
 	.ai-bar {
-		background: linear-gradient(90deg, var(--water-bright) 0%, rgba(6, 182, 212, 0.35) 100%);
+		background: rgba(8, 145, 178, 0.45);
+		box-shadow: inset 0 0 0 1px var(--water);
+	}
+
+	/* AI's high estimate as a reference line on every drink bar, so the ×AI
+	   comparison is visible per row instead of two rows up. */
+	.chart-row:not(.is-ai) .chart-track::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: var(--ai-hi);
+		border-left: 2px dashed var(--water);
 	}
 
 	.ai-bar-min {
 		position: absolute;
 		inset: 0 auto 0 0;
-		background: var(--water);
+		background: var(--water-deep);
 		border-radius: 0 var(--radius-full) var(--radius-full) 0;
 	}
 
@@ -1357,8 +1649,6 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 		border-image: linear-gradient(90deg, var(--water), var(--amber)) 1;
 		background: var(--glass);
 		border-radius: 0 0 var(--radius-xl) var(--radius-xl);
-		backdrop-filter: blur(8px);
-		-webkit-backdrop-filter: blur(8px);
 	}
 
 	.methodology-column h3 {
@@ -1415,8 +1705,6 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 		border-image: linear-gradient(90deg, var(--amber), var(--water)) 1;
 		background: var(--glass);
 		border-radius: 0 0 var(--radius-xl) var(--radius-xl);
-		backdrop-filter: blur(8px);
-		-webkit-backdrop-filter: blur(8px);
 	}
 
 	.horizon-column h3 {
@@ -1486,42 +1774,43 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 		border-bottom: 1px solid var(--glass-border);
 	}
 
+	/* An appendix, set as a list: title | detail rows, no card chrome. */
 	.source-list {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-		gap: 1.1rem;
+		grid-template-columns: 1fr;
+		gap: 0;
 	}
 
 	.source-item {
-		padding: 1.15rem 1.3rem;
+		display: grid;
+		grid-template-columns: 15rem minmax(0, 1fr);
+		gap: 0 1.2rem;
+		padding: 0.55rem 0;
+		border-bottom: 1px solid var(--glass-border);
 		color: inherit;
 		text-decoration: none;
-		transition:
-			transform 180ms var(--ease-out),
-			border-color 180ms var(--ease-out),
-			box-shadow 180ms var(--ease-out);
-	}
-
-	.source-item:hover {
-		transform: translateY(-3px);
-		border-color: rgba(8, 145, 178, 0.22);
-		box-shadow: 0 8px 24px rgba(8, 145, 178, 0.07);
 	}
 
 	.source-item h4 {
-		font-size: 1.02rem;
-		margin: 0 0 0.35rem;
+		font-size: 0.95rem;
+		margin: 0;
 		font-family: 'Playfair Display', Georgia, serif;
 		font-weight: 600;
+		color: var(--ink);
 	}
 
-	.source-item:hover h4 {
-		color: var(--water-deep);
+	@media (hover: hover) and (pointer: fine) {
+		.source-item:hover h4 {
+			color: var(--water-deep);
+			text-decoration: underline;
+			text-underline-offset: 0.15em;
+		}
 	}
 
 	.source-item p {
 		margin: 0;
-		font-size: 0.89rem;
+		font-size: 0.88rem;
+		line-height: 1.5;
 		color: var(--ink-muted);
 	}
 
@@ -1530,8 +1819,7 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 	@media (prefers-reduced-motion: reduce) {
 		.chart-bar,
 		.drink-button,
-		.scope-pill,
-		.source-item {
+		.scope-pill {
 			transition: none;
 		}
 		.dot-field :global(.dot) {
@@ -1548,6 +1836,10 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 			grid-template-columns: 1fr;
 		}
 
+		.detail-op {
+			display: none;
+		}
+
 		/* Single column: number pinned while the selectors scroll under it,
 		   dots move below the controls. */
 		.console {
@@ -1561,7 +1853,7 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 			position: sticky;
 			top: 76px;
 			z-index: 5;
-			padding: 1.4rem 1.5rem;
+			padding: 1.2rem 1.4rem;
 			background:
 				linear-gradient(160deg, rgba(8, 145, 178, 0.06) 0%, rgba(254, 253, 248, 0.97) 55%);
 			box-shadow:
@@ -1579,6 +1871,14 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 
 		.result-number {
 			font-size: clamp(2.6rem, 11vw, 4rem);
+		}
+
+		.claim-check .unit-row {
+			padding: 0.3rem 0.6rem;
+		}
+
+		.claim-check .unit-count {
+			font-size: 0.95rem;
 		}
 
 		.section-heading {
@@ -1599,8 +1899,18 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 		}
 
 		.scope-pills {
-			flex-direction: column;
+			grid-template-columns: 1fr;
 			width: 100%;
+		}
+
+		/* Nobody sees the drops change under a sticky panel; the range line carries the spread instead. */
+		.dot-field-card {
+			display: none;
+		}
+
+		.source-item {
+			grid-template-columns: 1fr;
+			gap: 0.1rem;
 		}
 
 		.scope-pill {
@@ -1611,11 +1921,11 @@ const sourceGroups = ['AI water', 'Workload & growth', 'Drink footprints', 'US v
 		}
 
 		.result-panel {
-			padding: 1.2rem 1.3rem;
+			padding: 1.1rem 1.25rem;
 		}
 
 		.result-range {
-			display: none;
+			font-size: 0.78rem;
 		}
 
 		.chart-head {
