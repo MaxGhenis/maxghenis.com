@@ -1,7 +1,7 @@
 # Max Ghenis - Full Content
 
 > This file contains the full text of all blog posts from maxghenis.com, formatted for LLM consumption.
-> Generated: 2026-07-13T15:39:10.007Z
+> Generated: 2026-09-03T16:38:08.173Z
 > See also: /llms.txt for a curated overview
 
 ---
@@ -16,17 +16,17 @@
 6. [Billionaires aren't 'just as likely' to be nonpayers as top taxpayers](/blog/madoff-billionaire-nonpayers/)
 7. [I built a MyST-to-Quarto converter (and why you might need one)](/blog/mystquarto/)
 8. [One year of Claude Code](/blog/my-claude-code-config/)
-9. [Interactive replication of GiveWell''s cost-effectiveness analysis](/blog/givewell-cea/)
-10. [Why you can''t make double eye contact](/blog/double-eye-contact/)
+9. [Why you can''t make double eye contact](/blog/double-eye-contact/)
+10. [Interactive replication of GiveWell''s cost-effectiveness analysis](/blog/givewell-cea/)
 11. [OpenMessage: How I built a macOS Google Messages client to give Claude my texts](/blog/openmessage/)
 12. [Where US immigrants come from, and where ICE focuses enforcement](/blog/bad-bunny-immigration-enforcement/)
-13. [I used Claude Code to recertify for SNAP](/blog/snap-recertification-claude-code/)
-14. [Scrollywood: Smooth scroll video recording for the web](/blog/scrollywood/)
+13. [Scrollywood: Smooth scroll video recording for the web](/blog/scrollywood/)
+14. [I used Claude Code to recertify for SNAP](/blog/snap-recertification-claude-code/)
 15. [The adolescence of policy simulation: On Amodei and economic disruption](/blog/amodei-adolescence-policyengine/)
 16. [opencollective-py: Manage OpenCollective from your terminal or Claude Code](/blog/opencollective-py/)
 17. [From IDE to AI orchestration: The end of code-first development](/blog/ide-to-ai-orchestration/)
-18. [TerminalGrid: Turn VS Code into a Claude Code superterminal](/blog/terminalgrid/)
-19. [RAMBar: A macOS menu bar RAM monitor for developers](/blog/rambar/)
+18. [RAMBar: A macOS menu bar RAM monitor for developers](/blog/rambar/)
+19. [TerminalGrid: Turn VS Code into a Claude Code superterminal](/blog/terminalgrid/)
 20. [How to Use MDX for Interactive Posts](/blog/using-mdx/)
 21. [VAT thresholds, revenues, and the role of counterfactuals](/blog/vat-thresholds/)
 22. [AI models favor Cuomo over Mamdani on NYC housing production](/blog/ai-models-nyc-housing/)
@@ -51,59 +51,60 @@
 
 **URL:** https://maxghenis.com/blog/drinking-ai/
 **Published:** Jul 05 2026
-**Description:** I built an interactive that prices drinks in AI queries — and lets you flip every assumption that makes published AI water numbers differ by 100x.
+**Description:** I built an interactive that prices drinks in AI queries — and lets you flip the accounting scope and the workload unit that make published AI water numbers differ by 100x.
 
-Asking ChatGPT 30 questions a day for a year uses about a fifth of the water behind one beer. That counts both data-center cooling and the power plants generating the electricity — the same supply-chain accounting the beer number uses.
+Asking ChatGPT 30 questions a day for a year uses about a fifth of the water behind one beer. That counts both data-center cooling and the power plants generating the electricity — the closest AI analog to how the beer number counts the water behind the barley.
 
 I built [an interactive](https://maxghenis.com/drinking-ai) that prices drinks this way: pick a beer, a coffee, a glass of milk, and see its water footprint in ChatGPT queries. One beer ≈ 53,300 queries. One coffee ≈ 66,200. A glass of tap water ≈ 178.
 
-The point isn't that drinks use a lot of water. It's that if AI's water use worries you, the ordinary things around you offer a scale to measure it against — and on that scale, your AI habit is small.
+A year of 30 daily queries is 21.9 liters at the 2 mL scope; one beer is 106.5. The drinks give a scale; the reader picks the scope.
 
 ## Why every AI water number differs from every other one
 
-Published water-per-query figures span more than 100x: [Google measured 0.26 mL](https://cloud.google.com/blog/products/infrastructure/measuring-the-environmental-impact-of-ai-inference/) per median Gemini prompt, [Sam Altman cited 0.32 mL](https://blog.samaltman.com/the-gentle-singularity) for the average ChatGPT query, [a peer-reviewed benchmark](https://arxiv.org/abs/2505.09598) puts GPT-4o near 2 mL, and [Mistral's life-cycle assessment](https://mistral.ai/news/our-contribution-to-a-global-environmental-standard-for-ai) reports 45 mL per 400-token response.
+Published water-per-query figures span more than 100x: [Google measured 0.26 mL](https://cloud.google.com/blog/products/infrastructure/measuring-the-environmental-impact-of-ai-inference/) per median Gemini prompt, [Sam Altman cited 0.000085 gallons (0.32 mL)](https://blog.samaltman.com/the-gentle-singularity) for the average ChatGPT query, [a benchmarking preprint](https://arxiv.org/abs/2505.09598) models a short GPT-4o query near 2 mL, and [Mistral's life-cycle assessment](https://mistral.ai/news/our-contribution-to-a-global-environmental-standard-for-ai) reports 45 mL per 400-token response.
 
 These numbers barely disagree about physics. They disagree about where to draw the boundary:
 
-- **0.26–0.32 mL** counts on-site data-center cooling only.
+- **0.26–0.32 mL**: Google defines its figure as on-site data-center cooling water only; OpenAI states no boundary, and I treat it the same because it is within 25% of Google's.
 - **~2 mL** adds the water evaporated at the power plants generating the query's electricity.
-- **45 mL** is a full life-cycle assessment of one long response from a large model.
+- **45 mL** is a life-cycle assessment — upstream electricity, cooling, and embodied hardware, no training — of one 400-token Le Chat response, a response about as short as the 2 mL query; the gap is boundary and data-center location, not length.
 
-The calculator defaults to the middle scope because it matches how the drink side is measured. Beer's footprint — 298 liters per kilogram, from [the standard crop-water tables](https://hess.copernicus.org/articles/15/1577/2011/hess-15-1577-2011.pdf) — counts the water behind the barley, not just the brewery's taps. The consistent AI analog counts the water behind the electricity, not just the cooling loop. Counting only cooling is like measuring beer by what the brewery pours in.
+The calculator defaults to the middle scope because it is the closest match to how the drink side is measured. Beer's footprint — 298 liters per kilogram, from [the standard crop-water tables](https://hess.copernicus.org/articles/15/1577/2011/hess-15-1577-2011.pdf) — counts the water behind the barley, not just the brewery's taps. The consistent AI analog counts the water behind the electricity, not just the cooling loop. Counting only cooling is like measuring beer by what the brewery pours in.
 
 You can flip the scope yourself. The comparison survives every setting: even at Mistral's 45 mL, one beer still equals more than 2,000 responses.
 
 ## Agents change the unit
 
-A "query" is a 2023 unit. Reasoning models emit several times the tokens of a chat response, and agents chain many calls per task — [Anthropic measured its multi-agent systems at about 15x](https://www.anthropic.com/engineering/multi-agent-research-system) the tokens of a chat interaction. Since water scales with tokens, the calculator lets you count in reasoning responses (10x — my mid-range estimate of a 2.5–50x published spread) or agentic tasks (15x).
+The published per-query figures describe one short text prompt. Reasoning models emit several times the tokens of a chat response, and agents chain many calls per task — [Anthropic measured its multi-agent systems at about 15x](https://www.anthropic.com/engineering/multi-agent-research-system) the tokens of a chat interaction. Since water scales with tokens, the calculator lets you count in reasoning responses (10x — I asked Claude for a mid-range estimate of the 2.5–50x published spread) or agentic tasks (15x).
 
-One beer = 3,550 agentic tasks. That's 10 a day, every day, for a year. Running heavy agents doesn't rescue the panic either.
+One beer = 3,550 agentic tasks at the default scope: 10 a day for a year. At Mistral's 45 mL it is about 160.
 
 ## The aggregate is the same picture
 
-Zoom out from queries to totals. [A Patterns paper](https://pmc.ncbi.nlm.nih.gov/articles/PMC12827721/) models all AI systems worldwide at 312.5–764.6 billion liters of water in 2025. The US drink categories I could source from government and industry data:
+[A Patterns paper](https://pmc.ncbi.nlm.nih.gov/articles/PMC12827721/) models all AI systems worldwide at 312.5–764.6 billion liters of water in 2025. The US drink categories I could source from government and industry data:
 
-| Category | Year | Water footprint | vs global AI |
+| Category | Year | Water footprint (liters) | vs global AI |
 |---|---|---|---|
-| Coffee | 2024/25 | 25 trillion L | 33–80x |
-| Milk | 2024 | 20 trillion L | 26–64x |
-| Soda | 2025 | 15.3 trillion L | 20–49x |
-| Beer | 2023 | 7 trillion L | 9.2–22x |
-| All eight tracked | — | 75.6 trillion L | 99–242x |
+| Coffee | 2024/25 | 24.9 trillion | 33–80x |
+| Milk | 2025 | 19.8 trillion | 26–63x |
+| Soda | 2025 | 15.3 trillion | 20–49x |
+| Beer | 2023 | 7 trillion | 9.2–22x |
+| Plant-based milk | 2025 | 0.4 trillion | 0.5–1.3x |
+| All nine tracked | — | 74.4 trillion | 97–238x |
 
-US coffee alone out-drinks global AI by 33–80x. Extrapolating AI's growth to 2026 (I estimate 1.5x, within the published 1.3–2.45x range of growth rates) still leaves the drinks 66–161x ahead.
+US coffee's footprint is 33–80x global AI's. Extrapolating AI to 2026 (I asked Claude to estimate growth: 1.5x, within the published 1.3–2.45x) puts the nine categories at 65–159x the projected range.
 
 ## What this doesn't say
 
 Water footprints measure volume, not scarcity. A liter evaporated from a stressed aquifer in Arizona is not a liter of rain on Bavarian barley, and the comparison doesn't pretend otherwise.
 
-The genuine version of the AI water question is local: a hyperscale campus is roughly a golf-resort-sized water user, concentrated in one place, with summer-peaked draw. That's material for a small municipal system and trivial on a major river — a siting, pricing, and water-rights question, not a per-user guilt question. Those are different debates, and this page only settles the second one.
+The local version of the question — one campus drawing from one watershed, peaking in summer — is a siting and water-rights question this page does not address.
 
 ## Provenance
 
-Every figure on the page links to its source — the Mekonnen–Hoekstra crop and animal water tables, USDA and NIAAA volume data, and the per-query figures above. The two Claude-estimated numbers (the 2026 projection and the 10x reasoning multiplier) are flagged as estimates on the page. The constants and derivations live in [a tested module](https://github.com/MaxGhenis/maxghenis.com/blob/master/src/lib/drinking-ai.ts) — 54 tests pin the headline numbers, so if a source changes, the page fails loudly instead of drifting quietly. If you find a better source for any figure, tell me and I'll swap it in.
+Every figure on the page links to its source — the Mekonnen & Hoekstra crop and animal water tables, USDA and NIAAA volume data, and the per-query figures above. The three Claude-estimated numbers (the 2026 projection, the 10x reasoning multiplier, and the footprint blend for plant-based milk) are flagged as estimates on the page. The constants and derivations live in [a tested module](https://github.com/MaxGhenis/maxghenis.com/blob/master/src/lib/drinking-ai.ts) — a vitest suite pins the headline numbers, so if a source changes, the page fails loudly instead of drifting quietly. If you find a better source for any figure, tell me and I'll swap it in.
 
-[Andy Masley's post](https://andymasley.substack.com/p/individual-ai-use-is-not-bad-for) prompted the question.
+[Andy Masley's post](https://blog.andymasley.com/p/individual-ai-use-is-not-bad-for) prompted the question.
 
 Drink responsibly. Prompt freely: [maxghenis.com/drinking-ai](https://maxghenis.com/drinking-ai)
 
@@ -115,9 +116,9 @@ Drink responsibly. Prompt freely: [maxghenis.com/drinking-ai](https://maxghenis.
 **Published:** Jun 28 2026
 **Description:** An interactive cost-effectiveness model for MacKenzie Scott's $26B in philanthropy — and the AI prompts that built it.
 
-MacKenzie Scott gave away [$7 billion in 2025](https://www.cnbc.com/2025/12/13/mackenzie-scott-revealed-her-total-charitable-donations-for-2025.html) — [about a third of every megagift in America that year](https://fortune.com/2026/06/25/mackenzie-scott-largest-megadonor-2025-7-billion-donations-giving-usa-iu-report/), by the Indiana University Lilly Family School of Philanthropy's count. Almost none of it is denominated in health. I built an interactive tool that asks what her [$26 billion](https://yieldgiving.com/) in lifetime giving buys in the unit health economists use to compare lives — quality-adjusted life-years: **[maxghenis.com/mackenzie-scott-qaly](/mackenzie-scott-qaly)**. Drag the assumptions and a Monte Carlo cost-effectiveness model reruns in your browser; on the skeptical default it lands around 205,000 QALYs — a model output, not a measured fact, which is why the tool exists: move the assumptions yourself.
+MacKenzie Scott gave away [$7 billion in 2025](https://www.cnbc.com/2025/12/13/mackenzie-scott-revealed-her-total-charitable-donations-for-2025.html) — [about a third of every megagift in America that year](https://fortune.com/2026/06/25/mackenzie-scott-largest-megadonor-2025-7-billion-donations-giving-usa-iu-report/), by the Indiana University Lilly Family School of Philanthropy's count. Almost none of it is denominated in health. I built an interactive tool that asks what her [$26 billion](https://yieldgiving.com/) in lifetime giving buys in the unit health economists use to compare lives — quality-adjusted life-years: **[maxghenis.com/mackenzie-scott-qaly](/mackenzie-scott-qaly)**. Drag the assumptions and a Monte Carlo cost-effectiveness model reruns in your browser; on the best-guess default it lands around 202,000 QALYs — a model output, not a measured fact, which is why the tool exists: move the assumptions yourself.
 
-[![Dragging the evidence-stance slider from skeptical to credulous: the median rises from about 70,000 QALYs to about 200,000, and the cause ranking reshuffles](./evidence-sweep.gif)](/mackenzie-scott-qaly)
+[![Dragging the evidence stance from RCT-only to face value: the median runs from about 9,000 QALYs through the 202,000 best guess to about 415,000, and the cause ranking reshuffles](./evidence-sweep.gif)](/mackenzie-scott-qaly)
 
 It runs the same machinery as the [GiveWell cost-effectiveness replication](/blog/givewell-cea/) I built in February — editable parameters, Monte Carlo, sensitivity analysis — pointed at a different question. GiveWell scores the most cost-effective charities in the world. This points the same lens at one donor's actual $26B portfolio, most of it unrestricted gifts to US organizations, where almost none of the spending is denominated in health to begin with.
 
@@ -135,7 +136,7 @@ Two further full review rounds (both models, against everything) caught more, an
 
 The allocation across causes was still my prior, though — I'd accepted "Scott doesn't publish dollars-by-cause" without checking hard enough. She publishes better: [Yield Giving's gift database](https://yieldgiving.com/gifts) itemizes dollar amounts for about two-thirds of the money, with focus areas on every disclosed dollar. Deriving the split from her own data — 53 org-reported areas mapped onto the model's 13 archetypes, [every rule documented](https://github.com/MaxGhenis/mackenzie-scott-qaly/blob/main/data/yieldgiving/leaf_to_archetype.yaml) — cut the skeptical median from ~87,000 to ~70,000. Her real portfolio holds less food, housing, and cash assistance than I'd assumed (the buckets with the strongest health evidence) and more workforce development and nonprofit infrastructure (which have almost none). The undisclosed third isn't dropped: her essays give each year's total, so the residual is a known dollar amount, spread over that year's undisclosed gifts in proportion to the recipient's pre-gift [IRS 990 revenue](https://projects.propublica.org/nonprofits/) raised to an elasticity fit on the disclosed pairs, with the fuzzy name-to-EIN matches audited by a third model, a small one, against the live API. That fit is a finding in its own right: across 1,313 disclosed gift–revenue pairs, gift size scales with organization revenue to the power 0.41 — a 10× bigger organization gets about 2.5× more money. Her giving is far flatter across organization size than proportional. The imputed third moves each cause share by at most ~1.5 points — the disclosed two-thirds was representative.
 
-The largest correction came from a reader. The model originally priced every health dollar at US anchors, so her gifts to organizations delivering abroad — [Malaria Consortium](https://yieldgiving.com/gifts), GiveDirectly's global program, Living Goods, Muso, Amref, Partners In Health, Evidence Action — were understated by orders of magnitude: bed nets at Medicaid rates. Health dollars now split by each organization's reported service locations, with the non-US share (~5% of her giving) priced at global-health anchors. That one fix tripled the skeptical median, from ~70,000 to ~205,000 QALYs, and it means most of the model's measured health impact comes from the small slice of her portfolio that reaches low-income countries.
+The largest correction came from a reader. The model originally priced every health dollar at US anchors, so her gifts to organizations delivering abroad — [Malaria Consortium](https://yieldgiving.com/gifts), GiveDirectly's global program, Living Goods, Muso, Amref, Partners In Health, Evidence Action — were understated by orders of magnitude: bed nets at Medicaid rates. Health dollars now split by each organization's reported service locations, with the non-US share (~5% of her giving) priced at global-health anchors. That one fix tripled the skeptical median, from ~70,000 to ~205,000 QALYs, and it means most of the model's measured health impact comes from the small slice of her portfolio that reaches low-income countries. A follow-up audit of the 50 largest organizations that report only "global" service locations — cross-checked by two independent AI reviews against each organization's own filings — found many operate substantially in the US, trimming the default to ~202,000 (v1.1; the tool's version toggle keeps the July 13 allocation one click away).
 
 None of the model code was hand-written; the whole thing was natural-language prompting. For transparency, here is every prompt I typed, verbatim — typos and all.
 
@@ -1095,6 +1096,48 @@ The repo is at [github.com/MaxGhenis/.claude](https://github.com/MaxGhenis/.clau
 
 ---
 
+## Why you can''t make double eye contact
+
+**URL:** https://maxghenis.com/blog/double-eye-contact/
+**Published:** Feb 10 2026
+**Description:** Your eyes can only converge on a single point. Up close, that means you have to pick one of the other person''s eyes to look at.
+
+import EyeConvergence from '../../../components/EyeConvergence.tsx';
+
+Have you ever noticed that when you're face-to-face with someone, you can't actually look at both of their eyes at the same time? You're always picking one — left or right — and subtly switching between them.
+
+This isn't a limitation of attention or focus. It's geometry.
+
+## One convergence point
+
+Your two eyes always rotate as a pair to aim at the same target. This is called [**vergence**](https://pmc.ncbi.nlm.nih.gov/articles/PMC5122972/), and it means they converge on a single point in space at any given moment.
+
+When someone is close to you, their two eyes occupy noticeably different positions in your visual field. The angular separation between them is large enough that you can't fit both into the single point your eyes converge on. So you pick one.
+
+## Try it yourself
+
+Toggle between looking at each eye, and slide the distance to see how angular separation changes.
+
+<EyeConvergence client:load />
+
+When the face is close, the angular separation between their eyes is large — well beyond your [fovea](https://pmc.ncbi.nlm.nih.gov/articles/PMC12330045/) (the high-resolution center of your vision, [~1.5mm across](https://pmc.ncbi.nlm.nih.gov/articles/PMC12330045/) or roughly 5° of visual angle). You're clearly choosing one eye.
+
+As the face moves farther away, both eyes fall into a tighter angular range. Eventually they're so close together in your visual field that it _feels_ like you're looking at both — even though you're still converging on a single point.
+
+## Why it doesn't matter at a distance
+
+Human interpupillary distance [averages about 63mm](https://pmc.ncbi.nlm.nih.gov/articles/PMC3520592/). At 1 meter away, that subtends roughly 3.6°. At 3 meters, it's about 1.2° — easily within your fovea's ~5° span. This is why you barely notice the effect in normal conversation but absolutely feel it during an intimate close-up.
+
+## What about Magic Eye?
+
+If you've viewed a [Magic Eye stereogram](https://en.wikipedia.org/wiki/Magic_Eye), you know it's possible to diverge your eyes — point them more parallel than the object distance would normally call for — while still focusing on a near surface. Could you use this trick to aim each eye at a different target?
+
+No. Even in Magic Eye viewing, both eyes are still aimed at a single convergence point — it's just a virtual one behind the page rather than on the surface. You've moved _where_ your eyes converge, but you haven't split that point in two. To make double eye contact, you'd need each eye aimed at a completely independent target, and that's not something the [vergence system](https://www.ncbi.nlm.nih.gov/books/NBK11070/) supports — it always drives both eyes toward the same point in space.
+
+I never would have built an interactive visualization to explore a random curiosity like this before. But with [Claude Code](https://claude.ai/claude-code), describing what I wanted and getting a working widget took a couple hours — so why not? The idle question gets a better answer when you can play with it yourself.
+
+---
+
 ## Interactive replication of GiveWell''s cost-effectiveness analysis
 
 **URL:** https://maxghenis.com/blog/givewell-cea/
@@ -1315,48 +1358,6 @@ Source code: [github.com/MaxGhenis/givewell-cea](https://github.com/MaxGhenis/gi
 
 ---
 
-## Why you can''t make double eye contact
-
-**URL:** https://maxghenis.com/blog/double-eye-contact/
-**Published:** Feb 10 2026
-**Description:** Your eyes can only converge on a single point. Up close, that means you have to pick one of the other person''s eyes to look at.
-
-import EyeConvergence from '../../../components/EyeConvergence.tsx';
-
-Have you ever noticed that when you're face-to-face with someone, you can't actually look at both of their eyes at the same time? You're always picking one — left or right — and subtly switching between them.
-
-This isn't a limitation of attention or focus. It's geometry.
-
-## One convergence point
-
-Your two eyes always rotate as a pair to aim at the same target. This is called [**vergence**](https://pmc.ncbi.nlm.nih.gov/articles/PMC5122972/), and it means they converge on a single point in space at any given moment.
-
-When someone is close to you, their two eyes occupy noticeably different positions in your visual field. The angular separation between them is large enough that you can't fit both into the single point your eyes converge on. So you pick one.
-
-## Try it yourself
-
-Toggle between looking at each eye, and slide the distance to see how angular separation changes.
-
-<EyeConvergence client:load />
-
-When the face is close, the angular separation between their eyes is large — well beyond your [fovea](https://pmc.ncbi.nlm.nih.gov/articles/PMC12330045/) (the high-resolution center of your vision, [~1.5mm across](https://pmc.ncbi.nlm.nih.gov/articles/PMC12330045/) or roughly 5° of visual angle). You're clearly choosing one eye.
-
-As the face moves farther away, both eyes fall into a tighter angular range. Eventually they're so close together in your visual field that it _feels_ like you're looking at both — even though you're still converging on a single point.
-
-## Why it doesn't matter at a distance
-
-Human interpupillary distance [averages about 63mm](https://pmc.ncbi.nlm.nih.gov/articles/PMC3520592/). At 1 meter away, that subtends roughly 3.6°. At 3 meters, it's about 1.2° — easily within your fovea's ~5° span. This is why you barely notice the effect in normal conversation but absolutely feel it during an intimate close-up.
-
-## What about Magic Eye?
-
-If you've viewed a [Magic Eye stereogram](https://en.wikipedia.org/wiki/Magic_Eye), you know it's possible to diverge your eyes — point them more parallel than the object distance would normally call for — while still focusing on a near surface. Could you use this trick to aim each eye at a different target?
-
-No. Even in Magic Eye viewing, both eyes are still aimed at a single convergence point — it's just a virtual one behind the page rather than on the surface. You've moved _where_ your eyes converge, but you haven't split that point in two. To make double eye contact, you'd need each eye aimed at a completely independent target, and that's not something the [vergence system](https://www.ncbi.nlm.nih.gov/books/NBK11070/) supports — it always drives both eyes toward the same point in space.
-
-I never would have built an interactive visualization to explore a random curiosity like this before. But with [Claude Code](https://claude.ai/claude-code), describing what I wanted and getting a working widget took a couple hours — so why not? The idle question gets a better answer when you can play with it yourself.
-
----
-
 ## OpenMessage: How I built a macOS Google Messages client to give Claude my texts
 
 **URL:** https://maxghenis.com/blog/openmessage/
@@ -1509,6 +1510,46 @@ Bad Bunny's halftime show put a spotlight on the hemispheric connections between
 
 ---
 
+## Scrollywood: Smooth scroll video recording for the web
+
+**URL:** https://maxghenis.com/blog/scrollywood/
+**Published:** Feb 06 2026
+**Description:** A Chrome extension that records smooth-scrolling videos and GIFs of any webpage, built for capturing scrollytelling stories and long-form content.
+
+At [PolicyEngine](https://policyengine.org), we're building more scrollytelling stories to explain how tax and benefit policy works. Pages like [MITA](https://maxghenis.com/mita) use scroll-driven animations to walk through data visualizations step by step, and we want to share these experiences beyond the browser — in presentations, social posts, and demos.
+
+The problem: there's no good way to record a smooth scroll of a webpage. Screen recording tools require you to scroll manually, which is never perfectly smooth. Browser automation tools can screenshot sequences but don't capture scroll-triggered animations. And scrollytelling pages depend on continuous scrolling to trigger IntersectionObserver callbacks that animate the content.
+
+So I built [Scrollywood](/scrollywood) — a Chrome extension that records a perfectly smooth scroll capture of any webpage.
+
+![Scrollywood demo — smooth scroll recording of a scrollytelling page](/scrollywood-demo.gif)
+
+## How it works
+
+Click the extension icon, set your scroll duration, choose WebM, MP4, or GIF, and start recording. Scrollywood scrolls the page from top to bottom at a constant rate while recording the tab at 30-60fps. The result is a downloadable capture in your selected format, with MP4 shown when Chrome supports it.
+
+The scroll is smooth and linear at 60fps, which is critical for scrollytelling pages. Libraries like [scrollama](https://github.com/russellsamora/scrollama) and [react-scrollama](https://github.com/jsonkao/react-scrollama) use IntersectionObserver to trigger animations as elements enter the viewport. A smooth programmatic scroll naturally crosses these thresholds, so the animations play exactly as they would during manual scrolling.
+
+## Technical challenges
+
+Building this was straightforward in concept but tricky in practice, mostly due to Chrome's Manifest V3 architecture:
+
+**Service worker timeouts.** MV3 service workers sleep after ~30 seconds of inactivity, which makes `setTimeout` unreliable for recordings longer than 30 seconds. The fix: the offscreen document (which has a persistent DOM context) handles all timing, while the service worker only handles one-shot operations like script injection and downloads.
+
+**Iframe-wrapped pages.** Some sites embed content in full-page iframes (e.g., a custom domain wrapping a GitHub Pages site). The outer frame has no scrollable content. Scrollywood detects these wrappers and defers to the inner frame, which handles its own scrolling via `allFrames: true` injection.
+
+**CSS scroll-behavior conflicts.** Pages with `scroll-behavior: smooth` in CSS fight with programmatic scrolling. Scrollywood temporarily overrides this to `auto`, but carefully avoids overriding `overflow`, which would break `position: sticky` — the CSS property that makes scrollytelling graphics stay in place.
+
+**Large recording downloads.** At 16Mbps for a 60-second recording, the video can be 100MB+. The original approach (base64-encoding the blob and sending it via `chrome.runtime.sendMessage`) silently fails at that size. The fix: download directly from the offscreen document using a blob URL.
+
+## Get it
+
+[Download Scrollywood](/scrollywood) and load it as an unpacked extension in Chrome. It's free and open source.
+
+[Project page](/scrollywood) · [GitHub](https://github.com/MaxGhenis/scrollywood)
+
+---
+
 ## I used Claude Code to recertify for SNAP
 
 **URL:** https://maxghenis.com/blog/snap-recertification-claude-code/
@@ -1623,46 +1664,6 @@ This used Claude Code with the [Claude in Chrome](https://chromewebstore.google.
 - Comfort with Claude having access to your browser and local files
 
 This is still early-stage technology. I wouldn't recommend it for someone who isn't comfortable reviewing what Claude is doing as it works. But the trajectory is clear: the boring, stressful parts of interfacing with government systems are exactly what AI agents should handle.
-
----
-
-## Scrollywood: Smooth scroll video recording for the web
-
-**URL:** https://maxghenis.com/blog/scrollywood/
-**Published:** Feb 06 2026
-**Description:** A Chrome extension that records smooth-scrolling videos and GIFs of any webpage, built for capturing scrollytelling stories and long-form content.
-
-At [PolicyEngine](https://policyengine.org), we're building more scrollytelling stories to explain how tax and benefit policy works. Pages like [MITA](https://maxghenis.com/mita) use scroll-driven animations to walk through data visualizations step by step, and we want to share these experiences beyond the browser — in presentations, social posts, and demos.
-
-The problem: there's no good way to record a smooth scroll of a webpage. Screen recording tools require you to scroll manually, which is never perfectly smooth. Browser automation tools can screenshot sequences but don't capture scroll-triggered animations. And scrollytelling pages depend on continuous scrolling to trigger IntersectionObserver callbacks that animate the content.
-
-So I built [Scrollywood](/scrollywood) — a Chrome extension that records a perfectly smooth scroll capture of any webpage.
-
-![Scrollywood demo — smooth scroll recording of a scrollytelling page](/scrollywood-demo.gif)
-
-## How it works
-
-Click the extension icon, set your scroll duration, choose WebM, MP4, or GIF, and start recording. Scrollywood scrolls the page from top to bottom at a constant rate while recording the tab at 30-60fps. The result is a downloadable capture in your selected format, with MP4 shown when Chrome supports it.
-
-The scroll is smooth and linear at 60fps, which is critical for scrollytelling pages. Libraries like [scrollama](https://github.com/russellsamora/scrollama) and [react-scrollama](https://github.com/jsonkao/react-scrollama) use IntersectionObserver to trigger animations as elements enter the viewport. A smooth programmatic scroll naturally crosses these thresholds, so the animations play exactly as they would during manual scrolling.
-
-## Technical challenges
-
-Building this was straightforward in concept but tricky in practice, mostly due to Chrome's Manifest V3 architecture:
-
-**Service worker timeouts.** MV3 service workers sleep after ~30 seconds of inactivity, which makes `setTimeout` unreliable for recordings longer than 30 seconds. The fix: the offscreen document (which has a persistent DOM context) handles all timing, while the service worker only handles one-shot operations like script injection and downloads.
-
-**Iframe-wrapped pages.** Some sites embed content in full-page iframes (e.g., a custom domain wrapping a GitHub Pages site). The outer frame has no scrollable content. Scrollywood detects these wrappers and defers to the inner frame, which handles its own scrolling via `allFrames: true` injection.
-
-**CSS scroll-behavior conflicts.** Pages with `scroll-behavior: smooth` in CSS fight with programmatic scrolling. Scrollywood temporarily overrides this to `auto`, but carefully avoids overriding `overflow`, which would break `position: sticky` — the CSS property that makes scrollytelling graphics stay in place.
-
-**Large recording downloads.** At 16Mbps for a 60-second recording, the video can be 100MB+. The original approach (base64-encoding the blob and sending it via `chrome.runtime.sendMessage`) silently fails at that size. The fix: download directly from the offscreen document using a blob URL.
-
-## Get it
-
-[Download Scrollywood](/scrollywood) and load it as an unpacked extension in Chrome. It's free and open source.
-
-[Project page](/scrollywood) · [GitHub](https://github.com/MaxGhenis/scrollywood)
 
 ---
 
@@ -1919,6 +1920,83 @@ When Claude Desktop works reliably, I'll abandon my TerminalGridded IDE without 
 
 ---
 
+## RAMBar: A macOS menu bar RAM monitor for developers
+
+**URL:** https://maxghenis.com/blog/rambar/
+**Published:** Jan 07 2026
+**Description:** A native macOS menu bar app for tracking memory usage across Claude Code sessions, VS Code workspaces, Chrome tabs, and Python processes.
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 2rem 0;">
+  <iframe
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 12px;"
+    src="https://www.youtube.com/embed/6lnQpfxJs0Y"
+    title="RAMBar Demo"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen>
+  </iframe>
+</div>
+
+Claude Opus 4.5 kept crashing my VS Code.
+
+Nothing wrong with the model—it was just so good that I started running 5, 6, even a dozen Claude Code sessions at once. My 16GB MacBook Air couldn't keep up. I upgraded to a 48GB MacBook Pro, which mostly solved the crashes, but I still had no visibility into what was eating memory. Activity Monitor shows processes, but not answers like "which Claude session is the hog?" or "can I spawn another subagent?"
+
+So I built [RAMBar](https://maxghenis.com/rambar)—my first macOS app, built entirely with Claude Code. It shows RAM usage the way developers think about it.
+
+## What It Does
+
+RAMBar lives in your menu bar showing current RAM percentage, color-coded by status:
+
+- **Green**: Under 70%, you're fine
+- **Yellow**: 70-85%, getting tight
+- **Red**: Over 85%, time to close something
+
+Click it to see a breakdown of what's actually using your memory.
+
+## Developer-Focused Breakdowns
+
+Unlike generic system monitors, RAMBar understands developer workflows:
+
+- **Claude Code sessions** — Shows main sessions vs subagents separately, so you can see when parallel agents are spawning
+- **VS Code workspaces** — Memory grouped by which project folder is open
+- **Chrome tabs** — Lists individual tabs by memory, so you can find that one tab eating 2GB
+- **Python processes** — Useful when you're running Jupyter notebooks or ML training alongside everything else
+
+## How it compares to other tools
+
+Several macOS menu bar monitors exist, but none understand developer workflows:
+
+| Tool | Price | Developer context | Claude Code awareness |
+|------|-------|-------------------|----------------------|
+| **RAMBar** | Free | ✅ Groups by workspace/session | ✅ Shows sessions + subagents |
+| [Stats](https://github.com/exelban/stats) | Free | ❌ Process-level only | ❌ |
+| [iStat Menus](https://bjango.com/mac/istatmenus/) | $12 | ❌ Process-level only | ❌ |
+| [MenuBar Stats](https://seense.com/menubarstats/) | $5 | ❌ Process-level only | ❌ |
+| Activity Monitor | Free | ❌ Process-level only | ❌ |
+
+[Stats](https://github.com/exelban/stats) is excellent for general system monitoring—CPU graphs, network throughput, disk I/O—and it's free and open source. [iStat Menus](https://bjango.com/mac/istatmenus/) adds weather widgets, fan control, and extensive customization for $12.
+
+RAMBar solves a different problem. When I see high memory usage, I don't want to know that `node` is using 4GB—I want to know *which VS Code workspace* that node process belongs to. I don't care that there are 47 Chrome Helper processes; I want to know which *tab* is the culprit. And when Claude Code spawns subagents, I want to see that hierarchy, not a flat list of identical `claude` processes.
+
+If you need comprehensive system monitoring, use Stats or iStat Menus. If you're an AI-assisted developer who wants to know why your Mac is struggling during a coding session, RAMBar fills that gap.
+
+## Get it
+
+```bash
+brew tap maxghenis/tap
+brew install --cask rambar
+```
+
+[Project page](/rambar) ・ [GitHub](https://github.com/MaxGhenis/rambar)
+
+Requires macOS 14.0+. First launch: right-click and select Open to bypass Gatekeeper (the app is currently unsigned).
+
+---
+
+*Part of [12 Days of Shipping](https://maxghenis.com).*
+
+---
+
 ## TerminalGrid: Turn VS Code into a Claude Code superterminal
 
 **URL:** https://maxghenis.com/blog/terminalgrid/
@@ -2004,83 +2082,6 @@ code --install-extension MaxGhenis.terminalgrid
 ---
 
 *Day 1 of [12 Days of Shipping](https://maxghenis.com). Merry Christmas!*
-
----
-
-## RAMBar: A macOS menu bar RAM monitor for developers
-
-**URL:** https://maxghenis.com/blog/rambar/
-**Published:** Jan 07 2026
-**Description:** A native macOS menu bar app for tracking memory usage across Claude Code sessions, VS Code workspaces, Chrome tabs, and Python processes.
-
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 2rem 0;">
-  <iframe
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 12px;"
-    src="https://www.youtube.com/embed/6lnQpfxJs0Y"
-    title="RAMBar Demo"
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-    allowfullscreen>
-  </iframe>
-</div>
-
-Claude Opus 4.5 kept crashing my VS Code.
-
-Nothing wrong with the model—it was just so good that I started running 5, 6, even a dozen Claude Code sessions at once. My 16GB MacBook Air couldn't keep up. I upgraded to a 48GB MacBook Pro, which mostly solved the crashes, but I still had no visibility into what was eating memory. Activity Monitor shows processes, but not answers like "which Claude session is the hog?" or "can I spawn another subagent?"
-
-So I built [RAMBar](https://maxghenis.com/rambar)—my first macOS app, built entirely with Claude Code. It shows RAM usage the way developers think about it.
-
-## What It Does
-
-RAMBar lives in your menu bar showing current RAM percentage, color-coded by status:
-
-- **Green**: Under 70%, you're fine
-- **Yellow**: 70-85%, getting tight
-- **Red**: Over 85%, time to close something
-
-Click it to see a breakdown of what's actually using your memory.
-
-## Developer-Focused Breakdowns
-
-Unlike generic system monitors, RAMBar understands developer workflows:
-
-- **Claude Code sessions** — Shows main sessions vs subagents separately, so you can see when parallel agents are spawning
-- **VS Code workspaces** — Memory grouped by which project folder is open
-- **Chrome tabs** — Lists individual tabs by memory, so you can find that one tab eating 2GB
-- **Python processes** — Useful when you're running Jupyter notebooks or ML training alongside everything else
-
-## How it compares to other tools
-
-Several macOS menu bar monitors exist, but none understand developer workflows:
-
-| Tool | Price | Developer context | Claude Code awareness |
-|------|-------|-------------------|----------------------|
-| **RAMBar** | Free | ✅ Groups by workspace/session | ✅ Shows sessions + subagents |
-| [Stats](https://github.com/exelban/stats) | Free | ❌ Process-level only | ❌ |
-| [iStat Menus](https://bjango.com/mac/istatmenus/) | $12 | ❌ Process-level only | ❌ |
-| [MenuBar Stats](https://seense.com/menubarstats/) | $5 | ❌ Process-level only | ❌ |
-| Activity Monitor | Free | ❌ Process-level only | ❌ |
-
-[Stats](https://github.com/exelban/stats) is excellent for general system monitoring—CPU graphs, network throughput, disk I/O—and it's free and open source. [iStat Menus](https://bjango.com/mac/istatmenus/) adds weather widgets, fan control, and extensive customization for $12.
-
-RAMBar solves a different problem. When I see high memory usage, I don't want to know that `node` is using 4GB—I want to know *which VS Code workspace* that node process belongs to. I don't care that there are 47 Chrome Helper processes; I want to know which *tab* is the culprit. And when Claude Code spawns subagents, I want to see that hierarchy, not a flat list of identical `claude` processes.
-
-If you need comprehensive system monitoring, use Stats or iStat Menus. If you're an AI-assisted developer who wants to know why your Mac is struggling during a coding session, RAMBar fills that gap.
-
-## Get it
-
-```bash
-brew tap maxghenis/tap
-brew install --cask rambar
-```
-
-[Project page](/rambar) ・ [GitHub](https://github.com/MaxGhenis/rambar)
-
-Requires macOS 14.0+. First launch: right-click and select Open to bypass Gatekeeper (the app is currently unsigned).
-
----
-
-*Part of [12 Days of Shipping](https://maxghenis.com).*
 
 ---
 
