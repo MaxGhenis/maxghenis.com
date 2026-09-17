@@ -13,7 +13,7 @@
     { "source": "/whatnut/:path*", "destination": "https://whatnut-three.vercel.app/whatnut/:path*" },
     { "source": "/whatnut-paper", "destination": "https://maxghenis.github.io/whatnut/" },
     { "source": "/whatnut-paper/:path*", "destination": "https://maxghenis.github.io/whatnut/:path*" },
-    { "source": "/expectations/:path*", "destination": "https://expectations-max-ghenis-projects.vercel.app/:path*" }
+    { "source": "/expectations/:path*", "destination": "https://expectations-five.vercel.app/:path*" }
   ],
   "redirects": [
     { "source": "/expectations", "destination": "/expectations/", "permanent": true },
