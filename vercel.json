@@ -12,9 +12,11 @@
     { "source": "/yankee-stadium-beer-price-controls/:path*", "destination": "https://maxghenis.github.io/yankee-stadium-beer-price-controls/:path*" },
     { "source": "/whatnut/:path*", "destination": "https://whatnut-three.vercel.app/whatnut/:path*" },
     { "source": "/whatnut-paper", "destination": "https://maxghenis.github.io/whatnut/" },
-    { "source": "/whatnut-paper/:path*", "destination": "https://maxghenis.github.io/whatnut/:path*" }
+    { "source": "/whatnut-paper/:path*", "destination": "https://maxghenis.github.io/whatnut/:path*" },
+    { "source": "/expectations/:path*", "destination": "https://expectations-max-ghenis-projects.vercel.app/:path*" }
   ],
   "redirects": [
+    { "source": "/expectations", "destination": "/expectations/", "permanent": true },
     { "source": "/whatnut", "destination": "/whatnut/", "permanent": true },
     { "source": "/mita", "destination": "https://mita-iota.vercel.app/", "permanent": false },
     { "source": "/mita/:path*", "destination": "https://mita-iota.vercel.app/:path*", "permanent": false },
