@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 380" role="img" aria-label="Pooled total standard deviation of next-year real GDP growth forecasts, US versus euro area, 1992 to 2026">
+<text x="52.0" y="24.0" font-family="system-ui, -apple-system, sans-serif" font-size="17" fill="#0f172a" font-weight="650">Uncertainty of real GDP growth forecasts (next year)</text>
+<text x="52.0" y="44.0" font-family="system-ui, -apple-system, sans-serif" font-size="12.5" fill="#64748b" >Pooled total SD of each survey&#8217;s densities, percentage points. Q1 rounds; US from 1992Q1.</text>
+<line x1="52" y1="283.2" x2="560" y2="283.2" stroke="#e7e2d6"/>
+<text x="44.0" y="287.2" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#64748b" text-anchor="end">0.5pp</text>
+<line x1="52" y1="228.4" x2="560" y2="228.4" stroke="#e7e2d6"/>
+<text x="44.0" y="232.4" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#64748b" text-anchor="end">1.0pp</text>
+<line x1="52" y1="173.6" x2="560" y2="173.6" stroke="#e7e2d6"/>
+<text x="44.0" y="177.6" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#64748b" text-anchor="end">1.5pp</text>
+<line x1="52" y1="118.8" x2="560" y2="118.8" stroke="#e7e2d6"/>
+<text x="44.0" y="122.8" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#64748b" text-anchor="end">2.0pp</text>
+<line x1="52" y1="64.0" x2="560" y2="64.0" stroke="#e7e2d6"/>
+<text x="44.0" y="68.0" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#64748b" text-anchor="end">2.5pp</text>
+<text x="96.8" y="356.0" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">1995</text>
+<text x="171.5" y="356.0" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">2000</text>
+<text x="246.2" y="356.0" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">2005</text>
+<text x="320.9" y="356.0" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">2010</text>
+<text x="395.6" y="356.0" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">2015</text>
+<text x="470.4" y="356.0" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">2020</text>
+<text x="545.1" y="356.0" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">2025</text>
+<line x1="52" y1="338.0" x2="560" y2="338.0" stroke="#64748b"/>
+<path d="M52.0,199.1 L66.9,221.9 L81.9,214.2 L96.8,191.2 L111.8,187.9 L126.7,203.5 L141.6,204.2 L156.6,180.3 L171.5,192.1 L186.5,175.7 L201.4,189.7 L216.4,187.1 L231.3,186.7 L246.2,207.2 L261.2,200.6 L276.1,210.3 L291.1,201.0 L306.0,179.6 L320.9,196.6 L335.9,197.3 L350.8,183.7 L365.8,209.0 L380.7,199.3 L395.6,202.7 L410.6,201.6 L425.5,191.3 L440.5,198.6 L455.4,195.6 L470.4,202.0 L485.3,98.6 L500.2,126.4 L515.2,140.7 L530.1,133.9 L545.1,177.8 L560.0,183.5" fill="none" stroke="#e34948" stroke-width="2"/>
+<circle cx="560.0" cy="183.5" r="3.5" fill="#e34948"/>
+<text x="568.0" y="187.5" font-family="system-ui, -apple-system, sans-serif" font-size="12.5" fill="#0f172a" font-weight="600">US (US SPF) 1.41</text>
+<path d="M156.6,269.6 L171.5,278.8 L186.5,275.1 L201.4,263.6 L216.4,262.9 L231.3,262.0 L246.2,272.3 L261.2,270.3 L276.1,274.5 L291.1,270.5 L306.0,249.2 L320.9,248.0 L335.9,255.3 L350.8,244.1 L365.8,247.0 L380.7,253.9 L395.6,256.6 L410.6,258.8 L425.5,255.0 L440.5,259.9 L455.4,254.3 L470.4,255.9 L485.3,148.2 L500.2,174.6 L515.2,234.9 L530.1,238.4 L545.1,247.6 L560.0,252.1" fill="none" stroke="#2a78d6" stroke-width="2"/>
+<circle cx="560.0" cy="252.1" r="3.5" fill="#2a78d6"/>
+<text x="568.0" y="256.1" font-family="system-ui, -apple-system, sans-serif" font-size="12.5" fill="#0f172a" font-weight="600">Euro area (ECB SPF) 0.78</text>
+</svg>
