@@ -1,49 +1,92 @@
 # Max Ghenis - Full Content
 
 > This file contains the full text of all blog posts from maxghenis.com, formatted for LLM consumption.
-> Generated: 2026-09-03T16:38:08.173Z
+> Generated: 2026-09-20T11:23:36.190Z
 > See also: /llms.txt for a curated overview
 
 ---
 
 ## Table of Contents
 
-1. [A year of ChatGPT is a fifth of a beer](/blog/drinking-ai/)
-2. [MacKenzie Scott's giving, in QALYs](/blog/mackenzie-scott-giving-in-qalys/)
-3. [The US government is gutting Anthropic's R&D capacity](/blog/us-gutted-anthropic-rd/)
-4. [How to turn money into predictions](/blog/how-to-turn-money-into-predictions/)
-5. [Can Talkie-1930 do arithmetic?](/blog/talkie-1930-math-evals/)
-6. [Billionaires aren't 'just as likely' to be nonpayers as top taxpayers](/blog/madoff-billionaire-nonpayers/)
-7. [I built a MyST-to-Quarto converter (and why you might need one)](/blog/mystquarto/)
-8. [One year of Claude Code](/blog/my-claude-code-config/)
-9. [Why you can''t make double eye contact](/blog/double-eye-contact/)
-10. [Interactive replication of GiveWell''s cost-effectiveness analysis](/blog/givewell-cea/)
-11. [OpenMessage: How I built a macOS Google Messages client to give Claude my texts](/blog/openmessage/)
-12. [Where US immigrants come from, and where ICE focuses enforcement](/blog/bad-bunny-immigration-enforcement/)
-13. [Scrollywood: Smooth scroll video recording for the web](/blog/scrollywood/)
-14. [I used Claude Code to recertify for SNAP](/blog/snap-recertification-claude-code/)
-15. [The adolescence of policy simulation: On Amodei and economic disruption](/blog/amodei-adolescence-policyengine/)
-16. [opencollective-py: Manage OpenCollective from your terminal or Claude Code](/blog/opencollective-py/)
-17. [From IDE to AI orchestration: The end of code-first development](/blog/ide-to-ai-orchestration/)
-18. [RAMBar: A macOS menu bar RAM monitor for developers](/blog/rambar/)
-19. [TerminalGrid: Turn VS Code into a Claude Code superterminal](/blog/terminalgrid/)
-20. [How to Use MDX for Interactive Posts](/blog/using-mdx/)
-21. [VAT thresholds, revenues, and the role of counterfactuals](/blog/vat-thresholds/)
-22. [AI models favor Cuomo over Mamdani on NYC housing production](/blog/ai-models-nyc-housing/)
-23. [My 2024 in code: Personal projects and AI tools](/blog/my-2024-in-code/)
-24. [Why I'm a neoliberal](/blog/why-im-a-neoliberal/)
-25. [In appointing their newest member, the Ventura City Council only pretended to care about housing](/blog/in-appointing-their-newest-member-the-ventura-city/)
-26. [If you earned more in 2019 than 2018, don't file your 2019 taxes yet! Otherwise, file ASAP!](/blog/if-you-earned-more-in-2019-than-2018-dont-file-you/)
-27. [Why I’ve taken the Giving What We Can pledge](/blog/why-ive-taken-the-giving-what-we-can-pledge/)
-28. [Ventura County must end its unsheltered homelessness](/blog/ventura-county-must-end-its-unsheltered-homelessne/)
-29. [Warren’s wealth tax would raise less than she claims — even using her economists’ own assumptions](/blog/warrens-wealth-tax-would-raise-less-than-she-claim/)
-30. [Andrew Yang's troubling Tucker Carlson interview](/blog/andrew-yangs-troubling-tucker-carlson-interview/)
-31. [Quantile regression, from linear models to trees to deep learning](/blog/quantile-regression-from-linear-models-to-trees-to/)
-32. [We should replace the Child Tax Credit with a universal child benefit](/blog/we-should-replace-the-child-tax-credit-with-a-univ/)
-33. [The case for a wonky basic income plan](/blog/the-case-for-a-wonky-basic-income-plan/)
-34. [Reddit featured a misleading headline on education secretary nominee Betsy DeVos](/blog/reddit-featured-a-misleading-headline-on-education/)
-35. [Uber's tipping settlement will reduce earnings of African-American drivers](/blog/ubers-tipping-settlement-will-reduce-earnings-of-a/)
-36. [If we can afford our current welfare system, we can afford basic income](/blog/if-we-can-afford-our-current-welfare-system-we-can/)
+1. [What do forecasters say they don''t know?](/blog/expectations/)
+2. [A year of ChatGPT is a fifth of a beer](/blog/drinking-ai/)
+3. [MacKenzie Scott's giving, in QALYs](/blog/mackenzie-scott-giving-in-qalys/)
+4. [The US government is gutting Anthropic's R&D capacity](/blog/us-gutted-anthropic-rd/)
+5. [How to turn money into predictions](/blog/how-to-turn-money-into-predictions/)
+6. [Can Talkie-1930 do arithmetic?](/blog/talkie-1930-math-evals/)
+7. [Billionaires aren't 'just as likely' to be nonpayers as top taxpayers](/blog/madoff-billionaire-nonpayers/)
+8. [I built a MyST-to-Quarto converter (and why you might need one)](/blog/mystquarto/)
+9. [One year of Claude Code](/blog/my-claude-code-config/)
+10. [Why you can''t make double eye contact](/blog/double-eye-contact/)
+11. [Interactive replication of GiveWell''s cost-effectiveness analysis](/blog/givewell-cea/)
+12. [OpenMessage: How I built a macOS Google Messages client to give Claude my texts](/blog/openmessage/)
+13. [Where US immigrants come from, and where ICE focuses enforcement](/blog/bad-bunny-immigration-enforcement/)
+14. [Scrollywood: Smooth scroll video recording for the web](/blog/scrollywood/)
+15. [I used Claude Code to recertify for SNAP](/blog/snap-recertification-claude-code/)
+16. [The adolescence of policy simulation: On Amodei and economic disruption](/blog/amodei-adolescence-policyengine/)
+17. [opencollective-py: Manage OpenCollective from your terminal or Claude Code](/blog/opencollective-py/)
+18. [From IDE to AI orchestration: The end of code-first development](/blog/ide-to-ai-orchestration/)
+19. [RAMBar: A macOS menu bar RAM monitor for developers](/blog/rambar/)
+20. [TerminalGrid: Turn VS Code into a Claude Code superterminal](/blog/terminalgrid/)
+21. [How to Use MDX for Interactive Posts](/blog/using-mdx/)
+22. [VAT thresholds, revenues, and the role of counterfactuals](/blog/vat-thresholds/)
+23. [AI models favor Cuomo over Mamdani on NYC housing production](/blog/ai-models-nyc-housing/)
+24. [My 2024 in code: Personal projects and AI tools](/blog/my-2024-in-code/)
+25. [Why I'm a neoliberal](/blog/why-im-a-neoliberal/)
+26. [In appointing their newest member, the Ventura City Council only pretended to care about housing](/blog/in-appointing-their-newest-member-the-ventura-city/)
+27. [If you earned more in 2019 than 2018, don't file your 2019 taxes yet! Otherwise, file ASAP!](/blog/if-you-earned-more-in-2019-than-2018-dont-file-you/)
+28. [Why I’ve taken the Giving What We Can pledge](/blog/why-ive-taken-the-giving-what-we-can-pledge/)
+29. [Ventura County must end its unsheltered homelessness](/blog/ventura-county-must-end-its-unsheltered-homelessne/)
+30. [Warren’s wealth tax would raise less than she claims — even using her economists’ own assumptions](/blog/warrens-wealth-tax-would-raise-less-than-she-claim/)
+31. [Andrew Yang's troubling Tucker Carlson interview](/blog/andrew-yangs-troubling-tucker-carlson-interview/)
+32. [Quantile regression, from linear models to trees to deep learning](/blog/quantile-regression-from-linear-models-to-trees-to/)
+33. [We should replace the Child Tax Credit with a universal child benefit](/blog/we-should-replace-the-child-tax-credit-with-a-univ/)
+34. [The case for a wonky basic income plan](/blog/the-case-for-a-wonky-basic-income-plan/)
+35. [Reddit featured a misleading headline on education secretary nominee Betsy DeVos](/blog/reddit-featured-a-misleading-headline-on-education/)
+36. [Uber's tipping settlement will reduce earnings of African-American drivers](/blog/ubers-tipping-settlement-will-reduce-earnings-of-a/)
+37. [If we can afford our current welfare system, we can afford basic income](/blog/if-we-can-afford-our-current-welfare-system-we-can/)
+
+---
+
+## What do forecasters say they don''t know?
+
+**URL:** https://maxghenis.com/blog/expectations/
+**Published:** Sep 20 2026
+**Description:** Professional forecasters in the US and euro area have reported full probability distributions for decades. I pooled every one into a tracker and two working papers, and read what they say about growth in the AI era.
+
+Since 1968 the [Survey of Professional Forecasters](https://www.philadelphiafed.org/surveys-and-data/real-time-data-research/survey-of-professional-forecasters) has asked its panel to spread probability across bins of US output growth, and since 1999 the [ECB has asked the same](https://www.ecb.europa.eu/stats/ecb_surveys/survey_of_professional_forecasters/html/index.en.html) of euro-area forecasters. Those histograms record what a point forecast cannot: how much confidence each forecaster puts behind the number. I pooled every one both surveys have published — nine variables, every horizon, 3,695 round-by-horizon groups — into a live tracker and two working papers of my own at [maxghenis.com/expectations](https://maxghenis.com/expectations/): a full paper on stated uncertainty across every variable and horizon, and a short note on growth expectations in the AI era.
+
+![Pooled total standard deviation of next-year real GDP growth forecasts, US versus euro area, 1992 to 2026](./images/expectations-us-ea-sd.svg)
+
+*US forecasters state about twice the uncertainty euro-area forecasters do for next year's growth: a pooled standard deviation of 1.41 percentage points against 0.78 in the 2026Q1 rounds. Both spiked in the 2021Q1 rounds and have come most of the way back.*
+
+<p style="margin: 1.75rem 0 2.25rem; display: flex; flex-wrap: wrap; align-items: center; gap: 1rem;">
+  <a href="https://maxghenis.com/expectations/" style="display: inline-block; background: var(--accent); color: var(--ink, #0f172a); padding: 0.65rem 1.2rem; border-radius: var(--radius-md); font-weight: 600; text-decoration: none;">Explore the tracker &rarr;</a>
+  <a href="https://maxghenis.com/expectations/paper/" style="font-weight: 600;">Read the working paper</a>
+</p>
+
+## Growth expectations in the AI era
+
+US forecasters have marked growth down since COVID. In the five Q1 rounds of 2015–19, the pooled distribution for next year's real GDP growth centered on 2.19% and put 5.6% of its mass above 4%. In the two Q1 rounds of 2025 and 2026 it centers on 1.89% with 4.2% above 4% — two rounds against five, so treat the later window as a snapshot, not a trend. The ECB asks euro-area forecasters about growth four years out; they moved their center from 1.64% to 1.35% and raised the mass above 4% from 0.4% to 1.1%.
+
+![Pooled next-year US growth forecast distribution, 2015 to 2019 average versus 2025 to 2026 average](./images/expectations-growth-density.svg)
+
+*The whole distribution moved, not only its mean. Both surveys draw a bin edge at exactly 4%, so the tail probabilities come straight off the reported histograms with no interpolation.*
+
+The Forecasting Research Institute asked AI experts a question of the same form in 2025 ([Karger et al. 2026](https://forecastingresearch.org/research/economic-effects-of-ai)). Their pooled distribution, fitted to the quantiles the experts gave, put a chance that rounds to 0.0% on US growth averaging above 10% a year over 2025–29; when the institute asked them to assume rapid AI progress, they put 3.5%. A five-year average and the surveys' next-calendar-year growth measure different outcomes, so [my growth note](https://maxghenis.com/expectations/growth/paper/) lays out what each source asked — outcome, window, conditioning — and stops short of a matched comparison.
+
+## What else the densities show
+
+[My full paper](https://maxghenis.com/expectations/paper/) works through every density variable and horizon in both surveys, splitting each pooled distribution's variance into the average forecaster's own stated variance and the disagreement between forecasters.
+
+- Disagreement, the spread between forecasters' means, accounts for a median 15% of total variance in US real GDP growth densities since 1992. The other 85% sits inside individual forecasters' histograms, where a disagreement index never looks.
+- Next-year US growth, as the BEA now publishes it, landed inside the Q1 pooled ±1σ band in 22 of 33 target years. The misses come in streaks: 1996 through 2001, 2008–09, 2020–21, plus 2011.
+- Stated uncertainty rises from the current year to the next and then stops: 1.32, 1.45, 1.52 and 1.52 percentage points at horizons of zero to three years, on average across the 2010–26 Q1 rounds. After a shock it inverts — in the 2021Q1 round, forecasters reported a wider distribution for 2021 than for 2023.
+- Euro-area forecasters have reported the tighter distributions in every year both surveys overlap, including the 2020–21 spike.
+
+## How I built it
+
+The surveys print bins as "2.0 to 2.9", then "3.0 to 3.9"; I read each as running to the next bin's lower label, so that one covers 2 up to 3, spread each respondent's mass evenly within its bins, and close open tails at one adjacent-bin width. Reading the printed labels literally instead lowers each mean reported here by 0.05 points and leaves each comparison here unchanged. Every respondent gets equal weight, and the within/between split uses population variance, so the two parts add up to the pooled variance exactly in every one of the 3,695 groups. I score each density against the realized outcome with CRPS and compare it to expanding-window benchmarks built from target periods already complete at each round, using revised data. [A public repository](https://github.com/MaxGhenis/expectations) rebuilds everything — parsing, measures, scores, both manuscripts, the tracker — from the raw survey files, under an MIT license, with more than 200 tests, including a harness that runs the tracker page itself.
 
 ---
 
