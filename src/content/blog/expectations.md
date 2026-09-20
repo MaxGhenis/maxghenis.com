@@ -2,6 +2,7 @@
 title: 'What do forecasters say they don''t know?'
 description: 'Professional forecasters in the US and euro area have reported full probability distributions for decades. I pooled every one into a tracker and two working papers, and read what they say about growth in the AI era.'
 pubDate: 'Sep 20 2026'
+heroImage: './images/expectations-us-ea-sd.png'
 ---
 
 Since 1968 the [Survey of Professional Forecasters](https://www.philadelphiafed.org/surveys-and-data/real-time-data-research/survey-of-professional-forecasters) has asked its panel to spread probability across bins of US output growth, and since 1999 the [ECB has asked the same](https://www.ecb.europa.eu/stats/ecb_surveys/survey_of_professional_forecasters/html/index.en.html) of euro-area forecasters. Those histograms record what a point forecast cannot: how much confidence each forecaster puts behind the number. I pooled every one both surveys have published — nine variables, every horizon, 3,695 round-by-horizon groups — into a live tracker and two working papers of my own at [maxghenis.com/expectations](https://maxghenis.com/expectations/): a full paper on stated uncertainty across every variable and horizon, and a short note on growth expectations in the AI era.
