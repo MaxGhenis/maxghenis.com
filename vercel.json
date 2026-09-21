@@ -13,9 +13,12 @@
     { "source": "/whatnut/:path*", "destination": "https://whatnut-three.vercel.app/whatnut/:path*" },
     { "source": "/whatnut-paper", "destination": "https://maxghenis.github.io/whatnut/" },
     { "source": "/whatnut-paper/:path*", "destination": "https://maxghenis.github.io/whatnut/:path*" },
-    { "source": "/expectations/:path*", "destination": "https://expectations-five.vercel.app/:path*" }
+    { "source": "/expectations/:path*", "destination": "https://expectations-five.vercel.app/:path*" },
+    { "source": "/slides/how-sure-are-the-pros", "destination": "https://maxghenis.github.io/slides/how-sure-are-the-pros/" },
+    { "source": "/slides/:path*", "destination": "https://maxghenis.github.io/slides/:path*" }
   ],
   "redirects": [
+    { "source": "/talks/how-sure-are-the-pros-overhang-2026.pdf", "destination": "/slides/how-sure-are-the-pros/", "permanent": false },
     { "source": "/expectations", "destination": "/expectations/", "permanent": true },
     { "source": "/whatnut", "destination": "/whatnut/", "permanent": true },
     { "source": "/mita", "destination": "https://mita-iota.vercel.app/", "permanent": false },
