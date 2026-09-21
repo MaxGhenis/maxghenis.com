@@ -14,7 +14,7 @@ Since 1968 the [Survey of Professional Forecasters](https://www.philadelphiafed.
 <p style="margin: 1.75rem 0 2.25rem; display: flex; flex-wrap: wrap; align-items: center; gap: 1rem;">
   <a href="https://maxghenis.com/expectations/" style="display: inline-block; background: var(--accent); color: var(--ink, #0f172a); padding: 0.65rem 1.2rem; border-radius: var(--radius-md); font-weight: 600; text-decoration: none;">Explore the tracker &rarr;</a>
   <a href="https://maxghenis.com/expectations/paper/" style="font-weight: 600;">Read the working paper</a>
-  <a href="/slides/how-sure-are-the-pros" style="font-weight: 600;">Slides from The Overhang</a>
+  <a href="/slides/how-sure-are-the-pros/" style="font-weight: 600;">Slides from The Overhang</a>
 </p>
 
 ## Growth expectations in the AI era
