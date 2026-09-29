@@ -4,6 +4,8 @@ import { createRoot, type Root } from "react-dom/client";
 import fc from "fast-check";
 import UsageDashboard, {
   buildModelTable,
+  fmtShare,
+  fmtUSD,
   type ModelRow,
   type Origin,
   type UsageData,
@@ -74,6 +76,36 @@ const UNPRICED = [
   { client: "codex", model: "gpt-6-astra", tokens: 19608125103 },
   { client: "codex", model: "gpt-6-sol", tokens: 3952126 },
   { client: "codex", model: "codex-auto-review", tokens: 503820 },
+];
+
+// Three more priced Codex rows from the same usage.json, each under $1 in at
+// least one view. The table showed their cost as "$0" and every share here as
+// 0.0%, next to the unpriced rows' dashes.
+const SUB_DOLLAR: ModelRow[] = [
+  {
+    client: "codex",
+    model: "gpt-5.6-luna",
+    priceSource: "OpenAI list",
+    human: { tokens: 203801, cost: 0.09 },
+    automated: { tokens: 10764589, cost: 2.37 },
+    all: { tokens: 10968390, cost: 2.46 },
+  },
+  {
+    client: "codex",
+    model: "gpt-5.3-codex",
+    priceSource: "OpenAI list (codex rate)",
+    human: { tokens: 0, cost: 0 },
+    automated: { tokens: 322587, cost: 0.48 },
+    all: { tokens: 322587, cost: 0.48 },
+  },
+  {
+    client: "codex",
+    model: "gpt-5.1-codex-max",
+    priceSource: "OpenAI list",
+    human: { tokens: 354196, cost: 0.14 },
+    automated: { tokens: 0, cost: 0 },
+    all: { tokens: 354196, cost: 0.14 },
+  },
 ];
 
 // The by-model logic before pricing.unpriced existed, kept as the reference
@@ -340,13 +372,152 @@ describe("buildModelTable invariants", () => {
   });
 });
 
+// ---- Dollar and share formatting ----
+
+// The formatters before sub-dollar costs and tiny shares had their own
+// strings, kept as the reference for the differential properties below.
+function legacyFmtUSD(n: number): string {
+  if (n >= 1000) return "$" + Math.round(n).toLocaleString();
+  return "$" + n.toFixed(0);
+}
+const legacyFmtShare = (cost: number, total: number) =>
+  ((cost / total) * 100).toFixed(1) + "%";
+
+describe("fmtUSD", () => {
+  it("shows a positive amount under $1 as <$1, never $0", () => {
+    expect(fmtUSD(0.48)).toBe("<$1"); // gpt-5.3-codex
+    expect(fmtUSD(0.14)).toBe("<$1"); // gpt-5.1-codex-max
+    expect(fmtUSD(0.09)).toBe("<$1"); // gpt-5.6-luna, human view
+    expect(fmtUSD(0.59)).toBe("<$1"); // previously rounded up to "$1"
+    expect(fmtUSD(0.999)).toBe("<$1");
+    expect(fmtUSD(Number.MIN_VALUE)).toBe("<$1");
+  });
+
+  it("keeps whole dollars from $1 up, and $0 for nothing", () => {
+    expect(fmtUSD(0)).toBe("$0");
+    expect(fmtUSD(1)).toBe("$1");
+    expect(fmtUSD(2.46)).toBe("$2");
+    expect(fmtUSD(2.5)).toBe("$3");
+    expect(fmtUSD(999.49)).toBe("$999");
+    expect(fmtUSD(291256.63)).toBe("$291,257");
+  });
+
+  it("uses a thousands separator for anything that rounds to $1,000", () => {
+    // Previously $999.50 up to $1,000 rendered as "$1000".
+    expect(legacyFmtUSD(999.5)).toBe("$1000");
+    expect(fmtUSD(999.5)).toBe("$1,000");
+    expect(fmtUSD(999.99)).toBe("$1,000");
+    expect(fmtUSD(1000)).toBe("$1,000");
+  });
+});
+
+describe("fmtShare", () => {
+  it("shows a positive cost's share under 0.05% as <0.1%, never 0.0%", () => {
+    // gpt-5.3-codex's $0.48 of the all-view priced total with SUB_DOLLAR added.
+    expect(legacyFmtShare(0.48, 466439.29)).toBe("0.0%");
+    expect(fmtShare(0.48, 466439.29)).toBe("<0.1%");
+    // Live All view: claude-opus-4-5-20251101, $376.90 of $1,232,229.40, 0.031%.
+    expect(fmtShare(376.9, 1232229.4)).toBe("<0.1%");
+    // The quotient underflows to 0; the cost is still positive.
+    expect(fmtShare(Number.MIN_VALUE, 5e5)).toBe("<0.1%");
+  });
+
+  it("keeps one decimal place from 0.05% up, and 0.0% for no cost", () => {
+    expect(fmtShare(0.06, 100)).toBe("0.1%");
+    expect(fmtShare(291256.63, 466439.29)).toBe("62.4%");
+    expect(fmtShare(1, 1)).toBe("100.0%");
+    expect(fmtShare(0, 1)).toBe("0.0%");
+  });
+
+  it("switches from <0.1% to 0.1% exactly at 0.05%", () => {
+    // Live Automated view: claude-opus-4-5-20251101, $113.55 of $281,389.29, 0.040%.
+    expect(fmtShare(113.55, 281389.29)).toBe("<0.1%");
+    // Just below 0.05%, which the old formatter showed as 0.0%.
+    expect(legacyFmtShare(0.0004999999999999999, 1)).toBe("0.0%");
+    expect(fmtShare(0.0004999999999999999, 1)).toBe("<0.1%");
+    expect(fmtShare(1, 2000)).toBe("0.1%");
+    // Live All view: claude-sonnet-5, $702.58 of $1,232,229.40, 0.057%.
+    expect(fmtShare(702.58, 1232229.4)).toBe("0.1%");
+  });
+});
+
+// Amounts across the page's range, weighted toward the two ranges where the
+// output changed: under $1, and $999.50 up to $1,000.
+const dollars = fc.oneof(
+  fc.double({ min: 0, max: 1, noNaN: true }),
+  fc.double({ min: 999, max: 1001, noNaN: true }),
+  fc.double({ min: 0, max: 5e6, noNaN: true }),
+);
+// A row's cost and a priced total at least that large, in whole cents, plus
+// pairs whose share falls between 0.03% and 0.07%, around the cutoff. Cents
+// keep the shrink of a failing case short; the underflow case is an example.
+const costAndTotal = fc.oneof(
+  fc
+    .tuple(fc.integer({ min: 1, max: 5e7 }), fc.integer({ min: 0, max: 5e8 }))
+    .map(([cost, rest]) => [cost / 100, (cost + rest) / 100] as const),
+  fc
+    .tuple(fc.integer({ min: 1, max: 5e7 }), fc.double({ min: 0.03, max: 0.07, noNaN: true }))
+    .map(([cost, pct]) => [cost / 100, ((cost / 100) * 100) / pct] as const),
+);
+// Fail within seconds rather than hang CI if a caught failure shrinks slowly.
+const TIME_LIMIT = { interruptAfterTimeLimit: 10_000, markInterruptAsFailure: true };
+
+describe("formatting invariants", () => {
+  it("fmtUSD matches the old formatter except under $1 and from $999.50 to $1,000", () => {
+    fc.assert(
+      fc.property(dollars, (n) => {
+        const s = fmtUSD(n);
+        if (n > 0 && n < 1) expect(s).toBe("<$1");
+        else if (n >= 999.5 && n < 1000) expect(s).toBe("$1,000");
+        else expect(s).toBe(legacyFmtUSD(n));
+      }),
+    );
+  });
+
+  it("fmtUSD never shows a positive amount as $0", () => {
+    fc.assert(
+      fc.property(dollars, (n) => {
+        if (n > 0) expect(fmtUSD(n)).not.toBe("$0");
+      }),
+    );
+  });
+
+  it("fmtShare matches the old formatter except where it showed a positive cost as 0.0%", () => {
+    fc.assert(
+      fc.property(costAndTotal, ([cost, total]) => {
+        const old = legacyFmtShare(cost, total);
+        const s = fmtShare(cost, total);
+        if (old === "0.0%") expect(s).toBe("<0.1%");
+        else expect(s).toBe(old);
+        expect(s).not.toBe("0.0%");
+      }),
+      TIME_LIMIT,
+    );
+  });
+
+  it("no priced by-model row shows $0 or 0.0%", () => {
+    fc.assert(
+      fc.property(byModelArb, unpricedArb, originArb, (byModel, list, origin) => {
+        const t = buildModelTable(byModel, list, origin);
+        // The component's fallback for an empty priced list.
+        const total = t.pricedTotalCost || 1;
+        for (const r of t.priced) {
+          expect(fmtUSD(r.cost)).not.toBe("$0");
+          expect(fmtShare(r.cost, total)).not.toBe("0.0%");
+        }
+      }),
+      TIME_LIMIT,
+    );
+  });
+});
+
 // ---- Rendering ----
 
 const zero = () => ({ tokens: 0, cost: 0, msgs: 0, prompts: 0 });
 const emptyWindow = () => ({ claude: zero(), codex: zero(), other: zero(), total: zero() });
 const emptyOrigins = () => ({ human: emptyWindow(), automated: emptyWindow(), all: emptyWindow() });
 
-function usageData(pricing: UsageData["pricing"]): UsageData {
+function usageData(pricing: UsageData["pricing"], byModel: ModelRow[] = BY_MODEL): UsageData {
   return {
     generatedAt: "2026-09-28T19:13:39Z",
     dateRange: { start: "2026-09-28", end: "2026-09-28" },
@@ -358,7 +529,7 @@ function usageData(pricing: UsageData["pricing"]): UsageData {
       },
     ],
     summary: { week: emptyOrigins(), month: emptyOrigins(), lifetime: emptyOrigins() },
-    byModel: BY_MODEL,
+    byModel,
     pricing,
     leaderboards: {},
   };
@@ -516,4 +687,133 @@ describe("UsageDashboard by-model table", () => {
       expect(container.querySelector(".usage-error")).toBeNull();
     });
   }
+
+  it("shows priced rows under $1 as <$1 and shares under 0.05% as <0.1%", async () => {
+    await renderWith(usageData({ note: "n", unpriced: UNPRICED }, [...BY_MODEL, ...SUB_DOLLAR]));
+    const dash = "—Not priced yet";
+    expect(modelTableRows()).toEqual([
+      ["codex", "gpt-5.5", "431.0B", "$291,257", "62.4%"],
+      ["claude", "claude-fable-5", "89.8B", "$175,180", "37.6%"],
+      ["codex", "gpt-5.6-luna", "11.0M", "$2", "<0.1%"],
+      ["codex", "gpt-5.3-codex", "322.6K", "<$1", "<0.1%"],
+      ["codex", "gpt-5.1-codex-max", "354.2K", "<$1", "<0.1%"],
+      ["codex", "gpt-6-astra", "19.6B", dash, dash],
+      ["codex", "gpt-6-sol", "4.0M", dash, dash],
+      ["codex", "codex-auto-review", "503.8K", dash, dash],
+    ]);
+    expect(container.querySelectorAll("tr.unpriced-row")).toHaveLength(3);
+    clickOrigin("Human");
+    expect(modelTableRows()).toEqual([
+      ["codex", "gpt-5.5", "431.0B", "$290,923", "63.3%"],
+      ["claude", "claude-fable-5", "86.7B", "$169,031", "36.7%"],
+      ["codex", "gpt-5.1-codex-max", "354.2K", "<$1", "<0.1%"],
+      ["codex", "gpt-5.6-luna", "203.8K", "<$1", "<0.1%"],
+      ["codex", "gpt-6-astra", "11.3B", dash, dash],
+      ["codex", "gpt-6-sol", "1.5M", dash, dash],
+      ["codex", "codex-auto-review", "503.8K", dash, dash],
+    ]);
+    clickOrigin("Automated");
+    expect(modelTableRows()).toEqual([
+      ["claude", "claude-fable-5", "3.1B", "$6,149", "94.8%"],
+      ["codex", "gpt-5.5", "87.1M", "$334", "5.1%"],
+      ["codex", "gpt-5.6-luna", "10.8M", "$2", "<0.1%"],
+      ["codex", "gpt-5.3-codex", "322.6K", "<$1", "<0.1%"],
+      ["codex", "gpt-6-astra", "8.3B", dash, dash],
+      ["codex", "gpt-6-sol", "2.4M", dash, dash],
+    ]);
+  });
+
+  it("shows a day's cost under $1 as <$1 in the chart tooltip", async () => {
+    // 2026-09-24 on the live page, All view: $0.40 of Codex cost over 501.6M
+    // tokens. The tooltip read "Codex $0". The Claude figures and both prompt
+    // and record counts are made up, so every metric shows both rows.
+    const data = usageData(undefined);
+    data.daily = [
+      {
+        date: "2026-09-24",
+        human: {
+          claude: { tokens: 1.2e9, cost: 2500.4, msgs: 10, prompts: 5 },
+          codex: { tokens: 501567829, cost: 0.4, msgs: 4, prompts: 2 },
+          other: zero(),
+        },
+        automated: { claude: zero(), codex: zero(), other: zero() },
+      },
+    ];
+    await renderWith(data);
+    const svg = container.querySelector<SVGSVGElement>(
+      'svg[aria-label="Daily usage stacked bar chart"]',
+    )!;
+    // happy-dom lays nothing out, so give the chart its viewBox size.
+    svg.getBoundingClientRect = () =>
+      ({ left: 0, top: 0, right: 760, bottom: 240, width: 760, height: 240 }) as DOMRect;
+    const hover = () =>
+      act(() => {
+        svg.dispatchEvent(
+          new MouseEvent("mousemove", { bubbles: true, clientX: 400, clientY: 100 }),
+        );
+      });
+    const tooltipRows = () =>
+      [...container.querySelectorAll(".chart-tooltip-row")].map((row) => {
+        const meta = row.querySelector(".chart-tooltip-meta")!.textContent!;
+        return [row.textContent!.slice(0, -meta.length), meta];
+      });
+
+    hover();
+    // The day's total, $2,500.80, includes the Codex cost.
+    expect(container.querySelector(".chart-tooltip-total")!.textContent).toBe("$2,501");
+    expect(tooltipRows()).toEqual([
+      ["Claude $2,500", "1.2B"],
+      ["Codex <$1", "501.6M"],
+    ]);
+
+    const tokensBtn = [
+      ...container.querySelectorAll('[aria-label="Metric"] button'),
+    ].find((b) => b.textContent === "Tokens") as HTMLButtonElement;
+    act(() => tokensBtn.click());
+    hover();
+    expect(tooltipRows()).toEqual([
+      ["Claude 1.2B", "$2,500"],
+      ["Codex 501.6M", "<$1"],
+    ]);
+
+    const promptsBtn = [
+      ...container.querySelectorAll('[aria-label="Metric"] button'),
+    ].find((b) => b.textContent === "Prompts") as HTMLButtonElement;
+    act(() => promptsBtn.click());
+    hover();
+    expect(tooltipRows()).toEqual([
+      ["Claude 5", "$2,500 · 1.2B"],
+      ["Codex 2", "<$1 · 501.6M"],
+    ]);
+  });
+
+  it("shows a client's cost under $1 as <$1 in the donut legend", async () => {
+    // Last 7 days, Human view, on the live page: $0.59 of Codex cost over
+    // 592.7M tokens. The legend read "Codex $1".
+    const data = usageData(undefined);
+    const claude = { tokens: 34393019191, cost: 82440.39, msgs: 0, prompts: 0 };
+    const codex = { tokens: 592690538, cost: 0.59, msgs: 0, prompts: 0 };
+    data.summary.week.human = {
+      claude,
+      codex,
+      other: zero(),
+      total: {
+        tokens: claude.tokens + codex.tokens,
+        cost: claude.cost + codex.cost,
+        msgs: 0,
+        prompts: 0,
+      },
+    };
+    await renderWith(data);
+    clickOrigin("Human");
+    const week = container.querySelector(".donut-card")!;
+    expect(week.querySelector(".donut-label")!.textContent).toBe("Last 7 days");
+    expect([...week.querySelectorAll("svg text")].map((t) => t.textContent)).toEqual([
+      "$82,441",
+      "35.0B toks",
+    ]);
+    expect(
+      [...week.querySelectorAll(".donut-legend-item")].map((e) => e.textContent),
+    ).toEqual(["Claude $82,440", "Codex <$1"]);
+  });
 });

@@ -65,9 +65,21 @@ function fmtTokens(n: number): string {
   return n.toLocaleString();
 }
 
-function fmtUSD(n: number): string {
-  if (n >= 1000) return "$" + Math.round(n).toLocaleString();
+// Whole dollars, except that a positive amount under $1 shows as "<$1":
+// "$0" would read as no cost at all.
+export function fmtUSD(n: number): string {
+  if (Math.round(n) >= 1000) return "$" + Math.round(n).toLocaleString();
+  if (n > 0 && n < 1) return "<$1";
   return "$" + n.toFixed(0);
+}
+
+// One decimal place. A positive cost whose share rounds to 0.0% shows as
+// "<0.1%" instead. The positivity check uses the cost, not the percentage,
+// which can underflow to 0.
+export function fmtShare(cost: number, total: number): string {
+  const pct = (cost / total) * 100;
+  if (cost > 0 && pct < 0.05) return "<0.1%";
+  return pct.toFixed(1) + "%";
 }
 
 function fmtRelTime(iso: string): string {
@@ -800,7 +812,7 @@ export default function UsageDashboard() {
                   <td style={{ textAlign: "right" }}>{fmtTokens(m.tokens)}</td>
                   <td style={{ textAlign: "right" }}>{fmtUSD(m.cost)}</td>
                   <td style={{ textAlign: "right" }}>
-                    {((m.cost / modelTotalCost) * 100).toFixed(1)}%
+                    {fmtShare(m.cost, modelTotalCost)}
                   </td>
                 </tr>
               ))}
