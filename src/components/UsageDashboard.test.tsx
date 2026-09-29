@@ -377,7 +377,7 @@ describe("buildModelTable invariants", () => {
 // The formatters before sub-dollar costs and tiny shares had their own
 // strings, kept as the reference for the differential properties below.
 function legacyFmtUSD(n: number): string {
-  if (n >= 1000) return "$" + Math.round(n).toLocaleString();
+  if (n >= 1000) return "$" + Math.round(n).toLocaleString("en-US");
   return "$" + n.toFixed(0);
 }
 const legacyFmtShare = (cost: number, total: number) =>
@@ -815,5 +815,276 @@ describe("UsageDashboard by-model table", () => {
     expect(
       [...week.querySelectorAll(".donut-legend-item")].map((e) => e.textContent),
     ).toEqual(["Claude $82,440", "Codex <$1"]);
+  });
+});
+
+// ---- Browser locale ----
+
+// Makes `locale` the default, as a browser set to it would: Number and Date
+// toLocale*String calls, and Intl.NumberFormat and DateTimeFormat, use it
+// when given no locale. Node takes its default from LANG, en-US in CI, so
+// without this the suite can't see a call that leaves the locale out.
+function stubDefaultLocale(locale: string) {
+  // No locales argument, or an empty list, means the default.
+  const pick = (locales: Intl.LocalesArgument) =>
+    locales === undefined || (Array.isArray(locales) && locales.length === 0) ? locale : locales;
+  const number = Number.prototype.toLocaleString;
+  const { toLocaleString, toLocaleDateString, toLocaleTimeString } = Date.prototype;
+  const { NumberFormat, DateTimeFormat } = Intl;
+  return [
+    vi.spyOn(Number.prototype, "toLocaleString").mockImplementation(function (
+      this: number,
+      locales,
+      options,
+    ) {
+      return number.call(this, pick(locales), options);
+    }),
+    vi.spyOn(Date.prototype, "toLocaleString").mockImplementation(function (
+      this: Date,
+      locales,
+      options,
+    ) {
+      return toLocaleString.call(this, pick(locales), options);
+    }),
+    vi.spyOn(Date.prototype, "toLocaleDateString").mockImplementation(function (
+      this: Date,
+      locales,
+      options,
+    ) {
+      return toLocaleDateString.call(this, pick(locales), options);
+    }),
+    vi.spyOn(Date.prototype, "toLocaleTimeString").mockImplementation(function (
+      this: Date,
+      locales,
+      options,
+    ) {
+      return toLocaleTimeString.call(this, pick(locales), options);
+    }),
+    // Function expressions, not arrows, so `new Intl.NumberFormat()` works.
+    vi.spyOn(Intl, "NumberFormat").mockImplementation(function (
+      locales?: Intl.LocalesArgument,
+      options?: Intl.NumberFormatOptions,
+    ) {
+      return new NumberFormat(pick(locales), options);
+    } as typeof NumberFormat),
+    vi.spyOn(Intl, "DateTimeFormat").mockImplementation(function (
+      locales?: Intl.LocalesArgument,
+      options?: Intl.DateTimeFormatOptions,
+    ) {
+      return new DateTimeFormat(pick(locales), options);
+    } as typeof DateTimeFormat),
+  ];
+}
+
+function withDefaultLocale<T>(locale: string, fn: () => T): T {
+  const spies = stubDefaultLocale(locale);
+  try {
+    return fn();
+  } finally {
+    for (const spy of spies) spy.mockRestore();
+  }
+}
+
+// de-DE and fr-FR use other separators, en-IN groups by lakh (2,91,257), and
+// ar-EG uses Arabic-Indic digits, so it changes numbers under 1,000 too.
+const LOCALES = ["de-DE", "fr-FR", "en-IN", "ar-EG"];
+
+describe("the default-locale stub", () => {
+  // Guards the tests below: a runtime without de-DE data falls back to its
+  // default locale, and they would pass whatever the page did.
+  it("formats a call without a locale in that locale, then restores", () => {
+    const natives = () => [
+      Number.prototype.toLocaleString,
+      Date.prototype.toLocaleDateString,
+      Intl.NumberFormat,
+    ];
+    const before = natives();
+    expect(
+      withDefaultLocale("de-DE", () => [
+        (291257).toLocaleString(),
+        (291257).toLocaleString("en-US"),
+        new Intl.NumberFormat().format(1000),
+        Intl.NumberFormat([]).format(1000),
+        new Date(0).toLocaleDateString(undefined, { timeZone: "UTC" }),
+      ]),
+    ).toEqual(["291.257", "291,257", "1.000", "1.000", "1.1.1970"]);
+    for (const locale of LOCALES) {
+      expect(
+        withDefaultLocale(locale, () => (291257).toLocaleString()),
+        locale,
+      ).not.toBe("291,257");
+    }
+    expect(withDefaultLocale("ar-EG", () => (503).toLocaleString())).not.toBe("503");
+    natives().forEach((f, i) => expect(f).toBe(before[i]));
+  });
+});
+
+describe("formatting in any browser locale", () => {
+  it("shows $291,257 and $1,000 in a de-DE browser, not $291.257 and $1.000", () => {
+    expect(
+      withDefaultLocale("de-DE", () => [fmtUSD(291256.63), fmtUSD(999.5), fmtUSD(1000)]),
+    ).toEqual(["$291,257", "$1,000", "$1,000"]);
+  });
+
+  it("fmtUSD and fmtShare print the same in every locale as in en-US", () => {
+    fc.assert(
+      fc.property(
+        dollars,
+        costAndTotal,
+        fc.constantFrom(...LOCALES),
+        (n, [cost, total], locale) => {
+          const format = () => [fmtUSD(n), fmtShare(cost, total)];
+          expect(withDefaultLocale(locale, format)).toEqual(withDefaultLocale("en-US", format));
+        },
+      ),
+      TIME_LIMIT,
+    );
+  });
+});
+
+describe("UsageDashboard in any browser locale", () => {
+  const bucket = (tokens: number, cost: number, prompts: number) => ({
+    tokens,
+    cost,
+    msgs: 0,
+    prompts,
+  });
+
+  // From usage.json on usage-data main, generated 2026-09-28T19:13:39Z: the
+  // day with the most prompts, 2026-09-05, and that build's All-view summary
+  // windows and Tokscale card. The 503-token model is made up: no live model
+  // has under 1,000 tokens, where fmtTokens prints the number as is.
+  function liveData(): UsageData {
+    const data = usageData({ note: "n", unpriced: UNPRICED }, [
+      ...BY_MODEL,
+      {
+        client: "claude",
+        model: "claude-haiku-4-5",
+        priceSource: "Anthropic list",
+        human: { tokens: 503, cost: 0.01 },
+        automated: { tokens: 0, cost: 0 },
+        all: { tokens: 503, cost: 0.01 },
+      },
+    ]);
+    // "Last updated just now" in every render, however long the suite runs.
+    data.generatedAt = new Date().toISOString();
+    data.dateRange = { start: "2026-09-05", end: "2026-09-05" };
+    data.daily = [
+      {
+        date: "2026-09-05",
+        human: {
+          claude: bucket(11203436852, 29819.92, 3203),
+          codex: bucket(1442709359, 1.69, 0),
+          other: zero(),
+        },
+        automated: {
+          claude: bucket(102916188, 135.81, 0),
+          codex: bucket(441314961, 0, 0),
+          other: zero(),
+        },
+      },
+    ];
+    data.summary.week.all = {
+      claude: bucket(85230714684, 204276.51, 8584),
+      codex: bucket(1385250642, 118.38, 0),
+      other: zero(),
+      total: bucket(86615965326, 204394.89, 8584),
+    };
+    data.summary.month.all = {
+      claude: bucket(160491673352, 392280.16, 32557),
+      codex: bucket(36025192633, 12089.29, 0),
+      other: zero(),
+      total: bucket(196516865985, 404369.45, 32557),
+    };
+    data.summary.lifetime.all = {
+      claude: bucket(301402360974, 617878.26, 95651),
+      codex: bucket(1011030778884, 614351.02, 2),
+      other: zero(),
+      total: bucket(1312433139858, 1232229.28, 95653),
+    };
+    data.leaderboards = {
+      tokscale: {
+        url: "https://tokscale.ai/u/MaxGhenis",
+        rank: { week: 4, month: 8, allTime: 14 },
+        users: 2242,
+        asOf: "2026-09-28",
+      },
+    };
+    return data;
+  }
+
+  // The page's text under each chart metric, with the tooltip open, in a
+  // browser whose default locale is `locale`.
+  async function pageText(locale: string, data: UsageData): Promise<string[]> {
+    const spies = stubDefaultLocale(locale);
+    const container = document.createElement("div");
+    document.body.appendChild(container);
+    const root = createRoot(container);
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async () => ({ ok: true, status: 200, json: async () => data })),
+    );
+    try {
+      await act(async () => {
+        root.render(createElement(UsageDashboard));
+      });
+      await act(async () => {
+        await new Promise((r) => setTimeout(r, 0));
+      });
+      const texts: string[] = [];
+      // "$" is the cost button.
+      for (const metric of ["$", "Tokens", "Prompts", "Records"]) {
+        const btn = [
+          ...container.querySelectorAll<HTMLButtonElement>('[aria-label="Metric"] button'),
+        ].find((b) => b.textContent === metric)!;
+        act(() => btn.click());
+        const svg = container.querySelector<SVGSVGElement>(
+          'svg[aria-label="Daily usage stacked bar chart"]',
+        )!;
+        // happy-dom lays nothing out, so give the chart its viewBox size.
+        svg.getBoundingClientRect = () =>
+          ({ left: 0, top: 0, right: 760, bottom: 240, width: 760, height: 240 }) as DOMRect;
+        act(() => {
+          svg.dispatchEvent(
+            new MouseEvent("mousemove", { bubbles: true, clientX: 400, clientY: 100 }),
+          );
+        });
+        expect(container.querySelector(".chart-tooltip-total"), metric).toBeTruthy();
+        texts.push(container.textContent!);
+      }
+      return texts;
+    } finally {
+      act(() => root.unmount());
+      container.remove();
+      vi.unstubAllGlobals();
+      for (const spy of spies) spy.mockRestore();
+    }
+  }
+
+  it("shows en-US numbers in a de-DE browser", async () => {
+    const text = (await pageText("de-DE", liveData())).join("\n");
+    for (const s of [
+      "$291,257", // by-model table
+      "$1,232,229", // lifetime donut
+      "$29,957", // tooltip total, cost
+      "$10,000", // cost axis
+      "3,203", // tooltip total, prompts
+      "1,000", // prompts axis
+      "2,242 users", // Tokscale card
+    ]) {
+      expect(text).toContain(s);
+    }
+    expect(text).not.toContain("$291.257");
+    expect(text).not.toContain("$1.232.229");
+  });
+
+  // ar-EG is the locale that catches a number under 1,000, such as the
+  // 503-token model: de-DE prints it the same as en-US.
+  it("renders the same text in every locale as in en-US", async () => {
+    const data = liveData();
+    const expected = await pageText("en-US", data);
+    for (const locale of LOCALES) {
+      expect(await pageText(locale, data), locale).toEqual(expected);
+    }
   });
 });

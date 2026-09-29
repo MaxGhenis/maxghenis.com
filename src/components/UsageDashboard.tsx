@@ -58,17 +58,21 @@ const CLAUDE_COLOR = "#CC785C";
 const CODEX_COLOR = "#10A37F";
 const OTHER_COLOR = "#888888";
 
+// Every number on the page uses en-US digits and separators, like the
+// toFixed figures and en-US dates beside it. Without a locale,
+// toLocaleString follows the browser: de-DE shows $291,257 as "$291.257",
+// and ar-EG changes the digits themselves.
 function fmtTokens(n: number): string {
   if (n >= 1e9) return (n / 1e9).toFixed(1) + "B";
   if (n >= 1e6) return (n / 1e6).toFixed(1) + "M";
   if (n >= 1e3) return (n / 1e3).toFixed(1) + "K";
-  return n.toLocaleString();
+  return n.toLocaleString("en-US");
 }
 
 // Whole dollars, except that a positive amount under $1 shows as "<$1":
 // "$0" would read as no cost at all.
 export function fmtUSD(n: number): string {
-  if (Math.round(n) >= 1000) return "$" + Math.round(n).toLocaleString();
+  if (Math.round(n) >= 1000) return "$" + Math.round(n).toLocaleString("en-US");
   if (n > 0 && n < 1) return "<$1";
   return "$" + n.toFixed(0);
 }
@@ -217,13 +221,13 @@ const METRIC_KEYS: Record<Metric, keyof Bucket> = {
 function fmtMetric(metric: Metric, value: number): string {
   if (metric === "cost") return fmtUSD(value);
   if (metric === "tokens") return fmtTokens(value);
-  return value.toLocaleString();
+  return value.toLocaleString("en-US");
 }
 
 function fmtAxisTick(metric: Metric, value: number): string {
-  if (metric === "cost") return "$" + Math.round(value).toLocaleString();
+  if (metric === "cost") return "$" + Math.round(value).toLocaleString("en-US");
   if (metric === "tokens") return fmtTokens(value);
-  return Math.round(value).toLocaleString();
+  return Math.round(value).toLocaleString("en-US");
 }
 
 const METRIC_LABELS: Record<Metric, string> = {
@@ -855,7 +859,7 @@ export default function UsageDashboard() {
                 <div className="leaderboard-name">Tokscale</div>
                 {tk.users != null && (
                   <div className="leaderboard-users">
-                    {tk.users.toLocaleString()} users
+                    {tk.users.toLocaleString("en-US")} users
                   </div>
                 )}
               </div>
