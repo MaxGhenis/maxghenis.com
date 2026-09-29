@@ -5,6 +5,9 @@ import { useEffect, useMemo, useRef, useState } from "react";
 // cache:"no-store" to avoid the browser's own HTTP cache.
 const DATA_URL =
   "https://raw.githubusercontent.com/MaxGhenis/usage-data/main/usage.json";
+// PRICING in extract.py: the per-model list rates behind every dollar figure.
+const PRICING_URL =
+  "https://github.com/MaxGhenis/usage-data/blob/main/extract.py";
 
 type Bucket = {
   tokens: number;
@@ -819,7 +822,11 @@ export default function UsageDashboard() {
         </div>
         {modelTable.unpriced.length > 0 && (
           <p className="usage-table-note">
-            — Not priced yet: the price table has no rate for{" "}
+            — Not priced yet: the{" "}
+            <a href={PRICING_URL} target="_blank" rel="noopener">
+              list-price table
+            </a>{" "}
+            in usage-data has no rate for{" "}
             {modelTable.unpriced.length === 1 ? "this model" : "these models"},
             so {modelTable.unpriced.length === 1 ? "its" : "their"} tokens count
             toward the token totals but add $0 to the dollar figures above.

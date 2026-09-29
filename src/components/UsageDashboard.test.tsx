@@ -120,6 +120,27 @@ describe("buildModelTable", () => {
     ]);
   });
 
+  it("sorts each view by that view's tokens, not by list or all-origin order", () => {
+    // gpt-6-sol leads the human view but trails gpt-6-astra overall.
+    const byModel = BY_MODEL.map((m) =>
+      m.model === "gpt-6-sol"
+        ? {
+            ...m,
+            human: { tokens: 20e9, cost: 0 },
+            all: { tokens: 20e9 + m.automated.tokens, cost: 0 },
+          }
+        : m,
+    );
+    const list = [...UNPRICED].reverse();
+    const order = (origin: Origin) =>
+      names(buildModelTable(byModel, list, origin).unpriced);
+    expect(order("all")).toEqual(["gpt-6-sol", "gpt-6-astra", "codex-auto-review"]);
+    expect(order("human")).toEqual(["gpt-6-sol", "gpt-6-astra", "codex-auto-review"]);
+    expect(order("automated")).toEqual(["gpt-6-astra", "gpt-6-sol"]);
+    // The list itself is in reverse token order; the table must not follow it.
+    expect(names(list)).toEqual(["codex-auto-review", "gpt-6-sol", "gpt-6-astra"]);
+  });
+
   it("has no unpriced rows when the field is absent, empty or malformed", () => {
     for (const origin of ORIGINS) {
       const legacy = legacyPricedRows(BY_MODEL, origin);
@@ -230,11 +251,13 @@ const unpricedEntry = fc.record({
   model: modelName,
   tokens: fc.oneof(fc.nat({ max: 5e11 }), fc.constant(0), fc.constant(Number.NaN)),
 });
+// Mostly well-formed lists, so most runs produce several unpriced rows; the
+// rest cover absent and malformed fields.
 const unpricedArb = fc.oneof(
-  fc.constant(undefined),
-  fc.constant(null),
-  fc.array(unpricedEntry, { maxLength: 8 }),
-  fc.anything(),
+  { arbitrary: fc.array(unpricedEntry, { minLength: 2, maxLength: 8 }), weight: 6 },
+  { arbitrary: fc.constant(undefined), weight: 1 },
+  { arbitrary: fc.constant(null), weight: 1 },
+  { arbitrary: fc.anything(), weight: 2 },
 );
 const originArb = fc.constantFrom<Origin>(...ORIGINS);
 
@@ -386,6 +409,20 @@ describe("UsageDashboard by-model table", () => {
     act(() => btn.click());
   }
 
+  const noteText = () => container.querySelector(".usage-table-note")?.textContent ?? null;
+  const PLURAL_NOTE =
+    "— Not priced yet: the list-price table in usage-data has no rate for these " +
+    "models, so their tokens count toward the token totals but add $0 to the dollar " +
+    "figures above.";
+  const SINGULAR_NOTE =
+    "— Not priced yet: the list-price table in usage-data has no rate for this " +
+    "model, so its tokens count toward the token totals but add $0 to the dollar " +
+    "figures above.";
+  const unpricedModels = () =>
+    modelTableRows()
+      .filter((r) => r[3]?.startsWith("—"))
+      .map((r) => [r[1], r[2]]);
+
   it("shows unpriced models with a dash for cost and share, plus a note", async () => {
     await renderWith(usageData({ note: "n", unpriced: UNPRICED }));
     expect(modelTableRows()).toEqual([
@@ -395,37 +432,73 @@ describe("UsageDashboard by-model table", () => {
       ["codex", "gpt-6-sol", "4.0M", "—Not priced yet", "—Not priced yet"],
       ["codex", "codex-auto-review", "503.8K", "—Not priced yet", "—Not priced yet"],
     ]);
-    const note = container.querySelector(".usage-table-note");
-    expect(note?.textContent).toBe(
-      "— Not priced yet: the price table has no rate for these models, so their " +
-        "tokens count toward the token totals but add $0 to the dollar figures above.",
+    expect(noteText()).toBe(PLURAL_NOTE);
+    const link = container.querySelector<HTMLAnchorElement>(".usage-table-note a")!;
+    expect(link.textContent).toBe("list-price table");
+    expect(link.getAttribute("href")).toBe(
+      "https://github.com/MaxGhenis/usage-data/blob/main/extract.py",
     );
     expect(container.querySelectorAll("tr.unpriced-row")).toHaveLength(3);
   });
 
-  it("follows the origin toggle", async () => {
+  it("hides the dash from screen readers and gives them a label instead", async () => {
+    await renderWith(usageData({ note: "n", unpriced: UNPRICED }));
+    const rows = container.querySelectorAll("tr.unpriced-row");
+    expect(rows).toHaveLength(3);
+    for (const tr of rows) {
+      const tds = tr.querySelectorAll("td");
+      for (const td of [tds[3], tds[4]]) {
+        const spans = td.querySelectorAll("span");
+        expect(spans).toHaveLength(2);
+        expect(spans[0].getAttribute("aria-hidden")).toBe("true");
+        expect(spans[0].textContent).toBe("—");
+        expect(spans[1].className).toBe("sr-only");
+        expect(spans[1].textContent).toBe("Not priced yet");
+      }
+    }
+  });
+
+  it("follows the origin toggle, note included", async () => {
     await renderWith(usageData({ note: "n", unpriced: UNPRICED }));
     clickOrigin("Automated");
-    const automated = modelTableRows().filter((r) => r[3]?.startsWith("—"));
-    expect(automated.map((r) => [r[1], r[2]])).toEqual([
+    expect(unpricedModels()).toEqual([
       ["gpt-6-astra", "8.3B"],
       ["gpt-6-sol", "2.4M"],
     ]);
+    expect(noteText()).toBe(PLURAL_NOTE);
     clickOrigin("Human");
-    const human = modelTableRows().filter((r) => r[3]?.startsWith("—"));
-    expect(human.map((r) => [r[1], r[2]])).toEqual([
+    expect(unpricedModels()).toEqual([
       ["gpt-6-astra", "11.3B"],
       ["gpt-6-sol", "1.5M"],
       ["codex-auto-review", "503.8K"],
     ]);
+    expect(noteText()).toBe(PLURAL_NOTE);
   });
 
   it("uses singular wording for one unpriced model", async () => {
     await renderWith(usageData({ note: "n", unpriced: UNPRICED.slice(0, 1) }));
-    expect(container.querySelector(".usage-table-note")?.textContent).toBe(
-      "— Not priced yet: the price table has no rate for this model, so its " +
-        "tokens count toward the token totals but add $0 to the dollar figures above.",
-    );
+    expect(noteText()).toBe(SINGULAR_NOTE);
+  });
+
+  it("counts the rows in the current view, not the list, for the note", async () => {
+    // codex-auto-review has no automated usage.
+    const autoReview = UNPRICED.filter((u) => u.model === "codex-auto-review");
+    const astra = UNPRICED.filter((u) => u.model === "gpt-6-astra");
+    await renderWith(usageData({ note: "n", unpriced: [...autoReview, ...astra] }));
+    expect(noteText()).toBe(PLURAL_NOTE);
+    clickOrigin("Automated");
+    expect(unpricedModels()).toEqual([["gpt-6-astra", "8.3B"]]);
+    expect(noteText()).toBe(SINGULAR_NOTE);
+  });
+
+  it("drops the note when no listed model has usage in the view", async () => {
+    const autoReview = UNPRICED.filter((u) => u.model === "codex-auto-review");
+    await renderWith(usageData({ note: "n", unpriced: autoReview }));
+    expect(unpricedModels()).toEqual([["codex-auto-review", "503.8K"]]);
+    expect(noteText()).toBe(SINGULAR_NOTE);
+    clickOrigin("Automated");
+    expect(container.querySelectorAll("tr.unpriced-row")).toHaveLength(0);
+    expect(noteText()).toBeNull();
   });
 
   for (const [label, pricing] of [
