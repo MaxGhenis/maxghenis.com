@@ -22,7 +22,7 @@ type Window = {
 };
 type OriginWindows = { human: Window; automated: Window; all: Window };
 type ModelBucket = { tokens: number; cost: number };
-type ModelRow = {
+export type ModelRow = {
   client: string;
   model: string;
   priceSource: string;
@@ -30,6 +30,7 @@ type ModelRow = {
   automated: ModelBucket;
   all: ModelBucket;
 };
+type UnpricedModel = { client: string; model: string; tokens: number };
 type Leaderboard = {
   url: string;
   rank?: { week?: number; month?: number; allTime?: number };
@@ -37,13 +38,13 @@ type Leaderboard = {
   asOf?: string;
   embedSvg?: string;
 };
-type UsageData = {
+export type UsageData = {
   generatedAt: string;
   dateRange: { start: string; end: string };
   daily: DailyRow[];
   summary: { week: OriginWindows; month: OriginWindows; lifetime: OriginWindows };
   byModel: ModelRow[];
-  pricing?: { note: string };
+  pricing?: { note: string; unpriced?: UnpricedModel[] };
   leaderboards: {
     tokscale?: Leaderboard;
     straude?: Leaderboard;
@@ -118,7 +119,78 @@ function fmtWeekLabel(iso: string): string {
 type Granularity = "day" | "week";
 type RangeChoice = "7" | "30" | "90" | "all";
 type Metric = "cost" | "tokens" | "prompts" | "msgs";
-type Origin = "all" | "human" | "automated";
+export type Origin = "all" | "human" | "automated";
+
+export type ModelTableRow = {
+  client: string;
+  model: string;
+  tokens: number;
+  cost: number;
+};
+export type ModelTable = {
+  priced: ModelTableRow[];
+  unpriced: ModelTableRow[];
+  pricedTotalCost: number;
+};
+
+function modelKey(client: string, model: string): string {
+  return `${client}\u0000${model}`;
+}
+
+// By-model rows for one origin. Priced rows are those with cost > 0, sorted
+// by cost. usage-data publishes a model with no price-table rate at $0 and
+// names it under pricing.unpriced; those rows would otherwise drop out of the
+// cost filter, so they come back as their own list, sorted by tokens. The
+// list carries all-origin tokens, so the per-origin split comes from byModel.
+// usage.json files built before that field existed have no list: no rows.
+export function buildModelTable(
+  byModel: ModelRow[],
+  unpricedList: unknown,
+  origin: Origin,
+): ModelTable {
+  const priced = byModel
+    .map((m) => ({
+      client: m.client,
+      model: m.model,
+      tokens: m[origin].tokens,
+      cost: m[origin].cost,
+    }))
+    .filter((m) => m.cost > 0)
+    .sort((a, b) => b.cost - a.cost);
+  const pricedTotalCost = priced.reduce((s, m) => s + m.cost, 0);
+
+  const byKey = new Map(byModel.map((m) => [modelKey(m.client, m.model), m]));
+  const shown = new Set(priced.map((m) => modelKey(m.client, m.model)));
+  const unpriced: ModelTableRow[] = [];
+  for (const u of Array.isArray(unpricedList) ? unpricedList : []) {
+    if (!u || typeof u.client !== "string" || typeof u.model !== "string") {
+      continue;
+    }
+    const key = modelKey(u.client, u.model);
+    if (shown.has(key)) continue;
+    const row = byKey.get(key);
+    const tokens = row
+      ? row[origin].tokens
+      : origin === "all" && typeof u.tokens === "number"
+        ? u.tokens
+        : 0;
+    if (!(tokens > 0 && Number.isFinite(tokens))) continue;
+    shown.add(key);
+    unpriced.push({ client: u.client, model: u.model, tokens, cost: 0 });
+  }
+  unpriced.sort((a, b) => b.tokens - a.tokens);
+
+  return { priced, unpriced, pricedTotalCost };
+}
+
+function NotPriced() {
+  return (
+    <>
+      <span aria-hidden="true">—</span>
+      <span className="sr-only">Not priced yet</span>
+    </>
+  );
+}
 
 const METRIC_KEYS: Record<Metric, keyof Bucket> = {
   cost: "cost",
@@ -559,12 +631,8 @@ export default function UsageDashboard() {
 
   const { summary, byModel, leaderboards, generatedAt } = data;
 
-  // by-model rows for the selected origin
-  const modelRows = byModel
-    .map((m) => ({ ...m, sel: m[origin] }))
-    .filter((m) => m.sel.cost > 0)
-    .sort((a, b) => b.sel.cost - a.sel.cost);
-  const modelTotalCost = modelRows.reduce((s, m) => s + m.sel.cost, 0) || 1;
+  const modelTable = buildModelTable(byModel, data.pricing?.unpriced, origin);
+  const modelTotalCost = modelTable.pricedTotalCost || 1;
 
   const chartDaily =
     granularity === "week"
@@ -722,20 +790,41 @@ export default function UsageDashboard() {
               </tr>
             </thead>
             <tbody>
-              {modelRows.map((m) => (
-                <tr key={`${m.client}:${m.model}`}>
+              {modelTable.priced.map((m) => (
+                <tr key={modelKey(m.client, m.model)}>
                   <td style={{ textTransform: "capitalize" }}>{m.client}</td>
                   <td className="mono">{m.model}</td>
-                  <td style={{ textAlign: "right" }}>{fmtTokens(m.sel.tokens)}</td>
-                  <td style={{ textAlign: "right" }}>{fmtUSD(m.sel.cost)}</td>
+                  <td style={{ textAlign: "right" }}>{fmtTokens(m.tokens)}</td>
+                  <td style={{ textAlign: "right" }}>{fmtUSD(m.cost)}</td>
                   <td style={{ textAlign: "right" }}>
-                    {((m.sel.cost / modelTotalCost) * 100).toFixed(1)}%
+                    {((m.cost / modelTotalCost) * 100).toFixed(1)}%
+                  </td>
+                </tr>
+              ))}
+              {modelTable.unpriced.map((m) => (
+                <tr key={modelKey(m.client, m.model)} className="unpriced-row">
+                  <td style={{ textTransform: "capitalize" }}>{m.client}</td>
+                  <td className="mono">{m.model}</td>
+                  <td style={{ textAlign: "right" }}>{fmtTokens(m.tokens)}</td>
+                  <td style={{ textAlign: "right" }}>
+                    <NotPriced />
+                  </td>
+                  <td style={{ textAlign: "right" }}>
+                    <NotPriced />
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
+        {modelTable.unpriced.length > 0 && (
+          <p className="usage-table-note">
+            — Not priced yet: the price table has no rate for{" "}
+            {modelTable.unpriced.length === 1 ? "this model" : "these models"},
+            so {modelTable.unpriced.length === 1 ? "its" : "their"} tokens count
+            toward the token totals but add $0 to the dollar figures above.
+          </p>
+        )}
       </section>
 
       <section>
