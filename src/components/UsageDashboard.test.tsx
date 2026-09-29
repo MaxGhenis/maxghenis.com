@@ -952,8 +952,10 @@ describe("UsageDashboard in any browser locale", () => {
 
   // From usage.json on usage-data main, generated 2026-09-28T19:13:39Z: the
   // day with the most prompts, 2026-09-05, and that build's All-view summary
-  // windows and Tokscale card. The 503-token model is made up: no live model
-  // has under 1,000 tokens, where fmtTokens prints the number as is.
+  // windows and Tokscale card. The 503-token model is made up, so a table row
+  // also takes fmtTokens' path for numbers under 1,000, which prints them as
+  // is. No live row shown in the table has under 1,000 tokens; the Tokens
+  // axis takes that path at its 0 tick.
   function liveData(): UsageData {
     const data = usageData({ note: "n", unpriced: UNPRICED }, [
       ...BY_MODEL,
@@ -1013,10 +1015,14 @@ describe("UsageDashboard in any browser locale", () => {
     return data;
   }
 
-  // The page's text under each chart metric, with the tooltip open, in a
-  // browser whose default locale is `locale`.
+  // The page's text for each chart metric, by day and by week, with the
+  // tooltip open, in a browser whose default locale is `locale`.
   async function pageText(locale: string, data: UsageData): Promise<string[]> {
     const spies = stubDefaultLocale(locale);
+    // A fresh copy of the module, so a formatter built when it loads gets the
+    // stubbed default too.
+    vi.resetModules();
+    const { default: Dashboard } = await import("./UsageDashboard");
     const container = document.createElement("div");
     document.body.appendChild(container);
     const root = createRoot(container);
@@ -1026,31 +1032,38 @@ describe("UsageDashboard in any browser locale", () => {
     );
     try {
       await act(async () => {
-        root.render(createElement(UsageDashboard));
+        root.render(createElement(Dashboard));
       });
       await act(async () => {
         await new Promise((r) => setTimeout(r, 0));
       });
-      const texts: string[] = [];
-      // "$" is the cost button.
-      for (const metric of ["$", "Tokens", "Prompts", "Records"]) {
+      const click = (group: string, label: string) => {
         const btn = [
-          ...container.querySelectorAll<HTMLButtonElement>('[aria-label="Metric"] button'),
-        ].find((b) => b.textContent === metric)!;
+          ...container.querySelectorAll<HTMLButtonElement>(`[aria-label="${group}"] button`),
+        ].find((b) => b.textContent === label)!;
         act(() => btn.click());
-        const svg = container.querySelector<SVGSVGElement>(
-          'svg[aria-label="Daily usage stacked bar chart"]',
-        )!;
-        // happy-dom lays nothing out, so give the chart its viewBox size.
-        svg.getBoundingClientRect = () =>
-          ({ left: 0, top: 0, right: 760, bottom: 240, width: 760, height: 240 }) as DOMRect;
-        act(() => {
-          svg.dispatchEvent(
-            new MouseEvent("mousemove", { bubbles: true, clientX: 400, clientY: 100 }),
-          );
-        });
-        expect(container.querySelector(".chart-tooltip-total"), metric).toBeTruthy();
-        texts.push(container.textContent!);
+      };
+      const texts: string[] = [];
+      for (const granularity of ["Days", "Weeks"]) {
+        click("Granularity", granularity);
+        // "$" is the cost button.
+        for (const metric of ["$", "Tokens", "Prompts", "Records"]) {
+          click("Metric", metric);
+          const svg = container.querySelector<SVGSVGElement>(
+            'svg[aria-label="Daily usage stacked bar chart"]',
+          )!;
+          // happy-dom lays nothing out, so give the chart its viewBox size.
+          svg.getBoundingClientRect = () =>
+            ({ left: 0, top: 0, right: 760, bottom: 240, width: 760, height: 240 }) as DOMRect;
+          act(() => {
+            svg.dispatchEvent(
+              new MouseEvent("mousemove", { bubbles: true, clientX: 400, clientY: 100 }),
+            );
+          });
+          const view = `${granularity}, ${metric}`;
+          expect(container.querySelector(".chart-tooltip-total"), view).toBeTruthy();
+          texts.push(container.textContent!);
+        }
       }
       return texts;
     } finally {
@@ -1078,8 +1091,8 @@ describe("UsageDashboard in any browser locale", () => {
     expect(text).not.toContain("$1.232.229");
   });
 
-  // ar-EG is the locale that catches a number under 1,000, such as the
-  // 503-token model: de-DE prints it the same as en-US.
+  // ar-EG is the locale that catches a number under 1,000, such as the Tokens
+  // axis's 0 tick or the 503-token model: de-DE prints those as en-US does.
   it("renders the same text in every locale as in en-US", async () => {
     const data = liveData();
     const expected = await pageText("en-US", data);
