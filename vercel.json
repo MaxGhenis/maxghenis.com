@@ -31,6 +31,8 @@
     { "source": "/ubi/og-image.png", "destination": "/ubi-forecast/og-image.png", "permanent": true },
     { "source": "/ubi-forecasts", "destination": "/ubi-forecast/", "permanent": true },
     { "source": "/ubi-forecasts/", "destination": "/ubi-forecast/", "permanent": true },
+    { "source": "/ubi-forecast", "destination": "/ubi-forecast/", "permanent": true },
+    { "source": "/ubi-forecast/paper", "destination": "/ubi-forecast/paper/", "permanent": true },
     { "source": "/mita", "destination": "https://mita-iota.vercel.app/", "permanent": false },
     { "source": "/mita/:path*", "destination": "https://mita-iota.vercel.app/:path*", "permanent": false },
     { "source": "/2022/11/california", "destination": "/blog/voter-guides/2022-11-california", "permanent": true },
