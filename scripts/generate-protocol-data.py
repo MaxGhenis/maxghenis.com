@@ -12,19 +12,24 @@ Data sources:
 """
 
 import json
+import os
 import sqlite3
 import sys
 from dataclasses import replace
 from datetime import date
 from pathlib import Path
 
-# Ensure optiqal is importable
-sys.path.insert(0, str(Path.home() / "optiqal-ai" / "python"))
+# Ensure optiqal is importable. OPTIQAL_REPO lets a branch worktree (e.g.
+# ~/optiqal-ai-qol-evidence) supply the model instead of the main clone —
+# without it, regenerating from a worktree silently imports the main clone's
+# older code because this insert wins over the invoking venv.
+OPTIQAL_REPO = Path(os.environ.get("OPTIQAL_REPO", str(Path.home() / "optiqal-ai")))
+sys.path.insert(0, str(OPTIQAL_REPO / "python"))
 
 from optiqal import (
-    Profile,
     AnalysisConfig,
     analyze,
+    load_protocol_profile,
     CATALOG,
     BUNDLES,
 )
@@ -50,15 +55,13 @@ def _resolve_output_path() -> Path:
 OUTPUT = _resolve_output_path()
 HEALTH_DB = Path.home() / "clawd" / "data" / "health.db"
 
-PROFILE = Profile(
-    age=39,
-    sex="male",
-    bmi_category="normal",
-    smoking_status="never",
-    has_diabetes=False,
-    has_hypertension=False,
-    activity_level="light",
-)
+# One profile, defined once. This page and optiqal.protocol_ground_up both
+# model the same person, so they read the same Profile out of optiqal rather
+# than each keeping their own copy — they previously disagreed on
+# activity_level ("light" here vs "active" there), which moves the baseline
+# hazard by ~28% (ACTIVITY_MORTALITY_RR 1.15 vs 0.90) and therefore every
+# item's modeled QALY.
+PROFILE = load_protocol_profile()
 
 # Primary analysis at Max's personal WTP ($200K/QALY).
 config = AnalysisConfig(
@@ -211,6 +214,25 @@ STATUS_LABELS = {
     "sleep_candidate": "considering",
 }
 
+# Statuses that mean "this is in the current stack right now". Downstream
+# consumers (the protocol page and optiqal.protocol_ground_up) treat these as
+# the active state, so they must agree with health.db rather than with the
+# catalog category, which is static.
+CURRENT_STACK_STATUSES = {"taking", "testing"}
+
+# Where an item lands when health.db says its product is no longer active.
+# Keeps the item on the page as an evaluated candidate instead of silently
+# dropping it, but takes it out of the current stack.
+STOPPED_STATUS_LABELS = {
+    "rx_current": "considering",
+    "rx_candidate": "considering",
+    "supplement_current": "watching",
+    "supplement_bought": "watching",
+    "supplement_candidate": "watching",
+    "sleep_current": "considering",
+    "sleep_candidate": "considering",
+}
+
 # Map Optiqal catalog IDs to health DB product names
 CATALOG_TO_DB = {
     "finasteride_1.25mg": "Finasteride",
@@ -274,6 +296,18 @@ def enrich_with_db(supplement_entry):
 
     if db_name in db_ingredients:
         supplement_entry["ingredients"] = db_ingredients[db_name]
+
+    # health.db is the source of truth for what is actually being taken. The
+    # catalog category is static, so an item stopped in the DB would otherwise
+    # keep a "taking"/"testing" status forever and stay counted in the current
+    # stack. Bundle-supplied ingredients map to their (active) bundle product,
+    # so this only demotes items whose own product was deactivated.
+    if not supplement_entry["db_product_active"]:
+        if supplement_entry["status"] in CURRENT_STACK_STATUSES:
+            supplement_entry["status"] = STOPPED_STATUS_LABELS[
+                supplement_entry["category"]
+            ]
+            supplement_entry["stopped_per_health_db"] = True
 
 
 # Build supplement entries

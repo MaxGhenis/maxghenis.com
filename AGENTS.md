@@ -22,6 +22,29 @@ the mechanical contracts that have actually caused incidents.
   `src/content/blog/` and will sweep in untracked draft posts. After running
   `bun run build`, revert it (`git checkout -- public/llms-full.txt`) unless a
   published post legitimately changed it.
+- **`src/data/protocol-data.json`** and **`src/data/protocol-ground-up.{json,md}`**
+  are Optiqal outputs. Regenerate in this order — the ground-up run reads item
+  statuses out of `protocol-data.json`, so running it first silently analyses
+  the previous stack:
+
+  ```bash
+  cd ~/optiqal-ai/python
+  uv run python ~/maxghenis.com/scripts/generate-protocol-data.py
+  uv run python -m optiqal.protocol_ground_up
+  ```
+
+  To regenerate from a branch worktree instead of the main clone, run both
+  commands from that worktree's `python/` directory and set
+  `OPTIQAL_REPO=<worktree>` for the first (the script's sys.path insert
+  otherwise shadows the worktree with the main clone).
+
+  Both read `~/clawd/data/health.db`, which is the source of truth for what is
+  actually being taken (`supplement_products.active`) and for which product
+  supplies which catalog item (`catalog_product_mappings`). Change the stack in
+  the DB, not in the JSON. The profile lives once, in
+  `optiqal.protocol_ground_up.DEFAULT_PROTOCOL_CONTEXT`; the generator imports
+  it rather than declaring its own. Age comes from `$OPTIQAL_BIRTH_DATE` when
+  set (both repos are public, so no birth date is committed).
 
 ## Untracked drafts
 

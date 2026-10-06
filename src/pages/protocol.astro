@@ -380,7 +380,7 @@ const statusColors: Record<string, string> = {
 											</p>
 										</details>
 									</td>
-									<td><span class="status-pill" style={`background: ${statusColors[s.status]}20; color: ${statusColors[s.status]}`}>{s.status}</span></td>
+									<td><span class="status-pill" style={`background: ${statusColors[s.status]}20; color: ${statusColors[s.status]}`}>{s.stopped_per_health_db ? 'stopped' : s.status}</span></td>
 									<td><span class={`evidence-badge evidence-${s.evidence}`}>{s.evidence}</span></td>
 									<td class="num">{s.hr_posterior_median != null ? s.hr_posterior_median.toFixed(3) : '\u2014'}</td>
 									<td class="num">+{s.days.toFixed(0)}</td>
