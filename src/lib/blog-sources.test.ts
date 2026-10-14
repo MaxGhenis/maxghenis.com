@@ -15,6 +15,15 @@ describe('parseBlogSource draft detection', () => {
 		expect(parseBlogSource('post.md', post(`title: 'T'\n${line}`)).draft).toBe(true);
 	});
 
+	// Astro also reads TOML between +++ fences (review of #65)
+	it('reads a TOML draft', () => {
+		const source = '+++\ntitle = "Private preview"\npubDate = "2026-10-14"\ndraft = true\n+++\nSecret draft body\n';
+		const parsed = parseBlogSource('toml-preview.md', source);
+		expect(parsed.draft).toBe(true);
+		expect(parsed.data.title).toBe('Private preview');
+		expect(parsed.body.trim()).toBe('Secret draft body');
+	});
+
 	it.each([
 		['no draft key', "title: 'T'"],
 		['draft: false', 'draft: false'],
@@ -57,5 +66,15 @@ describe('blogPath', () => {
 
 	it('uses a slug override', () => {
 		expect(blogPath('anything.md', { slug: 'chosen/slug' })).toBe('/blog/chosen/slug/');
+	});
+
+	// Astro uses any truthy slug and stores the id as String(slug) (review of #65)
+	it('uses a numeric slug override as a string', () => {
+		expect(blogPath('new-post.md', { slug: 2026 })).toBe('/blog/2026/');
+	});
+
+	it('ignores a falsy slug, as Astro does', () => {
+		expect(blogPath('new-post.md', { slug: '' })).toBe('/blog/new-post/');
+		expect(blogPath('new-post.md', { slug: 0 })).toBe('/blog/new-post/');
 	});
 });

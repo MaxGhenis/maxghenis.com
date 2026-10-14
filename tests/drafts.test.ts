@@ -144,14 +144,13 @@ describe('Drafts', () => {
 	});
 
 	it('links to drafts only from other drafts', () => {
-		const draftSet = new Set(drafts);
 		// The home page and /blog are listings; check they were read, not skipped
 		expect(pages).toEqual(expect.arrayContaining(['/', '/blog/']));
 		const leaks = pages
 			.filter((path) => !draftPages.has(path))
 			.flatMap((path) =>
 				linkedPaths(builtHtml(path)!, path)
-					.filter((target) => draftSet.has(target))
+					.filter((target) => draftPages.has(target))
 					.map((target) => `${path} links to ${target}`),
 			);
 		expect([...new Set(leaks)], `published pages linking to drafts:\n${[...new Set(leaks)].join('\n')}`).toEqual([]);

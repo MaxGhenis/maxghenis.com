@@ -1,22 +1,21 @@
 import { readFileSync } from 'node:fs';
 import { join, sep } from 'node:path';
+import { parseFrontmatter as astroParseFrontmatter } from '@astrojs/internal-helpers/frontmatter';
 import { slug as githubSlug } from 'github-slugger';
 import { glob } from 'glob';
-import yaml from 'js-yaml';
 
 /**
  * Reads blog posts straight from src/content/blog the way Astro's content
  * layer does, for code that runs outside Astro: the llms-full.txt generator
- * and tests. Frontmatter uses Astro's own pattern and YAML parser
- * (@astrojs/internal-helpers/frontmatter: js-yaml), and ids follow the glob
- * loader's default (astro/dist/content/loaders/glob.js): a `slug` override,
- * else each path segment through github-slugger, minus a trailing /index.
+ * and tests. Frontmatter goes through Astro's own parser
+ * (@astrojs/internal-helpers/frontmatter: YAML between ---, TOML between +++),
+ * and ids follow the glob loader's default (astro/dist/content/loaders/glob.js
+ * and the data store's String(id)): any truthy `slug`, as a string, else each
+ * path segment through github-slugger, minus a trailing /index.
  * tests/drafts.test.ts checks these paths against the built site.
  */
 
 export const BLOG_DIR = 'src/content/blog';
-
-const FRONTMATTER = /(?:^﻿?|^\s*\n)---([\s\S]*?\n)---/;
 
 export interface BlogSource {
 	/** Path relative to the content directory, e.g. `givewell-cea/social.md`. */
@@ -25,28 +24,24 @@ export interface BlogSource {
 	path: string;
 	data: Record<string, unknown>;
 	body: string;
-	/** Same test as the schema's `draft: z.boolean()`: only a YAML boolean true. */
+	/** Same test as the schema's `draft: z.boolean()`: only a boolean true. */
 	draft: boolean;
 }
 
 export function parseFrontmatter(source: string): { data: Record<string, unknown>; body: string } {
-	const match = FRONTMATTER.exec(source);
-	if (!match) return { data: {}, body: source };
-	const parsed = yaml.load(match[1]);
-	const data = parsed && typeof parsed === 'object' ? (parsed as Record<string, unknown>) : {};
-	return { data, body: source.slice(match.index + match[0].length) };
+	const { frontmatter, content } = astroParseFrontmatter(source);
+	return { data: frontmatter, body: content };
 }
 
 export function blogPath(file: string, data: Record<string, unknown>): string {
-	const id =
-		typeof data.slug === 'string' && data.slug
-			? data.slug
-			: file
-					.replace(/\.mdx?$/, '')
-					.split(/[\\/]/)
-					.map((segment) => githubSlug(segment))
-					.join('/')
-					.replace(/\/index$/, '');
+	const id = data.slug
+		? String(data.slug)
+		: file
+				.replace(/\.mdx?$/, '')
+				.split(/[\\/]/)
+				.map((segment) => githubSlug(segment))
+				.join('/')
+				.replace(/\/index$/, '');
 	return `/blog/${id}/`;
 }
 
