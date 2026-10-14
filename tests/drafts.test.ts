@@ -1,28 +1,32 @@
 import { beforeAll, describe, expect, it } from 'vitest';
 import { glob } from 'glob';
 import { existsSync, readFileSync } from 'fs';
-import { join, relative } from 'path';
+import { join } from 'path';
+import { BLOG_DIR, readBlogSources } from '../src/lib/blog-sources';
+import { hasNoindexMeta } from '../src/lib/sitemap-filter.mjs';
+import { domSaysNoindex } from './robots-oracle';
 
 /**
  * Drafts (`draft: true` in frontmatter) render at their URLs so preview links
  * work, but must stay out of every syndication surface: rss.xml, the sitemap,
- * the /blog listing and llms-full.txt. Like social-cards.test.ts, this reads
- * the built site, so run `bun run build` first.
+ * the home page and /blog, llms-full.txt, and links from published pages.
+ * Like social-cards.test.ts, this reads the built site, so run
+ * `bun run build` first.
  *
- * Drafts are found by reading frontmatter directly rather than through the
- * site's own code, so the test also checks that the two agree: the set of
- * noindex pages in dist must be exactly these drafts and their crossposts.
+ * Drafts are found by reading frontmatter the way Astro does
+ * (src/lib/blog-sources.ts), not through the pages, so the test also checks
+ * that the two agree: the noindex pages in dist must be exactly these drafts
+ * and their crossposts.
  */
 
 const ROOT = process.cwd();
 const DIST = join(ROOT, 'dist');
-const BLOG_SOURCE = join(ROOT, 'src/content/blog');
 const SITE = 'https://maxghenis.com';
 const NOINDEX_TAG = '<meta name="robots" content="noindex">';
 
-/** `/blog/foo` and `https://maxghenis.com/blog/foo/` both become `/blog/foo/`. */
-function sitePath(url: string): string {
-	const { pathname } = new URL(url, SITE);
+/** `/blog/foo` and `https://maxghenis.com/blog/foo/?x#y` both become `/blog/foo/`. */
+function sitePath(url: string, base = SITE): string {
+	const { pathname } = new URL(url, base);
 	return decodeURIComponent(pathname.endsWith('/') ? pathname : `${pathname}/`);
 }
 
@@ -31,21 +35,7 @@ function builtHtml(path: string): string | undefined {
 	return existsSync(file) ? readFileSync(file, 'utf-8') : undefined;
 }
 
-function frontmatter(source: string): string {
-	return source.match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
-}
-
-/** YAML 1.2 spells boolean true as true, True or TRUE; the schema rejects anything else. */
-function isDraft(fm: string): boolean {
-	return /^draft:\s*(?:true|True|TRUE)\s*(?:#.*)?$/m.test(fm);
-}
-
-/** The glob loader's id: a `slug` override, else the path without extension or trailing /index. */
-function postPath(file: string, fm: string): string {
-	const slug = fm.match(/^slug:\s*(['"]?)(.+?)\1\s*$/m)?.[2];
-	const id = slug ?? relative(BLOG_SOURCE, file).replace(/\.mdx?$/, '').replace(/\/index$/, '');
-	return `/blog/${id}/`;
-}
+const isRedirectStub = (html: string) => html.includes('http-equiv="refresh"');
 
 function rssItemPaths(xml: string): string[] {
 	return [...xml.matchAll(/<item>([\s\S]*?)<\/item>/g)].flatMap(([, item]) =>
@@ -61,48 +51,66 @@ function sitemapPaths(): string[] {
 	});
 }
 
+/** Same-site paths a page links to, resolved against the page's own URL. */
+function linkedPaths(html: string, pagePath: string): string[] {
+	return [...html.matchAll(/\shref="([^"]*)"/g)].flatMap(([, href]) => {
+		const url = new URL(href.replaceAll('&amp;', '&'), `${SITE}${pagePath}`);
+		return url.origin === SITE ? [sitePath(url.href)] : [];
+	});
+}
+
 describe('Drafts', () => {
 	let drafts: string[];
+	let draftPages: Set<string>;
+	let pages: string[];
 	let rss: Set<string>;
 	let sitemap: Set<string>;
 
 	beforeAll(async () => {
 		if (!existsSync(DIST)) throw new Error('dist/ is missing: run `bun run build` first');
-		const sources = await glob('**/*.{md,mdx}', { cwd: BLOG_SOURCE, absolute: true });
-		drafts = sources.flatMap((file) => {
-			const fm = frontmatter(readFileSync(file, 'utf-8'));
-			return isDraft(fm) ? [postPath(file, fm)] : [];
-		});
+		drafts = (await readBlogSources(join(ROOT, BLOG_DIR))).filter((s) => s.draft).map((s) => s.path);
+		draftPages = new Set(drafts.flatMap((path) => [path, `${path}crosspost/`]));
+		pages = (await glob('**/index.html', { cwd: DIST })).map((file) => sitePath(`/${file.replace(/index\.html$/, '')}`));
 		rss = new Set(rssItemPaths(readFileSync(join(DIST, 'rss.xml'), 'utf-8')));
 		sitemap = new Set(sitemapPaths());
 	});
 
 	it('reads a built site', () => {
+		expect(pages.length).toBeGreaterThan(0);
 		expect(rss.size).toBeGreaterThan(0);
 		expect(sitemap.size).toBeGreaterThan(0);
 	});
 
+	it('finds a built page for every source file, as Astro names it', async () => {
+		const sources = await readBlogSources(join(ROOT, BLOG_DIR));
+		const missing = sources.filter((s) => builtHtml(s.path) === undefined).map((s) => `${s.file} -> ${s.path}`);
+		expect(sources.length).toBeGreaterThan(0);
+		expect(missing, `no built page at the expected path:\n${missing.join('\n')}`).toEqual([]);
+	});
+
 	it('still renders every draft and its crosspost, marked noindex', () => {
-		const problems = drafts.flatMap((path) =>
-			[path, `${path}crosspost/`].flatMap((page) => {
-				const html = builtHtml(page);
-				if (html === undefined) return [`${page}: no built page`];
-				return html.includes(NOINDEX_TAG) ? [] : [`${page}: missing noindex`];
-			}),
-		);
+		const problems = [...draftPages].flatMap((page) => {
+			const html = builtHtml(page);
+			if (html === undefined) return [`${page}: no built page`];
+			return html.includes(NOINDEX_TAG) ? [] : [`${page}: missing noindex`];
+		});
 		expect(problems, problems.join('\n')).toEqual([]);
 	});
 
-	it('marks no page noindex except drafts, their crossposts and redirect stubs', async () => {
-		const expected = new Set(drafts.flatMap((path) => [path, `${path}crosspost/`]));
-		const pages = await glob('**/index.html', { cwd: DIST });
-		const unexpected = pages
-			.map((file) => sitePath(`/${file.replace(/index\.html$/, '')}`))
-			.filter((path) => {
-				const html = builtHtml(path)!;
-				return html.includes(NOINDEX_TAG) && !html.includes('http-equiv="refresh"') && !expected.has(path);
-			});
+	it('marks no page noindex except drafts, their crossposts and redirect stubs', () => {
+		const unexpected = pages.filter((path) => {
+			const html = builtHtml(path)!;
+			return domSaysNoindex(html) && !isRedirectStub(html) && !draftPages.has(path);
+		});
 		expect(unexpected, `noindex pages that are not drafts:\n${unexpected.join('\n')}`).toEqual([]);
+	});
+
+	it("reads every built page's robots tag the way an HTML parser does", () => {
+		const disagree = pages.filter((path) => {
+			const html = builtHtml(path)!;
+			return hasNoindexMeta(html) !== domSaysNoindex(html);
+		});
+		expect(disagree, `sitemap filter and parse5 disagree on:\n${disagree.join('\n')}`).toEqual([]);
 	});
 
 	it('keeps drafts out of rss.xml', () => {
@@ -116,7 +124,10 @@ describe('Drafts', () => {
 	});
 
 	it('lists no noindex page in the sitemap', () => {
-		const noindexed = [...sitemap].filter((path) => builtHtml(path)?.includes(NOINDEX_TAG));
+		const noindexed = [...sitemap].filter((path) => {
+			const html = builtHtml(path);
+			return html !== undefined && domSaysNoindex(html);
+		});
 		expect(noindexed, `noindex pages in the sitemap:\n${noindexed.join('\n')}`).toEqual([]);
 	});
 
@@ -130,6 +141,20 @@ describe('Drafts', () => {
 		const listed = [...listing.matchAll(/<a href="([^"]+)" class="post-row"/g)].map(([, href]) => sitePath(href));
 		expect(listed.length).toBeGreaterThan(0);
 		expect([...rss].sort()).toEqual([...new Set(listed)].sort());
+	});
+
+	it('links to drafts only from other drafts', () => {
+		const draftSet = new Set(drafts);
+		// The home page and /blog are listings; check they were read, not skipped
+		expect(pages).toEqual(expect.arrayContaining(['/', '/blog/']));
+		const leaks = pages
+			.filter((path) => !draftPages.has(path))
+			.flatMap((path) =>
+				linkedPaths(builtHtml(path)!, path)
+					.filter((target) => draftSet.has(target))
+					.map((target) => `${path} links to ${target}`),
+			);
+		expect([...new Set(leaks)], `published pages linking to drafts:\n${[...new Set(leaks)].join('\n')}`).toEqual([]);
 	});
 
 	it('keeps drafts out of llms-full.txt', () => {

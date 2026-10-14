@@ -26,8 +26,13 @@ it and its crosspost page carry `<meta name="robots" content="noindex">`.
   it for any new listing instead of a bare `getCollection('blog')`.
 - The sitemap drops every page whose built HTML says noindex
   (`src/lib/sitemap-filter.mjs`), so it needs no list of drafts of its own.
+- Code outside Astro (the llms-full.txt generator, tests) reads posts through
+  `src/lib/blog-sources.ts`, which parses frontmatter and names pages the way
+  Astro does. Don't hand-roll a frontmatter parser: the old one missed
+  `draft: true  # comment` and `draft: TRUE`.
 - Each file is its own entry: a `-social.md` or bibliography companion needs
-  its own `draft: true`.
+  its own `draft: true`. Only drafts may link to drafts, so publish a post and
+  any draft page it links to together.
 - `tests/drafts.test.ts` checks all of this against `dist/`.
 
 ## Untracked drafts
@@ -44,9 +49,9 @@ Never commit, delete, or move them. They make local test runs differ from CI
   not in CI; to reproduce CI, temporarily move drafts aside, build, test,
   restore.
 - `tests/drafts.test.ts` also reads `dist/`, so build first. It finds drafts
-  from frontmatter and fails if any reaches rss.xml, the sitemap, /blog or
-  llms-full.txt, or if any page other than a draft or a redirect stub is
-  noindex.
+  from frontmatter and fails if any reaches rss.xml, the sitemap, /blog,
+  llms-full.txt or a link from a published page, or if any page other than a
+  draft or a redirect stub is noindex.
 - `tests/crosspost.test.ts` fetches a dev server on :4321 — CI starts one.
   Local ECONNREFUSED failures without a server are false alarms.
 - The QALY explorer's tests (`src/lib/mackenzie-qaly.test.ts`) assert

@@ -2,22 +2,58 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
-const META_TAG = /<meta\b[^>]*>/gi;
-const ROBOTS_NAME = /\bname\s*=\s*["']?robots["']?(?=[\s/>])/i;
-const NOINDEX_CONTENT = /\bcontent\s*=\s*["'][^"']*\bnoindex\b/i;
+// Comments, raw-text elements and tags, in document order. Quoted attribute
+// values may hold ">" or anything else that looks like markup.
+const TOKEN =
+	/<!--[\s\S]*?-->|<(script|style|template|title|noscript)\b(?:[^>"']|"[^"]*"|'[^']*')*>[\s\S]*?<\/\1\s*>|<(\/?)([a-z][^\s/>]*)((?:[^>"']|"[^"]*"|'[^']*')*)>/gi;
+// Elements allowed in <head>; any other start tag means the body has begun
+const HEAD_ELEMENTS = new Set([
+	'html', 'head', 'base', 'basefont', 'bgsound', 'link', 'meta', 'noframes', 'noscript', 'script', 'style', 'template', 'title',
+]);
+// One attribute: name, then an optional double-quoted, single-quoted or bare value
+const ATTRIBUTE = /([^\s"'<>/=]+)(?:\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+)))?/g;
 
 /**
- * Whether an HTML document's head has `<meta name="robots">` with noindex.
- * Pages without a `</head>` (Astro's redirect stubs) are searched whole.
+ * A tag's attributes, names lower-cased. Values are compared raw: the robots
+ * values that matter (`robots`, `noindex`, `none`) have no entities to decode.
+ * @param {string} attributes the text between the tag name and `>`
+ * @returns {Map<string, string>}
+ */
+function parseAttributes(attributes) {
+	const parsed = new Map();
+	for (const [, name, doubleQuoted, singleQuoted, bare] of attributes.matchAll(ATTRIBUTE)) {
+		const key = name.toLowerCase();
+		// HTML keeps the first of duplicate attributes
+		if (!parsed.has(key)) parsed.set(key, doubleQuoted ?? singleQuoted ?? bare ?? '');
+	}
+	return parsed;
+}
+
+/**
+ * Whether an HTML document's head has `<meta name="robots">` whose content
+ * includes noindex (or none, which implies it). Comments and the contents of
+ * scripts, styles, templates, titles and noscript (as a browser with scripts
+ * on reads them) are not markup. As in an HTML
+ * parser, the head runs until the body begins: a `<body>` tag or any other
+ * element that cannot sit in the head, so a meta after `</head>` still
+ * counts. Astro's redirect stubs, which have no head or body tags, work too.
+ * Tests check it against parse5, a spec-conformant HTML parser, on generated
+ * pages and on every built page.
  * @param {string} html
  * @returns {boolean}
  */
 export function hasNoindexMeta(html) {
-	const headEnd = html.search(/<\/head>/i);
-	const head = headEnd === -1 ? html : html.slice(0, headEnd);
-	return [...head.matchAll(META_TAG)].some(
-		([tag]) => ROBOTS_NAME.test(tag) && NOINDEX_CONTENT.test(tag),
-	);
+	for (const [, , closing, tag, attributes] of html.matchAll(TOKEN)) {
+		if (!tag || closing) continue;
+		const name = tag.toLowerCase();
+		if (!HEAD_ELEMENTS.has(name)) return false;
+		if (name !== 'meta') continue;
+		const meta = parseAttributes(attributes);
+		if (meta.get('name')?.trim().toLowerCase() !== 'robots') continue;
+		const directives = (meta.get('content') ?? '').toLowerCase().split(',').map((d) => d.trim());
+		if (directives.includes('noindex') || directives.includes('none')) return true;
+	}
+	return false;
 }
 
 /**
