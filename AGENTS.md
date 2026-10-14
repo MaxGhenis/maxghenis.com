@@ -16,6 +16,20 @@ the mechanical contracts that have actually caused incidents.
   `bun run build`, revert it (`git checkout -- public/llms-full.txt`) unless a
   published post legitimately changed it.
 
+## Draft posts
+
+`draft: true` in frontmatter keeps a post off the home page, /blog, rss.xml
+and the sitemap. The post still renders at its URL so preview links work, and
+it and its crosspost page carry `<meta name="robots" content="noindex">`.
+
+- Listings and the feed read `getPublishedPosts()` (`src/lib/posts.ts`). Use
+  it for any new listing instead of a bare `getCollection('blog')`.
+- The sitemap drops every page whose built HTML says noindex
+  (`src/lib/sitemap-filter.mjs`), so it needs no list of drafts of its own.
+- Each file is its own entry: a `-social.md` or bibliography companion needs
+  its own `draft: true`.
+- `tests/drafts.test.ts` checks all of this against `dist/`.
+
 ## Untracked drafts
 
 Draft posts sit untracked in `src/content/blog/` until Max publishes them.
@@ -29,6 +43,10 @@ Never commit, delete, or move them. They make local test runs differ from CI
   (see CLAUDE.md), not stat cards. Untracked drafts fail this test locally but
   not in CI; to reproduce CI, temporarily move drafts aside, build, test,
   restore.
+- `tests/drafts.test.ts` also reads `dist/`, so build first. It finds drafts
+  from frontmatter and fails if any reaches rss.xml, the sitemap, /blog or
+  llms-full.txt, or if any page other than a draft or a redirect stub is
+  noindex.
 - `tests/crosspost.test.ts` fetches a dev server on :4321 — CI starts one.
   Local ECONNREFUSED failures without a server are false alarms.
 - The QALY explorer's tests (`src/lib/mackenzie-qaly.test.ts`) assert
