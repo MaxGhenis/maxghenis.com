@@ -1,14 +1,14 @@
 # Max Ghenis - Full Content
 
 > This file contains the full text of all blog posts from maxghenis.com, formatted for LLM consumption.
-> Generated: 2026-09-21T22:59:47.926Z
+> Generated: 2026-10-14T06:39:23.471Z
 > See also: /llms.txt for a curated overview
 
 ---
 
 ## Table of Contents
 
-1. [What do forecasters say they don''t know?](/blog/expectations/)
+1. [What do forecasters say they don't know?](/blog/expectations/)
 2. [A year of ChatGPT is a fifth of a beer](/blog/drinking-ai/)
 3. [MacKenzie Scott's giving, in QALYs](/blog/mackenzie-scott-giving-in-qalys/)
 4. [The US government is gutting Anthropic's R&D capacity](/blog/us-gutted-anthropic-rd/)
@@ -17,10 +17,10 @@
 7. [Billionaires aren't 'just as likely' to be nonpayers as top taxpayers](/blog/madoff-billionaire-nonpayers/)
 8. [I built a MyST-to-Quarto converter (and why you might need one)](/blog/mystquarto/)
 9. [One year of Claude Code](/blog/my-claude-code-config/)
-10. [Interactive replication of GiveWell''s cost-effectiveness analysis](/blog/givewell-cea/)
-11. [Why you can''t make double eye contact](/blog/double-eye-contact/)
-12. [OpenMessage: How I built a macOS Google Messages client to give Claude my texts](/blog/openmessage/)
-13. [Where US immigrants come from, and where ICE focuses enforcement](/blog/bad-bunny-immigration-enforcement/)
+10. [Why you can't make double eye contact](/blog/double-eye-contact/)
+11. [Interactive replication of GiveWell's cost-effectiveness analysis](/blog/givewell-cea/)
+12. [Where US immigrants come from, and where ICE focuses enforcement](/blog/bad-bunny-immigration-enforcement/)
+13. [OpenMessage: How I built a macOS Google Messages client to give Claude my texts](/blog/openmessage/)
 14. [Scrollywood: Smooth scroll video recording for the web](/blog/scrollywood/)
 15. [I used Claude Code to recertify for SNAP](/blog/snap-recertification-claude-code/)
 16. [The adolescence of policy simulation: On Amodei and economic disruption](/blog/amodei-adolescence-policyengine/)
@@ -48,7 +48,7 @@
 
 ---
 
-## What do forecasters say they don''t know?
+## What do forecasters say they don't know?
 
 **URL:** https://maxghenis.com/blog/expectations/
 **Published:** Sep 20 2026
@@ -63,7 +63,7 @@ Since 1968 the [Survey of Professional Forecasters](https://www.philadelphiafed.
 <p style="margin: 1.75rem 0 2.25rem; display: flex; flex-wrap: wrap; align-items: center; gap: 1rem;">
   <a href="https://maxghenis.com/expectations/" style="display: inline-block; background: var(--accent); color: var(--ink, #0f172a); padding: 0.65rem 1.2rem; border-radius: var(--radius-md); font-weight: 600; text-decoration: none;">Explore the tracker &rarr;</a>
   <a href="https://maxghenis.com/expectations/paper/" style="font-weight: 600;">Read the working paper</a>
-  <a href="/slides/how-sure-are-the-pros" style="font-weight: 600;">Slides from The Overhang</a>
+  <a href="/slides/how-sure-are-the-pros/" style="font-weight: 600;">Slides from The Overhang</a>
 </p>
 
 ## Growth expectations in the AI era
@@ -769,7 +769,7 @@ If you're sitting on MyST projects and want to try Quarto — or vice versa — 
 
 **URL:** https://maxghenis.com/blog/my-claude-code-config/
 **Published:** Feb 25 2026
-**Description:** A year ago, Anthropic launched Claude Code. I''ve since consumed 10 billion tokens, mass-tweeted about it, and mass-customized it. Here''s my setup and what I''ve learned.
+**Description:** A year ago, Anthropic launched Claude Code. I've since consumed 10 billion tokens, mass-tweeted about it, and mass-customized it. Here's my setup and what I've learned.
 
 Anthropic launched Claude Code on February 24, 2025. I [tweeted about it](https://x.com/MaxGhenis) three times on day one. A year later, it's my primary development environment, and I've mass-customized the `~/.claude` directory that powers it.
 
@@ -1140,11 +1140,53 @@ The repo is at [github.com/MaxGhenis/.claude](https://github.com/MaxGhenis/.clau
 
 ---
 
-## Interactive replication of GiveWell''s cost-effectiveness analysis
+## Why you can't make double eye contact
+
+**URL:** https://maxghenis.com/blog/double-eye-contact/
+**Published:** Feb 10 2026
+**Description:** Your eyes can only converge on a single point. Up close, that means you have to pick one of the other person's eyes to look at.
+
+import EyeConvergence from '../../../components/EyeConvergence.tsx';
+
+Have you ever noticed that when you're face-to-face with someone, you can't actually look at both of their eyes at the same time? You're always picking one — left or right — and subtly switching between them.
+
+This isn't a limitation of attention or focus. It's geometry.
+
+## One convergence point
+
+Your two eyes always rotate as a pair to aim at the same target. This is called [**vergence**](https://pmc.ncbi.nlm.nih.gov/articles/PMC5122972/), and it means they converge on a single point in space at any given moment.
+
+When someone is close to you, their two eyes occupy noticeably different positions in your visual field. The angular separation between them is large enough that you can't fit both into the single point your eyes converge on. So you pick one.
+
+## Try it yourself
+
+Toggle between looking at each eye, and slide the distance to see how angular separation changes.
+
+<EyeConvergence client:load />
+
+When the face is close, the angular separation between their eyes is large — well beyond your [fovea](https://pmc.ncbi.nlm.nih.gov/articles/PMC12330045/) (the high-resolution center of your vision, [~1.5mm across](https://pmc.ncbi.nlm.nih.gov/articles/PMC12330045/) or roughly 5° of visual angle). You're clearly choosing one eye.
+
+As the face moves farther away, both eyes fall into a tighter angular range. Eventually they're so close together in your visual field that it _feels_ like you're looking at both — even though you're still converging on a single point.
+
+## Why it doesn't matter at a distance
+
+Human interpupillary distance [averages about 63mm](https://pmc.ncbi.nlm.nih.gov/articles/PMC3520592/). At 1 meter away, that subtends roughly 3.6°. At 3 meters, it's about 1.2° — easily within your fovea's ~5° span. This is why you barely notice the effect in normal conversation but absolutely feel it during an intimate close-up.
+
+## What about Magic Eye?
+
+If you've viewed a [Magic Eye stereogram](https://en.wikipedia.org/wiki/Magic_Eye), you know it's possible to diverge your eyes — point them more parallel than the object distance would normally call for — while still focusing on a near surface. Could you use this trick to aim each eye at a different target?
+
+No. Even in Magic Eye viewing, both eyes are still aimed at a single convergence point — it's just a virtual one behind the page rather than on the surface. You've moved _where_ your eyes converge, but you haven't split that point in two. To make double eye contact, you'd need each eye aimed at a completely independent target, and that's not something the [vergence system](https://www.ncbi.nlm.nih.gov/books/NBK11070/) supports — it always drives both eyes toward the same point in space.
+
+I never would have built an interactive visualization to explore a random curiosity like this before. But with [Claude Code](https://claude.ai/claude-code), describing what I wanted and getting a working widget took a couple hours — so why not? The idle question gets a better answer when you can play with it yourself.
+
+---
+
+## Interactive replication of GiveWell's cost-effectiveness analysis
 
 **URL:** https://maxghenis.com/blog/givewell-cea/
 **Published:** Feb 10 2026
-**Description:** I re-implemented GiveWell''s cost-effectiveness models for all six top charities as an open-source web tool with editable parameters, moral weights, and sensitivity analysis.
+**Description:** I re-implemented GiveWell's cost-effectiveness models for all six top charities as an open-source web tool with editable parameters, moral weights, and sensitivity analysis.
 
 I re-implemented GiveWell's cost-effectiveness models for all six top charities as an open-source web tool: **[maxghenis.com/givewell-cea](https://maxghenis.com/givewell-cea)**
 
@@ -1360,45 +1402,61 @@ Source code: [github.com/MaxGhenis/givewell-cea](https://github.com/MaxGhenis/gi
 
 ---
 
-## Why you can''t make double eye contact
+## Where US immigrants come from, and where ICE focuses enforcement
 
-**URL:** https://maxghenis.com/blog/double-eye-contact/
-**Published:** Feb 10 2026
-**Description:** Your eyes can only converge on a single point. Up close, that means you have to pick one of the other person''s eyes to look at.
+**URL:** https://maxghenis.com/blog/bad-bunny-immigration-enforcement/
+**Published:** Feb 09 2026
+**Description:** Bad Bunny's Super Bowl halftime show highlighted the Americas. Here's what the data shows about immigration and enforcement patterns.
 
-import EyeConvergence from '../../../components/EyeConvergence.tsx';
+Last night, Bad Bunny performed the [first primarily Spanish-language Super Bowl halftime show](https://www.rollingstone.com/music/music-news/bad-bunny-super-bowl-performance-1235513007/) in history. At the end, holding a football that read "Together, we are America," he said "God bless America" and then [named every country and territory in the American continent](https://sports.yahoo.com/nfl/breaking-news/article/bad-bunny-echoes-grammy-message-with-super-bowl-halftime-show-together-we-are-america-015121748.html): Chile, Argentina, Uruguay, Paraguay, Bolivia, Peru, Ecuador, Brazil, Colombia, Venezuela, Panama, Costa Rica, Nicaragua, Honduras, El Salvador, Guatemala, Mexico, Cuba, the Dominican Republic, Jamaica, Haiti, the United States, Canada, and the US territory of Puerto Rico. Performers carried each flag behind him.
 
-Have you ever noticed that when you're face-to-face with someone, you can't actually look at both of their eyes at the same time? You're always picking one — left or right — and subtly switching between them.
+The performance reached an estimated [130 million viewers](https://variety.com/2026/music/news/bad-bunny-super-bowl-lady-gaga-real-wedding-ceremony-1236656381/). Here's what the data shows about immigration from the Americas and current enforcement patterns.
 
-This isn't a limitation of attention or focus. It's geometry.
+<iframe src="https://americas-immigration.vercel.app" width="100%" height="1600" style="border: none; border-radius: 14px; margin: 1.5rem 0;" loading="lazy"></iframe>
 
-## One convergence point
+## Most US immigrants come from the Americas
 
-Your two eyes always rotate as a pair to aim at the same target. This is called [**vergence**](https://pmc.ncbi.nlm.nih.gov/articles/PMC5122972/), and it means they converge on a single point in space at any given moment.
+**53%** of the 50.2 million foreign-born people in the United States come from other countries and territories in the American continent — Mexico alone accounts for 22.2% — according to the [2024 American Community Survey](https://data.census.gov/table/ACSDT1Y2024.B05006). Every country Bad Bunny named on that stage falls within that share.
 
-When someone is close to you, their two eyes occupy noticeably different positions in your visual field. The angular separation between them is large enough that you can't fit both into the single point your eyes converge on. So you pick one.
+## Spanish is the most common non-English language
 
-## Try it yourself
+Bad Bunny performed entirely in Spanish and said during the show: "English wasn't my first language, but that's OK — it wasn't America's either." Spanish is the most common non-English language in the United States, [spoken at home by about 45 million people](https://data.census.gov/table/ACSST1Y2024.S1601), about 14% of the US population. Of the 74 million people who speak a non-English language at home, **61% speak Spanish**, per [2024 ACS data](https://data.census.gov/table/ACSST1Y2024.S1601).
 
-Toggle between looking at each eye, and slide the distance to see how angular separation changes.
+Congress has never passed a law designating an official language. In March 2025, [Executive Order 14224](https://www.federalregister.gov/documents/2025/03/06/2025-03694/designating-english-as-the-official-language-of-the-united-states) designated English as the official language and revoked [EO 13166](https://www.govinfo.gov/content/pkg/FR-2000-08-16/pdf/00-20938.pdf), a 2000 Clinton-era order that directed agencies to improve access for people with limited English proficiency. However, the order also states that agencies are "not required to amend, remove, or otherwise stop production of documents...in languages other than English."
 
-<EyeConvergence client:load />
+At the time of the [first US census in 1790](https://www.census.gov/library/publications/1909/decennial/century-populaton-growth.html), about 86% of the white population was of British Isles descent (English, Welsh, Scottish, or Irish), with German (9%), Dutch (3%), and French (2%) communities making up much of the rest. The census also counted roughly 700,000 enslaved people — most American-born by that point — and excluded most Native Americans, who spoke [over 300 languages](https://www.bia.gov/faqs/do-all-american-indians-and-alaska-natives-speak-single-traditional-language) at the time of European contact. Among the counted population, English was the dominant language, though German-speaking communities in Pennsylvania were large enough that [bilingual government documents](https://www.census.gov/library/publications/1909/decennial/century-populaton-growth.html) were common. Spanish-speaking settlers founded [St. Augustine in 1565](https://www.nps.gov/places/st-augustine-town-plan-historic-district-st-augustine-florida.htm), 42 years before the first permanent English settlement at Jamestown.
 
-When the face is close, the angular separation between their eyes is large — well beyond your [fovea](https://pmc.ncbi.nlm.nih.gov/articles/PMC12330045/) (the high-resolution center of your vision, [~1.5mm across](https://pmc.ncbi.nlm.nih.gov/articles/PMC12330045/) or roughly 5° of visual angle). You're clearly choosing one eye.
+## ICE enforcement is concentrated in the Americas
 
-As the face moves farther away, both eyes fall into a tighter angular range. Eventually they're so close together in your visual field that it _feels_ like you're looking at both — even though you're still converging on a single point.
+While 53% of the foreign-born population is from the Americas, ICE enforcement skews more heavily toward those countries.
 
-## Why it doesn't matter at a distance
+[Official ICE data](https://www.ice.gov/statistics) shows that **98-99% of ICE administrative arrests** from FY2021 through Q1 FY2025 involved people from other countries in the Americas. The [UC Berkeley Deportation Data Project](https://deportationdata.org), which publishes record-level FOIA'd arrest data, provides a more granular look: from January 20 to October 15, 2025, **92.6%** of 220,931 arrests involved nationals of countries in the Americas, with Mexico (38.6%), Guatemala (14.1%), and Honduras (11.0%) as the top three countries.
 
-Human interpupillary distance [averages about 63mm](https://pmc.ncbi.nlm.nih.gov/articles/PMC3520592/). At 1 meter away, that subtends roughly 3.6°. At 3 meters, it's about 1.2° — easily within your fovea's ~5° span. This is why you barely notice the effect in normal conversation but absolutely feel it during an intimate close-up.
+A [UCLA Luskin study](https://knowledge.luskin.ucla.edu/wp-content/uploads/2025/10/Unseen_Latino-Ice-Arrests-Surge-Under-Trump_20251027.pdf) found that about 90% of ICE arrests during the first six months of Trump's second term involved nationals of Latin American countries, using the same Berkeley FOIA data.
 
-## What about Magic Eye?
+This concentration likely reflects the composition of the unauthorized population, which [skews more heavily Latin American](https://www.migrationpolicy.org/article/frequently-requested-statistics-immigrants-and-immigration-united-states) than the foreign-born population as a whole, as well as geographic proximity and enforcement priorities.
 
-If you've viewed a [Magic Eye stereogram](https://en.wikipedia.org/wiki/Magic_Eye), you know it's possible to diverge your eyes — point them more parallel than the object distance would normally call for — while still focusing on a near surface. Could you use this trick to aim each eye at a different target?
+## Operation Metro Surge in Minnesota
 
-No. Even in Magic Eye viewing, both eyes are still aimed at a single convergence point — it's just a virtual one behind the page rather than on the surface. You've moved _where_ your eyes converge, but you haven't split that point in two. To make double eye contact, you'd need each eye aimed at a completely independent target, and that's not something the [vergence system](https://www.ncbi.nlm.nih.gov/books/NBK11070/) supports — it always drives both eyes toward the same point in space.
+In December 2025, DHS launched [Operation Metro Surge](https://www.britannica.com/event/2025-26-Minnesota-ICE-Deployment) in Minneapolis, which it called the largest immigration enforcement operation ever, [deploying up to 2,000 federal agents](https://www.cbsnews.com/minnesota/live-updates/ice-somali-immigrants-minneapolis-st-paul/) to the Twin Cities.
 
-I never would have built an interactive visualization to explore a random curiosity like this before. But with [Claude Code](https://claude.ai/claude-code), describing what I wanted and getting a working widget took a couple hours — so why not? The idle question gets a better answer when you can play with it yourself.
+DHS said the operation focused on fraud in the Somali-American community. Minnesota is home to the largest Somali population in the US — roughly [84,000 people in the Twin Cities alone](https://www.pbs.org/newshour/nation/5-things-to-know-about-the-somali-community-in-minnesota-after-trumps-attacks). Of those, nearly **58% were born in the United States**, and of the foreign-born Somalis in Minnesota, **87% are naturalized US citizens**, according to [Census data reported by PBS](https://www.pbs.org/newshour/nation/5-things-to-know-about-the-somali-community-in-minnesota-after-trumps-attacks).
+
+Key outcomes of the operation:
+
+- **3,000+ people arrested** as of January 19, 2026, per [DHS](https://www.dhs.gov/news/2026/01/19/ice-continues-remove-worst-worst-minneapolis-streets-dhs-law-enforcement-marks-3000)
+- DHS publicly identified a subset of arrestees on its website. Of those, **23 were from Somalia** — while the operation's stated focus was on Somali fraud ([Britannica](https://www.britannica.com/event/2025-26-Minnesota-ICE-Deployment)). A [Washington Times analysis](https://www.washingtontimes.com/news/2026/jan/29/operation-metro-surge-crosses-3500-arrest-mark-heres-whos-getting/) of 170 DHS-released arrests found Mexico and Laos were the top two nationalities, with Somalia third. The full nationality breakdown of all arrests has not been made public
+- About **5% of arrestees had violent criminal records** ([Britannica](https://www.britannica.com/event/2025-26-Minnesota-ICE-Deployment))
+- **Two US citizens were killed** by federal agents during the operation: Renee Good and Alex Pretti ([CBS News](https://www.cbsnews.com/news/minneapolis-trump-immigration-ice-border-patrol-arrests-protests-shootings/))
+- **50,000 people** gathered on January 23 for a statewide general strike in protest ([Britannica](https://www.britannica.com/event/2025-26-Minnesota-ICE-Deployment))
+
+[Sahan Journal reported](https://sahanjournal.com/immigration/immigration-enforcement-somali-community-impact/) effects on daily life in affected communities, including residents skipping medical appointments, reduced mosque attendance, and hundreds of businesses closing. Minnesota and the Twin Cities [filed a federal lawsuit against DHS](https://www.ag.state.mn.us/Office/Communications/2026/docs/00190_DHS_Complaint.pdf).
+
+## Summary
+
+53% of the 50.2 million foreign-born people in the United States come from other countries in the Americas. ICE enforcement is even more concentrated, with over 92% of arrests in 2025 involving nationals of countries in the Western Hemisphere. The largest enforcement operation, in Minnesota, was focused on the Somali community but resulted in over 3,000 arrests across nationalities.
+
+Bad Bunny's halftime show put a spotlight on the hemispheric connections between the US and the rest of the Americas. The immigration and enforcement data provide context for the scale of those connections.
 
 ---
 
@@ -1493,64 +1551,6 @@ If any of these interest you, [open an issue](https://github.com/MaxGhenis/openm
 OpenMessage is free and open source. Requires macOS 14.0+ and an Android phone with Google Messages.
 
 **[Download for Mac](https://github.com/MaxGhenis/openmessage/releases/latest/download/OpenMessage.dmg)** | [openmessage.ai](https://openmessage.ai) | [GitHub](https://github.com/MaxGhenis/openmessage)
-
----
-
-## Where US immigrants come from, and where ICE focuses enforcement
-
-**URL:** https://maxghenis.com/blog/bad-bunny-immigration-enforcement/
-**Published:** Feb 09 2026
-**Description:** Bad Bunny''s Super Bowl halftime show highlighted the Americas. Here''s what the data shows about immigration and enforcement patterns.
-
-Last night, Bad Bunny performed the [first primarily Spanish-language Super Bowl halftime show](https://www.rollingstone.com/music/music-news/bad-bunny-super-bowl-performance-1235513007/) in history. At the end, holding a football that read "Together, we are America," he said "God bless America" and then [named every country and territory in the American continent](https://sports.yahoo.com/nfl/breaking-news/article/bad-bunny-echoes-grammy-message-with-super-bowl-halftime-show-together-we-are-america-015121748.html): Chile, Argentina, Uruguay, Paraguay, Bolivia, Peru, Ecuador, Brazil, Colombia, Venezuela, Panama, Costa Rica, Nicaragua, Honduras, El Salvador, Guatemala, Mexico, Cuba, the Dominican Republic, Jamaica, Haiti, the United States, Canada, and the US territory of Puerto Rico. Performers carried each flag behind him.
-
-The performance reached an estimated [130 million viewers](https://variety.com/2026/music/news/bad-bunny-super-bowl-lady-gaga-real-wedding-ceremony-1236656381/). Here's what the data shows about immigration from the Americas and current enforcement patterns.
-
-<iframe src="https://americas-immigration.vercel.app" width="100%" height="1600" style="border: none; border-radius: 14px; margin: 1.5rem 0;" loading="lazy"></iframe>
-
-## Most US immigrants come from the Americas
-
-**53%** of the 50.2 million foreign-born people in the United States come from other countries and territories in the American continent — Mexico alone accounts for 22.2% — according to the [2024 American Community Survey](https://data.census.gov/table/ACSDT1Y2024.B05006). Every country Bad Bunny named on that stage falls within that share.
-
-## Spanish is the most common non-English language
-
-Bad Bunny performed entirely in Spanish and said during the show: "English wasn't my first language, but that's OK — it wasn't America's either." Spanish is the most common non-English language in the United States, [spoken at home by about 45 million people](https://data.census.gov/table/ACSST1Y2024.S1601), about 14% of the US population. Of the 74 million people who speak a non-English language at home, **61% speak Spanish**, per [2024 ACS data](https://data.census.gov/table/ACSST1Y2024.S1601).
-
-Congress has never passed a law designating an official language. In March 2025, [Executive Order 14224](https://www.federalregister.gov/documents/2025/03/06/2025-03694/designating-english-as-the-official-language-of-the-united-states) designated English as the official language and revoked [EO 13166](https://www.govinfo.gov/content/pkg/FR-2000-08-16/pdf/00-20938.pdf), a 2000 Clinton-era order that directed agencies to improve access for people with limited English proficiency. However, the order also states that agencies are "not required to amend, remove, or otherwise stop production of documents...in languages other than English."
-
-At the time of the [first US census in 1790](https://www.census.gov/library/publications/1909/decennial/century-populaton-growth.html), about 86% of the white population was of British Isles descent (English, Welsh, Scottish, or Irish), with German (9%), Dutch (3%), and French (2%) communities making up much of the rest. The census also counted roughly 700,000 enslaved people — most American-born by that point — and excluded most Native Americans, who spoke [over 300 languages](https://www.bia.gov/faqs/do-all-american-indians-and-alaska-natives-speak-single-traditional-language) at the time of European contact. Among the counted population, English was the dominant language, though German-speaking communities in Pennsylvania were large enough that [bilingual government documents](https://www.census.gov/library/publications/1909/decennial/century-populaton-growth.html) were common. Spanish-speaking settlers founded [St. Augustine in 1565](https://www.nps.gov/places/st-augustine-town-plan-historic-district-st-augustine-florida.htm), 42 years before the first permanent English settlement at Jamestown.
-
-## ICE enforcement is concentrated in the Americas
-
-While 53% of the foreign-born population is from the Americas, ICE enforcement skews more heavily toward those countries.
-
-[Official ICE data](https://www.ice.gov/statistics) shows that **98-99% of ICE administrative arrests** from FY2021 through Q1 FY2025 involved people from other countries in the Americas. The [UC Berkeley Deportation Data Project](https://deportationdata.org), which publishes record-level FOIA'd arrest data, provides a more granular look: from January 20 to October 15, 2025, **92.6%** of 220,931 arrests involved nationals of countries in the Americas, with Mexico (38.6%), Guatemala (14.1%), and Honduras (11.0%) as the top three countries.
-
-A [UCLA Luskin study](https://knowledge.luskin.ucla.edu/wp-content/uploads/2025/10/Unseen_Latino-Ice-Arrests-Surge-Under-Trump_20251027.pdf) found that about 90% of ICE arrests during the first six months of Trump's second term involved nationals of Latin American countries, using the same Berkeley FOIA data.
-
-This concentration likely reflects the composition of the unauthorized population, which [skews more heavily Latin American](https://www.migrationpolicy.org/article/frequently-requested-statistics-immigrants-and-immigration-united-states) than the foreign-born population as a whole, as well as geographic proximity and enforcement priorities.
-
-## Operation Metro Surge in Minnesota
-
-In December 2025, DHS launched [Operation Metro Surge](https://www.britannica.com/event/2025-26-Minnesota-ICE-Deployment) in Minneapolis, which it called the largest immigration enforcement operation ever, [deploying up to 2,000 federal agents](https://www.cbsnews.com/minnesota/live-updates/ice-somali-immigrants-minneapolis-st-paul/) to the Twin Cities.
-
-DHS said the operation focused on fraud in the Somali-American community. Minnesota is home to the largest Somali population in the US — roughly [84,000 people in the Twin Cities alone](https://www.pbs.org/newshour/nation/5-things-to-know-about-the-somali-community-in-minnesota-after-trumps-attacks). Of those, nearly **58% were born in the United States**, and of the foreign-born Somalis in Minnesota, **87% are naturalized US citizens**, according to [Census data reported by PBS](https://www.pbs.org/newshour/nation/5-things-to-know-about-the-somali-community-in-minnesota-after-trumps-attacks).
-
-Key outcomes of the operation:
-
-- **3,000+ people arrested** as of January 19, 2026, per [DHS](https://www.dhs.gov/news/2026/01/19/ice-continues-remove-worst-worst-minneapolis-streets-dhs-law-enforcement-marks-3000)
-- DHS publicly identified a subset of arrestees on its website. Of those, **23 were from Somalia** — while the operation's stated focus was on Somali fraud ([Britannica](https://www.britannica.com/event/2025-26-Minnesota-ICE-Deployment)). A [Washington Times analysis](https://www.washingtontimes.com/news/2026/jan/29/operation-metro-surge-crosses-3500-arrest-mark-heres-whos-getting/) of 170 DHS-released arrests found Mexico and Laos were the top two nationalities, with Somalia third. The full nationality breakdown of all arrests has not been made public
-- About **5% of arrestees had violent criminal records** ([Britannica](https://www.britannica.com/event/2025-26-Minnesota-ICE-Deployment))
-- **Two US citizens were killed** by federal agents during the operation: Renee Good and Alex Pretti ([CBS News](https://www.cbsnews.com/news/minneapolis-trump-immigration-ice-border-patrol-arrests-protests-shootings/))
-- **50,000 people** gathered on January 23 for a statewide general strike in protest ([Britannica](https://www.britannica.com/event/2025-26-Minnesota-ICE-Deployment))
-
-[Sahan Journal reported](https://sahanjournal.com/immigration/immigration-enforcement-somali-community-impact/) effects on daily life in affected communities, including residents skipping medical appointments, reduced mosque attendance, and hundreds of businesses closing. Minnesota and the Twin Cities [filed a federal lawsuit against DHS](https://www.ag.state.mn.us/Office/Communications/2026/docs/00190_DHS_Complaint.pdf).
-
-## Summary
-
-53% of the 50.2 million foreign-born people in the United States come from other countries in the Americas. ICE enforcement is even more concentrated, with over 92% of arrests in 2025 involving nationals of countries in the Western Hemisphere. The largest enforcement operation, in Minnesota, was focused on the Somali community but resulted in over 3,000 arrests across nationalities.
-
-Bad Bunny's halftime show put a spotlight on the hemispheric connections between the US and the rest of the Americas. The immigration and enforcement data provide context for the scale of those connections.
 
 ---
 

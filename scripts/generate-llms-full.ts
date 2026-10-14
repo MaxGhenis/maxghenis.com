@@ -4,10 +4,8 @@
  */
 
 import fs from 'node:fs';
-import path from 'node:path';
-import { glob } from 'glob';
+import { readBlogSources } from '../src/lib/blog-sources';
 
-const CONTENT_DIR = 'src/content/blog';
 const OUTPUT_FILE = 'public/llms-full.txt';
 
 interface PostMeta {
@@ -18,63 +16,28 @@ interface PostMeta {
 	content: string;
 }
 
-function extractFrontmatter(content: string): { data: Record<string, string>; content: string } {
-	const match = content.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
-	if (!match) {
-		return { data: {}, content };
-	}
-
-	const frontmatter = match[1];
-	const body = match[2];
-
-	const data: Record<string, string> = {};
-	for (const line of frontmatter.split('\n')) {
-		const colonIndex = line.indexOf(':');
-		if (colonIndex > 0) {
-			const key = line.slice(0, colonIndex).trim();
-			let value = line.slice(colonIndex + 1).trim();
-			// Remove quotes
-			if ((value.startsWith("'") && value.endsWith("'")) || (value.startsWith('"') && value.endsWith('"'))) {
-				value = value.slice(1, -1);
-			}
-			data[key] = value;
-		}
-	}
-
-	return { data, content: body };
+/** YAML reads an unquoted 2026-01-07 as a Date; print it the way it was written. */
+function text(value: unknown): string {
+	if (value instanceof Date) return value.toISOString().slice(0, 10);
+	return value == null ? '' : String(value);
 }
 
 async function main() {
 	console.log('Generating llms-full.txt...');
 
-	// Find all blog posts
-	const files = await glob(`${CONTENT_DIR}/**/*.{md,mdx}`, {
+	const sources = await readBlogSources(undefined, {
 		ignore: ['**/*-crosspost.md', '**/*-social.md'],
 	});
 
-	const posts: PostMeta[] = [];
-
-	for (const file of files) {
-		const content = fs.readFileSync(file, 'utf-8');
-		const { data, content: body } = extractFrontmatter(content);
-
-		// Skip drafts
-		if (data.draft === 'true') continue;
-
-		// Generate URL path from file path
-		const relativePath = path.relative(CONTENT_DIR, file);
-		const urlPath = relativePath
-			.replace(/\.mdx?$/, '')
-			.replace(/\/index$/, '');
-
-		posts.push({
-			title: data.title || 'Untitled',
-			description: data.description || '',
-			pubDate: data.pubDate || '',
-			path: `/blog/${urlPath}/`,
+	const posts: PostMeta[] = sources
+		.filter((source) => !source.draft)
+		.map(({ data, path, body }) => ({
+			title: text(data.title) || 'Untitled',
+			description: text(data.description),
+			pubDate: text(data.pubDate),
+			path,
 			content: body.trim(),
-		});
-	}
+		}));
 
 	// Sort by date (newest first)
 	posts.sort((a, b) => {

@@ -53,6 +53,7 @@ title: 'Post title in sentence case'
 description: 'Brief description'
 pubDate: 'Jan 07 2026'
 heroImage: './image.png'  # Optional, relative path to image in same folder
+draft: true  # Optional: renders at its URL (noindex) but stays out of listings, RSS and the sitemap
 ---
 ```
 
