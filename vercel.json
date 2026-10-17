@@ -16,6 +16,15 @@
     { "source": "/slides/:path*", "destination": "https://maxghenis.github.io/slides/:path*" }
   ],
   "redirects": [
+    { "source": "/30", "has": [{ "type": "host", "value": "meet.maxghenis.com" }], "destination": "https://calendar.app.google/REPLACE_30", "permanent": false },
+    { "source": "/30/", "has": [{ "type": "host", "value": "meet.maxghenis.com" }], "destination": "https://calendar.app.google/REPLACE_30", "permanent": false },
+    { "source": "/45", "has": [{ "type": "host", "value": "meet.maxghenis.com" }], "destination": "https://calendar.app.google/2tpvhj6qDA4YMcqN9", "permanent": false },
+    { "source": "/45/", "has": [{ "type": "host", "value": "meet.maxghenis.com" }], "destination": "https://calendar.app.google/2tpvhj6qDA4YMcqN9", "permanent": false },
+    { "source": "/60", "has": [{ "type": "host", "value": "meet.maxghenis.com" }], "destination": "https://calendar.app.google/REPLACE_60", "permanent": false },
+    { "source": "/60/", "has": [{ "type": "host", "value": "meet.maxghenis.com" }], "destination": "https://calendar.app.google/REPLACE_60", "permanent": false },
+    { "source": "/", "has": [{ "type": "host", "value": "meet.maxghenis.com" }], "destination": "https://calendar.app.google/2tpvhj6qDA4YMcqN9", "permanent": false },
+    { "source": "/:path*", "has": [{ "type": "host", "value": "meet.maxghenis.com" }], "destination": "https://calendar.app.google/2tpvhj6qDA4YMcqN9", "permanent": false },
+    { "source": "/:path*/", "has": [{ "type": "host", "value": "meet.maxghenis.com" }], "destination": "https://calendar.app.google/2tpvhj6qDA4YMcqN9", "permanent": false },
     { "source": "/talks/how-sure-are-the-pros-overhang-2026.pdf", "destination": "/slides/how-sure-are-the-pros/", "permanent": false },
     { "source": "/expectations", "destination": "/expectations/", "permanent": true },
     { "source": "/whatnut", "destination": "/whatnut/", "permanent": true },
