@@ -14,7 +14,7 @@ const MEET_LINKS = {
 	60: 'https://calendar.app.google/REPLACE_60',
 };
 
-type Route = ReturnType<typeof buildRoutes>[number] & Record<string, any>;
+type Route = ReturnType<typeof buildRoutes>[number];
 type Outcome = { redirect: string; status: number } | 'filesystem';
 
 // Walk the routes the way Vercel does up to the filesystem handle: skip
@@ -24,17 +24,13 @@ function resolve(routes: Route[], host: string, path: string): Outcome {
 	for (const route of routes) {
 		if (route.handle === 'filesystem') return 'filesystem';
 		if (route.continue || !route.headers?.Location) continue;
-		const match = path.match(new RegExp(route.src));
+		const match = path.match(new RegExp(route.src!));
 		if (!match) continue;
-		const hostOk = (route.has ?? []).every(
-			(c: { type: string; value: string }) => c.type !== 'host' || c.value === host,
-		);
-		const missingOk = (route.missing ?? []).every(
-			(c: { type: string; value: string }) => c.type !== 'host' || c.value !== host,
-		);
+		const hostOk = (route.has ?? []).every((c) => c.type !== 'host' || c.value === host);
+		const missingOk = (route.missing ?? []).every((c) => c.type !== 'host' || c.value !== host);
 		if (!hostOk || !missingOk) continue;
 		const location = route.headers.Location.replace(/\$(\d+)/g, (_: string, i: string) => match[Number(i)] ?? '');
-		return { redirect: location, status: route.status };
+		return { redirect: location, status: route.status! };
 	}
 	throw new Error('no filesystem handle');
 }
@@ -42,11 +38,11 @@ function resolve(routes: Route[], host: string, path: string): Outcome {
 const isMeetRule = (r: { has?: { type: string; value: string }[] }) =>
 	(r.has ?? []).some((c) => c.type === 'host' && c.value === MEET_HOST);
 
-const routes = buildRoutes(vercelConfig) as Route[];
+const routes = buildRoutes(vercelConfig);
 const routesWithoutMeet = buildRoutes({
 	...vercelConfig,
 	redirects: vercelConfig.redirects.filter((r: any) => !isMeetRule(r)),
-}) as Route[];
+});
 
 const segment = fc.stringMatching(/^[A-Za-z0-9._~-]{1,12}$/);
 const path = fc

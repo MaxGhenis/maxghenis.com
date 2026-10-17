@@ -2,6 +2,12 @@
 // fix-vercel-rewrites.js writes the result to .vercel/output/config.json;
 // tests/vercel-routes.test.ts checks it without a build.
 
+/**
+ * @typedef {{ type: string, key?: string, value?: string }} Condition
+ * @typedef {{ src?: string, dest?: string, headers?: Record<string, string>, status?: number, continue?: boolean, handle?: string, has?: Condition[], missing?: Condition[] }} Route
+ */
+
+/** @param {string} s */
 const escapeRegex = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
 // One or more path segments, captured as a group (what `:name*` matches).
@@ -18,6 +24,7 @@ const SEGMENTS = '((?:[^/]+?)(?:/(?:[^/]+?))*)';
  * @returns {{ src: string, names: string[] }}
  */
 export function sourceToRegex(source) {
+	/** @type {string[]} */
 	const names = [];
 	let pattern = '';
 	for (const segment of source.split('/').slice(1)) {
@@ -50,9 +57,11 @@ export function substituteParams(destination, names) {
 }
 
 /**
- * @param {{ redirects?: Array<{ source: string, destination: string, permanent?: boolean, has?: object[], missing?: object[] }>, rewrites?: Array<{ source: string, destination: string }> }} vercelConfig
+ * @param {{ redirects?: Array<{ source: string, destination: string, permanent?: boolean, has?: Condition[], missing?: Condition[] }>, rewrites?: Array<{ source: string, destination: string }> }} vercelConfig
+ * @returns {Route[]}
  */
 export function buildRoutes(vercelConfig) {
+	/** @type {Route[]} */
 	const routes = [
 		// Cache headers for hashed assets
 		{ src: '^/assets/(.*)$', headers: { 'cache-control': 'public, max-age=31536000, immutable' }, continue: true },
@@ -62,6 +71,7 @@ export function buildRoutes(vercelConfig) {
 	// Redirects run before the filesystem, so a host-scoped "/" beats index.html.
 	for (const r of vercelConfig.redirects || []) {
 		const { src, names } = sourceToRegex(r.source);
+		/** @type {Route} */
 		const route = {
 			src,
 			headers: { Location: substituteParams(r.destination, names) },
