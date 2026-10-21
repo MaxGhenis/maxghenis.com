@@ -4,6 +4,10 @@ import { defineConfig } from 'astro/config';
 
 import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
+import { sitemapFilter } from './src/lib/sitemap-filter.mjs';
+
+// The sitemap filter reads built pages, so it needs the resolved outDir
+let outDir;
 
 // https://astro.build/config
 export default defineConfig({
@@ -12,10 +16,18 @@ export default defineConfig({
   compressHTML: true,
   integrations: [
     mdx(),
+    {
+      name: 'capture-out-dir',
+      hooks: {
+        'astro:config:done': ({ config }) => {
+          outDir = config.outDir;
+        },
+      },
+    },
     sitemap({
-      // Crosspost pages are copy-paste staging, not canonical content;
-      // underscore-prefixed slugs are unlisted posts
-      filter: (page) => !page.includes('/crosspost/') && !page.includes('/_'),
+      // Drops crosspost staging pages, underscore-prefixed (unlisted) slugs,
+      // and any page marked noindex, which includes every draft post
+      filter: sitemapFilter(() => outDir),
     }),
     react(),
   ],
