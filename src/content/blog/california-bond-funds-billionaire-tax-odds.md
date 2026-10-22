@@ -2,6 +2,7 @@
 title: "Testing California's bond funds against the billionaire tax odds"
 description: "Prediction markets have priced California's Proposition 40 for almost a year, and a fund of California municipal bonds has not moved with the odds by any amount I could detect. Before November 3, I registered a test that pools ballot measures across states."
 pubDate: 'Oct 20 2026'
+updatedDate: 'Oct 22 2026'
 heroImage: './california-bond-funds-billionaire-tax-odds.png'
 ---
 
@@ -17,7 +18,10 @@ Municipal bonds, or munis, are the debt of state and local governments, and a bo
 
 A basis point is a hundredth of a percentage point of yield. A full swing in the odds, from certain failure to certain passage, went with a change in the spread of +0.8 basis points on Kalshi's odds and −0.5 on Polymarket's; positive means California's yields rose against the nation's. The 95% ranges, the effects the data can't rule out, run from −3.5 to +5.0 and from −3.8 to +2.9. Letting the response build over five days, or using each market's odds to filter out noise specific to the other, widens the ranges and still finds nothing distinguishable from zero.
 
-![Proposition 40 passage odds on Kalshi and Polymarket from October 2025 to October 2026, and a scatter of the daily change in the odds against the daily change in the California fund spread, with fitted lines near zero and a dashed line showing a 6 basis-point effect](./california-bond-funds-billionaire-tax-odds-chart.svg)
+<picture>
+  <source media="(max-width: 600px)" srcset="/images/prop40-chart-mobile.svg" width="400" height="860">
+  <img src="/images/prop40-chart.svg" alt="Proposition 40 passage odds on Kalshi and Polymarket from October 2025 to October 2026, and a scatter of the daily change in the odds against the daily change in the California fund spread, with fitted lines near zero and a dashed line showing a 6 basis-point effect" width="760" height="740" loading="lazy" decoding="async">
+</picture>
 
 *The odds ranged from 17% to 56.5%. On the 11 trading days when either market moved 10 points or more, the spread moved 1.73 basis points or less. It moved more than that on 15 of the 238 trading days. An effect of 5 to 7 basis points for a full swing, the smallest the test finds four times in five, would move the spread about 1 basis point on a 15-point day; the dashed line shows a 6 basis-point effect.*
 
@@ -60,3 +64,5 @@ Election night resolves many measures at once, and their surprises differ in siz
 In practice the primary test rests on six revenue measures in California and Colorado, the only states with both a testable fund and a priced measure that has an official revenue estimate. At October 19's prices, and if election night settles every measure, the median smallest effect it can detect is 2.0 basis points per $1 billion a year of revenue; if only 60% of each surprise arrives by November 6, it is 4.3. Scaling Novy-Marx and Rauh's estimates gives 0.5 to 1.0 basis points, so the likeliest registered outcome is inconclusive.
 
 I froze the registration on October 19. Its checksums are timestamped in Bitcoin block 972148, mined 12 minutes after the freeze, and the registration, code and checksums are public at [github.com/MaxGhenis/ballot-measure-prereg-2026](https://github.com/MaxGhenis/ballot-measure-prereg-2026).
+
+*Updated October 22, 2026: I added the chart and the calculator link, and corrected the sentence on converting returns to basis points, which uses CMF's duration alone.*
