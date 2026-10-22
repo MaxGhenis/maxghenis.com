@@ -28,6 +28,7 @@ describe('Social cards', () => {
 			const blogExclusions = [
 				'snap-recertification-claude-code', 'scrollywood', 'mystquarto',
 				'amodei-adolescence-policyengine',
+				'marginal-value-of-information', // draft post, companion bibliography and social page; cover illustration pending
 			];
 
 			const isBlogPost = file.startsWith('blog/') &&
