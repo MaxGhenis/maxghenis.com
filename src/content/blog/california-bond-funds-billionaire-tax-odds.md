@@ -2,7 +2,7 @@
 title: "Testing California's bond funds against the billionaire tax odds"
 description: "Prediction markets have priced California's Proposition 40 for almost a year, and a fund of California municipal bonds has not moved with the odds by any amount I could detect. Before November 3, I registered a test that pools ballot measures across states."
 pubDate: 'Oct 20 2026'
-updatedDate: 'Oct 25 2026'
+updatedDate: 'Nov 02 2026'
 heroImage: './california-bond-funds-billionaire-tax-odds.png'
 ---
 
@@ -43,13 +43,13 @@ Event studies measure how prices respond to dated news, and official dates are t
 
 [Washington's House](https://app.leg.wa.gov/billsummary?BillNumber=6346&Year=2026) took up the state's 9.9% tax on income above $1 million on Monday, March 9, and passed it the next evening, after [24 hours of debate](https://aprilconnors.houserepublicans.wa.gov/2026/03/10/house-republican-floor-leader-april-connors-releases-statement-after-marathon-income-tax-debate/). Kalshi's market on the tax rose 22 percentage points over the weekend before the House took the bill up, 7 across the vote, and 14.5 more by the afternoon of March 12, after the Senate concurred on March 11. The U.S. House first passed the 2025 reconciliation act at 6:56 a.m. Eastern on May 22, 2025. Kalshi's odds on the act had already jumped from 70% to 84% between 10 and 11 p.m. the night before.
 
-Official dates produced large moves when they settled a market's question. California's secretary of state announced on June 17 that the billionaire tax was eligible for the ballot, and certified it as qualified on June 25. Kalshi's market on whether the measure would make the ballot rose 23.5 and 29 percentage points on those days, while the passage markets moved 4 points or less. Washington's signing moved its market 46 points, because that contract paid only if the tax became law before April 1.
+Traders moved a market sharply on official dates that answered, or nearly answered, its question. California's secretary of state announced on June 17 that the billionaire tax was eligible for the ballot, and certified it as qualified on June 25. Kalshi's market on whether California would hold the vote before November 5 rose 23.5 and 29 percentage points on those days, while the passage markets moved 4 points or less. Washington's signing moved its market 46 points, because that contract paid only if the tax became law before April 1.
 
 An event study pinned to the votes' actual times would have missed Washington's 22-point jump and the federal market's 14-point jump.
 
-## The states without a daily price
+## The states where I found no free daily price series
 
-Four state tax measures drew markets with usable price histories in the past year: Washington's income tax, New York City's second-home surcharge, California's billionaire tax and Florida's property-tax amendment. California and New York each have funds that hold mostly their own state's munis and have daily prices. New York's second-home market never moved more than 3 percentage points in a day, too little for a useful test. Washington and Florida have no such fund.
+Four state tax measures drew markets with usable price histories in the past year: Washington's income tax, New York City's second-home surcharge, California's billionaire tax and Florida's property-tax amendment. California and New York each have funds that hold mostly their own state's munis and have daily prices. New York's second-home market never moved more than 3 percentage points in a day, too little for a useful test. I found no such fund for Washington or Florida.
 
 Washington's income tax is the only one of the four that changes how a state taxes its own bonds: it taxes interest on other states' bonds and exempts Washington's. Florida's Amendment 3 would cut local non-school property tax by $11.83 billion a year once fully in effect, according to the state's [Revenue Estimating Conference](https://edr.state.fl.us/Content/conferences/revenueimpact/archives/2026F/_pdf/impact0710.pdf). Florida's counties and cities repay some of their bonds from property taxes, and the [amendment](https://www.flsenate.gov/Session/Bill/2026F/1F/BillText/er/PDF) keeps "debt service payments for existing obligations" among the permitted uses of property tax revenue.
 
@@ -68,3 +68,5 @@ I froze the registration on October 19. Its checksums are timestamped in Bitcoin
 *Updated October 22, 2026: I added the chart and the calculator link, and corrected the sentence on converting returns to basis points, which uses CMF's duration alone.*
 
 *Updated October 25, 2026: I added context on the Forbes study and Jaros and Rauh's estimate of the tax's net cost to the state.*
+
+*Updated November 2, 2026: I corrected two sentences on official dates. I had written that those dates "settled" a market's question. I had also described Kalshi's market on whether California would hold the vote before November 5 as a market on whether the measure would make the ballot. And I changed "Washington and Florida have no such fund" to "I found no such fund for Washington or Florida," because I can't rule out a fund my search missed. I changed that section's heading to match.*
