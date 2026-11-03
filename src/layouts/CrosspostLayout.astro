@@ -9,14 +9,15 @@ interface Props {
 	pubDate: Date;
 	originalUrl: string;
 	heroImage?: string;
+	noindex?: boolean;
 }
 
-const { title, description, originalUrl, heroImage } = Astro.props;
+const { title, description, originalUrl, heroImage, noindex } = Astro.props;
 ---
 
 <html lang="en">
 	<head>
-		<BaseHead title={`${title} (Crosspost)`} description={description} />
+		<BaseHead title={`${title} (Crosspost)`} description={description} noindex={noindex} />
 	</head>
 	<body>
 		<Header />

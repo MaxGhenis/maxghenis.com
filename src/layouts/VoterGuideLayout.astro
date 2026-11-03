@@ -17,7 +17,7 @@ type Props = CollectionEntry<'blog'>['data'] & {
 	recommendations?: Recommendation[];
 };
 
-const { title, description, pubDate, updatedDate, heroImage, recommendations = [] } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, draft, recommendations = [] } = Astro.props;
 
 // Group recommendations by type
 const props = recommendations.filter(r => r.id.toLowerCase().startsWith('prop'));
@@ -26,7 +26,7 @@ const races = recommendations.filter(r => !r.id.toLowerCase().startsWith('prop')
 
 <html lang="en">
 	<head>
-		<BaseHead title={title} description={description} image={heroImage} />
+		<BaseHead title={title} description={description} image={heroImage} noindex={draft} />
 	</head>
 	<body>
 		<Header />
