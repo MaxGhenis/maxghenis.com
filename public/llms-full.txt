@@ -1,7 +1,7 @@
 # Max Ghenis - Full Content
 
 > This file contains the full text of all blog posts from maxghenis.com, formatted for LLM consumption.
-> Generated: 2026-11-03T12:44:56.863Z
+> Generated: 2026-11-03T13:13:11.694Z
 > See also: /llms.txt for a curated overview
 
 ---
@@ -60,7 +60,7 @@ DC voters, including me, decide Initiative 86 on November 3: whether to ban forc
 
 Pro-Animal DC [counted](https://proanimaldc.org/faq/) about 48 DC restaurants with foie gras on the menu in December 2025, many of them only in season. In April 2026, researchers at Colorado State University and UC Berkeley [scanned menus](https://sites.warnercnr.colostate.edu/animalhumanpolicy/ahpc-studies-document-the-prevalence-of-foie-gras-on-menus-and-denver-voters-support-of-a-foie-gras-ban/) across the Washington metro area, [confirmed 17](https://drive.google.com/file/d/1Mc7enjYchgzfH44wjq4B6Y6HgyOtoc_O/view?usp=sharing) as current and found 32 more only on a listing site that keeps closed restaurants. Before the vote, I asked AI forecasters what passage sets in motion: whether it makes further farmed-animal measures likelier, and whether it changes the odds that federal law preempts state sales standards. I also asked whether the ban survives the DC Council, Congress and the courts, whether DC would enforce it against ordinary poultry-liver pâté, and what happens to restaurant jobs.
 
-The forecasters give the measure an 89.7% chance of passing and expect passage to make further farmed-animal measures likelier. Compared with a bare fail at 49.5% Yes, a bare pass at 50.5% raises their chance that someone files a new DC initiative on farmed animals or animal products by the end of 2028 from 22% to 31%. It raises their chance of a further DC law restricting farmed-animal treatment or sales by the end of 2030 from 20% to 25%. Their chance that federal law preempts state sales standards stays near 29%.
+The forecasters expect passage to make further farmed-animal measures likelier. They give 22% to someone filing a new DC initiative on farmed animals or animal products by the end of 2028 after a bare fail at 49.5% Yes, and 31% after a bare pass at 50.5%. For a further DC law restricting farmed-animal treatment or animal-product sales by the end of 2030, they give 20% and 25%. Their chance that federal law preempts state sales standards by the end of 2030 stays near 29% either way.
 
 ## How the forecast works
 
@@ -98,7 +98,7 @@ A bare pass changes the pooled forecasts of DC restaurant employment, sales tax 
 
 ## Political spillovers
 
-For most spillover questions, a bare pass accounts for about a fifth to a third of the gap between failing and passing worlds. The rest of the gap tracks the size of the margin, and I cannot separate what a big Yes vote reveals about voters from any momentum a bigger win adds. The forecasters put the chance that someone files a new DC initiative on farmed animals or animal products by the end of 2028 at 18% if the measure fails and 45% if it passes. A bare pass raises it from 22% to 31%. A bare pass also raises the chance of a further DC law restricting farmed-animal treatment or sales by the end of 2030 from 20% to 25%. It raises the chance that Pro-Animal Future qualifies a 2028 statewide measure on chickens, pigs, cattle or fish from 10% to 13%. At a bare fail, they expect farmed-animal laws that states and localities enact from 2027 through 2032 to newly cover about 25 million US residents, and a bare pass adds about 1.15 million. I left DC's foie gras laws and Denver's measure out of both counts.
+For most spillover questions, a bare pass accounts for about a fifth to a third of the gap between failing and passing worlds. The rest of the gap tracks the size of the margin, and I cannot separate what a big Yes vote reveals about voters from any momentum a bigger win adds. The forecasters put the chance that someone files a new DC initiative on farmed animals or animal products by the end of 2028 at 18% if the measure fails and 45% if it passes. A bare pass raises it from 22% to 31%. A bare pass also raises the chance of a further DC law restricting farmed-animal treatment or animal-product sales by the end of 2030 from 20% to 25%. It raises the chance that Pro-Animal Future qualifies a 2028 statewide measure on chickens, pigs, cattle or fish from 10% to 13%. At a bare fail, they expect farmed-animal laws that states and localities enact from 2027 through 2032 to newly cover about 25 million US residents, and a bare pass adds about 1.15 million. I left DC's foie gras laws and Denver's measure out of both counts.
 
 ![Chance of each political spillover if the measure fails or passes, and at a bare fail and a bare pass](./images/i86-probabilities-spillover.svg)
 
@@ -110,13 +110,13 @@ I multiply each forecaster's cutoff effect by that forecaster's chance that one 
 
 ## How the two models differ
 
-The Opus and Sol runs agree on the measure's chance of passing: the Opus runs give it 87% to 94%, and the Sol runs 86% to 90%. They also agree on what a bare pass does to the chance that someone files a new DC initiative: it raises that chance by 9.3 points in the average Opus run and 8.9 in the average Sol run.
+The Opus and Sol runs agree on the measure's chance of passing: the Opus runs give it 87% to 94%, and the Sol runs 86% to 90%. They also agree on how much a bare pass raises the chance that someone files a new DC initiative: by 9.3 points in the average Opus run and 8.9 in the average Sol run.
 
-They differ on how much farmed-animal law follows. For a further DC law restricting farmed-animal treatment or sales by the end of 2030, the Sol runs give 50% to 61% if the measure passes and 20% to 31% if it fails. The Opus runs give 15% to 23% and 5% to 10%, so no run comes near the pooled 37% if the measure passes. Three of the four Opus runs reasoned that the Council rarely legislates on farmed animals. All four Sol runs cited DC's stalled push to ban fur sales, and two called it a route to a further law even without another initiative. If the measure passes, the Sol runs expect farmed-animal laws that states and localities enact from 2027 through 2032 to newly cover about 41 million US residents, and the Opus runs about 19 million.
+They differ on how much farmed-animal law follows. For a further DC law restricting farmed-animal treatment or animal-product sales by the end of 2030, the Sol runs give 50% to 61% if the measure passes and 20% to 31% if it fails. The Opus runs give 15% to 23% and 5% to 10%, so no run comes near the pooled 37% if the measure passes. A bare pass raises the chance of a further DC law by 3.0 to 4.2 points in the Opus runs and by 6.2 to 7.9 in the Sol runs. Three of the four Opus runs reasoned that the Council rarely legislates on farmed animals, and one cited a stalled Council bill to ban fur sales as an example. All four Sol runs cited that bill too, and two called it a route to a further law even without another initiative.
 
-If the measure passes, the Sol runs also give 73% to a lawsuit against the ban and 73% to the ban still standing on December 1, 2028, against 50% and 84% in the Opus runs.
+If the measure passes, the Sol runs expect farmed-animal laws that states and localities enact from 2027 through 2032 to newly cover 35 million to 44 million US residents, and the Opus runs 15 million to 24 million. The average Sol run also gives 73% to a lawsuit against the ban and 73% to the ban still standing on December 1, 2028, against 50% and 84% in the average Opus run.
 
-These splits hold run by run. Of the 97 distinct per-run figures that differ across runs, 57 put all four runs of one model beyond all four of the other. Of the 34 other ways to divide the eight runs into two groups of four, none separates more than six figures that way.
+These differences hold run by run. If the measure passes, every run of one model gives a higher forecast than every run of the other on 15 of the 22 questions. No other division of the eight runs into two groups of four does so on more than two.
 
 ## Limits
 
