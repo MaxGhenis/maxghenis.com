@@ -1,6 +1,6 @@
 ---
 title: "What eight AI forecasters expect from DC's foie gras vote"
-description: "Before DC's November 3 vote, eight AI forecasters, each researching alone, predict what follows if Initiative 86 passes or fails: whether the ban survives, what happens to menus and liver pâté, and whether passage leads to further farmed-animal measures."
+description: "Before DC's November 3 vote, eight AI forecasters, each researching alone, give Initiative 86 an 89.7% chance of passing and expect passage to make further farmed-animal measures likelier. They also predict whether the ban survives and what happens to menus and liver pâté."
 pubDate: 'Nov 02 2026'
 heroImage: './dc-initiative-86-forecasts.png'
 draft: false
@@ -9,6 +9,8 @@ draft: false
 DC voters, including me, decide Initiative 86 on November 3: whether to ban force-feeding birds and selling "fattened bird liver products" in the District from July 1, 2027. Pro-Animal DC, which [WJLA describes](https://wjla.com/features/i-team/dc-voters-to-decide-foie-gras-ban-after-initiative-86-qualifies-for-november-ballot-controversial-cuisine-what-is-foie-gras-pro-animal-dc-august-2026) as a campaign of Pro-Animal Future, led the petition drive. The Restaurant Association Metropolitan Washington and Butterworth's owner Bart Hutchins [have spoken against the ban](https://wjla.com/features/i-team/dc-voters-to-decide-foie-gras-ban-after-initiative-86-qualifies-for-november-ballot-controversial-cuisine-what-is-foie-gras-pro-animal-dc-august-2026). Denver votes on [its own foie gras sales ban](https://hoodline.com/2026/09/denver-voters-to-decide-foie-gras-ban-restaurants-face-5-000-fines/) the same day, two years after Pro-Animal Future backed bans on [fur sales](https://denverite.com/2024/11/05/denver-ballot-measure-308-results-2024-elections/) and [slaughterhouses](https://denverite.com/2024/11/05/denver-ballot-measure-309-results-2024-elections/) there that [drew about 42% and 35% Yes](https://hoodline.com/2026/09/denver-voters-to-decide-foie-gras-ban-restaurants-face-5-000-fines/).
 
 Pro-Animal DC [counted](https://proanimaldc.org/faq/) about 48 DC restaurants with foie gras on the menu in December 2025, many of them only in season. In April 2026, researchers at Colorado State University and UC Berkeley [scanned menus](https://sites.warnercnr.colostate.edu/animalhumanpolicy/ahpc-studies-document-the-prevalence-of-foie-gras-on-menus-and-denver-voters-support-of-a-foie-gras-ban/) across the Washington metro area, [confirmed 17](https://drive.google.com/file/d/1Mc7enjYchgzfH44wjq4B6Y6HgyOtoc_O/view?usp=sharing) as current and found 32 more only on a listing site that keeps closed restaurants. Before the vote, I asked AI forecasters what passage sets in motion: whether it makes further farmed-animal measures likelier, and whether it changes the odds that federal law preempts state sales standards. I also asked whether the ban survives the DC Council, Congress and the courts, whether DC would enforce it against ordinary poultry-liver pâté, and what happens to restaurant jobs.
+
+The forecasters give the measure an 89.7% chance of passing and expect passage to make further farmed-animal measures likelier. Compared with a bare fail at 49.5% Yes, a bare pass at 50.5% raises their chance that someone files a new DC initiative on farmed animals or animal products by the end of 2028 from 22% to 31%. It raises their chance of a further DC law restricting farmed-animal treatment or sales by the end of 2030 from 20% to 25%. Their chance that federal law preempts state sales standards stays near 29%.
 
 ## How the forecast works
 
@@ -55,6 +57,16 @@ For most spillover questions, a bare pass accounts for about a fifth to a third 
 For a new DC initiative, the Sol runs reasoned that a win shows the initiative route works and helps fundraising. The Opus runs reasoned that Pro-Animal Future runs a series of local measures, so a win makes another DC filing likelier; two of them added that a loss makes the group likelier to turn elsewhere. A bare pass moves the pooled forecast that federal law preempts sales standards like California's Proposition 12 by the end of 2030 from 29.3% to 29.5%. The Opus runs put that chance at 12% to 26%, the Sol runs at 36% to 47%. A bare pass raises the chance that DC bans the sale of another food by the end of 2030 from 17% to 19%.
 
 I multiply each forecaster's cutoff effect by that forecaster's chance that one ballot decides the measure, then average over the eight. Compared with abstaining, one ballot's expected effect comes to about five more US residents under new state and local farmed-animal laws, three hundredths of a force-fed bird in 2030 and a ten-thousandth of a DC establishment listing foie gras. A Yes ballot adds the residents and removes the birds and the listing; a No ballot does the reverse.
+
+## How the two models differ
+
+The Opus and Sol runs agree on the measure's chance of passing: the Opus runs give it 87% to 94%, and the Sol runs 86% to 90%. They also agree on what a bare pass does to the chance that someone files a new DC initiative: it raises that chance by 9.3 points in the average Opus run and 8.9 in the average Sol run.
+
+They differ on how much farmed-animal law follows. For a further DC law restricting farmed-animal treatment or sales by the end of 2030, the Sol runs give 50% to 61% if the measure passes and 20% to 31% if it fails. The Opus runs give 15% to 23% and 5% to 10%, so no run comes near the pooled 37% if the measure passes. Three of the four Opus runs reasoned that the Council rarely legislates on farmed animals. All four Sol runs cited DC's stalled push to ban fur sales, and two called it a route to a further law even without another initiative. If the measure passes, the Sol runs expect farmed-animal laws that states and localities enact from 2027 through 2032 to newly cover about 41 million US residents, and the Opus runs about 19 million.
+
+If the measure passes, the Sol runs also give 73% to a lawsuit against the ban and 73% to the ban still standing on December 1, 2028, against 50% and 84% in the Opus runs.
+
+These splits hold run by run. Of the 97 distinct per-run figures that differ across runs, 57 put all four runs of one model beyond all four of the other. Of the 34 other ways to divide the eight runs into two groups of four, none separates more than six figures that way.
 
 ## Limits
 
