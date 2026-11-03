@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 376" width="760" height="376" font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif" role="img" aria-label="Political spillovers: probability by result">
+<rect width="100%" height="100%" fill="#fcfcfb"/>
+<text x="16" y="24" font-size="15" font-weight="600" fill="#0b0b0b">Political spillovers: probability by result</text>
+<circle cx="22.0" cy="46.0" r="5" fill="#8a8984" stroke="#fcfcfb" stroke-width="2"/>
+<text x="32" y="50" font-size="12" fill="#0b0b0b">If it fails</text>
+<circle cx="112.0" cy="46.0" r="5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<text x="122" y="50" font-size="12" fill="#0b0b0b">If it passes</text>
+<circle cx="212.0" cy="46.0" r="4" fill="#fcfcfb" stroke="#8a8984" stroke-width="2"/>
+<text x="222" y="50" font-size="12" fill="#0b0b0b">At 49.5% Yes</text>
+<circle cx="322.0" cy="46.0" r="4" fill="#fcfcfb" stroke="#2a78d6" stroke-width="2"/>
+<text x="332" y="50" font-size="12" fill="#0b0b0b">At 50.5% Yes</text>
+<line x1="330.0" x2="330.0" y1="68" y2="344" stroke="#e6e5e1"/>
+<text x="330.0" y="362" font-size="11" fill="#52514e" text-anchor="middle">0%</text>
+<line x1="430.0" x2="430.0" y1="68" y2="344" stroke="#e6e5e1"/>
+<text x="430.0" y="362" font-size="11" fill="#52514e" text-anchor="middle">25%</text>
+<line x1="530.0" x2="530.0" y1="68" y2="344" stroke="#e6e5e1"/>
+<text x="530.0" y="362" font-size="11" fill="#52514e" text-anchor="middle">50%</text>
+<line x1="630.0" x2="630.0" y1="68" y2="344" stroke="#e6e5e1"/>
+<text x="630.0" y="362" font-size="11" fill="#52514e" text-anchor="middle">75%</text>
+<line x1="730.0" x2="730.0" y1="68" y2="344" stroke="#e6e5e1"/>
+<text x="730.0" y="362" font-size="11" fill="#52514e" text-anchor="middle">100%</text>
+<text x="318" y="92.0" font-size="12" fill="#0b0b0b" text-anchor="end">Someone files a new DC initiative on farmed</text>
+<text x="318" y="106.0" font-size="12" fill="#0b0b0b" text-anchor="end">animals or animal products between 2026-11-04</text>
+<text x="318" y="120.0" font-size="12" fill="#0b0b0b" text-anchor="end">and 2028-12-31.</text>
+<g><title>A new DC initiative on farmed animals or animal products is filed between 2026-11-04 and 2028-12-31.: 18% if it fails, 45% if it passes</title>
+<line x1="403.0" x2="508.9" y1="94.0" y2="94.0" stroke="#52514e" stroke-width="2"/>
+<circle cx="403.0" cy="94.0" r="5" fill="#8a8984" stroke="#fcfcfb" stroke-width="2"/><circle cx="508.9" cy="94.0" r="5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/></g>
+<g><title>A new DC initiative on farmed animals or animal products is filed between 2026-11-04 and 2028-12-31.: 22% at 49.5% Yes, 31% at 50.5% Yes</title>
+<line x1="417.9" x2="454.3" y1="110.0" y2="110.0" stroke="#52514e" stroke-width="1.5"/>
+<circle cx="417.9" cy="110.0" r="4" fill="#fcfcfb" stroke="#8a8984" stroke-width="2"/><circle cx="454.3" cy="110.0" r="4" fill="#fcfcfb" stroke="#2a78d6" stroke-width="2"/></g>
+<text x="318" y="144.0" font-size="12" fill="#0b0b0b" text-anchor="end">DC enacts another law restricting</text>
+<text x="318" y="158.0" font-size="12" fill="#0b0b0b" text-anchor="end">farmed-animal treatment or animal-product</text>
+<text x="318" y="172.0" font-size="12" fill="#0b0b0b" text-anchor="end">sales by 2030-12-31.</text>
+<g><title>DC enacts another law restricting farmed-animal treatment or animal-product sales by 2030-12-31.: 17% if it fails, 37% if it passes</title>
+<line x1="399.4" x2="478.0" y1="146.0" y2="146.0" stroke="#52514e" stroke-width="2"/>
+<circle cx="399.4" cy="146.0" r="5" fill="#8a8984" stroke="#fcfcfb" stroke-width="2"/><circle cx="478.0" cy="146.0" r="5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/></g>
+<g><title>DC enacts another law restricting farmed-animal treatment or animal-product sales by 2030-12-31.: 20% at 49.5% Yes, 25% at 50.5% Yes</title>
+<line x1="409.4" x2="431.5" y1="162.0" y2="162.0" stroke="#52514e" stroke-width="1.5"/>
+<circle cx="409.4" cy="162.0" r="4" fill="#fcfcfb" stroke="#8a8984" stroke-width="2"/><circle cx="431.5" cy="162.0" r="4" fill="#fcfcfb" stroke="#2a78d6" stroke-width="2"/></g>
+<text x="318" y="203.0" font-size="12" fill="#0b0b0b" text-anchor="end">Pro-Animal Future qualifies a 2028 statewide</text>
+<text x="318" y="217.0" font-size="12" fill="#0b0b0b" text-anchor="end">measure on chickens, pigs, cattle or fish.</text>
+<g><title>Pro-Animal Future qualifies a 2028 statewide measure on chickens, pigs, cattle or fish.: 8% if it fails, 20% if it passes</title>
+<line x1="362.5" x2="408.5" y1="198.0" y2="198.0" stroke="#52514e" stroke-width="2"/>
+<circle cx="362.5" cy="198.0" r="5" fill="#8a8984" stroke="#fcfcfb" stroke-width="2"/><circle cx="408.5" cy="198.0" r="5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/></g>
+<g><title>Pro-Animal Future qualifies a 2028 statewide measure on chickens, pigs, cattle or fish.: 10% at 49.5% Yes, 13% at 50.5% Yes</title>
+<line x1="368.6" x2="380.2" y1="214.0" y2="214.0" stroke="#52514e" stroke-width="1.5"/>
+<circle cx="368.6" cy="214.0" r="4" fill="#fcfcfb" stroke="#8a8984" stroke-width="2"/><circle cx="380.2" cy="214.0" r="4" fill="#fcfcfb" stroke="#2a78d6" stroke-width="2"/></g>
+<text x="318" y="255.0" font-size="12" fill="#0b0b0b" text-anchor="end">Federal law preempts Prop 12-style sales</text>
+<text x="318" y="269.0" font-size="12" fill="#0b0b0b" text-anchor="end">standards by 2030-12-31.</text>
+<g><title>Federal law preempts Prop 12-style sales standards by 2030-12-31.: 29% if it fails, 29% if it passes</title>
+<line x1="446.9" x2="446.9" y1="250.0" y2="250.0" stroke="#52514e" stroke-width="2"/>
+<circle cx="446.9" cy="250.0" r="5" fill="#8a8984" stroke="#fcfcfb" stroke-width="2"/><circle cx="446.9" cy="250.0" r="5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/></g>
+<g><title>Federal law preempts Prop 12-style sales standards by 2030-12-31.: 29% at 49.5% Yes, 30% at 50.5% Yes</title>
+<line x1="447.1" x2="448.1" y1="266.0" y2="266.0" stroke="#52514e" stroke-width="1.5"/>
+<circle cx="447.1" cy="266.0" r="4" fill="#fcfcfb" stroke="#8a8984" stroke-width="2"/><circle cx="448.1" cy="266.0" r="4" fill="#fcfcfb" stroke="#2a78d6" stroke-width="2"/></g>
+<text x="318" y="307.0" font-size="12" fill="#0b0b0b" text-anchor="end">DC bans the sale of another food product by</text>
+<text x="318" y="321.0" font-size="12" fill="#0b0b0b" text-anchor="end">2030-12-31.</text>
+<g><title>DC bans the sale of another food product by 2030-12-31.: 17% if it fails, 19% if it passes</title>
+<line x1="397.6" x2="406.9" y1="302.0" y2="302.0" stroke="#52514e" stroke-width="2"/>
+<circle cx="397.6" cy="302.0" r="5" fill="#8a8984" stroke="#fcfcfb" stroke-width="2"/><circle cx="406.9" cy="302.0" r="5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/></g>
+<g><title>DC bans the sale of another food product by 2030-12-31.: 17% at 49.5% Yes, 19% at 50.5% Yes</title>
+<line x1="398.2" x2="406.3" y1="318.0" y2="318.0" stroke="#52514e" stroke-width="1.5"/>
+<circle cx="398.2" cy="318.0" r="4" fill="#fcfcfb" stroke="#8a8984" stroke-width="2"/><circle cx="406.3" cy="318.0" r="4" fill="#fcfcfb" stroke="#2a78d6" stroke-width="2"/></g>
+</svg>

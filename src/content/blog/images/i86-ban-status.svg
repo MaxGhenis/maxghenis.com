@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 286" width="760" height="286" font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif" role="img" aria-label="If it passes: the sale ban&#x27;s status on 2028-12-01">
+<rect width="100%" height="100%" fill="#fcfcfb"/>
+<text x="16" y="24" font-size="15" font-weight="600" fill="#0b0b0b">If it passes: the sale ban&#x27;s status on 2028-12-01</text>
+<circle cx="22" cy="46" r="5" fill="#2a78d6"/><text x="32" y="50" font-size="12" fill="#0b0b0b">Passes, any margin</text>
+<circle cx="172" cy="46" r="4" fill="#fcfcfb" stroke="#2a78d6" stroke-width="2"/><text x="182" y="50" font-size="12" fill="#0b0b0b">At 50.5% Yes</text>
+<line x1="180.0" x2="180.0" y1="68" y2="254" stroke="#e6e5e1"/>
+<text x="180.0" y="272" font-size="11" fill="#52514e" text-anchor="middle">0%</text>
+<line x1="317.5" x2="317.5" y1="68" y2="254" stroke="#e6e5e1"/>
+<text x="317.5" y="272" font-size="11" fill="#52514e" text-anchor="middle">25%</text>
+<line x1="455.0" x2="455.0" y1="68" y2="254" stroke="#e6e5e1"/>
+<text x="455.0" y="272" font-size="11" fill="#52514e" text-anchor="middle">50%</text>
+<line x1="592.5" x2="592.5" y1="68" y2="254" stroke="#e6e5e1"/>
+<text x="592.5" y="272" font-size="11" fill="#52514e" text-anchor="middle">75%</text>
+<line x1="730.0" x2="730.0" y1="68" y2="254" stroke="#e6e5e1"/>
+<text x="730.0" y="272" font-size="11" fill="#52514e" text-anchor="middle">100%</text>
+<text x="168" y="97.0" font-size="12" fill="#0b0b0b" text-anchor="end">Council repealed or paused</text>
+<g><title>A Council act in effect on 2028-12-01 repeals I-86 section 4(b) (the sale ban), or delays or suspends it so that it does not apply on that date. 8% if it passes; 15% at 50.5%</title>
+<line x1="222.1" x2="262.8" y1="93.0" y2="93.0" stroke="#52514e" stroke-width="2"/>
+<circle cx="222.1" cy="93.0" r="5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<circle cx="262.8" cy="93.0" r="4" fill="#fcfcfb" stroke="#2a78d6" stroke-width="2"/></g>
+<text x="168" y="131.0" font-size="12" fill="#0b0b0b" text-anchor="end">Barred by Congress</text>
+<g><title>Not repealed, but an enacted federal law in effect on 2028-12-01 (an appropriations rider, or a joint resolution of disapproval under the Home Rule Act) bars DC from implementing or enforcing I-86. 7% if it passes; 8% at 50.5%</title>
+<line x1="219.0" x2="224.0" y1="127.0" y2="127.0" stroke="#52514e" stroke-width="2"/>
+<circle cx="219.0" cy="127.0" r="5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<circle cx="224.0" cy="127.0" r="4" fill="#fcfcfb" stroke="#2a78d6" stroke-width="2"/></g>
+<text x="168" y="165.0" font-size="12" fill="#0b0b0b" text-anchor="end">Blocked by a court</text>
+<g><title>Neither of those, but an injunction or judgment in effect on 2028-12-01 bars enforcement of section 4(b) as a whole. An order limited to some products or some sellers does not count. 7% if it passes; 8% at 50.5%</title>
+<line x1="218.4" x2="222.6" y1="161.0" y2="161.0" stroke="#52514e" stroke-width="2"/>
+<circle cx="218.4" cy="161.0" r="5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<circle cx="222.6" cy="161.0" r="4" fill="#fcfcfb" stroke="#2a78d6" stroke-width="2"/></g>
+<text x="168" y="199.0" font-size="12" fill="#0b0b0b" text-anchor="end">Stands, not certified</text>
+<g><title>None of those, and by 2028-12-01 the CFO has not made the section 8(b) certification that I-86&#x27;s fiscal effect is included in an approved budget and financial plan. 22% if it passes; 25% at 50.5%</title>
+<line x1="298.3" x2="316.4" y1="195.0" y2="195.0" stroke="#52514e" stroke-width="2"/>
+<circle cx="298.3" cy="195.0" r="5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<circle cx="316.4" cy="195.0" r="4" fill="#fcfcfb" stroke="#2a78d6" stroke-width="2"/></g>
+<text x="168" y="233.0" font-size="12" fill="#0b0b0b" text-anchor="end">Stands, certified</text>
+<g><title>None of those, and the CFO has made that certification by 2028-12-01. 57% if it passes; 44% at 50.5%</title>
+<line x1="424.2" x2="492.2" y1="229.0" y2="229.0" stroke="#52514e" stroke-width="2"/>
+<circle cx="492.2" cy="229.0" r="5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<circle cx="424.2" cy="229.0" r="4" fill="#fcfcfb" stroke="#2a78d6" stroke-width="2"/></g>
+</svg>
