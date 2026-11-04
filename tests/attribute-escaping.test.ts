@@ -3,6 +3,7 @@
  */
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import { glob } from 'glob';
+import { decodeHTMLAttribute } from 'entities';
 import { parse, type DefaultTreeAdapterMap } from 'parse5';
 import { execFileSync } from 'child_process';
 import { mkdirSync, mkdtempSync, readFileSync, realpathSync, rmSync, symlinkSync, writeFileSync } from 'fs';
@@ -35,18 +36,78 @@ function elements(node: ParentNode): Element[] {
 const attribute = (element: Element, name: string) =>
 	element.attrs.find((attr) => attr.name === name)?.value;
 
-// A character reference left in an attribute value after decoding, meaning
-// the HTML escaped the value twice (`&amp;amp;`, `&amp;#x27;`). Alt text that
-// is literally about entities would trip this; rephrase it.
-const LEFTOVER_REFERENCE = /&(?:amp|lt|gt|quot|apos|nbsp|#\d+|#x[\da-f]+);/i;
+// Attributes that hold text a person reads or a screen reader speaks, or a
+// URL a browser follows. Serialized data, such as astro-island props or data-*
+// attributes, can hold character references legitimately, so the scan skips it.
+const TEXT_AND_URL_ATTRIBUTES = new Set([
+	'abbr',
+	'alt',
+	'aria-description',
+	'aria-label',
+	'aria-placeholder',
+	'aria-roledescription',
+	'aria-valuetext',
+	'content',
+	'label',
+	'placeholder',
+	'title',
+	'action',
+	'cite',
+	'data',
+	'formaction',
+	'href',
+	'ping',
+	'poster',
+	'src',
+	'srcset',
+]);
 
+// The browser decodes each attribute value once. If decoding the result again
+// would change it, the value still holds a character reference (`&amp;`,
+// `&#x27;`), so the build escaped it twice. Text about entities, and a URL
+// parameter whose name starts with a legacy entity name (`&copy_id=`), trip
+// this too.
 function doubleEscapedAttributes(html: string): string[] {
-	return elements(parse(html)).flatMap((element) =>
-		element.attrs
-			.filter((attr) => LEFTOVER_REFERENCE.test(attr.value))
-			.map((attr) => `<${element.tagName} ${attr.name}="${attr.value}">`),
+	// With scripting on, a browser reads <noscript> content as text; with it
+	// off, as markup. Check both.
+	const found = [true, false].flatMap((scriptingEnabled) =>
+		elements(parse(html, { scriptingEnabled })).flatMap((element) =>
+			element.attrs
+				.filter(
+					(attr) =>
+						TEXT_AND_URL_ATTRIBUTES.has(attr.name) &&
+						decodeHTMLAttribute(attr.value) !== attr.value,
+				)
+				.map((attr) => `<${element.tagName} ${attr.name}="${attr.value}">`),
+		),
 	);
+	return [...new Set(found)];
 }
+
+describe('Double-escape scan', () => {
+	const scan = (html: string) => doubleEscapedAttributes(`<!doctype html><body>${html}`);
+
+	it.each([
+		['<img alt="Tom &amp;amp; Jerry">', 'an ampersand'],
+		['<img alt="The forecasters&amp;#x27; average">', 'an apostrophe'],
+		['<img alt="Copyright &amp;copy; 2026">', 'a named reference'],
+		['<a href="/?a=1&amp;amp;b=2">', 'a URL'],
+		['<meta content="Tom &amp;amp; Jerry">', 'meta content'],
+		['<noscript><img alt="Tom &amp;amp; Jerry"></noscript>', 'markup inside noscript'],
+	])('flags %s (%s)', (html) => {
+		expect(scan(html)).toHaveLength(1);
+	});
+
+	it.each([
+		['<img alt="Tom &amp; Jerry">', 'a single escape'],
+		['<img alt="Tom &amp;aMp; Jerry">', 'a misspelled reference'],
+		['<a href="/?a=1&amp;b=2">', 'a query string'],
+		['<astro-island props="{&quot;html&quot;:[0,&quot;Tom &amp;amp; Jerry&quot;]}">', 'island props'],
+		['<div data-html="&lt;p&gt;Tom &amp;amp; Jerry&lt;/p&gt;">', 'a data attribute'],
+	])('passes %s (%s)', (html) => {
+		expect(scan(html)).toEqual([]);
+	});
+});
 
 describe('Built pages', () => {
 	it('have no double-escaped attribute values', async () => {
@@ -81,26 +142,37 @@ describe('Markdown image pipeline', () => {
 
 	// In .md files Astro 7.4.5 still escapes a backtick in image text twice, so
 	// the browser gets `&#x60;`: its round trip decodes only quote, apostrophe
-	// and ampersand references. AGENTS.md keeps backticks out of image text
-	// until a release fixes this.
+	// and ampersand references. Only images Astro processes take that round
+	// trip: relative paths, and remote hosts that the image config allows (the
+	// fixture allows none). Images under public/ and other remote images skip
+	// it. AGENTS.md keeps backticks out of .md image text until a release fixes
+	// this.
 	const BACKTICK = 'Back`tick';
+	const BACKTICK_SOURCES = ['../assets/pixel.svg', '/pixel.svg', 'https://example.com/pixel.svg'];
 
 	// Backslash-escape all ASCII punctuation so Markdown keeps every character
 	// literal: no entity decoding, code spans, or smart quotes
 	const escapeMarkdown = (text: string) => text.replace(/[!-/:-@[-`{-~]/g, '\\$&');
+	const image = (text: string, src: string) =>
+		`![${escapeMarkdown(text)}](${src} "${escapeMarkdown(text)}")`;
 
-	const images = [...CASES, BACKTICK]
-		.map((text) => `![${escapeMarkdown(text)}](../assets/pixel.svg "${escapeMarkdown(text)}")`)
-		.join('\n\n');
+	const images = [
+		...CASES.map((text) => image(text, '../assets/pixel.svg')),
+		...BACKTICK_SOURCES.map((src) => image(BACKTICK, src)),
+		// Backticks that pair into a code span drop out of alt text
+		'![Run `bun test` first](../assets/pixel.svg)',
+	].join('\n\n');
 
 	// A content collection entry (.md and .mdx, as blog posts use) and a
 	// Markdown page each take a different path through Astro. Only MDX keeps
-	// a backtick intact today.
+	// a backtick intact in a processed image today.
 	const ROUTES = [
-		{ route: 'post-md', keepsBacktick: false },
-		{ route: 'post-mdx', keepsBacktick: true },
-		{ route: 'page-md', keepsBacktick: false },
+		{ route: 'post-md', processedBacktick: 'Back&#x60;tick' },
+		{ route: 'post-mdx', processedBacktick: BACKTICK },
+		{ route: 'page-md', processedBacktick: 'Back&#x60;tick' },
 	];
+
+	const PIXEL = '<svg xmlns="http://www.w3.org/2000/svg" width="1" height="1"></svg>';
 
 	const FIXTURE: Record<string, string> = {
 		'package.json': JSON.stringify({ name: 'attribute-escaping-fixture', private: true, type: 'module' }),
@@ -132,7 +204,8 @@ describe('Markdown image pipeline', () => {
 			'---',
 			'<Content />',
 		].join('\n'),
-		'src/assets/pixel.svg': '<svg xmlns="http://www.w3.org/2000/svg" width="1" height="1"></svg>',
+		'src/assets/pixel.svg': PIXEL,
+		'public/pixel.svg': PIXEL,
 		'src/posts/post-md.md': images,
 		'src/posts/post-mdx.mdx': images,
 		'src/pages/page-md.md': images,
@@ -159,7 +232,7 @@ describe('Markdown image pipeline', () => {
 		if (root) rmSync(root, { recursive: true, force: true });
 	});
 
-	for (const { route, keepsBacktick } of ROUTES) {
+	for (const { route, processedBacktick } of ROUTES) {
 		describe(route, () => {
 			let imgs: Element[];
 
@@ -169,7 +242,7 @@ describe('Markdown image pipeline', () => {
 			});
 
 			it('renders every image', () => {
-				expect(imgs).toHaveLength(CASES.length + 1);
+				expect(imgs).toHaveLength(CASES.length + BACKTICK_SOURCES.length + 1);
 			});
 
 			for (const name of ['alt', 'title']) {
@@ -177,12 +250,24 @@ describe('Markdown image pipeline', () => {
 					expect(imgs.slice(0, CASES.length).map((img) => attribute(img, name))).toEqual(CASES);
 				});
 
-				// When an Astro release fixes .md backticks, the it.fails cases
-				// start failing: move BACKTICK into CASES and drop the AGENTS.md rule
-				(keepsBacktick ? it : it.fails)(`decodes a backtick in ${name}`, () => {
-					expect(attribute(imgs[CASES.length], name)).toBe(BACKTICK);
+				// The .md routes pin today's double escape, so this fails once an
+				// Astro release fixes it: then move BACKTICK into CASES and drop
+				// the AGENTS.md rule
+				it(`renders a backtick in ${name} as ${processedBacktick} in a processed image, intact in public and remote ones`, () => {
+					const backtickImgs = imgs.slice(CASES.length, CASES.length + BACKTICK_SOURCES.length);
+					expect(backtickImgs.map((img) => attribute(img, name))).toEqual([
+						processedBacktick,
+						BACKTICK,
+						BACKTICK,
+					]);
 				});
 			}
+
+			it('drops code span backticks from alt text', () => {
+				expect(attribute(imgs[CASES.length + BACKTICK_SOURCES.length], 'alt')).toBe(
+					'Run bun test first',
+				);
+			});
 		});
 	}
 });

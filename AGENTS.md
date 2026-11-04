@@ -33,20 +33,29 @@ Never commit, delete, or move them. They make local test runs differ from CI
   Local ECONNREFUSED failures without a server are false alarms.
 - The QALY explorer's tests (`src/lib/mackenzie-qaly.test.ts`) assert
   distributional agreement with the Python package, not bit-parity.
-- `tests/attribute-escaping.test.ts` fails when any built page escapes an
-  attribute value twice (`&amp;amp;`, `&amp;#x60;`): the browser then shows
-  the reference as text, and screen readers read it out of alt text. It also
-  builds a throwaway Astro project in a temp folder to check that Markdown
-  image alt and title text survives Astro's round trip.
+- `tests/attribute-escaping.test.ts` fails when a built page escapes a text
+  or URL attribute (`alt`, `title`, `aria-label`, `<meta>` content, `href`,
+  `src` and similar) twice, as in `&amp;amp;` or `&amp;#x60;`: the decoded
+  value then holds the reference as text, and screen readers read it out of
+  alt text. It skips serialized data such as astro-island props, which can
+  hold references legitimately. Alt text about entities themselves trips it;
+  rephrase that text. It also builds a throwaway Astro project in a temp
+  folder to check that Markdown image alt and title text survives Astro's
+  round trip.
 
 ## Markdown image alt text
 
 Keep literal backticks out of Markdown image alt and title text in `.md`
-files. Astro 7.4.5 still escapes them twice, so `img.alt` holds `&#x60;`.
-Backticks that pair into a code span drop out of alt text and are fine.
-`.mdx` files keep backticks intact, and the test checks that every other ASCII
-punctuation character, apostrophes and `&` included, comes through intact in
-both. When an Astro release fixes backticks, the test's `it.fails` cases start
+files. Astro 7.4.5 escapes a backtick twice in the images it processes, those
+with relative paths such as `./chart.png`, so `img.alt` holds `&#x60;`.
+Images under `public/` (`/chart.png`), remote images from hosts that the
+`image` config doesn't allow (this site allows none) and `.mdx` files keep
+backticks, and backticks that pair into a code span drop out of alt text. The
+rule still covers every `.md` image, since an image can move from `public/`
+to a relative path, or the config can start allowing its host. The test checks
+each of these cases, and that every other ASCII punctuation character,
+apostrophes and `&` included, comes through intact. When an Astro release
+fixes backticks, the test's backtick checks for processed `.md` images start
 failing; then drop this rule.
 
 ## Deploys
