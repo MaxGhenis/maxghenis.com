@@ -33,6 +33,21 @@ Never commit, delete, or move them. They make local test runs differ from CI
   Local ECONNREFUSED failures without a server are false alarms.
 - The QALY explorer's tests (`src/lib/mackenzie-qaly.test.ts`) assert
   distributional agreement with the Python package, not bit-parity.
+- `tests/attribute-escaping.test.ts` fails when any built page escapes an
+  attribute value twice (`&amp;amp;`, `&amp;#x60;`): the browser then shows
+  the reference as text, and screen readers read it out of alt text. It also
+  builds a throwaway Astro project in a temp folder to check that Markdown
+  image alt and title text survives Astro's round trip.
+
+## Markdown image alt text
+
+Keep literal backticks out of Markdown image alt and title text in `.md`
+files. Astro 7.4.5 still escapes them twice, so `img.alt` holds `&#x60;`.
+Backticks that pair into a code span drop out of alt text and are fine.
+`.mdx` files keep backticks intact, and the test checks that every other ASCII
+punctuation character, apostrophes and `&` included, comes through intact in
+both. When an Astro release fixes backticks, the test's `it.fails` cases start
+failing; then drop this rule.
 
 ## Deploys
 
