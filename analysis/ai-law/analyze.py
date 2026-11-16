@@ -48,6 +48,7 @@ OPEN_QUESTIONS = {
     "eu_no_market_date": ["eu-notification-01", "eu-notification-03", "eu-notification-05", "eu-notification-07"],
     "ny_incident_no_new_york_link": ["incident-clock-05", "incident-clock-06", "incident-clock-07", "incident-clock-08"],
     "eccn_4e091_exactly_1e26": ["compute-figures-08"],
+    "chip_other_bit_lengths": ["eccn-3a090-07"],
 }
 
 questions = {q["id"]: q for q in json.load(open(HERE / "questions.json"))}
@@ -262,7 +263,7 @@ summary = {
     "by_question": {arm: {i: accuracy(arm, MODELS, {i}) for i in (qids if arm != "search" else sorted(SEARCH_IDS, key=qids.index))} for arm in ARMS},
     "by_model_question_right": {arm: {m: {i: accuracy(arm, [m], {i})["n"] for i in (qids if arm != "search" else sorted(SEARCH_IDS, key=qids.index))} for m in MODELS} for arm in ARMS},
     "without_open_questions": {**{name: without(ids) for name, ids in OPEN_QUESTIONS.items()},
-                               "all_nine": without([i for ids in OPEN_QUESTIONS.values() for i in ids])},
+                               "all_ten": without([i for ids in OPEN_QUESTIONS.values() for i in ids])},
     "total_cost_usd": round(sum(r.get("cost") or 0 for r in raw), 2),
     "search_cost_on_search_questions_usd": round(sum(r["cost"] for r in rows("search")), 2),
     "tokens": {m: {"input": sum(r["in"] for r in cells.values() if r["model"] == m), "output": sum(r["out"] for r in cells.values() if r["model"] == m),

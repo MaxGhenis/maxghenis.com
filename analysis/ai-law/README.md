@@ -1,6 +1,6 @@
 # Do Claude models know what AI law says? Code and data
 
-Four Claude models answered 100 multiple-choice questions on AI law three ways: from memory, with web search, and with the rule's text in the prompt. The post is `src/content/blog/claude-ai-law-test.md`. The design was fixed in [PREREGISTRATION.md](PREREGISTRATION.md) before the first call.
+This folder holds a test of four Claude models on 100 multiple-choice questions about AI law, in three arms: from memory, with web search, and with the rule's text in the prompt. The post is `src/content/blog/claude-ai-law-test.md`. The design was fixed in [PREREGISTRATION.md](PREREGISTRATION.md) before the first call.
 
 ## What ran
 
@@ -52,7 +52,7 @@ By rule, all four models:
 | Four compute tests | 12 | 93.8% (135 of 144) | 100.0% (144 of 144) | 11 | 93.2% (123 of 132) | 95.5% (84 of 88) | 100.0% (132 of 132) |
 | Chip export paragraphs (ECCN 3A090) | 16 | 93.8% (180 of 192) | 100.0% (192 of 192) | 14 | 95.8% (161 of 168) | 96.4% (108 of 112) | 100.0% (168 of 168) |
 | Incident reporting deadline (California, New York) | 8 | 95.8% (92 of 96) | 100.0% (96 of 96) | 6 | 98.6% (71 of 72) | 100.0% (48 of 48) | 100.0% (72 of 72) |
-| Chip licence review (January 2026 rule) | 10 | 97.5% (117 of 120) | 99.2% (119 of 120) | 8 | 96.9% (93 of 96) | 98.4% (63 of 64) | 99.0% (95 of 96) |
+| Chip license review (January 2026 rule) | 10 | 97.5% (117 of 120) | 99.2% (119 of 120) | 8 | 96.9% (93 of 96) | 98.4% (63 of 64) | 99.0% (95 of 96) |
 | Frontier model (California, New York) | 12 | 99.3% (143 of 144) | 100.0% (144 of 144) | 10 | 99.2% (119 of 120) | 100.0% (80 of 80) | 100.0% (120 of 120) |
 | Large frontier developer (California, New York) | 12 | 100.0% (144 of 144) | 100.0% (144 of 144) | 9 | 100.0% (108 of 108) | 100.0% (72 of 72) | 100.0% (108 of 108) |
 | EU notification (AI Act art. 52) | 8 | 100.0% (96 of 96) | 100.0% (96 of 96) | 6 | 100.0% (72 of 72) | 100.0% (48 of 48) | 100.0% (72 of 72) |
@@ -106,10 +106,11 @@ Per call, pooled: memory 272 input and 587 output tokens, $0.0104; rule text 607
 
 ## Questions open to a second reading
 
-Reviews after the run found nine questions whose facts leave room for another answer. The pre-registration says results are then reported with and without them. No question was dropped.
+Reviews after the run found ten questions whose facts leave room for another answer. The pre-registration says results are then reported with and without them. No question was dropped.
 
 - `eu-notification-01`, `-03`, `-05`, `-07` give no date for the model's placing on the market. Article 111(3) of the AI Act gives providers of models placed on the market before August 2, 2025 until August 2, 2027 to comply.
 - `incident-clock-05` to `-08` do not say that the model is developed, deployed or operating in New York, which section 1425 of the General Business Law requires for the article to apply.
+- `eccn-3a090-07` gives a chip's peak as 150 MacTOPS at a bit length of 8 and does not say that 8 bits is its only bit length. Technical Note 2 to ECCN 3A090 says to evaluate the highest value across bit lengths, so another bit length could put the chip in a different paragraph.
 - `compute-figures-08` puts a model at exactly 10^26 operations. The regulatory text of ECCN 4E091 says "10^26 or more", which the key follows; the preamble of the rule that created the entry (90 FR 4544) also says "more than 10^26 computational operations".
 
 | Left out | From memory, all questions | With the rule text, all questions | From memory, search questions | With web search | With the rule text, search questions |
@@ -118,9 +119,10 @@ Reviews after the run found nine questions whose facts leave room for another an
 | The four EU questions | 95.6% (1,101 of 1,152) | 99.9% (1,151 of 1,152) | 95.6% (906 of 948) | 97.6% (617 of 632) | 99.9% (947 of 948) |
 | The four New York incident questions | 95.9% (1,105 of 1,152) | 99.9% (1,151 of 1,152) | 95.7% (907 of 948) | 97.6% (617 of 632) | 99.9% (947 of 948) |
 | `compute-figures-08` | 96.5% (1,146 of 1,188) | 99.9% (1,187 of 1,188) | 96.6% (939 of 972) | 98.3% (637 of 648) | 99.9% (971 of 972) |
-| All nine | 96.5% (1,054 of 1,092) | 99.9% (1,091 of 1,092) | 96.4% (868 of 900) | 98.2% (589 of 600) | 99.9% (899 of 900) |
+| `eccn-3a090-07` | 95.7% (1,137 of 1,188) | 99.9% (1,187 of 1,188) | 95.7% (930 of 972) | 97.8% (634 of 648) | 99.9% (971 of 972) |
+| All ten | 96.5% (1,042 of 1,080) | 99.9% (1,079 of 1,080) | 96.4% (856 of 888) | 98.3% (582 of 592) | 99.9% (887 of 888) |
 
-Smaller gaps that a later version should close, none of which changes a keyed answer on the natural reading: `eccn-3a090-07` does not say that 8 bits is the chip's only bit length or that its figure is for dense matrices; the compute questions do not say that the model trained on no model-generated data, which Technical Note 3 to ECCN 4E091 would count; the frontier-model and large-developer questions for New York ask about definitions and need no New York link.
+Smaller gaps that a later version should close, none of which changes a keyed answer on the natural reading: `eccn-3a090-07` does not say that its figure is for dense matrices; the compute questions do not say that the model trained on no model-generated data, which Technical Note 3 to ECCN 4E091 would count; the frontier-model and large-developer questions for New York ask about definitions and need no New York link.
 
 ## Departures from the pre-registration
 
@@ -170,4 +172,4 @@ Running `run.py` again needs an Anthropic API key and makes new calls; replies v
 
 ## Finishing the run
 
-About $7 at list price would cover the 18 questions the search arm did not reach (139 calls at $0.053), and about $8 to $12 the effort stage (800 memory calls). The questions and key are public from this commit on, so a later search-arm call could find them; a rerun should check each reply's result and cited URLs for this repository.
+About $7 at list price would cover the 18 questions the search arm did not finish (139 calls at $0.053), and about $8 to $12 the effort stage (800 memory calls). The questions and key are public from this commit on, so a later search-arm call could find them; a rerun should check each reply's result and cited URLs for this repository.

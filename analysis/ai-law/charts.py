@@ -27,7 +27,7 @@ FAMILIES = {
     "incident-clock": "Incident reporting deadline (California, New York)",
     "compute-figures": "Four compute tests (California, New York, EU, ECCN 4E091)",
     "eccn-3a090": "Chip export paragraphs (ECCN 3A090)",
-    "licence-review": "Chip licence review (January 2026 rule)",
+    "licence-review": "Chip license review (January 2026 rule)",
     "chip-tariff": "Chip tariff (Section 232)",
     "eu-notification": "EU notification (AI Act art. 52)",
     "catastrophic-size": "Catastrophic-risk size figures (California)",

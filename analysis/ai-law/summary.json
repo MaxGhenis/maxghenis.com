@@ -4407,13 +4407,57 @@
    },
    "search_questions_kept": 81
   },
-  "all_nine": {
+  "chip_other_bit_lengths": {
+   "questions_left_out": [
+    "eccn-3a090-07"
+   ],
+   "all_questions": {
+    "memory": {
+     "n": 1137,
+     "of": 1188,
+     "pct": 95.7
+    },
+    "text": {
+     "n": 1187,
+     "of": 1188,
+     "pct": 99.9
+    }
+   },
+   "all_questions_difference": {
+    "text_minus_memory": 4.2
+   },
+   "search_questions": {
+    "memory": {
+     "n": 930,
+     "of": 972,
+     "pct": 95.7
+    },
+    "search": {
+     "n": 634,
+     "of": 648,
+     "pct": 97.8
+    },
+    "text": {
+     "n": 971,
+     "of": 972,
+     "pct": 99.9
+    }
+   },
+   "search_questions_differences": {
+    "text_minus_memory": 4.2,
+    "search_minus_memory": 2.2,
+    "text_minus_search": 2.1
+   },
+   "search_questions_kept": 81
+  },
+  "all_ten": {
    "questions_left_out": [
     "incident-clock-05",
     "incident-clock-06",
     "incident-clock-07",
     "incident-clock-08",
     "compute-figures-08",
+    "eccn-3a090-07",
     "eu-notification-01",
     "eu-notification-03",
     "eu-notification-05",
@@ -4421,13 +4465,13 @@
    ],
    "all_questions": {
     "memory": {
-     "n": 1054,
-     "of": 1092,
+     "n": 1042,
+     "of": 1080,
      "pct": 96.5
     },
     "text": {
-     "n": 1091,
-     "of": 1092,
+     "n": 1079,
+     "of": 1080,
      "pct": 99.9
     }
    },
@@ -4436,27 +4480,27 @@
    },
    "search_questions": {
     "memory": {
-     "n": 868,
-     "of": 900,
+     "n": 856,
+     "of": 888,
      "pct": 96.4
     },
     "search": {
-     "n": 589,
-     "of": 600,
-     "pct": 98.2
+     "n": 582,
+     "of": 592,
+     "pct": 98.3
     },
     "text": {
-     "n": 899,
-     "of": 900,
+     "n": 887,
+     "of": 888,
      "pct": 99.9
     }
    },
    "search_questions_differences": {
-    "text_minus_memory": 3.4,
-    "search_minus_memory": 1.7,
-    "text_minus_search": 1.7
+    "text_minus_memory": 3.5,
+    "search_minus_memory": 1.9,
+    "text_minus_search": 1.6
    },
-   "search_questions_kept": 75
+   "search_questions_kept": 74
   }
  },
  "total_cost_usd": 53.48,
@@ -4511,8 +4555,8 @@
   "nortonrosefulbright.com": 55,
   "dwt.com": 54,
   "legiscan.com": 53,
-  "worldtradescanner.com": 49,
   "mti-worldwide.com": 49,
+  "worldtradescanner.com": 49,
   "wsgr.com": 45,
   "nhimg.org": 43,
   "aicomplianceatlas.com": 42,
