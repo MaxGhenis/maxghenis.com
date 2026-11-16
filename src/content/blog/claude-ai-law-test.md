@@ -54,6 +54,8 @@ I built the test with Claude Code. Its Fable 5.2 agent wrote the 100 questions a
   <img src="/images/ai-law-accuracy.svg" alt="Share of replies that match the answer key for Haiku 5.5, Sonnet 5.5, Opus 5.5, Fable 5.2 and all four pooled, from memory, with web search and with the rule text, on the 82 questions all three versions ran on; and the same shares for the 23 questions with a figure exactly on a threshold and the other 59" width="760" height="481" loading="lazy" decoding="async">
 </picture>
 
+<div style="overflow-x: auto;">
+
 | Model | From memory, 100 questions | With the rule text, 100 questions | From memory, 82 questions | With web search, 82 questions |
 |---|---|---|---|---|
 | Haiku 5.5 | 93.0% (279 of 300) | 100% (300 of 300) | 92.7% (228 of 246) | 99.4% (163 of 164) |
@@ -61,6 +63,8 @@ I built the test with Claude Code. Its Fable 5.2 agent wrote the 100 questions a
 | Opus 5.5 | 97.7% (293 of 300) | 100% (300 of 300) | 97.6% (240 of 246) | 97.0% (159 of 164) |
 | Fable 5.2 | 98.0% (294 of 300) | 99.7% (299 of 300) | 98.0% (241 of 246) | 99.4% (163 of 164) |
 | All four | 95.8% (1,149 of 1,200) | 99.9% (1,199 of 1,200) | 95.7% (942 of 984) | 97.7% (641 of 656) |
+
+</div>
 
 The rule text raised the pooled share by 4.2 points. In 10,000 redraws of the 100 questions with replacement, 95% of the gaps fall between 1.9 and 7.0 points. On the 82 questions, search raised the pooled share by 2.0 points (0.3 to 4.0), and the rule text exceeded search by 2.2 points (0.9 to 3.9). Search added 6.7 points for Haiku 5.5 (1.8 to 12.2). The intervals for the other three models reach zero: 1.4 points for Fable 5.2 (0.0 to 3.7), 0.4 for Sonnet 5.5 (−1.6 to 2.2) and −0.6 for Opus 5.5 (−3.7 to 3.0). These intervals treat the questions as independent draws. The questions come from nine templates, so the intervals understate the uncertainty about other questions on these rules.
 
