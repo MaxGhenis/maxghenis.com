@@ -5,10 +5,14 @@ import Footer from '../components/Footer.astro';
 import { SITE_TITLE } from '../consts';
 import QalyExplorer from '../components/QalyExplorer.tsx';
 import { PARAMS } from '../lib/mackenzie-qaly';
+import REFERENCE from '../data/mackenzie-qaly-summary.json';
+import ALLOCATION from '../data/mackenzie-qaly-allocation-v12.json';
 import ogImage from '../assets/og-mackenzie-qaly.png';
 
 const archetypeCount = Object.keys(PARAMS.archetypes).length;
 const REPO = 'https://github.com/MaxGhenis/mackenzie-scott-qaly';
+const fit = ALLOCATION.calibration;
+const roundedCount = (value: number) => (Math.round(value / 1000) * 1000).toLocaleString('en-US');
 
 // Sources for inline citation of every falsifiable claim on the page.
 const S = {
@@ -71,12 +75,12 @@ const S = {
       <div class="intro prose">
         <p class="callout">
           The most important control is <strong>evidence stance</strong>. The
-          default is the model's best guess (~202,000 QALYs — each effect
+          default is the model's best guess (~{roundedCount(REFERENCE.total_qalys.median)} QALYs — each effect
           weighted by how well its study identifies causation), and the slider
-          disagrees in both directions: restrict to randomized evidence only
-          and the median falls to ~9,000; trust every cited effect at face
-          value and it rises to ~415,000. That 45× range, not the dollar
-          figure, is the real uncertainty.
+          lets you vary that judgment: give near-exclusive credit to randomized
+          evidence and the median falls to ~9,000; take the cited effects at
+          near face value and it rises to ~419,000. The evidence-stance sweep
+          spans 48× in median QALYs.
         </p>
 
         <h2>About this model</h2>
@@ -128,11 +132,12 @@ const S = {
         </p>
         <p>
           The gift-size data yields one measured regularity along the way:
-          across the 1,313 disclosed gift–revenue pairs, gift size scales
-          with the recipient's pre-gift revenue to the power <strong>0.41</strong>
-          (R² 0.37) — a 10× larger organization receives about 2.5× more
-          money, not 10× more. That fitted elasticity, not proportionality,
-          weights the imputation of the undisclosed gifts.
+          across {fit.n_pairs.toLocaleString('en-US')} disclosed gift–revenue pairs, gift size scales
+          with the recipient's pre-gift revenue to the power <strong>{fit.elasticity.toFixed(2)}</strong>
+          (R² {fit.r_squared.toFixed(2)}): a 10× larger organization receives about {(10 ** fit.elasticity).toFixed(1)}× as much
+          money in this selected sample. That fitted elasticity
+          weights the imputation of the undisclosed gifts. The fit remains
+          descriptive and conditional on disclosure and a usable pre-gift filing.
         </p>
         <p>
           Geography enters only through health. Across all causes, an
@@ -202,8 +207,8 @@ const S = {
           economic mobility, education, and equity, whose value is largely
           non-health — income, opportunity, rights, wellbeing. The model
           therefore understates her total social impact; it answers one specific
-          question. The largest dollar buckets (equity &amp; justice at ~22%,
-          education at ~18%) contribute little <em>health</em> precisely because
+          question. The largest dollar buckets (equity &amp; justice at ~{Math.round(100 * PARAMS.archetypes.equity_justice.allocation_share)}%,
+          education at ~{Math.round(100 * PARAMS.archetypes.education.allocation_share)}%) contribute little <em>health</em> precisely because
           no credible study ties those grants to QALYs, not because the giving
           lacks value.
         </p>

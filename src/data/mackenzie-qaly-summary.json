@@ -1,0 +1,37 @@
+{
+  "total_qalys": {
+    "mean": 225158.61398622787,
+    "median": 204803.55006653199,
+    "p05": 95373.3100590329,
+    "p95": 423065.25590766454
+  },
+  "blended_cost_per_qaly_median": 147956.33554907894,
+  "value_usd": {
+    "mean": 169607787361.31982,
+    "median": 150850815046.02368
+  },
+  "bc_ratio": {
+    "median": 4.978248987353816,
+    "p05": 2.108657222402627,
+    "p95": 11.179361896158536
+  },
+  "total_giving_usd": 30301982771.297325,
+  "frontier_qalys_median": 105604424.4142294,
+  "frontier_multiple_median": 513.5574613329161,
+  "per_archetype_mean": {
+    "Health - insurance & access": 10503.408962043059,
+    "Health - community health centers": 4285.96199195996,
+    "Health - mental & behavioral": 8339.662038964201,
+    "Global health & development (non-US delivery)": 156183.94473064717,
+    "Economic security - cash & financial": 2893.739578149773,
+    "Economic security - food security": 2084.8749332440457,
+    "Economic security - housing & homelessness": 5915.677233059818,
+    "Economic security - workforce & mobility": 6640.820868509333,
+    "Education (HBCUs, comm. college, scholarships)": 18880.98478573224,
+    "Equity & justice": 1748.8581408821774,
+    "Civic / democracy / philanthropy infra": 515.3010607508837,
+    "Arts & culture": 82.94671191428681,
+    "Environment / climate": 3344.414219719069,
+    "Other / general community": 3738.0187306518446
+  }
+}

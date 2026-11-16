@@ -14,6 +14,7 @@ import {
 } from "../lib/mackenzie-qaly";
 import GEO from "../data/mackenzie-qaly-geo.json";
 import V10 from "../data/mackenzie-qaly-allocation-v10.json";
+import V11 from "../data/mackenzie-qaly-allocation-v11.json";
 
 // Design tokens (mirrors src/styles/global.css :root).
 const C = {
@@ -33,10 +34,14 @@ const DEFAULT_SHARES = ARCHETYPES.map((a) => a.allocation_share);
 const V10_SHARES = ARCHETYPE_KEYS.map(
   (k) => (V10.allocation_share as Record<string, number>)[k],
 );
-// DEFAULT_SHARES (from the exported params) are the v1.1 allocation.
+const V11_SHARES = ARCHETYPE_KEYS.map(
+  (k) => (V11.allocation_share as Record<string, number>)[k],
+);
+// The parameter export supplies the corrected v1.2 allocation.
 const VERSIONS = [
   { label: "v1.0", shares: V10_SHARES, note: "published July 13" },
-  { label: "v1.1", shares: DEFAULT_SHARES, note: "geo-audited July 22 — current" },
+  { label: "v1.1", shares: V11_SHARES, note: "geo-audited July 22" },
+  { label: "v1.2", shares: DEFAULT_SHARES, note: "Form 990 corrections November 16 — current" },
 ];
 const SERIF = "'Playfair Display', Georgia, serif";
 const MONO = "'JetBrains Mono', monospace";
@@ -61,7 +66,7 @@ export default function QalyExplorer() {
   const [discount, setDiscount] = useState(DEFAULT_DISCOUNT);
   const [shares, setShares] = useState<number[]>(DEFAULT_SHARES);
   const [precision, setPrecision] = useState(1);
-  const [version, setVersion] = useState(1);
+  const [version, setVersion] = useState(2);
   const [computed, setComputed] = useState<ComputeOutput | null>(null);
   const [busy, setBusy] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -240,18 +245,17 @@ export default function QalyExplorer() {
             </div>
           </div>
           <p style={{ fontSize: "0.68rem", color: C.inkMuted, margin: "0 0 1rem", lineHeight: 1.4 }}>
-            v1.1 (current) recenters the allocation on the{" "}
+            v1.2 uses corrected{" "}
             <a
-              href="https://github.com/MaxGhenis/mackenzie-scott-qaly/blob/main/data/yieldgiving/geo_audit/geo_audit.jsonl"
+              href="https://github.com/MaxGhenis/mackenzie-scott-qaly/blob/main/data/yieldgiving/match_audit.jsonl"
               target="_blank"
               rel="noopener"
               style={{ color: C.inkMuted }}
             >
-              geo audit
+              Form 990 matches
             </a>{" "}
-            of the 50 largest &ldquo;global&rdquo;-listed organizations
-            (two-model cross-check, per-organization sources). v1.0 is the
-            July 13 published allocation, kept for comparison.
+            and distinct recipient keys. v1.0 and v1.1 retain the July 13
+            and July 22 allocations for comparison.
           </p>
           <details style={{ marginTop: "0.75rem" }}>
             <summary

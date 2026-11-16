@@ -1,0 +1,29 @@
+{
+ "version": "v1.2",
+ "label": "v1.2 \u2014 corrected Form 990 matches (November 16, 2026)",
+ "description": "Allocation centers use source-linked Form 990 identity corrections, distinct keys for recipients with the same name, and the existing geography audit. See data/yieldgiving/match_audit.jsonl.",
+ "allocation_share": {
+  "education": 0.188,
+  "equity_justice": 0.169,
+  "econ_workforce": 0.134,
+  "civic_democracy": 0.104,
+  "environment": 0.085,
+  "other_community": 0.055,
+  "global_health": 0.049,
+  "health_coverage": 0.039,
+  "health_chc": 0.039,
+  "econ_housing": 0.036,
+  "arts_culture": 0.033,
+  "econ_cash": 0.029,
+  "health_mental": 0.021,
+  "econ_food": 0.019
+ },
+ "abroad_share_raw": 0.049122,
+ "calibration": {
+  "elasticity": 0.5482613017448049,
+  "r_squared": 0.5219776566023513,
+  "n_pairs": 1314,
+  "n_revenue_fallback": 287,
+  "n_undisclosed": 676
+ }
+}
