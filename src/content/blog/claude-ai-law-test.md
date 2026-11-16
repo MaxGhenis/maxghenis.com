@@ -3,7 +3,6 @@ title: 'Four Claude models matched the answer key on 100 AI law questions 95.8% 
 description: "I asked four Claude models 100 questions on California's SB 53, New York's RAISE Act, the EU AI Act and US chip rules. From memory, 95.8% of their replies matched the answer key. With the rule text in the prompt, 99.9% did, and with web search, 97.7% did on the 82 questions that version finished. Seven questions account for 39 of the 51 misses from memory."
 pubDate: 'Nov 15 2026'
 heroImage: './claude-ai-law-test.png'
-draft: true
 ---
 
 California's SB 53 treats a foundation model as a frontier model once its developer has trained it with more than 10^26 operations. The compute test in the US export control entry for model weights starts at "10^26 or more". A model trained with exactly 10^26 operations fails the first test and meets the second. A developer, an exporter or an official who wants to know how a rule like these applies can ask an AI model, so I asked four Claude models 100 questions like this one.
