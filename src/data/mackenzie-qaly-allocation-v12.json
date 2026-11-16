@@ -20,8 +20,8 @@
  },
  "abroad_share_raw": 0.049122,
  "calibration": {
-  "elasticity": 0.5482613017448049,
-  "r_squared": 0.5219776566023513,
+  "elasticity": 0.548261301745,
+  "r_squared": 0.521977656602,
   "n_pairs": 1314,
   "n_revenue_fallback": 287,
   "n_undisclosed": 676
