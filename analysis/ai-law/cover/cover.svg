@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2400 1260" width="2400" height="1260">
+<rect width="2400" height="1260" fill="#fefdf8"/>
+<!-- a page of rule text -->
+<g transform="rotate(-3 575 630)">
+  <rect x="374" y="340" width="430" height="604" rx="14" fill="#eeece4"/>
+  <rect x="360" y="326" width="430" height="604" rx="14" fill="#ffffff" stroke="#0f172a" stroke-width="5"/>
+  <rect x="408" y="386" width="236" height="15" rx="7.5" fill="#0f172a"/>
+  <rect x="408" y="426" width="150" height="9" rx="4.5" fill="#9ca3af"/>
+  <line x1="400" y1="470" x2="750" y2="470" stroke="#d1d5db" stroke-width="3"/>
+  <rect x="408" y="508" width="296" height="8" rx="4" fill="#d1d5db"/>
+  <rect x="408" y="540" width="250" height="8" rx="4" fill="#d1d5db"/>
+  <rect x="408" y="572" width="280" height="8" rx="4" fill="#d1d5db"/>
+  <rect x="398" y="606" width="330" height="40" rx="8" fill="#f59e0b" fill-opacity="0.18"/>
+  <rect x="408" y="621" width="226" height="10" rx="5" fill="#0f172a"/>
+  <rect x="648" y="621" width="64" height="10" rx="5" fill="#f59e0b"/>
+  <rect x="408" y="676" width="270" height="8" rx="4" fill="#d1d5db"/>
+  <rect x="408" y="708" width="300" height="8" rx="4" fill="#d1d5db"/>
+  <rect x="408" y="740" width="210" height="8" rx="4" fill="#d1d5db"/>
+  <line x1="400" y1="790" x2="750" y2="790" stroke="#d1d5db" stroke-width="3"/>
+  <rect x="408" y="826" width="240" height="8" rx="4" fill="#d1d5db"/>
+  <rect x="408" y="858" width="180" height="8" rx="4" fill="#d1d5db"/>
+</g>
+<!-- from the clause to the line it draws -->
+<path d="M 742 612 C 980 600, 1040 420, 1250 420 S 1560 470, 1560 520" fill="none" stroke="#0f172a" stroke-width="5" stroke-linecap="round"/>
+<!-- the scale and its threshold -->
+<line x1="1000" y1="760" x2="2140" y2="760" stroke="#6b7280" stroke-width="4" stroke-linecap="round"/>
+<line x1="1560" y1="520" x2="1560" y2="1000" stroke="#0f172a" stroke-width="6" stroke-linecap="round"/>
+<g fill="#9ca3af">
+  <circle cx="1068" cy="760" r="13"/><circle cx="1176" cy="760" r="13"/><circle cx="1262" cy="760" r="13"/>
+  <circle cx="1372" cy="760" r="13"/><circle cx="1448" cy="760" r="13"/><circle cx="1512" cy="760" r="13"/>
+</g>
+<g fill="#0f172a">
+  <circle cx="1612" cy="760" r="13"/><circle cx="1694" cy="760" r="13"/><circle cx="1812" cy="760" r="13"/>
+  <circle cx="1924" cy="760" r="13"/><circle cx="2062" cy="760" r="13"/>
+</g>
+<circle cx="1560" cy="760" r="44" fill="#f59e0b" fill-opacity="0.2"/>
+<circle cx="1560" cy="760" r="22" fill="#f59e0b" stroke="#fefdf8" stroke-width="5"/>
+</svg>
