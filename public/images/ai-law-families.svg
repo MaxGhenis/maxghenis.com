@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 445" width="760" height="445" font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif" role="img" aria-label="Share of right answers by rule, four Claude models pooled, from memory, with web search and with the rule text, on the 82 questions all three versions ran on">
+<rect width="100%" height="100%" fill="#fcfcfb"/>
+<text x="16.0" y="26.0" font-size="16" fill="#0b0b0b" text-anchor="start" font-weight="600">Right answers by rule</text>
+<text x="16.0" y="46.0" font-size="13" fill="#52514e" text-anchor="start">Share of replies that match the answer key, four models pooled, on the 82 questions all three versions ran on</text>
+<circle cx="24.0" cy="69.0" r="5.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<text x="37.0" y="73.0" font-size="13" fill="#0b0b0b" text-anchor="start">From memory</text>
+<path d="M140.7 61.5 L148.2 69.0 L140.7 76.5 L133.2 69.0 Z" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<text x="153.7" y="73.0" font-size="13" fill="#0b0b0b" text-anchor="start">With web search</text>
+<rect x="278.7" y="63.5" width="11" height="11" rx="1.5" fill="#1baf7a" stroke="#fcfcfb" stroke-width="2"/>
+<text x="297.2" y="73.0" font-size="13" fill="#0b0b0b" text-anchor="start">With the rule text</text>
+<text x="606.0" y="99.0" font-size="12" fill="#52514e" text-anchor="start">% memory · search · text</text>
+<line x1="336.0" x2="336.0" y1="109" y2="415" stroke="#e1e0d9"/>
+<text x="336.0" y="431.0" font-size="12" fill="#52514e" text-anchor="middle">80%</text>
+<line x1="397.5" x2="397.5" y1="109" y2="415" stroke="#e1e0d9"/>
+<text x="397.5" y="431.0" font-size="12" fill="#52514e" text-anchor="middle">85%</text>
+<line x1="459.0" x2="459.0" y1="109" y2="415" stroke="#e1e0d9"/>
+<text x="459.0" y="431.0" font-size="12" fill="#52514e" text-anchor="middle">90%</text>
+<line x1="520.5" x2="520.5" y1="109" y2="415" stroke="#e1e0d9"/>
+<text x="520.5" y="431.0" font-size="12" fill="#52514e" text-anchor="middle">95%</text>
+<line x1="582.0" x2="582.0" y1="109" y2="415" stroke="#e1e0d9"/>
+<text x="582.0" y="431.0" font-size="12" fill="#52514e" text-anchor="middle">100%</text>
+<text x="320.0" y="130.5" font-size="13" fill="#0b0b0b" text-anchor="end">Chip tariff (10 questions)</text>
+<text x="606.0" y="130.5" font-size="13" fill="#52514e" text-anchor="start">82.5 · 96.2 · 100.0</text>
+<g><title>Chip tariff (10 questions): from memory: 99 of 120 (82.5%); with web search: 77 of 80 (96.2%); with the rule text: 120 of 120 (100.0%)</title>
+<line x1="366.8" x2="582.0" y1="126.0" y2="126.0" stroke="#52514e" stroke-width="1.5"/>
+<circle cx="366.8" cy="126.0" r="5.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<path d="M535.3 118.5 L542.8 126.0 L535.3 133.5 L527.8 126.0 Z" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<rect x="576.5" y="120.5" width="11" height="11" rx="1.5" fill="#1baf7a" stroke="#fcfcfb" stroke-width="2"/>
+</g>
+<text x="320.0" y="164.5" font-size="13" fill="#0b0b0b" text-anchor="end">Four compute tests (11 questions)</text>
+<text x="606.0" y="164.5" font-size="13" fill="#52514e" text-anchor="start">93.2 · 95.5 · 100.0</text>
+<g><title>Four compute tests (11 questions): from memory: 123 of 132 (93.2%); with web search: 84 of 88 (95.5%); with the rule text: 132 of 132 (100.0%)</title>
+<line x1="498.4" x2="582.0" y1="160.0" y2="160.0" stroke="#52514e" stroke-width="1.5"/>
+<circle cx="498.4" cy="160.0" r="5.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<path d="M526.6 152.5 L534.1 160.0 L526.6 167.5 L519.1 160.0 Z" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<rect x="576.5" y="154.5" width="11" height="11" rx="1.5" fill="#1baf7a" stroke="#fcfcfb" stroke-width="2"/>
+</g>
+<text x="320.0" y="198.5" font-size="13" fill="#0b0b0b" text-anchor="end">Chip export paragraphs (14 questions)</text>
+<text x="606.0" y="198.5" font-size="13" fill="#52514e" text-anchor="start">95.8 · 96.4 · 100.0</text>
+<g><title>Chip export paragraphs (14 questions): from memory: 161 of 168 (95.8%); with web search: 108 of 112 (96.4%); with the rule text: 168 of 168 (100.0%)</title>
+<line x1="530.3" x2="582.0" y1="194.0" y2="194.0" stroke="#52514e" stroke-width="1.5"/>
+<circle cx="530.3" cy="194.0" r="5.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<path d="M537.7 186.5 L545.2 194.0 L537.7 201.5 L530.2 194.0 Z" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<rect x="576.5" y="188.5" width="11" height="11" rx="1.5" fill="#1baf7a" stroke="#fcfcfb" stroke-width="2"/>
+</g>
+<text x="320.0" y="232.5" font-size="13" fill="#0b0b0b" text-anchor="end">Chip licence review (8 questions)</text>
+<text x="606.0" y="232.5" font-size="13" fill="#52514e" text-anchor="start">96.9 · 98.4 · 99.0</text>
+<g><title>Chip licence review (8 questions): from memory: 93 of 96 (96.9%); with web search: 63 of 64 (98.4%); with the rule text: 95 of 96 (99.0%)</title>
+<line x1="543.9" x2="569.7" y1="228.0" y2="228.0" stroke="#52514e" stroke-width="1.5"/>
+<circle cx="543.9" cy="228.0" r="5.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<path d="M562.3 220.5 L569.8 228.0 L562.3 235.5 L554.8 228.0 Z" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<rect x="564.2" y="222.5" width="11" height="11" rx="1.5" fill="#1baf7a" stroke="#fcfcfb" stroke-width="2"/>
+</g>
+<text x="320.0" y="266.5" font-size="13" fill="#0b0b0b" text-anchor="end">Incident reporting deadline (6 questions)</text>
+<text x="606.0" y="266.5" font-size="13" fill="#52514e" text-anchor="start">98.6 · 100.0 · 100.0</text>
+<g><title>Incident reporting deadline (6 questions): from memory: 71 of 72 (98.6%); with web search: 48 of 48 (100.0%); with the rule text: 72 of 72 (100.0%)</title>
+<line x1="564.8" x2="582.0" y1="262.0" y2="262.0" stroke="#52514e" stroke-width="1.5"/>
+<circle cx="564.8" cy="262.0" r="5.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<path d="M582.0 254.5 L589.5 262.0 L582.0 269.5 L574.5 262.0 Z" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<rect x="576.5" y="256.5" width="11" height="11" rx="1.5" fill="#1baf7a" stroke="#fcfcfb" stroke-width="2"/>
+</g>
+<text x="320.0" y="300.5" font-size="13" fill="#0b0b0b" text-anchor="end">Frontier model (10 questions)</text>
+<text x="606.0" y="300.5" font-size="13" fill="#52514e" text-anchor="start">99.2 · 100.0 · 100.0</text>
+<g><title>Frontier model (10 questions): from memory: 119 of 120 (99.2%); with web search: 80 of 80 (100.0%); with the rule text: 120 of 120 (100.0%)</title>
+<line x1="572.2" x2="582.0" y1="296.0" y2="296.0" stroke="#52514e" stroke-width="1.5"/>
+<circle cx="572.2" cy="296.0" r="5.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<path d="M582.0 288.5 L589.5 296.0 L582.0 303.5 L574.5 296.0 Z" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<rect x="576.5" y="290.5" width="11" height="11" rx="1.5" fill="#1baf7a" stroke="#fcfcfb" stroke-width="2"/>
+</g>
+<text x="320.0" y="334.5" font-size="13" fill="#0b0b0b" text-anchor="end">Catastrophic-risk size figures (8 questions)</text>
+<text x="606.0" y="334.5" font-size="13" fill="#52514e" text-anchor="start">100.0 · 96.9 · 100.0</text>
+<g><title>Catastrophic-risk size figures (8 questions): from memory: 96 of 96 (100.0%); with web search: 62 of 64 (96.9%); with the rule text: 96 of 96 (100.0%)</title>
+<line x1="543.9" x2="582.0" y1="330.0" y2="330.0" stroke="#52514e" stroke-width="1.5"/>
+<circle cx="582.0" cy="330.0" r="5.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<path d="M543.9 322.5 L551.4 330.0 L543.9 337.5 L536.4 330.0 Z" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<rect x="576.5" y="324.5" width="11" height="11" rx="1.5" fill="#1baf7a" stroke="#fcfcfb" stroke-width="2"/>
+</g>
+<text x="320.0" y="368.5" font-size="13" fill="#0b0b0b" text-anchor="end">EU notification (6 questions)</text>
+<text x="606.0" y="368.5" font-size="13" fill="#52514e" text-anchor="start">100.0 · 100.0 · 100.0</text>
+<g><title>EU notification (6 questions): from memory: 72 of 72 (100.0%); with web search: 48 of 48 (100.0%); with the rule text: 72 of 72 (100.0%)</title>
+<line x1="582.0" x2="582.0" y1="364.0" y2="364.0" stroke="#52514e" stroke-width="1.5"/>
+<circle cx="582.0" cy="364.0" r="5.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<path d="M582.0 356.5 L589.5 364.0 L582.0 371.5 L574.5 364.0 Z" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<rect x="576.5" y="358.5" width="11" height="11" rx="1.5" fill="#1baf7a" stroke="#fcfcfb" stroke-width="2"/>
+</g>
+<text x="320.0" y="402.5" font-size="13" fill="#0b0b0b" text-anchor="end">Large frontier developer (9 questions)</text>
+<text x="606.0" y="402.5" font-size="13" fill="#52514e" text-anchor="start">100.0 · 100.0 · 100.0</text>
+<g><title>Large frontier developer (9 questions): from memory: 108 of 108 (100.0%); with web search: 72 of 72 (100.0%); with the rule text: 108 of 108 (100.0%)</title>
+<line x1="582.0" x2="582.0" y1="398.0" y2="398.0" stroke="#52514e" stroke-width="1.5"/>
+<circle cx="582.0" cy="398.0" r="5.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<path d="M582.0 390.5 L589.5 398.0 L582.0 405.5 L574.5 398.0 Z" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<rect x="576.5" y="392.5" width="11" height="11" rx="1.5" fill="#1baf7a" stroke="#fcfcfb" stroke-width="2"/>
+</g>
+</svg>
