@@ -9,7 +9,8 @@ A small exploratory run that came before the larger test in the parent folder. I
 - **Three wordings** of each question: no lean, the asker hopes for one answer, the asker suspects the other.
 - **Two conditions**: the question alone, and the question with the rule text first.
 - **Models**: `claude-haiku-5-5`, `claude-sonnet-5-5`, `claude-opus-5-5`, `claude-fable-5-2`, through Anthropic's Messages API, each at effort `medium`, with no system prompt and no tools. One reply per cell: 26 x 3 x 2 x 4 = 624 calls, $5.17 at list price.
-- **Answer key**: a writer drafted each question and answer from quoted rule text, and two checkers computed every answer again without seeing the writer's. All three agreed on all 26. The writer and checkers were Claude models. `check_key.py` recomputes the 26 answers from thresholds typed by hand from the rule text.
+- **Answer key**: a writer drafted each question and answer from rule passages and summaries taken that day from the statute and regulation texts, and two checkers computed every answer again without seeing the writer's. All three agreed on all 26. The writer and checkers were Claude models, and no person has checked the key. `check_key.py` recomputes the 26 answers from the thresholds in each question's rule text.
+- **Rule text**: the rule text a question carries is the passage that answers it, so the second condition tests reading a rule, not finding it. Every question, true premise or false, offers the option "The question misstates the rule."
 
 ## Files
 
