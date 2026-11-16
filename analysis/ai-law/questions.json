@@ -1,0 +1,2099 @@
+[
+ {
+  "id": "frontier-model-01",
+  "family": "frontier-model",
+  "law": "California SB 53",
+  "facts": "Kestrelby Systems trained a foundation model in an original training run that used 7 x 10^25 integer or floating-point operations. Kestrelby Systems then fine-tuned that model itself using 2 x 10^25 operations and ran reinforcement learning on it using a further 2 x 10^25 operations. No one outside Kestrelby Systems has modified the model. Today is September 14, 2026. Treat every figure as exact.",
+  "question": "Under California SB 53 (Business and Professions Code section 22757.11), is the model as it now stands a frontier model?",
+  "options": [
+   "A. Yes.",
+   "B. No."
+  ],
+  "key": "A",
+  "boundary": false,
+  "params": {
+   "law": "ca",
+   "original_ops": 70000000000000000000000000,
+   "finetune_ops": 20000000000000000000000000,
+   "rl_ops": 20000000000000000000000000,
+   "today": "September 14, 2026"
+  },
+  "rule_text": "Cal. Bus. & Prof. Code 22757.11(i): \"'Frontier model' means a foundation model that was trained using a quantity of computing power greater than 10^26 integer or floating-point operations.\" \"The quantity of computing power described in paragraph (1) shall include computing for the original training run and for any subsequent fine-tuning, reinforcement learning, or other material modifications the developer applies to a preceding foundation model.\""
+ },
+ {
+  "id": "frontier-model-02",
+  "family": "frontier-model",
+  "law": "California SB 53",
+  "facts": "Quillon AI trained a foundation model in an original training run that used 1 x 10^26 integer or floating-point operations. Quillon AI has not fine-tuned or otherwise modified the model since. No one outside Quillon AI has modified the model. Today is December 1, 2026. Treat every figure as exact.",
+  "question": "Under California SB 53 (Business and Professions Code section 22757.11), is the model as it now stands a frontier model?",
+  "options": [
+   "A. Yes.",
+   "B. No."
+  ],
+  "key": "B",
+  "boundary": true,
+  "params": {
+   "law": "ca",
+   "original_ops": 100000000000000000000000000,
+   "finetune_ops": 0,
+   "rl_ops": 0,
+   "today": "December 1, 2026"
+  },
+  "rule_text": "Cal. Bus. & Prof. Code 22757.11(i): \"'Frontier model' means a foundation model that was trained using a quantity of computing power greater than 10^26 integer or floating-point operations.\" \"The quantity of computing power described in paragraph (1) shall include computing for the original training run and for any subsequent fine-tuning, reinforcement learning, or other material modifications the developer applies to a preceding foundation model.\""
+ },
+ {
+  "id": "frontier-model-03",
+  "family": "frontier-model",
+  "law": "California SB 53",
+  "facts": "Wexcombe AI trained a foundation model in an original training run that used 6 x 10^25 integer or floating-point operations. Wexcombe AI then fine-tuned that model itself using 4 x 10^25 operations. No one outside Wexcombe AI has modified the model. Today is January 25, 2027. Treat every figure as exact.",
+  "question": "Under California SB 53 (Business and Professions Code section 22757.11), is the model as it now stands a frontier model?",
+  "options": [
+   "A. Yes.",
+   "B. No."
+  ],
+  "key": "B",
+  "boundary": true,
+  "params": {
+   "law": "ca",
+   "original_ops": 60000000000000000000000000,
+   "finetune_ops": 40000000000000000000000000,
+   "rl_ops": 0,
+   "today": "January 25, 2027"
+  },
+  "rule_text": "Cal. Bus. & Prof. Code 22757.11(i): \"'Frontier model' means a foundation model that was trained using a quantity of computing power greater than 10^26 integer or floating-point operations.\" \"The quantity of computing power described in paragraph (1) shall include computing for the original training run and for any subsequent fine-tuning, reinforcement learning, or other material modifications the developer applies to a preceding foundation model.\""
+ },
+ {
+  "id": "frontier-model-04",
+  "family": "frontier-model",
+  "law": "California SB 53",
+  "facts": "Marrowby Systems trained a foundation model in an original training run that used 9 x 10^25 integer or floating-point operations. Marrowby Systems then fine-tuned that model itself using 5 x 10^24 operations and ran reinforcement learning on it using a further 4 x 10^24 operations. No one outside Marrowby Systems has modified the model. Today is April 6, 2027. Treat every figure as exact.",
+  "question": "Under California SB 53 (Business and Professions Code section 22757.11), is the model as it now stands a frontier model?",
+  "options": [
+   "A. Yes.",
+   "B. No."
+  ],
+  "key": "B",
+  "boundary": false,
+  "params": {
+   "law": "ca",
+   "original_ops": 90000000000000000000000000,
+   "finetune_ops": 5000000000000000000000000,
+   "rl_ops": 4000000000000000000000000,
+   "today": "April 6, 2027"
+  },
+  "rule_text": "Cal. Bus. & Prof. Code 22757.11(i): \"'Frontier model' means a foundation model that was trained using a quantity of computing power greater than 10^26 integer or floating-point operations.\" \"The quantity of computing power described in paragraph (1) shall include computing for the original training run and for any subsequent fine-tuning, reinforcement learning, or other material modifications the developer applies to a preceding foundation model.\""
+ },
+ {
+  "id": "frontier-model-05",
+  "family": "frontier-model",
+  "law": "California SB 53",
+  "facts": "Rookhurst AI trained a foundation model in an original training run that used 9 x 10^25 integer or floating-point operations. Rookhurst AI then fine-tuned that model itself using 1 x 10^25 operations and ran reinforcement learning on it using a further 1 x 10^24 operations. No one outside Rookhurst AI has modified the model. Today is July 19, 2026. Treat every figure as exact.",
+  "question": "Under California SB 53 (Business and Professions Code section 22757.11), is the model as it now stands a frontier model?",
+  "options": [
+   "A. Yes.",
+   "B. No."
+  ],
+  "key": "A",
+  "boundary": false,
+  "params": {
+   "law": "ca",
+   "original_ops": 90000000000000000000000000,
+   "finetune_ops": 10000000000000000000000000,
+   "rl_ops": 1000000000000000000000000,
+   "today": "July 19, 2026"
+  },
+  "rule_text": "Cal. Bus. & Prof. Code 22757.11(i): \"'Frontier model' means a foundation model that was trained using a quantity of computing power greater than 10^26 integer or floating-point operations.\" \"The quantity of computing power described in paragraph (1) shall include computing for the original training run and for any subsequent fine-tuning, reinforcement learning, or other material modifications the developer applies to a preceding foundation model.\""
+ },
+ {
+  "id": "frontier-model-06",
+  "family": "frontier-model",
+  "law": "California SB 53",
+  "facts": "Castellane Labs trained a foundation model in an original training run that used 3 x 10^26 integer or floating-point operations. Castellane Labs has not fine-tuned or otherwise modified the model since. No one outside Castellane Labs has modified the model. Today is October 27, 2026. Treat every figure as exact.",
+  "question": "Under California SB 53 (Business and Professions Code section 22757.11), is the model as it now stands a frontier model?",
+  "options": [
+   "A. Yes.",
+   "B. No."
+  ],
+  "key": "A",
+  "boundary": false,
+  "params": {
+   "law": "ca",
+   "original_ops": 300000000000000000000000000,
+   "finetune_ops": 0,
+   "rl_ops": 0,
+   "today": "October 27, 2026"
+  },
+  "rule_text": "Cal. Bus. & Prof. Code 22757.11(i): \"'Frontier model' means a foundation model that was trained using a quantity of computing power greater than 10^26 integer or floating-point operations.\" \"The quantity of computing power described in paragraph (1) shall include computing for the original training run and for any subsequent fine-tuning, reinforcement learning, or other material modifications the developer applies to a preceding foundation model.\""
+ },
+ {
+  "id": "frontier-model-07",
+  "family": "frontier-model",
+  "law": "California SB 53",
+  "facts": "Vantmoor AI trained a foundation model in an original training run that used 4 x 10^25 integer or floating-point operations. Vantmoor AI then fine-tuned that model itself using 3 x 10^25 operations and ran reinforcement learning on it using a further 2 x 10^25 operations. No one outside Vantmoor AI has modified the model. Today is February 22, 2027. Treat every figure as exact.",
+  "question": "Under California SB 53 (Business and Professions Code section 22757.11), is the model as it now stands a frontier model?",
+  "options": [
+   "A. Yes.",
+   "B. No."
+  ],
+  "key": "B",
+  "boundary": false,
+  "params": {
+   "law": "ca",
+   "original_ops": 40000000000000000000000000,
+   "finetune_ops": 30000000000000000000000000,
+   "rl_ops": 20000000000000000000000000,
+   "today": "February 22, 2027"
+  },
+  "rule_text": "Cal. Bus. & Prof. Code 22757.11(i): \"'Frontier model' means a foundation model that was trained using a quantity of computing power greater than 10^26 integer or floating-point operations.\" \"The quantity of computing power described in paragraph (1) shall include computing for the original training run and for any subsequent fine-tuning, reinforcement learning, or other material modifications the developer applies to a preceding foundation model.\""
+ },
+ {
+  "id": "frontier-model-08",
+  "family": "frontier-model",
+  "law": "California SB 53",
+  "facts": "Dunsmuir AI trained a foundation model in an original training run that used 9.9 x 10^25 integer or floating-point operations. Dunsmuir AI then ran reinforcement learning on that model itself using 2 x 10^24 operations. No one outside Dunsmuir AI has modified the model. Today is May 3, 2027. Treat every figure as exact.",
+  "question": "Under California SB 53 (Business and Professions Code section 22757.11), is the model as it now stands a frontier model?",
+  "options": [
+   "A. Yes.",
+   "B. No."
+  ],
+  "key": "A",
+  "boundary": false,
+  "params": {
+   "law": "ca",
+   "original_ops": 99000000000000000000000000,
+   "finetune_ops": 0,
+   "rl_ops": 2000000000000000000000000,
+   "today": "May 3, 2027"
+  },
+  "rule_text": "Cal. Bus. & Prof. Code 22757.11(i): \"'Frontier model' means a foundation model that was trained using a quantity of computing power greater than 10^26 integer or floating-point operations.\" \"The quantity of computing power described in paragraph (1) shall include computing for the original training run and for any subsequent fine-tuning, reinforcement learning, or other material modifications the developer applies to a preceding foundation model.\""
+ },
+ {
+  "id": "frontier-model-09",
+  "family": "frontier-model",
+  "law": "New York's RAISE Act as amended in 2026",
+  "facts": "Ospreyvale AI trained a foundation model in an original training run that used 1 x 10^26 integer or floating-point operations. Ospreyvale AI has not fine-tuned or otherwise modified the model since. No one outside Ospreyvale AI has modified the model. Today is January 11, 2027. Treat every figure as exact.",
+  "question": "Under New York's RAISE Act as amended in 2026 (General Business Law section 1420), is the model as it now stands a frontier model?",
+  "options": [
+   "A. Yes.",
+   "B. No."
+  ],
+  "key": "B",
+  "boundary": true,
+  "params": {
+   "law": "ny",
+   "original_ops": 100000000000000000000000000,
+   "finetune_ops": 0,
+   "rl_ops": 0,
+   "today": "January 11, 2027"
+  },
+  "rule_text": "N.Y. Gen. Bus. Law 1420(9), as added by chapter 96 of the laws of 2026 (in effect January 1, 2027): \"'Frontier model' means a foundation model that was trained using a quantity of computing power greater than 10^26 integer or floating-point operations.\" \"The quantity of computing power described in paragraph (a) of this subdivision shall include computing for the original training run and for any subsequent fine-tuning, reinforcement learning, or other material modifications the developer applies to a preceding foundation model.\""
+ },
+ {
+  "id": "frontier-model-10",
+  "family": "frontier-model",
+  "law": "New York's RAISE Act as amended in 2026",
+  "facts": "Quillon Systems trained a foundation model in an original training run that used 8 x 10^25 integer or floating-point operations. Quillon Systems then fine-tuned that model itself using 1.5 x 10^25 operations and ran reinforcement learning on it using a further 1 x 10^25 operations. No one outside Quillon Systems has modified the model. Today is March 30, 2027. Treat every figure as exact.",
+  "question": "Under New York's RAISE Act as amended in 2026 (General Business Law section 1420), is the model as it now stands a frontier model?",
+  "options": [
+   "A. Yes.",
+   "B. No."
+  ],
+  "key": "A",
+  "boundary": false,
+  "params": {
+   "law": "ny",
+   "original_ops": 80000000000000000000000000,
+   "finetune_ops": 15000000000000000000000000,
+   "rl_ops": 10000000000000000000000000,
+   "today": "March 30, 2027"
+  },
+  "rule_text": "N.Y. Gen. Bus. Law 1420(9), as added by chapter 96 of the laws of 2026 (in effect January 1, 2027): \"'Frontier model' means a foundation model that was trained using a quantity of computing power greater than 10^26 integer or floating-point operations.\" \"The quantity of computing power described in paragraph (a) of this subdivision shall include computing for the original training run and for any subsequent fine-tuning, reinforcement learning, or other material modifications the developer applies to a preceding foundation model.\""
+ },
+ {
+  "id": "frontier-model-11",
+  "family": "frontier-model",
+  "law": "New York's RAISE Act as amended in 2026",
+  "facts": "Garrowdale AI trained a foundation model in an original training run that used 5 x 10^25 integer or floating-point operations. Garrowdale AI then fine-tuned that model itself using 3 x 10^25 operations and ran reinforcement learning on it using a further 2 x 10^25 operations. No one outside Garrowdale AI has modified the model. Today is June 21, 2027. Treat every figure as exact.",
+  "question": "Under New York's RAISE Act as amended in 2026 (General Business Law section 1420), is the model as it now stands a frontier model?",
+  "options": [
+   "A. Yes.",
+   "B. No."
+  ],
+  "key": "B",
+  "boundary": true,
+  "params": {
+   "law": "ny",
+   "original_ops": 50000000000000000000000000,
+   "finetune_ops": 30000000000000000000000000,
+   "rl_ops": 20000000000000000000000000,
+   "today": "June 21, 2027"
+  },
+  "rule_text": "N.Y. Gen. Bus. Law 1420(9), as added by chapter 96 of the laws of 2026 (in effect January 1, 2027): \"'Frontier model' means a foundation model that was trained using a quantity of computing power greater than 10^26 integer or floating-point operations.\" \"The quantity of computing power described in paragraph (a) of this subdivision shall include computing for the original training run and for any subsequent fine-tuning, reinforcement learning, or other material modifications the developer applies to a preceding foundation model.\""
+ },
+ {
+  "id": "frontier-model-12",
+  "family": "frontier-model",
+  "law": "New York's RAISE Act as amended in 2026",
+  "facts": "Castellane Systems trained a foundation model in an original training run that used 2 x 10^26 integer or floating-point operations. Castellane Systems has not fine-tuned or otherwise modified the model since. No one outside Castellane Systems has modified the model. Today is August 9, 2027. Treat every figure as exact.",
+  "question": "Under New York's RAISE Act as amended in 2026 (General Business Law section 1420), is the model as it now stands a frontier model?",
+  "options": [
+   "A. Yes.",
+   "B. No."
+  ],
+  "key": "A",
+  "boundary": false,
+  "params": {
+   "law": "ny",
+   "original_ops": 200000000000000000000000000,
+   "finetune_ops": 0,
+   "rl_ops": 0,
+   "today": "August 9, 2027"
+  },
+  "rule_text": "N.Y. Gen. Bus. Law 1420(9), as added by chapter 96 of the laws of 2026 (in effect January 1, 2027): \"'Frontier model' means a foundation model that was trained using a quantity of computing power greater than 10^26 integer or floating-point operations.\" \"The quantity of computing power described in paragraph (a) of this subdivision shall include computing for the original training run and for any subsequent fine-tuning, reinforcement learning, or other material modifications the developer applies to a preceding foundation model.\""
+ },
+ {
+  "id": "large-developer-01",
+  "family": "large-developer",
+  "law": "California SB 53",
+  "facts": "Tarnwell AI trained a foundation model using 4 x 10^26 integer or floating-point operations and has not modified it since. It has trained no other model and has no other training run under way or planned. In calendar year 2026, Tarnwell AI had annual gross revenues of $500,000,000. Tarnwell AI has no affiliates. Today is March 9, 2027. Treat every figure as exact.",
+  "question": "As of today, is Tarnwell AI a large frontier developer under California SB 53 (Business and Professions Code section 22757.11)?",
+  "options": [
+   "A. Yes.",
+   "B. No."
+  ],
+  "key": "B",
+  "boundary": true,
+  "params": {
+   "law": "ca",
+   "model_ops": 400000000000000000000000000,
+   "own_revenue": 500000000,
+   "affiliate_revenues": [],
+   "current_year_revenue": null,
+   "today": "March 9, 2027"
+  },
+  "rule_text": "Cal. Bus. & Prof. Code 22757.11(j): \"'Large frontier developer' means a frontier developer that together with its affiliates collectively had annual gross revenues in excess of five hundred million dollars ($500,000,000) in the preceding calendar year.\"\nCal. Bus. & Prof. Code 22757.11(h): \"'Frontier developer' means a person who has trained, or initiated the training of, a frontier model, with respect to which the person has used, or intends to use, at least as much computing power to train the frontier model as would meet the technical specifications found in subdivision (i).\"\nCal. Bus. & Prof. Code 22757.11(i): \"'Frontier model' means a foundation model that was trained using a quantity of computing power greater than 10^26 integer or floating-point operations.\" \"The quantity of computing power described in paragraph (1) shall include computing for the original training run and for any subsequent fine-tuning, reinforcement learning, or other material modifications the developer applies to a preceding foundation model.\""
+ },
+ {
+  "id": "large-developer-02",
+  "family": "large-developer",
+  "law": "California SB 53",
+  "facts": "Yarrowby Systems trained a foundation model using 2 x 10^26 integer or floating-point operations and has not modified it since. It has trained no other model and has no other training run under way or planned. In calendar year 2025, Yarrowby Systems had annual gross revenues of $180,000,000. That year its parent company had annual gross revenues of $290,000,000, and a sister company owned by the same parent had $60,000,000. The three companies are affiliates of one another, each revenue figure is for that company alone, and none of that revenue came from sales among them. Today is June 1, 2026. Treat every figure as exact.",
+  "question": "As of today, is Yarrowby Systems a large frontier developer under California SB 53 (Business and Professions Code section 22757.11)?",
+  "options": [
+   "A. Yes.",
+   "B. No."
+  ],
+  "key": "A",
+  "boundary": false,
+  "params": {
+   "law": "ca",
+   "model_ops": 200000000000000000000000000,
+   "own_revenue": 180000000,
+   "affiliate_revenues": [
+    290000000,
+    60000000
+   ],
+   "current_year_revenue": null,
+   "today": "June 1, 2026"
+  },
+  "rule_text": "Cal. Bus. & Prof. Code 22757.11(j): \"'Large frontier developer' means a frontier developer that together with its affiliates collectively had annual gross revenues in excess of five hundred million dollars ($500,000,000) in the preceding calendar year.\"\nCal. Bus. & Prof. Code 22757.11(h): \"'Frontier developer' means a person who has trained, or initiated the training of, a frontier model, with respect to which the person has used, or intends to use, at least as much computing power to train the frontier model as would meet the technical specifications found in subdivision (i).\"\nCal. Bus. & Prof. Code 22757.11(i): \"'Frontier model' means a foundation model that was trained using a quantity of computing power greater than 10^26 integer or floating-point operations.\" \"The quantity of computing power described in paragraph (1) shall include computing for the original training run and for any subsequent fine-tuning, reinforcement learning, or other material modifications the developer applies to a preceding foundation model.\""
+ },
+ {
+  "id": "large-developer-03",
+  "family": "large-developer",
+  "law": "California SB 53",
+  "facts": "Hallowmere Labs trained a foundation model using 3 x 10^26 integer or floating-point operations and has not modified it since. It has trained no other model and has no other training run under way or planned. In calendar year 2026, Hallowmere Labs had annual gross revenues of $430,000,000. Hallowmere Labs has no affiliates. So far in 2027, Hallowmere Labs has booked $640,000,000. Today is October 5, 2027. Treat every figure as exact.",
+  "question": "As of today, is Hallowmere Labs a large frontier developer under California SB 53 (Business and Professions Code section 22757.11)?",
+  "options": [
+   "A. Yes.",
+   "B. No."
+  ],
+  "key": "B",
+  "boundary": false,
+  "params": {
+   "law": "ca",
+   "model_ops": 300000000000000000000000000,
+   "own_revenue": 430000000,
+   "affiliate_revenues": [],
+   "current_year_revenue": 640000000,
+   "today": "October 5, 2027"
+  },
+  "rule_text": "Cal. Bus. & Prof. Code 22757.11(j): \"'Large frontier developer' means a frontier developer that together with its affiliates collectively had annual gross revenues in excess of five hundred million dollars ($500,000,000) in the preceding calendar year.\"\nCal. Bus. & Prof. Code 22757.11(h): \"'Frontier developer' means a person who has trained, or initiated the training of, a frontier model, with respect to which the person has used, or intends to use, at least as much computing power to train the frontier model as would meet the technical specifications found in subdivision (i).\"\nCal. Bus. & Prof. Code 22757.11(i): \"'Frontier model' means a foundation model that was trained using a quantity of computing power greater than 10^26 integer or floating-point operations.\" \"The quantity of computing power described in paragraph (1) shall include computing for the original training run and for any subsequent fine-tuning, reinforcement learning, or other material modifications the developer applies to a preceding foundation model.\""
+ },
+ {
+  "id": "large-developer-04",
+  "family": "large-developer",
+  "law": "California SB 53",
+  "facts": "Vantmoor Labs trained a foundation model using 1.5 x 10^26 integer or floating-point operations and has not modified it since. It has trained no other model and has no other training run under way or planned. In calendar year 2026, Vantmoor Labs had annual gross revenues of $501,000,000. Vantmoor Labs has no affiliates. Today is February 2, 2027. Treat every figure as exact.",
+  "question": "As of today, is Vantmoor Labs a large frontier developer under California SB 53 (Business and Professions Code section 22757.11)?",
+  "options": [
+   "A. Yes.",
+   "B. No."
+  ],
+  "key": "A",
+  "boundary": false,
+  "params": {
+   "law": "ca",
+   "model_ops": 150000000000000000000000000,
+   "own_revenue": 501000000,
+   "affiliate_revenues": [],
+   "current_year_revenue": null,
+   "today": "February 2, 2027"
+  },
+  "rule_text": "Cal. Bus. & Prof. Code 22757.11(j): \"'Large frontier developer' means a frontier developer that together with its affiliates collectively had annual gross revenues in excess of five hundred million dollars ($500,000,000) in the preceding calendar year.\"\nCal. Bus. & Prof. Code 22757.11(h): \"'Frontier developer' means a person who has trained, or initiated the training of, a frontier model, with respect to which the person has used, or intends to use, at least as much computing power to train the frontier model as would meet the technical specifications found in subdivision (i).\"\nCal. Bus. & Prof. Code 22757.11(i): \"'Frontier model' means a foundation model that was trained using a quantity of computing power greater than 10^26 integer or floating-point operations.\" \"The quantity of computing power described in paragraph (1) shall include computing for the original training run and for any subsequent fine-tuning, reinforcement learning, or other material modifications the developer applies to a preceding foundation model.\""
+ },
+ {
+  "id": "large-developer-05",
+  "family": "large-developer",
+  "law": "California SB 53",
+  "facts": "Garrowdale Labs trained a foundation model using 9 x 10^25 integer or floating-point operations and has not modified it since. It has trained no other model and has no other training run under way or planned. In calendar year 2025, Garrowdale Labs had annual gross revenues of $900,000,000. Garrowdale Labs has no affiliates. Today is August 17, 2026. Treat every figure as exact.",
+  "question": "As of today, is Garrowdale Labs a large frontier developer under California SB 53 (Business and Professions Code section 22757.11)?",
+  "options": [
+   "A. Yes.",
+   "B. No."
+  ],
+  "key": "B",
+  "boundary": false,
+  "params": {
+   "law": "ca",
+   "model_ops": 90000000000000000000000000,
+   "own_revenue": 900000000,
+   "affiliate_revenues": [],
+   "current_year_revenue": null,
+   "today": "August 17, 2026"
+  },
+  "rule_text": "Cal. Bus. & Prof. Code 22757.11(j): \"'Large frontier developer' means a frontier developer that together with its affiliates collectively had annual gross revenues in excess of five hundred million dollars ($500,000,000) in the preceding calendar year.\"\nCal. Bus. & Prof. Code 22757.11(h): \"'Frontier developer' means a person who has trained, or initiated the training of, a frontier model, with respect to which the person has used, or intends to use, at least as much computing power to train the frontier model as would meet the technical specifications found in subdivision (i).\"\nCal. Bus. & Prof. Code 22757.11(i): \"'Frontier model' means a foundation model that was trained using a quantity of computing power greater than 10^26 integer or floating-point operations.\" \"The quantity of computing power described in paragraph (1) shall include computing for the original training run and for any subsequent fine-tuning, reinforcement learning, or other material modifications the developer applies to a preceding foundation model.\""
+ },
+ {
+  "id": "large-developer-06",
+  "family": "large-developer",
+  "law": "California SB 53",
+  "facts": "Tarnwell Labs trained a foundation model using 2.5 x 10^26 integer or floating-point operations and has not modified it since. It has trained no other model and has no other training run under way or planned. In calendar year 2026, Tarnwell Labs had annual gross revenues of $200,000,000. Its parent company had annual gross revenues of $300,000,000 that year. The two companies are affiliates of each other, each revenue figure is for that company alone, and none of that revenue came from sales between them. Today is May 11, 2027. Treat every figure as exact.",
+  "question": "As of today, is Tarnwell Labs a large frontier developer under California SB 53 (Business and Professions Code section 22757.11)?",
+  "options": [
+   "A. Yes.",
+   "B. No."
+  ],
+  "key": "B",
+  "boundary": true,
+  "params": {
+   "law": "ca",
+   "model_ops": 250000000000000000000000000,
+   "own_revenue": 200000000,
+   "affiliate_revenues": [
+    300000000
+   ],
+   "current_year_revenue": null,
+   "today": "May 11, 2027"
+  },
+  "rule_text": "Cal. Bus. & Prof. Code 22757.11(j): \"'Large frontier developer' means a frontier developer that together with its affiliates collectively had annual gross revenues in excess of five hundred million dollars ($500,000,000) in the preceding calendar year.\"\nCal. Bus. & Prof. Code 22757.11(h): \"'Frontier developer' means a person who has trained, or initiated the training of, a frontier model, with respect to which the person has used, or intends to use, at least as much computing power to train the frontier model as would meet the technical specifications found in subdivision (i).\"\nCal. Bus. & Prof. Code 22757.11(i): \"'Frontier model' means a foundation model that was trained using a quantity of computing power greater than 10^26 integer or floating-point operations.\" \"The quantity of computing power described in paragraph (1) shall include computing for the original training run and for any subsequent fine-tuning, reinforcement learning, or other material modifications the developer applies to a preceding foundation model.\""
+ },
+ {
+  "id": "large-developer-07",
+  "family": "large-developer",
+  "law": "California SB 53",
+  "facts": "Underhill Labs trained a foundation model using 1.2 x 10^26 integer or floating-point operations and has not modified it since. It has trained no other model and has no other training run under way or planned. In calendar year 2025, Underhill Labs had annual gross revenues of $620,000,000. Underhill Labs has no affiliates. So far in 2026, Underhill Labs has booked $300,000,000. Today is November 30, 2026. Treat every figure as exact.",
+  "question": "As of today, is Underhill Labs a large frontier developer under California SB 53 (Business and Professions Code section 22757.11)?",
+  "options": [
+   "A. Yes.",
+   "B. No."
+  ],
+  "key": "A",
+  "boundary": false,
+  "params": {
+   "law": "ca",
+   "model_ops": 120000000000000000000000000,
+   "own_revenue": 620000000,
+   "affiliate_revenues": [],
+   "current_year_revenue": 300000000,
+   "today": "November 30, 2026"
+  },
+  "rule_text": "Cal. Bus. & Prof. Code 22757.11(j): \"'Large frontier developer' means a frontier developer that together with its affiliates collectively had annual gross revenues in excess of five hundred million dollars ($500,000,000) in the preceding calendar year.\"\nCal. Bus. & Prof. Code 22757.11(h): \"'Frontier developer' means a person who has trained, or initiated the training of, a frontier model, with respect to which the person has used, or intends to use, at least as much computing power to train the frontier model as would meet the technical specifications found in subdivision (i).\"\nCal. Bus. & Prof. Code 22757.11(i): \"'Frontier model' means a foundation model that was trained using a quantity of computing power greater than 10^26 integer or floating-point operations.\" \"The quantity of computing power described in paragraph (1) shall include computing for the original training run and for any subsequent fine-tuning, reinforcement learning, or other material modifications the developer applies to a preceding foundation model.\""
+ },
+ {
+  "id": "large-developer-08",
+  "family": "large-developer",
+  "law": "California SB 53",
+  "facts": "Garrowdale Systems trained a foundation model using 1 x 10^26 integer or floating-point operations and has not modified it since. It has trained no other model and has no other training run under way or planned. In calendar year 2026, Garrowdale Systems had annual gross revenues of $800,000,000. Garrowdale Systems has no affiliates. Today is April 20, 2027. Treat every figure as exact.",
+  "question": "As of today, is Garrowdale Systems a large frontier developer under California SB 53 (Business and Professions Code section 22757.11)?",
+  "options": [
+   "A. Yes.",
+   "B. No."
+  ],
+  "key": "B",
+  "boundary": true,
+  "params": {
+   "law": "ca",
+   "model_ops": 100000000000000000000000000,
+   "own_revenue": 800000000,
+   "affiliate_revenues": [],
+   "current_year_revenue": null,
+   "today": "April 20, 2027"
+  },
+  "rule_text": "Cal. Bus. & Prof. Code 22757.11(j): \"'Large frontier developer' means a frontier developer that together with its affiliates collectively had annual gross revenues in excess of five hundred million dollars ($500,000,000) in the preceding calendar year.\"\nCal. Bus. & Prof. Code 22757.11(h): \"'Frontier developer' means a person who has trained, or initiated the training of, a frontier model, with respect to which the person has used, or intends to use, at least as much computing power to train the frontier model as would meet the technical specifications found in subdivision (i).\"\nCal. Bus. & Prof. Code 22757.11(i): \"'Frontier model' means a foundation model that was trained using a quantity of computing power greater than 10^26 integer or floating-point operations.\" \"The quantity of computing power described in paragraph (1) shall include computing for the original training run and for any subsequent fine-tuning, reinforcement learning, or other material modifications the developer applies to a preceding foundation model.\""
+ },
+ {
+  "id": "large-developer-09",
+  "family": "large-developer",
+  "law": "New York's RAISE Act as amended in 2026",
+  "facts": "Thistledown Labs trained a foundation model using 2 x 10^26 integer or floating-point operations and has not modified it since. It has trained no other model and has no other training run under way or planned. In calendar year 2026, Thistledown Labs had annual gross revenues of $350,000,000. Its parent company had annual gross revenues of $200,000,000 that year. The two companies are affiliates of each other, each revenue figure is for that company alone, and none of that revenue came from sales between them. Today is February 15, 2027. Treat every figure as exact.",
+  "question": "As of today, is Thistledown Labs a large frontier developer under New York's RAISE Act as amended in 2026 (General Business Law section 1420)?",
+  "options": [
+   "A. Yes.",
+   "B. No."
+  ],
+  "key": "A",
+  "boundary": false,
+  "params": {
+   "law": "ny",
+   "model_ops": 200000000000000000000000000,
+   "own_revenue": 350000000,
+   "affiliate_revenues": [
+    200000000
+   ],
+   "current_year_revenue": null,
+   "today": "February 15, 2027"
+  },
+  "rule_text": "N.Y. Gen. Bus. Law 1420(10): \"'Large frontier developer' means a frontier developer that together with its affiliates collectively had annual gross revenues in excess of five hundred million dollars in the preceding calendar year.\"\nN.Y. Gen. Bus. Law 1420(8): \"'Frontier developer' means a person who has trained, or initiated the training of, a frontier model, with respect to which the person has used, or intends to use, at least as much computing power to train the frontier model as would meet the technical specifications found in subdivision nine of this section.\"\nN.Y. Gen. Bus. Law 1420(9), as added by chapter 96 of the laws of 2026 (in effect January 1, 2027): \"'Frontier model' means a foundation model that was trained using a quantity of computing power greater than 10^26 integer or floating-point operations.\" \"The quantity of computing power described in paragraph (a) of this subdivision shall include computing for the original training run and for any subsequent fine-tuning, reinforcement learning, or other material modifications the developer applies to a preceding foundation model.\""
+ },
+ {
+  "id": "large-developer-10",
+  "family": "large-developer",
+  "law": "New York's RAISE Act as amended in 2026",
+  "facts": "Sablewick Labs trained a foundation model using 5 x 10^26 integer or floating-point operations and has not modified it since. It has trained no other model and has no other training run under way or planned. In calendar year 2026, Sablewick Labs had annual gross revenues of $499,000,000. Sablewick Labs has no affiliates. So far in 2027, Sablewick Labs has booked $700,000,000. Today is September 13, 2027. Treat every figure as exact.",
+  "question": "As of today, is Sablewick Labs a large frontier developer under New York's RAISE Act as amended in 2026 (General Business Law section 1420)?",
+  "options": [
+   "A. Yes.",
+   "B. No."
+  ],
+  "key": "B",
+  "boundary": false,
+  "params": {
+   "law": "ny",
+   "model_ops": 500000000000000000000000000,
+   "own_revenue": 499000000,
+   "affiliate_revenues": [],
+   "current_year_revenue": 700000000,
+   "today": "September 13, 2027"
+  },
+  "rule_text": "N.Y. Gen. Bus. Law 1420(10): \"'Large frontier developer' means a frontier developer that together with its affiliates collectively had annual gross revenues in excess of five hundred million dollars in the preceding calendar year.\"\nN.Y. Gen. Bus. Law 1420(8): \"'Frontier developer' means a person who has trained, or initiated the training of, a frontier model, with respect to which the person has used, or intends to use, at least as much computing power to train the frontier model as would meet the technical specifications found in subdivision nine of this section.\"\nN.Y. Gen. Bus. Law 1420(9), as added by chapter 96 of the laws of 2026 (in effect January 1, 2027): \"'Frontier model' means a foundation model that was trained using a quantity of computing power greater than 10^26 integer or floating-point operations.\" \"The quantity of computing power described in paragraph (a) of this subdivision shall include computing for the original training run and for any subsequent fine-tuning, reinforcement learning, or other material modifications the developer applies to a preceding foundation model.\""
+ },
+ {
+  "id": "large-developer-11",
+  "family": "large-developer",
+  "law": "New York's RAISE Act as amended in 2026",
+  "facts": "Alderwyck Labs trained a foundation model using 1.1 x 10^26 integer or floating-point operations and has not modified it since. It has trained no other model and has no other training run under way or planned. In calendar year 2026, Alderwyck Labs had annual gross revenues of $250,000,000. That year its parent company had annual gross revenues of $250,000,000, and a sister company owned by the same parent had $1,000,000. The three companies are affiliates of one another, each revenue figure is for that company alone, and none of that revenue came from sales among them. Today is March 22, 2027. Treat every figure as exact.",
+  "question": "As of today, is Alderwyck Labs a large frontier developer under New York's RAISE Act as amended in 2026 (General Business Law section 1420)?",
+  "options": [
+   "A. Yes.",
+   "B. No."
+  ],
+  "key": "A",
+  "boundary": false,
+  "params": {
+   "law": "ny",
+   "model_ops": 110000000000000000000000000,
+   "own_revenue": 250000000,
+   "affiliate_revenues": [
+    250000000,
+    1000000
+   ],
+   "current_year_revenue": null,
+   "today": "March 22, 2027"
+  },
+  "rule_text": "N.Y. Gen. Bus. Law 1420(10): \"'Large frontier developer' means a frontier developer that together with its affiliates collectively had annual gross revenues in excess of five hundred million dollars in the preceding calendar year.\"\nN.Y. Gen. Bus. Law 1420(8): \"'Frontier developer' means a person who has trained, or initiated the training of, a frontier model, with respect to which the person has used, or intends to use, at least as much computing power to train the frontier model as would meet the technical specifications found in subdivision nine of this section.\"\nN.Y. Gen. Bus. Law 1420(9), as added by chapter 96 of the laws of 2026 (in effect January 1, 2027): \"'Frontier model' means a foundation model that was trained using a quantity of computing power greater than 10^26 integer or floating-point operations.\" \"The quantity of computing power described in paragraph (a) of this subdivision shall include computing for the original training run and for any subsequent fine-tuning, reinforcement learning, or other material modifications the developer applies to a preceding foundation model.\""
+ },
+ {
+  "id": "large-developer-12",
+  "family": "large-developer",
+  "law": "New York's RAISE Act as amended in 2026",
+  "facts": "Underhill AI trained a foundation model using 3 x 10^26 integer or floating-point operations and has not modified it since. It has trained no other model and has no other training run under way or planned. In calendar year 2026, Underhill AI had annual gross revenues of $500,000,000. Underhill AI has no affiliates. Today is July 6, 2027. Treat every figure as exact.",
+  "question": "As of today, is Underhill AI a large frontier developer under New York's RAISE Act as amended in 2026 (General Business Law section 1420)?",
+  "options": [
+   "A. Yes.",
+   "B. No."
+  ],
+  "key": "B",
+  "boundary": true,
+  "params": {
+   "law": "ny",
+   "model_ops": 300000000000000000000000000,
+   "own_revenue": 500000000,
+   "affiliate_revenues": [],
+   "current_year_revenue": null,
+   "today": "July 6, 2027"
+  },
+  "rule_text": "N.Y. Gen. Bus. Law 1420(10): \"'Large frontier developer' means a frontier developer that together with its affiliates collectively had annual gross revenues in excess of five hundred million dollars in the preceding calendar year.\"\nN.Y. Gen. Bus. Law 1420(8): \"'Frontier developer' means a person who has trained, or initiated the training of, a frontier model, with respect to which the person has used, or intends to use, at least as much computing power to train the frontier model as would meet the technical specifications found in subdivision nine of this section.\"\nN.Y. Gen. Bus. Law 1420(9), as added by chapter 96 of the laws of 2026 (in effect January 1, 2027): \"'Frontier model' means a foundation model that was trained using a quantity of computing power greater than 10^26 integer or floating-point operations.\" \"The quantity of computing power described in paragraph (a) of this subdivision shall include computing for the original training run and for any subsequent fine-tuning, reinforcement learning, or other material modifications the developer applies to a preceding foundation model.\""
+ },
+ {
+  "id": "incident-clock-01",
+  "family": "incident-clock",
+  "law": "California SB 53",
+  "facts": "Castellane AI is a frontier developer under California SB 53. At 9:00 a.m. on June 2, 2026, it discovered a critical safety incident involving its frontier model. It also determined at once that the incident poses no imminent risk of death or serious physical injury. Treat every figure as exact.",
+  "question": "What is the shortest deadline that California SB 53 (Business and Professions Code section 22757.13) sets for Castellane AI to report or disclose this incident?",
+  "options": [
+   "A. Within 24 hours.",
+   "B. Within 72 hours.",
+   "C. Within 15 days.",
+   "D. Within 30 days."
+  ],
+  "key": "C",
+  "boundary": false,
+  "params": {
+   "law": "ca",
+   "discovered": "June 2, 2026",
+   "imminent_risk": false
+  },
+  "rule_text": "Cal. Bus. & Prof. Code 22757.13(c): \"Subject to paragraph (2), a frontier developer shall report any critical safety incident pertaining to one or more of its frontier models to the Office of Emergency Services within 15 days of discovering the critical safety incident.\" \"If a frontier developer discovers that a critical safety incident poses an imminent risk of death or serious physical injury, the frontier developer shall disclose that incident within 24 hours to an authority, including any law enforcement agency or public safety agency with jurisdiction, that is appropriate based on the nature of that incident and as required by law.\""
+ },
+ {
+  "id": "incident-clock-02",
+  "family": "incident-clock",
+  "law": "California SB 53",
+  "facts": "Sablewick Systems is a frontier developer under California SB 53. At 9:00 a.m. on August 11, 2026, it discovered a critical safety incident involving its frontier model. It also determined at once that the incident poses an imminent risk of death or serious physical injury. Treat every figure as exact.",
+  "question": "What is the shortest deadline that California SB 53 (Business and Professions Code section 22757.13) sets for Sablewick Systems to report or disclose this incident?",
+  "options": [
+   "A. Within 24 hours.",
+   "B. Within 72 hours.",
+   "C. Within 15 days.",
+   "D. Within 30 days."
+  ],
+  "key": "A",
+  "boundary": false,
+  "params": {
+   "law": "ca",
+   "discovered": "August 11, 2026",
+   "imminent_risk": true
+  },
+  "rule_text": "Cal. Bus. & Prof. Code 22757.13(c): \"Subject to paragraph (2), a frontier developer shall report any critical safety incident pertaining to one or more of its frontier models to the Office of Emergency Services within 15 days of discovering the critical safety incident.\" \"If a frontier developer discovers that a critical safety incident poses an imminent risk of death or serious physical injury, the frontier developer shall disclose that incident within 24 hours to an authority, including any law enforcement agency or public safety agency with jurisdiction, that is appropriate based on the nature of that incident and as required by law.\""
+ },
+ {
+  "id": "incident-clock-03",
+  "family": "incident-clock",
+  "law": "California SB 53",
+  "facts": "Bexmoor Systems is a frontier developer under California SB 53. At 9:00 a.m. on January 19, 2027, it discovered a critical safety incident involving its frontier model. It also determined at once that the incident poses no imminent risk of death or serious physical injury. Treat every figure as exact.",
+  "question": "What is the shortest deadline that California SB 53 (Business and Professions Code section 22757.13) sets for Bexmoor Systems to report or disclose this incident?",
+  "options": [
+   "A. Within 24 hours.",
+   "B. Within 72 hours.",
+   "C. Within 15 days.",
+   "D. Within 30 days."
+  ],
+  "key": "C",
+  "boundary": false,
+  "params": {
+   "law": "ca",
+   "discovered": "January 19, 2027",
+   "imminent_risk": false
+  },
+  "rule_text": "Cal. Bus. & Prof. Code 22757.13(c): \"Subject to paragraph (2), a frontier developer shall report any critical safety incident pertaining to one or more of its frontier models to the Office of Emergency Services within 15 days of discovering the critical safety incident.\" \"If a frontier developer discovers that a critical safety incident poses an imminent risk of death or serious physical injury, the frontier developer shall disclose that incident within 24 hours to an authority, including any law enforcement agency or public safety agency with jurisdiction, that is appropriate based on the nature of that incident and as required by law.\""
+ },
+ {
+  "id": "incident-clock-04",
+  "family": "incident-clock",
+  "law": "California SB 53",
+  "facts": "Yarrowby AI is a frontier developer under California SB 53. At 9:00 a.m. on March 3, 2027, it discovered a critical safety incident involving its frontier model. It also determined at once that the incident poses an imminent risk of death or serious physical injury. Treat every figure as exact.",
+  "question": "What is the shortest deadline that California SB 53 (Business and Professions Code section 22757.13) sets for Yarrowby AI to report or disclose this incident?",
+  "options": [
+   "A. Within 24 hours.",
+   "B. Within 72 hours.",
+   "C. Within 15 days.",
+   "D. Within 30 days."
+  ],
+  "key": "A",
+  "boundary": false,
+  "params": {
+   "law": "ca",
+   "discovered": "March 3, 2027",
+   "imminent_risk": true
+  },
+  "rule_text": "Cal. Bus. & Prof. Code 22757.13(c): \"Subject to paragraph (2), a frontier developer shall report any critical safety incident pertaining to one or more of its frontier models to the Office of Emergency Services within 15 days of discovering the critical safety incident.\" \"If a frontier developer discovers that a critical safety incident poses an imminent risk of death or serious physical injury, the frontier developer shall disclose that incident within 24 hours to an authority, including any law enforcement agency or public safety agency with jurisdiction, that is appropriate based on the nature of that incident and as required by law.\""
+ },
+ {
+  "id": "incident-clock-05",
+  "family": "incident-clock",
+  "law": "New York's RAISE Act as amended in 2026",
+  "facts": "Elmhollow Systems is a frontier developer under New York's RAISE Act as amended in 2026. At 9:00 a.m. on February 8, 2027, it discovered a critical safety incident involving its frontier model and determined at once that a critical safety incident had occurred. It also determined at once that the incident poses no imminent risk of death or serious physical injury. Treat every figure as exact.",
+  "question": "What is the shortest deadline that New York's RAISE Act as amended in 2026 (General Business Law section 1422) sets for Elmhollow Systems to report or disclose this incident?",
+  "options": [
+   "A. Within 24 hours.",
+   "B. Within 72 hours.",
+   "C. Within 15 days.",
+   "D. Within 30 days."
+  ],
+  "key": "B",
+  "boundary": false,
+  "params": {
+   "law": "ny",
+   "discovered": "February 8, 2027",
+   "imminent_risk": false
+  },
+  "rule_text": "N.Y. Gen. Bus. Law 1422(3): \"Subject to paragraph (b) of this subdivision, a frontier developer shall report any critical safety incident pertaining to one or more of its frontier models to the office within seventy-two hours from a determination that a critical safety incident has occurred or within seventy-two hours of the frontier developer learning facts sufficient to establish a reasonable belief that a critical safety incident has occurred.\" \"If a frontier developer discovers that a critical safety incident poses an imminent risk of death or serious physical injury, the frontier developer shall disclose that incident within twenty-four hours to an authority, including any law enforcement agency or public safety agency with jurisdiction, that is appropriate based on the nature of that incident and as required by law.\""
+ },
+ {
+  "id": "incident-clock-06",
+  "family": "incident-clock",
+  "law": "New York's RAISE Act as amended in 2026",
+  "facts": "Rookhurst Systems is a frontier developer under New York's RAISE Act as amended in 2026. At 9:00 a.m. on April 26, 2027, it discovered a critical safety incident involving its frontier model and determined at once that a critical safety incident had occurred. It also determined at once that the incident poses an imminent risk of death or serious physical injury. Treat every figure as exact.",
+  "question": "What is the shortest deadline that New York's RAISE Act as amended in 2026 (General Business Law section 1422) sets for Rookhurst Systems to report or disclose this incident?",
+  "options": [
+   "A. Within 24 hours.",
+   "B. Within 72 hours.",
+   "C. Within 15 days.",
+   "D. Within 30 days."
+  ],
+  "key": "A",
+  "boundary": false,
+  "params": {
+   "law": "ny",
+   "discovered": "April 26, 2027",
+   "imminent_risk": true
+  },
+  "rule_text": "N.Y. Gen. Bus. Law 1422(3): \"Subject to paragraph (b) of this subdivision, a frontier developer shall report any critical safety incident pertaining to one or more of its frontier models to the office within seventy-two hours from a determination that a critical safety incident has occurred or within seventy-two hours of the frontier developer learning facts sufficient to establish a reasonable belief that a critical safety incident has occurred.\" \"If a frontier developer discovers that a critical safety incident poses an imminent risk of death or serious physical injury, the frontier developer shall disclose that incident within twenty-four hours to an authority, including any law enforcement agency or public safety agency with jurisdiction, that is appropriate based on the nature of that incident and as required by law.\""
+ },
+ {
+  "id": "incident-clock-07",
+  "family": "incident-clock",
+  "law": "New York's RAISE Act as amended in 2026",
+  "facts": "Northwold Labs is a frontier developer under New York's RAISE Act as amended in 2026. At 9:00 a.m. on June 14, 2027, it discovered a critical safety incident involving its frontier model and determined at once that a critical safety incident had occurred. It also determined at once that the incident poses no imminent risk of death or serious physical injury. Treat every figure as exact.",
+  "question": "What is the shortest deadline that New York's RAISE Act as amended in 2026 (General Business Law section 1422) sets for Northwold Labs to report or disclose this incident?",
+  "options": [
+   "A. Within 24 hours.",
+   "B. Within 72 hours.",
+   "C. Within 15 days.",
+   "D. Within 30 days."
+  ],
+  "key": "B",
+  "boundary": false,
+  "params": {
+   "law": "ny",
+   "discovered": "June 14, 2027",
+   "imminent_risk": false
+  },
+  "rule_text": "N.Y. Gen. Bus. Law 1422(3): \"Subject to paragraph (b) of this subdivision, a frontier developer shall report any critical safety incident pertaining to one or more of its frontier models to the office within seventy-two hours from a determination that a critical safety incident has occurred or within seventy-two hours of the frontier developer learning facts sufficient to establish a reasonable belief that a critical safety incident has occurred.\" \"If a frontier developer discovers that a critical safety incident poses an imminent risk of death or serious physical injury, the frontier developer shall disclose that incident within twenty-four hours to an authority, including any law enforcement agency or public safety agency with jurisdiction, that is appropriate based on the nature of that incident and as required by law.\""
+ },
+ {
+  "id": "incident-clock-08",
+  "family": "incident-clock",
+  "law": "New York's RAISE Act as amended in 2026",
+  "facts": "Tarnwell Systems is a frontier developer under New York's RAISE Act as amended in 2026. At 9:00 a.m. on September 1, 2027, it discovered a critical safety incident involving its frontier model and determined at once that a critical safety incident had occurred. It also determined at once that the incident poses an imminent risk of death or serious physical injury. Treat every figure as exact.",
+  "question": "What is the shortest deadline that New York's RAISE Act as amended in 2026 (General Business Law section 1422) sets for Tarnwell Systems to report or disclose this incident?",
+  "options": [
+   "A. Within 24 hours.",
+   "B. Within 72 hours.",
+   "C. Within 15 days.",
+   "D. Within 30 days."
+  ],
+  "key": "A",
+  "boundary": false,
+  "params": {
+   "law": "ny",
+   "discovered": "September 1, 2027",
+   "imminent_risk": true
+  },
+  "rule_text": "N.Y. Gen. Bus. Law 1422(3): \"Subject to paragraph (b) of this subdivision, a frontier developer shall report any critical safety incident pertaining to one or more of its frontier models to the office within seventy-two hours from a determination that a critical safety incident has occurred or within seventy-two hours of the frontier developer learning facts sufficient to establish a reasonable belief that a critical safety incident has occurred.\" \"If a frontier developer discovers that a critical safety incident poses an imminent risk of death or serious physical injury, the frontier developer shall disclose that incident within twenty-four hours to an authority, including any law enforcement agency or public safety agency with jurisdiction, that is appropriate based on the nature of that incident and as required by law.\""
+ },
+ {
+  "id": "compute-figures-01",
+  "family": "compute-figures",
+  "law": "California SB 53, New York RAISE Act, EU AI Act, ECCN 4E091",
+  "facts": "Brackenridge AI trained a general-purpose foundation model in a single training run and has not fine-tuned or otherwise modified it since. The cumulative amount of computation used for its training was 5 x 10^24 floating-point operations. Treat every figure as exact.",
+  "question": "On training compute alone, which of these four tests does the model satisfy: California SB 53's frontier-model compute test, the amended New York RAISE Act's frontier-model compute test, the EU AI Act's Article 51(2) presumption test, and the compute test in the heading of US export control entry ECCN 4E091?",
+  "options": [
+   "A. None of the four.",
+   "B. The EU test only.",
+   "C. The EU test and the ECCN 4E091 test, but not California's or New York's.",
+   "D. California's, New York's and the EU test, but not the ECCN 4E091 test.",
+   "E. All four."
+  ],
+  "key": "A",
+  "boundary": false,
+  "params": {
+   "ops": 5000000000000000000000000
+  },
+  "rule_text": "Cal. Bus. & Prof. Code 22757.11(i): \"'Frontier model' means a foundation model that was trained using a quantity of computing power greater than 10^26 integer or floating-point operations.\" \"The quantity of computing power described in paragraph (1) shall include computing for the original training run and for any subsequent fine-tuning, reinforcement learning, or other material modifications the developer applies to a preceding foundation model.\"\nN.Y. Gen. Bus. Law 1420(9), as added by chapter 96 of the laws of 2026 (in effect January 1, 2027): \"'Frontier model' means a foundation model that was trained using a quantity of computing power greater than 10^26 integer or floating-point operations.\" \"The quantity of computing power described in paragraph (a) of this subdivision shall include computing for the original training run and for any subsequent fine-tuning, reinforcement learning, or other material modifications the developer applies to a preceding foundation model.\"\nRegulation (EU) 2024/1689 (EU AI Act) art. 51(2): \"A general-purpose AI model shall be presumed to have high impact capabilities pursuant to paragraph 1, point (a), when the cumulative amount of computation used for its training measured in floating point operations is greater than 10^25.\"\nECCN 4E091, Supplement No. 1 to 15 CFR part 774 (heading): \"'Parameters' for an artificial intelligence model trained utilizing 10^26 or more 'operations.'\""
+ },
+ {
+  "id": "compute-figures-02",
+  "family": "compute-figures",
+  "law": "California SB 53, New York RAISE Act, EU AI Act, ECCN 4E091",
+  "facts": "Harrowgate Systems trained a general-purpose foundation model in a single training run and has not fine-tuned or otherwise modified it since. The cumulative amount of computation used for its training was 9 x 10^24 floating-point operations. Treat every figure as exact.",
+  "question": "On training compute alone, which of these four tests does the model satisfy: California SB 53's frontier-model compute test, the amended New York RAISE Act's frontier-model compute test, the EU AI Act's Article 51(2) presumption test, and the compute test in the heading of US export control entry ECCN 4E091?",
+  "options": [
+   "A. None of the four.",
+   "B. The EU test only.",
+   "C. The EU test and the ECCN 4E091 test, but not California's or New York's.",
+   "D. California's, New York's and the EU test, but not the ECCN 4E091 test.",
+   "E. All four."
+  ],
+  "key": "A",
+  "boundary": false,
+  "params": {
+   "ops": 9000000000000000000000000
+  },
+  "rule_text": "Cal. Bus. & Prof. Code 22757.11(i): \"'Frontier model' means a foundation model that was trained using a quantity of computing power greater than 10^26 integer or floating-point operations.\" \"The quantity of computing power described in paragraph (1) shall include computing for the original training run and for any subsequent fine-tuning, reinforcement learning, or other material modifications the developer applies to a preceding foundation model.\"\nN.Y. Gen. Bus. Law 1420(9), as added by chapter 96 of the laws of 2026 (in effect January 1, 2027): \"'Frontier model' means a foundation model that was trained using a quantity of computing power greater than 10^26 integer or floating-point operations.\" \"The quantity of computing power described in paragraph (a) of this subdivision shall include computing for the original training run and for any subsequent fine-tuning, reinforcement learning, or other material modifications the developer applies to a preceding foundation model.\"\nRegulation (EU) 2024/1689 (EU AI Act) art. 51(2): \"A general-purpose AI model shall be presumed to have high impact capabilities pursuant to paragraph 1, point (a), when the cumulative amount of computation used for its training measured in floating point operations is greater than 10^25.\"\nECCN 4E091, Supplement No. 1 to 15 CFR part 774 (heading): \"'Parameters' for an artificial intelligence model trained utilizing 10^26 or more 'operations.'\""
+ },
+ {
+  "id": "compute-figures-03",
+  "family": "compute-figures",
+  "law": "California SB 53, New York RAISE Act, EU AI Act, ECCN 4E091",
+  "facts": "Northwold AI trained a general-purpose foundation model in a single training run and has not fine-tuned or otherwise modified it since. The cumulative amount of computation used for its training was 1 x 10^25 floating-point operations. Treat every figure as exact.",
+  "question": "On training compute alone, which of these four tests does the model satisfy: California SB 53's frontier-model compute test, the amended New York RAISE Act's frontier-model compute test, the EU AI Act's Article 51(2) presumption test, and the compute test in the heading of US export control entry ECCN 4E091?",
+  "options": [
+   "A. None of the four.",
+   "B. The EU test only.",
+   "C. The EU test and the ECCN 4E091 test, but not California's or New York's.",
+   "D. California's, New York's and the EU test, but not the ECCN 4E091 test.",
+   "E. All four."
+  ],
+  "key": "A",
+  "boundary": true,
+  "params": {
+   "ops": 10000000000000000000000000
+  },
+  "rule_text": "Cal. Bus. & Prof. Code 22757.11(i): \"'Frontier model' means a foundation model that was trained using a quantity of computing power greater than 10^26 integer or floating-point operations.\" \"The quantity of computing power described in paragraph (1) shall include computing for the original training run and for any subsequent fine-tuning, reinforcement learning, or other material modifications the developer applies to a preceding foundation model.\"\nN.Y. Gen. Bus. Law 1420(9), as added by chapter 96 of the laws of 2026 (in effect January 1, 2027): \"'Frontier model' means a foundation model that was trained using a quantity of computing power greater than 10^26 integer or floating-point operations.\" \"The quantity of computing power described in paragraph (a) of this subdivision shall include computing for the original training run and for any subsequent fine-tuning, reinforcement learning, or other material modifications the developer applies to a preceding foundation model.\"\nRegulation (EU) 2024/1689 (EU AI Act) art. 51(2): \"A general-purpose AI model shall be presumed to have high impact capabilities pursuant to paragraph 1, point (a), when the cumulative amount of computation used for its training measured in floating point operations is greater than 10^25.\"\nECCN 4E091, Supplement No. 1 to 15 CFR part 774 (heading): \"'Parameters' for an artificial intelligence model trained utilizing 10^26 or more 'operations.'\""
+ },
+ {
+  "id": "compute-figures-04",
+  "family": "compute-figures",
+  "law": "California SB 53, New York RAISE Act, EU AI Act, ECCN 4E091",
+  "facts": "Elmhollow AI trained a general-purpose foundation model in a single training run and has not fine-tuned or otherwise modified it since. The cumulative amount of computation used for its training was 1.1 x 10^25 floating-point operations. Treat every figure as exact.",
+  "question": "On training compute alone, which of these four tests does the model satisfy: California SB 53's frontier-model compute test, the amended New York RAISE Act's frontier-model compute test, the EU AI Act's Article 51(2) presumption test, and the compute test in the heading of US export control entry ECCN 4E091?",
+  "options": [
+   "A. None of the four.",
+   "B. The EU test only.",
+   "C. The EU test and the ECCN 4E091 test, but not California's or New York's.",
+   "D. California's, New York's and the EU test, but not the ECCN 4E091 test.",
+   "E. All four."
+  ],
+  "key": "B",
+  "boundary": false,
+  "params": {
+   "ops": 11000000000000000000000000
+  },
+  "rule_text": "Cal. Bus. & Prof. Code 22757.11(i): \"'Frontier model' means a foundation model that was trained using a quantity of computing power greater than 10^26 integer or floating-point operations.\" \"The quantity of computing power described in paragraph (1) shall include computing for the original training run and for any subsequent fine-tuning, reinforcement learning, or other material modifications the developer applies to a preceding foundation model.\"\nN.Y. Gen. Bus. Law 1420(9), as added by chapter 96 of the laws of 2026 (in effect January 1, 2027): \"'Frontier model' means a foundation model that was trained using a quantity of computing power greater than 10^26 integer or floating-point operations.\" \"The quantity of computing power described in paragraph (a) of this subdivision shall include computing for the original training run and for any subsequent fine-tuning, reinforcement learning, or other material modifications the developer applies to a preceding foundation model.\"\nRegulation (EU) 2024/1689 (EU AI Act) art. 51(2): \"A general-purpose AI model shall be presumed to have high impact capabilities pursuant to paragraph 1, point (a), when the cumulative amount of computation used for its training measured in floating point operations is greater than 10^25.\"\nECCN 4E091, Supplement No. 1 to 15 CFR part 774 (heading): \"'Parameters' for an artificial intelligence model trained utilizing 10^26 or more 'operations.'\""
+ },
+ {
+  "id": "compute-figures-05",
+  "family": "compute-figures",
+  "law": "California SB 53, New York RAISE Act, EU AI Act, ECCN 4E091",
+  "facts": "Harrowgate AI trained a general-purpose foundation model in a single training run and has not fine-tuned or otherwise modified it since. The cumulative amount of computation used for its training was 2 x 10^25 floating-point operations. Treat every figure as exact.",
+  "question": "On training compute alone, which of these four tests does the model satisfy: California SB 53's frontier-model compute test, the amended New York RAISE Act's frontier-model compute test, the EU AI Act's Article 51(2) presumption test, and the compute test in the heading of US export control entry ECCN 4E091?",
+  "options": [
+   "A. None of the four.",
+   "B. The EU test only.",
+   "C. The EU test and the ECCN 4E091 test, but not California's or New York's.",
+   "D. California's, New York's and the EU test, but not the ECCN 4E091 test.",
+   "E. All four."
+  ],
+  "key": "B",
+  "boundary": false,
+  "params": {
+   "ops": 20000000000000000000000000
+  },
+  "rule_text": "Cal. Bus. & Prof. Code 22757.11(i): \"'Frontier model' means a foundation model that was trained using a quantity of computing power greater than 10^26 integer or floating-point operations.\" \"The quantity of computing power described in paragraph (1) shall include computing for the original training run and for any subsequent fine-tuning, reinforcement learning, or other material modifications the developer applies to a preceding foundation model.\"\nN.Y. Gen. Bus. Law 1420(9), as added by chapter 96 of the laws of 2026 (in effect January 1, 2027): \"'Frontier model' means a foundation model that was trained using a quantity of computing power greater than 10^26 integer or floating-point operations.\" \"The quantity of computing power described in paragraph (a) of this subdivision shall include computing for the original training run and for any subsequent fine-tuning, reinforcement learning, or other material modifications the developer applies to a preceding foundation model.\"\nRegulation (EU) 2024/1689 (EU AI Act) art. 51(2): \"A general-purpose AI model shall be presumed to have high impact capabilities pursuant to paragraph 1, point (a), when the cumulative amount of computation used for its training measured in floating point operations is greater than 10^25.\"\nECCN 4E091, Supplement No. 1 to 15 CFR part 774 (heading): \"'Parameters' for an artificial intelligence model trained utilizing 10^26 or more 'operations.'\""
+ },
+ {
+  "id": "compute-figures-06",
+  "family": "compute-figures",
+  "law": "California SB 53, New York RAISE Act, EU AI Act, ECCN 4E091",
+  "facts": "Thistledown AI trained a general-purpose foundation model in a single training run and has not fine-tuned or otherwise modified it since. The cumulative amount of computation used for its training was 6 x 10^25 floating-point operations. Treat every figure as exact.",
+  "question": "On training compute alone, which of these four tests does the model satisfy: California SB 53's frontier-model compute test, the amended New York RAISE Act's frontier-model compute test, the EU AI Act's Article 51(2) presumption test, and the compute test in the heading of US export control entry ECCN 4E091?",
+  "options": [
+   "A. None of the four.",
+   "B. The EU test only.",
+   "C. The EU test and the ECCN 4E091 test, but not California's or New York's.",
+   "D. California's, New York's and the EU test, but not the ECCN 4E091 test.",
+   "E. All four."
+  ],
+  "key": "B",
+  "boundary": false,
+  "params": {
+   "ops": 60000000000000000000000000
+  },
+  "rule_text": "Cal. Bus. & Prof. Code 22757.11(i): \"'Frontier model' means a foundation model that was trained using a quantity of computing power greater than 10^26 integer or floating-point operations.\" \"The quantity of computing power described in paragraph (1) shall include computing for the original training run and for any subsequent fine-tuning, reinforcement learning, or other material modifications the developer applies to a preceding foundation model.\"\nN.Y. Gen. Bus. Law 1420(9), as added by chapter 96 of the laws of 2026 (in effect January 1, 2027): \"'Frontier model' means a foundation model that was trained using a quantity of computing power greater than 10^26 integer or floating-point operations.\" \"The quantity of computing power described in paragraph (a) of this subdivision shall include computing for the original training run and for any subsequent fine-tuning, reinforcement learning, or other material modifications the developer applies to a preceding foundation model.\"\nRegulation (EU) 2024/1689 (EU AI Act) art. 51(2): \"A general-purpose AI model shall be presumed to have high impact capabilities pursuant to paragraph 1, point (a), when the cumulative amount of computation used for its training measured in floating point operations is greater than 10^25.\"\nECCN 4E091, Supplement No. 1 to 15 CFR part 774 (heading): \"'Parameters' for an artificial intelligence model trained utilizing 10^26 or more 'operations.'\""
+ },
+ {
+  "id": "compute-figures-07",
+  "family": "compute-figures",
+  "law": "California SB 53, New York RAISE Act, EU AI Act, ECCN 4E091",
+  "facts": "Hallowmere Systems trained a general-purpose foundation model in a single training run and has not fine-tuned or otherwise modified it since. The cumulative amount of computation used for its training was 9.9 x 10^25 floating-point operations. Treat every figure as exact.",
+  "question": "On training compute alone, which of these four tests does the model satisfy: California SB 53's frontier-model compute test, the amended New York RAISE Act's frontier-model compute test, the EU AI Act's Article 51(2) presumption test, and the compute test in the heading of US export control entry ECCN 4E091?",
+  "options": [
+   "A. None of the four.",
+   "B. The EU test only.",
+   "C. The EU test and the ECCN 4E091 test, but not California's or New York's.",
+   "D. California's, New York's and the EU test, but not the ECCN 4E091 test.",
+   "E. All four."
+  ],
+  "key": "B",
+  "boundary": false,
+  "params": {
+   "ops": 99000000000000000000000000
+  },
+  "rule_text": "Cal. Bus. & Prof. Code 22757.11(i): \"'Frontier model' means a foundation model that was trained using a quantity of computing power greater than 10^26 integer or floating-point operations.\" \"The quantity of computing power described in paragraph (1) shall include computing for the original training run and for any subsequent fine-tuning, reinforcement learning, or other material modifications the developer applies to a preceding foundation model.\"\nN.Y. Gen. Bus. Law 1420(9), as added by chapter 96 of the laws of 2026 (in effect January 1, 2027): \"'Frontier model' means a foundation model that was trained using a quantity of computing power greater than 10^26 integer or floating-point operations.\" \"The quantity of computing power described in paragraph (a) of this subdivision shall include computing for the original training run and for any subsequent fine-tuning, reinforcement learning, or other material modifications the developer applies to a preceding foundation model.\"\nRegulation (EU) 2024/1689 (EU AI Act) art. 51(2): \"A general-purpose AI model shall be presumed to have high impact capabilities pursuant to paragraph 1, point (a), when the cumulative amount of computation used for its training measured in floating point operations is greater than 10^25.\"\nECCN 4E091, Supplement No. 1 to 15 CFR part 774 (heading): \"'Parameters' for an artificial intelligence model trained utilizing 10^26 or more 'operations.'\""
+ },
+ {
+  "id": "compute-figures-08",
+  "family": "compute-figures",
+  "law": "California SB 53, New York RAISE Act, EU AI Act, ECCN 4E091",
+  "facts": "Marrowby Labs trained a general-purpose foundation model in a single training run and has not fine-tuned or otherwise modified it since. The cumulative amount of computation used for its training was 1 x 10^26 floating-point operations. Treat every figure as exact.",
+  "question": "On training compute alone, which of these four tests does the model satisfy: California SB 53's frontier-model compute test, the amended New York RAISE Act's frontier-model compute test, the EU AI Act's Article 51(2) presumption test, and the compute test in the heading of US export control entry ECCN 4E091?",
+  "options": [
+   "A. None of the four.",
+   "B. The EU test only.",
+   "C. The EU test and the ECCN 4E091 test, but not California's or New York's.",
+   "D. California's, New York's and the EU test, but not the ECCN 4E091 test.",
+   "E. All four."
+  ],
+  "key": "C",
+  "boundary": true,
+  "params": {
+   "ops": 100000000000000000000000000
+  },
+  "rule_text": "Cal. Bus. & Prof. Code 22757.11(i): \"'Frontier model' means a foundation model that was trained using a quantity of computing power greater than 10^26 integer or floating-point operations.\" \"The quantity of computing power described in paragraph (1) shall include computing for the original training run and for any subsequent fine-tuning, reinforcement learning, or other material modifications the developer applies to a preceding foundation model.\"\nN.Y. Gen. Bus. Law 1420(9), as added by chapter 96 of the laws of 2026 (in effect January 1, 2027): \"'Frontier model' means a foundation model that was trained using a quantity of computing power greater than 10^26 integer or floating-point operations.\" \"The quantity of computing power described in paragraph (a) of this subdivision shall include computing for the original training run and for any subsequent fine-tuning, reinforcement learning, or other material modifications the developer applies to a preceding foundation model.\"\nRegulation (EU) 2024/1689 (EU AI Act) art. 51(2): \"A general-purpose AI model shall be presumed to have high impact capabilities pursuant to paragraph 1, point (a), when the cumulative amount of computation used for its training measured in floating point operations is greater than 10^25.\"\nECCN 4E091, Supplement No. 1 to 15 CFR part 774 (heading): \"'Parameters' for an artificial intelligence model trained utilizing 10^26 or more 'operations.'\""
+ },
+ {
+  "id": "compute-figures-09",
+  "family": "compute-figures",
+  "law": "California SB 53, New York RAISE Act, EU AI Act, ECCN 4E091",
+  "facts": "Alderwyck Systems trained a general-purpose foundation model in a single training run and has not fine-tuned or otherwise modified it since. The cumulative amount of computation used for its training was 1.01 x 10^26 floating-point operations. Treat every figure as exact.",
+  "question": "On training compute alone, which of these four tests does the model satisfy: California SB 53's frontier-model compute test, the amended New York RAISE Act's frontier-model compute test, the EU AI Act's Article 51(2) presumption test, and the compute test in the heading of US export control entry ECCN 4E091?",
+  "options": [
+   "A. None of the four.",
+   "B. The EU test only.",
+   "C. The EU test and the ECCN 4E091 test, but not California's or New York's.",
+   "D. California's, New York's and the EU test, but not the ECCN 4E091 test.",
+   "E. All four."
+  ],
+  "key": "E",
+  "boundary": false,
+  "params": {
+   "ops": 101000000000000000000000000
+  },
+  "rule_text": "Cal. Bus. & Prof. Code 22757.11(i): \"'Frontier model' means a foundation model that was trained using a quantity of computing power greater than 10^26 integer or floating-point operations.\" \"The quantity of computing power described in paragraph (1) shall include computing for the original training run and for any subsequent fine-tuning, reinforcement learning, or other material modifications the developer applies to a preceding foundation model.\"\nN.Y. Gen. Bus. Law 1420(9), as added by chapter 96 of the laws of 2026 (in effect January 1, 2027): \"'Frontier model' means a foundation model that was trained using a quantity of computing power greater than 10^26 integer or floating-point operations.\" \"The quantity of computing power described in paragraph (a) of this subdivision shall include computing for the original training run and for any subsequent fine-tuning, reinforcement learning, or other material modifications the developer applies to a preceding foundation model.\"\nRegulation (EU) 2024/1689 (EU AI Act) art. 51(2): \"A general-purpose AI model shall be presumed to have high impact capabilities pursuant to paragraph 1, point (a), when the cumulative amount of computation used for its training measured in floating point operations is greater than 10^25.\"\nECCN 4E091, Supplement No. 1 to 15 CFR part 774 (heading): \"'Parameters' for an artificial intelligence model trained utilizing 10^26 or more 'operations.'\""
+ },
+ {
+  "id": "compute-figures-10",
+  "family": "compute-figures",
+  "law": "California SB 53, New York RAISE Act, EU AI Act, ECCN 4E091",
+  "facts": "Alderwyck AI trained a general-purpose foundation model in a single training run and has not fine-tuned or otherwise modified it since. The cumulative amount of computation used for its training was 1.5 x 10^26 floating-point operations. Treat every figure as exact.",
+  "question": "On training compute alone, which of these four tests does the model satisfy: California SB 53's frontier-model compute test, the amended New York RAISE Act's frontier-model compute test, the EU AI Act's Article 51(2) presumption test, and the compute test in the heading of US export control entry ECCN 4E091?",
+  "options": [
+   "A. None of the four.",
+   "B. The EU test only.",
+   "C. The EU test and the ECCN 4E091 test, but not California's or New York's.",
+   "D. California's, New York's and the EU test, but not the ECCN 4E091 test.",
+   "E. All four."
+  ],
+  "key": "E",
+  "boundary": false,
+  "params": {
+   "ops": 150000000000000000000000000
+  },
+  "rule_text": "Cal. Bus. & Prof. Code 22757.11(i): \"'Frontier model' means a foundation model that was trained using a quantity of computing power greater than 10^26 integer or floating-point operations.\" \"The quantity of computing power described in paragraph (1) shall include computing for the original training run and for any subsequent fine-tuning, reinforcement learning, or other material modifications the developer applies to a preceding foundation model.\"\nN.Y. Gen. Bus. Law 1420(9), as added by chapter 96 of the laws of 2026 (in effect January 1, 2027): \"'Frontier model' means a foundation model that was trained using a quantity of computing power greater than 10^26 integer or floating-point operations.\" \"The quantity of computing power described in paragraph (a) of this subdivision shall include computing for the original training run and for any subsequent fine-tuning, reinforcement learning, or other material modifications the developer applies to a preceding foundation model.\"\nRegulation (EU) 2024/1689 (EU AI Act) art. 51(2): \"A general-purpose AI model shall be presumed to have high impact capabilities pursuant to paragraph 1, point (a), when the cumulative amount of computation used for its training measured in floating point operations is greater than 10^25.\"\nECCN 4E091, Supplement No. 1 to 15 CFR part 774 (heading): \"'Parameters' for an artificial intelligence model trained utilizing 10^26 or more 'operations.'\""
+ },
+ {
+  "id": "compute-figures-11",
+  "family": "compute-figures",
+  "law": "California SB 53, New York RAISE Act, EU AI Act, ECCN 4E091",
+  "facts": "Zennorfield Labs trained a general-purpose foundation model in a single training run and has not fine-tuned or otherwise modified it since. The cumulative amount of computation used for its training was 3 x 10^26 floating-point operations. Treat every figure as exact.",
+  "question": "On training compute alone, which of these four tests does the model satisfy: California SB 53's frontier-model compute test, the amended New York RAISE Act's frontier-model compute test, the EU AI Act's Article 51(2) presumption test, and the compute test in the heading of US export control entry ECCN 4E091?",
+  "options": [
+   "A. None of the four.",
+   "B. The EU test only.",
+   "C. The EU test and the ECCN 4E091 test, but not California's or New York's.",
+   "D. California's, New York's and the EU test, but not the ECCN 4E091 test.",
+   "E. All four."
+  ],
+  "key": "E",
+  "boundary": false,
+  "params": {
+   "ops": 300000000000000000000000000
+  },
+  "rule_text": "Cal. Bus. & Prof. Code 22757.11(i): \"'Frontier model' means a foundation model that was trained using a quantity of computing power greater than 10^26 integer or floating-point operations.\" \"The quantity of computing power described in paragraph (1) shall include computing for the original training run and for any subsequent fine-tuning, reinforcement learning, or other material modifications the developer applies to a preceding foundation model.\"\nN.Y. Gen. Bus. Law 1420(9), as added by chapter 96 of the laws of 2026 (in effect January 1, 2027): \"'Frontier model' means a foundation model that was trained using a quantity of computing power greater than 10^26 integer or floating-point operations.\" \"The quantity of computing power described in paragraph (a) of this subdivision shall include computing for the original training run and for any subsequent fine-tuning, reinforcement learning, or other material modifications the developer applies to a preceding foundation model.\"\nRegulation (EU) 2024/1689 (EU AI Act) art. 51(2): \"A general-purpose AI model shall be presumed to have high impact capabilities pursuant to paragraph 1, point (a), when the cumulative amount of computation used for its training measured in floating point operations is greater than 10^25.\"\nECCN 4E091, Supplement No. 1 to 15 CFR part 774 (heading): \"'Parameters' for an artificial intelligence model trained utilizing 10^26 or more 'operations.'\""
+ },
+ {
+  "id": "compute-figures-12",
+  "family": "compute-figures",
+  "law": "California SB 53, New York RAISE Act, EU AI Act, ECCN 4E091",
+  "facts": "Pellham AI trained a general-purpose foundation model in a single training run and has not fine-tuned or otherwise modified it since. The cumulative amount of computation used for its training was 1 x 10^27 floating-point operations. Treat every figure as exact.",
+  "question": "On training compute alone, which of these four tests does the model satisfy: California SB 53's frontier-model compute test, the amended New York RAISE Act's frontier-model compute test, the EU AI Act's Article 51(2) presumption test, and the compute test in the heading of US export control entry ECCN 4E091?",
+  "options": [
+   "A. None of the four.",
+   "B. The EU test only.",
+   "C. The EU test and the ECCN 4E091 test, but not California's or New York's.",
+   "D. California's, New York's and the EU test, but not the ECCN 4E091 test.",
+   "E. All four."
+  ],
+  "key": "E",
+  "boundary": false,
+  "params": {
+   "ops": 1000000000000000000000000000
+  },
+  "rule_text": "Cal. Bus. & Prof. Code 22757.11(i): \"'Frontier model' means a foundation model that was trained using a quantity of computing power greater than 10^26 integer or floating-point operations.\" \"The quantity of computing power described in paragraph (1) shall include computing for the original training run and for any subsequent fine-tuning, reinforcement learning, or other material modifications the developer applies to a preceding foundation model.\"\nN.Y. Gen. Bus. Law 1420(9), as added by chapter 96 of the laws of 2026 (in effect January 1, 2027): \"'Frontier model' means a foundation model that was trained using a quantity of computing power greater than 10^26 integer or floating-point operations.\" \"The quantity of computing power described in paragraph (a) of this subdivision shall include computing for the original training run and for any subsequent fine-tuning, reinforcement learning, or other material modifications the developer applies to a preceding foundation model.\"\nRegulation (EU) 2024/1689 (EU AI Act) art. 51(2): \"A general-purpose AI model shall be presumed to have high impact capabilities pursuant to paragraph 1, point (a), when the cumulative amount of computation used for its training measured in floating point operations is greater than 10^25.\"\nECCN 4E091, Supplement No. 1 to 15 CFR part 774 (heading): \"'Parameters' for an artificial intelligence model trained utilizing 10^26 or more 'operations.'\""
+ },
+ {
+  "id": "eccn-3a090-01",
+  "family": "eccn-3a090",
+  "law": "ECCN 3A090",
+  "facts": "Wexcombe Silicon designs and markets an accelerator chip for use in datacenters. The chip has a 'total processing performance' (TPP) of 4800 and a 'performance density' of 2.0. Treat every figure as exact.",
+  "question": "Which of these paragraphs of ECCN 3A090 (Supplement No. 1 to 15 CFR part 774), if any, covers the chip?",
+  "options": [
+   "A. 3A090.a.1.",
+   "B. 3A090.a.2.",
+   "C. 3A090.b.1.",
+   "D. 3A090.b.2.",
+   "E. None of these paragraphs."
+  ],
+  "key": "A",
+  "boundary": true,
+  "params": {
+   "tpp": 4800,
+   "density": "2.0",
+   "datacenter": true,
+   "tpp_computed": 4800,
+   "density_computed": "2.0"
+  },
+  "rule_text": "ECCN 3A090, Supplement No. 1 to 15 CFR part 774: \"a. Integrated circuits having one or more digital processing units having either of the following: a.1. A 'total processing performance' of 4800 or more; or a.2. A 'total processing performance' of 1600 or more and a 'performance density' of 5.92 or more.\" \"b. Integrated circuits having one or more digital processing units having either of the following: b.1. A 'total processing performance' of 2400 or more and less than 4800 and a 'performance density' of 1.6 or more and less than 5.92, or b.2. A 'total processing performance' of 1600 or more and a 'performance density' of 3.2 or more and less than 5.92.\" \"Note 2 to 3A090.a and 3A090.b: 3A090.a and 3A090.b do not apply to items that are not designed or marketed for use in datacenters and do not have a 'total processing performance' of 4800 or more.\" \"'Total processing performance' ('TPP') is 2 × 'MacTOPS' × 'bit length of the operation', aggregated over all processing units on the integrated circuit.\" \"'Performance density' is 'TPP' divided by 'applicable die area'.\""
+ },
+ {
+  "id": "eccn-3a090-02",
+  "family": "eccn-3a090",
+  "law": "ECCN 3A090",
+  "facts": "Ospreyvale Devices designs and markets an accelerator chip for use in datacenters. The chip has a 'total processing performance' (TPP) of 6000 and a 'performance density' of 1.0. Treat every figure as exact.",
+  "question": "Which of these paragraphs of ECCN 3A090 (Supplement No. 1 to 15 CFR part 774), if any, covers the chip?",
+  "options": [
+   "A. 3A090.a.1.",
+   "B. 3A090.a.2.",
+   "C. 3A090.b.1.",
+   "D. 3A090.b.2.",
+   "E. None of these paragraphs."
+  ],
+  "key": "A",
+  "boundary": false,
+  "params": {
+   "tpp": 6000,
+   "density": "1.0",
+   "datacenter": true,
+   "tpp_computed": 6000,
+   "density_computed": "1.0"
+  },
+  "rule_text": "ECCN 3A090, Supplement No. 1 to 15 CFR part 774: \"a. Integrated circuits having one or more digital processing units having either of the following: a.1. A 'total processing performance' of 4800 or more; or a.2. A 'total processing performance' of 1600 or more and a 'performance density' of 5.92 or more.\" \"b. Integrated circuits having one or more digital processing units having either of the following: b.1. A 'total processing performance' of 2400 or more and less than 4800 and a 'performance density' of 1.6 or more and less than 5.92, or b.2. A 'total processing performance' of 1600 or more and a 'performance density' of 3.2 or more and less than 5.92.\" \"Note 2 to 3A090.a and 3A090.b: 3A090.a and 3A090.b do not apply to items that are not designed or marketed for use in datacenters and do not have a 'total processing performance' of 4800 or more.\" \"'Total processing performance' ('TPP') is 2 × 'MacTOPS' × 'bit length of the operation', aggregated over all processing units on the integrated circuit.\" \"'Performance density' is 'TPP' divided by 'applicable die area'.\""
+ },
+ {
+  "id": "eccn-3a090-03",
+  "family": "eccn-3a090",
+  "law": "ECCN 3A090",
+  "facts": "Underhill Devices designs and markets an accelerator chip for use in datacenters. The chip has a 'total processing performance' (TPP) of 2000 and a 'performance density' of 6.4. Treat every figure as exact.",
+  "question": "Which of these paragraphs of ECCN 3A090 (Supplement No. 1 to 15 CFR part 774), if any, covers the chip?",
+  "options": [
+   "A. 3A090.a.1.",
+   "B. 3A090.a.2.",
+   "C. 3A090.b.1.",
+   "D. 3A090.b.2.",
+   "E. None of these paragraphs."
+  ],
+  "key": "B",
+  "boundary": false,
+  "params": {
+   "tpp": 2000,
+   "density": "6.4",
+   "datacenter": true,
+   "tpp_computed": 2000,
+   "density_computed": "6.4"
+  },
+  "rule_text": "ECCN 3A090, Supplement No. 1 to 15 CFR part 774: \"a. Integrated circuits having one or more digital processing units having either of the following: a.1. A 'total processing performance' of 4800 or more; or a.2. A 'total processing performance' of 1600 or more and a 'performance density' of 5.92 or more.\" \"b. Integrated circuits having one or more digital processing units having either of the following: b.1. A 'total processing performance' of 2400 or more and less than 4800 and a 'performance density' of 1.6 or more and less than 5.92, or b.2. A 'total processing performance' of 1600 or more and a 'performance density' of 3.2 or more and less than 5.92.\" \"Note 2 to 3A090.a and 3A090.b: 3A090.a and 3A090.b do not apply to items that are not designed or marketed for use in datacenters and do not have a 'total processing performance' of 4800 or more.\" \"'Total processing performance' ('TPP') is 2 × 'MacTOPS' × 'bit length of the operation', aggregated over all processing units on the integrated circuit.\" \"'Performance density' is 'TPP' divided by 'applicable die area'.\""
+ },
+ {
+  "id": "eccn-3a090-04",
+  "family": "eccn-3a090",
+  "law": "ECCN 3A090",
+  "facts": "Wexcombe Devices designs and markets an accelerator chip for use in datacenters. The chip has a 'total processing performance' (TPP) of 1600 and a 'performance density' of 5.92. Treat every figure as exact.",
+  "question": "Which of these paragraphs of ECCN 3A090 (Supplement No. 1 to 15 CFR part 774), if any, covers the chip?",
+  "options": [
+   "A. 3A090.a.1.",
+   "B. 3A090.a.2.",
+   "C. 3A090.b.1.",
+   "D. 3A090.b.2.",
+   "E. None of these paragraphs."
+  ],
+  "key": "B",
+  "boundary": true,
+  "params": {
+   "tpp": 1600,
+   "density": "5.92",
+   "datacenter": true,
+   "tpp_computed": 1600,
+   "density_computed": "5.92"
+  },
+  "rule_text": "ECCN 3A090, Supplement No. 1 to 15 CFR part 774: \"a. Integrated circuits having one or more digital processing units having either of the following: a.1. A 'total processing performance' of 4800 or more; or a.2. A 'total processing performance' of 1600 or more and a 'performance density' of 5.92 or more.\" \"b. Integrated circuits having one or more digital processing units having either of the following: b.1. A 'total processing performance' of 2400 or more and less than 4800 and a 'performance density' of 1.6 or more and less than 5.92, or b.2. A 'total processing performance' of 1600 or more and a 'performance density' of 3.2 or more and less than 5.92.\" \"Note 2 to 3A090.a and 3A090.b: 3A090.a and 3A090.b do not apply to items that are not designed or marketed for use in datacenters and do not have a 'total processing performance' of 4800 or more.\" \"'Total processing performance' ('TPP') is 2 × 'MacTOPS' × 'bit length of the operation', aggregated over all processing units on the integrated circuit.\" \"'Performance density' is 'TPP' divided by 'applicable die area'.\""
+ },
+ {
+  "id": "eccn-3a090-05",
+  "family": "eccn-3a090",
+  "law": "ECCN 3A090",
+  "facts": "Zennorfield Silicon designs and markets an accelerator chip for use in datacenters. The chip has a 'total processing performance' (TPP) of 3000 and a 'performance density' of 2.5. Treat every figure as exact.",
+  "question": "Which of these paragraphs of ECCN 3A090 (Supplement No. 1 to 15 CFR part 774), if any, covers the chip?",
+  "options": [
+   "A. 3A090.a.1.",
+   "B. 3A090.a.2.",
+   "C. 3A090.b.1.",
+   "D. 3A090.b.2.",
+   "E. None of these paragraphs."
+  ],
+  "key": "C",
+  "boundary": false,
+  "params": {
+   "tpp": 3000,
+   "density": "2.5",
+   "datacenter": true,
+   "tpp_computed": 3000,
+   "density_computed": "2.5"
+  },
+  "rule_text": "ECCN 3A090, Supplement No. 1 to 15 CFR part 774: \"a. Integrated circuits having one or more digital processing units having either of the following: a.1. A 'total processing performance' of 4800 or more; or a.2. A 'total processing performance' of 1600 or more and a 'performance density' of 5.92 or more.\" \"b. Integrated circuits having one or more digital processing units having either of the following: b.1. A 'total processing performance' of 2400 or more and less than 4800 and a 'performance density' of 1.6 or more and less than 5.92, or b.2. A 'total processing performance' of 1600 or more and a 'performance density' of 3.2 or more and less than 5.92.\" \"Note 2 to 3A090.a and 3A090.b: 3A090.a and 3A090.b do not apply to items that are not designed or marketed for use in datacenters and do not have a 'total processing performance' of 4800 or more.\" \"'Total processing performance' ('TPP') is 2 × 'MacTOPS' × 'bit length of the operation', aggregated over all processing units on the integrated circuit.\" \"'Performance density' is 'TPP' divided by 'applicable die area'.\""
+ },
+ {
+  "id": "eccn-3a090-06",
+  "family": "eccn-3a090",
+  "law": "ECCN 3A090",
+  "facts": "Brackenridge Silicon designs and markets an accelerator chip for use in datacenters. The chip has a 'total processing performance' (TPP) of 2400 and a 'performance density' of 1.6. Treat every figure as exact.",
+  "question": "Which of these paragraphs of ECCN 3A090 (Supplement No. 1 to 15 CFR part 774), if any, covers the chip?",
+  "options": [
+   "A. 3A090.a.1.",
+   "B. 3A090.a.2.",
+   "C. 3A090.b.1.",
+   "D. 3A090.b.2.",
+   "E. None of these paragraphs."
+  ],
+  "key": "C",
+  "boundary": true,
+  "params": {
+   "tpp": 2400,
+   "density": "1.6",
+   "datacenter": true,
+   "tpp_computed": 2400,
+   "density_computed": "1.6"
+  },
+  "rule_text": "ECCN 3A090, Supplement No. 1 to 15 CFR part 774: \"a. Integrated circuits having one or more digital processing units having either of the following: a.1. A 'total processing performance' of 4800 or more; or a.2. A 'total processing performance' of 1600 or more and a 'performance density' of 5.92 or more.\" \"b. Integrated circuits having one or more digital processing units having either of the following: b.1. A 'total processing performance' of 2400 or more and less than 4800 and a 'performance density' of 1.6 or more and less than 5.92, or b.2. A 'total processing performance' of 1600 or more and a 'performance density' of 3.2 or more and less than 5.92.\" \"Note 2 to 3A090.a and 3A090.b: 3A090.a and 3A090.b do not apply to items that are not designed or marketed for use in datacenters and do not have a 'total processing performance' of 4800 or more.\" \"'Total processing performance' ('TPP') is 2 × 'MacTOPS' × 'bit length of the operation', aggregated over all processing units on the integrated circuit.\" \"'Performance density' is 'TPP' divided by 'applicable die area'.\""
+ },
+ {
+  "id": "eccn-3a090-07",
+  "family": "eccn-3a090",
+  "law": "ECCN 3A090",
+  "facts": "Garrowdale Silicon designs and markets an accelerator chip for use in datacenters. The chip has one processing unit, for which the manufacturer's theoretical peak is 150 MacTOPS at a bit length of 8. Its applicable die area is 800 square millimeters. Treat every figure as exact.",
+  "question": "Which of these paragraphs of ECCN 3A090 (Supplement No. 1 to 15 CFR part 774), if any, covers the chip?",
+  "options": [
+   "A. 3A090.a.1.",
+   "B. 3A090.a.2.",
+   "C. 3A090.b.1.",
+   "D. 3A090.b.2.",
+   "E. None of these paragraphs."
+  ],
+  "key": "C",
+  "boundary": true,
+  "params": {
+   "mactops": 150,
+   "bit_length": 8,
+   "die_area": 800,
+   "datacenter": true,
+   "tpp_computed": 2400,
+   "density_computed": "3"
+  },
+  "rule_text": "ECCN 3A090, Supplement No. 1 to 15 CFR part 774: \"a. Integrated circuits having one or more digital processing units having either of the following: a.1. A 'total processing performance' of 4800 or more; or a.2. A 'total processing performance' of 1600 or more and a 'performance density' of 5.92 or more.\" \"b. Integrated circuits having one or more digital processing units having either of the following: b.1. A 'total processing performance' of 2400 or more and less than 4800 and a 'performance density' of 1.6 or more and less than 5.92, or b.2. A 'total processing performance' of 1600 or more and a 'performance density' of 3.2 or more and less than 5.92.\" \"Note 2 to 3A090.a and 3A090.b: 3A090.a and 3A090.b do not apply to items that are not designed or marketed for use in datacenters and do not have a 'total processing performance' of 4800 or more.\" \"'Total processing performance' ('TPP') is 2 × 'MacTOPS' × 'bit length of the operation', aggregated over all processing units on the integrated circuit.\" \"'Performance density' is 'TPP' divided by 'applicable die area'.\""
+ },
+ {
+  "id": "eccn-3a090-08",
+  "family": "eccn-3a090",
+  "law": "ECCN 3A090",
+  "facts": "Zennorfield Devices designs and markets an accelerator chip for use in datacenters. The chip has a 'total processing performance' (TPP) of 1800 and a 'performance density' of 4.0. Treat every figure as exact.",
+  "question": "Which of these paragraphs of ECCN 3A090 (Supplement No. 1 to 15 CFR part 774), if any, covers the chip?",
+  "options": [
+   "A. 3A090.a.1.",
+   "B. 3A090.a.2.",
+   "C. 3A090.b.1.",
+   "D. 3A090.b.2.",
+   "E. None of these paragraphs."
+  ],
+  "key": "D",
+  "boundary": false,
+  "params": {
+   "tpp": 1800,
+   "density": "4.0",
+   "datacenter": true,
+   "tpp_computed": 1800,
+   "density_computed": "4.0"
+  },
+  "rule_text": "ECCN 3A090, Supplement No. 1 to 15 CFR part 774: \"a. Integrated circuits having one or more digital processing units having either of the following: a.1. A 'total processing performance' of 4800 or more; or a.2. A 'total processing performance' of 1600 or more and a 'performance density' of 5.92 or more.\" \"b. Integrated circuits having one or more digital processing units having either of the following: b.1. A 'total processing performance' of 2400 or more and less than 4800 and a 'performance density' of 1.6 or more and less than 5.92, or b.2. A 'total processing performance' of 1600 or more and a 'performance density' of 3.2 or more and less than 5.92.\" \"Note 2 to 3A090.a and 3A090.b: 3A090.a and 3A090.b do not apply to items that are not designed or marketed for use in datacenters and do not have a 'total processing performance' of 4800 or more.\" \"'Total processing performance' ('TPP') is 2 × 'MacTOPS' × 'bit length of the operation', aggregated over all processing units on the integrated circuit.\" \"'Performance density' is 'TPP' divided by 'applicable die area'.\""
+ },
+ {
+  "id": "eccn-3a090-09",
+  "family": "eccn-3a090",
+  "law": "ECCN 3A090",
+  "facts": "Brackenridge Devices designs and markets an accelerator chip for use in datacenters. The chip has a 'total processing performance' (TPP) of 1600 and a 'performance density' of 3.2. Treat every figure as exact.",
+  "question": "Which of these paragraphs of ECCN 3A090 (Supplement No. 1 to 15 CFR part 774), if any, covers the chip?",
+  "options": [
+   "A. 3A090.a.1.",
+   "B. 3A090.a.2.",
+   "C. 3A090.b.1.",
+   "D. 3A090.b.2.",
+   "E. None of these paragraphs."
+  ],
+  "key": "D",
+  "boundary": true,
+  "params": {
+   "tpp": 1600,
+   "density": "3.2",
+   "datacenter": true,
+   "tpp_computed": 1600,
+   "density_computed": "3.2"
+  },
+  "rule_text": "ECCN 3A090, Supplement No. 1 to 15 CFR part 774: \"a. Integrated circuits having one or more digital processing units having either of the following: a.1. A 'total processing performance' of 4800 or more; or a.2. A 'total processing performance' of 1600 or more and a 'performance density' of 5.92 or more.\" \"b. Integrated circuits having one or more digital processing units having either of the following: b.1. A 'total processing performance' of 2400 or more and less than 4800 and a 'performance density' of 1.6 or more and less than 5.92, or b.2. A 'total processing performance' of 1600 or more and a 'performance density' of 3.2 or more and less than 5.92.\" \"Note 2 to 3A090.a and 3A090.b: 3A090.a and 3A090.b do not apply to items that are not designed or marketed for use in datacenters and do not have a 'total processing performance' of 4800 or more.\" \"'Total processing performance' ('TPP') is 2 × 'MacTOPS' × 'bit length of the operation', aggregated over all processing units on the integrated circuit.\" \"'Performance density' is 'TPP' divided by 'applicable die area'.\""
+ },
+ {
+  "id": "eccn-3a090-10",
+  "family": "eccn-3a090",
+  "law": "ECCN 3A090",
+  "facts": "Thistledown Silicon designs and markets an accelerator chip for use in datacenters. The chip has a 'total processing performance' (TPP) of 2300 and a 'performance density' of 5.9. Treat every figure as exact.",
+  "question": "Which of these paragraphs of ECCN 3A090 (Supplement No. 1 to 15 CFR part 774), if any, covers the chip?",
+  "options": [
+   "A. 3A090.a.1.",
+   "B. 3A090.a.2.",
+   "C. 3A090.b.1.",
+   "D. 3A090.b.2.",
+   "E. None of these paragraphs."
+  ],
+  "key": "D",
+  "boundary": false,
+  "params": {
+   "tpp": 2300,
+   "density": "5.9",
+   "datacenter": true,
+   "tpp_computed": 2300,
+   "density_computed": "5.9"
+  },
+  "rule_text": "ECCN 3A090, Supplement No. 1 to 15 CFR part 774: \"a. Integrated circuits having one or more digital processing units having either of the following: a.1. A 'total processing performance' of 4800 or more; or a.2. A 'total processing performance' of 1600 or more and a 'performance density' of 5.92 or more.\" \"b. Integrated circuits having one or more digital processing units having either of the following: b.1. A 'total processing performance' of 2400 or more and less than 4800 and a 'performance density' of 1.6 or more and less than 5.92, or b.2. A 'total processing performance' of 1600 or more and a 'performance density' of 3.2 or more and less than 5.92.\" \"Note 2 to 3A090.a and 3A090.b: 3A090.a and 3A090.b do not apply to items that are not designed or marketed for use in datacenters and do not have a 'total processing performance' of 4800 or more.\" \"'Total processing performance' ('TPP') is 2 × 'MacTOPS' × 'bit length of the operation', aggregated over all processing units on the integrated circuit.\" \"'Performance density' is 'TPP' divided by 'applicable die area'.\""
+ },
+ {
+  "id": "eccn-3a090-11",
+  "family": "eccn-3a090",
+  "law": "ECCN 3A090",
+  "facts": "Alderwyck Silicon designs and markets an accelerator chip for use in datacenters. The chip has a 'total processing performance' (TPP) of 1500 and a 'performance density' of 7.0. Treat every figure as exact.",
+  "question": "Which of these paragraphs of ECCN 3A090 (Supplement No. 1 to 15 CFR part 774), if any, covers the chip?",
+  "options": [
+   "A. 3A090.a.1.",
+   "B. 3A090.a.2.",
+   "C. 3A090.b.1.",
+   "D. 3A090.b.2.",
+   "E. None of these paragraphs."
+  ],
+  "key": "E",
+  "boundary": false,
+  "params": {
+   "tpp": 1500,
+   "density": "7.0",
+   "datacenter": true,
+   "tpp_computed": 1500,
+   "density_computed": "7.0"
+  },
+  "rule_text": "ECCN 3A090, Supplement No. 1 to 15 CFR part 774: \"a. Integrated circuits having one or more digital processing units having either of the following: a.1. A 'total processing performance' of 4800 or more; or a.2. A 'total processing performance' of 1600 or more and a 'performance density' of 5.92 or more.\" \"b. Integrated circuits having one or more digital processing units having either of the following: b.1. A 'total processing performance' of 2400 or more and less than 4800 and a 'performance density' of 1.6 or more and less than 5.92, or b.2. A 'total processing performance' of 1600 or more and a 'performance density' of 3.2 or more and less than 5.92.\" \"Note 2 to 3A090.a and 3A090.b: 3A090.a and 3A090.b do not apply to items that are not designed or marketed for use in datacenters and do not have a 'total processing performance' of 4800 or more.\" \"'Total processing performance' ('TPP') is 2 × 'MacTOPS' × 'bit length of the operation', aggregated over all processing units on the integrated circuit.\" \"'Performance density' is 'TPP' divided by 'applicable die area'.\""
+ },
+ {
+  "id": "eccn-3a090-12",
+  "family": "eccn-3a090",
+  "law": "ECCN 3A090",
+  "facts": "Lindmere Silicon designs and markets an accelerator chip for use in datacenters. The chip has a 'total processing performance' (TPP) of 2200 and a 'performance density' of 3.0. Treat every figure as exact.",
+  "question": "Which of these paragraphs of ECCN 3A090 (Supplement No. 1 to 15 CFR part 774), if any, covers the chip?",
+  "options": [
+   "A. 3A090.a.1.",
+   "B. 3A090.a.2.",
+   "C. 3A090.b.1.",
+   "D. 3A090.b.2.",
+   "E. None of these paragraphs."
+  ],
+  "key": "E",
+  "boundary": false,
+  "params": {
+   "tpp": 2200,
+   "density": "3.0",
+   "datacenter": true,
+   "tpp_computed": 2200,
+   "density_computed": "3.0"
+  },
+  "rule_text": "ECCN 3A090, Supplement No. 1 to 15 CFR part 774: \"a. Integrated circuits having one or more digital processing units having either of the following: a.1. A 'total processing performance' of 4800 or more; or a.2. A 'total processing performance' of 1600 or more and a 'performance density' of 5.92 or more.\" \"b. Integrated circuits having one or more digital processing units having either of the following: b.1. A 'total processing performance' of 2400 or more and less than 4800 and a 'performance density' of 1.6 or more and less than 5.92, or b.2. A 'total processing performance' of 1600 or more and a 'performance density' of 3.2 or more and less than 5.92.\" \"Note 2 to 3A090.a and 3A090.b: 3A090.a and 3A090.b do not apply to items that are not designed or marketed for use in datacenters and do not have a 'total processing performance' of 4800 or more.\" \"'Total processing performance' ('TPP') is 2 × 'MacTOPS' × 'bit length of the operation', aggregated over all processing units on the integrated circuit.\" \"'Performance density' is 'TPP' divided by 'applicable die area'.\""
+ },
+ {
+  "id": "eccn-3a090-13",
+  "family": "eccn-3a090",
+  "law": "ECCN 3A090",
+  "facts": "Garrowdale Devices designs and markets an accelerator chip for use in datacenters. The chip has a 'total processing performance' (TPP) of 4000 and a 'performance density' of 1.5. Treat every figure as exact.",
+  "question": "Which of these paragraphs of ECCN 3A090 (Supplement No. 1 to 15 CFR part 774), if any, covers the chip?",
+  "options": [
+   "A. 3A090.a.1.",
+   "B. 3A090.a.2.",
+   "C. 3A090.b.1.",
+   "D. 3A090.b.2.",
+   "E. None of these paragraphs."
+  ],
+  "key": "E",
+  "boundary": false,
+  "params": {
+   "tpp": 4000,
+   "density": "1.5",
+   "datacenter": true,
+   "tpp_computed": 4000,
+   "density_computed": "1.5"
+  },
+  "rule_text": "ECCN 3A090, Supplement No. 1 to 15 CFR part 774: \"a. Integrated circuits having one or more digital processing units having either of the following: a.1. A 'total processing performance' of 4800 or more; or a.2. A 'total processing performance' of 1600 or more and a 'performance density' of 5.92 or more.\" \"b. Integrated circuits having one or more digital processing units having either of the following: b.1. A 'total processing performance' of 2400 or more and less than 4800 and a 'performance density' of 1.6 or more and less than 5.92, or b.2. A 'total processing performance' of 1600 or more and a 'performance density' of 3.2 or more and less than 5.92.\" \"Note 2 to 3A090.a and 3A090.b: 3A090.a and 3A090.b do not apply to items that are not designed or marketed for use in datacenters and do not have a 'total processing performance' of 4800 or more.\" \"'Total processing performance' ('TPP') is 2 × 'MacTOPS' × 'bit length of the operation', aggregated over all processing units on the integrated circuit.\" \"'Performance density' is 'TPP' divided by 'applicable die area'.\""
+ },
+ {
+  "id": "eccn-3a090-14",
+  "family": "eccn-3a090",
+  "law": "ECCN 3A090",
+  "facts": "Sablewick Devices designs and markets a chip for gaming laptops. The chip is neither designed nor marketed for use in datacenters. It has a 'total processing performance' (TPP) of 4000 and a 'performance density' of 6.5. Treat every figure as exact.",
+  "question": "Which of these paragraphs of ECCN 3A090 (Supplement No. 1 to 15 CFR part 774), if any, covers the chip?",
+  "options": [
+   "A. 3A090.a.1.",
+   "B. 3A090.a.2.",
+   "C. 3A090.b.1.",
+   "D. 3A090.b.2.",
+   "E. None of these paragraphs."
+  ],
+  "key": "E",
+  "boundary": false,
+  "params": {
+   "tpp": 4000,
+   "density": "6.5",
+   "datacenter": false,
+   "tpp_computed": 4000,
+   "density_computed": "6.5"
+  },
+  "rule_text": "ECCN 3A090, Supplement No. 1 to 15 CFR part 774: \"a. Integrated circuits having one or more digital processing units having either of the following: a.1. A 'total processing performance' of 4800 or more; or a.2. A 'total processing performance' of 1600 or more and a 'performance density' of 5.92 or more.\" \"b. Integrated circuits having one or more digital processing units having either of the following: b.1. A 'total processing performance' of 2400 or more and less than 4800 and a 'performance density' of 1.6 or more and less than 5.92, or b.2. A 'total processing performance' of 1600 or more and a 'performance density' of 3.2 or more and less than 5.92.\" \"Note 2 to 3A090.a and 3A090.b: 3A090.a and 3A090.b do not apply to items that are not designed or marketed for use in datacenters and do not have a 'total processing performance' of 4800 or more.\" \"'Total processing performance' ('TPP') is 2 × 'MacTOPS' × 'bit length of the operation', aggregated over all processing units on the integrated circuit.\" \"'Performance density' is 'TPP' divided by 'applicable die area'.\""
+ },
+ {
+  "id": "eccn-3a090-15",
+  "family": "eccn-3a090",
+  "law": "ECCN 3A090",
+  "facts": "Hallowmere Devices designs and markets a chip for gaming laptops. The chip is neither designed nor marketed for use in datacenters. It has a 'total processing performance' (TPP) of 3000 and a 'performance density' of 2.5. Treat every figure as exact.",
+  "question": "Which of these paragraphs of ECCN 3A090 (Supplement No. 1 to 15 CFR part 774), if any, covers the chip?",
+  "options": [
+   "A. 3A090.a.1.",
+   "B. 3A090.a.2.",
+   "C. 3A090.b.1.",
+   "D. 3A090.b.2.",
+   "E. None of these paragraphs."
+  ],
+  "key": "E",
+  "boundary": false,
+  "params": {
+   "tpp": 3000,
+   "density": "2.5",
+   "datacenter": false,
+   "tpp_computed": 3000,
+   "density_computed": "2.5"
+  },
+  "rule_text": "ECCN 3A090, Supplement No. 1 to 15 CFR part 774: \"a. Integrated circuits having one or more digital processing units having either of the following: a.1. A 'total processing performance' of 4800 or more; or a.2. A 'total processing performance' of 1600 or more and a 'performance density' of 5.92 or more.\" \"b. Integrated circuits having one or more digital processing units having either of the following: b.1. A 'total processing performance' of 2400 or more and less than 4800 and a 'performance density' of 1.6 or more and less than 5.92, or b.2. A 'total processing performance' of 1600 or more and a 'performance density' of 3.2 or more and less than 5.92.\" \"Note 2 to 3A090.a and 3A090.b: 3A090.a and 3A090.b do not apply to items that are not designed or marketed for use in datacenters and do not have a 'total processing performance' of 4800 or more.\" \"'Total processing performance' ('TPP') is 2 × 'MacTOPS' × 'bit length of the operation', aggregated over all processing units on the integrated circuit.\" \"'Performance density' is 'TPP' divided by 'applicable die area'.\""
+ },
+ {
+  "id": "eccn-3a090-16",
+  "family": "eccn-3a090",
+  "law": "ECCN 3A090",
+  "facts": "Tarnwell Devices designs and markets a chip for gaming laptops. The chip is neither designed nor marketed for use in datacenters. It has a 'total processing performance' (TPP) of 5000 and a 'performance density' of 2.0. Treat every figure as exact.",
+  "question": "Which of these paragraphs of ECCN 3A090 (Supplement No. 1 to 15 CFR part 774), if any, covers the chip?",
+  "options": [
+   "A. 3A090.a.1.",
+   "B. 3A090.a.2.",
+   "C. 3A090.b.1.",
+   "D. 3A090.b.2.",
+   "E. None of these paragraphs."
+  ],
+  "key": "A",
+  "boundary": false,
+  "params": {
+   "tpp": 5000,
+   "density": "2.0",
+   "datacenter": false,
+   "tpp_computed": 5000,
+   "density_computed": "2.0"
+  },
+  "rule_text": "ECCN 3A090, Supplement No. 1 to 15 CFR part 774: \"a. Integrated circuits having one or more digital processing units having either of the following: a.1. A 'total processing performance' of 4800 or more; or a.2. A 'total processing performance' of 1600 or more and a 'performance density' of 5.92 or more.\" \"b. Integrated circuits having one or more digital processing units having either of the following: b.1. A 'total processing performance' of 2400 or more and less than 4800 and a 'performance density' of 1.6 or more and less than 5.92, or b.2. A 'total processing performance' of 1600 or more and a 'performance density' of 3.2 or more and less than 5.92.\" \"Note 2 to 3A090.a and 3A090.b: 3A090.a and 3A090.b do not apply to items that are not designed or marketed for use in datacenters and do not have a 'total processing performance' of 4800 or more.\" \"'Total processing performance' ('TPP') is 2 × 'MacTOPS' × 'bit length of the operation', aggregated over all processing units on the integrated circuit.\" \"'Performance density' is 'TPP' divided by 'applicable die area'.\""
+ },
+ {
+  "id": "licence-review-01",
+  "family": "licence-review",
+  "law": "BIS rule of January 15, 2026",
+  "facts": "Sablewick Silicon, a US company, applies for a licence to export a chip from the United States to an end user located in China. The chip has a 'total processing performance' (TPP) of 20,500 and a 'total DRAM bandwidth' of 6,100 GB/s. The application includes all the information and certifications that paragraph (dd) of supplement no. 2 to 15 CFR part 748 asks for, and it meets the criteria of no other licensing policy. China is a destination specified in Country Group D:5. Treat every figure as exact.",
+  "question": "Under the January 15, 2026 BIS rule (91 FR 1684; 15 CFR 742.6(b)(10)(iii)(A)(1)), which licence review policy applies to this application?",
+  "options": [
+   "A. Case-by-case review.",
+   "B. A presumption of denial.",
+   "C. A presumption of approval."
+  ],
+  "key": "A",
+  "boundary": false,
+  "params": {
+   "tpp": 20500,
+   "bandwidth": 6100,
+   "destination": "China"
+  },
+  "rule_text": "15 CFR 742.6(b)(10)(iii)(A)(1), as revised by the BIS rule of January 15, 2026 (91 FR 1684): \"There is a case-by-case license review policy for license applications for exports of commodities with a TPP (as defined in Technical Note 2 to 3A090.a and 3A090.b) less than 21,000, and a 'total DRAM bandwidth' (as defined in the notes to paragraph (dd)(1) in supplement no. 2 to part 748) less than 6,500 GB/s, when destined to end-users located in China or Macau, provided the applicant provides the additional information described in supplement no. 2 to part 748 under paragraph (dd).\" \"All other applications for exports, reexports, or transfers (in-country) will be reviewed under a presumption of denial to or within Macau or destinations specified in Country Group D:5 or to an entity headquartered in, or whose ultimate parent company is headquartered in, either Macau or a destination specified in Country Group D:5.\""
+ },
+ {
+  "id": "licence-review-02",
+  "family": "licence-review",
+  "law": "BIS rule of January 15, 2026",
+  "facts": "Pellham Devices, a US company, applies for a licence to export a chip from the United States to an end user located in Macau. The chip has a 'total processing performance' (TPP) of 21,000 and a 'total DRAM bandwidth' of 5,900 GB/s. The application includes all the information and certifications that paragraph (dd) of supplement no. 2 to 15 CFR part 748 asks for, and it meets the criteria of no other licensing policy. Treat every figure as exact.",
+  "question": "Under the January 15, 2026 BIS rule (91 FR 1684; 15 CFR 742.6(b)(10)(iii)(A)(1)), which licence review policy applies to this application?",
+  "options": [
+   "A. Case-by-case review.",
+   "B. A presumption of denial.",
+   "C. A presumption of approval."
+  ],
+  "key": "B",
+  "boundary": true,
+  "params": {
+   "tpp": 21000,
+   "bandwidth": 5900,
+   "destination": "Macau"
+  },
+  "rule_text": "15 CFR 742.6(b)(10)(iii)(A)(1), as revised by the BIS rule of January 15, 2026 (91 FR 1684): \"There is a case-by-case license review policy for license applications for exports of commodities with a TPP (as defined in Technical Note 2 to 3A090.a and 3A090.b) less than 21,000, and a 'total DRAM bandwidth' (as defined in the notes to paragraph (dd)(1) in supplement no. 2 to part 748) less than 6,500 GB/s, when destined to end-users located in China or Macau, provided the applicant provides the additional information described in supplement no. 2 to part 748 under paragraph (dd).\" \"All other applications for exports, reexports, or transfers (in-country) will be reviewed under a presumption of denial to or within Macau or destinations specified in Country Group D:5 or to an entity headquartered in, or whose ultimate parent company is headquartered in, either Macau or a destination specified in Country Group D:5.\""
+ },
+ {
+  "id": "licence-review-03",
+  "family": "licence-review",
+  "law": "BIS rule of January 15, 2026",
+  "facts": "Thistledown Devices, a US company, applies for a licence to export a chip from the United States to an end user located in China. The chip has a 'total processing performance' (TPP) of 20,999 and a 'total DRAM bandwidth' of 6,499 GB/s. The application includes all the information and certifications that paragraph (dd) of supplement no. 2 to 15 CFR part 748 asks for, and it meets the criteria of no other licensing policy. China is a destination specified in Country Group D:5. Treat every figure as exact.",
+  "question": "Under the January 15, 2026 BIS rule (91 FR 1684; 15 CFR 742.6(b)(10)(iii)(A)(1)), which licence review policy applies to this application?",
+  "options": [
+   "A. Case-by-case review.",
+   "B. A presumption of denial.",
+   "C. A presumption of approval."
+  ],
+  "key": "A",
+  "boundary": false,
+  "params": {
+   "tpp": 20999,
+   "bandwidth": 6499,
+   "destination": "China"
+  },
+  "rule_text": "15 CFR 742.6(b)(10)(iii)(A)(1), as revised by the BIS rule of January 15, 2026 (91 FR 1684): \"There is a case-by-case license review policy for license applications for exports of commodities with a TPP (as defined in Technical Note 2 to 3A090.a and 3A090.b) less than 21,000, and a 'total DRAM bandwidth' (as defined in the notes to paragraph (dd)(1) in supplement no. 2 to part 748) less than 6,500 GB/s, when destined to end-users located in China or Macau, provided the applicant provides the additional information described in supplement no. 2 to part 748 under paragraph (dd).\" \"All other applications for exports, reexports, or transfers (in-country) will be reviewed under a presumption of denial to or within Macau or destinations specified in Country Group D:5 or to an entity headquartered in, or whose ultimate parent company is headquartered in, either Macau or a destination specified in Country Group D:5.\""
+ },
+ {
+  "id": "licence-review-04",
+  "family": "licence-review",
+  "law": "BIS rule of January 15, 2026",
+  "facts": "Elmhollow Devices, a US company, applies for a licence to export a chip from the United States to an end user located in China. The chip has a 'total processing performance' (TPP) of 19,000 and a 'total DRAM bandwidth' of 6,500 GB/s. The application includes all the information and certifications that paragraph (dd) of supplement no. 2 to 15 CFR part 748 asks for, and it meets the criteria of no other licensing policy. China is a destination specified in Country Group D:5. Treat every figure as exact.",
+  "question": "Under the January 15, 2026 BIS rule (91 FR 1684; 15 CFR 742.6(b)(10)(iii)(A)(1)), which licence review policy applies to this application?",
+  "options": [
+   "A. Case-by-case review.",
+   "B. A presumption of denial.",
+   "C. A presumption of approval."
+  ],
+  "key": "B",
+  "boundary": true,
+  "params": {
+   "tpp": 19000,
+   "bandwidth": 6500,
+   "destination": "China"
+  },
+  "rule_text": "15 CFR 742.6(b)(10)(iii)(A)(1), as revised by the BIS rule of January 15, 2026 (91 FR 1684): \"There is a case-by-case license review policy for license applications for exports of commodities with a TPP (as defined in Technical Note 2 to 3A090.a and 3A090.b) less than 21,000, and a 'total DRAM bandwidth' (as defined in the notes to paragraph (dd)(1) in supplement no. 2 to part 748) less than 6,500 GB/s, when destined to end-users located in China or Macau, provided the applicant provides the additional information described in supplement no. 2 to part 748 under paragraph (dd).\" \"All other applications for exports, reexports, or transfers (in-country) will be reviewed under a presumption of denial to or within Macau or destinations specified in Country Group D:5 or to an entity headquartered in, or whose ultimate parent company is headquartered in, either Macau or a destination specified in Country Group D:5.\""
+ },
+ {
+  "id": "licence-review-05",
+  "family": "licence-review",
+  "law": "BIS rule of January 15, 2026",
+  "facts": "Northwold Devices, a US company, applies for a licence to export a chip from the United States to an end user located in China. The chip has a 'total processing performance' (TPP) of 22,400 and a 'total DRAM bandwidth' of 6,200 GB/s. The application includes all the information and certifications that paragraph (dd) of supplement no. 2 to 15 CFR part 748 asks for, and it meets the criteria of no other licensing policy. China is a destination specified in Country Group D:5. Treat every figure as exact.",
+  "question": "Under the January 15, 2026 BIS rule (91 FR 1684; 15 CFR 742.6(b)(10)(iii)(A)(1)), which licence review policy applies to this application?",
+  "options": [
+   "A. Case-by-case review.",
+   "B. A presumption of denial.",
+   "C. A presumption of approval."
+  ],
+  "key": "B",
+  "boundary": false,
+  "params": {
+   "tpp": 22400,
+   "bandwidth": 6200,
+   "destination": "China"
+  },
+  "rule_text": "15 CFR 742.6(b)(10)(iii)(A)(1), as revised by the BIS rule of January 15, 2026 (91 FR 1684): \"There is a case-by-case license review policy for license applications for exports of commodities with a TPP (as defined in Technical Note 2 to 3A090.a and 3A090.b) less than 21,000, and a 'total DRAM bandwidth' (as defined in the notes to paragraph (dd)(1) in supplement no. 2 to part 748) less than 6,500 GB/s, when destined to end-users located in China or Macau, provided the applicant provides the additional information described in supplement no. 2 to part 748 under paragraph (dd).\" \"All other applications for exports, reexports, or transfers (in-country) will be reviewed under a presumption of denial to or within Macau or destinations specified in Country Group D:5 or to an entity headquartered in, or whose ultimate parent company is headquartered in, either Macau or a destination specified in Country Group D:5.\""
+ },
+ {
+  "id": "licence-review-06",
+  "family": "licence-review",
+  "law": "BIS rule of January 15, 2026",
+  "facts": "Yarrowby Silicon, a US company, applies for a licence to export a chip from the United States to an end user located in Macau. The chip has a 'total processing performance' (TPP) of 15,000 and a 'total DRAM bandwidth' of 7,000 GB/s. The application includes all the information and certifications that paragraph (dd) of supplement no. 2 to 15 CFR part 748 asks for, and it meets the criteria of no other licensing policy. Treat every figure as exact.",
+  "question": "Under the January 15, 2026 BIS rule (91 FR 1684; 15 CFR 742.6(b)(10)(iii)(A)(1)), which licence review policy applies to this application?",
+  "options": [
+   "A. Case-by-case review.",
+   "B. A presumption of denial.",
+   "C. A presumption of approval."
+  ],
+  "key": "B",
+  "boundary": false,
+  "params": {
+   "tpp": 15000,
+   "bandwidth": 7000,
+   "destination": "Macau"
+  },
+  "rule_text": "15 CFR 742.6(b)(10)(iii)(A)(1), as revised by the BIS rule of January 15, 2026 (91 FR 1684): \"There is a case-by-case license review policy for license applications for exports of commodities with a TPP (as defined in Technical Note 2 to 3A090.a and 3A090.b) less than 21,000, and a 'total DRAM bandwidth' (as defined in the notes to paragraph (dd)(1) in supplement no. 2 to part 748) less than 6,500 GB/s, when destined to end-users located in China or Macau, provided the applicant provides the additional information described in supplement no. 2 to part 748 under paragraph (dd).\" \"All other applications for exports, reexports, or transfers (in-country) will be reviewed under a presumption of denial to or within Macau or destinations specified in Country Group D:5 or to an entity headquartered in, or whose ultimate parent company is headquartered in, either Macau or a destination specified in Country Group D:5.\""
+ },
+ {
+  "id": "licence-review-07",
+  "family": "licence-review",
+  "law": "BIS rule of January 15, 2026",
+  "facts": "Dunsmuir Devices, a US company, applies for a licence to export a chip from the United States to an end user located in Macau. The chip has a 'total processing performance' (TPP) of 20,000 and a 'total DRAM bandwidth' of 6,000 GB/s. The application includes all the information and certifications that paragraph (dd) of supplement no. 2 to 15 CFR part 748 asks for, and it meets the criteria of no other licensing policy. Treat every figure as exact.",
+  "question": "Under the January 15, 2026 BIS rule (91 FR 1684; 15 CFR 742.6(b)(10)(iii)(A)(1)), which licence review policy applies to this application?",
+  "options": [
+   "A. Case-by-case review.",
+   "B. A presumption of denial.",
+   "C. A presumption of approval."
+  ],
+  "key": "A",
+  "boundary": false,
+  "params": {
+   "tpp": 20000,
+   "bandwidth": 6000,
+   "destination": "Macau"
+  },
+  "rule_text": "15 CFR 742.6(b)(10)(iii)(A)(1), as revised by the BIS rule of January 15, 2026 (91 FR 1684): \"There is a case-by-case license review policy for license applications for exports of commodities with a TPP (as defined in Technical Note 2 to 3A090.a and 3A090.b) less than 21,000, and a 'total DRAM bandwidth' (as defined in the notes to paragraph (dd)(1) in supplement no. 2 to part 748) less than 6,500 GB/s, when destined to end-users located in China or Macau, provided the applicant provides the additional information described in supplement no. 2 to part 748 under paragraph (dd).\" \"All other applications for exports, reexports, or transfers (in-country) will be reviewed under a presumption of denial to or within Macau or destinations specified in Country Group D:5 or to an entity headquartered in, or whose ultimate parent company is headquartered in, either Macau or a destination specified in Country Group D:5.\""
+ },
+ {
+  "id": "licence-review-08",
+  "family": "licence-review",
+  "law": "BIS rule of January 15, 2026",
+  "facts": "Elmhollow Silicon, a US company, applies for a licence to export a chip from the United States to an end user located in China. The chip has a 'total processing performance' (TPP) of 21,100 and a 'total DRAM bandwidth' of 6,000 GB/s. The application includes all the information and certifications that paragraph (dd) of supplement no. 2 to 15 CFR part 748 asks for, and it meets the criteria of no other licensing policy. China is a destination specified in Country Group D:5. Treat every figure as exact.",
+  "question": "Under the January 15, 2026 BIS rule (91 FR 1684; 15 CFR 742.6(b)(10)(iii)(A)(1)), which licence review policy applies to this application?",
+  "options": [
+   "A. Case-by-case review.",
+   "B. A presumption of denial.",
+   "C. A presumption of approval."
+  ],
+  "key": "B",
+  "boundary": false,
+  "params": {
+   "tpp": 21100,
+   "bandwidth": 6000,
+   "destination": "China"
+  },
+  "rule_text": "15 CFR 742.6(b)(10)(iii)(A)(1), as revised by the BIS rule of January 15, 2026 (91 FR 1684): \"There is a case-by-case license review policy for license applications for exports of commodities with a TPP (as defined in Technical Note 2 to 3A090.a and 3A090.b) less than 21,000, and a 'total DRAM bandwidth' (as defined in the notes to paragraph (dd)(1) in supplement no. 2 to part 748) less than 6,500 GB/s, when destined to end-users located in China or Macau, provided the applicant provides the additional information described in supplement no. 2 to part 748 under paragraph (dd).\" \"All other applications for exports, reexports, or transfers (in-country) will be reviewed under a presumption of denial to or within Macau or destinations specified in Country Group D:5 or to an entity headquartered in, or whose ultimate parent company is headquartered in, either Macau or a destination specified in Country Group D:5.\""
+ },
+ {
+  "id": "licence-review-09",
+  "family": "licence-review",
+  "law": "BIS rule of January 15, 2026",
+  "facts": "Quillon Devices, a US company, applies for a licence to export a chip from the United States to an end user located in China. The chip has a 'total processing performance' (TPP) of 18,000 and a 'total DRAM bandwidth' of 4,800 GB/s. The application includes all the information and certifications that paragraph (dd) of supplement no. 2 to 15 CFR part 748 asks for, and it meets the criteria of no other licensing policy. China is a destination specified in Country Group D:5. Treat every figure as exact.",
+  "question": "Under the January 15, 2026 BIS rule (91 FR 1684; 15 CFR 742.6(b)(10)(iii)(A)(1)), which licence review policy applies to this application?",
+  "options": [
+   "A. Case-by-case review.",
+   "B. A presumption of denial.",
+   "C. A presumption of approval."
+  ],
+  "key": "A",
+  "boundary": false,
+  "params": {
+   "tpp": 18000,
+   "bandwidth": 4800,
+   "destination": "China"
+  },
+  "rule_text": "15 CFR 742.6(b)(10)(iii)(A)(1), as revised by the BIS rule of January 15, 2026 (91 FR 1684): \"There is a case-by-case license review policy for license applications for exports of commodities with a TPP (as defined in Technical Note 2 to 3A090.a and 3A090.b) less than 21,000, and a 'total DRAM bandwidth' (as defined in the notes to paragraph (dd)(1) in supplement no. 2 to part 748) less than 6,500 GB/s, when destined to end-users located in China or Macau, provided the applicant provides the additional information described in supplement no. 2 to part 748 under paragraph (dd).\" \"All other applications for exports, reexports, or transfers (in-country) will be reviewed under a presumption of denial to or within Macau or destinations specified in Country Group D:5 or to an entity headquartered in, or whose ultimate parent company is headquartered in, either Macau or a destination specified in Country Group D:5.\""
+ },
+ {
+  "id": "licence-review-10",
+  "family": "licence-review",
+  "law": "BIS rule of January 15, 2026",
+  "facts": "Alderwyck Devices, a US company, applies for a licence to export a chip from the United States to an end user located in Macau. The chip has a 'total processing performance' (TPP) of 20,900 and a 'total DRAM bandwidth' of 6,300 GB/s. The application includes all the information and certifications that paragraph (dd) of supplement no. 2 to 15 CFR part 748 asks for, and it meets the criteria of no other licensing policy. Treat every figure as exact.",
+  "question": "Under the January 15, 2026 BIS rule (91 FR 1684; 15 CFR 742.6(b)(10)(iii)(A)(1)), which licence review policy applies to this application?",
+  "options": [
+   "A. Case-by-case review.",
+   "B. A presumption of denial.",
+   "C. A presumption of approval."
+  ],
+  "key": "A",
+  "boundary": false,
+  "params": {
+   "tpp": 20900,
+   "bandwidth": 6300,
+   "destination": "Macau"
+  },
+  "rule_text": "15 CFR 742.6(b)(10)(iii)(A)(1), as revised by the BIS rule of January 15, 2026 (91 FR 1684): \"There is a case-by-case license review policy for license applications for exports of commodities with a TPP (as defined in Technical Note 2 to 3A090.a and 3A090.b) less than 21,000, and a 'total DRAM bandwidth' (as defined in the notes to paragraph (dd)(1) in supplement no. 2 to part 748) less than 6,500 GB/s, when destined to end-users located in China or Macau, provided the applicant provides the additional information described in supplement no. 2 to part 748 under paragraph (dd).\" \"All other applications for exports, reexports, or transfers (in-country) will be reviewed under a presumption of denial to or within Macau or destinations specified in Country Group D:5 or to an entity headquartered in, or whose ultimate parent company is headquartered in, either Macau or a destination specified in Country Group D:5.\""
+ },
+ {
+  "id": "chip-tariff-01",
+  "family": "chip-tariff",
+  "law": "Section 232 semiconductor tariff",
+  "facts": "Hallowmere Silicon enters for consumption in the United States an article classified in HTSUS subheading 8473.30 that contains a logic integrated circuit. The integrated circuit has a 'total processing performance' (TPP) of 15,200 and a 'total DRAM bandwidth' of 4,700 GB/s. None of the uses in subdivision (d) of U.S. note 39 applies. Treat every figure as exact.",
+  "question": "Under U.S. note 39 to subchapter III of chapter 99 of the Harmonized Tariff Schedule (the Section 232 semiconductor tariff, Proclamation 11002), which heading covers this entry?",
+  "options": [
+   "A. Heading 9903.79.01, which adds a 25% duty.",
+   "B. Heading 9903.79.02, which adds no duty."
+  ],
+  "key": "A",
+  "boundary": false,
+  "params": {
+   "tpp": 15200,
+   "bandwidth": 4700
+  },
+  "rule_text": "U.S. note 39 to subchapter III of chapter 99 of the HTSUS, as inserted by Proclamation 11002 (91 FR 2443): \"To be included within the definition of semiconductor articles, the imported products must be a logic integrated circuit, or an article that contains a logic integrated circuit, that meets the technical parameters of having: (1) a total processing performance greater than 14,000 and less than 17,500, and a total DRAM bandwidth greater than 4,500 GB/s and less than 5,000 GB/s; or (2) a total processing performance greater than 20,800 and less than 21,100, and total DRAM bandwidth greater than 5,800 GB/s and less than 6,200 GB/s.\" \"Heading 9903.79.02 applies to entries of articles that are classifiable under provisions of the HTSUS enumerated in subdivision (b) of this note but that do not meet the technical parameters specified in subdivision (b) of this note.\"\nSubdivision (b) lists the provisions 8471.50, 8471.80 and 8473.30. Heading 9903.79.01 (semiconductor articles as provided for in subdivisions (a) and (b)) carries the duty provided in the applicable subheading plus 25%. Heading 9903.79.02 (articles as provided for in subdivision (c)) carries the duty provided in the applicable subheading."
+ },
+ {
+  "id": "chip-tariff-02",
+  "family": "chip-tariff",
+  "law": "Section 232 semiconductor tariff",
+  "facts": "Northwold Silicon enters for consumption in the United States an article classified in HTSUS subheading 8473.30 that contains a logic integrated circuit. The integrated circuit has a 'total processing performance' (TPP) of 20,900 and a 'total DRAM bandwidth' of 6,300 GB/s. None of the uses in subdivision (d) of U.S. note 39 applies. Treat every figure as exact.",
+  "question": "Under U.S. note 39 to subchapter III of chapter 99 of the Harmonized Tariff Schedule (the Section 232 semiconductor tariff, Proclamation 11002), which heading covers this entry?",
+  "options": [
+   "A. Heading 9903.79.01, which adds a 25% duty.",
+   "B. Heading 9903.79.02, which adds no duty."
+  ],
+  "key": "B",
+  "boundary": false,
+  "params": {
+   "tpp": 20900,
+   "bandwidth": 6300
+  },
+  "rule_text": "U.S. note 39 to subchapter III of chapter 99 of the HTSUS, as inserted by Proclamation 11002 (91 FR 2443): \"To be included within the definition of semiconductor articles, the imported products must be a logic integrated circuit, or an article that contains a logic integrated circuit, that meets the technical parameters of having: (1) a total processing performance greater than 14,000 and less than 17,500, and a total DRAM bandwidth greater than 4,500 GB/s and less than 5,000 GB/s; or (2) a total processing performance greater than 20,800 and less than 21,100, and total DRAM bandwidth greater than 5,800 GB/s and less than 6,200 GB/s.\" \"Heading 9903.79.02 applies to entries of articles that are classifiable under provisions of the HTSUS enumerated in subdivision (b) of this note but that do not meet the technical parameters specified in subdivision (b) of this note.\"\nSubdivision (b) lists the provisions 8471.50, 8471.80 and 8473.30. Heading 9903.79.01 (semiconductor articles as provided for in subdivisions (a) and (b)) carries the duty provided in the applicable subheading plus 25%. Heading 9903.79.02 (articles as provided for in subdivision (c)) carries the duty provided in the applicable subheading."
+ },
+ {
+  "id": "chip-tariff-03",
+  "family": "chip-tariff",
+  "law": "Section 232 semiconductor tariff",
+  "facts": "Marrowby Silicon enters for consumption in the United States an article classified in HTSUS subheading 8473.30 that contains a logic integrated circuit. The integrated circuit has a 'total processing performance' (TPP) of 20,900 and a 'total DRAM bandwidth' of 6,000 GB/s. None of the uses in subdivision (d) of U.S. note 39 applies. Treat every figure as exact.",
+  "question": "Under U.S. note 39 to subchapter III of chapter 99 of the Harmonized Tariff Schedule (the Section 232 semiconductor tariff, Proclamation 11002), which heading covers this entry?",
+  "options": [
+   "A. Heading 9903.79.01, which adds a 25% duty.",
+   "B. Heading 9903.79.02, which adds no duty."
+  ],
+  "key": "A",
+  "boundary": false,
+  "params": {
+   "tpp": 20900,
+   "bandwidth": 6000
+  },
+  "rule_text": "U.S. note 39 to subchapter III of chapter 99 of the HTSUS, as inserted by Proclamation 11002 (91 FR 2443): \"To be included within the definition of semiconductor articles, the imported products must be a logic integrated circuit, or an article that contains a logic integrated circuit, that meets the technical parameters of having: (1) a total processing performance greater than 14,000 and less than 17,500, and a total DRAM bandwidth greater than 4,500 GB/s and less than 5,000 GB/s; or (2) a total processing performance greater than 20,800 and less than 21,100, and total DRAM bandwidth greater than 5,800 GB/s and less than 6,200 GB/s.\" \"Heading 9903.79.02 applies to entries of articles that are classifiable under provisions of the HTSUS enumerated in subdivision (b) of this note but that do not meet the technical parameters specified in subdivision (b) of this note.\"\nSubdivision (b) lists the provisions 8471.50, 8471.80 and 8473.30. Heading 9903.79.01 (semiconductor articles as provided for in subdivisions (a) and (b)) carries the duty provided in the applicable subheading plus 25%. Heading 9903.79.02 (articles as provided for in subdivision (c)) carries the duty provided in the applicable subheading."
+ },
+ {
+  "id": "chip-tariff-04",
+  "family": "chip-tariff",
+  "law": "Section 232 semiconductor tariff",
+  "facts": "Rookhurst Silicon enters for consumption in the United States an article classified in HTSUS subheading 8473.30 that contains a logic integrated circuit. The integrated circuit has a 'total processing performance' (TPP) of 14,000 and a 'total DRAM bandwidth' of 4,700 GB/s. None of the uses in subdivision (d) of U.S. note 39 applies. Treat every figure as exact.",
+  "question": "Under U.S. note 39 to subchapter III of chapter 99 of the Harmonized Tariff Schedule (the Section 232 semiconductor tariff, Proclamation 11002), which heading covers this entry?",
+  "options": [
+   "A. Heading 9903.79.01, which adds a 25% duty.",
+   "B. Heading 9903.79.02, which adds no duty."
+  ],
+  "key": "B",
+  "boundary": true,
+  "params": {
+   "tpp": 14000,
+   "bandwidth": 4700
+  },
+  "rule_text": "U.S. note 39 to subchapter III of chapter 99 of the HTSUS, as inserted by Proclamation 11002 (91 FR 2443): \"To be included within the definition of semiconductor articles, the imported products must be a logic integrated circuit, or an article that contains a logic integrated circuit, that meets the technical parameters of having: (1) a total processing performance greater than 14,000 and less than 17,500, and a total DRAM bandwidth greater than 4,500 GB/s and less than 5,000 GB/s; or (2) a total processing performance greater than 20,800 and less than 21,100, and total DRAM bandwidth greater than 5,800 GB/s and less than 6,200 GB/s.\" \"Heading 9903.79.02 applies to entries of articles that are classifiable under provisions of the HTSUS enumerated in subdivision (b) of this note but that do not meet the technical parameters specified in subdivision (b) of this note.\"\nSubdivision (b) lists the provisions 8471.50, 8471.80 and 8473.30. Heading 9903.79.01 (semiconductor articles as provided for in subdivisions (a) and (b)) carries the duty provided in the applicable subheading plus 25%. Heading 9903.79.02 (articles as provided for in subdivision (c)) carries the duty provided in the applicable subheading."
+ },
+ {
+  "id": "chip-tariff-05",
+  "family": "chip-tariff",
+  "law": "Section 232 semiconductor tariff",
+  "facts": "Kestrelby Devices enters for consumption in the United States an article classified in HTSUS subheading 8473.30 that contains a logic integrated circuit. The integrated circuit has a 'total processing performance' (TPP) of 17,500 and a 'total DRAM bandwidth' of 4,800 GB/s. None of the uses in subdivision (d) of U.S. note 39 applies. Treat every figure as exact.",
+  "question": "Under U.S. note 39 to subchapter III of chapter 99 of the Harmonized Tariff Schedule (the Section 232 semiconductor tariff, Proclamation 11002), which heading covers this entry?",
+  "options": [
+   "A. Heading 9903.79.01, which adds a 25% duty.",
+   "B. Heading 9903.79.02, which adds no duty."
+  ],
+  "key": "B",
+  "boundary": true,
+  "params": {
+   "tpp": 17500,
+   "bandwidth": 4800
+  },
+  "rule_text": "U.S. note 39 to subchapter III of chapter 99 of the HTSUS, as inserted by Proclamation 11002 (91 FR 2443): \"To be included within the definition of semiconductor articles, the imported products must be a logic integrated circuit, or an article that contains a logic integrated circuit, that meets the technical parameters of having: (1) a total processing performance greater than 14,000 and less than 17,500, and a total DRAM bandwidth greater than 4,500 GB/s and less than 5,000 GB/s; or (2) a total processing performance greater than 20,800 and less than 21,100, and total DRAM bandwidth greater than 5,800 GB/s and less than 6,200 GB/s.\" \"Heading 9903.79.02 applies to entries of articles that are classifiable under provisions of the HTSUS enumerated in subdivision (b) of this note but that do not meet the technical parameters specified in subdivision (b) of this note.\"\nSubdivision (b) lists the provisions 8471.50, 8471.80 and 8473.30. Heading 9903.79.01 (semiconductor articles as provided for in subdivisions (a) and (b)) carries the duty provided in the applicable subheading plus 25%. Heading 9903.79.02 (articles as provided for in subdivision (c)) carries the duty provided in the applicable subheading."
+ },
+ {
+  "id": "chip-tariff-06",
+  "family": "chip-tariff",
+  "law": "Section 232 semiconductor tariff",
+  "facts": "Harrowgate Devices enters for consumption in the United States an article classified in HTSUS subheading 8473.30 that contains a logic integrated circuit. The integrated circuit has a 'total processing performance' (TPP) of 16,000 and a 'total DRAM bandwidth' of 5,000 GB/s. None of the uses in subdivision (d) of U.S. note 39 applies. Treat every figure as exact.",
+  "question": "Under U.S. note 39 to subchapter III of chapter 99 of the Harmonized Tariff Schedule (the Section 232 semiconductor tariff, Proclamation 11002), which heading covers this entry?",
+  "options": [
+   "A. Heading 9903.79.01, which adds a 25% duty.",
+   "B. Heading 9903.79.02, which adds no duty."
+  ],
+  "key": "B",
+  "boundary": true,
+  "params": {
+   "tpp": 16000,
+   "bandwidth": 5000
+  },
+  "rule_text": "U.S. note 39 to subchapter III of chapter 99 of the HTSUS, as inserted by Proclamation 11002 (91 FR 2443): \"To be included within the definition of semiconductor articles, the imported products must be a logic integrated circuit, or an article that contains a logic integrated circuit, that meets the technical parameters of having: (1) a total processing performance greater than 14,000 and less than 17,500, and a total DRAM bandwidth greater than 4,500 GB/s and less than 5,000 GB/s; or (2) a total processing performance greater than 20,800 and less than 21,100, and total DRAM bandwidth greater than 5,800 GB/s and less than 6,200 GB/s.\" \"Heading 9903.79.02 applies to entries of articles that are classifiable under provisions of the HTSUS enumerated in subdivision (b) of this note but that do not meet the technical parameters specified in subdivision (b) of this note.\"\nSubdivision (b) lists the provisions 8471.50, 8471.80 and 8473.30. Heading 9903.79.01 (semiconductor articles as provided for in subdivisions (a) and (b)) carries the duty provided in the applicable subheading plus 25%. Heading 9903.79.02 (articles as provided for in subdivision (c)) carries the duty provided in the applicable subheading."
+ },
+ {
+  "id": "chip-tariff-07",
+  "family": "chip-tariff",
+  "law": "Section 232 semiconductor tariff",
+  "facts": "Marrowby Devices enters for consumption in the United States an article classified in HTSUS subheading 8473.30 that contains a logic integrated circuit. The integrated circuit has a 'total processing performance' (TPP) of 19,000 and a 'total DRAM bandwidth' of 5,500 GB/s. None of the uses in subdivision (d) of U.S. note 39 applies. Treat every figure as exact.",
+  "question": "Under U.S. note 39 to subchapter III of chapter 99 of the Harmonized Tariff Schedule (the Section 232 semiconductor tariff, Proclamation 11002), which heading covers this entry?",
+  "options": [
+   "A. Heading 9903.79.01, which adds a 25% duty.",
+   "B. Heading 9903.79.02, which adds no duty."
+  ],
+  "key": "B",
+  "boundary": false,
+  "params": {
+   "tpp": 19000,
+   "bandwidth": 5500
+  },
+  "rule_text": "U.S. note 39 to subchapter III of chapter 99 of the HTSUS, as inserted by Proclamation 11002 (91 FR 2443): \"To be included within the definition of semiconductor articles, the imported products must be a logic integrated circuit, or an article that contains a logic integrated circuit, that meets the technical parameters of having: (1) a total processing performance greater than 14,000 and less than 17,500, and a total DRAM bandwidth greater than 4,500 GB/s and less than 5,000 GB/s; or (2) a total processing performance greater than 20,800 and less than 21,100, and total DRAM bandwidth greater than 5,800 GB/s and less than 6,200 GB/s.\" \"Heading 9903.79.02 applies to entries of articles that are classifiable under provisions of the HTSUS enumerated in subdivision (b) of this note but that do not meet the technical parameters specified in subdivision (b) of this note.\"\nSubdivision (b) lists the provisions 8471.50, 8471.80 and 8473.30. Heading 9903.79.01 (semiconductor articles as provided for in subdivisions (a) and (b)) carries the duty provided in the applicable subheading plus 25%. Heading 9903.79.02 (articles as provided for in subdivision (c)) carries the duty provided in the applicable subheading."
+ },
+ {
+  "id": "chip-tariff-08",
+  "family": "chip-tariff",
+  "law": "Section 232 semiconductor tariff",
+  "facts": "Castellane Silicon enters for consumption in the United States an article classified in HTSUS subheading 8473.30 that contains a logic integrated circuit. The integrated circuit has a 'total processing performance' (TPP) of 15,000 and a 'total DRAM bandwidth' of 6,000 GB/s. None of the uses in subdivision (d) of U.S. note 39 applies. Treat every figure as exact.",
+  "question": "Under U.S. note 39 to subchapter III of chapter 99 of the Harmonized Tariff Schedule (the Section 232 semiconductor tariff, Proclamation 11002), which heading covers this entry?",
+  "options": [
+   "A. Heading 9903.79.01, which adds a 25% duty.",
+   "B. Heading 9903.79.02, which adds no duty."
+  ],
+  "key": "B",
+  "boundary": false,
+  "params": {
+   "tpp": 15000,
+   "bandwidth": 6000
+  },
+  "rule_text": "U.S. note 39 to subchapter III of chapter 99 of the HTSUS, as inserted by Proclamation 11002 (91 FR 2443): \"To be included within the definition of semiconductor articles, the imported products must be a logic integrated circuit, or an article that contains a logic integrated circuit, that meets the technical parameters of having: (1) a total processing performance greater than 14,000 and less than 17,500, and a total DRAM bandwidth greater than 4,500 GB/s and less than 5,000 GB/s; or (2) a total processing performance greater than 20,800 and less than 21,100, and total DRAM bandwidth greater than 5,800 GB/s and less than 6,200 GB/s.\" \"Heading 9903.79.02 applies to entries of articles that are classifiable under provisions of the HTSUS enumerated in subdivision (b) of this note but that do not meet the technical parameters specified in subdivision (b) of this note.\"\nSubdivision (b) lists the provisions 8471.50, 8471.80 and 8473.30. Heading 9903.79.01 (semiconductor articles as provided for in subdivisions (a) and (b)) carries the duty provided in the applicable subheading plus 25%. Heading 9903.79.02 (articles as provided for in subdivision (c)) carries the duty provided in the applicable subheading."
+ },
+ {
+  "id": "chip-tariff-09",
+  "family": "chip-tariff",
+  "law": "Section 232 semiconductor tariff",
+  "facts": "Bexmoor Devices enters for consumption in the United States an article classified in HTSUS subheading 8473.30 that contains a logic integrated circuit. The integrated circuit has a 'total processing performance' (TPP) of 21,000 and a 'total DRAM bandwidth' of 5,900 GB/s. None of the uses in subdivision (d) of U.S. note 39 applies. Treat every figure as exact.",
+  "question": "Under U.S. note 39 to subchapter III of chapter 99 of the Harmonized Tariff Schedule (the Section 232 semiconductor tariff, Proclamation 11002), which heading covers this entry?",
+  "options": [
+   "A. Heading 9903.79.01, which adds a 25% duty.",
+   "B. Heading 9903.79.02, which adds no duty."
+  ],
+  "key": "A",
+  "boundary": false,
+  "params": {
+   "tpp": 21000,
+   "bandwidth": 5900
+  },
+  "rule_text": "U.S. note 39 to subchapter III of chapter 99 of the HTSUS, as inserted by Proclamation 11002 (91 FR 2443): \"To be included within the definition of semiconductor articles, the imported products must be a logic integrated circuit, or an article that contains a logic integrated circuit, that meets the technical parameters of having: (1) a total processing performance greater than 14,000 and less than 17,500, and a total DRAM bandwidth greater than 4,500 GB/s and less than 5,000 GB/s; or (2) a total processing performance greater than 20,800 and less than 21,100, and total DRAM bandwidth greater than 5,800 GB/s and less than 6,200 GB/s.\" \"Heading 9903.79.02 applies to entries of articles that are classifiable under provisions of the HTSUS enumerated in subdivision (b) of this note but that do not meet the technical parameters specified in subdivision (b) of this note.\"\nSubdivision (b) lists the provisions 8471.50, 8471.80 and 8473.30. Heading 9903.79.01 (semiconductor articles as provided for in subdivisions (a) and (b)) carries the duty provided in the applicable subheading plus 25%. Heading 9903.79.02 (articles as provided for in subdivision (c)) carries the duty provided in the applicable subheading."
+ },
+ {
+  "id": "chip-tariff-10",
+  "family": "chip-tariff",
+  "law": "Section 232 semiconductor tariff",
+  "facts": "Quillon Silicon enters for consumption in the United States an article classified in HTSUS subheading 8473.30 that contains a logic integrated circuit. The integrated circuit has a 'total processing performance' (TPP) of 21,100 and a 'total DRAM bandwidth' of 6,000 GB/s. None of the uses in subdivision (d) of U.S. note 39 applies. Treat every figure as exact.",
+  "question": "Under U.S. note 39 to subchapter III of chapter 99 of the Harmonized Tariff Schedule (the Section 232 semiconductor tariff, Proclamation 11002), which heading covers this entry?",
+  "options": [
+   "A. Heading 9903.79.01, which adds a 25% duty.",
+   "B. Heading 9903.79.02, which adds no duty."
+  ],
+  "key": "B",
+  "boundary": true,
+  "params": {
+   "tpp": 21100,
+   "bandwidth": 6000
+  },
+  "rule_text": "U.S. note 39 to subchapter III of chapter 99 of the HTSUS, as inserted by Proclamation 11002 (91 FR 2443): \"To be included within the definition of semiconductor articles, the imported products must be a logic integrated circuit, or an article that contains a logic integrated circuit, that meets the technical parameters of having: (1) a total processing performance greater than 14,000 and less than 17,500, and a total DRAM bandwidth greater than 4,500 GB/s and less than 5,000 GB/s; or (2) a total processing performance greater than 20,800 and less than 21,100, and total DRAM bandwidth greater than 5,800 GB/s and less than 6,200 GB/s.\" \"Heading 9903.79.02 applies to entries of articles that are classifiable under provisions of the HTSUS enumerated in subdivision (b) of this note but that do not meet the technical parameters specified in subdivision (b) of this note.\"\nSubdivision (b) lists the provisions 8471.50, 8471.80 and 8473.30. Heading 9903.79.01 (semiconductor articles as provided for in subdivisions (a) and (b)) carries the duty provided in the applicable subheading plus 25%. Heading 9903.79.02 (articles as provided for in subdivision (c)) carries the duty provided in the applicable subheading."
+ },
+ {
+  "id": "chip-tariff-11",
+  "family": "chip-tariff",
+  "law": "Section 232 semiconductor tariff",
+  "facts": "Yarrowby Devices enters for consumption in the United States an article classified in HTSUS subheading 8473.30 that contains a logic integrated circuit. The integrated circuit has a 'total processing performance' (TPP) of 14,001 and a 'total DRAM bandwidth' of 4,999 GB/s. None of the uses in subdivision (d) of U.S. note 39 applies. Treat every figure as exact.",
+  "question": "Under U.S. note 39 to subchapter III of chapter 99 of the Harmonized Tariff Schedule (the Section 232 semiconductor tariff, Proclamation 11002), which heading covers this entry?",
+  "options": [
+   "A. Heading 9903.79.01, which adds a 25% duty.",
+   "B. Heading 9903.79.02, which adds no duty."
+  ],
+  "key": "A",
+  "boundary": false,
+  "params": {
+   "tpp": 14001,
+   "bandwidth": 4999
+  },
+  "rule_text": "U.S. note 39 to subchapter III of chapter 99 of the HTSUS, as inserted by Proclamation 11002 (91 FR 2443): \"To be included within the definition of semiconductor articles, the imported products must be a logic integrated circuit, or an article that contains a logic integrated circuit, that meets the technical parameters of having: (1) a total processing performance greater than 14,000 and less than 17,500, and a total DRAM bandwidth greater than 4,500 GB/s and less than 5,000 GB/s; or (2) a total processing performance greater than 20,800 and less than 21,100, and total DRAM bandwidth greater than 5,800 GB/s and less than 6,200 GB/s.\" \"Heading 9903.79.02 applies to entries of articles that are classifiable under provisions of the HTSUS enumerated in subdivision (b) of this note but that do not meet the technical parameters specified in subdivision (b) of this note.\"\nSubdivision (b) lists the provisions 8471.50, 8471.80 and 8473.30. Heading 9903.79.01 (semiconductor articles as provided for in subdivisions (a) and (b)) carries the duty provided in the applicable subheading plus 25%. Heading 9903.79.02 (articles as provided for in subdivision (c)) carries the duty provided in the applicable subheading."
+ },
+ {
+  "id": "chip-tariff-12",
+  "family": "chip-tariff",
+  "law": "Section 232 semiconductor tariff",
+  "facts": "Underhill Silicon enters for consumption in the United States an article classified in HTSUS subheading 8473.30 that contains a logic integrated circuit. The integrated circuit has a 'total processing performance' (TPP) of 20,801 and a 'total DRAM bandwidth' of 5,801 GB/s. None of the uses in subdivision (d) of U.S. note 39 applies. Treat every figure as exact.",
+  "question": "Under U.S. note 39 to subchapter III of chapter 99 of the Harmonized Tariff Schedule (the Section 232 semiconductor tariff, Proclamation 11002), which heading covers this entry?",
+  "options": [
+   "A. Heading 9903.79.01, which adds a 25% duty.",
+   "B. Heading 9903.79.02, which adds no duty."
+  ],
+  "key": "A",
+  "boundary": false,
+  "params": {
+   "tpp": 20801,
+   "bandwidth": 5801
+  },
+  "rule_text": "U.S. note 39 to subchapter III of chapter 99 of the HTSUS, as inserted by Proclamation 11002 (91 FR 2443): \"To be included within the definition of semiconductor articles, the imported products must be a logic integrated circuit, or an article that contains a logic integrated circuit, that meets the technical parameters of having: (1) a total processing performance greater than 14,000 and less than 17,500, and a total DRAM bandwidth greater than 4,500 GB/s and less than 5,000 GB/s; or (2) a total processing performance greater than 20,800 and less than 21,100, and total DRAM bandwidth greater than 5,800 GB/s and less than 6,200 GB/s.\" \"Heading 9903.79.02 applies to entries of articles that are classifiable under provisions of the HTSUS enumerated in subdivision (b) of this note but that do not meet the technical parameters specified in subdivision (b) of this note.\"\nSubdivision (b) lists the provisions 8471.50, 8471.80 and 8473.30. Heading 9903.79.01 (semiconductor articles as provided for in subdivisions (a) and (b)) carries the duty provided in the applicable subheading plus 25%. Heading 9903.79.02 (articles as provided for in subdivision (c)) carries the duty provided in the applicable subheading."
+ },
+ {
+  "id": "eu-notification-01",
+  "family": "eu-notification",
+  "law": "EU AI Act",
+  "facts": "Northwold Systems is the provider of a general-purpose AI model that it has placed on the EU market. The cumulative amount of computation used for its training, measured in floating point operations, was 3 x 10^25. No evaluation has found that the model has high-impact capabilities, and the Commission has made no decision about the model. Treat every figure as exact.",
+  "question": "Considering only the training-compute presumption in Article 51(2) of the EU AI Act, what does Article 52(1) require of Northwold Systems?",
+  "options": [
+   "A. Notify the Commission without delay and in any event within two weeks.",
+   "B. Notify the Commission within one month.",
+   "C. Notify the Commission within three months.",
+   "D. No notification on these facts."
+  ],
+  "key": "A",
+  "boundary": false,
+  "params": {
+   "ops": 30000000000000000000000000
+  },
+  "rule_text": "Regulation (EU) 2024/1689 (EU AI Act) art. 51(1)(a): \"it has high impact capabilities evaluated on the basis of appropriate technical tools and methodologies, including indicators and benchmarks;\"\nRegulation (EU) 2024/1689 (EU AI Act) art. 51(2): \"A general-purpose AI model shall be presumed to have high impact capabilities pursuant to paragraph 1, point (a), when the cumulative amount of computation used for its training measured in floating point operations is greater than 10^25.\"\nRegulation (EU) 2024/1689 (EU AI Act) art. 52(1): \"Where a general-purpose AI model meets the condition referred to in Article 51(1), point (a), the relevant provider shall notify the Commission without delay and in any event within two weeks after that requirement is met or it becomes known that it will be met.\""
+ },
+ {
+  "id": "eu-notification-02",
+  "family": "eu-notification",
+  "law": "EU AI Act",
+  "facts": "Kestrelby Labs is the provider of a general-purpose AI model that it has placed on the EU market. The cumulative amount of computation used for its training, measured in floating point operations, was 1 x 10^25. No evaluation has found that the model has high-impact capabilities, and the Commission has made no decision about the model. Treat every figure as exact.",
+  "question": "Considering only the training-compute presumption in Article 51(2) of the EU AI Act, what does Article 52(1) require of Kestrelby Labs?",
+  "options": [
+   "A. Notify the Commission without delay and in any event within two weeks.",
+   "B. Notify the Commission within one month.",
+   "C. Notify the Commission within three months.",
+   "D. No notification on these facts."
+  ],
+  "key": "D",
+  "boundary": true,
+  "params": {
+   "ops": 10000000000000000000000000
+  },
+  "rule_text": "Regulation (EU) 2024/1689 (EU AI Act) art. 51(1)(a): \"it has high impact capabilities evaluated on the basis of appropriate technical tools and methodologies, including indicators and benchmarks;\"\nRegulation (EU) 2024/1689 (EU AI Act) art. 51(2): \"A general-purpose AI model shall be presumed to have high impact capabilities pursuant to paragraph 1, point (a), when the cumulative amount of computation used for its training measured in floating point operations is greater than 10^25.\"\nRegulation (EU) 2024/1689 (EU AI Act) art. 52(1): \"Where a general-purpose AI model meets the condition referred to in Article 51(1), point (a), the relevant provider shall notify the Commission without delay and in any event within two weeks after that requirement is met or it becomes known that it will be met.\""
+ },
+ {
+  "id": "eu-notification-03",
+  "family": "eu-notification",
+  "law": "EU AI Act",
+  "facts": "Bexmoor AI is the provider of a general-purpose AI model that it has placed on the EU market. The cumulative amount of computation used for its training, measured in floating point operations, was 1.2 x 10^25. No evaluation has found that the model has high-impact capabilities, and the Commission has made no decision about the model. Treat every figure as exact.",
+  "question": "Considering only the training-compute presumption in Article 51(2) of the EU AI Act, what does Article 52(1) require of Bexmoor AI?",
+  "options": [
+   "A. Notify the Commission without delay and in any event within two weeks.",
+   "B. Notify the Commission within one month.",
+   "C. Notify the Commission within three months.",
+   "D. No notification on these facts."
+  ],
+  "key": "A",
+  "boundary": false,
+  "params": {
+   "ops": 12000000000000000000000000
+  },
+  "rule_text": "Regulation (EU) 2024/1689 (EU AI Act) art. 51(1)(a): \"it has high impact capabilities evaluated on the basis of appropriate technical tools and methodologies, including indicators and benchmarks;\"\nRegulation (EU) 2024/1689 (EU AI Act) art. 51(2): \"A general-purpose AI model shall be presumed to have high impact capabilities pursuant to paragraph 1, point (a), when the cumulative amount of computation used for its training measured in floating point operations is greater than 10^25.\"\nRegulation (EU) 2024/1689 (EU AI Act) art. 52(1): \"Where a general-purpose AI model meets the condition referred to in Article 51(1), point (a), the relevant provider shall notify the Commission without delay and in any event within two weeks after that requirement is met or it becomes known that it will be met.\""
+ },
+ {
+  "id": "eu-notification-04",
+  "family": "eu-notification",
+  "law": "EU AI Act",
+  "facts": "Dunsmuir Systems is the provider of a general-purpose AI model that it has placed on the EU market. The cumulative amount of computation used for its training, measured in floating point operations, was 8 x 10^24. No evaluation has found that the model has high-impact capabilities, and the Commission has made no decision about the model. Treat every figure as exact.",
+  "question": "Considering only the training-compute presumption in Article 51(2) of the EU AI Act, what does Article 52(1) require of Dunsmuir Systems?",
+  "options": [
+   "A. Notify the Commission without delay and in any event within two weeks.",
+   "B. Notify the Commission within one month.",
+   "C. Notify the Commission within three months.",
+   "D. No notification on these facts."
+  ],
+  "key": "D",
+  "boundary": false,
+  "params": {
+   "ops": 8000000000000000000000000
+  },
+  "rule_text": "Regulation (EU) 2024/1689 (EU AI Act) art. 51(1)(a): \"it has high impact capabilities evaluated on the basis of appropriate technical tools and methodologies, including indicators and benchmarks;\"\nRegulation (EU) 2024/1689 (EU AI Act) art. 51(2): \"A general-purpose AI model shall be presumed to have high impact capabilities pursuant to paragraph 1, point (a), when the cumulative amount of computation used for its training measured in floating point operations is greater than 10^25.\"\nRegulation (EU) 2024/1689 (EU AI Act) art. 52(1): \"Where a general-purpose AI model meets the condition referred to in Article 51(1), point (a), the relevant provider shall notify the Commission without delay and in any event within two weeks after that requirement is met or it becomes known that it will be met.\""
+ },
+ {
+  "id": "eu-notification-05",
+  "family": "eu-notification",
+  "law": "EU AI Act",
+  "facts": "Underhill Systems is the provider of a general-purpose AI model that it has placed on the EU market. The cumulative amount of computation used for its training, measured in floating point operations, was 5 x 10^26. No evaluation has found that the model has high-impact capabilities, and the Commission has made no decision about the model. Treat every figure as exact.",
+  "question": "Considering only the training-compute presumption in Article 51(2) of the EU AI Act, what does Article 52(1) require of Underhill Systems?",
+  "options": [
+   "A. Notify the Commission without delay and in any event within two weeks.",
+   "B. Notify the Commission within one month.",
+   "C. Notify the Commission within three months.",
+   "D. No notification on these facts."
+  ],
+  "key": "A",
+  "boundary": false,
+  "params": {
+   "ops": 500000000000000000000000000
+  },
+  "rule_text": "Regulation (EU) 2024/1689 (EU AI Act) art. 51(1)(a): \"it has high impact capabilities evaluated on the basis of appropriate technical tools and methodologies, including indicators and benchmarks;\"\nRegulation (EU) 2024/1689 (EU AI Act) art. 51(2): \"A general-purpose AI model shall be presumed to have high impact capabilities pursuant to paragraph 1, point (a), when the cumulative amount of computation used for its training measured in floating point operations is greater than 10^25.\"\nRegulation (EU) 2024/1689 (EU AI Act) art. 52(1): \"Where a general-purpose AI model meets the condition referred to in Article 51(1), point (a), the relevant provider shall notify the Commission without delay and in any event within two weeks after that requirement is met or it becomes known that it will be met.\""
+ },
+ {
+  "id": "eu-notification-06",
+  "family": "eu-notification",
+  "law": "EU AI Act",
+  "facts": "Brackenridge Labs is the provider of a general-purpose AI model that it has placed on the EU market. The cumulative amount of computation used for its training, measured in floating point operations, was 9.9 x 10^24. No evaluation has found that the model has high-impact capabilities, and the Commission has made no decision about the model. Treat every figure as exact.",
+  "question": "Considering only the training-compute presumption in Article 51(2) of the EU AI Act, what does Article 52(1) require of Brackenridge Labs?",
+  "options": [
+   "A. Notify the Commission without delay and in any event within two weeks.",
+   "B. Notify the Commission within one month.",
+   "C. Notify the Commission within three months.",
+   "D. No notification on these facts."
+  ],
+  "key": "D",
+  "boundary": false,
+  "params": {
+   "ops": 9900000000000000000000000
+  },
+  "rule_text": "Regulation (EU) 2024/1689 (EU AI Act) art. 51(1)(a): \"it has high impact capabilities evaluated on the basis of appropriate technical tools and methodologies, including indicators and benchmarks;\"\nRegulation (EU) 2024/1689 (EU AI Act) art. 51(2): \"A general-purpose AI model shall be presumed to have high impact capabilities pursuant to paragraph 1, point (a), when the cumulative amount of computation used for its training measured in floating point operations is greater than 10^25.\"\nRegulation (EU) 2024/1689 (EU AI Act) art. 52(1): \"Where a general-purpose AI model meets the condition referred to in Article 51(1), point (a), the relevant provider shall notify the Commission without delay and in any event within two weeks after that requirement is met or it becomes known that it will be met.\""
+ },
+ {
+  "id": "eu-notification-07",
+  "family": "eu-notification",
+  "law": "EU AI Act",
+  "facts": "Harrowgate Labs is the provider of a general-purpose AI model that it has placed on the EU market. The cumulative amount of computation used for its training, measured in floating point operations, was 1.01 x 10^25. No evaluation has found that the model has high-impact capabilities, and the Commission has made no decision about the model. Treat every figure as exact.",
+  "question": "Considering only the training-compute presumption in Article 51(2) of the EU AI Act, what does Article 52(1) require of Harrowgate Labs?",
+  "options": [
+   "A. Notify the Commission without delay and in any event within two weeks.",
+   "B. Notify the Commission within one month.",
+   "C. Notify the Commission within three months.",
+   "D. No notification on these facts."
+  ],
+  "key": "A",
+  "boundary": false,
+  "params": {
+   "ops": 10100000000000000000000000
+  },
+  "rule_text": "Regulation (EU) 2024/1689 (EU AI Act) art. 51(1)(a): \"it has high impact capabilities evaluated on the basis of appropriate technical tools and methodologies, including indicators and benchmarks;\"\nRegulation (EU) 2024/1689 (EU AI Act) art. 51(2): \"A general-purpose AI model shall be presumed to have high impact capabilities pursuant to paragraph 1, point (a), when the cumulative amount of computation used for its training measured in floating point operations is greater than 10^25.\"\nRegulation (EU) 2024/1689 (EU AI Act) art. 52(1): \"Where a general-purpose AI model meets the condition referred to in Article 51(1), point (a), the relevant provider shall notify the Commission without delay and in any event within two weeks after that requirement is met or it becomes known that it will be met.\""
+ },
+ {
+  "id": "eu-notification-08",
+  "family": "eu-notification",
+  "law": "EU AI Act",
+  "facts": "Ospreyvale Labs is the provider of a general-purpose AI model that it has placed on the EU market. The cumulative amount of computation used for its training, measured in floating point operations, was 2 x 10^24. No evaluation has found that the model has high-impact capabilities, and the Commission has made no decision about the model. Treat every figure as exact.",
+  "question": "Considering only the training-compute presumption in Article 51(2) of the EU AI Act, what does Article 52(1) require of Ospreyvale Labs?",
+  "options": [
+   "A. Notify the Commission without delay and in any event within two weeks.",
+   "B. Notify the Commission within one month.",
+   "C. Notify the Commission within three months.",
+   "D. No notification on these facts."
+  ],
+  "key": "D",
+  "boundary": false,
+  "params": {
+   "ops": 2000000000000000000000000
+  },
+  "rule_text": "Regulation (EU) 2024/1689 (EU AI Act) art. 51(1)(a): \"it has high impact capabilities evaluated on the basis of appropriate technical tools and methodologies, including indicators and benchmarks;\"\nRegulation (EU) 2024/1689 (EU AI Act) art. 51(2): \"A general-purpose AI model shall be presumed to have high impact capabilities pursuant to paragraph 1, point (a), when the cumulative amount of computation used for its training measured in floating point operations is greater than 10^25.\"\nRegulation (EU) 2024/1689 (EU AI Act) art. 52(1): \"Where a general-purpose AI model meets the condition referred to in Article 51(1), point (a), the relevant provider shall notify the Commission without delay and in any event within two weeks after that requirement is met or it becomes known that it will be met.\""
+ },
+ {
+  "id": "catastrophic-size-01",
+  "family": "catastrophic-size",
+  "law": "California SB 53",
+  "facts": "Vantmoor Systems is a frontier developer under California SB 53. Its risk assessment models a single incident involving its frontier model. In the scenario, 70 people die or are seriously injured, and damage to and loss of property comes to $800,000,000. Shareholders of Vantmoor Systems also lose $400,000,000 in the value of their equity, which is not part of the property figure just given. Treat every figure as exact.",
+  "question": "The catastrophic-risk definition in California SB 53 (Business and Professions Code section 22757.11(c)) uses two size figures for a single incident: one for people killed or seriously injured, and one for damage to or loss of property. Which of the two does this scenario exceed?",
+  "options": [
+   "A. Neither figure.",
+   "B. The people figure only.",
+   "C. The property figure only.",
+   "D. Both figures."
+  ],
+  "key": "B",
+  "boundary": false,
+  "params": {
+   "people": 70,
+   "property_damage": 800000000,
+   "equity_loss": 400000000
+  },
+  "rule_text": "Cal. Bus. & Prof. Code 22757.11(c)(1) and 22757.16: \"'Catastrophic risk' means a foreseeable and material risk that a frontier developer's development, storage, use, or deployment of a frontier model will materially contribute to the death of, or serious injury to, more than 50 people or more than one billion dollars ($1,000,000,000) in damage to, or loss of, property arising from a single incident involving a frontier model doing any of the following:\" \"The loss of value of equity does not count as damage to or loss of property for the purposes of this chapter.\""
+ },
+ {
+  "id": "catastrophic-size-02",
+  "family": "catastrophic-size",
+  "law": "California SB 53",
+  "facts": "Dunsmuir Labs is a frontier developer under California SB 53. Its risk assessment models a single incident involving its frontier model. In the scenario, 50 people die or are seriously injured, and damage to and loss of property comes to $1,200,000,000. No one's equity loses value. Treat every figure as exact.",
+  "question": "The catastrophic-risk definition in California SB 53 (Business and Professions Code section 22757.11(c)) uses two size figures for a single incident: one for people killed or seriously injured, and one for damage to or loss of property. Which of the two does this scenario exceed?",
+  "options": [
+   "A. Neither figure.",
+   "B. The people figure only.",
+   "C. The property figure only.",
+   "D. Both figures."
+  ],
+  "key": "C",
+  "boundary": true,
+  "params": {
+   "people": 50,
+   "property_damage": 1200000000,
+   "equity_loss": 0
+  },
+  "rule_text": "Cal. Bus. & Prof. Code 22757.11(c)(1) and 22757.16: \"'Catastrophic risk' means a foreseeable and material risk that a frontier developer's development, storage, use, or deployment of a frontier model will materially contribute to the death of, or serious injury to, more than 50 people or more than one billion dollars ($1,000,000,000) in damage to, or loss of, property arising from a single incident involving a frontier model doing any of the following:\" \"The loss of value of equity does not count as damage to or loss of property for the purposes of this chapter.\""
+ },
+ {
+  "id": "catastrophic-size-03",
+  "family": "catastrophic-size",
+  "law": "California SB 53",
+  "facts": "Ospreyvale Systems is a frontier developer under California SB 53. Its risk assessment models a single incident involving its frontier model. In the scenario, 51 people die or are seriously injured, and damage to and loss of property comes to $1,000,000,000. No one's equity loses value. Treat every figure as exact.",
+  "question": "The catastrophic-risk definition in California SB 53 (Business and Professions Code section 22757.11(c)) uses two size figures for a single incident: one for people killed or seriously injured, and one for damage to or loss of property. Which of the two does this scenario exceed?",
+  "options": [
+   "A. Neither figure.",
+   "B. The people figure only.",
+   "C. The property figure only.",
+   "D. Both figures."
+  ],
+  "key": "B",
+  "boundary": true,
+  "params": {
+   "people": 51,
+   "property_damage": 1000000000,
+   "equity_loss": 0
+  },
+  "rule_text": "Cal. Bus. & Prof. Code 22757.11(c)(1) and 22757.16: \"'Catastrophic risk' means a foreseeable and material risk that a frontier developer's development, storage, use, or deployment of a frontier model will materially contribute to the death of, or serious injury to, more than 50 people or more than one billion dollars ($1,000,000,000) in damage to, or loss of, property arising from a single incident involving a frontier model doing any of the following:\" \"The loss of value of equity does not count as damage to or loss of property for the purposes of this chapter.\""
+ },
+ {
+  "id": "catastrophic-size-04",
+  "family": "catastrophic-size",
+  "law": "California SB 53",
+  "facts": "Hallowmere AI is a frontier developer under California SB 53. Its risk assessment models a single incident involving its frontier model. In the scenario, 40 people die or are seriously injured, and damage to and loss of property comes to $900,000,000. Shareholders of Hallowmere AI also lose $300,000,000 in the value of their equity, which is not part of the property figure just given. Treat every figure as exact.",
+  "question": "The catastrophic-risk definition in California SB 53 (Business and Professions Code section 22757.11(c)) uses two size figures for a single incident: one for people killed or seriously injured, and one for damage to or loss of property. Which of the two does this scenario exceed?",
+  "options": [
+   "A. Neither figure.",
+   "B. The people figure only.",
+   "C. The property figure only.",
+   "D. Both figures."
+  ],
+  "key": "A",
+  "boundary": false,
+  "params": {
+   "people": 40,
+   "property_damage": 900000000,
+   "equity_loss": 300000000
+  },
+  "rule_text": "Cal. Bus. & Prof. Code 22757.11(c)(1) and 22757.16: \"'Catastrophic risk' means a foreseeable and material risk that a frontier developer's development, storage, use, or deployment of a frontier model will materially contribute to the death of, or serious injury to, more than 50 people or more than one billion dollars ($1,000,000,000) in damage to, or loss of, property arising from a single incident involving a frontier model doing any of the following:\" \"The loss of value of equity does not count as damage to or loss of property for the purposes of this chapter.\""
+ },
+ {
+  "id": "catastrophic-size-05",
+  "family": "catastrophic-size",
+  "law": "California SB 53",
+  "facts": "Pellham Labs is a frontier developer under California SB 53. Its risk assessment models a single incident involving its frontier model. In the scenario, 120 people die or are seriously injured, and damage to and loss of property comes to $2,500,000,000. No one's equity loses value. Treat every figure as exact.",
+  "question": "The catastrophic-risk definition in California SB 53 (Business and Professions Code section 22757.11(c)) uses two size figures for a single incident: one for people killed or seriously injured, and one for damage to or loss of property. Which of the two does this scenario exceed?",
+  "options": [
+   "A. Neither figure.",
+   "B. The people figure only.",
+   "C. The property figure only.",
+   "D. Both figures."
+  ],
+  "key": "D",
+  "boundary": false,
+  "params": {
+   "people": 120,
+   "property_damage": 2500000000,
+   "equity_loss": 0
+  },
+  "rule_text": "Cal. Bus. & Prof. Code 22757.11(c)(1) and 22757.16: \"'Catastrophic risk' means a foreseeable and material risk that a frontier developer's development, storage, use, or deployment of a frontier model will materially contribute to the death of, or serious injury to, more than 50 people or more than one billion dollars ($1,000,000,000) in damage to, or loss of, property arising from a single incident involving a frontier model doing any of the following:\" \"The loss of value of equity does not count as damage to or loss of property for the purposes of this chapter.\""
+ },
+ {
+  "id": "catastrophic-size-06",
+  "family": "catastrophic-size",
+  "law": "California SB 53",
+  "facts": "Lindmere Systems is a frontier developer under California SB 53. Its risk assessment models a single incident involving its frontier model. In the scenario, 100 people die or are seriously injured, and damage to and loss of property comes to $600,000,000. No one's equity loses value. Treat every figure as exact.",
+  "question": "The catastrophic-risk definition in California SB 53 (Business and Professions Code section 22757.11(c)) uses two size figures for a single incident: one for people killed or seriously injured, and one for damage to or loss of property. Which of the two does this scenario exceed?",
+  "options": [
+   "A. Neither figure.",
+   "B. The people figure only.",
+   "C. The property figure only.",
+   "D. Both figures."
+  ],
+  "key": "B",
+  "boundary": false,
+  "params": {
+   "people": 100,
+   "property_damage": 600000000,
+   "equity_loss": 0
+  },
+  "rule_text": "Cal. Bus. & Prof. Code 22757.11(c)(1) and 22757.16: \"'Catastrophic risk' means a foreseeable and material risk that a frontier developer's development, storage, use, or deployment of a frontier model will materially contribute to the death of, or serious injury to, more than 50 people or more than one billion dollars ($1,000,000,000) in damage to, or loss of, property arising from a single incident involving a frontier model doing any of the following:\" \"The loss of value of equity does not count as damage to or loss of property for the purposes of this chapter.\""
+ },
+ {
+  "id": "catastrophic-size-07",
+  "family": "catastrophic-size",
+  "law": "California SB 53",
+  "facts": "Thistledown Systems is a frontier developer under California SB 53. Its risk assessment models a single incident involving its frontier model. In the scenario, 30 people die or are seriously injured, and damage to and loss of property comes to $1,000,000,000. Shareholders of Thistledown Systems also lose $500,000,000 in the value of their equity, which is not part of the property figure just given. Treat every figure as exact.",
+  "question": "The catastrophic-risk definition in California SB 53 (Business and Professions Code section 22757.11(c)) uses two size figures for a single incident: one for people killed or seriously injured, and one for damage to or loss of property. Which of the two does this scenario exceed?",
+  "options": [
+   "A. Neither figure.",
+   "B. The people figure only.",
+   "C. The property figure only.",
+   "D. Both figures."
+  ],
+  "key": "A",
+  "boundary": true,
+  "params": {
+   "people": 30,
+   "property_damage": 1000000000,
+   "equity_loss": 500000000
+  },
+  "rule_text": "Cal. Bus. & Prof. Code 22757.11(c)(1) and 22757.16: \"'Catastrophic risk' means a foreseeable and material risk that a frontier developer's development, storage, use, or deployment of a frontier model will materially contribute to the death of, or serious injury to, more than 50 people or more than one billion dollars ($1,000,000,000) in damage to, or loss of, property arising from a single incident involving a frontier model doing any of the following:\" \"The loss of value of equity does not count as damage to or loss of property for the purposes of this chapter.\""
+ },
+ {
+  "id": "catastrophic-size-08",
+  "family": "catastrophic-size",
+  "law": "California SB 53",
+  "facts": "Bexmoor Labs is a frontier developer under California SB 53. Its risk assessment models a single incident involving its frontier model. In the scenario, 60 people die or are seriously injured, and damage to and loss of property comes to $1,001,000,000. No one's equity loses value. Treat every figure as exact.",
+  "question": "The catastrophic-risk definition in California SB 53 (Business and Professions Code section 22757.11(c)) uses two size figures for a single incident: one for people killed or seriously injured, and one for damage to or loss of property. Which of the two does this scenario exceed?",
+  "options": [
+   "A. Neither figure.",
+   "B. The people figure only.",
+   "C. The property figure only.",
+   "D. Both figures."
+  ],
+  "key": "D",
+  "boundary": false,
+  "params": {
+   "people": 60,
+   "property_damage": 1001000000,
+   "equity_loss": 0
+  },
+  "rule_text": "Cal. Bus. & Prof. Code 22757.11(c)(1) and 22757.16: \"'Catastrophic risk' means a foreseeable and material risk that a frontier developer's development, storage, use, or deployment of a frontier model will materially contribute to the death of, or serious injury to, more than 50 people or more than one billion dollars ($1,000,000,000) in damage to, or loss of, property arising from a single incident involving a frontier model doing any of the following:\" \"The loss of value of equity does not count as damage to or loss of property for the purposes of this chapter.\""
+ },
+ {
+  "id": "catastrophic-size-09",
+  "family": "catastrophic-size",
+  "law": "California SB 53",
+  "facts": "Kestrelby AI is a frontier developer under California SB 53. Its risk assessment models a single incident involving its frontier model. In the scenario, 50 people die or are seriously injured, and damage to and loss of property comes to $1,000,000,000. No one's equity loses value. Treat every figure as exact.",
+  "question": "The catastrophic-risk definition in California SB 53 (Business and Professions Code section 22757.11(c)) uses two size figures for a single incident: one for people killed or seriously injured, and one for damage to or loss of property. Which of the two does this scenario exceed?",
+  "options": [
+   "A. Neither figure.",
+   "B. The people figure only.",
+   "C. The property figure only.",
+   "D. Both figures."
+  ],
+  "key": "A",
+  "boundary": true,
+  "params": {
+   "people": 50,
+   "property_damage": 1000000000,
+   "equity_loss": 0
+  },
+  "rule_text": "Cal. Bus. & Prof. Code 22757.11(c)(1) and 22757.16: \"'Catastrophic risk' means a foreseeable and material risk that a frontier developer's development, storage, use, or deployment of a frontier model will materially contribute to the death of, or serious injury to, more than 50 people or more than one billion dollars ($1,000,000,000) in damage to, or loss of, property arising from a single incident involving a frontier model doing any of the following:\" \"The loss of value of equity does not count as damage to or loss of property for the purposes of this chapter.\""
+ },
+ {
+  "id": "catastrophic-size-10",
+  "family": "catastrophic-size",
+  "law": "California SB 53",
+  "facts": "Pellham Systems is a frontier developer under California SB 53. Its risk assessment models a single incident involving its frontier model. In the scenario, 45 people die or are seriously injured, and damage to and loss of property comes to $1,500,000,000. No one's equity loses value. Treat every figure as exact.",
+  "question": "The catastrophic-risk definition in California SB 53 (Business and Professions Code section 22757.11(c)) uses two size figures for a single incident: one for people killed or seriously injured, and one for damage to or loss of property. Which of the two does this scenario exceed?",
+  "options": [
+   "A. Neither figure.",
+   "B. The people figure only.",
+   "C. The property figure only.",
+   "D. Both figures."
+  ],
+  "key": "C",
+  "boundary": false,
+  "params": {
+   "people": 45,
+   "property_damage": 1500000000,
+   "equity_loss": 0
+  },
+  "rule_text": "Cal. Bus. & Prof. Code 22757.11(c)(1) and 22757.16: \"'Catastrophic risk' means a foreseeable and material risk that a frontier developer's development, storage, use, or deployment of a frontier model will materially contribute to the death of, or serious injury to, more than 50 people or more than one billion dollars ($1,000,000,000) in damage to, or loss of, property arising from a single incident involving a frontier model doing any of the following:\" \"The loss of value of equity does not count as damage to or loss of property for the purposes of this chapter.\""
+ }
+]

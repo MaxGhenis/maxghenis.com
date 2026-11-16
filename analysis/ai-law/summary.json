@@ -1,0 +1,4933 @@
+{
+ "integrity": {
+  "raw_rows": 3200,
+  "error_rows": 139,
+  "error_kinds": {
+   "Your credit balance is too low to access the Anthropic API": 139
+  },
+  "skipped_rows": 0,
+  "planned_calls": 4000,
+  "returned_calls": 3061,
+  "missing_calls": {
+   "core/memory/medium": 0,
+   "core/text/medium": 0,
+   "search/search/medium": 139,
+   "effort/memory/low": 400,
+   "effort/memory/high": 400
+  },
+  "unplanned_calls": 0,
+  "duplicate_returned_rows": 0,
+  "refusals": 0,
+  "stop_reasons": {
+   "end_turn": 3061
+  },
+  "served_model_differs": 0,
+  "no_answer_line": 0,
+  "more_than_one_letter": 22,
+  "replies_scored_differently_by_the_preregistered_pattern": [
+   {
+    "stage": "search",
+    "model": "claude-sonnet-5-5",
+    "id": "chip-tariff-04",
+    "sample": 2,
+    "answer_lines": [
+     "A"
+    ],
+    "letters_anywhere": [
+     "A",
+     "B"
+    ],
+    "key": "B",
+    "searches": 1
+   }
+  ],
+  "search_questions": 82,
+  "search_questions_partly_answered": {
+   "incident-clock-07": 1,
+   "licence-review-07": 4
+  },
+  "search_calls_left_out_of_accuracy": 5,
+  "search_tool_errors": 0,
+  "continued_calls": 0,
+  "search_rows_that_mention_this_repository_or_site": 0
+ },
+ "search_question_ids": [
+  "frontier-model-01",
+  "frontier-model-02",
+  "frontier-model-03",
+  "frontier-model-05",
+  "frontier-model-07",
+  "frontier-model-08",
+  "frontier-model-09",
+  "frontier-model-10",
+  "frontier-model-11",
+  "frontier-model-12",
+  "large-developer-02",
+  "large-developer-03",
+  "large-developer-04",
+  "large-developer-05",
+  "large-developer-06",
+  "large-developer-07",
+  "large-developer-08",
+  "large-developer-10",
+  "large-developer-12",
+  "incident-clock-02",
+  "incident-clock-03",
+  "incident-clock-04",
+  "incident-clock-05",
+  "incident-clock-06",
+  "incident-clock-08",
+  "compute-figures-01",
+  "compute-figures-02",
+  "compute-figures-03",
+  "compute-figures-04",
+  "compute-figures-05",
+  "compute-figures-06",
+  "compute-figures-08",
+  "compute-figures-09",
+  "compute-figures-10",
+  "compute-figures-11",
+  "compute-figures-12",
+  "eccn-3a090-01",
+  "eccn-3a090-03",
+  "eccn-3a090-04",
+  "eccn-3a090-05",
+  "eccn-3a090-06",
+  "eccn-3a090-07",
+  "eccn-3a090-08",
+  "eccn-3a090-09",
+  "eccn-3a090-10",
+  "eccn-3a090-11",
+  "eccn-3a090-12",
+  "eccn-3a090-13",
+  "eccn-3a090-15",
+  "eccn-3a090-16",
+  "licence-review-02",
+  "licence-review-03",
+  "licence-review-04",
+  "licence-review-05",
+  "licence-review-06",
+  "licence-review-08",
+  "licence-review-09",
+  "licence-review-10",
+  "chip-tariff-01",
+  "chip-tariff-02",
+  "chip-tariff-03",
+  "chip-tariff-04",
+  "chip-tariff-05",
+  "chip-tariff-06",
+  "chip-tariff-07",
+  "chip-tariff-09",
+  "chip-tariff-10",
+  "chip-tariff-12",
+  "eu-notification-01",
+  "eu-notification-02",
+  "eu-notification-04",
+  "eu-notification-05",
+  "eu-notification-06",
+  "eu-notification-07",
+  "catastrophic-size-01",
+  "catastrophic-size-03",
+  "catastrophic-size-04",
+  "catastrophic-size-05",
+  "catastrophic-size-06",
+  "catastrophic-size-08",
+  "catastrophic-size-09",
+  "catastrophic-size-10"
+ ],
+ "questions_without_search": [
+  "frontier-model-04",
+  "frontier-model-06",
+  "large-developer-01",
+  "large-developer-09",
+  "large-developer-11",
+  "incident-clock-01",
+  "incident-clock-07",
+  "compute-figures-07",
+  "eccn-3a090-02",
+  "eccn-3a090-14",
+  "licence-review-01",
+  "licence-review-07",
+  "chip-tariff-08",
+  "chip-tariff-11",
+  "eu-notification-03",
+  "eu-notification-08",
+  "catastrophic-size-02",
+  "catastrophic-size-07"
+ ],
+ "questions_by_number_of_options": {
+  "2": 36,
+  "3": 10,
+  "4": 26,
+  "5": 28
+ },
+ "mean_chance_rate_pct": 33.4,
+ "all_models": {
+  "all_questions": {
+   "accuracy": {
+    "memory": {
+     "n": 1149,
+     "of": 1200,
+     "pct": 95.8
+    },
+    "text": {
+     "n": 1199,
+     "of": 1200,
+     "pct": 99.9
+    }
+   },
+   "difference_points": {
+    "text_minus_memory": 4.2
+   },
+   "interval_95": {
+    "memory": [
+     92.9,
+     98.1
+    ],
+    "text": [
+     99.8,
+     100.0
+    ],
+    "text_minus_memory": [
+     1.9,
+     7.0
+    ]
+   },
+   "boundary": {
+    "memory": {
+     "n": 286,
+     "of": 312,
+     "pct": 91.7
+    },
+    "text": {
+     "n": 311,
+     "of": 312,
+     "pct": 99.7
+    }
+   },
+   "other": {
+    "memory": {
+     "n": 863,
+     "of": 888,
+     "pct": 97.2
+    },
+    "text": {
+     "n": 888,
+     "of": 888,
+     "pct": 100.0
+    }
+   }
+  },
+  "search_questions": {
+   "accuracy": {
+    "memory": {
+     "n": 942,
+     "of": 984,
+     "pct": 95.7
+    },
+    "search": {
+     "n": 641,
+     "of": 656,
+     "pct": 97.7
+    },
+    "text": {
+     "n": 983,
+     "of": 984,
+     "pct": 99.9
+    }
+   },
+   "difference_points": {
+    "text_minus_memory": 4.2,
+    "search_minus_memory": 2.0,
+    "text_minus_search": 2.2
+   },
+   "interval_95": {
+    "memory": [
+     92.5,
+     98.3
+    ],
+    "search": [
+     96.0,
+     99.1
+    ],
+    "text": [
+     99.7,
+     100.0
+    ],
+    "text_minus_memory": [
+     1.6,
+     7.3
+    ],
+    "search_minus_memory": [
+     0.3,
+     4.0
+    ],
+    "text_minus_search": [
+     0.9,
+     3.9
+    ]
+   },
+   "boundary": {
+    "memory": {
+     "n": 250,
+     "of": 276,
+     "pct": 90.6
+    },
+    "search": {
+     "n": 175,
+     "of": 184,
+     "pct": 95.1
+    },
+    "text": {
+     "n": 275,
+     "of": 276,
+     "pct": 99.6
+    }
+   },
+   "other": {
+    "memory": {
+     "n": 692,
+     "of": 708,
+     "pct": 97.7
+    },
+    "search": {
+     "n": 466,
+     "of": 472,
+     "pct": 98.7
+    },
+    "text": {
+     "n": 708,
+     "of": 708,
+     "pct": 100.0
+    }
+   }
+  },
+  "samples_disagree": {
+   "memory": {
+    "n": 17,
+    "of": 400,
+    "pct": 4.2
+   },
+   "search": {
+    "n": 9,
+    "of": 328,
+    "pct": 2.7
+   },
+   "text": {
+    "n": 1,
+    "of": 400,
+    "pct": 0.2
+   }
+  },
+  "search_use": {
+   "calls_with_a_search": {
+    "n": 352,
+    "of": 656,
+    "pct": 53.7
+   },
+   "mean_searches_per_call": 0.69,
+   "accuracy_when_searched": {
+    "n": 348,
+    "of": 352,
+    "pct": 98.9
+   },
+   "accuracy_when_not_searched": {
+    "n": 293,
+    "of": 304,
+    "pct": 96.4
+   },
+   "wrong_replies": 15,
+   "wrong_replies_without_a_search": 11,
+   "mean_input_tokens_when_searched": 16696,
+   "mean_input_tokens_when_not_searched": 3065,
+   "mean_cost_when_searched_usd": 0.0825,
+   "mean_cost_when_not_searched_usd": 0.0182
+  },
+  "first_letter_scoring": {
+   "memory": {
+    "n": 1148,
+    "of": 1200,
+    "pct": 95.7
+   },
+   "search": {
+    "n": 639,
+    "of": 656,
+    "pct": 97.4
+   },
+   "text": {
+    "n": 1180,
+    "of": 1200,
+    "pct": 98.3
+   }
+  },
+  "replies_with_two_letters": {
+   "memory": 1,
+   "search": 2,
+   "text": 19
+  },
+  "replies_with_a_thinking_block": {
+   "memory": {
+    "n": 908,
+    "of": 1200,
+    "pct": 75.7
+   },
+   "search": {
+    "n": 628,
+    "of": 656,
+    "pct": 95.7
+   },
+   "text": {
+    "n": 639,
+    "of": 1200,
+    "pct": 53.2
+   }
+  },
+  "cost_usd": {
+   "core/memory/medium": 12.53,
+   "core/text/medium": 6.19,
+   "search/search/medium": 34.76,
+   "effort/memory/low": 0,
+   "effort/memory/high": 0,
+   "total": 53.48
+  },
+  "per_call": {
+   "memory": {
+    "mean_input_tokens": 272,
+    "mean_output_tokens": 587,
+    "mean_cost_usd": 0.0104
+   },
+   "search": {
+    "mean_input_tokens": 10379,
+    "mean_output_tokens": 687,
+    "mean_cost_usd": 0.0527
+   },
+   "text": {
+    "mean_input_tokens": 607,
+    "mean_output_tokens": 208,
+    "mean_cost_usd": 0.0052
+   }
+  }
+ },
+ "by_model": {
+  "claude-haiku-5-5": {
+   "all_questions": {
+    "accuracy": {
+     "memory": {
+      "n": 279,
+      "of": 300,
+      "pct": 93.0
+     },
+     "text": {
+      "n": 300,
+      "of": 300,
+      "pct": 100.0
+     }
+    },
+    "difference_points": {
+     "text_minus_memory": 7.0
+    },
+    "interval_95": {
+     "memory": [
+      88.3,
+      97.0
+     ],
+     "text": [
+      100.0,
+      100.0
+     ],
+     "text_minus_memory": [
+      3.0,
+      11.7
+     ]
+    },
+    "boundary": {
+     "memory": {
+      "n": 67,
+      "of": 78,
+      "pct": 85.9
+     },
+     "text": {
+      "n": 78,
+      "of": 78,
+      "pct": 100.0
+     }
+    },
+    "other": {
+     "memory": {
+      "n": 212,
+      "of": 222,
+      "pct": 95.5
+     },
+     "text": {
+      "n": 222,
+      "of": 222,
+      "pct": 100.0
+     }
+    }
+   },
+   "search_questions": {
+    "accuracy": {
+     "memory": {
+      "n": 228,
+      "of": 246,
+      "pct": 92.7
+     },
+     "search": {
+      "n": 163,
+      "of": 164,
+      "pct": 99.4
+     },
+     "text": {
+      "n": 246,
+      "of": 246,
+      "pct": 100.0
+     }
+    },
+    "difference_points": {
+     "text_minus_memory": 7.3,
+     "search_minus_memory": 6.7,
+     "text_minus_search": 0.6
+    },
+    "interval_95": {
+     "memory": [
+      87.4,
+      97.2
+     ],
+     "search": [
+      98.2,
+      100.0
+     ],
+     "text": [
+      100.0,
+      100.0
+     ],
+     "text_minus_memory": [
+      2.8,
+      12.6
+     ],
+     "search_minus_memory": [
+      1.8,
+      12.2
+     ],
+     "text_minus_search": [
+      0.0,
+      1.8
+     ]
+    },
+    "boundary": {
+     "memory": {
+      "n": 58,
+      "of": 69,
+      "pct": 84.1
+     },
+     "search": {
+      "n": 45,
+      "of": 46,
+      "pct": 97.8
+     },
+     "text": {
+      "n": 69,
+      "of": 69,
+      "pct": 100.0
+     }
+    },
+    "other": {
+     "memory": {
+      "n": 170,
+      "of": 177,
+      "pct": 96.0
+     },
+     "search": {
+      "n": 118,
+      "of": 118,
+      "pct": 100.0
+     },
+     "text": {
+      "n": 177,
+      "of": 177,
+      "pct": 100.0
+     }
+    }
+   },
+   "samples_disagree": {
+    "memory": {
+     "n": 7,
+     "of": 100,
+     "pct": 7.0
+    },
+    "search": {
+     "n": 1,
+     "of": 82,
+     "pct": 1.2
+    },
+    "text": {
+     "n": 0,
+     "of": 100,
+     "pct": 0.0
+    }
+   },
+   "search_use": {
+    "calls_with_a_search": {
+     "n": 125,
+     "of": 164,
+     "pct": 76.2
+    },
+    "mean_searches_per_call": 1.25,
+    "accuracy_when_searched": {
+     "n": 124,
+     "of": 125,
+     "pct": 99.2
+    },
+    "accuracy_when_not_searched": {
+     "n": 39,
+     "of": 39,
+     "pct": 100.0
+    },
+    "wrong_replies": 1,
+    "wrong_replies_without_a_search": 0,
+    "mean_input_tokens_when_searched": 19553,
+    "mean_input_tokens_when_not_searched": 3085,
+    "mean_cost_when_searched_usd": 0.0189,
+    "mean_cost_when_not_searched_usd": 0.0006
+   },
+   "first_letter_scoring": {
+    "memory": {
+     "n": 279,
+     "of": 300,
+     "pct": 93.0
+    },
+    "search": {
+     "n": 162,
+     "of": 164,
+     "pct": 98.8
+    },
+    "text": {
+     "n": 300,
+     "of": 300,
+     "pct": 100.0
+    }
+   },
+   "replies_with_two_letters": {
+    "memory": 0,
+    "search": 1,
+    "text": 0
+   },
+   "replies_with_a_thinking_block": {
+    "memory": {
+     "n": 300,
+     "of": 300,
+     "pct": 100.0
+    },
+    "search": {
+     "n": 164,
+     "of": 164,
+     "pct": 100.0
+    },
+    "text": {
+     "n": 300,
+     "of": 300,
+     "pct": 100.0
+    }
+   },
+   "cost_usd": {
+    "core/memory/medium": 0.13,
+    "core/text/medium": 0.07,
+    "search/search/medium": 2.42,
+    "effort/memory/low": 0,
+    "effort/memory/high": 0,
+    "total": 2.61
+   },
+   "per_call": {
+    "memory": {
+     "mean_input_tokens": 272,
+     "mean_output_tokens": 783,
+     "mean_cost_usd": 0.0004
+    },
+    "search": {
+     "mean_input_tokens": 15637,
+     "mean_output_tokens": 1010,
+     "mean_cost_usd": 0.0146
+    },
+    "text": {
+     "mean_input_tokens": 607,
+     "mean_output_tokens": 314,
+     "mean_cost_usd": 0.0002
+    }
+   }
+  },
+  "claude-sonnet-5-5": {
+   "all_questions": {
+    "accuracy": {
+     "memory": {
+      "n": 283,
+      "of": 300,
+      "pct": 94.3
+     },
+     "text": {
+      "n": 300,
+      "of": 300,
+      "pct": 100.0
+     }
+    },
+    "difference_points": {
+     "text_minus_memory": 5.7
+    },
+    "interval_95": {
+     "memory": [
+      90.3,
+      97.7
+     ],
+     "text": [
+      100.0,
+      100.0
+     ],
+     "text_minus_memory": [
+      2.3,
+      9.7
+     ]
+    },
+    "boundary": {
+     "memory": {
+      "n": 72,
+      "of": 78,
+      "pct": 92.3
+     },
+     "text": {
+      "n": 78,
+      "of": 78,
+      "pct": 100.0
+     }
+    },
+    "other": {
+     "memory": {
+      "n": 211,
+      "of": 222,
+      "pct": 95.0
+     },
+     "text": {
+      "n": 222,
+      "of": 222,
+      "pct": 100.0
+     }
+    }
+   },
+   "search_questions": {
+    "accuracy": {
+     "memory": {
+      "n": 233,
+      "of": 246,
+      "pct": 94.7
+     },
+     "search": {
+      "n": 156,
+      "of": 164,
+      "pct": 95.1
+     },
+     "text": {
+      "n": 246,
+      "of": 246,
+      "pct": 100.0
+     }
+    },
+    "difference_points": {
+     "text_minus_memory": 5.3,
+     "search_minus_memory": 0.4,
+     "text_minus_search": 4.9
+    },
+    "interval_95": {
+     "memory": [
+      90.2,
+      98.4
+     ],
+     "search": [
+      90.9,
+      98.8
+     ],
+     "text": [
+      100.0,
+      100.0
+     ],
+     "text_minus_memory": [
+      1.6,
+      9.8
+     ],
+     "search_minus_memory": [
+      -1.6,
+      2.2
+     ],
+     "text_minus_search": [
+      1.2,
+      9.1
+     ]
+    },
+    "boundary": {
+     "memory": {
+      "n": 63,
+      "of": 69,
+      "pct": 91.3
+     },
+     "search": {
+      "n": 42,
+      "of": 46,
+      "pct": 91.3
+     },
+     "text": {
+      "n": 69,
+      "of": 69,
+      "pct": 100.0
+     }
+    },
+    "other": {
+     "memory": {
+      "n": 170,
+      "of": 177,
+      "pct": 96.0
+     },
+     "search": {
+      "n": 114,
+      "of": 118,
+      "pct": 96.6
+     },
+     "text": {
+      "n": 177,
+      "of": 177,
+      "pct": 100.0
+     }
+    }
+   },
+   "samples_disagree": {
+    "memory": {
+     "n": 7,
+     "of": 100,
+     "pct": 7.0
+    },
+    "search": {
+     "n": 4,
+     "of": 82,
+     "pct": 4.9
+    },
+    "text": {
+     "n": 0,
+     "of": 100,
+     "pct": 0.0
+    }
+   },
+   "search_use": {
+    "calls_with_a_search": {
+     "n": 14,
+     "of": 164,
+     "pct": 8.5
+    },
+    "mean_searches_per_call": 0.09,
+    "accuracy_when_searched": {
+     "n": 13,
+     "of": 14,
+     "pct": 92.9
+    },
+    "accuracy_when_not_searched": {
+     "n": 143,
+     "of": 150,
+     "pct": 95.3
+    },
+    "wrong_replies": 8,
+    "wrong_replies_without_a_search": 7,
+    "mean_input_tokens_when_searched": 14159,
+    "mean_input_tokens_when_not_searched": 3079,
+    "mean_cost_when_searched_usd": 0.0461,
+    "mean_cost_when_not_searched_usd": 0.0113
+   },
+   "first_letter_scoring": {
+    "memory": {
+     "n": 282,
+     "of": 300,
+     "pct": 94.0
+    },
+    "search": {
+     "n": 155,
+     "of": 164,
+     "pct": 94.5
+    },
+    "text": {
+     "n": 281,
+     "of": 300,
+     "pct": 93.7
+    }
+   },
+   "replies_with_two_letters": {
+    "memory": 1,
+    "search": 1,
+    "text": 19
+   },
+   "replies_with_a_thinking_block": {
+    "memory": {
+     "n": 18,
+     "of": 300,
+     "pct": 6.0
+    },
+    "search": {
+     "n": 136,
+     "of": 164,
+     "pct": 82.9
+    },
+    "text": {
+     "n": 0,
+     "of": 300,
+     "pct": 0.0
+    }
+   },
+   "cost_usd": {
+    "core/memory/medium": 1.64,
+    "core/text/medium": 0.85,
+    "search/search/medium": 2.35,
+    "effort/memory/low": 0,
+    "effort/memory/high": 0,
+    "total": 4.85
+   },
+   "per_call": {
+    "memory": {
+     "mean_input_tokens": 272,
+     "mean_output_tokens": 492,
+     "mean_cost_usd": 0.0055
+    },
+    "search": {
+     "mean_input_tokens": 4025,
+     "mean_output_tokens": 539,
+     "mean_cost_usd": 0.0143
+    },
+    "text": {
+     "mean_input_tokens": 607,
+     "mean_output_tokens": 163,
+     "mean_cost_usd": 0.0028
+    }
+   }
+  },
+  "claude-opus-5-5": {
+   "all_questions": {
+    "accuracy": {
+     "memory": {
+      "n": 293,
+      "of": 300,
+      "pct": 97.7
+     },
+     "text": {
+      "n": 300,
+      "of": 300,
+      "pct": 100.0
+     }
+    },
+    "difference_points": {
+     "text_minus_memory": 2.3
+    },
+    "interval_95": {
+     "memory": [
+      94.3,
+      100.0
+     ],
+     "text": [
+      100.0,
+      100.0
+     ],
+     "text_minus_memory": [
+      0.0,
+      5.7
+     ]
+    },
+    "boundary": {
+     "memory": {
+      "n": 72,
+      "of": 78,
+      "pct": 92.3
+     },
+     "text": {
+      "n": 78,
+      "of": 78,
+      "pct": 100.0
+     }
+    },
+    "other": {
+     "memory": {
+      "n": 221,
+      "of": 222,
+      "pct": 99.5
+     },
+     "text": {
+      "n": 222,
+      "of": 222,
+      "pct": 100.0
+     }
+    }
+   },
+   "search_questions": {
+    "accuracy": {
+     "memory": {
+      "n": 240,
+      "of": 246,
+      "pct": 97.6
+     },
+     "search": {
+      "n": 159,
+      "of": 164,
+      "pct": 97.0
+     },
+     "text": {
+      "n": 246,
+      "of": 246,
+      "pct": 100.0
+     }
+    },
+    "difference_points": {
+     "text_minus_memory": 2.4,
+     "search_minus_memory": -0.6,
+     "text_minus_search": 3.0
+    },
+    "interval_95": {
+     "memory": [
+      93.9,
+      100.0
+     ],
+     "search": [
+      93.3,
+      99.4
+     ],
+     "text": [
+      100.0,
+      100.0
+     ],
+     "text_minus_memory": [
+      0.0,
+      6.1
+     ],
+     "search_minus_memory": [
+      -3.7,
+      3.0
+     ],
+     "text_minus_search": [
+      0.6,
+      6.7
+     ]
+    },
+    "boundary": {
+     "memory": {
+      "n": 63,
+      "of": 69,
+      "pct": 91.3
+     },
+     "search": {
+      "n": 43,
+      "of": 46,
+      "pct": 93.5
+     },
+     "text": {
+      "n": 69,
+      "of": 69,
+      "pct": 100.0
+     }
+    },
+    "other": {
+     "memory": {
+      "n": 177,
+      "of": 177,
+      "pct": 100.0
+     },
+     "search": {
+      "n": 116,
+      "of": 118,
+      "pct": 98.3
+     },
+     "text": {
+      "n": 177,
+      "of": 177,
+      "pct": 100.0
+     }
+    }
+   },
+   "samples_disagree": {
+    "memory": {
+     "n": 1,
+     "of": 100,
+     "pct": 1.0
+    },
+    "search": {
+     "n": 3,
+     "of": 82,
+     "pct": 3.7
+    },
+    "text": {
+     "n": 0,
+     "of": 100,
+     "pct": 0.0
+    }
+   },
+   "search_use": {
+    "calls_with_a_search": {
+     "n": 107,
+     "of": 164,
+     "pct": 65.2
+    },
+    "mean_searches_per_call": 0.71,
+    "accuracy_when_searched": {
+     "n": 105,
+     "of": 107,
+     "pct": 98.1
+    },
+    "accuracy_when_not_searched": {
+     "n": 54,
+     "of": 57,
+     "pct": 94.7
+    },
+    "wrong_replies": 5,
+    "wrong_replies_without_a_search": 3,
+    "mean_input_tokens_when_searched": 15164,
+    "mean_input_tokens_when_not_searched": 2996,
+    "mean_cost_when_searched_usd": 0.0843,
+    "mean_cost_when_not_searched_usd": 0.0214
+   },
+   "first_letter_scoring": {
+    "memory": {
+     "n": 293,
+     "of": 300,
+     "pct": 97.7
+    },
+    "search": {
+     "n": 159,
+     "of": 164,
+     "pct": 97.0
+    },
+    "text": {
+     "n": 300,
+     "of": 300,
+     "pct": 100.0
+    }
+   },
+   "replies_with_two_letters": {
+    "memory": 0,
+    "search": 0,
+    "text": 0
+   },
+   "replies_with_a_thinking_block": {
+    "memory": {
+     "n": 300,
+     "of": 300,
+     "pct": 100.0
+    },
+    "search": {
+     "n": 164,
+     "of": 164,
+     "pct": 100.0
+    },
+    "text": {
+     "n": 286,
+     "of": 300,
+     "pct": 95.3
+    }
+   },
+   "cost_usd": {
+    "core/memory/medium": 3.4,
+    "core/text/medium": 1.9,
+    "search/search/medium": 10.39,
+    "effort/memory/low": 0,
+    "effort/memory/high": 0,
+    "total": 15.69
+   },
+   "per_call": {
+    "memory": {
+     "mean_input_tokens": 272,
+     "mean_output_tokens": 512,
+     "mean_cost_usd": 0.0113
+    },
+    "search": {
+     "mean_input_tokens": 10935,
+     "mean_output_tokens": 580,
+     "mean_cost_usd": 0.0624
+    },
+    "text": {
+     "mean_input_tokens": 607,
+     "mean_output_tokens": 196,
+     "mean_cost_usd": 0.0063
+    }
+   }
+  },
+  "claude-fable-5-2": {
+   "all_questions": {
+    "accuracy": {
+     "memory": {
+      "n": 294,
+      "of": 300,
+      "pct": 98.0
+     },
+     "text": {
+      "n": 299,
+      "of": 300,
+      "pct": 99.7
+     }
+    },
+    "difference_points": {
+     "text_minus_memory": 1.7
+    },
+    "interval_95": {
+     "memory": [
+      95.3,
+      100.0
+     ],
+     "text": [
+      99.0,
+      100.0
+     ],
+     "text_minus_memory": [
+      0.0,
+      4.0
+     ]
+    },
+    "boundary": {
+     "memory": {
+      "n": 75,
+      "of": 78,
+      "pct": 96.2
+     },
+     "text": {
+      "n": 77,
+      "of": 78,
+      "pct": 98.7
+     }
+    },
+    "other": {
+     "memory": {
+      "n": 219,
+      "of": 222,
+      "pct": 98.6
+     },
+     "text": {
+      "n": 222,
+      "of": 222,
+      "pct": 100.0
+     }
+    }
+   },
+   "search_questions": {
+    "accuracy": {
+     "memory": {
+      "n": 241,
+      "of": 246,
+      "pct": 98.0
+     },
+     "search": {
+      "n": 163,
+      "of": 164,
+      "pct": 99.4
+     },
+     "text": {
+      "n": 245,
+      "of": 246,
+      "pct": 99.6
+     }
+    },
+    "difference_points": {
+     "text_minus_memory": 1.6,
+     "search_minus_memory": 1.4,
+     "text_minus_search": 0.2
+    },
+    "interval_95": {
+     "memory": [
+      94.7,
+      100.0
+     ],
+     "search": [
+      98.2,
+      100.0
+     ],
+     "text": [
+      98.8,
+      100.0
+     ],
+     "text_minus_memory": [
+      0.0,
+      4.1
+     ],
+     "search_minus_memory": [
+      0.0,
+      3.7
+     ],
+     "text_minus_search": [
+      0.0,
+      0.6
+     ]
+    },
+    "boundary": {
+     "memory": {
+      "n": 66,
+      "of": 69,
+      "pct": 95.7
+     },
+     "search": {
+      "n": 45,
+      "of": 46,
+      "pct": 97.8
+     },
+     "text": {
+      "n": 68,
+      "of": 69,
+      "pct": 98.6
+     }
+    },
+    "other": {
+     "memory": {
+      "n": 175,
+      "of": 177,
+      "pct": 98.9
+     },
+     "search": {
+      "n": 118,
+      "of": 118,
+      "pct": 100.0
+     },
+     "text": {
+      "n": 177,
+      "of": 177,
+      "pct": 100.0
+     }
+    }
+   },
+   "samples_disagree": {
+    "memory": {
+     "n": 2,
+     "of": 100,
+     "pct": 2.0
+    },
+    "search": {
+     "n": 1,
+     "of": 82,
+     "pct": 1.2
+    },
+    "text": {
+     "n": 1,
+     "of": 100,
+     "pct": 1.0
+    }
+   },
+   "search_use": {
+    "calls_with_a_search": {
+     "n": 106,
+     "of": 164,
+     "pct": 64.6
+    },
+    "mean_searches_per_call": 0.73,
+    "accuracy_when_searched": {
+     "n": 106,
+     "of": 106,
+     "pct": 100.0
+    },
+    "accuracy_when_not_searched": {
+     "n": 57,
+     "of": 58,
+     "pct": 98.3
+    },
+    "wrong_replies": 1,
+    "wrong_replies_without_a_search": 1,
+    "mean_input_tokens_when_searched": 15209,
+    "mean_input_tokens_when_not_searched": 3086,
+    "mean_cost_when_searched_usd": 0.1604,
+    "mean_cost_when_not_searched_usd": 0.0446
+   },
+   "first_letter_scoring": {
+    "memory": {
+     "n": 294,
+     "of": 300,
+     "pct": 98.0
+    },
+    "search": {
+     "n": 163,
+     "of": 164,
+     "pct": 99.4
+    },
+    "text": {
+     "n": 299,
+     "of": 300,
+     "pct": 99.7
+    }
+   },
+   "replies_with_two_letters": {
+    "memory": 0,
+    "search": 0,
+    "text": 0
+   },
+   "replies_with_a_thinking_block": {
+    "memory": {
+     "n": 290,
+     "of": 300,
+     "pct": 96.7
+    },
+    "search": {
+     "n": 164,
+     "of": 164,
+     "pct": 100.0
+    },
+    "text": {
+     "n": 53,
+     "of": 300,
+     "pct": 17.7
+    }
+   },
+   "cost_usd": {
+    "core/memory/medium": 7.37,
+    "core/text/medium": 3.37,
+    "search/search/medium": 19.59,
+    "effort/memory/low": 0,
+    "effort/memory/high": 0,
+    "total": 30.33
+   },
+   "per_call": {
+    "memory": {
+     "mean_input_tokens": 272,
+     "mean_output_tokens": 560,
+     "mean_cost_usd": 0.0246
+    },
+    "search": {
+     "mean_input_tokens": 10922,
+     "mean_output_tokens": 620,
+     "mean_cost_usd": 0.1194
+    },
+    "text": {
+     "mean_input_tokens": 607,
+     "mean_output_tokens": 159,
+     "mean_cost_usd": 0.0112
+    }
+   }
+  }
+ },
+ "by_family": {
+  "frontier-model": {
+   "questions": 12,
+   "search_questions": 10,
+   "all_questions": {
+    "memory": {
+     "n": 143,
+     "of": 144,
+     "pct": 99.3
+    },
+    "text": {
+     "n": 144,
+     "of": 144,
+     "pct": 100.0
+    }
+   },
+   "search_questions_accuracy": {
+    "memory": {
+     "n": 119,
+     "of": 120,
+     "pct": 99.2
+    },
+    "search": {
+     "n": 80,
+     "of": 80,
+     "pct": 100.0
+    },
+    "text": {
+     "n": 120,
+     "of": 120,
+     "pct": 100.0
+    }
+   }
+  },
+  "large-developer": {
+   "questions": 12,
+   "search_questions": 9,
+   "all_questions": {
+    "memory": {
+     "n": 144,
+     "of": 144,
+     "pct": 100.0
+    },
+    "text": {
+     "n": 144,
+     "of": 144,
+     "pct": 100.0
+    }
+   },
+   "search_questions_accuracy": {
+    "memory": {
+     "n": 108,
+     "of": 108,
+     "pct": 100.0
+    },
+    "search": {
+     "n": 72,
+     "of": 72,
+     "pct": 100.0
+    },
+    "text": {
+     "n": 108,
+     "of": 108,
+     "pct": 100.0
+    }
+   }
+  },
+  "incident-clock": {
+   "questions": 8,
+   "search_questions": 6,
+   "all_questions": {
+    "memory": {
+     "n": 92,
+     "of": 96,
+     "pct": 95.8
+    },
+    "text": {
+     "n": 96,
+     "of": 96,
+     "pct": 100.0
+    }
+   },
+   "search_questions_accuracy": {
+    "memory": {
+     "n": 71,
+     "of": 72,
+     "pct": 98.6
+    },
+    "search": {
+     "n": 48,
+     "of": 48,
+     "pct": 100.0
+    },
+    "text": {
+     "n": 72,
+     "of": 72,
+     "pct": 100.0
+    }
+   }
+  },
+  "compute-figures": {
+   "questions": 12,
+   "search_questions": 11,
+   "all_questions": {
+    "memory": {
+     "n": 135,
+     "of": 144,
+     "pct": 93.8
+    },
+    "text": {
+     "n": 144,
+     "of": 144,
+     "pct": 100.0
+    }
+   },
+   "search_questions_accuracy": {
+    "memory": {
+     "n": 123,
+     "of": 132,
+     "pct": 93.2
+    },
+    "search": {
+     "n": 84,
+     "of": 88,
+     "pct": 95.5
+    },
+    "text": {
+     "n": 132,
+     "of": 132,
+     "pct": 100.0
+    }
+   }
+  },
+  "eccn-3a090": {
+   "questions": 16,
+   "search_questions": 14,
+   "all_questions": {
+    "memory": {
+     "n": 180,
+     "of": 192,
+     "pct": 93.8
+    },
+    "text": {
+     "n": 192,
+     "of": 192,
+     "pct": 100.0
+    }
+   },
+   "search_questions_accuracy": {
+    "memory": {
+     "n": 161,
+     "of": 168,
+     "pct": 95.8
+    },
+    "search": {
+     "n": 108,
+     "of": 112,
+     "pct": 96.4
+    },
+    "text": {
+     "n": 168,
+     "of": 168,
+     "pct": 100.0
+    }
+   }
+  },
+  "licence-review": {
+   "questions": 10,
+   "search_questions": 8,
+   "all_questions": {
+    "memory": {
+     "n": 117,
+     "of": 120,
+     "pct": 97.5
+    },
+    "text": {
+     "n": 119,
+     "of": 120,
+     "pct": 99.2
+    }
+   },
+   "search_questions_accuracy": {
+    "memory": {
+     "n": 93,
+     "of": 96,
+     "pct": 96.9
+    },
+    "search": {
+     "n": 63,
+     "of": 64,
+     "pct": 98.4
+    },
+    "text": {
+     "n": 95,
+     "of": 96,
+     "pct": 99.0
+    }
+   }
+  },
+  "chip-tariff": {
+   "questions": 12,
+   "search_questions": 10,
+   "all_questions": {
+    "memory": {
+     "n": 122,
+     "of": 144,
+     "pct": 84.7
+    },
+    "text": {
+     "n": 144,
+     "of": 144,
+     "pct": 100.0
+    }
+   },
+   "search_questions_accuracy": {
+    "memory": {
+     "n": 99,
+     "of": 120,
+     "pct": 82.5
+    },
+    "search": {
+     "n": 76,
+     "of": 80,
+     "pct": 95.0
+    },
+    "text": {
+     "n": 120,
+     "of": 120,
+     "pct": 100.0
+    }
+   }
+  },
+  "eu-notification": {
+   "questions": 8,
+   "search_questions": 6,
+   "all_questions": {
+    "memory": {
+     "n": 96,
+     "of": 96,
+     "pct": 100.0
+    },
+    "text": {
+     "n": 96,
+     "of": 96,
+     "pct": 100.0
+    }
+   },
+   "search_questions_accuracy": {
+    "memory": {
+     "n": 72,
+     "of": 72,
+     "pct": 100.0
+    },
+    "search": {
+     "n": 48,
+     "of": 48,
+     "pct": 100.0
+    },
+    "text": {
+     "n": 72,
+     "of": 72,
+     "pct": 100.0
+    }
+   }
+  },
+  "catastrophic-size": {
+   "questions": 10,
+   "search_questions": 8,
+   "all_questions": {
+    "memory": {
+     "n": 120,
+     "of": 120,
+     "pct": 100.0
+    },
+    "text": {
+     "n": 120,
+     "of": 120,
+     "pct": 100.0
+    }
+   },
+   "search_questions_accuracy": {
+    "memory": {
+     "n": 96,
+     "of": 96,
+     "pct": 100.0
+    },
+    "search": {
+     "n": 62,
+     "of": 64,
+     "pct": 96.9
+    },
+    "text": {
+     "n": 96,
+     "of": 96,
+     "pct": 100.0
+    }
+   }
+  }
+ },
+ "by_question": {
+  "memory": {
+   "frontier-model-01": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "frontier-model-02": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "frontier-model-03": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "frontier-model-04": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "frontier-model-05": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "frontier-model-06": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "frontier-model-07": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "frontier-model-08": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "frontier-model-09": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "frontier-model-10": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "frontier-model-11": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "frontier-model-12": {
+    "n": 11,
+    "of": 12,
+    "pct": 91.7
+   },
+   "large-developer-01": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "large-developer-02": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "large-developer-03": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "large-developer-04": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "large-developer-05": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "large-developer-06": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "large-developer-07": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "large-developer-08": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "large-developer-09": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "large-developer-10": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "large-developer-11": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "large-developer-12": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "incident-clock-01": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "incident-clock-02": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "incident-clock-03": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "incident-clock-04": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "incident-clock-05": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "incident-clock-06": {
+    "n": 11,
+    "of": 12,
+    "pct": 91.7
+   },
+   "incident-clock-07": {
+    "n": 9,
+    "of": 12,
+    "pct": 75.0
+   },
+   "incident-clock-08": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "compute-figures-01": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "compute-figures-02": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "compute-figures-03": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "compute-figures-04": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "compute-figures-05": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "compute-figures-06": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "compute-figures-07": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "compute-figures-08": {
+    "n": 3,
+    "of": 12,
+    "pct": 25.0
+   },
+   "compute-figures-09": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "compute-figures-10": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "compute-figures-11": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "compute-figures-12": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "eccn-3a090-01": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "eccn-3a090-02": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "eccn-3a090-03": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "eccn-3a090-04": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "eccn-3a090-05": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "eccn-3a090-06": {
+    "n": 11,
+    "of": 12,
+    "pct": 91.7
+   },
+   "eccn-3a090-07": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "eccn-3a090-08": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "eccn-3a090-09": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "eccn-3a090-10": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "eccn-3a090-11": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "eccn-3a090-12": {
+    "n": 11,
+    "of": 12,
+    "pct": 91.7
+   },
+   "eccn-3a090-13": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "eccn-3a090-14": {
+    "n": 7,
+    "of": 12,
+    "pct": 58.3
+   },
+   "eccn-3a090-15": {
+    "n": 7,
+    "of": 12,
+    "pct": 58.3
+   },
+   "eccn-3a090-16": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "licence-review-01": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "licence-review-02": {
+    "n": 9,
+    "of": 12,
+    "pct": 75.0
+   },
+   "licence-review-03": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "licence-review-04": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "licence-review-05": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "licence-review-06": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "licence-review-07": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "licence-review-08": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "licence-review-09": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "licence-review-10": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "chip-tariff-01": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "chip-tariff-02": {
+    "n": 7,
+    "of": 12,
+    "pct": 58.3
+   },
+   "chip-tariff-03": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "chip-tariff-04": {
+    "n": 3,
+    "of": 12,
+    "pct": 25.0
+   },
+   "chip-tariff-05": {
+    "n": 11,
+    "of": 12,
+    "pct": 91.7
+   },
+   "chip-tariff-06": {
+    "n": 11,
+    "of": 12,
+    "pct": 91.7
+   },
+   "chip-tariff-07": {
+    "n": 11,
+    "of": 12,
+    "pct": 91.7
+   },
+   "chip-tariff-08": {
+    "n": 11,
+    "of": 12,
+    "pct": 91.7
+   },
+   "chip-tariff-09": {
+    "n": 10,
+    "of": 12,
+    "pct": 83.3
+   },
+   "chip-tariff-10": {
+    "n": 10,
+    "of": 12,
+    "pct": 83.3
+   },
+   "chip-tariff-11": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "chip-tariff-12": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "eu-notification-01": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "eu-notification-02": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "eu-notification-03": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "eu-notification-04": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "eu-notification-05": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "eu-notification-06": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "eu-notification-07": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "eu-notification-08": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "catastrophic-size-01": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "catastrophic-size-02": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "catastrophic-size-03": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "catastrophic-size-04": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "catastrophic-size-05": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "catastrophic-size-06": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "catastrophic-size-07": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "catastrophic-size-08": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "catastrophic-size-09": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "catastrophic-size-10": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   }
+  },
+  "search": {
+   "frontier-model-01": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "frontier-model-02": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "frontier-model-03": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "frontier-model-05": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "frontier-model-07": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "frontier-model-08": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "frontier-model-09": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "frontier-model-10": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "frontier-model-11": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "frontier-model-12": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "large-developer-02": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "large-developer-03": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "large-developer-04": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "large-developer-05": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "large-developer-06": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "large-developer-07": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "large-developer-08": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "large-developer-10": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "large-developer-12": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "incident-clock-02": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "incident-clock-03": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "incident-clock-04": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "incident-clock-05": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "incident-clock-06": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "incident-clock-08": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "compute-figures-01": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "compute-figures-02": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "compute-figures-03": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "compute-figures-04": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "compute-figures-05": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "compute-figures-06": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "compute-figures-08": {
+    "n": 4,
+    "of": 8,
+    "pct": 50.0
+   },
+   "compute-figures-09": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "compute-figures-10": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "compute-figures-11": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "compute-figures-12": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "eccn-3a090-01": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "eccn-3a090-03": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "eccn-3a090-04": {
+    "n": 7,
+    "of": 8,
+    "pct": 87.5
+   },
+   "eccn-3a090-05": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "eccn-3a090-06": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "eccn-3a090-07": {
+    "n": 7,
+    "of": 8,
+    "pct": 87.5
+   },
+   "eccn-3a090-08": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "eccn-3a090-09": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "eccn-3a090-10": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "eccn-3a090-11": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "eccn-3a090-12": {
+    "n": 7,
+    "of": 8,
+    "pct": 87.5
+   },
+   "eccn-3a090-13": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "eccn-3a090-15": {
+    "n": 7,
+    "of": 8,
+    "pct": 87.5
+   },
+   "eccn-3a090-16": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "licence-review-02": {
+    "n": 7,
+    "of": 8,
+    "pct": 87.5
+   },
+   "licence-review-03": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "licence-review-04": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "licence-review-05": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "licence-review-06": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "licence-review-08": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "licence-review-09": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "licence-review-10": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "chip-tariff-01": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "chip-tariff-02": {
+    "n": 7,
+    "of": 8,
+    "pct": 87.5
+   },
+   "chip-tariff-03": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "chip-tariff-04": {
+    "n": 6,
+    "of": 8,
+    "pct": 75.0
+   },
+   "chip-tariff-05": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "chip-tariff-06": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "chip-tariff-07": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "chip-tariff-09": {
+    "n": 7,
+    "of": 8,
+    "pct": 87.5
+   },
+   "chip-tariff-10": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "chip-tariff-12": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "eu-notification-01": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "eu-notification-02": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "eu-notification-04": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "eu-notification-05": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "eu-notification-06": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "eu-notification-07": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "catastrophic-size-01": {
+    "n": 7,
+    "of": 8,
+    "pct": 87.5
+   },
+   "catastrophic-size-03": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "catastrophic-size-04": {
+    "n": 7,
+    "of": 8,
+    "pct": 87.5
+   },
+   "catastrophic-size-05": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "catastrophic-size-06": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "catastrophic-size-08": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "catastrophic-size-09": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   },
+   "catastrophic-size-10": {
+    "n": 8,
+    "of": 8,
+    "pct": 100.0
+   }
+  },
+  "text": {
+   "frontier-model-01": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "frontier-model-02": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "frontier-model-03": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "frontier-model-04": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "frontier-model-05": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "frontier-model-06": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "frontier-model-07": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "frontier-model-08": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "frontier-model-09": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "frontier-model-10": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "frontier-model-11": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "frontier-model-12": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "large-developer-01": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "large-developer-02": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "large-developer-03": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "large-developer-04": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "large-developer-05": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "large-developer-06": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "large-developer-07": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "large-developer-08": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "large-developer-09": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "large-developer-10": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "large-developer-11": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "large-developer-12": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "incident-clock-01": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "incident-clock-02": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "incident-clock-03": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "incident-clock-04": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "incident-clock-05": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "incident-clock-06": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "incident-clock-07": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "incident-clock-08": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "compute-figures-01": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "compute-figures-02": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "compute-figures-03": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "compute-figures-04": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "compute-figures-05": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "compute-figures-06": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "compute-figures-07": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "compute-figures-08": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "compute-figures-09": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "compute-figures-10": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "compute-figures-11": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "compute-figures-12": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "eccn-3a090-01": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "eccn-3a090-02": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "eccn-3a090-03": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "eccn-3a090-04": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "eccn-3a090-05": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "eccn-3a090-06": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "eccn-3a090-07": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "eccn-3a090-08": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "eccn-3a090-09": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "eccn-3a090-10": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "eccn-3a090-11": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "eccn-3a090-12": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "eccn-3a090-13": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "eccn-3a090-14": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "eccn-3a090-15": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "eccn-3a090-16": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "licence-review-01": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "licence-review-02": {
+    "n": 11,
+    "of": 12,
+    "pct": 91.7
+   },
+   "licence-review-03": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "licence-review-04": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "licence-review-05": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "licence-review-06": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "licence-review-07": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "licence-review-08": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "licence-review-09": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "licence-review-10": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "chip-tariff-01": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "chip-tariff-02": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "chip-tariff-03": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "chip-tariff-04": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "chip-tariff-05": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "chip-tariff-06": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "chip-tariff-07": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "chip-tariff-08": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "chip-tariff-09": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "chip-tariff-10": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "chip-tariff-11": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "chip-tariff-12": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "eu-notification-01": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "eu-notification-02": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "eu-notification-03": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "eu-notification-04": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "eu-notification-05": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "eu-notification-06": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "eu-notification-07": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "eu-notification-08": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "catastrophic-size-01": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "catastrophic-size-02": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "catastrophic-size-03": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "catastrophic-size-04": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "catastrophic-size-05": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "catastrophic-size-06": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "catastrophic-size-07": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "catastrophic-size-08": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "catastrophic-size-09": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   },
+   "catastrophic-size-10": {
+    "n": 12,
+    "of": 12,
+    "pct": 100.0
+   }
+  }
+ },
+ "by_model_question_right": {
+  "memory": {
+   "claude-haiku-5-5": {
+    "frontier-model-01": 3,
+    "frontier-model-02": 3,
+    "frontier-model-03": 3,
+    "frontier-model-04": 3,
+    "frontier-model-05": 3,
+    "frontier-model-06": 3,
+    "frontier-model-07": 3,
+    "frontier-model-08": 3,
+    "frontier-model-09": 3,
+    "frontier-model-10": 3,
+    "frontier-model-11": 3,
+    "frontier-model-12": 3,
+    "large-developer-01": 3,
+    "large-developer-02": 3,
+    "large-developer-03": 3,
+    "large-developer-04": 3,
+    "large-developer-05": 3,
+    "large-developer-06": 3,
+    "large-developer-07": 3,
+    "large-developer-08": 3,
+    "large-developer-09": 3,
+    "large-developer-10": 3,
+    "large-developer-11": 3,
+    "large-developer-12": 3,
+    "incident-clock-01": 3,
+    "incident-clock-02": 3,
+    "incident-clock-03": 3,
+    "incident-clock-04": 3,
+    "incident-clock-05": 3,
+    "incident-clock-06": 3,
+    "incident-clock-07": 1,
+    "incident-clock-08": 3,
+    "compute-figures-01": 3,
+    "compute-figures-02": 3,
+    "compute-figures-03": 3,
+    "compute-figures-04": 3,
+    "compute-figures-05": 3,
+    "compute-figures-06": 3,
+    "compute-figures-07": 3,
+    "compute-figures-08": 0,
+    "compute-figures-09": 3,
+    "compute-figures-10": 3,
+    "compute-figures-11": 3,
+    "compute-figures-12": 3,
+    "eccn-3a090-01": 3,
+    "eccn-3a090-02": 3,
+    "eccn-3a090-03": 3,
+    "eccn-3a090-04": 3,
+    "eccn-3a090-05": 3,
+    "eccn-3a090-06": 2,
+    "eccn-3a090-07": 3,
+    "eccn-3a090-08": 3,
+    "eccn-3a090-09": 3,
+    "eccn-3a090-10": 3,
+    "eccn-3a090-11": 3,
+    "eccn-3a090-12": 3,
+    "eccn-3a090-13": 3,
+    "eccn-3a090-14": 2,
+    "eccn-3a090-15": 0,
+    "eccn-3a090-16": 3,
+    "licence-review-01": 3,
+    "licence-review-02": 3,
+    "licence-review-03": 3,
+    "licence-review-04": 3,
+    "licence-review-05": 3,
+    "licence-review-06": 3,
+    "licence-review-07": 3,
+    "licence-review-08": 3,
+    "licence-review-09": 3,
+    "licence-review-10": 3,
+    "chip-tariff-01": 3,
+    "chip-tariff-02": 0,
+    "chip-tariff-03": 3,
+    "chip-tariff-04": 0,
+    "chip-tariff-05": 2,
+    "chip-tariff-06": 2,
+    "chip-tariff-07": 3,
+    "chip-tariff-08": 3,
+    "chip-tariff-09": 2,
+    "chip-tariff-10": 1,
+    "chip-tariff-11": 3,
+    "chip-tariff-12": 3,
+    "eu-notification-01": 3,
+    "eu-notification-02": 3,
+    "eu-notification-03": 3,
+    "eu-notification-04": 3,
+    "eu-notification-05": 3,
+    "eu-notification-06": 3,
+    "eu-notification-07": 3,
+    "eu-notification-08": 3,
+    "catastrophic-size-01": 3,
+    "catastrophic-size-02": 3,
+    "catastrophic-size-03": 3,
+    "catastrophic-size-04": 3,
+    "catastrophic-size-05": 3,
+    "catastrophic-size-06": 3,
+    "catastrophic-size-07": 3,
+    "catastrophic-size-08": 3,
+    "catastrophic-size-09": 3,
+    "catastrophic-size-10": 3
+   },
+   "claude-sonnet-5-5": {
+    "frontier-model-01": 3,
+    "frontier-model-02": 3,
+    "frontier-model-03": 3,
+    "frontier-model-04": 3,
+    "frontier-model-05": 3,
+    "frontier-model-06": 3,
+    "frontier-model-07": 3,
+    "frontier-model-08": 3,
+    "frontier-model-09": 3,
+    "frontier-model-10": 3,
+    "frontier-model-11": 3,
+    "frontier-model-12": 2,
+    "large-developer-01": 3,
+    "large-developer-02": 3,
+    "large-developer-03": 3,
+    "large-developer-04": 3,
+    "large-developer-05": 3,
+    "large-developer-06": 3,
+    "large-developer-07": 3,
+    "large-developer-08": 3,
+    "large-developer-09": 3,
+    "large-developer-10": 3,
+    "large-developer-11": 3,
+    "large-developer-12": 3,
+    "incident-clock-01": 3,
+    "incident-clock-02": 3,
+    "incident-clock-03": 3,
+    "incident-clock-04": 3,
+    "incident-clock-05": 3,
+    "incident-clock-06": 2,
+    "incident-clock-07": 2,
+    "incident-clock-08": 3,
+    "compute-figures-01": 3,
+    "compute-figures-02": 3,
+    "compute-figures-03": 3,
+    "compute-figures-04": 3,
+    "compute-figures-05": 3,
+    "compute-figures-06": 3,
+    "compute-figures-07": 3,
+    "compute-figures-08": 0,
+    "compute-figures-09": 3,
+    "compute-figures-10": 3,
+    "compute-figures-11": 3,
+    "compute-figures-12": 3,
+    "eccn-3a090-01": 3,
+    "eccn-3a090-02": 3,
+    "eccn-3a090-03": 3,
+    "eccn-3a090-04": 3,
+    "eccn-3a090-05": 3,
+    "eccn-3a090-06": 3,
+    "eccn-3a090-07": 3,
+    "eccn-3a090-08": 3,
+    "eccn-3a090-09": 3,
+    "eccn-3a090-10": 3,
+    "eccn-3a090-11": 3,
+    "eccn-3a090-12": 2,
+    "eccn-3a090-13": 3,
+    "eccn-3a090-14": 0,
+    "eccn-3a090-15": 1,
+    "eccn-3a090-16": 3,
+    "licence-review-01": 3,
+    "licence-review-02": 3,
+    "licence-review-03": 3,
+    "licence-review-04": 3,
+    "licence-review-05": 3,
+    "licence-review-06": 3,
+    "licence-review-07": 3,
+    "licence-review-08": 3,
+    "licence-review-09": 3,
+    "licence-review-10": 3,
+    "chip-tariff-01": 3,
+    "chip-tariff-02": 3,
+    "chip-tariff-03": 3,
+    "chip-tariff-04": 0,
+    "chip-tariff-05": 3,
+    "chip-tariff-06": 3,
+    "chip-tariff-07": 2,
+    "chip-tariff-08": 3,
+    "chip-tariff-09": 2,
+    "chip-tariff-10": 3,
+    "chip-tariff-11": 3,
+    "chip-tariff-12": 3,
+    "eu-notification-01": 3,
+    "eu-notification-02": 3,
+    "eu-notification-03": 3,
+    "eu-notification-04": 3,
+    "eu-notification-05": 3,
+    "eu-notification-06": 3,
+    "eu-notification-07": 3,
+    "eu-notification-08": 3,
+    "catastrophic-size-01": 3,
+    "catastrophic-size-02": 3,
+    "catastrophic-size-03": 3,
+    "catastrophic-size-04": 3,
+    "catastrophic-size-05": 3,
+    "catastrophic-size-06": 3,
+    "catastrophic-size-07": 3,
+    "catastrophic-size-08": 3,
+    "catastrophic-size-09": 3,
+    "catastrophic-size-10": 3
+   },
+   "claude-opus-5-5": {
+    "frontier-model-01": 3,
+    "frontier-model-02": 3,
+    "frontier-model-03": 3,
+    "frontier-model-04": 3,
+    "frontier-model-05": 3,
+    "frontier-model-06": 3,
+    "frontier-model-07": 3,
+    "frontier-model-08": 3,
+    "frontier-model-09": 3,
+    "frontier-model-10": 3,
+    "frontier-model-11": 3,
+    "frontier-model-12": 3,
+    "large-developer-01": 3,
+    "large-developer-02": 3,
+    "large-developer-03": 3,
+    "large-developer-04": 3,
+    "large-developer-05": 3,
+    "large-developer-06": 3,
+    "large-developer-07": 3,
+    "large-developer-08": 3,
+    "large-developer-09": 3,
+    "large-developer-10": 3,
+    "large-developer-11": 3,
+    "large-developer-12": 3,
+    "incident-clock-01": 3,
+    "incident-clock-02": 3,
+    "incident-clock-03": 3,
+    "incident-clock-04": 3,
+    "incident-clock-05": 3,
+    "incident-clock-06": 3,
+    "incident-clock-07": 3,
+    "incident-clock-08": 3,
+    "compute-figures-01": 3,
+    "compute-figures-02": 3,
+    "compute-figures-03": 3,
+    "compute-figures-04": 3,
+    "compute-figures-05": 3,
+    "compute-figures-06": 3,
+    "compute-figures-07": 3,
+    "compute-figures-08": 0,
+    "compute-figures-09": 3,
+    "compute-figures-10": 3,
+    "compute-figures-11": 3,
+    "compute-figures-12": 3,
+    "eccn-3a090-01": 3,
+    "eccn-3a090-02": 3,
+    "eccn-3a090-03": 3,
+    "eccn-3a090-04": 3,
+    "eccn-3a090-05": 3,
+    "eccn-3a090-06": 3,
+    "eccn-3a090-07": 3,
+    "eccn-3a090-08": 3,
+    "eccn-3a090-09": 3,
+    "eccn-3a090-10": 3,
+    "eccn-3a090-11": 3,
+    "eccn-3a090-12": 3,
+    "eccn-3a090-13": 3,
+    "eccn-3a090-14": 2,
+    "eccn-3a090-15": 3,
+    "eccn-3a090-16": 3,
+    "licence-review-01": 3,
+    "licence-review-02": 3,
+    "licence-review-03": 3,
+    "licence-review-04": 3,
+    "licence-review-05": 3,
+    "licence-review-06": 3,
+    "licence-review-07": 3,
+    "licence-review-08": 3,
+    "licence-review-09": 3,
+    "licence-review-10": 3,
+    "chip-tariff-01": 3,
+    "chip-tariff-02": 3,
+    "chip-tariff-03": 3,
+    "chip-tariff-04": 0,
+    "chip-tariff-05": 3,
+    "chip-tariff-06": 3,
+    "chip-tariff-07": 3,
+    "chip-tariff-08": 3,
+    "chip-tariff-09": 3,
+    "chip-tariff-10": 3,
+    "chip-tariff-11": 3,
+    "chip-tariff-12": 3,
+    "eu-notification-01": 3,
+    "eu-notification-02": 3,
+    "eu-notification-03": 3,
+    "eu-notification-04": 3,
+    "eu-notification-05": 3,
+    "eu-notification-06": 3,
+    "eu-notification-07": 3,
+    "eu-notification-08": 3,
+    "catastrophic-size-01": 3,
+    "catastrophic-size-02": 3,
+    "catastrophic-size-03": 3,
+    "catastrophic-size-04": 3,
+    "catastrophic-size-05": 3,
+    "catastrophic-size-06": 3,
+    "catastrophic-size-07": 3,
+    "catastrophic-size-08": 3,
+    "catastrophic-size-09": 3,
+    "catastrophic-size-10": 3
+   },
+   "claude-fable-5-2": {
+    "frontier-model-01": 3,
+    "frontier-model-02": 3,
+    "frontier-model-03": 3,
+    "frontier-model-04": 3,
+    "frontier-model-05": 3,
+    "frontier-model-06": 3,
+    "frontier-model-07": 3,
+    "frontier-model-08": 3,
+    "frontier-model-09": 3,
+    "frontier-model-10": 3,
+    "frontier-model-11": 3,
+    "frontier-model-12": 3,
+    "large-developer-01": 3,
+    "large-developer-02": 3,
+    "large-developer-03": 3,
+    "large-developer-04": 3,
+    "large-developer-05": 3,
+    "large-developer-06": 3,
+    "large-developer-07": 3,
+    "large-developer-08": 3,
+    "large-developer-09": 3,
+    "large-developer-10": 3,
+    "large-developer-11": 3,
+    "large-developer-12": 3,
+    "incident-clock-01": 3,
+    "incident-clock-02": 3,
+    "incident-clock-03": 3,
+    "incident-clock-04": 3,
+    "incident-clock-05": 3,
+    "incident-clock-06": 3,
+    "incident-clock-07": 3,
+    "incident-clock-08": 3,
+    "compute-figures-01": 3,
+    "compute-figures-02": 3,
+    "compute-figures-03": 3,
+    "compute-figures-04": 3,
+    "compute-figures-05": 3,
+    "compute-figures-06": 3,
+    "compute-figures-07": 3,
+    "compute-figures-08": 3,
+    "compute-figures-09": 3,
+    "compute-figures-10": 3,
+    "compute-figures-11": 3,
+    "compute-figures-12": 3,
+    "eccn-3a090-01": 3,
+    "eccn-3a090-02": 3,
+    "eccn-3a090-03": 3,
+    "eccn-3a090-04": 3,
+    "eccn-3a090-05": 3,
+    "eccn-3a090-06": 3,
+    "eccn-3a090-07": 3,
+    "eccn-3a090-08": 3,
+    "eccn-3a090-09": 3,
+    "eccn-3a090-10": 3,
+    "eccn-3a090-11": 3,
+    "eccn-3a090-12": 3,
+    "eccn-3a090-13": 3,
+    "eccn-3a090-14": 3,
+    "eccn-3a090-15": 3,
+    "eccn-3a090-16": 3,
+    "licence-review-01": 3,
+    "licence-review-02": 0,
+    "licence-review-03": 3,
+    "licence-review-04": 3,
+    "licence-review-05": 3,
+    "licence-review-06": 3,
+    "licence-review-07": 3,
+    "licence-review-08": 3,
+    "licence-review-09": 3,
+    "licence-review-10": 3,
+    "chip-tariff-01": 3,
+    "chip-tariff-02": 1,
+    "chip-tariff-03": 3,
+    "chip-tariff-04": 3,
+    "chip-tariff-05": 3,
+    "chip-tariff-06": 3,
+    "chip-tariff-07": 3,
+    "chip-tariff-08": 2,
+    "chip-tariff-09": 3,
+    "chip-tariff-10": 3,
+    "chip-tariff-11": 3,
+    "chip-tariff-12": 3,
+    "eu-notification-01": 3,
+    "eu-notification-02": 3,
+    "eu-notification-03": 3,
+    "eu-notification-04": 3,
+    "eu-notification-05": 3,
+    "eu-notification-06": 3,
+    "eu-notification-07": 3,
+    "eu-notification-08": 3,
+    "catastrophic-size-01": 3,
+    "catastrophic-size-02": 3,
+    "catastrophic-size-03": 3,
+    "catastrophic-size-04": 3,
+    "catastrophic-size-05": 3,
+    "catastrophic-size-06": 3,
+    "catastrophic-size-07": 3,
+    "catastrophic-size-08": 3,
+    "catastrophic-size-09": 3,
+    "catastrophic-size-10": 3
+   }
+  },
+  "search": {
+   "claude-haiku-5-5": {
+    "frontier-model-01": 2,
+    "frontier-model-02": 2,
+    "frontier-model-03": 2,
+    "frontier-model-05": 2,
+    "frontier-model-07": 2,
+    "frontier-model-08": 2,
+    "frontier-model-09": 2,
+    "frontier-model-10": 2,
+    "frontier-model-11": 2,
+    "frontier-model-12": 2,
+    "large-developer-02": 2,
+    "large-developer-03": 2,
+    "large-developer-04": 2,
+    "large-developer-05": 2,
+    "large-developer-06": 2,
+    "large-developer-07": 2,
+    "large-developer-08": 2,
+    "large-developer-10": 2,
+    "large-developer-12": 2,
+    "incident-clock-02": 2,
+    "incident-clock-03": 2,
+    "incident-clock-04": 2,
+    "incident-clock-05": 2,
+    "incident-clock-06": 2,
+    "incident-clock-08": 2,
+    "compute-figures-01": 2,
+    "compute-figures-02": 2,
+    "compute-figures-03": 2,
+    "compute-figures-04": 2,
+    "compute-figures-05": 2,
+    "compute-figures-06": 2,
+    "compute-figures-08": 2,
+    "compute-figures-09": 2,
+    "compute-figures-10": 2,
+    "compute-figures-11": 2,
+    "compute-figures-12": 2,
+    "eccn-3a090-01": 2,
+    "eccn-3a090-03": 2,
+    "eccn-3a090-04": 1,
+    "eccn-3a090-05": 2,
+    "eccn-3a090-06": 2,
+    "eccn-3a090-07": 2,
+    "eccn-3a090-08": 2,
+    "eccn-3a090-09": 2,
+    "eccn-3a090-10": 2,
+    "eccn-3a090-11": 2,
+    "eccn-3a090-12": 2,
+    "eccn-3a090-13": 2,
+    "eccn-3a090-15": 2,
+    "eccn-3a090-16": 2,
+    "licence-review-02": 2,
+    "licence-review-03": 2,
+    "licence-review-04": 2,
+    "licence-review-05": 2,
+    "licence-review-06": 2,
+    "licence-review-08": 2,
+    "licence-review-09": 2,
+    "licence-review-10": 2,
+    "chip-tariff-01": 2,
+    "chip-tariff-02": 2,
+    "chip-tariff-03": 2,
+    "chip-tariff-04": 2,
+    "chip-tariff-05": 2,
+    "chip-tariff-06": 2,
+    "chip-tariff-07": 2,
+    "chip-tariff-09": 2,
+    "chip-tariff-10": 2,
+    "chip-tariff-12": 2,
+    "eu-notification-01": 2,
+    "eu-notification-02": 2,
+    "eu-notification-04": 2,
+    "eu-notification-05": 2,
+    "eu-notification-06": 2,
+    "eu-notification-07": 2,
+    "catastrophic-size-01": 2,
+    "catastrophic-size-03": 2,
+    "catastrophic-size-04": 2,
+    "catastrophic-size-05": 2,
+    "catastrophic-size-06": 2,
+    "catastrophic-size-08": 2,
+    "catastrophic-size-09": 2,
+    "catastrophic-size-10": 2
+   },
+   "claude-sonnet-5-5": {
+    "frontier-model-01": 2,
+    "frontier-model-02": 2,
+    "frontier-model-03": 2,
+    "frontier-model-05": 2,
+    "frontier-model-07": 2,
+    "frontier-model-08": 2,
+    "frontier-model-09": 2,
+    "frontier-model-10": 2,
+    "frontier-model-11": 2,
+    "frontier-model-12": 2,
+    "large-developer-02": 2,
+    "large-developer-03": 2,
+    "large-developer-04": 2,
+    "large-developer-05": 2,
+    "large-developer-06": 2,
+    "large-developer-07": 2,
+    "large-developer-08": 2,
+    "large-developer-10": 2,
+    "large-developer-12": 2,
+    "incident-clock-02": 2,
+    "incident-clock-03": 2,
+    "incident-clock-04": 2,
+    "incident-clock-05": 2,
+    "incident-clock-06": 2,
+    "incident-clock-08": 2,
+    "compute-figures-01": 2,
+    "compute-figures-02": 2,
+    "compute-figures-03": 2,
+    "compute-figures-04": 2,
+    "compute-figures-05": 2,
+    "compute-figures-06": 2,
+    "compute-figures-08": 0,
+    "compute-figures-09": 2,
+    "compute-figures-10": 2,
+    "compute-figures-11": 2,
+    "compute-figures-12": 2,
+    "eccn-3a090-01": 2,
+    "eccn-3a090-03": 2,
+    "eccn-3a090-04": 2,
+    "eccn-3a090-05": 2,
+    "eccn-3a090-06": 2,
+    "eccn-3a090-07": 2,
+    "eccn-3a090-08": 2,
+    "eccn-3a090-09": 2,
+    "eccn-3a090-10": 2,
+    "eccn-3a090-11": 2,
+    "eccn-3a090-12": 1,
+    "eccn-3a090-13": 2,
+    "eccn-3a090-15": 1,
+    "eccn-3a090-16": 2,
+    "licence-review-02": 2,
+    "licence-review-03": 2,
+    "licence-review-04": 2,
+    "licence-review-05": 2,
+    "licence-review-06": 2,
+    "licence-review-08": 2,
+    "licence-review-09": 2,
+    "licence-review-10": 2,
+    "chip-tariff-01": 2,
+    "chip-tariff-02": 1,
+    "chip-tariff-03": 2,
+    "chip-tariff-04": 0,
+    "chip-tariff-05": 2,
+    "chip-tariff-06": 2,
+    "chip-tariff-07": 2,
+    "chip-tariff-09": 1,
+    "chip-tariff-10": 2,
+    "chip-tariff-12": 2,
+    "eu-notification-01": 2,
+    "eu-notification-02": 2,
+    "eu-notification-04": 2,
+    "eu-notification-05": 2,
+    "eu-notification-06": 2,
+    "eu-notification-07": 2,
+    "catastrophic-size-01": 2,
+    "catastrophic-size-03": 2,
+    "catastrophic-size-04": 2,
+    "catastrophic-size-05": 2,
+    "catastrophic-size-06": 2,
+    "catastrophic-size-08": 2,
+    "catastrophic-size-09": 2,
+    "catastrophic-size-10": 2
+   },
+   "claude-opus-5-5": {
+    "frontier-model-01": 2,
+    "frontier-model-02": 2,
+    "frontier-model-03": 2,
+    "frontier-model-05": 2,
+    "frontier-model-07": 2,
+    "frontier-model-08": 2,
+    "frontier-model-09": 2,
+    "frontier-model-10": 2,
+    "frontier-model-11": 2,
+    "frontier-model-12": 2,
+    "large-developer-02": 2,
+    "large-developer-03": 2,
+    "large-developer-04": 2,
+    "large-developer-05": 2,
+    "large-developer-06": 2,
+    "large-developer-07": 2,
+    "large-developer-08": 2,
+    "large-developer-10": 2,
+    "large-developer-12": 2,
+    "incident-clock-02": 2,
+    "incident-clock-03": 2,
+    "incident-clock-04": 2,
+    "incident-clock-05": 2,
+    "incident-clock-06": 2,
+    "incident-clock-08": 2,
+    "compute-figures-01": 2,
+    "compute-figures-02": 2,
+    "compute-figures-03": 2,
+    "compute-figures-04": 2,
+    "compute-figures-05": 2,
+    "compute-figures-06": 2,
+    "compute-figures-08": 0,
+    "compute-figures-09": 2,
+    "compute-figures-10": 2,
+    "compute-figures-11": 2,
+    "compute-figures-12": 2,
+    "eccn-3a090-01": 2,
+    "eccn-3a090-03": 2,
+    "eccn-3a090-04": 2,
+    "eccn-3a090-05": 2,
+    "eccn-3a090-06": 2,
+    "eccn-3a090-07": 1,
+    "eccn-3a090-08": 2,
+    "eccn-3a090-09": 2,
+    "eccn-3a090-10": 2,
+    "eccn-3a090-11": 2,
+    "eccn-3a090-12": 2,
+    "eccn-3a090-13": 2,
+    "eccn-3a090-15": 2,
+    "eccn-3a090-16": 2,
+    "licence-review-02": 2,
+    "licence-review-03": 2,
+    "licence-review-04": 2,
+    "licence-review-05": 2,
+    "licence-review-06": 2,
+    "licence-review-08": 2,
+    "licence-review-09": 2,
+    "licence-review-10": 2,
+    "chip-tariff-01": 2,
+    "chip-tariff-02": 2,
+    "chip-tariff-03": 2,
+    "chip-tariff-04": 2,
+    "chip-tariff-05": 2,
+    "chip-tariff-06": 2,
+    "chip-tariff-07": 2,
+    "chip-tariff-09": 2,
+    "chip-tariff-10": 2,
+    "chip-tariff-12": 2,
+    "eu-notification-01": 2,
+    "eu-notification-02": 2,
+    "eu-notification-04": 2,
+    "eu-notification-05": 2,
+    "eu-notification-06": 2,
+    "eu-notification-07": 2,
+    "catastrophic-size-01": 1,
+    "catastrophic-size-03": 2,
+    "catastrophic-size-04": 1,
+    "catastrophic-size-05": 2,
+    "catastrophic-size-06": 2,
+    "catastrophic-size-08": 2,
+    "catastrophic-size-09": 2,
+    "catastrophic-size-10": 2
+   },
+   "claude-fable-5-2": {
+    "frontier-model-01": 2,
+    "frontier-model-02": 2,
+    "frontier-model-03": 2,
+    "frontier-model-05": 2,
+    "frontier-model-07": 2,
+    "frontier-model-08": 2,
+    "frontier-model-09": 2,
+    "frontier-model-10": 2,
+    "frontier-model-11": 2,
+    "frontier-model-12": 2,
+    "large-developer-02": 2,
+    "large-developer-03": 2,
+    "large-developer-04": 2,
+    "large-developer-05": 2,
+    "large-developer-06": 2,
+    "large-developer-07": 2,
+    "large-developer-08": 2,
+    "large-developer-10": 2,
+    "large-developer-12": 2,
+    "incident-clock-02": 2,
+    "incident-clock-03": 2,
+    "incident-clock-04": 2,
+    "incident-clock-05": 2,
+    "incident-clock-06": 2,
+    "incident-clock-08": 2,
+    "compute-figures-01": 2,
+    "compute-figures-02": 2,
+    "compute-figures-03": 2,
+    "compute-figures-04": 2,
+    "compute-figures-05": 2,
+    "compute-figures-06": 2,
+    "compute-figures-08": 2,
+    "compute-figures-09": 2,
+    "compute-figures-10": 2,
+    "compute-figures-11": 2,
+    "compute-figures-12": 2,
+    "eccn-3a090-01": 2,
+    "eccn-3a090-03": 2,
+    "eccn-3a090-04": 2,
+    "eccn-3a090-05": 2,
+    "eccn-3a090-06": 2,
+    "eccn-3a090-07": 2,
+    "eccn-3a090-08": 2,
+    "eccn-3a090-09": 2,
+    "eccn-3a090-10": 2,
+    "eccn-3a090-11": 2,
+    "eccn-3a090-12": 2,
+    "eccn-3a090-13": 2,
+    "eccn-3a090-15": 2,
+    "eccn-3a090-16": 2,
+    "licence-review-02": 1,
+    "licence-review-03": 2,
+    "licence-review-04": 2,
+    "licence-review-05": 2,
+    "licence-review-06": 2,
+    "licence-review-08": 2,
+    "licence-review-09": 2,
+    "licence-review-10": 2,
+    "chip-tariff-01": 2,
+    "chip-tariff-02": 2,
+    "chip-tariff-03": 2,
+    "chip-tariff-04": 2,
+    "chip-tariff-05": 2,
+    "chip-tariff-06": 2,
+    "chip-tariff-07": 2,
+    "chip-tariff-09": 2,
+    "chip-tariff-10": 2,
+    "chip-tariff-12": 2,
+    "eu-notification-01": 2,
+    "eu-notification-02": 2,
+    "eu-notification-04": 2,
+    "eu-notification-05": 2,
+    "eu-notification-06": 2,
+    "eu-notification-07": 2,
+    "catastrophic-size-01": 2,
+    "catastrophic-size-03": 2,
+    "catastrophic-size-04": 2,
+    "catastrophic-size-05": 2,
+    "catastrophic-size-06": 2,
+    "catastrophic-size-08": 2,
+    "catastrophic-size-09": 2,
+    "catastrophic-size-10": 2
+   }
+  },
+  "text": {
+   "claude-haiku-5-5": {
+    "frontier-model-01": 3,
+    "frontier-model-02": 3,
+    "frontier-model-03": 3,
+    "frontier-model-04": 3,
+    "frontier-model-05": 3,
+    "frontier-model-06": 3,
+    "frontier-model-07": 3,
+    "frontier-model-08": 3,
+    "frontier-model-09": 3,
+    "frontier-model-10": 3,
+    "frontier-model-11": 3,
+    "frontier-model-12": 3,
+    "large-developer-01": 3,
+    "large-developer-02": 3,
+    "large-developer-03": 3,
+    "large-developer-04": 3,
+    "large-developer-05": 3,
+    "large-developer-06": 3,
+    "large-developer-07": 3,
+    "large-developer-08": 3,
+    "large-developer-09": 3,
+    "large-developer-10": 3,
+    "large-developer-11": 3,
+    "large-developer-12": 3,
+    "incident-clock-01": 3,
+    "incident-clock-02": 3,
+    "incident-clock-03": 3,
+    "incident-clock-04": 3,
+    "incident-clock-05": 3,
+    "incident-clock-06": 3,
+    "incident-clock-07": 3,
+    "incident-clock-08": 3,
+    "compute-figures-01": 3,
+    "compute-figures-02": 3,
+    "compute-figures-03": 3,
+    "compute-figures-04": 3,
+    "compute-figures-05": 3,
+    "compute-figures-06": 3,
+    "compute-figures-07": 3,
+    "compute-figures-08": 3,
+    "compute-figures-09": 3,
+    "compute-figures-10": 3,
+    "compute-figures-11": 3,
+    "compute-figures-12": 3,
+    "eccn-3a090-01": 3,
+    "eccn-3a090-02": 3,
+    "eccn-3a090-03": 3,
+    "eccn-3a090-04": 3,
+    "eccn-3a090-05": 3,
+    "eccn-3a090-06": 3,
+    "eccn-3a090-07": 3,
+    "eccn-3a090-08": 3,
+    "eccn-3a090-09": 3,
+    "eccn-3a090-10": 3,
+    "eccn-3a090-11": 3,
+    "eccn-3a090-12": 3,
+    "eccn-3a090-13": 3,
+    "eccn-3a090-14": 3,
+    "eccn-3a090-15": 3,
+    "eccn-3a090-16": 3,
+    "licence-review-01": 3,
+    "licence-review-02": 3,
+    "licence-review-03": 3,
+    "licence-review-04": 3,
+    "licence-review-05": 3,
+    "licence-review-06": 3,
+    "licence-review-07": 3,
+    "licence-review-08": 3,
+    "licence-review-09": 3,
+    "licence-review-10": 3,
+    "chip-tariff-01": 3,
+    "chip-tariff-02": 3,
+    "chip-tariff-03": 3,
+    "chip-tariff-04": 3,
+    "chip-tariff-05": 3,
+    "chip-tariff-06": 3,
+    "chip-tariff-07": 3,
+    "chip-tariff-08": 3,
+    "chip-tariff-09": 3,
+    "chip-tariff-10": 3,
+    "chip-tariff-11": 3,
+    "chip-tariff-12": 3,
+    "eu-notification-01": 3,
+    "eu-notification-02": 3,
+    "eu-notification-03": 3,
+    "eu-notification-04": 3,
+    "eu-notification-05": 3,
+    "eu-notification-06": 3,
+    "eu-notification-07": 3,
+    "eu-notification-08": 3,
+    "catastrophic-size-01": 3,
+    "catastrophic-size-02": 3,
+    "catastrophic-size-03": 3,
+    "catastrophic-size-04": 3,
+    "catastrophic-size-05": 3,
+    "catastrophic-size-06": 3,
+    "catastrophic-size-07": 3,
+    "catastrophic-size-08": 3,
+    "catastrophic-size-09": 3,
+    "catastrophic-size-10": 3
+   },
+   "claude-sonnet-5-5": {
+    "frontier-model-01": 3,
+    "frontier-model-02": 3,
+    "frontier-model-03": 3,
+    "frontier-model-04": 3,
+    "frontier-model-05": 3,
+    "frontier-model-06": 3,
+    "frontier-model-07": 3,
+    "frontier-model-08": 3,
+    "frontier-model-09": 3,
+    "frontier-model-10": 3,
+    "frontier-model-11": 3,
+    "frontier-model-12": 3,
+    "large-developer-01": 3,
+    "large-developer-02": 3,
+    "large-developer-03": 3,
+    "large-developer-04": 3,
+    "large-developer-05": 3,
+    "large-developer-06": 3,
+    "large-developer-07": 3,
+    "large-developer-08": 3,
+    "large-developer-09": 3,
+    "large-developer-10": 3,
+    "large-developer-11": 3,
+    "large-developer-12": 3,
+    "incident-clock-01": 3,
+    "incident-clock-02": 3,
+    "incident-clock-03": 3,
+    "incident-clock-04": 3,
+    "incident-clock-05": 3,
+    "incident-clock-06": 3,
+    "incident-clock-07": 3,
+    "incident-clock-08": 3,
+    "compute-figures-01": 3,
+    "compute-figures-02": 3,
+    "compute-figures-03": 3,
+    "compute-figures-04": 3,
+    "compute-figures-05": 3,
+    "compute-figures-06": 3,
+    "compute-figures-07": 3,
+    "compute-figures-08": 3,
+    "compute-figures-09": 3,
+    "compute-figures-10": 3,
+    "compute-figures-11": 3,
+    "compute-figures-12": 3,
+    "eccn-3a090-01": 3,
+    "eccn-3a090-02": 3,
+    "eccn-3a090-03": 3,
+    "eccn-3a090-04": 3,
+    "eccn-3a090-05": 3,
+    "eccn-3a090-06": 3,
+    "eccn-3a090-07": 3,
+    "eccn-3a090-08": 3,
+    "eccn-3a090-09": 3,
+    "eccn-3a090-10": 3,
+    "eccn-3a090-11": 3,
+    "eccn-3a090-12": 3,
+    "eccn-3a090-13": 3,
+    "eccn-3a090-14": 3,
+    "eccn-3a090-15": 3,
+    "eccn-3a090-16": 3,
+    "licence-review-01": 3,
+    "licence-review-02": 3,
+    "licence-review-03": 3,
+    "licence-review-04": 3,
+    "licence-review-05": 3,
+    "licence-review-06": 3,
+    "licence-review-07": 3,
+    "licence-review-08": 3,
+    "licence-review-09": 3,
+    "licence-review-10": 3,
+    "chip-tariff-01": 3,
+    "chip-tariff-02": 3,
+    "chip-tariff-03": 3,
+    "chip-tariff-04": 3,
+    "chip-tariff-05": 3,
+    "chip-tariff-06": 3,
+    "chip-tariff-07": 3,
+    "chip-tariff-08": 3,
+    "chip-tariff-09": 3,
+    "chip-tariff-10": 3,
+    "chip-tariff-11": 3,
+    "chip-tariff-12": 3,
+    "eu-notification-01": 3,
+    "eu-notification-02": 3,
+    "eu-notification-03": 3,
+    "eu-notification-04": 3,
+    "eu-notification-05": 3,
+    "eu-notification-06": 3,
+    "eu-notification-07": 3,
+    "eu-notification-08": 3,
+    "catastrophic-size-01": 3,
+    "catastrophic-size-02": 3,
+    "catastrophic-size-03": 3,
+    "catastrophic-size-04": 3,
+    "catastrophic-size-05": 3,
+    "catastrophic-size-06": 3,
+    "catastrophic-size-07": 3,
+    "catastrophic-size-08": 3,
+    "catastrophic-size-09": 3,
+    "catastrophic-size-10": 3
+   },
+   "claude-opus-5-5": {
+    "frontier-model-01": 3,
+    "frontier-model-02": 3,
+    "frontier-model-03": 3,
+    "frontier-model-04": 3,
+    "frontier-model-05": 3,
+    "frontier-model-06": 3,
+    "frontier-model-07": 3,
+    "frontier-model-08": 3,
+    "frontier-model-09": 3,
+    "frontier-model-10": 3,
+    "frontier-model-11": 3,
+    "frontier-model-12": 3,
+    "large-developer-01": 3,
+    "large-developer-02": 3,
+    "large-developer-03": 3,
+    "large-developer-04": 3,
+    "large-developer-05": 3,
+    "large-developer-06": 3,
+    "large-developer-07": 3,
+    "large-developer-08": 3,
+    "large-developer-09": 3,
+    "large-developer-10": 3,
+    "large-developer-11": 3,
+    "large-developer-12": 3,
+    "incident-clock-01": 3,
+    "incident-clock-02": 3,
+    "incident-clock-03": 3,
+    "incident-clock-04": 3,
+    "incident-clock-05": 3,
+    "incident-clock-06": 3,
+    "incident-clock-07": 3,
+    "incident-clock-08": 3,
+    "compute-figures-01": 3,
+    "compute-figures-02": 3,
+    "compute-figures-03": 3,
+    "compute-figures-04": 3,
+    "compute-figures-05": 3,
+    "compute-figures-06": 3,
+    "compute-figures-07": 3,
+    "compute-figures-08": 3,
+    "compute-figures-09": 3,
+    "compute-figures-10": 3,
+    "compute-figures-11": 3,
+    "compute-figures-12": 3,
+    "eccn-3a090-01": 3,
+    "eccn-3a090-02": 3,
+    "eccn-3a090-03": 3,
+    "eccn-3a090-04": 3,
+    "eccn-3a090-05": 3,
+    "eccn-3a090-06": 3,
+    "eccn-3a090-07": 3,
+    "eccn-3a090-08": 3,
+    "eccn-3a090-09": 3,
+    "eccn-3a090-10": 3,
+    "eccn-3a090-11": 3,
+    "eccn-3a090-12": 3,
+    "eccn-3a090-13": 3,
+    "eccn-3a090-14": 3,
+    "eccn-3a090-15": 3,
+    "eccn-3a090-16": 3,
+    "licence-review-01": 3,
+    "licence-review-02": 3,
+    "licence-review-03": 3,
+    "licence-review-04": 3,
+    "licence-review-05": 3,
+    "licence-review-06": 3,
+    "licence-review-07": 3,
+    "licence-review-08": 3,
+    "licence-review-09": 3,
+    "licence-review-10": 3,
+    "chip-tariff-01": 3,
+    "chip-tariff-02": 3,
+    "chip-tariff-03": 3,
+    "chip-tariff-04": 3,
+    "chip-tariff-05": 3,
+    "chip-tariff-06": 3,
+    "chip-tariff-07": 3,
+    "chip-tariff-08": 3,
+    "chip-tariff-09": 3,
+    "chip-tariff-10": 3,
+    "chip-tariff-11": 3,
+    "chip-tariff-12": 3,
+    "eu-notification-01": 3,
+    "eu-notification-02": 3,
+    "eu-notification-03": 3,
+    "eu-notification-04": 3,
+    "eu-notification-05": 3,
+    "eu-notification-06": 3,
+    "eu-notification-07": 3,
+    "eu-notification-08": 3,
+    "catastrophic-size-01": 3,
+    "catastrophic-size-02": 3,
+    "catastrophic-size-03": 3,
+    "catastrophic-size-04": 3,
+    "catastrophic-size-05": 3,
+    "catastrophic-size-06": 3,
+    "catastrophic-size-07": 3,
+    "catastrophic-size-08": 3,
+    "catastrophic-size-09": 3,
+    "catastrophic-size-10": 3
+   },
+   "claude-fable-5-2": {
+    "frontier-model-01": 3,
+    "frontier-model-02": 3,
+    "frontier-model-03": 3,
+    "frontier-model-04": 3,
+    "frontier-model-05": 3,
+    "frontier-model-06": 3,
+    "frontier-model-07": 3,
+    "frontier-model-08": 3,
+    "frontier-model-09": 3,
+    "frontier-model-10": 3,
+    "frontier-model-11": 3,
+    "frontier-model-12": 3,
+    "large-developer-01": 3,
+    "large-developer-02": 3,
+    "large-developer-03": 3,
+    "large-developer-04": 3,
+    "large-developer-05": 3,
+    "large-developer-06": 3,
+    "large-developer-07": 3,
+    "large-developer-08": 3,
+    "large-developer-09": 3,
+    "large-developer-10": 3,
+    "large-developer-11": 3,
+    "large-developer-12": 3,
+    "incident-clock-01": 3,
+    "incident-clock-02": 3,
+    "incident-clock-03": 3,
+    "incident-clock-04": 3,
+    "incident-clock-05": 3,
+    "incident-clock-06": 3,
+    "incident-clock-07": 3,
+    "incident-clock-08": 3,
+    "compute-figures-01": 3,
+    "compute-figures-02": 3,
+    "compute-figures-03": 3,
+    "compute-figures-04": 3,
+    "compute-figures-05": 3,
+    "compute-figures-06": 3,
+    "compute-figures-07": 3,
+    "compute-figures-08": 3,
+    "compute-figures-09": 3,
+    "compute-figures-10": 3,
+    "compute-figures-11": 3,
+    "compute-figures-12": 3,
+    "eccn-3a090-01": 3,
+    "eccn-3a090-02": 3,
+    "eccn-3a090-03": 3,
+    "eccn-3a090-04": 3,
+    "eccn-3a090-05": 3,
+    "eccn-3a090-06": 3,
+    "eccn-3a090-07": 3,
+    "eccn-3a090-08": 3,
+    "eccn-3a090-09": 3,
+    "eccn-3a090-10": 3,
+    "eccn-3a090-11": 3,
+    "eccn-3a090-12": 3,
+    "eccn-3a090-13": 3,
+    "eccn-3a090-14": 3,
+    "eccn-3a090-15": 3,
+    "eccn-3a090-16": 3,
+    "licence-review-01": 3,
+    "licence-review-02": 2,
+    "licence-review-03": 3,
+    "licence-review-04": 3,
+    "licence-review-05": 3,
+    "licence-review-06": 3,
+    "licence-review-07": 3,
+    "licence-review-08": 3,
+    "licence-review-09": 3,
+    "licence-review-10": 3,
+    "chip-tariff-01": 3,
+    "chip-tariff-02": 3,
+    "chip-tariff-03": 3,
+    "chip-tariff-04": 3,
+    "chip-tariff-05": 3,
+    "chip-tariff-06": 3,
+    "chip-tariff-07": 3,
+    "chip-tariff-08": 3,
+    "chip-tariff-09": 3,
+    "chip-tariff-10": 3,
+    "chip-tariff-11": 3,
+    "chip-tariff-12": 3,
+    "eu-notification-01": 3,
+    "eu-notification-02": 3,
+    "eu-notification-03": 3,
+    "eu-notification-04": 3,
+    "eu-notification-05": 3,
+    "eu-notification-06": 3,
+    "eu-notification-07": 3,
+    "eu-notification-08": 3,
+    "catastrophic-size-01": 3,
+    "catastrophic-size-02": 3,
+    "catastrophic-size-03": 3,
+    "catastrophic-size-04": 3,
+    "catastrophic-size-05": 3,
+    "catastrophic-size-06": 3,
+    "catastrophic-size-07": 3,
+    "catastrophic-size-08": 3,
+    "catastrophic-size-09": 3,
+    "catastrophic-size-10": 3
+   }
+  }
+ },
+ "without_open_questions": {
+  "eu_no_market_date": {
+   "questions_left_out": [
+    "eu-notification-01",
+    "eu-notification-03",
+    "eu-notification-05",
+    "eu-notification-07"
+   ],
+   "all_questions": {
+    "memory": {
+     "n": 1101,
+     "of": 1152,
+     "pct": 95.6
+    },
+    "text": {
+     "n": 1151,
+     "of": 1152,
+     "pct": 99.9
+    }
+   },
+   "all_questions_difference": {
+    "text_minus_memory": 4.3
+   },
+   "search_questions": {
+    "memory": {
+     "n": 906,
+     "of": 948,
+     "pct": 95.6
+    },
+    "search": {
+     "n": 617,
+     "of": 632,
+     "pct": 97.6
+    },
+    "text": {
+     "n": 947,
+     "of": 948,
+     "pct": 99.9
+    }
+   },
+   "search_questions_differences": {
+    "text_minus_memory": 4.3,
+    "search_minus_memory": 2.1,
+    "text_minus_search": 2.3
+   },
+   "search_questions_kept": 79
+  },
+  "ny_incident_no_new_york_link": {
+   "questions_left_out": [
+    "incident-clock-05",
+    "incident-clock-06",
+    "incident-clock-07",
+    "incident-clock-08"
+   ],
+   "all_questions": {
+    "memory": {
+     "n": 1105,
+     "of": 1152,
+     "pct": 95.9
+    },
+    "text": {
+     "n": 1151,
+     "of": 1152,
+     "pct": 99.9
+    }
+   },
+   "all_questions_difference": {
+    "text_minus_memory": 4.0
+   },
+   "search_questions": {
+    "memory": {
+     "n": 907,
+     "of": 948,
+     "pct": 95.7
+    },
+    "search": {
+     "n": 617,
+     "of": 632,
+     "pct": 97.6
+    },
+    "text": {
+     "n": 947,
+     "of": 948,
+     "pct": 99.9
+    }
+   },
+   "search_questions_differences": {
+    "text_minus_memory": 4.2,
+    "search_minus_memory": 2.0,
+    "text_minus_search": 2.3
+   },
+   "search_questions_kept": 79
+  },
+  "eccn_4e091_exactly_1e26": {
+   "questions_left_out": [
+    "compute-figures-08"
+   ],
+   "all_questions": {
+    "memory": {
+     "n": 1146,
+     "of": 1188,
+     "pct": 96.5
+    },
+    "text": {
+     "n": 1187,
+     "of": 1188,
+     "pct": 99.9
+    }
+   },
+   "all_questions_difference": {
+    "text_minus_memory": 3.5
+   },
+   "search_questions": {
+    "memory": {
+     "n": 939,
+     "of": 972,
+     "pct": 96.6
+    },
+    "search": {
+     "n": 637,
+     "of": 648,
+     "pct": 98.3
+    },
+    "text": {
+     "n": 971,
+     "of": 972,
+     "pct": 99.9
+    }
+   },
+   "search_questions_differences": {
+    "text_minus_memory": 3.3,
+    "search_minus_memory": 1.7,
+    "text_minus_search": 1.6
+   },
+   "search_questions_kept": 81
+  },
+  "chip_other_bit_lengths": {
+   "questions_left_out": [
+    "eccn-3a090-07"
+   ],
+   "all_questions": {
+    "memory": {
+     "n": 1137,
+     "of": 1188,
+     "pct": 95.7
+    },
+    "text": {
+     "n": 1187,
+     "of": 1188,
+     "pct": 99.9
+    }
+   },
+   "all_questions_difference": {
+    "text_minus_memory": 4.2
+   },
+   "search_questions": {
+    "memory": {
+     "n": 930,
+     "of": 972,
+     "pct": 95.7
+    },
+    "search": {
+     "n": 634,
+     "of": 648,
+     "pct": 97.8
+    },
+    "text": {
+     "n": 971,
+     "of": 972,
+     "pct": 99.9
+    }
+   },
+   "search_questions_differences": {
+    "text_minus_memory": 4.2,
+    "search_minus_memory": 2.2,
+    "text_minus_search": 2.1
+   },
+   "search_questions_kept": 81
+  },
+  "all_ten": {
+   "questions_left_out": [
+    "incident-clock-05",
+    "incident-clock-06",
+    "incident-clock-07",
+    "incident-clock-08",
+    "compute-figures-08",
+    "eccn-3a090-07",
+    "eu-notification-01",
+    "eu-notification-03",
+    "eu-notification-05",
+    "eu-notification-07"
+   ],
+   "all_questions": {
+    "memory": {
+     "n": 1042,
+     "of": 1080,
+     "pct": 96.5
+    },
+    "text": {
+     "n": 1079,
+     "of": 1080,
+     "pct": 99.9
+    }
+   },
+   "all_questions_difference": {
+    "text_minus_memory": 3.4
+   },
+   "search_questions": {
+    "memory": {
+     "n": 856,
+     "of": 888,
+     "pct": 96.4
+    },
+    "search": {
+     "n": 582,
+     "of": 592,
+     "pct": 98.3
+    },
+    "text": {
+     "n": 887,
+     "of": 888,
+     "pct": 99.9
+    }
+   },
+   "search_questions_differences": {
+    "text_minus_memory": 3.5,
+    "search_minus_memory": 1.9,
+    "text_minus_search": 1.6
+   },
+   "search_questions_kept": 74
+  }
+ },
+ "total_cost_usd": 53.48,
+ "search_cost_on_search_questions_usd": 34.56,
+ "tokens": {
+  "claude-haiku-5-5": {
+   "input": 2861694,
+   "output": 496231,
+   "searches": 208
+  },
+  "claude-sonnet-5-5": {
+   "input": 926776,
+   "output": 285305,
+   "searches": 14
+  },
+  "claude-opus-5-5": {
+   "input": 2086155,
+   "output": 308345,
+   "searches": 118
+  },
+  "claude-fable-5-2": {
+   "input": 2054748,
+   "output": 317487,
+   "searches": 119
+  }
+ },
+ "calls_utc": {
+  "core": [
+   "2026-11-16T00:15:42+00:00",
+   "2026-11-16T00:32:32+00:00"
+  ],
+  "search": [
+   "2026-11-16T00:32:42+00:00",
+   "2026-11-16T00:36:57+00:00"
+  ]
+ },
+ "search_calls_with_results": 352,
+ "search_calls_with_a_citation": 306,
+ "search_result_sites": {
+  "federalregister.gov": 180,
+  "wikipedia.org": 120,
+  "wiley.law": 116,
+  "casrai.org": 111,
+  "govinfo.gov": 103,
+  "computelaw.blog": 75,
+  "mofo.com": 75,
+  "vaquill.ai": 73,
+  "eccnfinder.com": 70,
+  "calmatters.digitaldemocracy.org": 69,
+  "gingercontrol.com": 66,
+  "cooley.com": 64,
+  "nortonrosefulbright.com": 55,
+  "dwt.com": 54,
+  "legiscan.com": 53,
+  "mti-worldwide.com": 49,
+  "worldtradescanner.com": 49,
+  "wsgr.com": 45,
+  "nhimg.org": 43,
+  "aicomplianceatlas.com": 42,
+  "content.govdelivery.com": 41,
+  "themodelpress.com": 40,
+  "hlc.com": 39,
+  "gpusmith.com": 39,
+  "bigid.com": 38
+ },
+ "search_cited_sites": {
+  "federalregister.gov": 87,
+  "leginfo.legislature.ca.gov": 24,
+  "nysenate.gov": 22,
+  "wiley.law": 19,
+  "govinfo.gov": 17,
+  "mofo.com": 16,
+  "ecfr.gov": 16,
+  "vaquill.ai": 14,
+  "computelaw.blog": 14,
+  "content.govdelivery.com": 13,
+  "aicomplianceatlas.com": 11,
+  "joffroy.com": 11,
+  "cooley.com": 9,
+  "whitehouse.gov": 9,
+  "nnrglobal.com": 8,
+  "gingercontrol.com": 8,
+  "docs.regulations.justia.com": 8,
+  "legiscan.com": 8,
+  "bis.gov": 8,
+  "dwt.com": 7,
+  "casrai.org": 7,
+  "bis.doc.gov": 7,
+  "eccnfinder.com": 6,
+  "worldtradescanner.com": 6,
+  "sidley.com": 6
+ },
+ "memory_misses_by_question": [
+  {
+   "id": "compute-figures-08",
+   "wrong": 9,
+   "of": 12,
+   "boundary": true,
+   "wrong_by_model": {
+    "haiku": 3,
+    "sonnet": 3,
+    "opus": 3,
+    "fable": 0
+   }
+  },
+  {
+   "id": "chip-tariff-04",
+   "wrong": 9,
+   "of": 12,
+   "boundary": true,
+   "wrong_by_model": {
+    "haiku": 3,
+    "sonnet": 3,
+    "opus": 3,
+    "fable": 0
+   }
+  },
+  {
+   "id": "eccn-3a090-14",
+   "wrong": 5,
+   "of": 12,
+   "boundary": false,
+   "wrong_by_model": {
+    "haiku": 1,
+    "sonnet": 3,
+    "opus": 1,
+    "fable": 0
+   }
+  },
+  {
+   "id": "eccn-3a090-15",
+   "wrong": 5,
+   "of": 12,
+   "boundary": false,
+   "wrong_by_model": {
+    "haiku": 3,
+    "sonnet": 2,
+    "opus": 0,
+    "fable": 0
+   }
+  },
+  {
+   "id": "chip-tariff-02",
+   "wrong": 5,
+   "of": 12,
+   "boundary": false,
+   "wrong_by_model": {
+    "haiku": 3,
+    "sonnet": 0,
+    "opus": 0,
+    "fable": 2
+   }
+  },
+  {
+   "id": "incident-clock-07",
+   "wrong": 3,
+   "of": 12,
+   "boundary": false,
+   "wrong_by_model": {
+    "haiku": 2,
+    "sonnet": 1,
+    "opus": 0,
+    "fable": 0
+   }
+  },
+  {
+   "id": "licence-review-02",
+   "wrong": 3,
+   "of": 12,
+   "boundary": true,
+   "wrong_by_model": {
+    "haiku": 0,
+    "sonnet": 0,
+    "opus": 0,
+    "fable": 3
+   }
+  },
+  {
+   "id": "chip-tariff-09",
+   "wrong": 2,
+   "of": 12,
+   "boundary": false,
+   "wrong_by_model": {
+    "haiku": 1,
+    "sonnet": 1,
+    "opus": 0,
+    "fable": 0
+   }
+  },
+  {
+   "id": "chip-tariff-10",
+   "wrong": 2,
+   "of": 12,
+   "boundary": true,
+   "wrong_by_model": {
+    "haiku": 2,
+    "sonnet": 0,
+    "opus": 0,
+    "fable": 0
+   }
+  },
+  {
+   "id": "frontier-model-12",
+   "wrong": 1,
+   "of": 12,
+   "boundary": false,
+   "wrong_by_model": {
+    "haiku": 0,
+    "sonnet": 1,
+    "opus": 0,
+    "fable": 0
+   }
+  },
+  {
+   "id": "incident-clock-06",
+   "wrong": 1,
+   "of": 12,
+   "boundary": false,
+   "wrong_by_model": {
+    "haiku": 0,
+    "sonnet": 1,
+    "opus": 0,
+    "fable": 0
+   }
+  },
+  {
+   "id": "eccn-3a090-06",
+   "wrong": 1,
+   "of": 12,
+   "boundary": true,
+   "wrong_by_model": {
+    "haiku": 1,
+    "sonnet": 0,
+    "opus": 0,
+    "fable": 0
+   }
+  },
+  {
+   "id": "eccn-3a090-12",
+   "wrong": 1,
+   "of": 12,
+   "boundary": false,
+   "wrong_by_model": {
+    "haiku": 0,
+    "sonnet": 1,
+    "opus": 0,
+    "fable": 0
+   }
+  },
+  {
+   "id": "chip-tariff-05",
+   "wrong": 1,
+   "of": 12,
+   "boundary": true,
+   "wrong_by_model": {
+    "haiku": 1,
+    "sonnet": 0,
+    "opus": 0,
+    "fable": 0
+   }
+  },
+  {
+   "id": "chip-tariff-06",
+   "wrong": 1,
+   "of": 12,
+   "boundary": true,
+   "wrong_by_model": {
+    "haiku": 1,
+    "sonnet": 0,
+    "opus": 0,
+    "fable": 0
+   }
+  },
+  {
+   "id": "chip-tariff-07",
+   "wrong": 1,
+   "of": 12,
+   "boundary": false,
+   "wrong_by_model": {
+    "haiku": 0,
+    "sonnet": 1,
+    "opus": 0,
+    "fable": 0
+   }
+  },
+  {
+   "id": "chip-tariff-08",
+   "wrong": 1,
+   "of": 12,
+   "boundary": false,
+   "wrong_by_model": {
+    "haiku": 0,
+    "sonnet": 0,
+    "opus": 0,
+    "fable": 1
+   }
+  }
+ ],
+ "search_misses": [
+  {
+   "model": "claude-fable-5-2",
+   "id": "licence-review-02",
+   "sample": 1,
+   "answer": "A",
+   "key": "B",
+   "searches": 0
+  },
+  {
+   "model": "claude-sonnet-5-5",
+   "id": "eccn-3a090-15",
+   "sample": 1,
+   "answer": "C",
+   "key": "E",
+   "searches": 0
+  },
+  {
+   "model": "claude-sonnet-5-5",
+   "id": "eccn-3a090-12",
+   "sample": 1,
+   "answer": "D",
+   "key": "E",
+   "searches": 0
+  },
+  {
+   "model": "claude-sonnet-5-5",
+   "id": "chip-tariff-04",
+   "sample": 1,
+   "answer": "A",
+   "key": "B",
+   "searches": 0
+  },
+  {
+   "model": "claude-sonnet-5-5",
+   "id": "chip-tariff-04",
+   "sample": 2,
+   "answer": "A",
+   "key": "B",
+   "searches": 1
+  },
+  {
+   "model": "claude-sonnet-5-5",
+   "id": "compute-figures-08",
+   "sample": 1,
+   "answer": "B",
+   "key": "C",
+   "searches": 0
+  },
+  {
+   "model": "claude-sonnet-5-5",
+   "id": "compute-figures-08",
+   "sample": 2,
+   "answer": "B",
+   "key": "C",
+   "searches": 0
+  },
+  {
+   "model": "claude-opus-5-5",
+   "id": "compute-figures-08",
+   "sample": 1,
+   "answer": "B",
+   "key": "C",
+   "searches": 0
+  },
+  {
+   "model": "claude-opus-5-5",
+   "id": "compute-figures-08",
+   "sample": 2,
+   "answer": "B",
+   "key": "C",
+   "searches": 0
+  },
+  {
+   "model": "claude-opus-5-5",
+   "id": "eccn-3a090-07",
+   "sample": 2,
+   "answer": "E",
+   "key": "C",
+   "searches": 0
+  },
+  {
+   "model": "claude-haiku-5-5",
+   "id": "eccn-3a090-04",
+   "sample": 1,
+   "answer": "A",
+   "key": "B",
+   "searches": 1
+  },
+  {
+   "model": "claude-opus-5-5",
+   "id": "catastrophic-size-04",
+   "sample": 2,
+   "answer": "C",
+   "key": "A",
+   "searches": 1
+  },
+  {
+   "model": "claude-sonnet-5-5",
+   "id": "chip-tariff-09",
+   "sample": 1,
+   "answer": "B",
+   "key": "A",
+   "searches": 0
+  },
+  {
+   "model": "claude-sonnet-5-5",
+   "id": "chip-tariff-02",
+   "sample": 1,
+   "answer": "A",
+   "key": "B",
+   "searches": 0
+  },
+  {
+   "model": "claude-opus-5-5",
+   "id": "catastrophic-size-01",
+   "sample": 1,
+   "answer": "D",
+   "key": "B",
+   "searches": 1
+  }
+ ],
+ "text_misses": [
+  {
+   "model": "claude-fable-5-2",
+   "id": "licence-review-02",
+   "sample": 2,
+   "answer": "A",
+   "key": "B"
+  }
+ ]
+}

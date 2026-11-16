@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 688" width="400" height="688" font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif" role="img" aria-label="Share of right answers for four Claude models from memory, with web search and with the rule text, on the 82 questions all three versions ran on, and for questions with a figure exactly on a threshold against the rest">
+<rect width="100%" height="100%" fill="#fcfcfb"/>
+<text x="16.0" y="26.0" font-size="16" fill="#0b0b0b" text-anchor="start" font-weight="600">Replies that match</text>
+<text x="16.0" y="47.0" font-size="16" fill="#0b0b0b" text-anchor="start" font-weight="600">the answer key</text>
+<text x="16.0" y="67.0" font-size="13" fill="#52514e" text-anchor="start">Share of replies, on the</text>
+<text x="16.0" y="85.0" font-size="13" fill="#52514e" text-anchor="start">82 questions all three versions ran on</text>
+<text x="16.0" y="103.0" font-size="12" fill="#52514e" text-anchor="start">Figures on each row: % memory · search · text</text>
+<circle cx="24.0" cy="126.0" r="5.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<text x="37.0" y="130.0" font-size="13" fill="#0b0b0b" text-anchor="start">From memory</text>
+<path d="M140.7 118.5 L148.2 126.0 L140.7 133.5 L133.2 126.0 Z" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<text x="153.7" y="130.0" font-size="13" fill="#0b0b0b" text-anchor="start">With web search</text>
+<rect x="18.5" y="144.5" width="11" height="11" rx="1.5" fill="#1baf7a" stroke="#fcfcfb" stroke-width="2"/>
+<text x="37.0" y="154.0" font-size="13" fill="#0b0b0b" text-anchor="start">With the rule text</text>
+<text x="16.0" y="190.0" font-size="13" fill="#0b0b0b" text-anchor="start" font-weight="600">By model</text>
+<line x1="20.0" x2="20.0" y1="216" y2="476" stroke="#e1e0d9"/>
+<text x="20.0" y="492.0" font-size="12" fill="#52514e" text-anchor="middle">85%</text>
+<line x1="139.3" x2="139.3" y1="216" y2="476" stroke="#e1e0d9"/>
+<text x="139.3" y="492.0" font-size="12" fill="#52514e" text-anchor="middle">90%</text>
+<line x1="258.7" x2="258.7" y1="216" y2="476" stroke="#e1e0d9"/>
+<text x="258.7" y="492.0" font-size="12" fill="#52514e" text-anchor="middle">95%</text>
+<line x1="378.0" x2="378.0" y1="216" y2="476" stroke="#e1e0d9"/>
+<text x="378.0" y="492.0" font-size="12" fill="#52514e" text-anchor="middle">100%</text>
+<text x="16.0" y="234.0" font-size="13" fill="#0b0b0b" text-anchor="start">Haiku 5.5</text>
+<text x="384.0" y="234.0" font-size="12" fill="#52514e" text-anchor="end">92.7 · 99.4 · 100.0</text>
+<g><title>Haiku 5.5: from memory: 228 of 246 (92.7%); with web search: 163 of 164 (99.4%); with the rule text: 246 of 246 (100.0%)</title>
+<line x1="203.8" x2="378.0" y1="252.0" y2="252.0" stroke="#52514e" stroke-width="1.5"/>
+<circle cx="203.8" cy="252.0" r="5.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<path d="M363.7 244.5 L371.2 252.0 L363.7 259.5 L356.2 252.0 Z" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<rect x="372.5" y="246.5" width="11" height="11" rx="1.5" fill="#1baf7a" stroke="#fcfcfb" stroke-width="2"/>
+</g>
+<text x="16.0" y="286.0" font-size="13" fill="#0b0b0b" text-anchor="start">Sonnet 5.5</text>
+<text x="384.0" y="286.0" font-size="12" fill="#52514e" text-anchor="end">94.7 · 95.1 · 100.0</text>
+<g><title>Sonnet 5.5: from memory: 233 of 246 (94.7%); with web search: 156 of 164 (95.1%); with the rule text: 246 of 246 (100.0%)</title>
+<line x1="251.5" x2="378.0" y1="304.0" y2="304.0" stroke="#52514e" stroke-width="1.5"/>
+<circle cx="251.5" cy="304.0" r="5.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<path d="M261.1 296.5 L268.6 304.0 L261.1 311.5 L253.6 304.0 Z" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<rect x="372.5" y="298.5" width="11" height="11" rx="1.5" fill="#1baf7a" stroke="#fcfcfb" stroke-width="2"/>
+</g>
+<text x="16.0" y="338.0" font-size="13" fill="#0b0b0b" text-anchor="start">Opus 5.5</text>
+<text x="384.0" y="338.0" font-size="12" fill="#52514e" text-anchor="end">97.6 · 97.0 · 100.0</text>
+<g><title>Opus 5.5: from memory: 240 of 246 (97.6%); with web search: 159 of 164 (97.0%); with the rule text: 246 of 246 (100.0%)</title>
+<line x1="306.4" x2="378.0" y1="356.0" y2="356.0" stroke="#52514e" stroke-width="1.5"/>
+<circle cx="320.7" cy="356.0" r="5.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<path d="M306.4 348.5 L313.9 356.0 L306.4 363.5 L298.9 356.0 Z" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<rect x="372.5" y="350.5" width="11" height="11" rx="1.5" fill="#1baf7a" stroke="#fcfcfb" stroke-width="2"/>
+</g>
+<text x="16.0" y="390.0" font-size="13" fill="#0b0b0b" text-anchor="start">Fable 5.2</text>
+<text x="384.0" y="390.0" font-size="12" fill="#52514e" text-anchor="end">98.0 · 99.4 · 99.6</text>
+<g><title>Fable 5.2: from memory: 241 of 246 (98.0%); with web search: 163 of 164 (99.4%); with the rule text: 245 of 246 (99.6%)</title>
+<line x1="330.3" x2="368.5" y1="408.0" y2="408.0" stroke="#52514e" stroke-width="1.5"/>
+<circle cx="330.3" cy="408.0" r="5.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<path d="M363.7 400.5 L371.2 408.0 L363.7 415.5 L356.2 408.0 Z" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<rect x="363.0" y="402.5" width="11" height="11" rx="1.5" fill="#1baf7a" stroke="#fcfcfb" stroke-width="2"/>
+</g>
+<text x="16.0" y="442.0" font-size="13" fill="#0b0b0b" text-anchor="start">All four models</text>
+<text x="384.0" y="442.0" font-size="12" fill="#52514e" text-anchor="end">95.7 · 97.7 · 99.9</text>
+<g><title>All four models: from memory: 942 of 984 (95.7%); with web search: 641 of 656 (97.7%); with the rule text: 983 of 984 (99.9%)</title>
+<line x1="275.4" x2="375.6" y1="460.0" y2="460.0" stroke="#52514e" stroke-width="1.5"/>
+<circle cx="275.4" cy="460.0" r="5.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<path d="M323.1 452.5 L330.6 460.0 L323.1 467.5 L315.6 460.0 Z" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<rect x="370.1" y="454.5" width="11" height="11" rx="1.5" fill="#1baf7a" stroke="#fcfcfb" stroke-width="2"/>
+</g>
+<text x="16.0" y="528.0" font-size="13" fill="#0b0b0b" text-anchor="start" font-weight="600">By kind of question, all four models</text>
+<line x1="20.0" x2="20.0" y1="554" y2="658" stroke="#e1e0d9"/>
+<text x="20.0" y="674.0" font-size="12" fill="#52514e" text-anchor="middle">85%</text>
+<line x1="139.3" x2="139.3" y1="554" y2="658" stroke="#e1e0d9"/>
+<text x="139.3" y="674.0" font-size="12" fill="#52514e" text-anchor="middle">90%</text>
+<line x1="258.7" x2="258.7" y1="554" y2="658" stroke="#e1e0d9"/>
+<text x="258.7" y="674.0" font-size="12" fill="#52514e" text-anchor="middle">95%</text>
+<line x1="378.0" x2="378.0" y1="554" y2="658" stroke="#e1e0d9"/>
+<text x="378.0" y="674.0" font-size="12" fill="#52514e" text-anchor="middle">100%</text>
+<text x="16.0" y="572.0" font-size="13" fill="#0b0b0b" text-anchor="start">Figure on a threshold (23)</text>
+<text x="384.0" y="572.0" font-size="12" fill="#52514e" text-anchor="end">90.6 · 95.1 · 99.6</text>
+<g><title>Figure on a threshold (23): from memory: 250 of 276 (90.6%); with web search: 175 of 184 (95.1%); with the rule text: 275 of 276 (99.6%)</title>
+<line x1="153.7" x2="368.5" y1="590.0" y2="590.0" stroke="#52514e" stroke-width="1.5"/>
+<circle cx="153.7" cy="590.0" r="5.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<path d="M261.1 582.5 L268.6 590.0 L261.1 597.5 L253.6 590.0 Z" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<rect x="363.0" y="584.5" width="11" height="11" rx="1.5" fill="#1baf7a" stroke="#fcfcfb" stroke-width="2"/>
+</g>
+<text x="16.0" y="624.0" font-size="13" fill="#0b0b0b" text-anchor="start">Other questions (59)</text>
+<text x="384.0" y="624.0" font-size="12" fill="#52514e" text-anchor="end">97.7 · 98.7 · 100.0</text>
+<g><title>Other questions (59): from memory: 692 of 708 (97.7%); with web search: 466 of 472 (98.7%); with the rule text: 708 of 708 (100.0%)</title>
+<line x1="323.1" x2="378.0" y1="642.0" y2="642.0" stroke="#52514e" stroke-width="1.5"/>
+<circle cx="323.1" cy="642.0" r="5.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<path d="M347.0 634.5 L354.5 642.0 L347.0 649.5 L339.5 642.0 Z" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<rect x="372.5" y="636.5" width="11" height="11" rx="1.5" fill="#1baf7a" stroke="#fcfcfb" stroke-width="2"/>
+</g>
+</svg>
