@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useId, useMemo, useRef, useState } from "react";
 import {
   ARCHETYPE_KEYS,
   ARCHETYPES,
@@ -55,14 +55,14 @@ const PRECISIONS: Precision[] = [
 
 // Defaults come from the exported parameter file, never hardcoded — a future
 // params sync changes the UI defaults automatically.
-const DEFAULT_GIVING_B = Math.round(PARAMS.meta.total_giving_usd / 1e8) / 10;
+const DEFAULT_GIVING = PARAMS.meta.total_giving_usd;
 const DEFAULT_REALIZATION = PARAMS.realization_factor.mode;
 const DEFAULT_DISCOUNT = PARAMS.meta.discount_rate;
 
 export default function QalyExplorer() {
   const [credulity, setCredulity] = useState(0.5);
   const [realization, setRealization] = useState(DEFAULT_REALIZATION);
-  const givingB = DEFAULT_GIVING_B; // data, not an assumption
+  const givingB = DEFAULT_GIVING / 1e9; // round the display, never the simulation input
   const [discount, setDiscount] = useState(DEFAULT_DISCOUNT);
   const [shares, setShares] = useState<number[]>(DEFAULT_SHARES);
   const [precision, setPrecision] = useState(1);
@@ -75,7 +75,7 @@ export default function QalyExplorer() {
     () => ({
       credulity,
       realizationMode: realization,
-      totalGiving: givingB * 1e9,
+      totalGiving: DEFAULT_GIVING,
       discountRate: discount,
       shares,
       n: PRECISIONS[precision].n,
@@ -115,7 +115,7 @@ export default function QalyExplorer() {
   }, [shares]);
 
   return (
-    <div style={{ fontFamily: "'Source Sans 3', sans-serif", color: C.ink }}>
+    <div className="qaly-explorer" style={{ fontFamily: "'Source Sans 3', sans-serif", color: C.ink }}>
       <div
         style={{
           display: "grid",
@@ -218,12 +218,13 @@ export default function QalyExplorer() {
             }}
           >
             <span style={{ fontSize: "0.85rem", fontWeight: 600, color: C.inkSoft }}>
-              Model version
+              Allocation version
             </span>
             <div style={{ display: "flex", gap: 4 }}>
               {VERSIONS.map((v, i) => (
                 <button
                   key={v.label}
+                  aria-pressed={i === version}
                   onClick={() => {
                     setVersion(i);
                     setShares(v.shares);
@@ -305,6 +306,7 @@ export default function QalyExplorer() {
               {PRECISIONS.map((pr, i) => (
                 <button
                   key={pr.label}
+                  aria-pressed={i === precision}
                   onClick={() => setPrecision(i)}
                   style={{
                     fontSize: "0.7rem",
@@ -359,17 +361,17 @@ export default function QalyExplorer() {
                 <Metric
                   label="Blended $/QALY"
                   value={fmtDollars(s.blendedMedian)}
-                  sub={`90%: ${fmtDollars(s.blendedP05)}–${fmtDollars(s.blendedP95)} · ${fmtDollars(givingB * 1e9)} (2026 $) ÷ QALYs`}
+                  sub={`90%: ${fmtDollars(s.blendedP05)}–${fmtDollars(s.blendedP95)} · ${fmtDollars(DEFAULT_GIVING)} (2026 $) ÷ QALYs`}
                 />
                 <Metric
                   label="Benefit / cost"
                   value={`${s.bcMedian.toFixed(1)}×`}
-                  sub={`${fmtDollars(s.valueMedian)} of health at HHS's value/QALY ÷ ${fmtDollars(givingB * 1e9)} given`}
+                  sub={`${fmtDollars(s.valueMedian)} of health at HHS's value/QALY ÷ ${fmtDollars(DEFAULT_GIVING)} given`}
                 />
               </div>
 
               <ChartCard title="Distribution of total QALYs">
-                <Histogram hist={computed!.hist} medianLog={computed!.medianLog} median={s.median} mean={s.mean} />
+                <Histogram hist={computed!.hist} domain={computed!.histDomain} medianLog={computed!.medianLog} median={s.median} mean={s.mean} />
               </ChartCard>
 
               <ChartCard title="Where it goes">
@@ -393,8 +395,9 @@ export default function QalyExplorer() {
       </div>
 
       <style>{`
+        .qaly-grid > div { min-width: 0; }
         @media (max-width: 760px) {
-          .qaly-grid { grid-template-columns: 1fr !important; }
+          .qaly-grid { grid-template-columns: minmax(0, 1fr) !important; }
           .qaly-grid > div:first-child { position: static !important; }
         }
         .qaly-slider { -webkit-appearance: none; appearance: none; width: 100%; height: 4px;
@@ -405,6 +408,9 @@ export default function QalyExplorer() {
         .qaly-slider::-moz-range-thumb { width: 16px; height: 16px; border-radius: 50%;
           background: ${C.amber}; border: 2px solid ${C.cream}; cursor: pointer; }
         .qaly-slider.accent { background: ${C.amberGlow}; height: 6px; }
+        .qaly-explorer button:focus-visible, .qaly-slider:focus-visible {
+          outline: 2px solid ${C.amberDark}; outline-offset: 4px;
+        }
       `}</style>
     </div>
   );
@@ -425,10 +431,13 @@ function Slider(props: {
   accent?: boolean;
   small?: boolean;
 }) {
+  const id = useId();
+  const helpId = `${id}-help`;
   return (
     <div style={{ marginBottom: props.small ? "0.5rem" : "0.85rem" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
         <label
+          htmlFor={id}
           style={{
             fontSize: props.small ? "0.72rem" : "0.8rem",
             fontWeight: 600,
@@ -442,7 +451,10 @@ function Slider(props: {
         </span>
       </div>
       <input
+        id={id}
         type="range"
+        aria-valuetext={props.display}
+        aria-describedby={props.help ? helpId : undefined}
         className={`qaly-slider${props.accent ? " accent" : ""}`}
         value={props.value}
         min={props.min}
@@ -452,7 +464,7 @@ function Slider(props: {
         style={{ marginTop: 4 }}
       />
       {props.help && (
-        <p style={{ fontSize: "0.68rem", color: C.inkMuted, margin: "0.25rem 0 0", lineHeight: 1.4 }}>
+        <p id={helpId} style={{ fontSize: "0.68rem", color: C.inkMuted, margin: "0.25rem 0 0", lineHeight: 1.4 }}>
           {props.help}
         </p>
       )}
@@ -506,16 +518,17 @@ function ChartCard(props: { title: string; children: React.ReactNode }) {
   );
 }
 
-function Histogram(props: { hist: { x: number; count: number }[]; medianLog: number; median: number; mean: number }) {
+function Histogram(props: { hist: { x: number; count: number }[]; domain: [number, number]; medianLog: number; median: number; mean: number }) {
   const W = 640;
   const H = 200;
   const pad = { l: 8, r: 8, t: 10, b: 28 };
   const maxC = Math.max(...props.hist.map((h) => h.count), 1);
-  const lo = 4;
-  const hi = 6.5;
+  const [lo, hi] = props.domain;
   const xOf = (lg: number) => pad.l + ((lg - lo) / (hi - lo)) * (W - pad.l - pad.r);
   const bw = (W - pad.l - pad.r) / props.hist.length;
-  const ticks = [4, 4.5, 5, 5.5, 6, 6.5];
+  const ticks = Array.from({ length: 6 }, (_, i) => lo + (i * (hi - lo)) / 5);
+  const labelX = (log: number) => xOf(log) + (xOf(log) > W / 2 ? -5 : 5);
+  const labelAnchor = (log: number) => xOf(log) > W / 2 ? "end" : "start";
   return (
     <svg viewBox={`0 0 ${W} ${H}`} width="100%" role="img" aria-label={`Distribution of estimated QALYs, median ${fmtQalys(props.median)}`}>
       {props.hist.map((h, i) => {
@@ -541,7 +554,8 @@ function Histogram(props: { hist: { x: number; count: number }[]; medianLog: num
         strokeWidth={2}
       />
       <text
-        x={xOf(props.medianLog) + 5}
+        x={labelX(props.medianLog)}
+        textAnchor={labelAnchor(props.medianLog)}
         y={pad.t + 12}
         fontSize={12}
         fill={C.amberDark}
@@ -559,7 +573,8 @@ function Histogram(props: { hist: { x: number; count: number }[]; medianLog: num
         strokeDasharray="4 3"
       />
       <text
-        x={xOf(Math.log10(props.mean)) + 5}
+        x={labelX(Math.log10(props.mean))}
+        textAnchor={labelAnchor(Math.log10(props.mean))}
         y={pad.t + 28}
         fontSize={12}
         fill={C.inkMuted}
@@ -576,7 +591,7 @@ function Histogram(props: { hist: { x: number; count: number }[]; medianLog: num
           fill={C.inkMuted}
           textAnchor={i === 0 ? "start" : i === ticks.length - 1 ? "end" : "middle"}
         >
-          {fmtQalys(Math.pow(10, t))}
+          {fmtQalys(Math.min(Math.pow(10, t), Number.MAX_VALUE))}
         </text>
       ))}
     </svg>
@@ -616,13 +631,12 @@ function BreakdownTable(props: { summary: Summary; inputShares: number[] }) {
   const [sort, setSort] = useState<{ col: string; dir: 1 | -1 }>({ col: "qalys", dir: -1 });
   const s = props.summary;
   const meanTotal = Math.max(s.mean, 1);
-  const givingUsd = DEFAULT_GIVING_B * 1e9;
+  const givingUsd = DEFAULT_GIVING;
   const pct = (x: number) => (x >= 0.005 ? `${Math.round(x * 100)}%` : "<1%");
   const exactD = (x: number) => "$" + Math.round(x).toLocaleString("en-US");
   const exactQ = (x: number) => Math.round(x).toLocaleString("en-US") + " QALYs";
   const exactPct = (x: number) => (100 * x).toFixed(2) + "%";
   const noteStyle = { fontSize: "0.68rem", color: C.inkMuted, margin: "0.6rem 0 0", lineHeight: 1.4 } as const;
-  const gh = s.perArchetype.find((r) => r.key === "global_health");
 
   const tdNum = { textAlign: "right", fontFamily: MONO, fontSize: "0.78rem", color: C.ink, padding: "0.32rem 0 0.32rem 0.9rem", whiteSpace: "nowrap" } as const;
   const tdLabel = { textAlign: "left", fontSize: "0.8rem", color: C.ink, padding: "0.32rem 0" } as const;
@@ -637,11 +651,7 @@ function BreakdownTable(props: { summary: Summary; inputShares: number[] }) {
     const active = sort.col === col;
     return (
       <th
-        key={col}
-        onClick={() =>
-          setSort(active ? { col, dir: (sort.dir * -1) as 1 | -1 } : { col, dir: align === "left" ? 1 : -1 })
-        }
-        title="Sort"
+        key={label}
         aria-sort={active ? (sort.dir === 1 ? "ascending" : "descending") : "none"}
         style={{
           textAlign: align,
@@ -655,8 +665,20 @@ function BreakdownTable(props: { summary: Summary; inputShares: number[] }) {
           userSelect: "none",
         }}
       >
-        {label}
-        {active ? (sort.dir === 1 ? " ▲" : " ▼") : ""}
+        <button
+          type="button"
+          aria-label={`Sort by ${label}`}
+          onClick={() =>
+            setSort(active ? { col, dir: (sort.dir * -1) as 1 | -1 } : { col, dir: align === "left" ? 1 : -1 })
+          }
+          style={{
+            border: 0, padding: 0, background: "transparent", color: "inherit",
+            font: "inherit", textAlign: "inherit", cursor: "pointer",
+          }}
+        >
+          {label}
+          {active ? (sort.dir === 1 ? " ▲" : " ▼") : ""}
+        </button>
       </th>
     );
   };
@@ -666,6 +688,7 @@ function BreakdownTable(props: { summary: Summary; inputShares: number[] }) {
       {(["cause", "geo"] as const).map((k) => (
         <button
           key={k}
+          aria-pressed={by === k}
           onClick={() => switchMode(k)}
           style={{
             fontSize: "0.7rem",

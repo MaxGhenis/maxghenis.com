@@ -595,7 +595,39 @@ export interface ComputeOutput {
   summary: Summary;
   drivers: Driver[];
   hist: { x: number; count: number }[];
+  histDomain: [number, number];
   medianLog: number;
+}
+
+/** Log-scale bins retain every finite, positive draw, including either endpoint. */
+export function histogramOf(values: ArrayLike<number>, nbins = 56): {
+  hist: { x: number; count: number }[];
+  histDomain: [number, number];
+} {
+  if (!Number.isInteger(nbins) || nbins <= 0) throw new RangeError("Invalid histogram bin count");
+  const logs: number[] = [];
+  let low = Infinity;
+  let high = -Infinity;
+  for (let i = 0; i < values.length; i++) {
+    if (!Number.isFinite(values[i]) || values[i] <= 0) continue;
+    const log = Math.log10(values[i]);
+    logs.push(log);
+    low = Math.min(low, log);
+    high = Math.max(high, log);
+  }
+  if (!logs.length) throw new RangeError("Histogram needs a finite, positive draw");
+  const padding = Math.max(high - low, 0.5) * 0.05;
+  const lo = Math.max(Math.log10(Number.MIN_VALUE), Math.floor((low - padding) * 2) / 2);
+  const hi = Math.min(Math.log10(Number.MAX_VALUE), Math.ceil((high + padding) * 2) / 2);
+  const hist = Array.from({ length: nbins }, (_, i) => ({
+    x: lo + ((i + 0.5) * (hi - lo)) / nbins,
+    count: 0,
+  }));
+  for (const log of logs) {
+    const bin = Math.min(nbins - 1, Math.max(0, Math.floor(((log - lo) / (hi - lo)) * nbins)));
+    hist[bin].count++;
+  }
+  return { hist, histDomain: [lo, hi] };
 }
 
 export function computeAll(overrides: Overrides): ComputeOutput {
@@ -603,19 +635,7 @@ export function computeAll(overrides: Overrides): ComputeOutput {
   const summary = summarize(r);
   const drivers = driverSensitivity(r, 10);
 
-  const lo = 4;
-  const hi = 6.5;
-  const nbins = 56;
-  const hist = Array.from({ length: nbins }, (_, i) => ({
-    x: lo + ((i + 0.5) * (hi - lo)) / nbins,
-    count: 0,
-  }));
-  for (let i = 0; i < r.totalQalys.length; i++) {
-    const lg = Math.log10(Math.max(r.totalQalys[i], 1));
-    const b = Math.floor(((lg - lo) / (hi - lo)) * nbins);
-    if (b >= 0 && b < nbins) hist[b].count++;
-  }
-  return { summary, drivers, hist, medianLog: Math.log10(Math.max(summary.median, 1)) };
+  return { summary, drivers, ...histogramOf(r.totalQalys), medianLog: Math.log10(summary.median) };
 }
 
 // ---------------------------------------------------------------------------
@@ -639,6 +659,7 @@ export const TIER_LABELS: Record<string, string> = {
 
 export function fmtQalys(x: number): string {
   const ax = Math.abs(x);
+  if (ax > 0 && ax < 1) return Number(x.toPrecision(2)).toString();
   if (ax >= 999_500) return (x / 1e6).toFixed(2) + "M";
   if (ax >= 1000) return Math.round(x / 1e3) + "k";
   return Math.round(x).toString();

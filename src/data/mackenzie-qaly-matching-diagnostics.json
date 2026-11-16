@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "units": "nominal USD; dollar vintages follow each gift/revenue tax year",
+  "gift_snapshot_date": "2026-07-11",
+  "gift_years": [
+    2019,
+    2025
+  ],
+  "imputed_amount_notice": "Model-imputed amounts do not represent disclosed gift amounts.",
+  "recipients": {
+    "total": 2545,
+    "effective_ein": 1665,
+    "with_revenue_history": 1621,
+    "verification_standing": {
+      "automatic_name_match_unverified": 1407,
+      "legacy_overlay_without_source_url": 247,
+      "source_linked_correction": 23,
+      "source_linked_drop": 1,
+      "unmatched": 867
+    }
+  },
+  "gifts": {
+    "total": 2711,
+    "disclosed": 2035,
+    "undisclosed": 676,
+    "calibration_pairs": 1314,
+    "disclosed_revenue_availability": {
+      "no_ein": 679,
+      "no_history": 32,
+      "no_pre_gift_history": 10,
+      "usable": 1314
+    },
+    "undisclosed_revenue_availability": {
+      "no_ein": 263,
+      "no_history": 16,
+      "no_pre_gift_history": 8,
+      "usable": 389
+    },
+    "fallback": 287,
+    "fallback_share_of_undisclosed_gifts": 0.424556213018
+  },
+  "nominal_usd": {
+    "disclosed": 17460132000.0,
+    "imputed": 8933268000.0,
+    "assigned_total": 26393400000.0,
+    "fallback_imputed": 2915657351.96,
+    "fallback_share_of_imputed": 0.326381941296,
+    "fallback_share_of_total": 0.110469183658
+  },
+  "calibration": {
+    "elasticity": 0.55276943768,
+    "r_squared": 0.527301400265,
+    "n_pairs": 1314
+  },
+  "filing_lag_year_counts": {
+    "calibration": {
+      "1": 1262,
+      "2": 45,
+      "3": 1,
+      "4": 1,
+      "7": 5
+    },
+    "undisclosed_usable": {
+      "1": 341,
+      "2": 46,
+      "3": 2
+    }
+  },
+  "windows": {
+    "2019-2021": {
+      "undisclosed_gifts": 232,
+      "fallback_gifts": 114,
+      "residual_nominal_usd": 1785168000.0,
+      "assigned_imputed_nominal_usd": 1785168000.0,
+      "fallback_imputed_nominal_usd": 693370825.08
+    },
+    "2022-2022": {
+      "undisclosed_gifts": 207,
+      "fallback_gifts": 75,
+      "residual_nominal_usd": 2016600000.0,
+      "assigned_imputed_nominal_usd": 2016600000.0,
+      "fallback_imputed_nominal_usd": 589009282.19
+    },
+    "2023-2023": {
+      "undisclosed_gifts": 106,
+      "fallback_gifts": 41,
+      "residual_nominal_usd": 730900000.0,
+      "assigned_imputed_nominal_usd": 730900000.0,
+      "fallback_imputed_nominal_usd": 221674144.24
+    },
+    "2024-2024": {
+      "undisclosed_gifts": 52,
+      "fallback_gifts": 26,
+      "residual_nominal_usd": 695600000.0,
+      "assigned_imputed_nominal_usd": 695600000.0,
+      "fallback_imputed_nominal_usd": 304064508.45
+    },
+    "2025-2025": {
+      "undisclosed_gifts": 79,
+      "fallback_gifts": 31,
+      "residual_nominal_usd": 3705000000.0,
+      "assigned_imputed_nominal_usd": 3705000000.0,
+      "fallback_imputed_nominal_usd": 1107538592.0
+    }
+  },
+  "export_precision": {
+    "nominal_dollars": "cents; disclosed CSV amounts retain original source values",
+    "fractions_and_calibration_decimal_places": 12,
+    "imputation_weight_significant_digits": 12,
+    "imputed_csv_rounding": "Largest-remainder cents within each window; ties use recipient identity and gift index. Each exported amount differs by less than one cent from the internal imputation."
+  }
+}

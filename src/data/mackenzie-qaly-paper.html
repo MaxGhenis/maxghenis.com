@@ -29,7 +29,7 @@
     <div>
       <div class="abstract">
         <div class="block-title">Abstract</div>
-        <p>MacKenzie Scott has disclosed $26.39 billion in gifts to more than 2,500 organizations since 2019. I estimate the portfolio’s health impact in quality-adjusted life-years (QALYs). I allocate dollars across 14 intervention archetypes using Scott’s gift-level database and impute undisclosed amounts from recipients’ pre-gift IRS Form 990 revenue. A Monte Carlo model combines published cost-per-QALY estimates with weights for the causal credibility of the evidence. Under the best-guess priors, I estimate a median of roughly 205,000 QALYs (90% probabilistic-sensitivity interval 95,000–423,000), at a blended $148,000 per QALY. Applying the HHS regulatory valuation distribution gives a median benefit–cost ratio of 5.0. The 4.9% of dollars funding health and development outside the United States, priced at global-health anchors, contributes 69% of mean estimated QALYs. Among 1,314 disclosed gifts with matched pre-gift filings, the log-log fit relates gift size to recipient revenue with slope 0.55 (R² 0.52): a 10-fold revenue difference corresponds to about a 3.5-fold gift-size difference. This descriptive fit does not establish predictive accuracy for undisclosed gifts. Evidence assumptions produce a 48-fold range in median QALYs, from about 9,000 under near-RCT-only credit to 419,000 at near face value. The repository publishes parameters, code, data snapshots, and source-linked correction overlays, and the browser implementation lets readers rerun the model under different assumptions.</p>
+        <p>MacKenzie Scott has disclosed $26.39 billion in gifts to more than 2,500 organizations since 2019. I estimate the portfolio’s health impact in quality-adjusted life-years (QALYs). I allocate dollars across 14 intervention archetypes using Scott’s gift-level database and impute undisclosed amounts from recipients’ pre-gift IRS Form 990 revenue. A Monte Carlo model combines published cost-per-QALY estimates with weights for the causal credibility of the evidence. Under the best-guess priors, I estimate a median of roughly 205,000 QALYs (90% probabilistic-sensitivity interval 95,000–423,000), at a blended $148,000 per QALY. Applying the HHS regulatory valuation distribution gives a median benefit–cost ratio of 5.0. The 4.9% of dollars funding health and development outside the United States, priced at global-health anchors, contributes 69% of mean estimated QALYs. Among 1,314 disclosed gifts with matched pre-gift filings, the log-log fit relates gift size to recipient revenue with slope 0.55 (R² 0.53): a 10-fold revenue difference corresponds to about a 3.6-fold gift-size difference. This descriptive fit does not establish predictive accuracy for undisclosed gifts. Evidence assumptions produce a 48-fold range in median QALYs, from about 9,000 under near-RCT-only credit to 419,000 at near face value. The repository publishes parameters, code, data snapshots, and source-linked correction overlays, and the browser implementation lets readers rerun the model under different assumptions.</p>
       </div>
     </div>
 
@@ -48,7 +48,7 @@
 <h1>Introduction</h1>
 <p>MacKenzie Scott gave away $7.17 billion in 2025 <span class="citation" data-cites="cnbc2025scott">(<a href="#ref-cnbc2025scott" role="doc-biblioref">Huddleston 2025</a>)</span>; Giving USA counts $6.65 billion of it against $19.2 billion in U.S. megagift dollars — about a third of that year’s megagift value <span class="citation" data-cites="givingusa2026 ap2026givingusa">(<a href="#ref-givingusa2026" role="doc-biblioref">Indiana University Lilly Family School of Philanthropy 2026</a>; <a href="#ref-ap2026givingusa" role="doc-biblioref">Childress 2026</a>)</span>. (The bases differ: Yield Giving’s own annual total is the larger figure.) Her disclosed lifetime total is $26.39 billion across 2,711 gifts to 2,545 organizations since 2019 <span class="citation" data-cites="yieldgiving2026">(<a href="#ref-yieldgiving2026" role="doc-biblioref">Yield Giving 2026</a>)</span>. Almost none of it is denominated in health, and, to my knowledge, no published estimate prices the portfolio in outcomes of any kind.</p>
 <p>This paper does so in the unit health economists use to compare a death averted against years lived in better health: the quality-adjusted life-year. The exercise is deliberately in the style of a charity evaluator’s cost-effectiveness analysis <span class="citation" data-cites="givewell2026impact">(<a href="#ref-givewell2026impact" role="doc-biblioref">GiveWell 2025</a>)</span>, scaled from a program to a portfolio, with one addition the setting forces: because most of the portfolio funds interventions whose health effects have never been causally measured, the model makes its epistemics explicit. Every effect is shrunk toward zero in proportion to how well its supporting study identifies causation, the shrinkage schedule is a slider rather than a buried constant, and the headline is reported across the full range of evidence philosophies — from counting only randomized evidence to taking every published estimate at face value.</p>
-<p>The paper makes four contributions. It provides what I believe is the first outside, portfolio-level cost-effectiveness estimate of Scott’s giving, and I have found no comparable outside estimate for any other individual mega-donor — funder-run portfolio metrics exist, including GiveWell’s aggregate impact estimates <span class="citation" data-cites="givewell2026impact">(<a href="#ref-givewell2026impact" role="doc-biblioref">GiveWell 2025</a>)</span>, Robin Hood’s benefit–cost framework <span class="citation" data-cites="robinhood2025">(<a href="#ref-robinhood2025" role="doc-biblioref">Robin Hood Foundation 2023</a>)</span>, the Constellation Fund’s portfolio reporting <span class="citation" data-cites="constellation2025">(<a href="#ref-constellation2025" role="doc-biblioref">Constellation Fund 2026</a>)</span>, and social-rate-of-return analysis of USAID’s Development Innovation Ventures portfolio <span class="citation" data-cites="cega2023div">(<a href="#ref-cega2023div" role="doc-biblioref">Center for Effective Global Action 2022</a>)</span>; the difference here is independence from the donor, a subject who publishes no outcome data, and explicit evidence weighting: a best-guess median of 205,000 QALYs from $26.39 billion nominal ($30.3B in 2026 dollars), a blended $147,956 per QALY, and a median benefit–cost ratio of 5.0 under the HHS regulatory value-per-QALY distribution <span class="citation" data-cites="aspe2026values">(<a href="#ref-aspe2026values" role="doc-biblioref">Kearsley 2026</a>)</span>. It estimates extreme geographic concentration of impact under its pricing assumptions: the 4.9% of dollars funding global health and development delivered outside the United States accounts for 69.4% of estimated health impact. It reports a new empirical regularity in the gift data itself: across 1,314 disclosed gift–filing pairs, gift size scales with recipient pre-gift revenue to the power 0.55 (R² 0.52) — Scott’s giving is far flatter across organization size than proportional. And it demonstrates a working method for auditable, AI-assisted cost-effectiveness modeling: the model was built with a frontier language model, reviewed and corrected in public through the revision history summarized in the robustness section, audited by two independent model families against primary filings, and ships with versioned parameters, machine-checked citations, and a browser implementation that reruns the full Monte Carlo under any reader’s assumptions.</p>
+<p>The paper makes four contributions. It provides what I believe is the first outside, portfolio-level cost-effectiveness estimate of Scott’s giving, and I have found no comparable outside estimate for any other individual mega-donor — funder-run portfolio metrics exist, including GiveWell’s aggregate impact estimates <span class="citation" data-cites="givewell2026impact">(<a href="#ref-givewell2026impact" role="doc-biblioref">GiveWell 2025</a>)</span>, Robin Hood’s benefit–cost framework <span class="citation" data-cites="robinhood2025">(<a href="#ref-robinhood2025" role="doc-biblioref">Robin Hood Foundation 2023</a>)</span>, the Constellation Fund’s portfolio reporting <span class="citation" data-cites="constellation2025">(<a href="#ref-constellation2025" role="doc-biblioref">Constellation Fund 2026</a>)</span>, and social-rate-of-return analysis of USAID’s Development Innovation Ventures portfolio <span class="citation" data-cites="cega2023div">(<a href="#ref-cega2023div" role="doc-biblioref">Center for Effective Global Action 2022</a>)</span>; the difference here is independence from the donor, a subject who publishes no outcome data, and explicit evidence weighting: a best-guess median of 205,000 QALYs from $26.39 billion nominal ($30.3B in 2026 dollars), a blended $147,956 per QALY, and a median benefit–cost ratio of 5.0 under the HHS regulatory value-per-QALY distribution <span class="citation" data-cites="aspe2026values">(<a href="#ref-aspe2026values" role="doc-biblioref">Kearsley 2026</a>)</span>. It estimates extreme geographic concentration of impact under its pricing assumptions: the 4.9% of dollars funding global health and development delivered outside the United States accounts for 69.4% of estimated health impact. It reports a new empirical regularity in the gift data itself: across 1,314 disclosed gift–filing pairs, gift size scales with recipient pre-gift revenue to the power 0.55 (R² 0.53) — Scott’s giving is far flatter across organization size than proportional. And it demonstrates a working method for auditable, AI-assisted cost-effectiveness modeling: the model was built with a frontier language model, reviewed and corrected in public through the revision history summarized in the robustness section, audited by two independent model families against primary filings, and ships with versioned parameters, machine-checked citations, and a browser implementation that reruns the full Monte Carlo under any reader’s assumptions.</p>
 <p>The unit of account deserves a caveat before any number. QALYs measure health. Most of Scott’s portfolio aims at other things — education, economic mobility, equity, civic infrastructure — whose primary benefits are not health benefits. A finding that a dollar of education philanthropy produces few QALYs is a statement about the lens, not a verdict on the gift. The estimates are a partial, health-only accounting under positive-effect priors — not a lower bound on total wellbeing: the lens omits the primary intended benefits of most of the portfolio, and the model places no probability on zero or harmful effects, a structural choice the limitations section returns to.</p>
 </section>
 <section id="data" class="level1">
@@ -61,8 +61,8 @@
 <h2 class="anchored" data-anchor-id="allocation-across-causes">Allocation across causes</h2>
 <p>Scott publishes no aggregate dollars-by-cause breakdown, but she publishes something more granular: a gift-level database listing every recipient organization, its self-reported focus areas, and — for 2,035 of 2,711 gifts ($17.46B, about two-thirds of the nominal total) — the dollar amount. Each organization’s dollars are split equally across its focus areas; the database’s 53 areas map onto the model’s 14 intervention archetypes under a documented, sync-tested crosswalk.</p>
 <p>I distribute each period’s undisclosed residual across its undisclosed gifts in proportion to recipients’ pre-gift IRS Form 990 total revenue <span class="citation" data-cites="propublica2026">(<a href="#ref-propublica2026" role="doc-biblioref">ProPublica 2026</a>)</span>, raised to an elasticity fit on the disclosed pairs. Scott’s essays supply the period totals. I use the latest filing year strictly before the gift year to avoid including the gift itself in revenue.</p>
-<p>Across 1,314 disclosed gift–filing pairs, log gift size rises with log revenue with slope 0.55 (R² 0.52). In this matched sample, a 10× larger organization receives about 3.5× as much money. The fit covers 1,314 of 2,035 disclosed gifts and 2,711 total gifts, treats repeated gifts to an organization as independent, and pools years. Of the 676 undisclosed gifts, 287 lack a usable filing and receive their period’s median weight. This descriptive fit supplies the imputation weights; it does not establish predictive accuracy for undisclosed gifts.</p>
-<p>The matching pipeline links recipients to tax filers by name, then applies corrections that cite recipient websites and filings. The November 16, 2026 review corrected 20 wrong identities and replaced three related-entity revenue proxies. The <a href="https://github.com/MaxGhenis/mackenzie-scott-qaly/blob/main/data/yieldgiving/match_audit.jsonl">source-linked overlay</a> preserves each correction and its evidence; the review does not establish an error rate for the remaining matches. Relative to disclosed-only allocation, imputation moves each cause share by at most 1.5 percentage points under these assumptions.</p>
+<p>Across 1,314 disclosed gift–filing pairs, log gift size rises with log revenue with slope 0.55 (R² 0.53). In this matched sample, a 10× larger organization receives about 3.6× as much money. The fit covers 1,314 of 2,035 disclosed gifts and 2,711 total gifts, treats repeated gifts to an organization as independent, and pools years. Of the 676 undisclosed gifts, 287 (42.5%) lack a usable filing and receive their period’s median weight. Those gifts receive $2.92 billion nominal, or 32.6% of imputed dollars. This descriptive fit supplies the imputation weights; it does not establish predictive accuracy for undisclosed gifts.</p>
+<p>The matching pipeline links recipients to tax filers by name, then applies corrections that cite recipient websites and filings. The November 16, 2026 review corrected 21 wrong identities and replaced three related-entity revenue proxies. The <a href="https://github.com/MaxGhenis/mackenzie-scott-qaly/blob/main/data/yieldgiving/match_audit.jsonl">source-linked overlay</a> preserves each correction and its evidence; the review does not establish an error rate for the remaining matches. The <a href="https://github.com/MaxGhenis/mackenzie-scott-qaly/blob/main/results/gift_ledger.csv">gift-level ledger</a> separates disclosed and model-imputed nominal amounts and records recipient identity, selected pre-gift revenue, source links and fallback reasons. The <a href="https://github.com/MaxGhenis/mackenzie-scott-qaly/blob/main/web/matching_diagnostics.json">matching summary</a> reports filing coverage and the imputed dollars that use fallback weights. Relative to disclosed-only allocation, imputation moves each cause share by at most 1.5 percentage points under these assumptions.</p>
 </section>
 <section id="delivery-geography" class="level2">
 <h2 class="anchored" data-anchor-id="delivery-geography">Delivery geography</h2>
@@ -264,7 +264,7 @@ Table&nbsp;1: Dollars and estimated QALYs by cause, best-guess defaults. Dollars
 </figure>
 </div>
 <a class="quarto-notebook-link" id="nblink-1" href="index-preview.html">Source: Article Notebook</a></div>
-<p><a href="#tbl-geo" class="quarto-xref">Table&nbsp;2</a> decomposes the same run by delivery geography. The table is a by-construction decomposition, not evidence of regional differences: within each cause the model prices every delivery location identically — the health routing to global anchors is its only geographic pricing — so a cause’s QALYs follow its dollars across regions. Under that construction, Sub-Saharan Africa receives 6% of dollars and 31% of estimated QALYs at $26,036 per QALY; nationally-scoped U.S. giving receives 27% of dollars and 9% of QALYs at $399,185.</p>
+<p><a href="#tbl-geo" class="quarto-xref">Table&nbsp;2</a> decomposes the same run by delivery geography. The table is a by-construction decomposition, not evidence of regional differences: within each cause the model prices every delivery location identically — the health routing to global anchors is its only geographic pricing — so a cause’s QALYs follow its dollars across regions. Under that construction, Sub-Saharan Africa receives 6% of dollars and 31% of estimated QALYs at $26,020 per QALY; nationally-scoped U.S. giving receives 27% of dollars and 9% of QALYs at $399,113.</p>
 <div class="cell" data-execution_count="5">
 <div id="tbl-geo" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="5">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -297,65 +297,65 @@ Table&nbsp;2: A deterministic post-estimation decomposition of mean archetype QA
 <td style="text-align: left;">Sub-Saharan Africa</td>
 <td style="text-align: left;">$1.81B</td>
 <td style="text-align: left;">6%</td>
-<td style="text-align: right;">69,654</td>
+<td style="text-align: right;">69,694</td>
 <td style="text-align: left;">31%</td>
-<td style="text-align: left;">$26,036</td>
+<td style="text-align: left;">$26,020</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">South Asia</td>
-<td style="text-align: left;">$970M</td>
+<td style="text-align: left;">$969M</td>
 <td style="text-align: left;">3%</td>
-<td style="text-align: right;">31,354</td>
+<td style="text-align: right;">31,341</td>
 <td style="text-align: left;">14%</td>
-<td style="text-align: left;">$30,925</td>
+<td style="text-align: left;">$30,904</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Global (multi-region) *</td>
 <td style="text-align: left;">$1.54B</td>
 <td style="text-align: left;">5%</td>
-<td style="text-align: right;">27,680</td>
+<td style="text-align: right;">27,657</td>
 <td style="text-align: left;">12%</td>
-<td style="text-align: left;">$55,710</td>
+<td style="text-align: left;">$55,778</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">US — national / unspecified *</td>
-<td style="text-align: left;">$8.30B</td>
+<td style="text-align: left;">$8.31B</td>
 <td style="text-align: left;">27%</td>
-<td style="text-align: right;">20,799</td>
+<td style="text-align: right;">20,809</td>
 <td style="text-align: left;">9%</td>
-<td style="text-align: left;">$399,185</td>
+<td style="text-align: left;">$399,113</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Latin America &amp; Caribbean</td>
 <td style="text-align: left;">$1.08B</td>
 <td style="text-align: left;">4%</td>
-<td style="text-align: right;">19,221</td>
+<td style="text-align: right;">19,228</td>
 <td style="text-align: left;">9%</td>
-<td style="text-align: left;">$56,219</td>
+<td style="text-align: left;">$56,119</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">US — South</td>
 <td style="text-align: left;">$5.94B</td>
 <td style="text-align: left;">20%</td>
-<td style="text-align: right;">15,980</td>
+<td style="text-align: right;">15,975</td>
 <td style="text-align: left;">7%</td>
-<td style="text-align: left;">$371,961</td>
+<td style="text-align: left;">$372,016</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">US — West</td>
 <td style="text-align: left;">$4.00B</td>
 <td style="text-align: left;">13%</td>
-<td style="text-align: right;">10,899</td>
+<td style="text-align: right;">10,898</td>
 <td style="text-align: left;">5%</td>
-<td style="text-align: left;">$366,742</td>
+<td style="text-align: left;">$366,765</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">US — Midwest</td>
 <td style="text-align: left;">$2.72B</td>
 <td style="text-align: left;">9%</td>
-<td style="text-align: right;">7,772</td>
+<td style="text-align: right;">7,770</td>
 <td style="text-align: left;">3%</td>
-<td style="text-align: left;">$349,926</td>
+<td style="text-align: left;">$349,931</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">US — Northeast</td>
@@ -363,47 +363,47 @@ Table&nbsp;2: A deterministic post-estimation decomposition of mean archetype QA
 <td style="text-align: left;">7%</td>
 <td style="text-align: right;">5,642</td>
 <td style="text-align: left;">3%</td>
-<td style="text-align: left;">$392,062</td>
+<td style="text-align: left;">$392,162</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Europe &amp; Central Asia</td>
-<td style="text-align: left;">$293M</td>
+<td style="text-align: left;">$292M</td>
 <td style="text-align: left;">1%</td>
-<td style="text-align: right;">5,304</td>
+<td style="text-align: right;">5,299</td>
 <td style="text-align: left;">2%</td>
-<td style="text-align: left;">$55,173</td>
+<td style="text-align: left;">$55,187</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Middle East &amp; North Africa</td>
-<td style="text-align: left;">$146M</td>
+<td style="text-align: left;">$145M</td>
 <td style="text-align: left;">&lt;1%</td>
-<td style="text-align: right;">4,022</td>
+<td style="text-align: right;">4,017</td>
 <td style="text-align: left;">2%</td>
-<td style="text-align: left;">$36,198</td>
+<td style="text-align: left;">$36,186</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">East Asia &amp; Pacific</td>
 <td style="text-align: left;">$324M</td>
 <td style="text-align: left;">1%</td>
-<td style="text-align: right;">3,213</td>
+<td style="text-align: right;">3,209</td>
 <td style="text-align: left;">1%</td>
-<td style="text-align: left;">$100,873</td>
+<td style="text-align: left;">$100,871</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">North America (unspecified) *</td>
-<td style="text-align: left;">$779M</td>
+<td style="text-align: left;">$781M</td>
 <td style="text-align: left;">3%</td>
-<td style="text-align: right;">1,756</td>
+<td style="text-align: right;">1,760</td>
 <td style="text-align: left;">1%</td>
-<td style="text-align: left;">$443,330</td>
+<td style="text-align: left;">$443,719</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Other / unmapped *</td>
 <td style="text-align: left;">$39M</td>
 <td style="text-align: left;">&lt;1%</td>
-<td style="text-align: right;">1,422</td>
+<td style="text-align: right;">1,421</td>
 <td style="text-align: left;">1%</td>
-<td style="text-align: left;">$27,198</td>
+<td style="text-align: left;">$27,185</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Canada</td>
@@ -411,7 +411,7 @@ Table&nbsp;2: A deterministic post-estimation decomposition of mean archetype QA
 <td style="text-align: left;">&lt;1%</td>
 <td style="text-align: right;">440</td>
 <td style="text-align: left;">&lt;1%</td>
-<td style="text-align: left;">$320,315</td>
+<td style="text-align: left;">$320,278</td>
 </tr>
 </tbody>
 </table>
@@ -499,7 +499,7 @@ Figure&nbsp;3: What drives the spread: Spearman rank correlations between each i
 <td>model audit</td>
 </tr>
 <tr class="odd">
-<td>November 16, 2026: correct 20 Form 990 identities and three related-entity revenue proxies (v1.2)</td>
+<td>November 16, 2026: correct 21 Form 990 identities and three related-entity revenue proxies (v1.2)</td>
 <td>~202,000 → 205,000</td>
 <td>source-linked identity review</td>
 </tr>

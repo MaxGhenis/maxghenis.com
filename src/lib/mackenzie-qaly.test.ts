@@ -5,11 +5,13 @@ import {
   ARCHETYPE_KEYS,
   PARAMS,
   RNG,
+  computeAll,
   discountedQale,
   driverSensitivity,
   fmtDollars,
   fmtQalys,
   impliedMedian,
+  histogramOf,
   percentile,
   runModel,
   sampleOne,
@@ -223,6 +225,9 @@ describe("formatters", () => {
   it("formats QALYs across unit boundaries", () => {
     expect(fmtQalys(197000)).toBe("197k");
     expect(fmtQalys(999999)).toBe("1.00M");
+    expect(fmtQalys(0)).toBe("0");
+    expect(fmtQalys(0.12)).toBe("0.12");
+    expect(fmtQalys(1e-45)).toBe("1e-45");
     expect(fmtDollars(26_300_000_000)).toBe("$26.3B");
     expect(fmtDollars(999999)).toBe("$1M");
   });
@@ -239,5 +244,54 @@ describe("discount-rate consistency", () => {
     expect(impliedRatio).toBeLessThan(1.85);
     // Frontier cost rises too, so frontier QALYs fall.
     expect(hi.frontierMedian).toBeLessThan(0.8 * base.frontierMedian);
+  });
+});
+
+describe("adaptive histogram", () => {
+  it("retains positive draws across orders of magnitude and constant samples", () => {
+    for (const values of [
+      [0.001, 1, 9_000, 200_000, 1e12],
+      [8_000, 8_000, 8_000],
+      [Number.MIN_VALUE, Number.MAX_VALUE],
+      [0, -1, NaN, Infinity, 5],
+    ]) {
+      const { hist, histDomain: [lo, hi] } = histogramOf(values);
+      const positive = values.filter((v) => Number.isFinite(v) && v > 0);
+      expect(hist.reduce((sum, bin) => sum + bin.count, 0)).toBe(positive.length);
+      expect(lo).toBeLessThan(hi);
+      for (const value of positive) {
+        expect(Math.log10(value)).toBeGreaterThanOrEqual(lo);
+        expect(Math.log10(value)).toBeLessThanOrEqual(hi);
+      }
+      expect(hist.every((bin) => bin.x > lo && bin.x < hi)).toBe(true);
+    }
+  });
+
+  it("conserves generated samples independently of their order and scale", () => {
+    const rng = new RNG(876);
+    for (let trial = 0; trial < 150; trial++) {
+      const values = Array.from({ length: 1 + trial }, () => 10 ** rng.uniform(-12, 12));
+      const original = histogramOf(values);
+      expect(original.hist.reduce((sum, bin) => sum + bin.count, 0)).toBe(values.length);
+      expect(histogramOf([...values].reverse())).toEqual(original);
+      const scaled = histogramOf(values.map((value) => value * 1000));
+      expect(scaled.hist.map((bin) => bin.count)).toEqual(original.hist.map((bin) => bin.count));
+      expect(scaled.histDomain[0]).toBeCloseTo(original.histDomain[0] + 3, 10);
+      expect(scaled.histDomain[1]).toBeCloseTo(original.histDomain[1] + 3, 10);
+    }
+  });
+
+  it("keeps all model draws and both markers across stance and allocation extremes", () => {
+    const concentrated = ARCHETYPE_KEYS.map((key) => key === "health_mental" ? 1 : 0);
+    for (const credulity of [0, 0.5, 1]) {
+      for (const shares of [undefined, concentrated]) {
+        const result = computeAll({ credulity, shares, n: 1200, seed: 0 });
+        expect(result.hist.reduce((sum, bin) => sum + bin.count, 0)).toBe(1200);
+        for (const marker of [result.medianLog, Math.log10(result.summary.mean)]) {
+          expect(marker).toBeGreaterThanOrEqual(result.histDomain[0]);
+          expect(marker).toBeLessThanOrEqual(result.histDomain[1]);
+        }
+      }
+    }
   });
 });

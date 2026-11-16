@@ -7,6 +7,7 @@ import QalyExplorer from '../components/QalyExplorer.tsx';
 import { PARAMS } from '../lib/mackenzie-qaly';
 import REFERENCE from '../data/mackenzie-qaly-summary.json';
 import ALLOCATION from '../data/mackenzie-qaly-allocation-v12.json';
+import MATCHING from '../data/mackenzie-qaly-matching-diagnostics.json';
 import ogImage from '../assets/og-mackenzie-qaly.png';
 
 const archetypeCount = Object.keys(PARAMS.archetypes).length;
@@ -138,6 +139,17 @@ const S = {
           money in this selected sample. That fitted elasticity
           weights the imputation of the undisclosed gifts. The fit remains
           descriptive and conditional on disclosure and a usable pre-gift filing.
+        </p>
+        <p>
+          Recipients without usable pre-gift revenue receive their period's
+          median weight. This covers {MATCHING.gifts.fallback} of
+          {' '}{MATCHING.gifts.undisclosed} undisclosed gifts and
+          {' '}{(100 * MATCHING.nominal_usd.fallback_share_of_imputed).toFixed(1)}%
+          of the model-imputed dollars.
+          {' '}<a href="/mackenzie-scott-qaly/gift-ledger.csv" download>Download the gift ledger (CSV)</a>
+          {' '}to inspect the matches, sources, filing years and fallback reasons.
+          Rows distinguish disclosed amounts from model-imputed amounts in
+          nominal dollars. The gift list uses the July 11, 2026 snapshot.
         </p>
         <p>
           Geography enters only through health. Across all causes, an
