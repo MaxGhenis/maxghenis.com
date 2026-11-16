@@ -2,7 +2,7 @@
 """Pilot: ask Claude models AI-law questions three ways, without and with the rule text.
 
 Usage: run_pilot.py <items.json> <out.jsonl> [--cap 20] [--models a,b,c] [--probe]
-Reads ANTHROPIC_API_KEY from the environment (set by `claude-credits exec`). Prints no secrets.
+Reads ANTHROPIC_API_KEY from the environment. Prints no secrets.
 No fallbacks: a refusal is recorded as a refusal, so each row is the named model's own answer.
 """
 import argparse, json, re, sys, threading, time

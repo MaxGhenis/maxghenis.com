@@ -1,0 +1,1311 @@
+{
+ "_note": "Blind checks of the answer key before the run, November 15, 2026. Each checker was a Claude model working as an agent with each question's facts, options and quoted rule text, and without the key. Checkers A and B answered the first wording; five rewordings followed their flags (the licence questions state that China is in Country Group D:5; the chip questions ask which paragraph 'covers' the chip; the compute questions ask which 'tests' the model 'satisfies'; every frontier-model question carries a date; affiliate revenue figures are each company's own). Checker C answered the final wording, which is questions.json. The first wording was not saved; the keys did not change between wordings.",
+ "checkers": {
+  "A": {
+   "model": "claude-opus-5-5",
+   "wording": "first"
+  },
+  "B": {
+   "model": "claude-sonnet-5-5",
+   "wording": "first"
+  },
+  "C": {
+   "model": "claude-opus-5-5",
+   "wording": "final"
+  }
+ },
+ "agreement_with_key": {
+  "B": {
+   "answered": 100,
+   "match": 100
+  },
+  "A": {
+   "answered": 100,
+   "match": 100
+  },
+  "C": {
+   "answered": 100,
+   "match": 100
+  }
+ },
+ "answers": {
+  "B": {
+   "frontier-model-01": {
+    "letter": "A",
+    "working": "7e25 + 2e25 + 2e25 = 1.1e26 > 1e26; developer's own fine-tuning and RL count"
+   },
+   "frontier-model-02": {
+    "letter": "B",
+    "working": "1e26 is not greater than 1e26"
+   },
+   "frontier-model-03": {
+    "letter": "B",
+    "working": "6e25 + 4e25 = 1e26, not greater than 1e26"
+   },
+   "frontier-model-04": {
+    "letter": "B",
+    "working": "9e25 + 5e24 + 4e24 = 9.9e25, not greater than 1e26"
+   },
+   "frontier-model-05": {
+    "letter": "A",
+    "working": "9e25 + 1e25 + 1e24 = 1.01e26 > 1e26"
+   },
+   "frontier-model-06": {
+    "letter": "A",
+    "working": "3e26 > 1e26"
+   },
+   "frontier-model-07": {
+    "letter": "B",
+    "working": "4e25 + 3e25 + 2e25 = 9e25 < 1e26"
+   },
+   "frontier-model-08": {
+    "letter": "A",
+    "working": "9.9e25 + 2e24 = 1.01e26 > 1e26"
+   },
+   "frontier-model-09": {
+    "letter": "B",
+    "working": "1e26 is not greater than 1e26; no later compute"
+   },
+   "frontier-model-10": {
+    "letter": "A",
+    "working": "8e25 + 1.5e25 + 1e25 = 1.05e26 > 1e26; fine-tuning and RL count"
+   },
+   "frontier-model-11": {
+    "letter": "B",
+    "working": "5e25 + 3e25 + 2e25 = 1e26, not greater than 1e26"
+   },
+   "frontier-model-12": {
+    "letter": "A",
+    "working": "2e26 > 1e26"
+   },
+   "large-developer-01": {
+    "letter": "B",
+    "working": "4e26 makes it a frontier developer, but 2026 revenue of $500,000,000 is not in excess of $500,000,000"
+   },
+   "large-developer-02": {
+    "letter": "A",
+    "working": "2025: 180 + 290 + 60 = $530M > $500M; 2e26 is a frontier model"
+   },
+   "large-developer-03": {
+    "letter": "B",
+    "working": "frontier developer (3e26), but preceding year 2026 revenue $430M not in excess of $500M; 2027 bookings irrelevant"
+   },
+   "large-developer-04": {
+    "letter": "A",
+    "working": "1.5e26 > 1e26 so frontier developer; $501M > $500M for 2026"
+   },
+   "large-developer-05": {
+    "letter": "B",
+    "working": "9e25 is not > 1e26, so not a frontier developer despite $900M revenue in 2025"
+   },
+   "large-developer-06": {
+    "letter": "B",
+    "working": "2026: 200 + 300 = $500M exactly, not in excess of $500M"
+   },
+   "large-developer-07": {
+    "letter": "A",
+    "working": "1.2e26 frontier; preceding year 2025 revenue $620M > $500M; 2026 YTD irrelevant"
+   },
+   "large-developer-08": {
+    "letter": "B",
+    "working": "exactly 1e26 is not greater than 1e26, so no frontier model and no frontier developer"
+   },
+   "large-developer-09": {
+    "letter": "A",
+    "working": "2e26 is frontier; 350M + 200M = 550M affiliate revenue in 2026 > 500M; today is in 2027, so 2026 is the preceding year"
+   },
+   "large-developer-10": {
+    "letter": "B",
+    "working": "preceding year 2026 = $499M, no affiliates; 2027 bookings are irrelevant"
+   },
+   "large-developer-11": {
+    "letter": "A",
+    "working": "1.1e26 frontier; 250M + 250M + 1M = $501M > $500M, no intra-group sales"
+   },
+   "large-developer-12": {
+    "letter": "B",
+    "working": "3e26 frontier, but $500,000,000 is not in excess of $500,000,000"
+   },
+   "incident-clock-01": {
+    "letter": "C",
+    "working": "No imminent risk, so the 24-hour disclosure does not apply; 15 days to report to OES"
+   },
+   "incident-clock-02": {
+    "letter": "A",
+    "working": "imminent risk of death or serious injury -> 24 hours"
+   },
+   "incident-clock-03": {
+    "letter": "C",
+    "working": "no imminent risk so 15-day OES report; 24h only for imminent risk"
+   },
+   "incident-clock-04": {
+    "letter": "A",
+    "working": "imminent risk of death or serious injury: 24-hour disclosure beats 15 days"
+   },
+   "incident-clock-05": {
+    "letter": "B",
+    "working": "No imminent risk, so 72 hours from determination; 24 hours is for imminent risk only"
+   },
+   "incident-clock-06": {
+    "letter": "A",
+    "working": "imminent risk -> 24 hours, shorter than 72 hours"
+   },
+   "incident-clock-07": {
+    "letter": "B",
+    "working": "NY 72 hours from determination; no imminent risk so no 24h clock"
+   },
+   "incident-clock-08": {
+    "letter": "A",
+    "working": "imminent risk: 24 hours beats 72 hours"
+   },
+   "compute-figures-01": {
+    "letter": "A",
+    "working": "5e24 is below 1e25 (EU) and 1e26 (CA, NY, ECCN)"
+   },
+   "compute-figures-02": {
+    "letter": "A",
+    "working": "9e24 < 1e25 (EU) and < 1e26 (CA, NY, ECCN)"
+   },
+   "compute-figures-03": {
+    "letter": "A",
+    "working": "1e25 not > 1e26 (CA, NY), not > 1e25 (EU), not >= 1e26 (ECCN)"
+   },
+   "compute-figures-04": {
+    "letter": "B",
+    "working": "1.1e25 > 1e25 (EU) only; below 1e26 for CA, NY and ECCN"
+   },
+   "compute-figures-05": {
+    "letter": "B",
+    "working": "2e25 > 1e25 (EU) only; below 1e26"
+   },
+   "compute-figures-06": {
+    "letter": "B",
+    "working": "6e25 > 1e25 (EU) but < 1e26 (CA, NY, ECCN)"
+   },
+   "compute-figures-07": {
+    "letter": "B",
+    "working": "9.9e25 > 1e25 (EU) only; below 1e26 for CA, NY, ECCN"
+   },
+   "compute-figures-08": {
+    "letter": "C",
+    "working": "1e26 not greater than 1e26 (CA/NY no); EU yes; ECCN '10^26 or more' yes"
+   },
+   "compute-figures-09": {
+    "letter": "E",
+    "working": "1.01e26 > 1e26 (CA, NY), > 1e25 (EU), and >= 1e26 (ECCN 4E091)"
+   },
+   "compute-figures-10": {
+    "letter": "E",
+    "working": "1.5e26 > 1e26 (CA, NY), > 1e25 (EU), >= 1e26 (ECCN)"
+   },
+   "compute-figures-11": {
+    "letter": "E",
+    "working": "3e26 clears all four"
+   },
+   "compute-figures-12": {
+    "letter": "E",
+    "working": "1e27 meets all four"
+   },
+   "eccn-3a090-01": {
+    "letter": "A",
+    "working": "TPP 4800 meets a.1 (4800 or more); a.2 needs PD 5.92; b.1 needs TPP < 4800; b.2 needs PD 3.2"
+   },
+   "eccn-3a090-02": {
+    "letter": "A",
+    "working": "TPP 6000 >= 4800 meets a.1; PD 1.0 fails a.2, b.1, b.2"
+   },
+   "eccn-3a090-03": {
+    "letter": "B",
+    "working": "TPP 2000 >= 1600 and PD 6.4 >= 5.92 gives a.2; a.1 needs 4800; b.2 needs PD < 5.92; b.1 needs TPP >= 2400"
+   },
+   "eccn-3a090-04": {
+    "letter": "B",
+    "working": "TPP 1600 >= 1600 and PD 5.92 >= 5.92 meets a.2; b.2 needs PD < 5.92 so fails"
+   },
+   "eccn-3a090-05": {
+    "letter": "C",
+    "working": "TPP 3000 in [2400,4800) and PD 2.5 in [1.6,5.92) = b.1; b.2 needs PD >= 3.2"
+   },
+   "eccn-3a090-06": {
+    "letter": "C",
+    "working": "TPP 2400 and PD 1.6 sit on the lower bounds of b.1; PD 1.6 < 3.2 fails b.2"
+   },
+   "eccn-3a090-07": {
+    "letter": "C",
+    "working": "TPP = 2x150x8 = 2400; PD = 2400/800 = 3.0; b.1 met; b.2 needs PD >= 3.2; a.2 needs PD >= 5.92"
+   },
+   "eccn-3a090-08": {
+    "letter": "D",
+    "working": "TPP 1800, PD 4.0 in [3.2, 5.92) meets b.2; a.2 needs PD >= 5.92; b.1 needs TPP >= 2400"
+   },
+   "eccn-3a090-09": {
+    "letter": "D",
+    "working": "TPP 1600 >= 1600 and PD 3.2 in [3.2,5.92) = b.2; b.1 needs TPP 2400; a.2 needs PD 5.92"
+   },
+   "eccn-3a090-10": {
+    "letter": "D",
+    "working": "TPP 2300 >= 1600 and PD 5.9 in [3.2, 5.92) meets b.2; a.2 needs PD >= 5.92; b.1 needs TPP >= 2400"
+   },
+   "eccn-3a090-11": {
+    "letter": "E",
+    "working": "TPP 1500 < 1600 so no a.2 or b.2; < 2400 so no b.1"
+   },
+   "eccn-3a090-12": {
+    "letter": "E",
+    "working": "TPP 2200 < 2400 (b.1 fails); PD 3.0 < 3.2 (b.2 fails); a.1/a.2 fail"
+   },
+   "eccn-3a090-13": {
+    "letter": "E",
+    "working": "TPP 4000 but PD 1.5 is below 1.6 (b.1) and 3.2 (b.2); a.1 needs TPP 4800"
+   },
+   "eccn-3a090-14": {
+    "letter": "E",
+    "working": "not datacenter and TPP 4000 < 4800, so Note 2 removes it from a and b"
+   },
+   "eccn-3a090-15": {
+    "letter": "E",
+    "working": "numbers fit b.1 (3000, 2.5) but Note 2 removes a/b for non-datacenter items with TPP < 4800"
+   },
+   "eccn-3a090-16": {
+    "letter": "A",
+    "working": "TPP 5000 >= 4800 meets a.1; Note 2 exclusion needs non-datacenter AND TPP below 4800, so it does not apply"
+   },
+   "licence-review-01": {
+    "letter": "A",
+    "working": "TPP 20,500 < 21,000 and DRAM 6,100 < 6,500, China, dd info given: case-by-case"
+   },
+   "licence-review-02": {
+    "letter": "B",
+    "working": "TPP 21,000 is not less than 21,000 -> presumption of denial"
+   },
+   "licence-review-03": {
+    "letter": "A",
+    "working": "TPP 20,999 < 21,000 and DRAM 6,499 < 6,500, China, (dd) info supplied: case-by-case"
+   },
+   "licence-review-04": {
+    "letter": "B",
+    "working": "TPP 19,000 < 21,000 but bandwidth 6,500 not < 6,500: presumption of denial"
+   },
+   "licence-review-05": {
+    "letter": "B",
+    "working": "TPP 22,400 is not < 21,000 (both limits must hold), so it falls in 'all other' = presumption of denial; relies on China being in D:5, which the file does not state"
+   },
+   "licence-review-06": {
+    "letter": "B",
+    "working": "DRAM 7,000 is not less than 6,500 -> presumption of denial"
+   },
+   "licence-review-07": {
+    "letter": "A",
+    "working": "Macau end user, 20,000 < 21,000, 6,000 < 6,500, (dd) info supplied: case-by-case"
+   },
+   "licence-review-08": {
+    "letter": "B",
+    "working": "TPP 21,100 not < 21,000: presumption of denial"
+   },
+   "licence-review-09": {
+    "letter": "A",
+    "working": "TPP 18,000 < 21,000 and DRAM 4,800 < 6,500: case-by-case"
+   },
+   "licence-review-10": {
+    "letter": "A",
+    "working": "20,900 < 21,000 and 6,300 < 6,500, (dd) info provided -> case-by-case"
+   },
+   "chip-tariff-01": {
+    "letter": "A",
+    "working": "15,200 in (14,000, 17,500) and 4,700 in (4,500, 5,000): 9903.79.01"
+   },
+   "chip-tariff-02": {
+    "letter": "B",
+    "working": "TPP 20,900 in range but bandwidth 6,300 not < 6,200; outside parameters, 9903.79.02"
+   },
+   "chip-tariff-03": {
+    "letter": "A",
+    "working": "TPP 20,900 in (20,800, 21,100) and DRAM 6,000 in (5,800, 6,200): parameter (2) met, 9903.79.01"
+   },
+   "chip-tariff-04": {
+    "letter": "B",
+    "working": "TPP 14,000 not greater than 14,000; fails (1); (2) out of range -> 9903.79.02"
+   },
+   "chip-tariff-05": {
+    "letter": "B",
+    "working": "TPP 17,500 not < 17,500, and not in 20,800-21,100: outside both bands, 9903.79.02"
+   },
+   "chip-tariff-06": {
+    "letter": "B",
+    "working": "TPP 16,000 in range but bandwidth 5,000 not < 5,000; outside, 9903.79.02"
+   },
+   "chip-tariff-07": {
+    "letter": "B",
+    "working": "TPP 19,000 fits neither band, so 9903.79.02"
+   },
+   "chip-tariff-08": {
+    "letter": "B",
+    "working": "TPP fits (1) but DRAM 6,000 outside 4,500-5,000; TPP 15,000 outside (2) range -> 9903.79.02"
+   },
+   "chip-tariff-09": {
+    "letter": "A",
+    "working": "21,000 in (20,800, 21,100) and 5,900 in (5,800, 6,200): 9903.79.01"
+   },
+   "chip-tariff-10": {
+    "letter": "B",
+    "working": "TPP 21,100 not < 21,100; outside, 9903.79.02"
+   },
+   "chip-tariff-11": {
+    "letter": "A",
+    "working": "TPP 14,001 > 14,000 and DRAM 4,999 < 5,000: parameter (1) met, 9903.79.01"
+   },
+   "chip-tariff-12": {
+    "letter": "A",
+    "working": "20,801 > 20,800 and 5,801 > 5,800, both under upper bounds -> meets (2) -> 9903.79.01"
+   },
+   "eu-notification-01": {
+    "letter": "A",
+    "working": "3e25 > 1e25 so presumed high impact; Art 52(1) two-week notification"
+   },
+   "eu-notification-02": {
+    "letter": "D",
+    "working": "1e25 not greater than 1e25; presumption not triggered; no notification on these facts"
+   },
+   "eu-notification-03": {
+    "letter": "A",
+    "working": "1.2e25 > 1e25 so presumed high impact; 51(1)(a) condition met; notify within two weeks"
+   },
+   "eu-notification-04": {
+    "letter": "D",
+    "working": "8e24 is not greater than 1e25, so no presumption and no notification"
+   },
+   "eu-notification-05": {
+    "letter": "A",
+    "working": "5e26 > 1e25 so presumed high impact; Art 52(1) two-week notification"
+   },
+   "eu-notification-06": {
+    "letter": "D",
+    "working": "9.9e24 < 1e25; presumption not triggered"
+   },
+   "eu-notification-07": {
+    "letter": "A",
+    "working": "1.01e25 > 1e25; same result"
+   },
+   "eu-notification-08": {
+    "letter": "D",
+    "working": "2e24 is not greater than 1e25, so no presumption and no notification"
+   },
+   "catastrophic-size-01": {
+    "letter": "B",
+    "working": "70 > 50 people; property $800M < $1B and $400M equity loss excluded by 22757.16"
+   },
+   "catastrophic-size-02": {
+    "letter": "C",
+    "working": "50 is not more than 50; $1.2B > $1B"
+   },
+   "catastrophic-size-03": {
+    "letter": "B",
+    "working": "51 > 50 people; $1,000,000,000 is not more than $1B"
+   },
+   "catastrophic-size-04": {
+    "letter": "A",
+    "working": "40 not > 50; property $900M not > $1B; equity loss excluded"
+   },
+   "catastrophic-size-05": {
+    "letter": "D",
+    "working": "120 > 50 and $2.5B > $1B"
+   },
+   "catastrophic-size-06": {
+    "letter": "B",
+    "working": "100 > 50; $600M < $1B"
+   },
+   "catastrophic-size-07": {
+    "letter": "A",
+    "working": "30 is not > 50; property $1B not > $1B; equity loss excluded"
+   },
+   "catastrophic-size-08": {
+    "letter": "D",
+    "working": "60 > 50 and $1,001,000,000 > $1,000,000,000"
+   },
+   "catastrophic-size-09": {
+    "letter": "A",
+    "working": "50 not more than 50; $1B not more than $1B"
+   },
+   "catastrophic-size-10": {
+    "letter": "C",
+    "working": "45 < 50; $1.5B > $1B"
+   }
+  },
+  "A": {
+   "frontier-model-01": {
+    "letter": "A",
+    "working": "7e25 + 2e25 + 2e25 = 1.1e26, greater than 1e26; fine-tuning and RL by the developer count"
+   },
+   "frontier-model-02": {
+    "letter": "B",
+    "working": "1e26 is not greater than 1e26; no later compute"
+   },
+   "frontier-model-03": {
+    "letter": "B",
+    "working": "6e25 + 4e25 = 1e26, not greater than 1e26"
+   },
+   "frontier-model-04": {
+    "letter": "B",
+    "working": "9e25 + 5e24 + 4e24 = 9.9e25, not greater than 1e26"
+   },
+   "frontier-model-05": {
+    "letter": "A",
+    "working": "9e25 + 1e25 + 1e24 = 1.01e26, greater than 1e26"
+   },
+   "frontier-model-06": {
+    "letter": "A",
+    "working": "3e26 > 1e26"
+   },
+   "frontier-model-07": {
+    "letter": "B",
+    "working": "4e25 + 3e25 + 2e25 = 9e25, not greater than 1e26"
+   },
+   "frontier-model-08": {
+    "letter": "A",
+    "working": "9.9e25 + 2e24 = 1.01e26, greater than 1e26"
+   },
+   "frontier-model-09": {
+    "letter": "B",
+    "working": "1e26 is not greater than 1e26"
+   },
+   "frontier-model-10": {
+    "letter": "A",
+    "working": "8e25 + 1.5e25 + 1e25 = 1.05e26 > 1e26; the developer's own fine-tune and RL count"
+   },
+   "frontier-model-11": {
+    "letter": "B",
+    "working": "5e25 + 3e25 + 2e25 = 1e26, not greater than 1e26"
+   },
+   "frontier-model-12": {
+    "letter": "A",
+    "working": "2e26 > 1e26, no modifications"
+   },
+   "large-developer-01": {
+    "letter": "B",
+    "working": "Frontier developer (4e26 > 1e26), but 2026 revenue of exactly $500,000,000 is not in excess of $500M"
+   },
+   "large-developer-02": {
+    "letter": "A",
+    "working": "Model 2e26 > 1e26, so frontier developer; preceding year 2025: 180M + 290M + 60M = 530M, in excess of 500M"
+   },
+   "large-developer-03": {
+    "letter": "B",
+    "working": "Frontier developer (3e26 > 1e26), but revenue in the preceding calendar year (2026) was $430M, not in excess of $500M; the 2027 bookings do not count"
+   },
+   "large-developer-04": {
+    "letter": "A",
+    "working": "1.5e26 > 1e26 so frontier developer; 2026 revenue $501M in excess of $500M"
+   },
+   "large-developer-05": {
+    "letter": "B",
+    "working": "9e25 is not greater than 1e26 and no larger run is planned, so not a frontier developer; revenue is irrelevant"
+   },
+   "large-developer-06": {
+    "letter": "B",
+    "working": "Preceding year 2026: 200M + 300M = 500M, not in excess of 500M"
+   },
+   "large-developer-07": {
+    "letter": "A",
+    "working": "1.2e26 > 1e26; revenue in the preceding year (2025) was $620M > $500M"
+   },
+   "large-developer-08": {
+    "letter": "B",
+    "working": "1e26 not greater than 1e26, so not a frontier model or frontier developer; revenue irrelevant"
+   },
+   "large-developer-09": {
+    "letter": "A",
+    "working": "2e26 > 1e26; 2026 revenue 350M + 200M affiliate = 550M > 500M; Feb 15 2027 is after the amendment takes effect"
+   },
+   "large-developer-10": {
+    "letter": "B",
+    "working": "Preceding year 2026: 499M, not in excess of 500M; 2027 bookings do not count"
+   },
+   "large-developer-11": {
+    "letter": "A",
+    "working": "1.1e26 > 1e26; 2026 affiliate revenue 250M + 250M + 1M = 501M > 500M; Act in effect by March 2027"
+   },
+   "large-developer-12": {
+    "letter": "B",
+    "working": "3e26 is frontier, but $500M is not in excess of $500M"
+   },
+   "incident-clock-01": {
+    "letter": "C",
+    "working": "No imminent risk, so the 24-hour rule does not apply; 15-day report to OES"
+   },
+   "incident-clock-02": {
+    "letter": "A",
+    "working": "Imminent risk: disclose to an authority within 24 hours; the 15-day OES report deadline is longer"
+   },
+   "incident-clock-03": {
+    "letter": "C",
+    "working": "No imminent risk, so the 24-hour rule does not apply; report to OES within 15 days"
+   },
+   "incident-clock-04": {
+    "letter": "A",
+    "working": "Imminent risk of death or serious injury: disclose within 24 hours, shorter than the 15-day OES report"
+   },
+   "incident-clock-05": {
+    "letter": "B",
+    "working": "No imminent risk; 72 hours from the determination, made at once"
+   },
+   "incident-clock-06": {
+    "letter": "A",
+    "working": "Imminent risk: disclose within 24 hours; the 72-hour report to the office is longer"
+   },
+   "incident-clock-07": {
+    "letter": "B",
+    "working": "No imminent risk; 72 hours from the determination, which was made at once"
+   },
+   "incident-clock-08": {
+    "letter": "A",
+    "working": "Imminent risk: 24 hours, shorter than the 72-hour report"
+   },
+   "compute-figures-01": {
+    "letter": "A",
+    "working": "5e24: not > 1e26 (CA, NY), not > 1e25 (EU), not >= 1e26 (ECCN)"
+   },
+   "compute-figures-02": {
+    "letter": "A",
+    "working": "9e24 fails CA and NY (>1e26), EU (>1e25) and ECCN (>=1e26)"
+   },
+   "compute-figures-03": {
+    "letter": "A",
+    "working": "1e25 is not > 1e26 (CA, NY), not > 1e25 (EU) and not >= 1e26 (ECCN)"
+   },
+   "compute-figures-04": {
+    "letter": "B",
+    "working": "1.1e25 > 1e25 meets EU; below 1e26 so fails CA, NY (greater than 1e26) and ECCN (1e26 or more)"
+   },
+   "compute-figures-05": {
+    "letter": "B",
+    "working": "2e25 > 1e25 meets EU only; not > 1e26 for CA/NY; not >= 1e26 for ECCN"
+   },
+   "compute-figures-06": {
+    "letter": "B",
+    "working": "6e25 > 1e25 (EU); below 1e26 for CA, NY and ECCN"
+   },
+   "compute-figures-07": {
+    "letter": "B",
+    "working": "9.9e25 > 1e25 (EU) only; below 1e26 for CA, NY and ECCN"
+   },
+   "compute-figures-08": {
+    "letter": "C",
+    "working": "1e26 > 1e25 (EU) and 1e26 or more (ECCN); not greater than 1e26 (CA, NY)"
+   },
+   "compute-figures-09": {
+    "letter": "E",
+    "working": "1.01e26 > 1e26 (CA, NY), > 1e25 (EU), >= 1e26 (ECCN)"
+   },
+   "compute-figures-10": {
+    "letter": "E",
+    "working": "1.5e26 > 1e26 (CA, NY), > 1e25 (EU), >= 1e26 (ECCN)"
+   },
+   "compute-figures-11": {
+    "letter": "E",
+    "working": "3e26 > 1e26, > 1e25 and >= 1e26"
+   },
+   "compute-figures-12": {
+    "letter": "E",
+    "working": "1e27 exceeds all four figures"
+   },
+   "eccn-3a090-01": {
+    "letter": "A",
+    "working": "TPP 4800 is 4800 or more (a.1); b.1 needs TPP < 4800; density 2.0 fails a.2 and b.2"
+   },
+   "eccn-3a090-02": {
+    "letter": "A",
+    "working": "TPP 6000 >= 4800 (a.1); PD 1.0 fails a.2 and b.2; TPP >= 4800 fails b.1; datacenter chip, so Note 2 does not apply"
+   },
+   "eccn-3a090-03": {
+    "letter": "B",
+    "working": "Datacenter chip; TPP 2000 >= 1600 and PD 6.4 >= 5.92 gives a.2; b.2 fails because 6.4 is not < 5.92"
+   },
+   "eccn-3a090-04": {
+    "letter": "B",
+    "working": "TPP 1600 >= 1600 and PD 5.92 >= 5.92 gives a.2; b.2 needs PD < 5.92; datacenter chip, so Note 2 does not exclude it"
+   },
+   "eccn-3a090-05": {
+    "letter": "C",
+    "working": "TPP 3000 in [2400, 4800) and density 2.5 in [1.6, 5.92): b.1; 2.5 < 3.2 fails b.2"
+   },
+   "eccn-3a090-06": {
+    "letter": "C",
+    "working": "TPP 2400 in [2400, 4800), PD 1.6 in [1.6, 5.92), so b.1; PD < 3.2 fails b.2; fails a.1 and a.2"
+   },
+   "eccn-3a090-07": {
+    "letter": "C",
+    "working": "TPP = 2 x 150 x 8 = 2400; PD = 2400/800 = 3.0; b.1 holds (2400 in [2400, 4800), 3.0 in [1.6, 5.92)); b.2 fails because 3.0 < 3.2; a.2 fails because 3.0 < 5.92"
+   },
+   "eccn-3a090-08": {
+    "letter": "D",
+    "working": "TPP 1800 >= 1600 and PD 4.0 in [3.2, 5.92) gives b.2; b.1 needs TPP >= 2400; a.2 needs PD >= 5.92"
+   },
+   "eccn-3a090-09": {
+    "letter": "D",
+    "working": "TPP 1600 >= 1600 and density 3.2 in [3.2, 5.92): b.2; TPP < 2400 fails b.1; density < 5.92 fails a.2"
+   },
+   "eccn-3a090-10": {
+    "letter": "D",
+    "working": "TPP 2300 >= 1600 and PD 5.9 in [3.2, 5.92), so b.2; PD 5.9 < 5.92 fails a.2; TPP < 2400 fails b.1"
+   },
+   "eccn-3a090-11": {
+    "letter": "E",
+    "working": "TPP 1500 < 1600, below the TPP floor of every paragraph"
+   },
+   "eccn-3a090-12": {
+    "letter": "E",
+    "working": "TPP 2200 < 2400 (no b.1); PD 3.0 < 3.2 (no b.2); PD < 5.92 and TPP < 4800 (no a)"
+   },
+   "eccn-3a090-13": {
+    "letter": "E",
+    "working": "TPP 4000 < 4800; density 1.5 < 1.6 fails b.1, < 3.2 fails b.2, < 5.92 fails a.2"
+   },
+   "eccn-3a090-14": {
+    "letter": "E",
+    "working": "Neither designed nor marketed for datacenters and TPP 4000 < 4800, so Note 2 takes it out of 3A090.a and .b (without the note it would be a.2)"
+   },
+   "eccn-3a090-15": {
+    "letter": "E",
+    "working": "Not a datacenter chip and TPP 3000 < 4800, so Note 2 takes it out of a and b (without the note it would meet b.1)"
+   },
+   "eccn-3a090-16": {
+    "letter": "A",
+    "working": "TPP 5000 >= 4800 gives a.1; Note 2 excludes only items that are non-datacenter AND below TPP 4800, so it does not apply"
+   },
+   "licence-review-01": {
+    "letter": "A",
+    "working": "TPP 20,500 < 21,000 and DRAM 6,100 < 6,500 GB/s, China end user, (dd) info supplied: case-by-case"
+   },
+   "licence-review-02": {
+    "letter": "B",
+    "working": "TPP 21,000 is not less than 21,000, so case-by-case fails; Macau end user, so presumption of denial"
+   },
+   "licence-review-03": {
+    "letter": "A",
+    "working": "TPP 20,999 < 21,000, DRAM 6,499 < 6,500, end user in China, (dd) information supplied"
+   },
+   "licence-review-04": {
+    "letter": "B",
+    "working": "TPP 19,000 < 21,000, but DRAM 6,500 is not less than 6,500, so not case-by-case; presumption of denial (China in D:5)"
+   },
+   "licence-review-05": {
+    "letter": "B",
+    "working": "TPP 22,400 not < 21,000, so not case-by-case; falls to presumption of denial (China in Country Group D:5)"
+   },
+   "licence-review-06": {
+    "letter": "B",
+    "working": "TPP 15,000 < 21,000 but DRAM 7,000 is not < 6,500, so presumption of denial"
+   },
+   "licence-review-07": {
+    "letter": "A",
+    "working": "TPP 20,000 < 21,000, DRAM 6,000 < 6,500, end user in Macau, (dd) information supplied"
+   },
+   "licence-review-08": {
+    "letter": "B",
+    "working": "TPP 21,100 is not less than 21,000, so presumption of denial (China in D:5)"
+   },
+   "licence-review-09": {
+    "letter": "A",
+    "working": "TPP 18,000 < 21,000 and DRAM 4,800 < 6,500 GB/s, China end user, (dd) info supplied: case-by-case"
+   },
+   "licence-review-10": {
+    "letter": "A",
+    "working": "TPP 20,900 < 21,000, DRAM 6,300 < 6,500, Macau end user, (dd) information given, so case-by-case"
+   },
+   "chip-tariff-01": {
+    "letter": "A",
+    "working": "8473.30; TPP 15,200 in (14,000, 17,500) and DRAM 4,700 in (4,500, 5,000)"
+   },
+   "chip-tariff-02": {
+    "letter": "B",
+    "working": "TPP 20,900 in (20,800, 21,100), but DRAM 6,300 not < 6,200; range 1 fails on TPP; so 9903.79.02"
+   },
+   "chip-tariff-03": {
+    "letter": "A",
+    "working": "TPP 20,900 in (20,800, 21,100) and DRAM 6,000 in (5,800, 6,200): semiconductor article under 9903.79.01"
+   },
+   "chip-tariff-04": {
+    "letter": "B",
+    "working": "TPP 14,000 is not greater than 14,000, and it is outside (20,800, 21,100), so 9903.79.02"
+   },
+   "chip-tariff-05": {
+    "letter": "B",
+    "working": "TPP 17,500 is not < 17,500 and not > 20,800, so it meets neither band"
+   },
+   "chip-tariff-06": {
+    "letter": "B",
+    "working": "TPP 16,000 in (14,000, 17,500), but DRAM 5,000 not < 5,000; so 9903.79.02"
+   },
+   "chip-tariff-07": {
+    "letter": "B",
+    "working": "TPP 19,000 is outside both TPP bands; an 8473.30 article that misses the parameters goes to 9903.79.02"
+   },
+   "chip-tariff-08": {
+    "letter": "B",
+    "working": "TPP 15,000 is in range (1) but DRAM 6,000 is not < 5,000; TPP is outside range (2), so 9903.79.02"
+   },
+   "chip-tariff-09": {
+    "letter": "A",
+    "working": "TPP 21,000 in (20,800, 21,100) and DRAM 5,900 in (5,800, 6,200)"
+   },
+   "chip-tariff-10": {
+    "letter": "B",
+    "working": "TPP 21,100 not < 21,100; so 9903.79.02"
+   },
+   "chip-tariff-11": {
+    "letter": "A",
+    "working": "TPP 14,001 in (14,000, 17,500) and DRAM 4,999 in (4,500, 5,000): 9903.79.01"
+   },
+   "chip-tariff-12": {
+    "letter": "A",
+    "working": "TPP 20,801 in (20,800, 21,100) and DRAM 5,801 in (5,800, 6,200), so range (2) is met: 9903.79.01"
+   },
+   "eu-notification-01": {
+    "letter": "A",
+    "working": "3e25 > 1e25, so it is presumed to meet 51(1)(a); notify without delay and within two weeks"
+   },
+   "eu-notification-02": {
+    "letter": "D",
+    "working": "1e25 not greater than 1e25, so no presumption and no Art. 52(1) notification"
+   },
+   "eu-notification-03": {
+    "letter": "A",
+    "working": "1.2e25 > 1e25: presumed to meet 51(1)(a), so 52(1) notice without delay and within two weeks"
+   },
+   "eu-notification-04": {
+    "letter": "D",
+    "working": "8e24 is not > 1e25, so no presumption and no Art. 52(1) notice"
+   },
+   "eu-notification-05": {
+    "letter": "A",
+    "working": "5e26 > 1e25, so it is presumed to meet 51(1)(a); notify within two weeks"
+   },
+   "eu-notification-06": {
+    "letter": "D",
+    "working": "9.9e24 not greater than 1e25, so no notification"
+   },
+   "eu-notification-07": {
+    "letter": "A",
+    "working": "1.01e25 > 1e25: presumed to meet 51(1)(a), so two-week notice"
+   },
+   "eu-notification-08": {
+    "letter": "D",
+    "working": "2e24 is not > 1e25, so no presumption and no Art. 52(1) notice"
+   },
+   "catastrophic-size-01": {
+    "letter": "B",
+    "working": "70 > 50; property $800M (equity loss excluded) is not > $1B"
+   },
+   "catastrophic-size-02": {
+    "letter": "C",
+    "working": "50 is not more than 50; $1.2B > $1B"
+   },
+   "catastrophic-size-03": {
+    "letter": "B",
+    "working": "51 > 50 people; $1,000,000,000 is not more than $1B"
+   },
+   "catastrophic-size-04": {
+    "letter": "A",
+    "working": "40 is not > 50; property 900M is not > 1B; the 300M equity loss is excluded (counting it would give 1.2B)"
+   },
+   "catastrophic-size-05": {
+    "letter": "D",
+    "working": "120 > 50; $2.5B > $1B"
+   },
+   "catastrophic-size-06": {
+    "letter": "B",
+    "working": "100 > 50; $600M not > $1B"
+   },
+   "catastrophic-size-07": {
+    "letter": "A",
+    "working": "30 is not > 50; $1,000,000,000 is not more than $1B; equity loss excluded"
+   },
+   "catastrophic-size-08": {
+    "letter": "D",
+    "working": "60 > 50; 1,001,000,000 > 1,000,000,000"
+   },
+   "catastrophic-size-09": {
+    "letter": "A",
+    "working": "50 is not > 50; $1B is not > $1B"
+   },
+   "catastrophic-size-10": {
+    "letter": "C",
+    "working": "45 is not more than 50; $1.5B > $1B"
+   }
+  },
+  "C": {
+   "frontier-model-01": {
+    "letter": "A",
+    "working": "7e25 + 2e25 + 2e25 = 1.1e26, greater than 1e26"
+   },
+   "frontier-model-02": {
+    "letter": "B",
+    "working": "1e26 is not greater than 1e26"
+   },
+   "frontier-model-03": {
+    "letter": "B",
+    "working": "6e25 + 4e25 = 1e26, not greater than 1e26"
+   },
+   "frontier-model-04": {
+    "letter": "B",
+    "working": "9e25 + 5e24 + 4e24 = 9.9e25, not greater than 1e26"
+   },
+   "frontier-model-05": {
+    "letter": "A",
+    "working": "9e25 + 1e25 + 1e24 = 1.01e26, greater than 1e26"
+   },
+   "frontier-model-06": {
+    "letter": "A",
+    "working": "3e26 > 1e26"
+   },
+   "frontier-model-07": {
+    "letter": "B",
+    "working": "4e25 + 3e25 + 2e25 = 9e25, not greater than 1e26"
+   },
+   "frontier-model-08": {
+    "letter": "A",
+    "working": "9.9e25 + 2e24 = 1.01e26, greater than 1e26"
+   },
+   "frontier-model-09": {
+    "letter": "B",
+    "working": "1e26 is not greater than 1e26; NY rule in effect 1/1/2027"
+   },
+   "frontier-model-10": {
+    "letter": "A",
+    "working": "8e25 + 1.5e25 + 1e25 = 1.05e26 > 1e26; NY rule in effect 1/1/2027, today 3/30/2027"
+   },
+   "frontier-model-11": {
+    "letter": "B",
+    "working": "5e25 + 3e25 + 2e25 = 1e26, not greater than 1e26"
+   },
+   "frontier-model-12": {
+    "letter": "A",
+    "working": "2e26 > 1e26; NY definition in effect 1/1/2027"
+   },
+   "large-developer-01": {
+    "letter": "B",
+    "working": "4e26 > 1e26 so frontier developer; 2026 revenue $500,000,000 is not in excess of $500,000,000"
+   },
+   "large-developer-02": {
+    "letter": "A",
+    "working": "2e26 > 1e26 so frontier developer; 2025 revenue 180 + 290 + 60 = 530M, in excess of 500M"
+   },
+   "large-developer-03": {
+    "letter": "B",
+    "working": "Frontier developer (3e26 > 1e26), but 2026 revenue $430M is not in excess of $500M; 2027 bookings do not count"
+   },
+   "large-developer-04": {
+    "letter": "A",
+    "working": "1.5e26 > 1e26 so frontier developer; 2026 revenue $501M in excess of $500M"
+   },
+   "large-developer-05": {
+    "letter": "B",
+    "working": "9e25 not > 1e26 and no other run planned, so not a frontier developer; revenue irrelevant"
+   },
+   "large-developer-06": {
+    "letter": "B",
+    "working": "2.5e26 frontier; 2026 revenue 200 + 300 = 500M, not in excess of 500M"
+   },
+   "large-developer-07": {
+    "letter": "A",
+    "working": "Frontier developer (1.2e26 > 1e26); 2025 revenue $620M > $500M; 2026 year-to-date does not count"
+   },
+   "large-developer-08": {
+    "letter": "B",
+    "working": "1e26 not greater than 1e26: no frontier model, so not a frontier developer; revenue irrelevant"
+   },
+   "large-developer-09": {
+    "letter": "A",
+    "working": "2e26 > 1e26; 2026 revenue 350M + 200M affiliate = 550M > 500M"
+   },
+   "large-developer-10": {
+    "letter": "B",
+    "working": "Preceding calendar year 2026 = 499M, no affiliates, not > 500M; 2027 bookings irrelevant"
+   },
+   "large-developer-11": {
+    "letter": "A",
+    "working": "Frontier developer (1.1e26 > 1e26); 2026 revenue with affiliates 250M + 250M + 1M = 501M > 500M"
+   },
+   "large-developer-12": {
+    "letter": "B",
+    "working": "3e26 makes it a frontier developer, but $500M is not in excess of $500M"
+   },
+   "incident-clock-01": {
+    "letter": "C",
+    "working": "No imminent risk, so the 24-hour rule does not apply; OES report within 15 days"
+   },
+   "incident-clock-02": {
+    "letter": "A",
+    "working": "Imminent risk of death/injury triggers 24-hour disclosure, shorter than the 15-day OES report"
+   },
+   "incident-clock-03": {
+    "letter": "C",
+    "working": "No imminent risk, so only the 15-day report to OES applies"
+   },
+   "incident-clock-04": {
+    "letter": "A",
+    "working": "15 days to OES, but imminent risk triggers 24-hour disclosure; shortest is 24 hours"
+   },
+   "incident-clock-05": {
+    "letter": "B",
+    "working": "No imminent risk; report to the office within 72 hours of the determination"
+   },
+   "incident-clock-06": {
+    "letter": "A",
+    "working": "Imminent risk triggers 24-hour disclosure, shorter than the 72-hour report"
+   },
+   "incident-clock-07": {
+    "letter": "B",
+    "working": "No imminent risk, so the 72-hour report from determination applies"
+   },
+   "incident-clock-08": {
+    "letter": "A",
+    "working": "72 hours to the office, but imminent risk triggers 24-hour disclosure"
+   },
+   "compute-figures-01": {
+    "letter": "A",
+    "working": "5e24 meets none: CA/NY > 1e26, EU > 1e25, ECCN >= 1e26"
+   },
+   "compute-figures-02": {
+    "letter": "A",
+    "working": "9e24: not > 1e26 (CA, NY), not > 1e25 (EU), not >= 1e26 (ECCN)"
+   },
+   "compute-figures-03": {
+    "letter": "A",
+    "working": "1e25: CA/NY need > 1e26; EU needs > 1e25 (equal is not greater); ECCN needs >= 1e26. Fails all four"
+   },
+   "compute-figures-04": {
+    "letter": "B",
+    "working": "1.1e25 > 1e25 (EU); not > 1e26 (CA, NY); not >= 1e26 (ECCN)"
+   },
+   "compute-figures-05": {
+    "letter": "B",
+    "working": "2e25 > 1e25 (EU) only; below 1e26 for CA, NY, ECCN"
+   },
+   "compute-figures-06": {
+    "letter": "B",
+    "working": "6e25 > 1e25 (EU); below 1e26 for CA, NY and ECCN"
+   },
+   "compute-figures-07": {
+    "letter": "B",
+    "working": "9.9e25 > 1e25 (EU); < 1e26, so fails CA, NY and ECCN"
+   },
+   "compute-figures-08": {
+    "letter": "C",
+    "working": "1e26 > 1e25 (EU), 1e26 >= 1e26 (ECCN), not > 1e26 (CA, NY)"
+   },
+   "compute-figures-09": {
+    "letter": "E",
+    "working": "1.01e26 > 1e26 (CA, NY), > 1e25 (EU), >= 1e26 (ECCN)"
+   },
+   "compute-figures-10": {
+    "letter": "E",
+    "working": "1.5e26 > 1e26 (CA, NY), > 1e25 (EU), >= 1e26 (ECCN)"
+   },
+   "compute-figures-11": {
+    "letter": "E",
+    "working": "3e26 > 1e26 (CA, NY), > 1e25 (EU), >= 1e26 (ECCN)"
+   },
+   "compute-figures-12": {
+    "letter": "E",
+    "working": "1e27 exceeds all four thresholds"
+   },
+   "eccn-3a090-01": {
+    "letter": "A",
+    "working": "TPP 4800 is 4800 or more (a.1); b.1 needs TPP less than 4800; PD 2.0 too low for a.2 and b.2"
+   },
+   "eccn-3a090-02": {
+    "letter": "A",
+    "working": "TPP 6000 >= 4800 gives a.1; PD 1.0 fails a.2 and b.2; TPP outside b.1 range"
+   },
+   "eccn-3a090-03": {
+    "letter": "B",
+    "working": "TPP 2000 >= 1600 and PD 6.4 >= 5.92 meets a.2; a.1 needs 4800; b.2 needs PD < 5.92"
+   },
+   "eccn-3a090-04": {
+    "letter": "B",
+    "working": "Datacenter; TPP 1600 >= 1600 and PD 5.92 >= 5.92 gives a.2; b.2 fails since 5.92 is not < 5.92"
+   },
+   "eccn-3a090-05": {
+    "letter": "C",
+    "working": "TPP 3000 in [2400, 4800), PD 2.5 in [1.6, 5.92): b.1; PD < 3.2 so not b.2"
+   },
+   "eccn-3a090-06": {
+    "letter": "C",
+    "working": "TPP 2400 in [2400,4800) and PD 1.6 in [1.6,5.92) gives b.1; PD < 3.2 fails b.2; PD < 5.92 fails a.2"
+   },
+   "eccn-3a090-07": {
+    "letter": "C",
+    "working": "TPP = 2 x 150 x 8 = 2400; PD = 2400/800 = 3.0; b.1 met (2400 to <4800, 1.6 to <5.92); b.2 fails (3.0 < 3.2); a.2 fails (PD < 5.92)"
+   },
+   "eccn-3a090-08": {
+    "letter": "D",
+    "working": "No a (TPP < 4800, PD < 5.92); no b.1 (TPP < 2400); TPP >= 1600 and 3.2 <= 4.0 < 5.92 gives b.2"
+   },
+   "eccn-3a090-09": {
+    "letter": "D",
+    "working": "TPP 1600 >= 1600, PD 3.2 in [3.2, 5.92): b.2; TPP < 2400 so not b.1; PD < 5.92 so not a.2"
+   },
+   "eccn-3a090-10": {
+    "letter": "D",
+    "working": "TPP 2300 >= 1600 and PD 5.9 in [3.2,5.92) gives b.2; 5.9 < 5.92 fails a.2; TPP < 2400 fails b.1"
+   },
+   "eccn-3a090-11": {
+    "letter": "E",
+    "working": "TPP 1500 is below 1600 (a.2, b.2), 2400 (b.1) and 4800 (a.1)"
+   },
+   "eccn-3a090-12": {
+    "letter": "E",
+    "working": "TPP 2200 < 2400 (no b.1); PD 3.0 < 3.2 (no b.2); no a"
+   },
+   "eccn-3a090-13": {
+    "letter": "E",
+    "working": "TPP 4000 < 4800; PD 1.5 below 1.6, 3.2 and 5.92, so no paragraph"
+   },
+   "eccn-3a090-14": {
+    "letter": "E",
+    "working": "Neither designed nor marketed for datacenters and TPP 4000 < 4800, so Note 2 excludes 3A090.a and .b (would otherwise be a.2)"
+   },
+   "eccn-3a090-15": {
+    "letter": "E",
+    "working": "Not designed or marketed for datacenters and TPP 3000 < 4800, so Note 2 excludes it (it would otherwise be b.1)"
+   },
+   "eccn-3a090-16": {
+    "letter": "A",
+    "working": "Note 2 excludes only non-datacenter items that also have TPP < 4800; TPP 5000 >= 4800, so a.1 applies"
+   },
+   "licence-review-01": {
+    "letter": "A",
+    "working": "TPP 20,500 < 21,000 and DRAM 6,100 < 6,500, China end user, (dd) info given: case-by-case"
+   },
+   "licence-review-02": {
+    "letter": "B",
+    "working": "TPP 21,000 is not less than 21,000, so case-by-case unavailable; presumption of denial"
+   },
+   "licence-review-03": {
+    "letter": "A",
+    "working": "TPP 20,999 < 21,000 and DRAM 6,499 < 6,500, China end user, (dd) information given: case-by-case"
+   },
+   "licence-review-04": {
+    "letter": "B",
+    "working": "TPP 19,000 < 21,000 but DRAM 6,500 is not < 6,500; China is D:5, so presumption of denial"
+   },
+   "licence-review-05": {
+    "letter": "B",
+    "working": "TPP 22,400 not < 21,000; other applications to D:5 get presumption of denial"
+   },
+   "licence-review-06": {
+    "letter": "B",
+    "working": "Bandwidth 7,000 is not less than 6,500; presumption of denial"
+   },
+   "licence-review-07": {
+    "letter": "A",
+    "working": "TPP 20,000 < 21,000 and DRAM 6,000 < 6,500, Macau end user, (dd) information given: case-by-case"
+   },
+   "licence-review-08": {
+    "letter": "B",
+    "working": "TPP 21,100 is not < 21,000; China is D:5, so presumption of denial"
+   },
+   "licence-review-09": {
+    "letter": "A",
+    "working": "TPP 18,000 < 21,000 and DRAM 4,800 < 6,500, (dd) info given: case-by-case"
+   },
+   "licence-review-10": {
+    "letter": "A",
+    "working": "TPP 20,900 < 21,000, bandwidth 6,300 < 6,500, Macau end user, (dd) info supplied: case-by-case"
+   },
+   "chip-tariff-01": {
+    "letter": "A",
+    "working": "TPP 15,200 in (14,000, 17,500) and DRAM 4,700 in (4,500, 5,000); 8473.30 is listed: 9903.79.01"
+   },
+   "chip-tariff-02": {
+    "letter": "B",
+    "working": "TPP 20,900 in band (2) but DRAM 6,300 is not < 6,200; band (1) TPP fails"
+   },
+   "chip-tariff-03": {
+    "letter": "A",
+    "working": "TPP 20,900 in (20,800, 21,100), DRAM 6,000 in (5,800, 6,200); 8473.30 listed: 9903.79.01"
+   },
+   "chip-tariff-04": {
+    "letter": "B",
+    "working": "TPP 14,000 is not greater than 14,000; not in band 2 either; 8473.30 listed in (b): 9903.79.02"
+   },
+   "chip-tariff-05": {
+    "letter": "B",
+    "working": "TPP 17,500 is not less than 17,500, and not above 20,800 for band (2): 9903.79.02"
+   },
+   "chip-tariff-06": {
+    "letter": "B",
+    "working": "TPP 16,000 in band (1) but DRAM 5,000 is not < 5,000; band (2) fails"
+   },
+   "chip-tariff-07": {
+    "letter": "B",
+    "working": "TPP 19,000 outside both TPP bands: 9903.79.02"
+   },
+   "chip-tariff-08": {
+    "letter": "B",
+    "working": "TPP 15,000 in band 1 but bandwidth 6,000 not < 5,000; TPP outside band 2: 9903.79.02"
+   },
+   "chip-tariff-09": {
+    "letter": "A",
+    "working": "TPP 21,000 in (20,800, 21,100) and DRAM 5,900 in (5,800, 6,200): band (2), 9903.79.01"
+   },
+   "chip-tariff-10": {
+    "letter": "B",
+    "working": "TPP 21,100 is not < 21,100; band (1) TPP fails"
+   },
+   "chip-tariff-11": {
+    "letter": "A",
+    "working": "TPP 14,001 in (14,000, 17,500), DRAM 4,999 in (4,500, 5,000): 9903.79.01"
+   },
+   "chip-tariff-12": {
+    "letter": "A",
+    "working": "TPP 20,801 in (20,800, 21,100) and bandwidth 5,801 in (5,800, 6,200): 9903.79.01"
+   },
+   "eu-notification-01": {
+    "letter": "A",
+    "working": "3e25 > 1e25, so presumed to meet 51(1)(a): notify without delay and within two weeks"
+   },
+   "eu-notification-02": {
+    "letter": "D",
+    "working": "1e25 is not greater than 1e25 and no evaluation finding, so 51(1)(a) is not met"
+   },
+   "eu-notification-03": {
+    "letter": "A",
+    "working": "1.2e25 > 1e25, presumed to meet 51(1)(a); notify without delay, within two weeks"
+   },
+   "eu-notification-04": {
+    "letter": "D",
+    "working": "8e24 not > 1e25, so no presumption under 51(2) and no 52(1) notification"
+   },
+   "eu-notification-05": {
+    "letter": "A",
+    "working": "5e26 > 1e25, so presumed to meet 51(1)(a): notify without delay and within two weeks"
+   },
+   "eu-notification-06": {
+    "letter": "D",
+    "working": "9.9e24 is not greater than 1e25, so no notification"
+   },
+   "eu-notification-07": {
+    "letter": "A",
+    "working": "1.01e25 > 1e25, presumed to meet 51(1)(a); notify without delay, within two weeks"
+   },
+   "eu-notification-08": {
+    "letter": "D",
+    "working": "2e24 not > 1e25, so no presumption and no notification"
+   },
+   "catastrophic-size-01": {
+    "letter": "B",
+    "working": "70 > 50 people; property $800M (equity loss excluded) is not more than $1B"
+   },
+   "catastrophic-size-02": {
+    "letter": "C",
+    "working": "50 is not more than 50; $1.2B > $1B"
+   },
+   "catastrophic-size-03": {
+    "letter": "B",
+    "working": "51 > 50 people; $1,000,000,000 is not more than $1,000,000,000"
+   },
+   "catastrophic-size-04": {
+    "letter": "A",
+    "working": "40 not > 50; property 900M not > 1B, and the 300M equity loss is excluded"
+   },
+   "catastrophic-size-05": {
+    "letter": "D",
+    "working": "120 > 50; $2.5B > $1B"
+   },
+   "catastrophic-size-06": {
+    "letter": "B",
+    "working": "100 > 50; $600M is not > $1B"
+   },
+   "catastrophic-size-07": {
+    "letter": "A",
+    "working": "30 not > 50; $1,000,000,000 not more than $1B; $500M equity loss excluded"
+   },
+   "catastrophic-size-08": {
+    "letter": "D",
+    "working": "60 > 50; 1,001,000,000 > 1,000,000,000"
+   },
+   "catastrophic-size-09": {
+    "letter": "A",
+    "working": "50 is not more than 50; $1B is not more than $1B"
+   },
+   "catastrophic-size-10": {
+    "letter": "C",
+    "working": "45 is not more than 50; $1.5B > $1B"
+   }
+  }
+ },
+ "flags": {
+  "B": [
+   {
+    "id": "licence-review-04",
+    "fault": "Neither the facts nor the quoted rule text says China is in Country Group D:5. The presumption-of-denial sentence is keyed to Macau and D:5 destinations, so answer B relies on outside knowledge that China is D:5. If China were not D:5, the quoted text would set no default policy. Minor; the intended and legally correct answer is still B.",
+    "would_change_answer": false
+   },
+   {
+    "id": "licence-review-08",
+    "fault": "Same gap as licence-review-04: China's membership in Country Group D:5 is not stated in the facts or quoted rule text, and the presumption-of-denial sentence depends on it. Minor; the answer stays B.",
+    "would_change_answer": false
+   },
+   {
+    "id": "frontier-model-12",
+    "fault": "Very minor: no date is given, yet the quoted NY text is 'in effect January 1, 2027'. The question asks under the Act as amended, so the answer is A either way.",
+    "would_change_answer": false
+   },
+   {
+    "id": "eccn-3a090-15",
+    "fault": "Minor wording risk. The question asks which paragraph the chip 'meets'. Read as a bare parametric match, b.1 (option C) is met numerically (TPP 3000 in 2400..<4800, PD 2.5 in 1.6..<5.92). Note 2 in the rule text removes 3A090.a and b for items not designed or marketed for datacenters with TPP under 4800, so E is the intended and better answer, but 'meet' invites the C reading.",
+    "would_change_answer": false
+   },
+   {
+    "id": "licence-review-05",
+    "fault": "The answer (B, presumption of denial) needs China to be in Country Group D:5, or otherwise caught by the 'all other applications' sentence. Neither the facts nor the quoted rule text says China is in D:5; the quoted sentence names only Macau and D:5 destinations. A reader limited to the file can rule out A (TPP 22,400 is not below 21,000) and C (nothing supports approval) but cannot derive B from the text alone. It is also not stated whether the 'all other' sentence covers an end user located in China at all.",
+    "would_change_answer": false
+   }
+  ],
+  "A": [
+   {
+    "id": "eccn-3a090-15",
+    "fault": "Minor wording risk. 'Which paragraphs ... does the chip meet' can be read as 'which paragraphs' numeric parameters does the chip satisfy'. On that reading the chip meets b.1 (TPP 3000 in [2400, 4800), PD 2.5 in [1.6, 5.92)) and a reader would pick C. Note 2 is quoted and says a and b do not apply to this chip, so E is the better answer. Asking which paragraph, if any, 'covers' or 'applies to' the chip would remove the doubt.",
+    "would_change_answer": false
+   },
+   {
+    "id": "large-developer-02",
+    "fault": "The facts do not say whether the parent's $290,000,000 is its own standalone revenue or a consolidated figure that already includes its subsidiaries' $240,000,000 (180M + 60M). Read as standalone, which is the natural reading and fits 'none of that revenue came from sales among them', the total is $530M and the answer is A. Read as consolidated, the group total is $290M and the answer flips to B. Fix: say that each figure is that company's own revenue, excluding its subsidiaries.",
+    "would_change_answer": true
+   },
+   {
+    "id": "eccn-3a090-14",
+    "fault": "Minor wording issue. 'Which ... paragraphs ... does the chip meet?' could be read as 'whose technical parameters does it satisfy'. On that reading the chip meets a.2 (TPP 4000 >= 1600, PD 6.5 >= 5.92), giving B. Note 2 says 3A090.a and .b do not apply, so E is the better answer. Fix: ask which paragraph, if any, covers or controls the chip.",
+    "would_change_answer": false
+   },
+   {
+    "id": "licence-review-05",
+    "fault": "Minor missing fact. The rule text applies a presumption of denial to 'all other applications' only for Macau or Country Group D:5 destinations (or entities headquartered there). Neither the facts nor the rule text say China is in Country Group D:5. B rests on that outside fact, which is true under the EAR. Without it, nothing in the file sets a policy for this application. Adding 'China is in Country Group D:5' to the facts or the rule text would close the gap.",
+    "would_change_answer": false
+   },
+   {
+    "id": "frontier-model-12",
+    "fault": "The question asks about the model 'as it now stands' under amended GBL 1420(9). The rule text says that section takes effect January 1, 2027, but the facts give no 'today' date, while the sibling question large-developer-12 does. A reader who takes 'now' to be a date before 2027 could say the amended definition does not apply yet. The question names the amended Act, so A still stands. Fix: add a 2027 date to the facts.",
+    "would_change_answer": false
+   },
+   {
+    "id": "licence-review-04",
+    "fault": "The presumption-of-denial sentence covers only Macau and Country Group D:5 destinations. Neither the facts nor the rule text say China is in D:5. Answer B depends on that outside fact, which is true under the EAR. Fix: state it in the facts or the rule text.",
+    "would_change_answer": false
+   },
+   {
+    "id": "licence-review-08",
+    "fault": "Same gap as licence-review-04: answer B depends on China being in Country Group D:5, and neither the facts nor the rule text say so. Fix: state it.",
+    "would_change_answer": false
+   },
+   {
+    "id": "compute-figures-08",
+    "fault": "The question asks which 'figures' the model 'meets', and the model is at exactly 1e26. A reader could take 'meets the 10^26 figure' to mean 'reaches it', which gives E. The rule text's 'greater than' for California and New York gives C. Fix: ask which threshold tests the model satisfies, not which figures it meets.",
+    "would_change_answer": false
+   }
+  ],
+  "C": []
+ }
+}

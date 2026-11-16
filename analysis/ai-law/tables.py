@@ -39,9 +39,12 @@ print("|---|---|---|---|")
 for name, b in GROUPS:
     a = b["all_questions"]
     print(f"| {name} | {cell(a['accuracy']['memory'])} | {cell(a['accuracy']['text'])} | {a['difference_points']['text_minus_memory']} ({ci(a, 'text_minus_memory')}) |")
-print("\nintervals for accuracy, 100 questions:")
+print("\nALL 100 QUESTIONS WITH INTERVALS\n")
+print("| Model | From memory (95% interval) | With the rule text (95% interval) | Difference in points (95% interval) |")
+print("|---|---|---|---|")
 for name, b in GROUPS:
-    print(f"  {name}: memory {ci(b['all_questions'], 'memory')} | text {ci(b['all_questions'], 'text')}")
+    a = b["all_questions"]
+    print(f"| {name} | {cell(a['accuracy']['memory'])}, {ci(a, 'memory')} | {cell(a['accuracy']['text'])}, {ci(a, 'text')} | {a['difference_points']['text_minus_memory']} ({ci(a, 'text_minus_memory')}) |")
 
 print(f"\nTHE {N} SEARCH QUESTIONS: ALL THREE ARMS\n")
 print("| Model | From memory | With web search | With the rule text |")
@@ -49,10 +52,15 @@ print("|---|---|---|---|")
 for name, b in GROUPS:
     a = b["search_questions"]["accuracy"]
     print(f"| {name} | {cell(a['memory'])} | {cell(a['search'])} | {cell(a['text'])} |")
-print(f"\ndifferences on the {N} search questions, points (95% interval):")
+print(f"\nTHE {N} SEARCH QUESTIONS WITH INTERVALS\n")
+print("| Model | From memory | With web search | With the rule text | Search minus memory | Text minus search |")
+print("|---|---|---|---|---|---|")
 for name, b in GROUPS:
-    s = b["search_questions"]
-    print(f"  {name}: " + " | ".join(f"{k} {v} ({ci(s, k)})" for k, v in s["difference_points"].items()) + f" | search accuracy interval {ci(s, 'search')}")
+    q = b["search_questions"]
+    a, d = q["accuracy"], q["difference_points"]
+    print(f"| {name} | {cell(a['memory'])}, {ci(q, 'memory')} | {cell(a['search'])}, {ci(q, 'search')} | {cell(a['text'])}, {ci(q, 'text')} | "
+          f"{d['search_minus_memory']} ({ci(q, 'search_minus_memory')}) | {d['text_minus_search']} ({ci(q, 'text_minus_search')}) |")
+print("  pooled text minus memory on these questions:", S["all_models"]["search_questions"]["difference_points"]["text_minus_memory"], ci(S["all_models"]["search_questions"], "text_minus_memory"))
 
 print("\nBOUNDARY AND OTHER QUESTIONS\n")
 print("| Questions | From memory | With web search | With the rule text |")
@@ -87,19 +95,31 @@ for name, b in GROUPS:
 print("\nFIRST LETTER SCORED INSTEAD OF LAST (exploratory)\n")
 for name, b in GROUPS:
     f1 = b["first_letter_scoring"]
-    print(f"  {name}: memory {cell(f1['memory'])} | search {cell(f1['search'])} | text {cell(f1['text'])} | replies with two letters {f1['replies_with_two_letters']}")
+    print(f"  {name}: memory {cell(f1['memory'])} | search {cell(f1['search'])} | text {cell(f1['text'])} | replies with two letters {b['replies_with_two_letters']}")
+print("\nREPLIES WITH A THINKING BLOCK\n")
+print("| Model | From memory | With web search | With the rule text |")
+print("|---|---|---|---|")
+for name, b in GROUPS:
+    t = b["replies_with_a_thinking_block"]
+    print(f"| {name} | {cell(t['memory'])} | {cell(t['search'])} | {cell(t['text'])} |")
+print("\nWITHOUT QUESTIONS OPEN TO A SECOND READING (all four models)\n")
+print("| Left out | From memory, all questions | With the rule text, all questions | From memory, search questions | With web search | With the rule text, search questions |")
+print("|---|---|---|---|---|---|")
+for key, w in S["without_open_questions"].items():
+    print(f"| {key} ({len(w['questions_left_out'])}) | {cell(w['all_questions']['memory'])} | {cell(w['all_questions']['text'])} | {cell(w['search_questions']['memory'])} | {cell(w['search_questions']['search'])} | {cell(w['search_questions']['text'])} |")
 
 print("\nCOST (US dollars at list price) AND MEAN TOKENS PER CALL\n")
 print("| Model | Memory, 3 samples | Rule text, 3 samples | Web search, 2 samples | Total |")
 print("|---|---|---|---|---|")
 for name, b in GROUPS:
     c = b["cost_usd"]
-    print(f"| {name} | {c['core/memory/medium']:.2f} | {c['core/text/medium']:.2f} | {c['search/search/medium']:.2f} | {sum(c.values()):.2f} |")
-print("mean tokens, all four:", json.dumps(S["all_models"]["mean_tokens"]))
+    print(f"| {name} | {c['core/memory/medium']:.2f} | {c['core/text/medium']:.2f} | {c['search/search/medium']:.2f} | {c['total']:.2f} |")
+print("per call, all four:", json.dumps(S["all_models"]["per_call"]))
+print("search use, all four:", json.dumps(S["all_models"]["search_use"]))
 print(f"\nTotal in results.jsonl: ${S['total_cost_usd']}; calls (UTC): {S['calls_utc']}")
 print("\nINTEGRITY", json.dumps(S["integrity"]))
 print("\nMEMORY MISSES", json.dumps(S["memory_misses_by_question"]))
-print("\nSEARCH MISSES", json.dumps(S["search_misses_by_question"]))
+print("\nSEARCH MISSES", json.dumps(S["search_misses"]))
 print("\nTEXT MISSES", json.dumps(S["text_misses"]))
-print("\nRESULT DOMAINS", json.dumps(S["search_result_domains"]))
-print("CITED DOMAINS", json.dumps(S["search_cited_domains"]))
+print("\nRESULT SITES", json.dumps(S["search_result_sites"]))
+print("CITED SITES", json.dumps(S["search_cited_sites"]))

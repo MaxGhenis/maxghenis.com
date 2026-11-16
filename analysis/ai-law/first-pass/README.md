@@ -17,7 +17,7 @@ A small exploratory run that came before the larger test in the parent folder. I
 |---|---|
 | `items.json` | The questions, options, rule text and key |
 | `results.jsonl` | One row per call: model, question, wording, condition, parsed answer, token counts, list-price cost, and the first 700 characters of the reply |
-| `run_pilot.py` | The runner, as it ran |
+| `run_pilot.py` | The runner, as it ran (one docstring line reworded since) |
 | `score_pilot.py` | The scorer that ran with it |
 | `check_key.py` | Recomputes the key: `python3 check_key.py` |
 | `leans.json` | Which options each leaned wording points toward |

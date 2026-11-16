@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 481" width="760" height="481" font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif" role="img" aria-label="Share of right answers for four Claude models from memory, with web search and with the rule text, on the 82 questions all three versions ran on, and for questions with a figure exactly on a threshold against the rest">
 <rect width="100%" height="100%" fill="#fcfcfb"/>
-<text x="16.0" y="26.0" font-size="16" fill="#0b0b0b" text-anchor="start" font-weight="600">Right answers on AI law questions</text>
-<text x="16.0" y="46.0" font-size="13" fill="#52514e" text-anchor="start">Share of replies that match the answer key, on the 82 questions that all three versions ran on</text>
+<text x="16.0" y="26.0" font-size="16" fill="#0b0b0b" text-anchor="start" font-weight="600">Replies that match the answer key</text>
+<text x="16.0" y="46.0" font-size="13" fill="#52514e" text-anchor="start">Share of replies, on the 82 questions that all three versions ran on</text>
 <circle cx="24.0" cy="69.0" r="5.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
 <text x="37.0" y="73.0" font-size="13" fill="#0b0b0b" text-anchor="start">From memory</text>
 <path d="M140.7 61.5 L148.2 69.0 L140.7 76.5 L133.2 69.0 Z" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
@@ -27,11 +27,11 @@
 <rect x="576.5" y="146.5" width="11" height="11" rx="1.5" fill="#1baf7a" stroke="#fcfcfb" stroke-width="2"/>
 </g>
 <text x="320.0" y="190.5" font-size="13" fill="#0b0b0b" text-anchor="end">Sonnet 5.5</text>
-<text x="606.0" y="190.5" font-size="13" fill="#52514e" text-anchor="start">94.7 · 95.7 · 100.0</text>
-<g><title>Sonnet 5.5: from memory: 233 of 246 (94.7%); with web search: 157 of 164 (95.7%); with the rule text: 246 of 246 (100.0%)</title>
+<text x="606.0" y="190.5" font-size="13" fill="#52514e" text-anchor="start">94.7 · 95.1 · 100.0</text>
+<g><title>Sonnet 5.5: from memory: 233 of 246 (94.7%); with web search: 156 of 164 (95.1%); with the rule text: 246 of 246 (100.0%)</title>
 <line x1="495.1" x2="582.0" y1="186.0" y2="186.0" stroke="#52514e" stroke-width="1.5"/>
 <circle cx="495.1" cy="186.0" r="5.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
-<path d="M511.5 178.5 L519.0 186.0 L511.5 193.5 L504.0 186.0 Z" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<path d="M501.6 178.5 L509.1 186.0 L501.6 193.5 L494.1 186.0 Z" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
 <rect x="576.5" y="180.5" width="11" height="11" rx="1.5" fill="#1baf7a" stroke="#fcfcfb" stroke-width="2"/>
 </g>
 <text x="320.0" y="224.5" font-size="13" fill="#0b0b0b" text-anchor="end">Opus 5.5</text>
@@ -51,11 +51,11 @@
 <rect x="569.9" y="248.5" width="11" height="11" rx="1.5" fill="#1baf7a" stroke="#fcfcfb" stroke-width="2"/>
 </g>
 <text x="320.0" y="292.5" font-size="13" fill="#0b0b0b" text-anchor="end">All four models</text>
-<text x="606.0" y="292.5" font-size="13" fill="#52514e" text-anchor="start">95.7 · 97.9 · 99.9</text>
-<g><title>All four models: from memory: 942 of 984 (95.7%); with web search: 642 of 656 (97.9%); with the rule text: 983 of 984 (99.9%)</title>
+<text x="606.0" y="292.5" font-size="13" fill="#52514e" text-anchor="start">95.7 · 97.7 · 99.9</text>
+<g><title>All four models: from memory: 942 of 984 (95.7%); with web search: 641 of 656 (97.7%); with the rule text: 983 of 984 (99.9%)</title>
 <line x1="511.5" x2="580.4" y1="288.0" y2="288.0" stroke="#52514e" stroke-width="1.5"/>
 <circle cx="511.5" cy="288.0" r="5.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
-<path d="M547.6 280.5 L555.1 288.0 L547.6 295.5 L540.1 288.0 Z" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<path d="M544.3 280.5 L551.8 288.0 L544.3 295.5 L536.8 288.0 Z" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
 <rect x="574.9" y="282.5" width="11" height="11" rx="1.5" fill="#1baf7a" stroke="#fcfcfb" stroke-width="2"/>
 </g>
 <text x="16.0" y="357.0" font-size="13" fill="#0b0b0b" text-anchor="start" font-weight="600">By kind of question, all four models</text>
@@ -69,11 +69,11 @@
 <line x1="582.0" x2="582.0" y1="383" y2="451" stroke="#e1e0d9"/>
 <text x="582.0" y="467.0" font-size="12" fill="#52514e" text-anchor="middle">100%</text>
 <text x="320.0" y="404.5" font-size="13" fill="#0b0b0b" text-anchor="end">Figure exactly on a threshold (23 questions)</text>
-<text x="606.0" y="404.5" font-size="13" fill="#52514e" text-anchor="start">90.6 · 95.7 · 99.6</text>
-<g><title>Figure exactly on a threshold (23 questions): from memory: 250 of 276 (90.6%); with web search: 176 of 184 (95.7%); with the rule text: 275 of 276 (99.6%)</title>
+<text x="606.0" y="404.5" font-size="13" fill="#52514e" text-anchor="start">90.6 · 95.1 · 99.6</text>
+<g><title>Figure exactly on a threshold (23 questions): from memory: 250 of 276 (90.6%); with web search: 175 of 184 (95.1%); with the rule text: 275 of 276 (99.6%)</title>
 <line x1="427.8" x2="575.4" y1="400.0" y2="400.0" stroke="#52514e" stroke-width="1.5"/>
 <circle cx="427.8" cy="400.0" r="5.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
-<path d="M511.5 392.5 L519.0 400.0 L511.5 407.5 L504.0 400.0 Z" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<path d="M501.6 392.5 L509.1 400.0 L501.6 407.5 L494.1 400.0 Z" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
 <rect x="569.9" y="394.5" width="11" height="11" rx="1.5" fill="#1baf7a" stroke="#fcfcfb" stroke-width="2"/>
 </g>
 <text x="320.0" y="438.5" font-size="13" fill="#0b0b0b" text-anchor="end">Every other question (59 questions)</text>

@@ -162,9 +162,9 @@ sizes["accuracy"] = draw(
     "ai-law-accuracy",
     f"Share of right answers for four Claude models from memory, with web search and with the rule text, on the {len(SEARCH)} questions all three versions ran on, "
     "and for questions with a figure exactly on a threshold against the rest",
-    (["Right answers on AI law questions"], ["Right answers on", "AI law questions"]),
-    ([f"Share of replies that match the answer key, on the {len(SEARCH)} questions that all three versions ran on"],
-     ["Share of replies that match the key,", f"on the {len(SEARCH)} questions all three versions ran on"]),
+    (["Replies that match the answer key"], ["Replies that match", "the answer key"]),
+    ([f"Share of replies, on the {len(SEARCH)} questions that all three versions ran on"],
+     ["Share of replies, on the", f"{len(SEARCH)} questions all three versions ran on"]),
     [("By model", [(NAMES[m], S["by_model"][m]["search_questions"]["accuracy"]) for m in models] + [("All four models", A["accuracy"])]),
      ("By kind of question, all four models", [(f"Figure exactly on a threshold ({n_boundary} questions)", A["boundary"]),
                                                (f"Every other question ({len(SEARCH) - n_boundary} questions)", A["other"])])],
@@ -173,8 +173,8 @@ order = sorted(FAMILIES, key=lambda f: (S["by_family"][f]["search_questions_accu
 sizes["families"] = draw(
     "ai-law-families",
     f"Share of right answers by rule, four Claude models pooled, from memory, with web search and with the rule text, on the {len(SEARCH)} questions all three versions ran on",
-    (["Right answers by rule"], ["Right answers by rule"]),
-    ([f"Share of replies that match the answer key, four models pooled, on the {len(SEARCH)} questions all three versions ran on"],
+    (["Replies that match the answer key, by rule"], ["Replies that match", "the answer key, by rule"]),
+    ([f"Share of replies, four models pooled, on the {len(SEARCH)} questions that all three versions ran on"],
      ["Four models pooled, on the", f"{len(SEARCH)} questions all three versions ran on"]),
     [(None, [(f"{FAMILIES[f].split(' (')[0]} ({S['by_family'][f]['search_questions']} questions)", S["by_family"][f]["search_questions_accuracy"]) for f in order])],
 )
