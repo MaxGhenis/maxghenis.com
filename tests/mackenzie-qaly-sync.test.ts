@@ -25,7 +25,7 @@ function fixture() {
   for (const path of jsonSources) put(source, path, '{"TEST_FIXTURE":true}\n');
   put(source, 'results/gift_ledger.csv', 'name,estimated_nominal_usd\nTEST_FIXTURE,1\n');
   put(source, 'docs/index.pdf', '%PDF-1.7\nTEST_FIXTURE');
-  put(source, 'docs/index.html', '<header id="title-block-header"><h1 class="title">Title</h1><p class="subtitle">Subtitle</p><p>Author</p></header><main class="content"><script>unsafe()</script><img src="../results/figure.png"><img src="index_files/chart.png"></main>');
+  put(source, 'docs/index.html', '<header id="title-block-header"><h1 class="title">Title</h1><p class="subtitle">Subtitle</p><p>Author</p></header><main class="content"><script>unsafe()</script><img src="../results/figure.png"><img src="index_files/chart.png"><a href="./index-preview.html#cell-1">Notebook</a></main>');
   put(source, 'docs/results/figure.png', Buffer.from([0, 1, 2, 3]));
   put(source, 'docs/index_files/chart.png', Buffer.from([5, 6, 7]));
   return { source, destination };
@@ -46,6 +46,7 @@ describe('QALY source sync', () => {
     expect(fragment).not.toContain('<h1');
     expect(fragment).toContain('/paper-assets/results/figure.png');
     expect(fragment).toContain('/paper-assets/index_files/chart.png');
+    expect(fragment).toContain('https://maxghenis.github.io/mackenzie-scott-qaly/index-preview.html#cell-1');
     expect(run(source, destination, ['--check']).status).toBe(0);
     writeFileSync(json, '{"old":true}');
     const result = run(source, destination, ['--check']);

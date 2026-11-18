@@ -24,6 +24,8 @@ export function paperFragment(html) {
       '$1/mackenzie-scott-qaly/paper-assets/results/')
     .replace(/(\b(?:src|href)\s*=\s*["'])(?:\.\/)?index_files\//gi,
       '$1/mackenzie-scott-qaly/paper-assets/index_files/')
+    .replace(/(\bhref\s*=\s*["'])(?:\.\/)?index-preview\.html(?=["'#?])/gi,
+      '$1https://maxghenis.github.io/mackenzie-scott-qaly/index-preview.html')
     .replace(/[ \t]+$/gm, '') + '\n';
 }
 
