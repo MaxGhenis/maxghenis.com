@@ -62,7 +62,8 @@
 <p>Scott publishes no aggregate dollars-by-cause breakdown, but she publishes something more granular: a gift-level database listing every recipient organization, its self-reported focus areas, and — for 2,035 of 2,711 gifts ($17.46B, about two-thirds of the nominal total) — the dollar amount. Each organization’s dollars are split equally across its focus areas; the database’s 53 areas map onto the model’s 14 intervention archetypes under a documented, sync-tested crosswalk.</p>
 <p>I distribute each period’s undisclosed residual across its undisclosed gifts in proportion to recipients’ pre-gift IRS Form 990 total revenue <span class="citation" data-cites="propublica2026">(<a href="#ref-propublica2026" role="doc-biblioref">ProPublica 2026</a>)</span>, raised to an elasticity fit on the disclosed pairs. Scott’s essays supply the period totals. I use the latest filing year strictly before the gift year to avoid including the gift itself in revenue.</p>
 <p>Across 1,314 disclosed gift–filing pairs, log gift size rises with log revenue with slope 0.55 (R² 0.53). In this matched sample, a 10× larger organization receives about 3.6× as much money. The fit covers 1,314 of 2,035 disclosed gifts and 2,711 total gifts, treats repeated gifts to an organization as independent, and pools years. Of the 676 undisclosed gifts, 287 (42.5%) lack a usable filing and receive their period’s median weight. Those gifts receive $2.92 billion nominal, or 32.6% of imputed dollars. This descriptive fit supplies the imputation weights; it does not establish predictive accuracy for undisclosed gifts.</p>
-<p>The matching pipeline links recipients to tax filers by name, then applies corrections that cite recipient websites and filings. The November 16, 2026 review corrected 21 wrong identities and replaced three related-entity revenue proxies. The <a href="https://github.com/MaxGhenis/mackenzie-scott-qaly/blob/main/data/yieldgiving/match_audit.jsonl">source-linked overlay</a> preserves each correction and its evidence; the review does not establish an error rate for the remaining matches. The <a href="https://github.com/MaxGhenis/mackenzie-scott-qaly/blob/main/results/gift_ledger.csv">gift-level ledger</a> separates disclosed and model-imputed nominal amounts and records recipient identity, selected pre-gift revenue, source links and fallback reasons. The <a href="https://github.com/MaxGhenis/mackenzie-scott-qaly/blob/main/web/matching_diagnostics.json">matching summary</a> reports filing coverage and the imputed dollars that use fallback weights. Relative to disclosed-only allocation, imputation moves each cause share by at most 1.5 percentage points under these assumptions.</p>
+<p>The model matches recipients to Form 990 filers by name and applies corrections backed by recipient websites and filings. To estimate organization size, it uses the operating chapter for Junior Achievement of the Michigan Great Lakes, the parent nonprofit for Mercy Housing, and the charitable foundation for Invest Detroit. The legal payee of Scott’s gift remains unverified in each case. <a href="https://github.com/MaxGhenis/mackenzie-scott-qaly/blob/main/data/yieldgiving/match_audit.jsonl">Form 990 match records</a>.</p>
+<p>The gift-level ledger separates disclosed and imputed nominal amounts and records identity and filing sources, selected pre-gift revenue, and fallback reasons. The matching summary reports how many gifts have usable filings and how many imputed dollars use fallback weights. Relative to disclosed-only allocation, imputation moves each cause share by at most 1.5 percentage points under these assumptions. <a href="https://github.com/MaxGhenis/mackenzie-scott-qaly/blob/main/results/gift_ledger.csv">Gift-level ledger</a> · <a href="https://github.com/MaxGhenis/mackenzie-scott-qaly/blob/main/web/matching_diagnostics.json">Matching summary</a>.</p>
 </section>
 <section id="delivery-geography" class="level2">
 <h2 class="anchored" data-anchor-id="delivery-geography">Delivery geography</h2>
@@ -458,12 +459,12 @@ Figure&nbsp;3: What drives the spread: Spearman rank correlations between each i
 </section>
 <section id="allocation-corrections" class="level2">
 <h2 class="anchored" data-anchor-id="allocation-corrections">Allocation corrections</h2>
-<p>The July 2026 geography audit moved the routed global-health share from 4.93% to 4.82%, the median from about 205,000 to 201,923 QALYs, and the blended figure from about $148,000 to $150,067 per QALY. The repository preserves these historical allocations as v1.0 and v1.1, with parameters at tags <a href="https://github.com/MaxGhenis/mackenzie-scott-qaly/tree/v2026.07.20"><code>v2026.07.20</code></a> and <a href="https://github.com/MaxGhenis/mackenzie-scott-qaly/tree/v2026.07.22"><code>v2026.07.22</code></a>.</p>
+<p>The July 2026 geography audit moved the routed global-health share from 4.93% to 4.82%, the median from 203,949 to 201,923 QALYs, and the blended figure from $148,577 to $150,067 per QALY. The repository preserves these historical allocations as v1.0 and v1.1. <a href="https://github.com/MaxGhenis/mackenzie-scott-qaly/blob/v2026.07.20/results/summary.json">July 20 results</a> · <a href="https://github.com/MaxGhenis/mackenzie-scott-qaly/blob/v2026.07.22/results/summary.json">July 22 results</a>.</p>
 <p>The November 16, 2026 Form 990 corrections produce the current v1.2 allocation: 4.91% for global health, a median of 204,804 QALYs, and $147,956 per QALY. The browser version offers all three allocations for comparison.</p>
 </section>
 <section id="corrections-history" class="level2">
 <h2 class="anchored" data-anchor-id="corrections-history">Corrections history</h2>
-<p>The model reached this state through a series of public revisions — counting a revision as a committed change that moved the headline — and the trajectory is itself evidence about the method. As recorded in the repository history:</p>
+<p>The repository records the following changes in the median estimate.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -489,23 +490,22 @@ Figure&nbsp;3: What drives the spread: Spearman rank correlations between each i
 <td>author + model</td>
 </tr>
 <tr class="odd">
-<td>Health dollars had been priced at U.S. anchors regardless of delivery location</td>
-<td>~70,000 → ~205,000</td>
+<td>Price internationally delivered health dollars at global-health anchors (v1.0)</td>
+<td>~70,000 → ~204,000</td>
 <td>a reader</td>
 </tr>
 <tr class="even">
-<td>Two-model geography audit of “global”-listed organizations (tags v2026.07.20 → v2026.07.22)</td>
-<td>~205,000 → ~202,000</td>
+<td>Revise the service shares of organizations listing “global” (v1.1)</td>
+<td>~204,000 → ~202,000</td>
 <td>model audit</td>
 </tr>
 <tr class="odd">
-<td>November 16, 2026: correct 21 Form 990 identities and three related-entity revenue proxies (v1.2)</td>
+<td>Correct 21 Form 990 identities and revise the revenue inputs for three related entities (v1.2, November 16, 2026)</td>
 <td>~202,000 → 205,000</td>
 <td>source-linked identity review</td>
 </tr>
 </tbody>
 </table>
-<p>The repository and public tool document the corrections; the final column names who identified each issue.</p>
 </section>
 </section>
 <section id="construction-and-auditability" class="level1">
@@ -553,7 +553,7 @@ Constellation Fund. 2026. <em>2025 Investment Report</em>. <a href="https://cons
 Finkelstein, Amy, Sarah Taubman, Bill Wright, et al. 2012. <span>“The <span>O</span>regon Health Insurance Experiment: Evidence from the First Year.”</span> <em>Quarterly Journal of Economics</em> 127 (3): 1057–106. <a href="https://doi.org/10.1093/qje/qjs020">https://doi.org/10.1093/qje/qjs020</a>.
 </div>
 <div id="ref-givewell2024cash" class="csl-entry" role="listitem">
-GiveWell. 2024. <em>Re-Evaluating the Impact of Unconditional Cash Transfers</em>. <a href="https://blog.givewell.org/2024/11/12/re-evaluating-the-impact-of-unconditional-cash-transfers/" class="uri">Https://blog.givewell.org/2024/11/12/re-evaluating-the-impact-of-unconditional-cash-transfers/</a>.
+GiveWell. 2024. <em>Re-Evaluating the Impact of Unconditional Cash Transfers</em>. <a href="https://blog.givewell.org/2024/11/12/re-evaluating-the-impact-of-unconditional-cash-transfers/">https://blog.givewell.org/2024/11/12/re-evaluating-the-impact-of-unconditional-cash-transfers/</a>.
 </div>
 <div id="ref-givewell2026impact" class="csl-entry" role="listitem">
 GiveWell. 2025. <em>Impact Estimates</em>. <a href="https://www.givewell.org/impact-estimates" class="uri">Https://www.givewell.org/impact-estimates</a>.
