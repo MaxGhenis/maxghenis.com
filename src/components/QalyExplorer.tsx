@@ -161,16 +161,16 @@ export default function QalyExplorer() {
             onChange={setCredulity}
             display={
               credulity < 0.04
-                ? "RCT-only"
+                ? "near-RCT-only"
                 : Math.abs(credulity - 0.5) < 0.04
                   ? "best guess"
                   : credulity > 0.96
-                    ? "face value"
+                    ? "near face value"
                     : credulity < 0.5
-                      ? `${Math.round((0.5 - credulity) * 200)}% toward RCT-only`
-                      : `${Math.round((credulity - 0.5) * 200)}% toward face value`
+                      ? `${Math.round((0.5 - credulity) * 200)}% toward the near-RCT-only setting`
+                      : `${Math.round((credulity - 0.5) * 200)}% toward the near-face-value setting`
             }
-            help="The default is the model's best-guess weighting of each effect by how well its study identifies causation. Slide left to count only randomized evidence; right to trust every cited effect at face value."
+            help="The default weights each effect by how well its study identifies causation. At the left endpoint, randomized studies keep their usual weight and other tiers receive 1% mean weight. At the right endpoint, all tiers receive 99.9% mean weight."
             accent
           />
           <Slider

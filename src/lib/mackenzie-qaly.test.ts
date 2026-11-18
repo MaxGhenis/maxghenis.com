@@ -193,11 +193,11 @@ describe("model end-to-end", () => {
 });
 
 describe("evidence-stance slider", () => {
-  it("stance spans RCT-only through the best guess to face value", () => {
+  it("stance spans near-RCT-only through the best guess to near face value", () => {
     const rctOnly = summarize(runModel({ n: 30000, seed: 0, credulity: 0 }));
     const best = summarize(runModel({ n: 30000, seed: 0, credulity: 0.5 }));
     const faceValue = summarize(runModel({ n: 30000, seed: 0, credulity: 1 }));
-    expect(rctOnly.median).toBeLessThan(50000); // only randomized evidence counts
+    expect(rctOnly.median).toBeLessThan(50000); // nonrandomized tiers retain 1% mean weight
     expect(best.median).toBeGreaterThan(4 * rctOnly.median);
     expect(faceValue.median).toBeGreaterThan(1.6 * best.median);
     expect(faceValue.median).toBeGreaterThan(185000); // approaches the "trust everything" figure

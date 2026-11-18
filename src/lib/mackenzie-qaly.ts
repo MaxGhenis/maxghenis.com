@@ -226,14 +226,14 @@ export interface Overrides {
   /** Central realization factor (triangular mode), clamped to [low, high]. */
   realizationMode?: number;
   /**
-   * Evidence stance in [0, 1]. 0 = study-design credibility tiers (skeptical,
-   * the default); 1 = trust every cited effect at face value (credulous). Each
-   * tier mean is interpolated toward 1.
+   * Evidence stance in [0, 1]. At 0 the nonrandomized tiers get 1% mean
+   * weight. At 0.5 (default) each tier gets its model weight. At 1 all
+   * tiers get 99.9% mean weight.
    */
   credulity?: number;
   /** Annual discount rate (default 0.03). */
   discountRate?: number;
-  /** Raw allocation weights for the 13 archetypes (normalized internally). */
+  /** Raw allocation weights for the 14 archetypes (normalized internally). */
   shares?: number[];
   n?: number;
   seed?: number;
@@ -265,10 +265,6 @@ export function runModel(overrides: Overrides = {}): ModelResult {
   const giving = overrides.totalGiving ?? p.meta.total_giving_usd;
   const rate = overrides.discountRate ?? p.meta.discount_rate;
   const floor = p.meta.cost_per_qaly_floor_usd ?? 5000;
-  // Evidence stance: 0 = RCT-only (non-randomized tiers shrink to near
-  // zero), 0.5 = the drafted best-guess tiers (default), 1 = every effect
-  // at face value. Two-sided so disagreement with the priors can point
-  // either way; the default sits at the best guess, not an extreme.
   const credulity = clamp(overrides.credulity ?? 0.5, 0, 1);
   const stanceMean = (mean: number, isRandomized: boolean): number => {
     const floor = isRandomized ? mean : 0.01;

@@ -37,9 +37,6 @@ const S = {
   frontier: 'https://www.givewell.org/impact-estimates',
   gwMetrics: 'https://blog.givewell.org/2025/08/13/givewells-2024-metrics-and-impact/',
   gwCash: 'https://blog.givewell.org/2024/11/12/re-evaluating-the-impact-of-unconditional-cash-transfers/',
-  gwBar: 'https://blog.givewell.org/2022/07/05/update-on-givewells-funding-projections/',
-  whoMalaria: 'https://www.who.int/news/item/04-12-2025-new-tools-saved-a-million-lives-from-malaria-last-year-but-progress-under-threat-as-drug-resistance-rises',
-  unIgme: 'https://www.who.int/news/item/18-03-2026-progress-in-reducing-child-deaths-slows-as-4.9-million-children-die-before-age-five',
   frontierOld: 'https://forum.effectivealtruism.org/posts/HbunzTyFPRwcYihg6/long-lasting-insecticide-treated-nets-usd3-340-per-life',
 };
 ---
@@ -178,39 +175,24 @@ const S = {
           </li>
         </ul>
         <p>
-          The model also prices the same dollars at the global-health
-          frontier. <a href={S.frontier} target="_blank" rel="noopener">GiveWell's current impact
-          estimates</a> put the 2022–2024 program averages at ~$4,000 per life
-          saved (Malaria Consortium) to ~$5,500 (AMF nets). A child death
-          averted at ~age 1 is ~25 <em>discounted</em> QALYs under this model's
-          own conventions (~65 remaining years, 3% discount, utility ~0.87), so
-          those endpoints — inflated to 2026 dollars — become roughly $175–$241
-          per QALY-equivalent; I model the benchmark as loguniform $150–$260,
-          handicapped with the same realization and credibility as Scott's
-          portfolio (and rescaled at other discount rates) so the comparison
-          is like-for-like. At the best-guess defaults, the frontier delivers
-          roughly 500× more health per marginal dollar.
+          I use <a href={S.frontier} target="_blank" rel="noopener">GiveWell’s 2022–2024 average
+          costs per life saved</a> for malaria prevention as a benchmark. Those costs ranged from
+          about $4,000 for seasonal malaria chemoprevention to $5,500 for bed nets.
+          At a 3% discount rate, averting a child death yields about 25 QALYs under the
+          model’s assumptions. After adjusting for inflation, those costs correspond to
+          $175–$241 per QALY in 2026 dollars. I allow a range of $150–$260, apply the
+          same realization factor as for Scott’s gifts, and draw a separate credibility
+          weight for the benchmark from the randomized-study tier. Under those assumptions, I estimate about
+          500 times as many QALYs per dollar as the average for Scott’s portfolio.
         </p>
         <p>
-          That multiple is a <em>marginal</em> comparison — the next dollar,
-          not the whole portfolio. Frontier-priced opportunities are scarce:
-          GiveWell directed <a href={S.gwMetrics} target="_blank" rel="noopener">$397 million in all
-          of 2024</a> and <a href={S.gwBar} target="_blank" rel="noopener">moves its
-          cost-effectiveness bar with the money it expects to raise</a> —
-          funding down to ~6× cash when flush, back up to 10× when projections
-          fell. Malaria control, the deepest frontier bucket, absorbed
-          <a href={S.whoMalaria} target="_blank" rel="noopener">$3.9 billion in 2024 against a $9.3
-          billion target, while ~610,000 people died</a>. And the implied
-          frontier counterfactual — ~105 million QALYs at the default settings
-          — would mean averting ~4.2 million child deaths, most of
-          <a href={S.unIgme} target="_blank" rel="noopener">a full year of the world's under-5
-          deaths</a>; no amount of money buys that at bed-net prices.
-          Redeploying the full $30 billion would ride up the marginal-cost
-          curve from ~500× toward the floor: direct cash,
-          the one option with effectively unbounded capacity, which
-          <a href={S.gwCash} target="_blank" rel="noopener">GiveWell now scores at 3–4× its own
-          historic benchmark</a>: in health-only terms, somewhere under
-          20–40×.
+          The return on another donation depends on which programs still need funding.
+          GiveWell directed <a href={S.gwMetrics} target="_blank" rel="noopener">$397 million
+          across all programs from February 2024 through January 2025</a>. Applying the
+          historical malaria costs to Scott’s entire portfolio would require enough
+          comparable programs to absorb tens of billions of dollars.
+          <a href={S.gwCash} target="_blank" rel="noopener">GiveWell’s separate evaluation
+          of direct cash transfers</a> counts gains in household consumption as well as health.
         </p>
 
         <h2>What this doesn't capture</h2>

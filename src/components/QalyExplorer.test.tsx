@@ -43,6 +43,8 @@ describe("explorer controls", () => {
     expect(evidence.getAttribute("aria-valuetext")).toBe("best guess");
     const help = document.getElementById(evidence.getAttribute("aria-describedby")!);
     expect(help?.textContent).toContain("study identifies causation");
+    expect(help?.textContent).toContain("other tiers receive 1% mean weight");
+    expect(help?.textContent).toContain("all tiers receive 99.9% mean weight");
     expect(getByRole(container, "button", { name: "v1.2" }).getAttribute("aria-pressed")).toBe("true");
     expect(getByRole(container, "button", { name: "Standard" }).getAttribute("aria-pressed")).toBe("true");
     await act(async () => fireEvent.click(getByRole(container, "button", { name: "v1.1" })));
@@ -80,7 +82,7 @@ describe("explorer controls", () => {
     const evidence = getByRole(container, "slider", { name: "Evidence stance" });
     await act(async () => fireEvent.change(evidence, { target: { value: "0" } }));
     await act(async () => vi.advanceTimersByTime(100));
-    expect(evidence.getAttribute("aria-valuetext")).toBe("RCT-only");
+    expect(evidence.getAttribute("aria-valuetext")).toBe("near-RCT-only");
     const chart = getByRole(container, "img", { name: /Distribution of estimated QALYs, median 9k/ });
     for (const marker of chart.querySelectorAll("line")) {
       expect(Number(marker.getAttribute("x1"))).toBeGreaterThanOrEqual(8);
