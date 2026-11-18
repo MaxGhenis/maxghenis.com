@@ -1,7 +1,9 @@
 // Generates the social card for /mackenzie-scott-qaly.
-//   bunx tsx scripts/generate-og-mackenzie.ts
+//   bun scripts/generate-og-mackenzie.ts
 // Renders an SVG (site design tokens) to a 1200x630 PNG via sharp.
 import sharp from "sharp";
+import summary from "../src/data/mackenzie-qaly-summary.json";
+import params from "../src/data/mackenzie-qaly-params.json";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 
@@ -17,6 +19,9 @@ const amber = "#f59e0b";
 const amberDark = "#d97706";
 const grid = "rgba(15,23,42,0.04)";
 
+const median = (Math.round(summary.total_qalys.median / 1000) * 1000).toLocaleString("en-US");
+const givingBillions = (params.meta.total_giving_nominal_usd / 1e9).toFixed(1);
+
 const svg = `
 <svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
   <rect width="1200" height="630" fill="${cream}"/>
@@ -31,10 +36,10 @@ const svg = `
   <text x="70" y="190" font-family="Georgia, serif" font-weight="700" font-size="68" fill="${ink}">MacKenzie Scott's giving,</text>
   <text x="70" y="268" font-family="Georgia, serif" font-weight="700" font-size="68" fill="${ink}">in QALYs</text>
 
-  <text x="70" y="430" font-family="Georgia, serif" font-weight="700" font-size="150" fill="${amberDark}">≈ 202,000</text>
+  <text x="70" y="430" font-family="Georgia, serif" font-weight="700" font-size="150" fill="${amberDark}">≈ ${median}</text>
   <text x="74" y="478" font-family="Helvetica, Arial, sans-serif" font-size="30" fill="${inkSoft}">quality-adjusted life-years of health impact</text>
 
-  <text x="70" y="556" font-family="Helvetica, Arial, sans-serif" font-size="27" fill="${inkMuted}">A GiveWell-style cost-effectiveness model of her $26.3B in philanthropy.</text>
+  <text x="70" y="556" font-family="Helvetica, Arial, sans-serif" font-size="27" fill="${inkMuted}">A GiveWell-style cost-effectiveness model of her $${givingBillions}B in philanthropy.</text>
   <text x="70" y="592" font-family="Helvetica, Arial, sans-serif" font-size="27" fill="${inkMuted}">Drag the assumptions; the Monte Carlo reruns in your browser.</text>
 </svg>`;
 

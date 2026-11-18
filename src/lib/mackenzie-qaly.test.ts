@@ -1,13 +1,17 @@
 import { describe, expect, it } from "vitest";
+import PYTHON_REFERENCE from "../data/mackenzie-qaly-summary.json";
+import V12 from "../data/mackenzie-qaly-allocation-v12.json";
 import {
   ARCHETYPE_KEYS,
   PARAMS,
   RNG,
+  computeAll,
   discountedQale,
   driverSensitivity,
   fmtDollars,
   fmtQalys,
   impliedMedian,
+  histogramOf,
   percentile,
   runModel,
   sampleOne,
@@ -15,10 +19,7 @@ import {
   summarize,
 } from "./mackenzie-qaly";
 
-// Reference values from the Python model (n=100k seed=0, round 3):
-//   giving $30.30B (2026$, from $26.39B nominal disclosed tranches)
-//   median 204,840 · mean 224,762 · p05 94,685 · p95 423,654
-//   blended $349,922/QALY · benefit-cost 2.12 (HHS VQALY) · frontier multiple 1,215
+// PYTHON_REFERENCE is a byte-copy of the Python repo's results/summary.json.
 // Monte Carlo output is RNG-sensitive, so we assert distributional agreement
 // with generous tolerances, not bit-parity.
 
@@ -112,27 +113,30 @@ describe("model end-to-end", () => {
   });
 
   it("matches the checked reference range within Monte Carlo tolerance", () => {
-    expect(s.median).toBeGreaterThan(170000);
-    expect(s.median).toBeLessThan(245000);
-    expect(s.mean).toBeGreaterThan(185000);
-    expect(s.mean).toBeLessThan(270000);
-    expect(s.p05).toBeGreaterThan(75000);
-    expect(s.p95).toBeLessThan(510000);
+    expect(s.median / PYTHON_REFERENCE.total_qalys.median).toBeCloseTo(1, 1);
+    expect(s.mean / PYTHON_REFERENCE.total_qalys.mean).toBeCloseTo(1, 1);
+    expect(Math.abs(s.p05 / PYTHON_REFERENCE.total_qalys.p05 - 1)).toBeLessThan(0.1);
+    expect(Math.abs(s.p95 / PYTHON_REFERENCE.total_qalys.p95 - 1)).toBeLessThan(0.1);
+  });
+
+  it("uses the corrected v1.2 allocation as its default", () => {
+    for (const key of ARCHETYPE_KEYS) {
+      expect(PARAMS.archetypes[key].allocation_share).toBe(
+        (V12.allocation_share as Record<string, number>)[key],
+      );
+    }
   });
 
   it("blended cost-per-QALY and benefit-cost land near the reference", () => {
-    expect(s.blendedMedian).toBeGreaterThan(120000);
-    expect(s.blendedMedian).toBeLessThan(185000);
+    expect(s.blendedMedian / PYTHON_REFERENCE.blended_cost_per_qaly_median).toBeCloseTo(1, 1);
     expect(s.blendedP05).toBeGreaterThan(0);
     expect(s.blendedP05).toBeLessThan(s.blendedMedian);
     expect(s.blendedP95).toBeGreaterThan(s.blendedMedian);
-    expect(s.bcMedian).toBeGreaterThan(4.0);
-    expect(s.bcMedian).toBeLessThan(6.0);
+    expect(s.bcMedian / PYTHON_REFERENCE.bc_ratio.median).toBeCloseTo(1, 1);
   });
 
-  it("frontier is handicapped but still ~1,000x+ better per dollar", () => {
-    expect(s.frontierMultiple).toBeGreaterThan(380);
-    expect(s.frontierMultiple).toBeLessThan(680);
+  it("matches the Python frontier comparison", () => {
+    expect(s.frontierMultiple / PYTHON_REFERENCE.frontier_multiple_median).toBeCloseTo(1, 1);
     // handicapped: below the raw giving / frontier_cpq
     const rawFrontier = r.giving / impliedMedian(PARAMS.conversions.frontier_cost_per_qaly_usd);
     expect(s.frontierMedian).toBeLessThan(rawFrontier);
@@ -189,11 +193,11 @@ describe("model end-to-end", () => {
 });
 
 describe("evidence-stance slider", () => {
-  it("stance spans RCT-only through the best guess to face value", () => {
+  it("stance spans near-RCT-only through the best guess to near face value", () => {
     const rctOnly = summarize(runModel({ n: 30000, seed: 0, credulity: 0 }));
     const best = summarize(runModel({ n: 30000, seed: 0, credulity: 0.5 }));
     const faceValue = summarize(runModel({ n: 30000, seed: 0, credulity: 1 }));
-    expect(rctOnly.median).toBeLessThan(50000); // only randomized evidence counts
+    expect(rctOnly.median).toBeLessThan(50000); // nonrandomized tiers retain 1% mean weight
     expect(best.median).toBeGreaterThan(4 * rctOnly.median);
     expect(faceValue.median).toBeGreaterThan(1.6 * best.median);
     expect(faceValue.median).toBeGreaterThan(185000); // approaches the "trust everything" figure
@@ -221,6 +225,9 @@ describe("formatters", () => {
   it("formats QALYs across unit boundaries", () => {
     expect(fmtQalys(197000)).toBe("197k");
     expect(fmtQalys(999999)).toBe("1.00M");
+    expect(fmtQalys(0)).toBe("0");
+    expect(fmtQalys(0.12)).toBe("0.12");
+    expect(fmtQalys(1e-45)).toBe("1e-45");
     expect(fmtDollars(26_300_000_000)).toBe("$26.3B");
     expect(fmtDollars(999999)).toBe("$1M");
   });
@@ -237,5 +244,54 @@ describe("discount-rate consistency", () => {
     expect(impliedRatio).toBeLessThan(1.85);
     // Frontier cost rises too, so frontier QALYs fall.
     expect(hi.frontierMedian).toBeLessThan(0.8 * base.frontierMedian);
+  });
+});
+
+describe("adaptive histogram", () => {
+  it("retains positive draws across orders of magnitude and constant samples", () => {
+    for (const values of [
+      [0.001, 1, 9_000, 200_000, 1e12],
+      [8_000, 8_000, 8_000],
+      [Number.MIN_VALUE, Number.MAX_VALUE],
+      [0, -1, NaN, Infinity, 5],
+    ]) {
+      const { hist, histDomain: [lo, hi] } = histogramOf(values);
+      const positive = values.filter((v) => Number.isFinite(v) && v > 0);
+      expect(hist.reduce((sum, bin) => sum + bin.count, 0)).toBe(positive.length);
+      expect(lo).toBeLessThan(hi);
+      for (const value of positive) {
+        expect(Math.log10(value)).toBeGreaterThanOrEqual(lo);
+        expect(Math.log10(value)).toBeLessThanOrEqual(hi);
+      }
+      expect(hist.every((bin) => bin.x > lo && bin.x < hi)).toBe(true);
+    }
+  });
+
+  it("conserves generated samples independently of their order and scale", () => {
+    const rng = new RNG(876);
+    for (let trial = 0; trial < 150; trial++) {
+      const values = Array.from({ length: 1 + trial }, () => 10 ** rng.uniform(-12, 12));
+      const original = histogramOf(values);
+      expect(original.hist.reduce((sum, bin) => sum + bin.count, 0)).toBe(values.length);
+      expect(histogramOf([...values].reverse())).toEqual(original);
+      const scaled = histogramOf(values.map((value) => value * 1000));
+      expect(scaled.hist.map((bin) => bin.count)).toEqual(original.hist.map((bin) => bin.count));
+      expect(scaled.histDomain[0]).toBeCloseTo(original.histDomain[0] + 3, 10);
+      expect(scaled.histDomain[1]).toBeCloseTo(original.histDomain[1] + 3, 10);
+    }
+  });
+
+  it("keeps all model draws and both markers across stance and allocation extremes", () => {
+    const concentrated = ARCHETYPE_KEYS.map((key) => key === "health_mental" ? 1 : 0);
+    for (const credulity of [0, 0.5, 1]) {
+      for (const shares of [undefined, concentrated]) {
+        const result = computeAll({ credulity, shares, n: 1200, seed: 0 });
+        expect(result.hist.reduce((sum, bin) => sum + bin.count, 0)).toBe(1200);
+        for (const marker of [result.medianLog, Math.log10(result.summary.mean)]) {
+          expect(marker).toBeGreaterThanOrEqual(result.histDomain[0]);
+          expect(marker).toBeLessThanOrEqual(result.histDomain[1]);
+        }
+      }
+    }
   });
 });
